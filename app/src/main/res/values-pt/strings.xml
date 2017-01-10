@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Teste seu Android</string>
+    <string name="ui_okay">Ok</string>
+    <string name="ui_cancel">Cancelar</string>
+    <string name="ui_error">Erro</string>
+    <string name="ui_na">N/A</string>
+    <string name="ui_caution">Atenção</string>
+    <string name="notsupport">Não suportado</string>
+    <string name="notsupport_android_20">Suporte ao Android 4.4+</string>
+    <string name="notsupport_android_21">Suporte ao Android 5.0+</string>
+    <string name="notsupport_android_22">Suporte ao Android 5.1+</string>
+    <string name="notsupport_android_23">Suporte ao Android 6.0+</string>
+    <string name="notsupport_android_24">Suporte ao Android 7.0+</string>
+    <string name="dialog_feature_na_message">Seu dispositivo Android não tem esse recurso ou está sendo usado por outros aplicativos.</string>
+    <string name="dialog_fingerprint_sdk_message">Este recurso é compatível somente com o Android 6.0+ Android API Oficial.</string>
+
+    <string name="title_activity_test_color">Cor do monitor</string>
+    <string name="title_activity_test_light_sensor">Sensor de luz</string>
+    <string name="title_activity_test_camera">Câmera</string>
+    <string name="title_activity_test_flash">Flash</string>
+    <string name="title_activity_test_fingerprint">Impressão digital</string>
+    <string name="title_activity_test_draw">Touch Screen</string>
+    <string name="title_activity_test_multi_touch">Multi Touch</string>
+    <string name="title_activity_test_ring">Som e vibração</string>
+    <string name="title_activity_test_mic">Microfone</string>
+    <string name="title_activity_test_wifi">Teste Wi-Fi</string>
+    <string name="title_activity_test_accelerometer">Acelerômetro</string>
+    <string name="title_activity_test_gps">Localização</string>
+    <string name="title_activity_test_nfc">NFC</string>
+    <string name="title_activity_test_proximity">Sensor de proximidade</string>
+    <string name="title_activity_test_gravity">Sensor de Gravidade</string>
+    <string name="title_activity_test_pressure">Sensor de pressão</string>
+    <string name="title_activity_test_monitor">Monitor do sistema</string>
+    <string name="title_activity_test_compass">Bússola</string>
+    <string name="title_activity_info_hardware">Hardware</string>
+    <string name="title_activity_info_cpu">CPU/Memória</string>
+    <string name="title_activity_info_android_version">Versão do Android</string>
+    <string name="title_activity_info_application">Aplicativos instalados</string>
+    <string name="title_activity_info_battery">Bateria</string>
+    <string name="title_activity_info_camera">Câmera</string>
+    <string name="title_activity_info_gsm">Internet</string>
+    <string name="title_activity_test_easteregg">Tocar com o Android</string>
+    <string name="title_activity_test_ad_remover">Doar</string>
+    <string name="title_activity_rate_us">Classifique-nos!</string>
+
+    <string name="title_activity_app_choose">Aplicativos instalados</string>
+    <string name="title_activity_app_user">Aplicativos instalados pelo usuário</string>
+    <string name="title_activity_app_system">Aplicativos do sistema</string>
+    <string name="title_activity_app_all">Todos os aplicativos</string>
+    <string name="app_package">Pacote de Aplicativos</string>
+
+
+    <!--  -->
+    <string name="main_tab_title_1">Testar</string>
+    <string name="main_tab_title_2">Informação</string>
+    <string name="main_tab_title_3">Sobre</string>
+
+    <!--  -->
+    <string name="app_info_tab_title_1">~Ações</string>
+    <string name="app_info_tab_title_2">Pacote</string>
+    <string name="app_info_tab_title_3">Permissões</string>
+
+    <!--  -->
+    <string name="test_monitor_tab_title_1">CPU</string>
+    <string name="test_monitor_tab_title_2">Internet</string>
+    <string name="test_monitor_tab_title_3">Memória</string>
+
+    <!--  -->
+    <string name="color_title">Por favor, escolha</string>
+    <string name="color_message">Modo normal:
+        \nToque para alterar a próxima cor\nToque para selecionar o seletor de cores
+        \n\nModo de fixação: \nMudar cor rapidamente</string>
+    <string name="color_normal_btn">Modo normal</string>
+    <string name="color_test_btn">Modo de fixação</string>
+    <string name="color_test_message">Durante o modo de fixação, a tela piscará mudando de cor rapidamente.
+        \nNÃO OLHE para a tela caso contrário, pode machucar seus olhos.
+        \n\nÉ recomendável fazê-lo enquanto carrega. Este modo será fechado automaticamente após 20 minutos.
+        \n\nEste modo de fixação não é garantido para corrigir os pixels defeituosos. Entre em contato com o fabricante se você tiver qualquer problema.
+        \n\nVocê pode pressionar a tecla VOLTAR para ir a tela principal.</string>
+
+    <string name="color_choose_title">Por favor, escolha</string>
+    <string name="color_choose_red">Vermelho</string>
+    <string name="color_choose_green">Verde</string>
+    <string name="color_choose_blue">Azul</string>
+    <string name="color_choose_cyan">Ciano</string>
+    <string name="color_choose_magenta">Magenta</string>
+    <string name="color_choose_yellow">Amarelo</string>
+    <string name="color_choose_black">Preto</string>
+    <string name="color_choose_white">Branco</string>
+    <string name="color_choose_gray">Cinza</string>
+    <string name="color_choose_dark_gray">Cinza escuro</string>
+    <string name="color_choose_light_gray">Cinza claro</string>
+
+    <!--  -->
+    <string name="vibrate_button">Teste de vibração</string>
+    <string name="vibrate_stop_button">Parar vibração</string>
+    <string name="vibrate_string_1">Vibração Longa</string>
+    <string name="vibrate_string_2">Vibração Curta</string>
+
+    <!--  -->
+    <string name="ring_button">Tocar música</string>
+    <string name="ring_stop_button">Parar música</string>
+    <string name="adjust_volume">Ajustar o Volume</string>
+    <string name="vibrate_type">Modo de Vibração</string>
+
+    <!--  -->
+    <string name="draw_message">Desenha uma linha para testar a sensibilidade do touch screen.</string>
+    <string name="touch_message">Toque na tela com alguns dedos.</string>
+    <string name="nfc_tutor_title">Como fazer</string>
+    <string name="nfc_tutor_message">Encoste qualquer tag NFC por trás do dispositivo e você receberá sinais sonoros quando for bem-sucedido.</string>
+
+    <!--  -->
+    <string name="info_hardware_string_1">Marca</string>
+    <string name="info_hardware_string_2">Dispositivo</string>
+    <string name="info_hardware_string_3">Modelo</string>
+    <string name="info_hardware_string_4">Nome do produto</string>
+    <string name="info_hardware_string_5">Display</string>
+    <string name="info_hardware_string_6">Impressão digital</string>
+    <string name="info_hardware_string_7">Borda</string>
+    <string name="info_hardware_string_8">Fabricante</string>
+    <string name="info_hardware_string_9">Serial</string>
+    <string name="info_hardware_string_10">Usuário</string>
+    <string name="info_hardware_string_11">Host</string>
+    <string name="info_hardware_string_12">Borda</string>
+
+    <!--  -->
+    <string name="app_package_string_1">Pacote</string>
+    <string name="app_package_string_2">Nome do Pacote</string>
+    <string name="app_package_string_3">Código de versão</string>
+    <string name="app_package_string_4">Versão</string>
+    <string name="app_package_string_5">Tempo instalado</string>
+    <string name="app_package_string_6">Tempo de atualização</string>
+    <string name="app_package_string_7">Diretório de dados</string>
+    <string name="app_package_string_8">Diretório do APK</string>
+    <string name="app_package_string_9">Versão min. do SDK</string>
+    <string name="app_package_string_10">Versão do SDK de destino</string>
+    <!--  -->
+    <string name="app_action_string_1">Iniciar app</string>
+    <string name="app_action_string_2">Desinstalar</string>
+    <string name="app_action_string_3">Painel de controle</string>
+    <string name="app_action_string_4">Play Store</string>
+
+    <!--  -->
+    <string name="info_battery_charge_string_1">Descarregando</string>
+    <string name="info_battery_charge_string_2">Carregando AC</string>
+    <string name="info_battery_charge_string_3">Carregando USB</string>
+    <string name="info_battery_charge_string_4">Desconhecido</string>
+    <string name="info_battery_charge_string_5">Carregamento sem fio</string>
+
+    <!--  -->
+    <string name="info_battery_health_string_1">Desconhecido</string>
+    <string name="info_battery_health_string_2">Desconhecido</string>
+    <string name="info_battery_health_string_3">Boa</string>
+    <string name="info_battery_health_string_4">Atenção: Sobreaquecimento</string>
+    <string name="info_battery_health_string_5">Cuidado: Morta</string>
+    <string name="info_battery_health_string_6">Cuidado: Sobretensão</string>
+    <string name="info_battery_health_string_7">Desconhecido</string>
+    <string name="info_battery_health_string_8">Cuidado: Muito fria</string>
+
+    <!--  -->
+    <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
+    <string name="test_wifi_current_string_2"><![CDATA[BSSID: ]]></string>
+    <string name="test_wifi_current_string_3"><![CDATA[Network ID: ]]></string>
+    <string name="test_wifi_current_string_4"><![CDATA[Mac Address: ]]></string>
+    <string name="test_wifi_current_string_5"><![CDATA[Wi-Fi Speed: ]]></string>
+    <string name="test_wifi_current_string_6"><![CDATA[Wi-Fi Strength: ]]></string>
+    <string name="test_wifi_current_string_7"><![CDATA[IP Address: ]]></string>
+    <string name="test_wifi_current_string_8"><![CDATA[Default Gateway: ]]></string>
+    <string name="test_wifi_current_string_9"><![CDATA[Subnet Mask: ]]></string>
+    <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
+    <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
+    <string name="test_wifi_current_string_12"><![CDATA[Server Address: ]]></string>
+
+    <!--  -->
+    <string name="test_wifi_string_1">Wi-Fi atual</string>
+    <string name="test_wifi_string_2">Wi-Fi disponíveis</string>
+    <string name="test_wifi_string_3">Wi-Fi SSID salvos</string>
+
+    <!--  -->
+    <string name="info_cpu_string_1">Feq. min</string>
+    <string name="info_cpu_string_2">Feq. max</string>
+    <string name="info_cpu_string_3">Núcleos CPU.</string>
+    <string name="info_cpu_string_4">Memória interna</string>
+    <string name="info_cpu_string_5">Memória interna</string>
+    <string name="info_cpu_string_6">Memória RAM</string>
+    <string name="info_cpu_string_7">Memória detalhada</string>
+
+    <!--  -->
+    <string name="memory_string_1"><![CDATA[Total: ]]></string>
+    <string name="memory_string_2"><![CDATA[Available: ]]></string>
+    <string name="memory_string_3"><![CDATA[Used: ]]></string>
+    <string name="memory_string_4"><![CDATA[Threshold: ]]></string>
+
+    <!--  -->
+    <string name="info_android_version_string_1">Versão Android</string>
+    <string name="info_android_version_string_2">Nome de código</string>
+    <string name="info_android_version_string_3">INCREMENTAL</string>
+    <string name="info_android_version_string_4">Versão SDK</string>
+    <string name="info_android_version_string_5">Tipo de kernel</string>
+    <string name="info_android_version_string_6">OS do Kernel</string>
+    <string name="info_android_version_string_7">Versão do Kernel OS</string>
+    <string name="info_android_version_string_8">Bibliotecas JNI</string>
+    <string name="info_android_version_string_9">Versão da biblioteca VM</string>
+    <string name="info_android_version_string_10">Fornecedor de biblioteca VM</string>
+    <string name="info_android_version_string_11">Nome da biblioteca VM</string>
+    <string name="info_android_version_string_12">Versão de implementação VM</string>
+    <string name="info_android_version_string_13">Fornecedor de implementação VM</string>
+    <string name="info_android_version_string_14">Nome de implementação VM</string>
+    <string name="info_android_version_string_15">Versão da especificação VM</string>
+    <string name="info_android_version_string_16">Fornecedor de especificações VM</string>
+    <string name="info_android_version_string_17">Nome da especificação VM</string>
+    <string name="info_android_version_string_18">Localização da VM</string>
+    <string name="info_android_version_string_19">Fuso horário</string>
+
+    <!--  -->
+    <string name="info_camera_string_1">Largura da tela</string>
+    <string name="info_camera_string_2">Altura da tela</string>
+    <string name="info_camera_string_3">Resolução de imagem</string>
+    <string name="info_camera_string_4">Antibanding</string>
+    <string name="info_camera_string_5">Efeitos de cor</string>
+    <string name="info_camera_string_6">Modo de Flash</string>
+    <string name="info_camera_string_7">Modo de Foco</string>
+    <string name="info_camera_string_8">Balanço de brancos</string>
+    <string name="info_camera_string_9">Modos de Cena</string>
+    <string name="info_camera_string_10">Formatos de Imagem</string>
+
+    <!--  -->
+    <string name="info_battery_string_1">Nível de bateria</string>
+    <string name="info_battery_string_2">Nível Máximo de Bateria</string>
+    <string name="info_battery_string_3">Saúde da Bateria</string>
+    <string name="info_battery_string_4">Estado da Bateria</string>
+    <string name="info_battery_string_5">Tecnologia da bateria</string>
+    <string name="info_battery_string_6">Temperatura da bateria</string>
+    <string name="info_battery_string_7">Voltagem da bateria</string>
+
+    <!--  -->
+    <string name="test_sensor_string_1">Lendo</string>
+    <string name="test_sensor_string_2">Nome</string>
+    <string name="test_sensor_string_3">Fornecedor</string>
+    <string name="test_sensor_string_4">Versão</string>
+    <string name="test_sensor_string_5">Alcance Máx.</string>
+    <string name="test_sensor_string_6">Delay Min</string>
+    <string name="test_sensor_string_7">Resolução</string>
+    <string name="test_sensor_string_8">Energia</string>
+
+    <!--  -->
+    <string name="test_gps_string_1">Latitude</string>
+    <string name="test_gps_string_2">Longitude</string>
+    <string name="test_gps_string_3">Velocidade</string>
+    <string name="test_gps_string_4">Altitude</string>
+    <string name="test_gps_string_5">Rolamento</string>
+    <string name="test_gps_string_6">Precisão</string>
+
+    <!--  -->
+    <string name="info_gsm_string_1">País do cartão SIM</string>
+    <string name="info_gsm_string_2">Código de operadora do cartão SIM</string>
+    <string name="info_gsm_string_3">Nome de operadora do cartão SIM</string>
+    <string name="info_gsm_string_4">Estado do cartão SIM</string>
+    <string name="info_gsm_string_5">IMEI/ESN</string>
+    <string name="info_gsm_string_6">Versão do software do dispositivo</string>
+    <string name="info_gsm_string_7">Número do telefone</string>
+    <string name="info_gsm_string_8">País da Rede</string>
+    <string name="info_gsm_string_9">Código do operadora de rede</string>
+    <string name="info_gsm_string_10">Nome da operadora da rede</string>
+    <string name="info_gsm_string_11">Roaming em rede</string>
+    <string name="info_gsm_string_12">Número de série do SIM</string>
+    <string name="info_gsm_string_13">ID do assinante</string>
+
+    <!--  -->
+    <string name="info_sim_status_string_1">Desconhecido</string>
+    <string name="info_sim_status_string_2">Sem cartão SIM</string>
+    <string name="info_sim_status_string_3">Bloqueado: requer o PIN do SIM para desbloquear</string>
+    <string name="info_sim_status_string_4">Bloqueado: requer o PUK do SIM para desbloquear</string>
+    <string name="info_sim_status_string_5">Bloqueado: requer um PIN de rede para desbloquear</string>
+    <string name="info_sim_status_string_6">Pronto</string>
+
+    <string name="wifi_setting">Configurações Wi-Fi</string>
+    <string name="wifi_reload">Atualizar</string>
+    <string name="wifi_reload_done">Atualizado</string>
+    <string name="wifi_reload_fail">Falha ao atualizar</string>
+    <string name="wifi_enable_message">Você precisa ativar o Wifi para continuar.</string>
+    <string name="wifi_enable_posbtn">Ir para as configurações Wi-Fi</string>
+    <string name="wifi_no">Nenhum Wi-Fi Conectado</string>
+    <string name="gps_setting">Configurações de localização</string>
+    <string name="security_setting">Configurações</string>
+    <string name="gps_scanning">Escaneando</string>
+    <string name="gps_enable_message">Você precisa ativar a Localização para continuar.</string>
+    <string name="gps_enable_posbtn">Ir para as configurações de localização</string>
+    <string name="nfc_enable_message">Você precisa ativar o NFC para continuar.</string>
+    <string name="nfc_enable_posbtn">Ir para configurações NFC</string>
+    <string name="nfc_message">Aprozime uma Tag NFC.</string>
+    <string name="nfc_help">Ajuda</string>
+    <string name="nfc_setting">Configurações NFC</string>
+    <string name="flash_on">Ativar Flash</string>
+    <string name="flash_off">Desativar Flash</string>
+    <string name="ui_share">Compartilhar</string>
+    <string name="action_iap">Remover ads</string>
+    <string name="cpu_speed">Velocidade</string>
+    <string name="cpu_range">Alcance</string>
+    <string name="cpu_core">Nº de Núcleos</string>
+    <string name="cpu_min">Velocidade Min</string>
+    <string name="cpu_max">Velocidade Max</string>
+    <string name="network_upspeed">Velocidade de Upload</string>
+    <string name="network_downspeed">Velocidade de Download</string>
+    <string name="memory_ava">Disponível</string>
+    <string name="memory_total">Total</string>
+    <string name="memory_used">Usado</string>
+    <string name="ui_version">Versão</string>
+    <string name="feedback">Comentários</string>
+    <string name="about_credit_btn">Licenças de código aberto</string>
+    <string name="feedback_title">Teste seu aplicativo Android: relatório e comentários</string>
+    <string name="more">Aplicativo de desenvolvedores</string>
+    <string name="rate_title">Dê seu feedback ao desenvolvedor</string>
+    <string name="rate_message">Avalie este aplicativo no Google Play para oferecer suporte ao desenvolvedor. Entre em contato com o desenvolvedor se tiver alguma dúvida.</string>
+    <string name="rate_navbtn">Não, obrigado</string>
+    <string name="rate_netbtn">Mais tarde</string>
+    <string name="rate_posbtn">Classificar agora</string>
+    <string name="share_button">Compartilhe!!!</string>
+    <string name="share_message">Vamos fazer o download do aplicativo "Teste seu Android" para testar seu dispositivo Android.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="mic_start">Toque no botão para iniciar a gravação</string>
+    <string name="mic_end">Toque no botão para iniciar ou parar a gravação</string>
+    <string name="mic_stop_playing">Toque o botão para parar a reprodução</string>
+
+    <!--  -->
+    <string name="dialog_camera_title">Selecione a câmera</string>
+    <string name="changelog_full_title">Log de alterações</string>
+    <string name="changelog_title">O que há de novo</string>
+    <string name="changelog_ok_button">OK</string>
+    <string name="changelog_show_full">Mais…</string>
+    <string name="iab_complete_title">Obrigado</string>
+    <string name="iab_complete_message">Reinicie o aplicativo para aplicar a alteração.</string>
+    <string name="iap_not_found">Nenhum registro encontrado.</string>
+    <string name="loading">Carregando...</string>
+    <string name="ui_fingerprint_not_locked">Ative o bloqueio de tela nas Configurações.</string>
+    <string name="ui_fingerprint_not_register">Registre pelo menos uma impressão digital nas Configurações.</string>
+    <string name="ui_fingerprint_start_message">Coloque o dedo no sensor.</string>
+    <string name="ui_fingerprint_fail">Não reconhecido.</string>
+    <string name="ui_fingerprint_error">Erro de autenticação</string>
+    <string name="ui_fingerprint_help">Ajuda da autenticação</string>
+    <string name="ui_fingerprint_succeeded">Concluído.</string>
+
+    <string name="app_notfound">Nenhum aplicativo encontrado.</string>
+    <string name="press_me">Toque-me!!!</string>
+    <string name="press_me_1">Isso!!!</string>
+    <string name="press_me_2">Quer algo novo?!!!\nVolte a esta página!</string>
+
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <issue id="ContentDescription" severity="ignore" />
+    <issue id="HardcodedText">
+        <ignore path="res/layout/fragment_about.xml" />
+    </issue>
+    <issue id="SelectableText" severity="ignore" />
+    <issue id="TypographyEllipsis" severity="ignore" />
+    <issue id="UseCompoundDrawables" severity="ignore" />
+</lint>

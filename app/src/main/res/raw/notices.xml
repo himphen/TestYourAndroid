@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<notices>
+    <notice>
+        <name>Butter Knife</name>
+        <url>http://jakewharton.github.io/butterknife/</url>
+        <copyright>Copyright 2013 Jake Wharton</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Material Dialogs</name>
+        <url>http://acra.ch/</url>
+        <copyright>Copyright (c) 2014-2016 Aidan Michael Follestad</copyright>
+        <license>MIT License</license>
+    </notice>
+    <notice>
+        <name>Android-RobotoTextView</name>
+        <url>https://github.com/johnkil/Android-RobotoTextView</url>
+        <copyright>Copyright 2014 Evgeny Shishkin</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Glide</name>
+        <url>https://github.com/bumptech/glide</url>
+        <copyright>https://github.com/bumptech/glide</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Licenses Dialog</name>
+        <url>https://github.com/PSDev/LicensesDialog</url>
+        <copyright>Copyright 2013-2016 Philip Schiffer</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>OrmLite</name>
+        <url>http://www.android-graphview.org/</url>
+        <copyright>Copyright Jonas Gehring</copyright>
+        <license>GNU General Public License 2.0</license>
+    </notice>
+    <notice>
+        <name>ckChangeLog</name>
+        <url>https://github.com/cketti/ckChangeLog/</url>
+        <copyright>cketti and contributors</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Android In-App Billing v3 Library</name>
+        <url>https://github.com/anjlab/android-inapp-billing-v3/</url>
+        <copyright>AnjLab</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>SmallBang</name>
+        <url>https://github.com/hanks-zyh/SmallBang/</url>
+        <copyright>Hanks</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>MaterialScrollBar</name>
+        <url>https://github.com/turing-tech/MaterialScrollBar</url>
+        <copyright>Turing Technologies, an unincorporated organisation of Wynne Plaga</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Apache Commons</name>
+        <url>https://github.com/apache/commons-lang/</url>
+        <copyright>The Apache Software Foundation</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+</notices>

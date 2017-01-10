@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android Wear 測試工具</string>
+    <string name="hello_round">Hello Round World!</string>
+    <string name="hello_square">Hello Square World!</string>
+    <string name="notsupport">不支援</string>
+    <string name="dialog_feature_na_message">沒有這項功能。</string>
+
+    <string name="title_activity_test_color">螢幕顏色</string>
+    <string name="title_activity_test_light_sensor">光源感應器測試</string>
+    <string name="title_activity_test_draw">螢幕繪圖</string>
+    <string name="title_activity_test_ring">喇叭及震動測試</string>
+    <string name="title_activity_test_wifi">Wi-Fi 測試</string>
+    <string name="title_activity_test_accelerometer">加速感應器測試</string>
+    <string name="title_activity_test_gps">定位測試</string>
+    <string name="title_activity_test_proximity">距離感應器測試</string>
+    <string name="title_activity_test_gravity">重力感應器測試</string>
+    <string name="title_activity_test_pressure">壓力感應器測試</string>
+    <string name="title_activity_test_compass">指南針測試</string>
+    <string name="title_activity_info_cpu">CPU/記憶體</string>
+    <string name="title_activity_info_hardware">其他硬件資料</string>
+    <string name="title_activity_info_android_version">Android 版本</string>
+    <string name="title_activity_info_battery">電池資料</string>
+    <string name="title_activity_test_monitor">系統監視器</string>
+
+    <string-array name="main_test_string_array" translatable="false">
+        <item>@string/title_activity_test_color</item>
+        <item>@string/title_activity_test_light_sensor</item>
+        <item>@string/title_activity_test_accelerometer</item>
+        <item>@string/title_activity_test_gravity</item>
+        <item>@string/title_activity_info_cpu</item>
+        <item>@string/title_activity_info_hardware</item>
+        <item>@string/title_activity_info_android_version</item>
+        <item>@string/title_activity_info_battery</item>
+    </string-array>
+
+    <!--  -->
+    <string name="info_cpu_string_1">最低頻率</string>
+    <string name="info_cpu_string_2">最高頻率</string>
+    <string name="info_cpu_string_3">CPU 核心數目</string>
+    <string name="info_cpu_string_4">內置系統記憶體</string>
+    <string name="info_cpu_string_5">外置空間記憶體</string>
+    <string name="info_cpu_string_6">RAM 記憶體</string>
+    <string name="info_cpu_string_7">詳細記憶體資料</string>
+
+    <!--  -->
+    <string name="memory_string_1">總空間：</string>
+    <string name="memory_string_2">可用空間：</string>
+    <string name="memory_string_3">已使用空間：</string>
+    <string name="memory_string_4">Threshold：</string>
+
+    <!--  -->
+    <string name="info_android_version_string_1">Android 版本</string>
+    <string name="info_android_version_string_2">代號</string>
+    <string name="info_android_version_string_3">SDK 版本</string>
+    <string name="info_android_version_string_4">內核版本</string>
+    <string name="info_android_version_string_5">內核版本</string>
+    <string name="info_android_version_string_6">內核作業系統</string>
+    <string name="info_android_version_string_7">內核作業系統版本</string>
+    <string name="info_android_version_string_8">底板版本</string>
+    <string name="info_android_version_string_9">基頻版本</string>
+
+    <!--  -->
+    <string name="info_camera_string_1">螢幕闊度</string>
+    <string name="info_camera_string_2">螢幕高度</string>
+    <string name="info_camera_string_3">支持解像度</string>
+    <string name="info_camera_string_4">防閃爍</string>
+    <string name="info_camera_string_5">顏色濾鏡模式</string>
+    <string name="info_camera_string_6">閃光燈模式</string>
+    <string name="info_camera_string_7">對焦模式</string>
+    <string name="info_camera_string_8">白平衝模式</string>
+    <string name="info_camera_string_9">場境模式</string>
+    <string name="info_camera_string_10">相片輸出格式</string>
+
+    <!--  -->
+    <string name="info_battery_string_1">電量 Level</string>
+    <string name="info_battery_string_2">電池最高容量</string>
+    <string name="info_battery_string_3">電池健康度</string>
+    <string name="info_battery_string_4">電池狀態</string>
+    <string name="info_battery_string_5">電池技術</string>
+    <string name="info_battery_string_6">電池溫度</string>
+    <string name="info_battery_string_7">電池電壓</string>
+
+    <!--  -->
+    <string name="test_wifi_current_string_1">SSID：</string>
+    <string name="test_wifi_current_string_2">BSSID：</string>
+    <string name="test_wifi_current_string_3">網絡等級：</string>
+    <string name="test_wifi_current_string_4">Mac 位址：</string>
+    <string name="test_wifi_current_string_5">Wi-Fi 速度：</string>
+    <string name="test_wifi_current_string_6">Wi-Fi 信號強度：</string>
+    <string name="test_wifi_current_string_7">IP 位址：</string>
+    <string name="test_wifi_current_string_8">預設閘道：</string>
+    <string name="test_wifi_current_string_9">網路遮罩：</string>
+    <string name="test_wifi_current_string_10">DNS 1：</string>
+    <string name="test_wifi_current_string_11">DNS 2：</string>
+    <string name="test_wifi_current_string_12">伺服器位址：</string>
+
+    <!--  -->
+    <string name="test_wifi_string_1">現在連接中</string>
+    <string name="test_wifi_string_2">可用 Wi-Fi</string>
+    <string name="test_wifi_string_3">已記錄 Wi-Fi SSID</string>
+
+    <!--  -->
+    <string name="test_sensor_string_1">讀數</string>
+    <string name="test_sensor_string_2">感應器名稱</string>
+    <string name="test_sensor_string_3">感應器廠商</string>
+    <string name="test_sensor_string_4">版本</string>
+    <string name="test_sensor_string_5">最大讀取範圍</string>
+    <string name="test_sensor_string_6">最小延遲度</string>
+    <string name="test_sensor_string_7">解析率</string>
+    <string name="test_sensor_string_8">功率</string>
+
+    <!--  -->
+    <string name="test_gps_string_1">緯度</string>
+    <string name="test_gps_string_2">經度</string>
+    <string name="test_gps_string_3">速度</string>
+    <string name="test_gps_string_4">海拔</string>
+    <string name="test_gps_string_5">方位角度</string>
+    <string name="test_gps_string_6">精確度</string>
+
+    <string name="info_battery_charge_string_1">放電中</string>
+    <string name="info_battery_charge_string_2">AC 充電中</string>
+    <string name="info_battery_charge_string_3">USB 充電中</string>
+    <string name="info_battery_charge_string_4">不明</string>
+    <string name="info_battery_health_string_1">不明</string>
+    <string name="info_battery_health_string_2">不明</string>
+    <string name="info_battery_health_string_4">注意：過熱</string>
+    <string name="info_battery_health_string_3">良好</string>
+    <string name="info_battery_charge_string_5">無線充電中</string>
+    <string name="info_battery_health_string_5">注意：失效</string>
+    <string name="info_battery_health_string_6">注意：電壓過高</string>
+    <string name="info_battery_health_string_7">不明</string>
+    <string name="info_battery_health_string_8">注意：過冷</string>
+    <string name="info_hardware_string_1">Brand</string>
+    <string name="info_hardware_string_3">Battery Level</string>
+    <string name="info_hardware_string_2">Model</string>
+    <string name="info_hardware_string_4">Battery Health</string>
+    <string name="info_hardware_string_6">IMEI/ESN</string>
+    <string name="info_hardware_string_7">Android OS Version</string>
+    <string name="info_hardware_string_5">Battery Status</string>
+</resources>
