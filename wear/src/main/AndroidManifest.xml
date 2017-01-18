@@ -11,6 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
+
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name">
@@ -29,27 +33,6 @@
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_test_light_sensor">
         </activity>
-        <!--<activity-->
-        <!--android:name=".ui.activity.TestCameraActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_test_camera"-->
-        <!--android:screenOrientation="portrait" >-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name=".ui.activity.TestFlashActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_test_flash" >-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name=".ui.activity.TestDrawActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_test_draw" >-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name=".ui.activity.TestMultiTouchActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_test_multi_touch" >-->
-        <!--</activity>-->
         <activity
             android:name=".ui.activity.InfoHardwareActivity"
             android:label="@string/title_activity_info_hardware">
@@ -66,56 +49,16 @@
             android:name=".ui.activity.InfoBatteryActivity"
             android:label="@string/title_activity_info_battery">
         </activity>
-        <!--<activity-->
-        <!--android:name=".ui.activity.TestWifiActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_test_wifi" >-->
-        <!--</activity>-->
         <activity
             android:name=".ui.activity.TestSensorAccelerometerActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_test_accelerometer">
         </activity>
-        <!--<activity-->
-        <!--android:name=".ui.activity.TestLocationActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_test_gps" >-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name=".ui.activity.TestNFCActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_test_nfc" >-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name=".ui.activity.TestSensorProximityActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_test_proximity" >-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name=".ui.activity.InfoGSMActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_info_gsm" >-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name=".ui.activity.MonitorActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_test_monitor" >-->
-        <!--</activity>-->
         <activity
             android:name=".ui.activity.TestSensorGravityActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_test_gravity">
         </activity>
-        <!--<activity-->
-        <!--android:name=".ui.activity.TestSensorPressureActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_test_pressure" >-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name=".ui.activity.TestCompassActivity"-->
-        <!--android:configChanges="orientation|screenSize|locale|layoutDirection"-->
-        <!--android:label="@string/title_activity_test_compass" >-->
-        <!--</activity>-->
     </application>
 
 </manifest>

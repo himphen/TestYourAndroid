@@ -1,9 +1,11 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +51,8 @@ import hibernate.v2.testyourandroid.utils.FingerprintHandler;
  * http://joerichard.net/android/android-fingerprint-example/
  */
 public class TestFingerprintFragment extends BaseFragment {
+
+	protected final String PERMISSION_NAME = Manifest.permission.USE_FINGERPRINT;
 
 	private FingerprintManager fingerprintManager;
 	private KeyguardManager keyguardManager;
@@ -105,7 +110,13 @@ public class TestFingerprintFragment extends BaseFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		init();
+
+		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+			init();
+		} else {
+			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
+		}
+
 	}
 
 	@Override
@@ -121,22 +132,24 @@ public class TestFingerprintFragment extends BaseFragment {
 
 	private void init() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			if (!fingerprintManager.isHardwareDetected()) {
-				C.openErrorDialog(mContext);
-			} else if (!keyguardManager.isKeyguardSecure()) {
-				helpText.setText(R.string.ui_fingerprint_not_locked);
-			} else if (!fingerprintManager.hasEnrolledFingerprints()) {
-				helpText.setText(R.string.ui_fingerprint_not_register);
-			} else {
-				try {
-					generateKey();
-					cipherInit();
-					cryptoObject = new FingerprintManager.CryptoObject(cipher);
-
-					fingerprintHandler = new FingerprintHandler(mContext, helpText, fingerprintIv);
-					fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
-				} catch (Exception e) {
+			if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+				if (!fingerprintManager.isHardwareDetected()) {
 					C.openErrorDialog(mContext);
+				} else if (!keyguardManager.isKeyguardSecure()) {
+					helpText.setText(R.string.ui_fingerprint_not_locked);
+				} else if (!fingerprintManager.hasEnrolledFingerprints()) {
+					helpText.setText(R.string.ui_fingerprint_not_register);
+				} else {
+					try {
+						generateKey();
+						cipherInit();
+						cryptoObject = new FingerprintManager.CryptoObject(cipher);
+
+						fingerprintHandler = new FingerprintHandler(mContext, helpText, fingerprintIv);
+						fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
+					} catch (Exception e) {
+						C.openErrorDialog(mContext);
+					}
 				}
 			}
 		} else {
@@ -196,6 +209,18 @@ public class TestFingerprintFragment extends BaseFragment {
 		} catch (KeyStoreException | CertificateException | UnrecoverableKeyException | IOException
 				| NoSuchAlgorithmException | InvalidKeyException e) {
 			throw new Exception("Failed to init Cipher", e);
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == PERMISSION_REQUEST_CODE) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				init();
+			} else {
+				C.openErrorPermissionDialog(mContext);
+			}
 		}
 	}
 }

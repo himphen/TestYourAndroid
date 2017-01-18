@@ -1,5 +1,6 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.hardware.Sensor;
@@ -33,6 +34,7 @@ import hibernate.v2.testyourandroid.utils.SensorHelper;
 /**
  * Created by himphen on 21/5/16.
  */
+@SuppressLint("DefaultLocale")
 public class TestSensorFragment extends BaseFragment {
 
 	private SensorManager mSensorManager;
@@ -46,6 +48,7 @@ public class TestSensorFragment extends BaseFragment {
 
 	private String reading = "";
 
+	private float initReading = 0.f;
 	private GraphViewSeries series;
 	private GraphViewSeries series2;
 	private GraphViewSeries series3;
@@ -110,6 +113,7 @@ public class TestSensorFragment extends BaseFragment {
 	public void onResume() {
 		super.onResume();
 		if (mSensor != null && sensorEventListener != null) {
+
 			mSensorManager.registerListener(sensorEventListener, mSensor,
 					SensorManager.SENSOR_DELAY_UI);
 
@@ -168,6 +172,12 @@ public class TestSensorFragment extends BaseFragment {
 				sensorEventListener = compassListener;
 				graphView.setManualYAxisBounds(360, 0);
 				break;
+			case Sensor.TYPE_STEP_COUNTER:
+				sensorEventListener = stepListener;
+				break;
+			case Sensor.TYPE_AMBIENT_TEMPERATURE:
+				sensorEventListener = temperatureListener;
+				break;
 			default:
 		}
 
@@ -211,6 +221,12 @@ public class TestSensorFragment extends BaseFragment {
 						break;
 					case Sensor.TYPE_MAGNETIC_FIELD:
 						infoItem = new InfoItem(stringArray[i], SensorHelper.getMagneticSensorData(i, stringArray.length, reading, mSensor));
+						break;
+					case Sensor.TYPE_STEP_COUNTER:
+						infoItem = new InfoItem(stringArray[i], SensorHelper.getStepCounterSensorData(i, stringArray.length, reading, mSensor));
+						break;
+					case Sensor.TYPE_AMBIENT_TEMPERATURE:
+						infoItem = new InfoItem(stringArray[i], SensorHelper.getTemperatureCounterSensorData(i, stringArray.length, reading, mSensor));
 						break;
 					default:
 						infoItem = new InfoItem(stringArray[i], getString(R.string.notsupport));
@@ -301,6 +317,44 @@ public class TestSensorFragment extends BaseFragment {
 		@Override
 		public void onSensorChanged(SensorEvent event) {
 			reading = String.format("%1.2f", event.values[0]) + " cm";
+			lastXValue += 1;
+			series.appendData(new GraphView.GraphViewData(lastXValue, event.values[0]),
+					true, 100);
+			list.get(0).setContentText(reading);
+			adapter.notifyDataSetChanged();
+		}
+	};
+
+	private SensorEventListener stepListener = new SensorEventListener() {
+		@Override
+		public void onAccuracyChanged(Sensor arg0, int arg1) {
+		}
+
+		@Override
+		public void onSensorChanged(SensorEvent event) {
+			if (initReading == 0) {
+				initReading = event.values[0];
+			}
+			int value = (int) (event.values[0] - initReading);
+			reading = value + " Steps";
+			lastXValue += 1;
+			series.appendData(new GraphView.GraphViewData(lastXValue, value),
+					true, 100);
+			list.get(0).setContentText(reading);
+			adapter.notifyDataSetChanged();
+		}
+	};
+
+	private SensorEventListener temperatureListener = new SensorEventListener() {
+		@Override
+		public void onAccuracyChanged(Sensor arg0, int arg1) {
+		}
+
+		@Override
+		public void onSensorChanged(SensorEvent event) {
+			double valueC = event.values[0];
+			double valueF = valueC * 1.8 + 32;
+			reading = String.format("%1.2f", valueC) + " °C\n" + String.format("%1.2f", valueF) + " °F";
 			lastXValue += 1;
 			series.appendData(new GraphView.GraphViewData(lastXValue, event.values[0]),
 					true, 100);

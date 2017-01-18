@@ -9,10 +9,13 @@ import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
 
+import hibernate.v2.testyourandroid.C;
+
 public class TestMultiTouchView extends View {
 
-	private static final int SIZE = 240;
+	private static final float SIZE = 480;
 
+	private Context mContext;
 	private SparseArray<PointF> mActivePointers;
 	private Paint mPaint;
 	private int[] colors = {Color.BLUE, Color.GREEN, Color.MAGENTA,
@@ -22,6 +25,7 @@ public class TestMultiTouchView extends View {
 
 	public TestMultiTouchView(Context context) {
 		super(context);
+		mContext = context;
 		initView();
 	}
 
@@ -89,7 +93,7 @@ public class TestMultiTouchView extends View {
 			PointF point = mActivePointers.valueAt(i);
 			if (point != null) {
 				mPaint.setColor(colors[i % 9]);
-				canvas.drawCircle(point.x, point.y, SIZE, mPaint);
+				canvas.drawCircle(point.x, point.y, C.convertPixelsToDp(SIZE, mContext), mPaint);
 			}
 		}
 	}

@@ -23,10 +23,12 @@ import hibernate.v2.testyourandroid.model.GridItem;
 import hibernate.v2.testyourandroid.ui.activity.AppTypeChooseActivity;
 import hibernate.v2.testyourandroid.ui.activity.InfoAndroidVersionActivity;
 import hibernate.v2.testyourandroid.ui.activity.InfoBatteryActivity;
+import hibernate.v2.testyourandroid.ui.activity.InfoBluetoothActivity;
 import hibernate.v2.testyourandroid.ui.activity.InfoCPUActivity;
 import hibernate.v2.testyourandroid.ui.activity.InfoCameraActivity;
 import hibernate.v2.testyourandroid.ui.activity.InfoGSMActivity;
 import hibernate.v2.testyourandroid.ui.activity.InfoHardwareActivity;
+import hibernate.v2.testyourandroid.ui.activity.InfoWifiActivity;
 import hibernate.v2.testyourandroid.ui.activity.MainActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestCameraActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestColorActivity;
@@ -46,7 +48,8 @@ import hibernate.v2.testyourandroid.ui.activity.TestSensorGravityActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestSensorLightActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestSensorPressureActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestSensorProximityActivity;
-import hibernate.v2.testyourandroid.ui.activity.TestWifiActivity;
+import hibernate.v2.testyourandroid.ui.activity.TestSensorStepActivity;
+import hibernate.v2.testyourandroid.ui.activity.TestSensorTemperatureActivity;
 import hibernate.v2.testyourandroid.ui.adapter.GridItemAdapter;
 
 public class MainGridFragment extends BaseFragment {
@@ -56,11 +59,13 @@ public class MainGridFragment extends BaseFragment {
 	public static final int ARG_GRID_TYPE_INFO = 2;
 
 	private Integer[] imageInfoArray = {
+			R.drawable.ic_info_wifi, R.drawable.ic_info_bluetooth,
 			R.drawable.ic_cpu, R.drawable.ic_device, R.drawable.ic_android,
 			R.drawable.ic_battery, R.drawable.ic_test_camera,
 			R.drawable.ic_network, R.drawable.ic_apps};
 
 	private Class[] classInfoArray = {
+			InfoWifiActivity.class, InfoBluetoothActivity.class,
 			InfoCPUActivity.class, InfoHardwareActivity.class, InfoAndroidVersionActivity.class,
 			InfoBatteryActivity.class, InfoCameraActivity.class, InfoGSMActivity.class, AppTypeChooseActivity.class
 	};
@@ -69,7 +74,8 @@ public class MainGridFragment extends BaseFragment {
 			R.drawable.ic_test_screen, R.drawable.ic_test_draw, R.drawable.ic_test_touch,
 			R.drawable.ic_test_camera, R.drawable.ic_test_fingerprint,
 			R.drawable.ic_test_flashlight, R.drawable.ic_test_ring, R.drawable.ic_test_mic,
-			R.drawable.ic_test_nfc, R.drawable.ic_test_wifi, R.drawable.ic_test_gps,
+			R.drawable.ic_test_nfc, R.drawable.ic_test_gps,
+			R.drawable.ic_test_step, R.drawable.ic_test_temperature,
 			R.drawable.ic_test_compass, R.drawable.ic_test_system,
 			R.drawable.ic_test_chip, R.drawable.ic_test_chip,
 			R.drawable.ic_test_chip, R.drawable.ic_test_chip,
@@ -79,7 +85,8 @@ public class MainGridFragment extends BaseFragment {
 			TestColorActivity.class, TestDrawActivity.class, TestMultiTouchActivity.class,
 			TestCameraActivity.class, TestFingerprintActivity.class, TestFlashActivity.class,
 			TestRingActivity.class, TestMicActivity.class,
-			TestNFCActivity.class, TestWifiActivity.class, TestLocationActivity.class,
+			TestNFCActivity.class, TestLocationActivity.class,
+			TestSensorStepActivity.class, TestSensorTemperatureActivity.class,
 			TestSensorCompassActivity.class, TestMonitorActivity.class,
 			TestSensorLightActivity.class, TestSensorAccelerometerActivity.class,
 			TestSensorProximityActivity.class, TestSensorPressureActivity.class,

@@ -1,9 +1,12 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.TelephonyManager;
@@ -16,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
 import hibernate.v2.testyourandroid.model.InfoItem;
 import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
@@ -24,6 +28,8 @@ import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
  * Created by himphen on 21/5/16.
  */
 public class InfoGSMFragment extends BaseFragment {
+
+	protected final String PERMISSION_NAME = Manifest.permission.READ_PHONE_STATE;
 
 	@BindView(R.id.rvlist)
 	RecyclerView recyclerView;
@@ -51,7 +57,12 @@ public class InfoGSMFragment extends BaseFragment {
 				new LinearLayoutManager(mContext,
 						LinearLayoutManager.VERTICAL, false)
 		);
-		init();
+
+		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+			init();
+		} else {
+			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
+		}
 	}
 
 	private void init() {
@@ -112,6 +123,18 @@ public class InfoGSMFragment extends BaseFragment {
 			}
 		} catch (Exception e) {
 			return "N/A";
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == PERMISSION_REQUEST_CODE) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				init();
+			} else {
+				C.openErrorPermissionDialog(mContext);
+			}
 		}
 	}
 }

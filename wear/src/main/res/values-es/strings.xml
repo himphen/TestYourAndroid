@@ -23,17 +23,6 @@
     <string name="title_activity_info_battery">Info. de batería</string>
     <string name="title_activity_test_monitor">Monitor del sistema</string>
 
-    <string-array name="main_test_string_array" translatable="false">
-        <item>@string/title_activity_test_color</item>
-        <item>@string/title_activity_test_light_sensor</item>
-        <item>@string/title_activity_test_accelerometer</item>
-        <item>@string/title_activity_test_gravity</item>
-        <item>@string/title_activity_info_cpu</item>
-        <item>@string/title_activity_info_hardware</item>
-        <item>@string/title_activity_info_android_version</item>
-        <item>@string/title_activity_info_battery</item>
-    </string-array>
-
     <!--  -->
     <string name="info_hardware_string_1">Marca</string>
     <string name="info_hardware_string_2">El modelo</string>
@@ -42,15 +31,6 @@
     <string name="info_hardware_string_5">Estado de la batería</string>
     <string name="info_hardware_string_6">IMEI/ESN</string>
     <string name="info_hardware_string_7">Versión del Android OS</string>
-    <string-array name="info_hardware_string_array" translatable="false">
-        <item>@string/info_hardware_string_1</item>
-        <item>@string/info_hardware_string_2</item>
-        <item>@string/info_hardware_string_3</item>
-        <item>@string/info_hardware_string_4</item>
-        <item>@string/info_hardware_string_5</item>
-        <item>@string/info_hardware_string_6</item>
-        <item>@string/info_hardware_string_7</item>
-    </string-array>
 
     <!--  -->
     <string name="info_battery_charge_string_1">Descargando</string>
@@ -58,13 +38,6 @@
     <string name="info_battery_charge_string_3">Cargando USB</string>
     <string name="info_battery_charge_string_4">Desconocido</string>
     <string name="info_battery_charge_string_5">La carga inalámbrica</string>
-    <string-array name="info_battery_charge_string_array" translatable="false">
-        <item>@string/info_battery_charge_string_1</item>
-        <item>@string/info_battery_charge_string_2</item>
-        <item>@string/info_battery_charge_string_3</item>
-        <item>@string/info_battery_charge_string_4</item>
-        <item>@string/info_battery_charge_string_5</item>
-    </string-array>
 
     <!--  -->
     <string name="info_battery_health_string_1">Desconocido</string>
@@ -75,16 +48,6 @@
     <string name="info_battery_health_string_6">Precaución: sobretensión</string>
     <string name="info_battery_health_string_7">Desconhecido</string>
     <string name="info_battery_health_string_8">Precaución: Muy frío</string>
-    <string-array name="info_battery_health_string_array" translatable="false">
-        <item>@string/info_battery_health_string_1</item>
-        <item>@string/info_battery_health_string_2</item>
-        <item>@string/info_battery_health_string_3</item>
-        <item>@string/info_battery_health_string_4</item>
-        <item>@string/info_battery_health_string_5</item>
-        <item>@string/info_battery_health_string_6</item>
-        <item>@string/info_battery_health_string_7</item>
-        <item>@string/info_battery_health_string_8</item>
-    </string-array>
 
     <!--  -->
     <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
@@ -99,30 +62,11 @@
     <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
     <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
     <string name="test_wifi_current_string_12"><![CDATA[Server Address: ]]></string>
-    <string-array name="test_wifi_current_string_array" translatable="false">
-        <item>@string/test_wifi_current_string_1</item>
-        <item>@string/test_wifi_current_string_2</item>
-        <item>@string/test_wifi_current_string_3</item>
-        <item>@string/test_wifi_current_string_4</item>
-        <item>@string/test_wifi_current_string_5</item>
-        <item>@string/test_wifi_current_string_6</item>
-        <item>@string/test_wifi_current_string_7</item>
-        <item>@string/test_wifi_current_string_8</item>
-        <item>@string/test_wifi_current_string_9</item>
-        <item>@string/test_wifi_current_string_10</item>
-        <item>@string/test_wifi_current_string_11</item>
-        <item>@string/test_wifi_current_string_12</item>
-    </string-array>
 
     <!--  -->
     <string name="test_wifi_string_1">Wi-Fi actual</string>
     <string name="test_wifi_string_2">Wi-Fi disponible</string>
     <string name="test_wifi_string_3">Wi-Fi SSID guardados</string>
-    <string-array name="test_wifi_string_array" translatable="false">
-        <item>@string/test_wifi_string_1</item>
-        <item>@string/test_wifi_string_2</item>
-        <item>@string/test_wifi_string_3</item>
-    </string-array>
 
     <!--  -->
     <string name="info_cpu_string_1">Frec. Min</string>
@@ -132,27 +76,12 @@
     <string name="info_cpu_string_5">Memoria Externa</string>
     <string name="info_cpu_string_6">Memoria RAM</string>
     <string name="info_cpu_string_7">Información detallada de la memória.</string>
-    <string-array name="info_cpu_string_array" translatable="false">
-        <item>@string/info_cpu_string_1</item>
-        <item>@string/info_cpu_string_2</item>
-        <item>@string/info_cpu_string_3</item>
-        <item>@string/info_cpu_string_4</item>
-        <item>@string/info_cpu_string_5</item>
-        <item>@string/info_cpu_string_6</item>
-        <item>@string/info_cpu_string_7</item>
-    </string-array>
 
     <!--  -->
     <string name="memory_string_1"><![CDATA[Total: ]]></string>
     <string name="memory_string_2"><![CDATA[Available: ]]></string>
     <string name="memory_string_3"><![CDATA[Used: ]]></string>
     <string name="memory_string_4"><![CDATA[Threshold: ]]></string>
-    <string-array name="memory_string_array" translatable="false">
-        <item>@string/memory_string_1</item>
-        <item>@string/memory_string_2</item>
-        <item>@string/memory_string_3</item>
-        <item>@string/memory_string_4</item>
-    </string-array>
 
     <!--  -->
     <string name="info_android_version_string_1">Versão Android</string>
@@ -164,17 +93,6 @@
     <string name="info_android_version_string_7">Versão do Kernel OS</string>
     <string name="info_android_version_string_8">Borda</string>
     <string name="info_android_version_string_9">Banda base</string>
-    <string-array name="info_android_version_string_array" translatable="false">
-        <item>@string/info_android_version_string_1</item>
-        <item>@string/info_android_version_string_2</item>
-        <item>@string/info_android_version_string_3</item>
-        <item>@string/info_android_version_string_4</item>
-        <item>@string/info_android_version_string_5</item>
-        <item>@string/info_android_version_string_6</item>
-        <item>@string/info_android_version_string_7</item>
-        <item>@string/info_android_version_string_8</item>
-        <item>@string/info_android_version_string_9</item>
-    </string-array>
 
     <!--  -->
     <string name="info_camera_string_1">Ancho del pantalla</string>
@@ -187,18 +105,6 @@
     <string name="info_camera_string_8">Balance de blancos</string>
     <string name="info_camera_string_9">Modos de escena</string>
     <string name="info_camera_string_10">Formatos de imagen</string>
-    <string-array name="info_camera_string_array" translatable="false">
-        <item>@string/info_camera_string_1</item>
-        <item>@string/info_camera_string_2</item>
-        <item>@string/info_camera_string_3</item>
-        <item>@string/info_camera_string_4</item>
-        <item>@string/info_camera_string_5</item>
-        <item>@string/info_camera_string_6</item>
-        <item>@string/info_camera_string_7</item>
-        <item>@string/info_camera_string_8</item>
-        <item>@string/info_camera_string_9</item>
-        <item>@string/info_camera_string_10</item>
-    </string-array>
 
     <!--  -->
     <string name="info_battery_string_1">Nivel de la batería</string>
@@ -208,15 +114,6 @@
     <string name="info_battery_string_5">Tecnología de la batería</string>
     <string name="info_battery_string_6">Temperatura de la batería</string>
     <string name="info_battery_string_7">Tensión de la batería</string>
-    <string-array name="info_battery_string_array" translatable="false">
-        <item>@string/info_battery_string_1</item>
-        <item>@string/info_battery_string_2</item>
-        <item>@string/info_battery_string_3</item>
-        <item>@string/info_battery_string_4</item>
-        <item>@string/info_battery_string_5</item>
-        <item>@string/info_battery_string_6</item>
-        <item>@string/info_battery_string_7</item>
-    </string-array>
 
     <!--  -->
     <string name="test_sensor_string_1">Lectura</string>
@@ -227,16 +124,6 @@
     <string name="test_sensor_string_6">Retardo Min.</string>
     <string name="test_sensor_string_7">Resolución</string>
     <string name="test_sensor_string_8">Energía</string>
-    <string-array name="test_sensor_string_array" translatable="false">
-        <item>@string/test_sensor_string_1</item>
-        <item>@string/test_sensor_string_2</item>
-        <item>@string/test_sensor_string_3</item>
-        <item>@string/test_sensor_string_4</item>
-        <item>@string/test_sensor_string_5</item>
-        <item>@string/test_sensor_string_6</item>
-        <item>@string/test_sensor_string_7</item>
-        <item>@string/test_sensor_string_8</item>
-    </string-array>
 
     <!--  -->
     <string name="test_gps_string_1">Latitud</string>
@@ -245,12 +132,4 @@
     <string name="test_gps_string_4">Altitud</string>
     <string name="test_gps_string_5">Cojinete</string>
     <string name="test_gps_string_6">Precisión</string>
-    <string-array name="test_gps_string_array" translatable="false">
-        <item>@string/test_gps_string_1</item>
-        <item>@string/test_gps_string_2</item>
-        <item>@string/test_gps_string_3</item>
-        <item>@string/test_gps_string_4</item>
-        <item>@string/test_gps_string_5</item>
-        <item>@string/test_gps_string_6</item>
-    </string-array>
 </resources>

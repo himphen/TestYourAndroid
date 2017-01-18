@@ -1,11 +1,13 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,8 @@ import hibernate.v2.testyourandroid.ui.custom.VoiceView;
  * Created by himphen on 21/5/16.
  */
 public class TestMicFragment extends BaseFragment {
+
+	protected final String PERMISSION_NAME = Manifest.permission.RECORD_AUDIO;
 
 	@BindView(R.id.voiceview)
 	VoiceView voiceView;
@@ -67,7 +71,12 @@ public class TestMicFragment extends BaseFragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		init();
+
+		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+			init();
+		} else {
+			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
+		}
 	}
 
 	@Override
@@ -78,7 +87,7 @@ public class TestMicFragment extends BaseFragment {
 	}
 
 	private void init() {
-		mFile = new File(Environment.getExternalStorageDirectory(), "TestYourAndroidMicTest.3gp");
+		mFile = new File(mContext.getFilesDir(), "TestYourAndroidMicTest.3gp");
 
 		voiceView.setOnRecordListener(new VoiceView.OnRecordListener() {
 			@Override
@@ -147,7 +156,9 @@ public class TestMicFragment extends BaseFragment {
 	}
 
 	private void stopRecording() {
-		mHandler.removeCallbacks(r);
+		if (mHandler != null) {
+			mHandler.removeCallbacks(r);
+		}
 		if (mMediaRecorder != null) {
 			if (mIsRecording) {
 				mIsRecording = false;
@@ -158,6 +169,18 @@ public class TestMicFragment extends BaseFragment {
 			}
 			mMediaRecorder.release();
 			mMediaRecorder = null;
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == PERMISSION_REQUEST_CODE) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				init();
+			} else {
+				C.openErrorPermissionDialog(mContext);
+			}
 		}
 	}
 }

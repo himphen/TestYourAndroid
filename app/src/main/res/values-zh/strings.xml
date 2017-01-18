@@ -93,7 +93,7 @@
     <string name="title_activity_test_flash">閃光燈測試</string>
     <string name="title_activity_test_draw">螢幕繪圖</string>
     <string name="title_activity_test_ring">喇叭及震動測試</string>
-    <string name="title_activity_test_wifi">Wi-Fi 測試</string>
+    <string name="title_activity_test_wifi">Wi-Fi</string>
     <string name="title_activity_test_accelerometer">加速感應器測試</string>
     <string name="title_activity_test_gps">定位測試</string>
     <string name="title_activity_test_proximity">距離感應器測試</string>
@@ -221,12 +221,19 @@
     <string name="info_sim_status_string_6">正常</string>
 
     <string name="wifi_reload">重新掃瞄</string>
-    <string name="wifi_setting">Wi-Fi 設定</string>
+    <string name="wifi_setting">設定</string>
     <string name="wifi_reload_done">掃瞄完成</string>
     <string name="wifi_reload_fail">掃瞄失敗</string>
     <string name="wifi_no">沒有 Wi-Fi 連接</string>
     <string name="wifi_enable_message">你需要開啟 Wi-Fi 來測試此功能。</string>
     <string name="wifi_enable_posbtn">前往 Wi-Fi 設定</string>
+    <string name="bluetooth_reload">重新掃瞄</string>
+    <string name="bluetooth_setting">設定</string>
+    <string name="bluetooth_reload_done">掃瞄完成</string>
+    <string name="bluetooth_reload_fail">掃瞄失敗</string>
+    <string name="bluetooth_no">沒有藍牙設備連接</string>
+    <string name="bluetooth_enable_message">你需要開啟藍牙來測試此功能。</string>
+    <string name="bluetooth_enable_posbtn">前往藍牙設定</string>
     <string name="gps_setting">定位設定</string>
     <string name="gps_scanning">定位中</string>
     <string name="gps_enable_message">你需要開啟定位來測試此功能。</string>
@@ -237,7 +244,7 @@
     <string name="nfc_help">說明</string>
     <string name="nfc_setting">NFC 設定</string>
     <string name="nfc_tutor_title">使用方法</string>
-    <string name="nfc_tutor_message">請將任何 NFC 標籤放在機背，成功掃瞄時將會有三次嗶嗶聲響，並彈出對話框顯示 NFC 內容（如有）。</string>
+    <string name="nfc_tutor_message">請將任何 NFC 標籤放在機背，成功掃瞄時有聲響，並彈出對話框顯示 NFC 內容（如有）。</string>
     <string name="ui_version">版本</string>
     <string name="feedback">回報問題</string>
     <string name="feedback_title">Android 測試工具 App 回報問題及意見</string>
@@ -334,5 +341,13 @@
     <string name="app_package_string_9">Min. SDK Version</string>
     <string name="app_package_string_8">APK Directory</string>
     <string name="about_credit_btn">開源庫</string>
+    <string name="notsupport_android_19">只支援 Android 4.4+</string>
+    <string name="title_activity_test_step">計步器</string>
+    <string name="title_activity_test_temperature">溫度感應器</string>
+    <string name="title_activity_test_bluetooth">藍牙</string>
+    <string name="test_bluetooth_string_1">可用設備</string>
+    <string name="test_bluetooth_string_2">已配對設備</string>
+    <string name="dialog_permission_denied_posbtn">設定 »</string>
+    <string name="dialog_permission_denied_message">請給予應用程式相關權限，這樣才能測試及提供相關資訊。</string>
 
 </resources>

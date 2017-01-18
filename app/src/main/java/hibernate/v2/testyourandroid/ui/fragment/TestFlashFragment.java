@@ -163,7 +163,8 @@ public class TestFlashFragment extends BaseFragment {
 		private CameraDevice mCameraDevice;
 		private CameraManager mCameraManager;
 
-		public FlashLightUtilForL(Context context) throws Exception {
+		@SuppressWarnings("MissingPermission")
+		FlashLightUtilForL(Context context) throws Exception {
 			mCameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
 			//here to judge if flash is available
 			CameraCharacteristics cameraCharacteristics = mCameraManager.getCameraCharacteristics("0");
@@ -240,7 +241,7 @@ public class TestFlashFragment extends BaseFragment {
 			}
 		}
 
-		public void turnOnFlashLight() {
+		void turnOnFlashLight() {
 			try {
 				mBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.FLASH_MODE_TORCH);
 				mSession.setRepeatingRequest(mBuilder.build(), null, null);
@@ -249,7 +250,7 @@ public class TestFlashFragment extends BaseFragment {
 			}
 		}
 
-		public void turnOffFlashLight() {
+		void turnOffFlashLight() {
 			try {
 				mBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.FLASH_MODE_OFF);
 				mSession.setRepeatingRequest(mBuilder.build(), null, null);

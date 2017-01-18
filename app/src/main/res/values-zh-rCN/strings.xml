@@ -163,7 +163,7 @@
         
     <string name="title_activity_test_ring">喇叭及震动测试</string>
         
-    <string name="title_activity_test_wifi">Wi-Fi 测试</string>
+    <string name="title_activity_test_wifi">Wi-Fi</string>
         
     <string name="title_activity_test_accelerometer">加速感应器测试</string>
         
@@ -393,7 +393,7 @@
         
     <string name="wifi_reload">重新扫描</string>
         
-    <string name="wifi_setting">Wi-Fi 设定</string>
+    <string name="wifi_setting">设定</string>
         
     <string name="wifi_reload_done">扫描完成</string>
         
@@ -425,7 +425,7 @@
         
     <string name="nfc_tutor_title">使用方法</string>
         
-    <string name="nfc_tutor_message">请将任何 NFC 标签放在机背，成功扫瞄时将会有三次哔哔声响，并弹出对话框显示 NFC 内容（如有）。 </string>
+    <string name="nfc_tutor_message">"请将任何 NFC 标签放在机背，成功扫瞄时有声响，并弹出对话框显示 NFC 内容（如有）。 "</string>
         
     <string name="ui_version">版本</string>
         
@@ -549,5 +549,20 @@
     <string name="app_package_string_9">Min. SDK Version</string>
     <string name="app_package_string_8">APK Directory</string>
     <string name="about_credit_btn">Open source licenses</string>
+    <string name="notsupport_android_19">只支持 Android 4.4+</string>
+    <string name="title_activity_test_step">计步器</string>
+    <string name="title_activity_test_temperature">温度感应器</string>
+    <string name="title_activity_test_bluetooth">蓝牙</string>
+    <string name="test_bluetooth_string_1">可用设备</string>
+    <string name="test_bluetooth_string_2">已配对设备</string>
+    <string name="bluetooth_enable_message">你需要开启蓝牙来测试此功能。</string>
+    <string name="bluetooth_enable_posbtn">前往蓝牙设定</string>
+    <string name="bluetooth_no">没有蓝牙设备连接</string>
+    <string name="bluetooth_reload">重新扫描</string>
+    <string name="bluetooth_reload_done">扫瞄完成</string>
+    <string name="bluetooth_reload_fail">扫瞄失败</string>
+    <string name="bluetooth_setting">设定</string>
+    <string name="dialog_permission_denied_posbtn">设定 »</string>
+    <string name="dialog_permission_denied_message">请给予应用程式相关权限，这样才能测试及提供相关资讯。</string>
 
 </resources>

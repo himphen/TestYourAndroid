@@ -8,12 +8,15 @@
     <string name="ui_na">N/A</string>
     <string name="ui_caution">Caution</string>
     <string name="notsupport">Not supported</string>
+    <string name="notsupport_android_19">Only support by Android 4.4+</string>
     <string name="notsupport_android_20">Only support by Android 4.4+</string>
     <string name="notsupport_android_21">Only support by Android 5.0+</string>
     <string name="notsupport_android_22">Only support by Android 5.1+</string>
     <string name="notsupport_android_23">Only support by Android 6.0+</string>
     <string name="notsupport_android_24">Only support by Android 7.0+</string>
     <string name="dialog_feature_na_message">Your Android device does not have this feature or may be used by other apps.</string>
+    <string name="dialog_permission_denied_message">Without granting permissions, it will probably not work.\n\nPlease give Test Your Android the permissions to access this feature.</string>
+    <string name="dialog_permission_denied_posbtn">Setting »</string>
     <string name="dialog_fingerprint_sdk_message">This feature only support by Android 6.0+ Official Android API.</string>
 
     <string-array name="language_choose" translatable="false">
@@ -34,8 +37,11 @@
     <string name="title_activity_test_multi_touch">Multi Touch</string>
     <string name="title_activity_test_ring">Sound and Vibrate</string>
     <string name="title_activity_test_mic">Microphone</string>
-    <string name="title_activity_test_wifi">Wi-Fi Test</string>
+    <string name="title_activity_test_wifi">Wi-Fi</string>
+    <string name="title_activity_test_bluetooth">Bluetooth</string>
     <string name="title_activity_test_accelerometer">Accelerometer</string>
+    <string name="title_activity_test_step">Pedometer</string>
+    <string name="title_activity_test_temperature">Temperature</string>
     <string name="title_activity_test_gps">Location</string>
     <string name="title_activity_test_nfc">NFC</string>
     <string name="title_activity_test_proximity">Proximity Sensor</string>
@@ -70,8 +76,9 @@
         <item>@string/title_activity_test_ring</item>
         <item>@string/title_activity_test_mic</item>
         <item>@string/title_activity_test_nfc</item>
-        <item>@string/title_activity_test_wifi</item>
         <item>@string/title_activity_test_gps</item>
+        <item>@string/title_activity_test_step</item>
+        <item>@string/title_activity_test_temperature</item>
         <item>@string/title_activity_test_compass</item>
         <item>@string/title_activity_test_monitor</item>
         <item>@string/title_activity_test_light_sensor</item>
@@ -82,6 +89,8 @@
         <item>@string/title_activity_test_easteregg</item>
     </string-array>
     <string-array name="main_info_string_array" translatable="false">
+        <item>@string/title_activity_test_wifi</item>
+        <item>@string/title_activity_test_bluetooth</item>
         <item>@string/title_activity_info_cpu</item>
         <item>@string/title_activity_info_hardware</item>
         <item>@string/title_activity_info_android_version</item>
@@ -153,7 +162,7 @@
     <string name="color_choose_light_gray">Light Gray</string>
     <string-array name="color_string_array" translatable="false">
         <item>@string/color_choose_red</item>
-        <item>@string/color_choose_red</item>
+        <item>@string/color_choose_green</item>
         <item>@string/color_choose_blue</item>
         <item>@string/color_choose_cyan</item>
         <item>@string/color_choose_magenta</item>
@@ -323,6 +332,14 @@
         <item>@string/test_wifi_string_1</item>
         <item>@string/test_wifi_string_2</item>
         <item>@string/test_wifi_string_3</item>
+    </string-array>
+
+    <!--  -->
+    <string name="test_bluetooth_string_1">Available Devices</string>
+    <string name="test_bluetooth_string_2">Paired Devices</string>
+    <string-array name="test_bluetooth_string_array" translatable="false">
+        <item>@string/test_bluetooth_string_1</item>
+        <item>@string/test_bluetooth_string_2</item>
     </string-array>
 
     <!--  -->
@@ -521,13 +538,20 @@
         <item>@string/info_sim_status_string_6</item>
     </string-array>
 
-    <string name="wifi_setting">Wi-Fi Setting</string>
+    <string name="wifi_setting">Setting</string>
     <string name="wifi_reload">Refresh</string>
     <string name="wifi_reload_done">Reload Succeeded</string>
     <string name="wifi_reload_fail">Reload failed</string>
     <string name="wifi_enable_message">You need to enable Wi-Fi to continue.</string>
     <string name="wifi_enable_posbtn">Go to Wi-Fi setting</string>
     <string name="wifi_no">No Wi-Fi Connected</string>
+    <string name="bluetooth_setting">Setting</string>
+    <string name="bluetooth_reload">Refresh</string>
+    <string name="bluetooth_reload_done">Reload Succeeded</string>
+    <string name="bluetooth_reload_fail">Reload failed</string>
+    <string name="bluetooth_enable_message">You need to enable Bluetooth to continue.</string>
+    <string name="bluetooth_enable_posbtn">Go to Bluetooth setting</string>
+    <string name="bluetooth_no">No Bluetooth Connected</string>
     <string name="gps_setting">Location Setting</string>
     <string name="security_setting">Setting</string>
     <string name="gps_scanning">Scanning</string>

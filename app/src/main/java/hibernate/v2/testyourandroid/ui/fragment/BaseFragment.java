@@ -8,6 +8,7 @@ public class BaseFragment extends Fragment {
 
 	protected Activity mContext;
 	protected static final int DELAY_AD_LAYOUT = 200;
+	protected final int PERMISSION_REQUEST_CODE = 100;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

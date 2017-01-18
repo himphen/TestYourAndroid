@@ -25,7 +25,7 @@
     <string name="title_activity_test_multi_touch">Multi Touch</string>
     <string name="title_activity_test_ring">Som e vibração</string>
     <string name="title_activity_test_mic">Microfone</string>
-    <string name="title_activity_test_wifi">Teste Wi-Fi</string>
+    <string name="title_activity_test_wifi">Wi-Fi</string>
     <string name="title_activity_test_accelerometer">Acelerômetro</string>
     <string name="title_activity_test_gps">Localização</string>
     <string name="title_activity_test_nfc">NFC</string>
@@ -276,13 +276,20 @@
     <string name="info_sim_status_string_5">Bloqueado: requer um PIN de rede para desbloquear</string>
     <string name="info_sim_status_string_6">Pronto</string>
 
-    <string name="wifi_setting">Configurações Wi-Fi</string>
+    <string name="wifi_setting">Configurações</string>
     <string name="wifi_reload">Atualizar</string>
     <string name="wifi_reload_done">Atualizado</string>
     <string name="wifi_reload_fail">Falha ao atualizar</string>
-    <string name="wifi_enable_message">Você precisa ativar o Wifi para continuar.</string>
+    <string name="wifi_enable_message">Você precisa ativar o Wi-Fi para continuar.</string>
     <string name="wifi_enable_posbtn">Ir para as configurações Wi-Fi</string>
     <string name="wifi_no">Nenhum Wi-Fi Conectado</string>
+    <string name="bluetooth_setting">Configurações</string>
+    <string name="bluetooth_reload">Atualizar</string>
+    <string name="bluetooth_reload_done">Atualizado</string>
+    <string name="bluetooth_reload_fail">Falha ao atualizar</string>
+    <string name="bluetooth_enable_message">Você precisa ativar o Bluetooth para continuar.</string>
+    <string name="bluetooth_enable_posbtn">Ir para as configurações Bluetooth</string>
+    <string name="bluetooth_no">Nenhum Bluetooth Conectado</string>
     <string name="gps_setting">Configurações de localização</string>
     <string name="security_setting">Configurações</string>
     <string name="gps_scanning">Escaneando</string>
@@ -345,5 +352,13 @@
     <string name="press_me">Toque-me!!!</string>
     <string name="press_me_1">Isso!!!</string>
     <string name="press_me_2">Quer algo novo?!!!\nVolte a esta página!</string>
+    <string name="notsupport_android_19">Suporte ao Android 4.4+</string>
+    <string name="title_activity_test_step">Podómetro</string>
+    <string name="title_activity_test_temperature">Sensor de temperatura</string>
+    <string name="title_activity_test_bluetooth">Bluetooth</string>
+    <string name="test_bluetooth_string_1">Dispositivos Disponíveis</string>
+    <string name="test_bluetooth_string_2">Dispositivos emparelhados</string>
+    <string name="dialog_permission_denied_posbtn">Configurações »</string>
+    <string name="dialog_permission_denied_message">Sem conceder permissões, o aplicativo provavelmente não funcionará.\n\nDê a Teste seu Android as permissões para acessar esse recurso.</string>
 
 </resources>

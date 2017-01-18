@@ -14,9 +14,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
-import hibernate.v2.testyourandroid.ui.fragment.TestWifiFragment;
+import hibernate.v2.testyourandroid.ui.fragment.InfoBluetoothFragment;
 
-public class TestWifiActivity extends BaseActivity {
+public class InfoBluetoothActivity extends BaseActivity {
 
 	@BindView(R.id.toolbar)
 	Toolbar toolbar;
@@ -30,7 +30,7 @@ public class TestWifiActivity extends BaseActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		C.detectLanguage(mContext);
-		initActionBar(getSupportActionBar(), R.string.title_activity_test_wifi);
+		initActionBar(getSupportActionBar(), R.string.title_activity_test_bluetooth);
 	}
 
 	@Override
@@ -40,10 +40,10 @@ public class TestWifiActivity extends BaseActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 
-		initActionBar(getSupportActionBar(), R.string.title_activity_test_wifi);
+		initActionBar(getSupportActionBar(), R.string.title_activity_test_bluetooth);
 		adView = C.initAdView(mContext, adLayout);
 
-		Fragment fragment = new TestWifiFragment();
+		Fragment fragment = new InfoBluetoothFragment();
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, fragment)
@@ -52,7 +52,7 @@ public class TestWifiActivity extends BaseActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.test_wifi, menu);
+		getMenuInflater().inflate(R.menu.test_bluetooth, menu);
 		return true;
 	}
 

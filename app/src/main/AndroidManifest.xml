@@ -3,24 +3,27 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="hibernate.v2.testyourandroid">
 
+    <!-- Normal permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
     <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.NFC"/>
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
     <uses-permission android:name="com.android.vending.BILLING"/>
+
+    <!-- Dangerous permissions -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 
     <uses-feature
@@ -169,9 +172,13 @@
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_info_battery"/>
         <activity
-            android:name=".ui.activity.TestWifiActivity"
+            android:name=".ui.activity.InfoWifiActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_test_wifi"/>
+        <activity
+            android:name=".ui.activity.InfoBluetoothActivity"
+            android:configChanges="orientation|screenSize|locale|layoutDirection"
+            android:label="@string/title_activity_test_bluetooth"/>
         <activity
             android:name=".ui.activity.TestSensorAccelerometerActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
@@ -221,6 +228,14 @@
             android:name=".ui.activity.TestSensorCompassActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_test_compass"/>
+        <activity
+            android:name=".ui.activity.TestSensorStepActivity"
+            android:configChanges="orientation|screenSize|locale|layoutDirection"
+            android:label="@string/title_activity_test_step"/>
+        <activity
+            android:name=".ui.activity.TestSensorTemperatureActivity"
+            android:configChanges="orientation|screenSize|locale|layoutDirection"
+            android:label="@string/title_activity_test_step"/>
         <activity
             android:name=".ui.activity.TestEasterEggActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"

@@ -1,11 +1,14 @@
 package hibernate.v2.testyourandroid.utils;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.CancellationSignal;
+import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +17,8 @@ import xyz.hanks.library.SmallBang;
 
 @TargetApi(Build.VERSION_CODES.M)
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
+
+	protected final String PERMISSION_NAME = Manifest.permission.USE_FINGERPRINT;
 
 	private SmallBang mSmallBang;
 	private ImageView fingerprintIv;
@@ -29,9 +34,11 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 	}
 
 	public void startAuth(FingerprintManager manager, FingerprintManager.CryptoObject cryptoObject) throws Exception {
-		cancellationSignal = new CancellationSignal();
-		manager.authenticate(cryptoObject, cancellationSignal, 0, this, null);
-		helpText.setText(R.string.ui_fingerprint_start_message);
+		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+			cancellationSignal = new CancellationSignal();
+			manager.authenticate(cryptoObject, cancellationSignal, 0, this, null);
+			helpText.setText(R.string.ui_fingerprint_start_message);
+		}
 	}
 
 	public void stopAuth() throws Exception {

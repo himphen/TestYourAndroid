@@ -86,6 +86,14 @@
         <item name="colorControlHighlight">@color/grey800</item>
     </style>
 
+    <style name="GrayButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:gravity">center</item>
+        <item name="colorAccent">@color/grey400</item>
+        <item name="colorButtonNormal">@color/grey600</item>
+        <item name="colorControlHighlight">@color/grey800</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="TransparentButton" parent="Widget.AppCompat.Button.Borderless.Colored">
         <item name="android:gravity">center</item>
     </style>

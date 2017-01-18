@@ -31,8 +31,15 @@ public class AppItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 	@Override
 	public Character getCharacterForElement(int element) {
-		Character c = mDataList.get(element).getAppName().charAt(0);
-		if (Character.isDigit(c)) {
+
+		String appName = mDataList.get(element).getAppName();
+		Character c;
+		if (appName.length() > 0) {
+			c = mDataList.get(element).getAppName().charAt(0);
+			if (Character.isDigit(c)) {
+				c = '#';
+			}
+		} else {
 			c = '#';
 		}
 		return c;

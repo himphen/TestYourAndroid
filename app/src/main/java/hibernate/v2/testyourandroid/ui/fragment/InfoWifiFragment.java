@@ -1,5 +1,6 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -24,6 +26,8 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,32 +36,46 @@ import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
 import hibernate.v2.testyourandroid.model.InfoItem;
 import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
-import hibernate.v2.testyourandroid.ui.custom.TestWiFiScanReceiver;
 
 /**
  * Created by himphen on 21/5/16.
  */
-public class TestWifiFragment extends BaseFragment {
-
-	private WifiManager wifiManager;
+public class InfoWifiFragment extends BaseFragment {
 
 	private List<InfoItem> list = new ArrayList<>();
-
 	private InfoItemAdapter adapter;
+	private boolean isFirstLoading = true;
 
-	private int extraWifiState;
-
-	private BroadcastReceiver wiFiScanReceiver;
-	private BroadcastReceiver wifiStateChangedReceiver;
-
-	@BindView(R.id.rvlist)
-	RecyclerView recyclerView;
+	private WifiManager wifiManager;
+	private BroadcastReceiver wiFiScanReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			List<ScanResult> results = wifiManager.getScanResults();
+			updateScannedList(results);
+		}
+	};
+	private BroadcastReceiver wifiStateChangedReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			int extraWifiState = intent.getIntExtra(
+					WifiManager.EXTRA_WIFI_STATE,
+					WifiManager.WIFI_STATE_UNKNOWN);
+			switch (extraWifiState) {
+				case WifiManager.WIFI_STATE_DISABLED:
+					openWifiDialog();
+					break;
+			}
+		}
+	};
 
 	private String[] currentStringArray;
 	private WifiInfo wifiInfo;
 	private DhcpInfo dhcpInfo;
 
-	public TestWifiFragment() {
+	@BindView(R.id.rvlist)
+	RecyclerView recyclerView;
+
+	public InfoWifiFragment() {
 		// Required empty public constructor
 	}
 
@@ -80,43 +98,31 @@ public class TestWifiFragment extends BaseFragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
-				new LinearLayoutManager(mContext,
-						LinearLayoutManager.VERTICAL, false)
-		);
-		init();
+				new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
 	}
 
 	@Override
 	public void onPause() {
-		try {
-			if (wiFiScanReceiver != null) {
-				mContext.unregisterReceiver(wiFiScanReceiver);
-			}
-			if (wifiStateChangedReceiver != null) {
-				mContext.unregisterReceiver(wifiStateChangedReceiver);
-			}
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
 		super.onPause();
+		unregisterReceiver();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (wifiStateChangedReceiver != null)
-			mContext.registerReceiver(wifiStateChangedReceiver, new IntentFilter(
-					WifiManager.WIFI_STATE_CHANGED_ACTION));
-		if (wiFiScanReceiver != null)
-			mContext.registerReceiver(wiFiScanReceiver, new IntentFilter(
-					WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+		if (isFirstLoading) {
+			reload(false);
+			isFirstLoading = false;
+		} else {
+			reload(true);
+		}
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_reload:
-				reload();
+				reload(true);
 				break;
 			case R.id.action_settings:
 				startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
@@ -125,28 +131,13 @@ public class TestWifiFragment extends BaseFragment {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void init() {
+	private void init(boolean isToast) {
 		list = new ArrayList<>();
 		String[] stringArray = getResources().getStringArray(R.array.test_wifi_string_array);
 		currentStringArray = getResources().getStringArray(R.array.test_wifi_current_string_array);
 		wifiManager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
 
-		// Register Broadcast Receiver
 		try {
-			wifiStateChangedReceiver = new BroadcastReceiver() {
-				@Override
-				public void onReceive(Context context, Intent intent) {
-					extraWifiState = intent.getIntExtra(
-							WifiManager.EXTRA_WIFI_STATE,
-							WifiManager.WIFI_STATE_UNKNOWN);
-					switch (extraWifiState) {
-						case WifiManager.WIFI_STATE_DISABLED:
-							openWifiDialog();
-							break;
-					}
-				}
-			};
-			wiFiScanReceiver = new TestWiFiScanReceiver(wifiManager);
 			wifiInfo = wifiManager.getConnectionInfo();
 			dhcpInfo = wifiManager.getDhcpInfo();
 		} catch (Exception e) {
@@ -154,13 +145,41 @@ public class TestWifiFragment extends BaseFragment {
 			return;
 		}
 
+		mContext.registerReceiver(wifiStateChangedReceiver, new IntentFilter(
+				WifiManager.WIFI_STATE_CHANGED_ACTION));
+
+		mContext.registerReceiver(wiFiScanReceiver, new IntentFilter(
+				WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+
 		for (int i = 0; i < stringArray.length; i++) {
 			list.add(new InfoItem(stringArray[i], getData(i)));
 		}
 
 		adapter = new InfoItemAdapter(list);
-
 		recyclerView.setAdapter(adapter);
+
+		wifiManager.startScan();
+
+		if (isToast) {
+			Toast.makeText(mContext, R.string.wifi_reload_done, Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	private void reload(boolean isToast) {
+		unregisterReceiver();
+		init(isToast);
+	}
+
+	private void unregisterReceiver() {
+		try {
+			if (wiFiScanReceiver != null) {
+				mContext.unregisterReceiver(wiFiScanReceiver);
+			}
+			if (wifiStateChangedReceiver != null) {
+				mContext.unregisterReceiver(wifiStateChangedReceiver);
+			}
+		} catch (IllegalArgumentException ignored) {
+		}
 	}
 
 	private void openWifiDialog() {
@@ -179,31 +198,14 @@ public class TestWifiFragment extends BaseFragment {
 		dialog.show();
 	}
 
-	private void reload() {
-		mContext.registerReceiver(wifiStateChangedReceiver, new IntentFilter(
-				WifiManager.WIFI_STATE_CHANGED_ACTION));
-		if (extraWifiState == WifiManager.WIFI_STATE_ENABLED) {
-			boolean scanWifi = wifiManager.startScan();
-			if (scanWifi) {
-				list.clear();
-				init();
-				adapter.notifyDataSetChanged();
-				Toast.makeText(mContext, R.string.wifi_reload_done,
-						Toast.LENGTH_SHORT).show();
-			} else {
-				Toast.makeText(mContext, R.string.wifi_reload_fail,
-						Toast.LENGTH_SHORT).show();
-			}
-		}
-	}
-
 	private String intToIp(int i) {
-		return (i & 0xFF) + "." + ((i >> 8) & 0xFF) + "." + ((i >> 16) & 0xFF)
-				+ "." + ((i >> 24) & 0xFF);
+		return (i & 0xFF) + "." + ((i >> 8) & 0xFF) + "." + ((i >> 16) & 0xFF) + "." + ((i >> 24) & 0xFF);
 	}
 
+	@SuppressLint("HardwareIds")
 	private String getData(int j) {
 		try {
+			String text = "";
 			switch (j) {
 				case 0:
 					if (wifiInfo.getSSID() == null || wifiInfo.getSSID().equals("<unknown ssid>")) {
@@ -223,37 +225,81 @@ public class TestWifiFragment extends BaseFragment {
 							+ currentStringArray[10] + intToIp(dhcpInfo.dns2) + "\n"
 							+ currentStringArray[11] + intToIp(dhcpInfo.serverAddress);
 				case 1:
-					String allList = "";
-					try {
-						// List available networks
-						List<ScanResult> results = wifiManager.getScanResults();
-						for (ScanResult result : results) {
-							if (result.SSID == null || result.SSID.equals(""))
-								allList += "Hidden SSID" + "\n";
-							else
-								allList += result.SSID + "\n";
-						}
-						allList = allList.substring(0, allList.length() - 1);
-					} catch (Exception ignored) {
-					}
-					return allList;
+					return getString(R.string.loading);
 				case 2:
-					String text = "";
 					try {
+						// List saved networks
 						List<WifiConfiguration> configs = wifiManager.getConfiguredNetworks();
-						for (WifiConfiguration config : configs) {
-							text += config.SSID + "\n";
-						}
+						Collections.sort(configs, new Comparator<WifiConfiguration>() {
+							@Override
+							public int compare(WifiConfiguration lhs, WifiConfiguration rhs) {
+								return lhs.SSID.compareToIgnoreCase(rhs.SSID);
+							}
+						});
 
-						text = text.substring(0, text.length() - 1);
-					} catch (Exception ignored) {
+						for (WifiConfiguration config : configs) {
+							text += config.SSID.replaceAll("\"", "") + "\n";
+						}
+						text = text.length() > 2 ? text.substring(0, text.length() - 2) : text;
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-					return text;
+					return text.trim();
 				default:
 					return "N/A";
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "N/A";
 		}
+	}
+
+	private void updateScannedList(List<ScanResult> results) {
+		String text = "";
+		Collections.sort(results, new Comparator<ScanResult>() {
+			@Override
+			public int compare(ScanResult lhs, ScanResult rhs) {
+				return lhs.SSID.compareToIgnoreCase(rhs.SSID);
+			}
+		});
+
+		for (ScanResult result : results) {
+			text += getScanResultText(result);
+		}
+		text = text.length() > 2 ? text.substring(0, text.length() - 2) : text;
+
+		list.get(1).setContentText(text);
+		adapter.notifyDataSetChanged();
+	}
+
+	private String getScanResultText(ScanResult result) {
+		String text = "";
+		text += (result.SSID == null || result.SSID.equals("") ? "__Hidden SSID__" : result.SSID) + "\n";
+
+		String channelWidth = "";
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			switch (result.channelWidth) {
+				case ScanResult.CHANNEL_WIDTH_20MHZ:
+					channelWidth += "20MHZ";
+					break;
+				case ScanResult.CHANNEL_WIDTH_40MHZ:
+					channelWidth += "40MHZ";
+					break;
+				case ScanResult.CHANNEL_WIDTH_80MHZ:
+					channelWidth += "80MHZ";
+					break;
+				case ScanResult.CHANNEL_WIDTH_160MHZ:
+					channelWidth += "160MHZ";
+					break;
+				case ScanResult.CHANNEL_WIDTH_80MHZ_PLUS_MHZ:
+					channelWidth += "80MHZ+";
+					break;
+			}
+		}
+		String frequency = result.frequency + "MHZ";
+		String level = result.level + "dBm";
+
+		text += (frequency + " " + level + " " + channelWidth).trim() + "\n\n";
+		return text;
 	}
 }

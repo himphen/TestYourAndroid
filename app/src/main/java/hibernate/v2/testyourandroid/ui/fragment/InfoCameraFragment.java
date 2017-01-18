@@ -1,9 +1,12 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -32,6 +35,7 @@ import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
 public class InfoCameraFragment extends BaseFragment {
 
 	private final int FORMAT = 1;
+	protected final String PERMISSION_NAME = Manifest.permission.CAMERA;
 	private Camera mCamera;
 
 	private InfoItemAdapter adapter;
@@ -62,7 +66,11 @@ public class InfoCameraFragment extends BaseFragment {
 				new LinearLayoutManager(mContext,
 						LinearLayoutManager.VERTICAL, false)
 		);
-		openChooseCameraDialog();
+		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+			openChooseCameraDialog();
+		} else {
+			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
+		}
 	}
 
 	@Override
@@ -227,6 +235,18 @@ public class InfoCameraFragment extends BaseFragment {
 			}
 		} catch (Exception e) {
 			return "N/A";
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == PERMISSION_REQUEST_CODE) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				openChooseCameraDialog();
+			} else {
+				C.openErrorPermissionDialog(mContext);
+			}
 		}
 	}
 }

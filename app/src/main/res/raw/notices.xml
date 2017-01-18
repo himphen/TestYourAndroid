@@ -34,12 +34,6 @@
         <name>OrmLite</name>
         <url>http://www.android-graphview.org/</url>
         <copyright>Copyright Jonas Gehring</copyright>
-        <license>GNU General Public License 2.0</license>
-    </notice>
-    <notice>
-        <name>ckChangeLog</name>
-        <url>https://github.com/cketti/ckChangeLog/</url>
-        <copyright>cketti and contributors</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>

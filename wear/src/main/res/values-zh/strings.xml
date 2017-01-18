@@ -23,17 +23,6 @@
     <string name="title_activity_info_battery">電池資料</string>
     <string name="title_activity_test_monitor">系統監視器</string>
 
-    <string-array name="main_test_string_array" translatable="false">
-        <item>@string/title_activity_test_color</item>
-        <item>@string/title_activity_test_light_sensor</item>
-        <item>@string/title_activity_test_accelerometer</item>
-        <item>@string/title_activity_test_gravity</item>
-        <item>@string/title_activity_info_cpu</item>
-        <item>@string/title_activity_info_hardware</item>
-        <item>@string/title_activity_info_android_version</item>
-        <item>@string/title_activity_info_battery</item>
-    </string-array>
-
     <!--  -->
     <string name="info_cpu_string_1">最低頻率</string>
     <string name="info_cpu_string_2">最高頻率</string>

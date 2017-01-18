@@ -5,12 +5,12 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25"
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 15
-        targetSdkVersion 21
+        targetSdkVersion 25
         versionCode 40
         versionName "5.0.0w"
         multiDexEnabled true
@@ -53,10 +53,6 @@ def getSecretKey(name) {
 
 repositories {
     mavenCentral()
-    maven {
-        url "https://jitpack.io"
-    }
-
 }
 
 dependencies {
@@ -80,9 +76,7 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
 
     // Material Dialog
-    compile('com.github.afollestad.material-dialogs:core:0.8.5.8@aar') {
-        transitive = true
-    }
+    compile 'com.afollestad.material-dialogs:core:0.9.2.2'
 
     // Roboto TextView
     compile 'com.github.johnkil.android-robototextview:robototextview:2.5.0'
@@ -108,5 +102,5 @@ dependencies {
     // Apache Commons Lang
     compile 'org.apache.commons:commons-lang3:3.4'
 
-    wearApp project(':wear')
+    wearApp project(path: ':wear', configuration: 'wear1Release')
 }
