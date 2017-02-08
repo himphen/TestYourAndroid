@@ -1,10 +1,12 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.DhcpInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
@@ -14,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,6 +44,8 @@ import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
  * Created by himphen on 21/5/16.
  */
 public class InfoWifiFragment extends BaseFragment {
+
+	protected final String PERMISSION_NAME = Manifest.permission.ACCESS_COARSE_LOCATION;
 
 	private List<InfoItem> list = new ArrayList<>();
 	private InfoItemAdapter adapter;
@@ -110,11 +115,15 @@ public class InfoWifiFragment extends BaseFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (isFirstLoading) {
-			reload(false);
-			isFirstLoading = false;
+		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+			if (isFirstLoading) {
+				reload(false);
+				isFirstLoading = false;
+			} else {
+				reload(true);
+			}
 		} else {
-			reload(true);
+			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
 		}
 	}
 
@@ -301,5 +310,17 @@ public class InfoWifiFragment extends BaseFragment {
 
 		text += (frequency + " " + level + " " + channelWidth).trim() + "\n\n";
 		return text;
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == PERMISSION_REQUEST_CODE) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				reload(false);
+			} else {
+				C.openErrorPermissionDialog(mContext);
+			}
+		}
 	}
 }

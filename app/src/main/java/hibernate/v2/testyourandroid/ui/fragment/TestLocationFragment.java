@@ -131,6 +131,7 @@ public class TestLocationFragment extends BaseFragment implements
 	private void init() {
 		String[] stringArray = getResources().getStringArray(R.array.test_gps_string_array);
 
+		list.clear();
 		for (String aStringArray : stringArray) {
 			list.add(new InfoItem(aStringArray, getString(R.string.gps_scanning)));
 		}

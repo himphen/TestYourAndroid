@@ -1,14 +1,17 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,6 +41,8 @@ import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
  * Created by himphen on 21/5/16.
  */
 public class InfoBluetoothFragment extends BaseFragment {
+
+	protected final String PERMISSION_NAME = Manifest.permission.ACCESS_COARSE_LOCATION;
 
 	private List<ExtendedBluetoothDevice> scannedList = new ArrayList<>();
 	private List<InfoItem> list = new ArrayList<>();
@@ -101,11 +106,16 @@ public class InfoBluetoothFragment extends BaseFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (isFirstLoading) {
-			reload(false);
-			isFirstLoading = false;
+		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+
+			if (isFirstLoading) {
+				reload(false);
+				isFirstLoading = false;
+			} else {
+				reload(true);
+			}
 		} else {
-			reload(true);
+			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
 		}
 	}
 
@@ -230,7 +240,6 @@ public class InfoBluetoothFragment extends BaseFragment {
 		adapter.notifyDataSetChanged();
 	}
 
-
 	private String getScanResultText(ExtendedBluetoothDevice result) {
 		String text = "";
 		text += result.getName() + "\n";
@@ -238,5 +247,17 @@ public class InfoBluetoothFragment extends BaseFragment {
 		String rssi = result.getRiss();
 		text += rssi.trim() + "\n\n";
 		return text;
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == PERMISSION_REQUEST_CODE) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				reload(false);
+			} else {
+				C.openErrorPermissionDialog(mContext);
+			}
+		}
 	}
 }

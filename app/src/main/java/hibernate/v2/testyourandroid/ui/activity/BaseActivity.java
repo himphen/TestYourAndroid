@@ -5,11 +5,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
+import hibernate.v2.testyourandroid.App;
 import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
 
@@ -30,8 +32,8 @@ public class BaseActivity extends AppCompatActivity {
 		mContext = this;
 		C.detectLanguage(this);
 
-		GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-		mTracker = analytics.newTracker(R.xml.app_tracker);
+		App application = (App) getApplication();
+		mTracker = application.getDefaultTracker();
 	}
 
 	@Override
