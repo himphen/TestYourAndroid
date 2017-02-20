@@ -16,6 +16,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.turingtechnologies.materialscrollbar.AlphabetIndicator;
 import com.turingtechnologies.materialscrollbar.DragScrollBar;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -109,7 +112,7 @@ public class AppListFragment extends BaseFragment {
 			@Override
 			protected Void doInBackground(Void... voids) {
 				PackageManager packageManager = mContext.getPackageManager();
-				List<PackageInfo> packs = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS);
+				List<PackageInfo> packs = getInstalledPackages(packageManager, PackageManager.GET_PERMISSIONS);
 				for (PackageInfo packageInfo : packs) {
 					if (appType == ARG_APP_TYPE_USER) {
 						if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
@@ -170,5 +173,37 @@ public class AppListFragment extends BaseFragment {
 				.setDraggableFromAnywhere(true)
 				.setHandleColourRes(R.color.primary)
 				.setIndicator(new AlphabetIndicator(mContext), true);
+	}
+
+	public List<PackageInfo> getInstalledPackages(PackageManager packageManager, int flags) {
+		try {
+			return packageManager.getInstalledPackages(flags);
+		} catch (Exception ignored) {
+			// we don't care why it didn't succeed. We'll do it using an alternative way instead
+		}
+		// use fallback:
+		List<PackageInfo> result = new ArrayList<>();
+		BufferedReader bufferedReader = null;
+		try {
+			Process process = Runtime.getRuntime().exec("pm list packages");
+			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String line;
+			while ((line = bufferedReader.readLine()) != null) {
+				final String packageName = line.substring(line.indexOf(':') + 1);
+				final PackageInfo packageInfo = packageManager.getPackageInfo(packageName, flags);
+				result.add(packageInfo);
+			}
+			process.waitFor();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (bufferedReader != null)
+				try {
+					bufferedReader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
+		return result;
 	}
 }

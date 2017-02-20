@@ -68,7 +68,6 @@ public class TestLocationFragment extends BaseFragment implements
 
 	private GoogleMap googleMap;
 	private Location lastKnowLocation;
-	private LocationManager locationManager;
 
 	public TestLocationFragment() {
 		// Required empty public constructor
@@ -145,7 +144,7 @@ public class TestLocationFragment extends BaseFragment implements
 				.addApi(LocationServices.API)
 				.build();
 
-		locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
+		LocationManager locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
 
 		List<String> providers = locationManager.getProviders(true);
 		if (providers.size() == 0) {
@@ -198,14 +197,15 @@ public class TestLocationFragment extends BaseFragment implements
 	@Override
 	public void onConnected(@Nullable Bundle bundle) {
 		Log.d(C.TAG, "onConnected");
-
 		LocationRequest mLocationRequest = LocationRequest.create();
 		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 		mLocationRequest.setInterval(1000); // Update location every second
 		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_1) == PackageManager.PERMISSION_GRANTED
 				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_2) == PackageManager.PERMISSION_GRANTED) {
-			LocationServices.FusedLocationApi.requestLocationUpdates(
-					mGoogleApiClient, mLocationRequest, this);
+			if (mGoogleApiClient.isConnected()) {
+				LocationServices.FusedLocationApi.requestLocationUpdates(
+						mGoogleApiClient, mLocationRequest, this);
+			}
 		}
 	}
 
@@ -277,7 +277,7 @@ public class TestLocationFragment extends BaseFragment implements
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED &&
