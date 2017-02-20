@@ -11,8 +11,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 100503
-        versionName "5.0.3"
+        versionCode 100505
+        versionName "5.0.5"
         multiDexEnabled true
     }
 
@@ -53,6 +53,10 @@ def getSecretKey(name) {
 
 repositories {
     mavenCentral()
+
+    maven {
+        url 'http://swisscodemonkeys.github.io/appbrain-sdk/maven'
+    }
 }
 
 dependencies {
@@ -65,11 +69,11 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.1.1'
 
     // Google Play Services
-    compile 'com.google.android.gms:play-services-ads:10.0.1'
-    compile 'com.google.android.gms:play-services-analytics:10.0.1'
-    compile 'com.google.android.gms:play-services-maps:10.0.1'
-    compile 'com.google.android.gms:play-services-location:10.0.1'
-    compile 'com.google.android.gms:play-services-wearable:10.0.1'
+    compile 'com.google.android.gms:play-services-ads:10.2.0'
+    compile 'com.google.android.gms:play-services-analytics:10.2.0'
+    compile 'com.google.android.gms:play-services-maps:10.2.0'
+    compile 'com.google.android.gms:play-services-location:10.2.0'
+    compile 'com.google.android.gms:play-services-wearable:10.2.0'
 
     // RxBinding Butter Knife
     compile 'com.jakewharton:butterknife:8.0.1'
@@ -101,6 +105,9 @@ dependencies {
 
     // Apache Commons Lang
     compile 'org.apache.commons:commons-lang3:3.4'
+
+    // AppBrain SDK
+    compile 'com.appbrain:appbrain-sdk:+@aar'
 
     wearApp project(path: ':wear', configuration: 'wear1Release')
 }

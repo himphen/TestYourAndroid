@@ -564,5 +564,6 @@
     <string name="bluetooth_setting">设定</string>
     <string name="dialog_permission_denied_posbtn">设定 »</string>
     <string name="dialog_permission_denied_message">请给予应用程式相关权限，这样才能测试及提供相关资讯。</string>
+    <string name="title_app_wall">建议的应用程序</string>
 
 </resources>

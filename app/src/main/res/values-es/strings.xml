@@ -361,5 +361,6 @@
     <string name="test_bluetooth_string_2">Dispositivos emparejados</string>
     <string name="dialog_permission_denied_posbtn">Configuración »</string>
     <string name="dialog_permission_denied_message">Sin conceder permisos, la aplicación probablemente no funcionará.\n\nDale a Prueba tu Android los permisos para acceder a esta función.</string>
+    <string name="title_app_wall">Aplicaciones sugeridas</string>
 
 </resources>

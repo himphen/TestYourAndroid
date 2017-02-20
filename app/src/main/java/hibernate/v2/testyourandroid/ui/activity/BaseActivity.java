@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.appbrain.AppBrain;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
@@ -31,6 +32,7 @@ public class BaseActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		mContext = this;
 		C.detectLanguage(this);
+		AppBrain.init(this);
 
 		App application = (App) getApplication();
 		mTracker = application.getDefaultTracker();
