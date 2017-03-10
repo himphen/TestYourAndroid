@@ -67,7 +67,7 @@
         android:smallScreens="true"/>
 
     <application
-        android:name=".App"
+        android:name="hibernate.v2.testyourandroid.App"
         android:allowBackup="true"
         android:icon="@drawable/android_resources"
         android:label="@string/app_name"
