@@ -11,8 +11,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 100505
-        versionName "5.0.5"
+        versionCode 100506
+        versionName "5.0.6"
         multiDexEnabled true
     }
 
@@ -62,18 +62,18 @@ repositories {
 dependencies {
     // Google Android Support
     compile 'com.android.support:multidex:1.0.1'
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:support-v4:25.2.0'
-    compile 'com.android.support:design:25.2.0'
-    compile 'com.android.support:cardview-v7:25.2.0'
-    compile 'com.android.support:recyclerview-v7:25.2.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
 
     // Google Play Services
-    compile 'com.google.android.gms:play-services-ads:10.2.0'
-    compile 'com.google.android.gms:play-services-analytics:10.2.0'
-    compile 'com.google.android.gms:play-services-maps:10.2.0'
-    compile 'com.google.android.gms:play-services-location:10.2.0'
-    compile 'com.google.android.gms:play-services-wearable:10.2.0'
+    compile 'com.google.android.gms:play-services-ads:10.2.1'
+    compile 'com.google.android.gms:play-services-analytics:10.2.1'
+    compile 'com.google.android.gms:play-services-maps:10.2.1'
+    compile 'com.google.android.gms:play-services-location:10.2.1'
+    compile 'com.google.android.gms:play-services-wearable:10.2.1'
 
     // RxBinding Butter Knife
     compile 'com.jakewharton:butterknife:8.0.1'
@@ -86,7 +86,7 @@ dependencies {
     compile 'com.github.johnkil.android-robototextview:robototextview:2.5.0'
 
     // Glide
-    compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 
     // License Dialog
     compile 'de.psdev.licensesdialog:licensesdialog:1.7.0'

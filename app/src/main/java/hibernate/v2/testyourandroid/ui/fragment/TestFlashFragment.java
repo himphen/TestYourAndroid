@@ -17,7 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.Surface;
@@ -126,14 +125,12 @@ public class TestFlashFragment extends BaseFragment {
 			util.turnOnFlashLight();
 		} else {
 			if (mCamera != null) {
-				Log.d("TAG", "openFlash");
 				try {
 					mParams = mCamera.getParameters();
 					mParams.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
 					mCamera.setParameters(mParams);
 					mCamera.startPreview();
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (Exception ignored) {
 				}
 			}
 		}
@@ -146,11 +143,13 @@ public class TestFlashFragment extends BaseFragment {
 			util.turnOffFlashLight();
 		} else {
 			if (mCamera != null) {
-				Log.d("TAG", "closeFlash");
-				mParams = mCamera.getParameters();
-				mParams.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-				mCamera.setParameters(mParams);
-				mCamera.stopPreview();
+				try {
+					mParams = mCamera.getParameters();
+					mParams.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+					mCamera.setParameters(mParams);
+					mCamera.stopPreview();
+				} catch (Exception ignored) {
+				}
 			}
 		}
 		layout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));

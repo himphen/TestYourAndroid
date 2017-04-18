@@ -12,8 +12,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 23
         targetSdkVersion 25
-        versionCode 200505
-        versionName "5.0.5"
+        versionCode 200506
+        versionName "5.0.6"
         multiDexEnabled true
     }
 
@@ -37,17 +37,18 @@ android {
 
 dependencies {
     // Google Android Support
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.android.support:support-v4:25.1.1'
-    compile 'com.google.android.support:wearable:1.4.0'
-    compile 'com.google.android.gms:play-services-wearable:10.0.1'
+    provided 'com.google.android.wearable:wearable:2.0.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.google.android.support:wearable:2.0.1'
+    compile 'com.google.android.gms:play-services-wearable:10.2.1'
 
     // RxBinding Butter Knife
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
 
     // Glide
-    compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 
     // Roboto TextView
     compile 'com.github.johnkil.android-robototextview:robototextview:2.5.0'
