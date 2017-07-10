@@ -144,7 +144,7 @@ public class InfoWifiFragment extends BaseFragment {
 		list = new ArrayList<>();
 		String[] stringArray = getResources().getStringArray(R.array.test_wifi_string_array);
 		currentStringArray = getResources().getStringArray(R.array.test_wifi_current_string_array);
-		wifiManager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
+		wifiManager = (WifiManager) mContext.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
 		try {
 			wifiInfo = wifiManager.getConnectionInfo();
@@ -313,7 +313,7 @@ public class InfoWifiFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
