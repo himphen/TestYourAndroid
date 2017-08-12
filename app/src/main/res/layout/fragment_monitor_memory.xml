@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/memory_used"
-                    app:fontFamily="roboto"/>
+                    app:robotoFontFamily="roboto"/>
 
                 <com.devspark.robototextview.widget.RobotoTextView
                     android:id="@+id/usedText"
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textSize="24sp"
-                    app:fontFamily="roboto"/>
+                    app:robotoFontFamily="roboto"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -84,13 +84,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/memory_total"
-                    app:fontFamily="roboto"/>
+                    app:robotoFontFamily="roboto"/>
 
                 <com.devspark.robototextview.widget.RobotoTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/memory_ava"
-                    app:fontFamily="roboto"/>
+                    app:robotoFontFamily="roboto"/>
             </LinearLayout>
 
 
@@ -104,14 +104,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    app:fontFamily="roboto"/>
+                    app:robotoFontFamily="roboto"/>
 
                 <com.devspark.robototextview.widget.RobotoTextView
                     android:id="@+id/avaText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    app:fontFamily="roboto"/>
+                    app:robotoFontFamily="roboto"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

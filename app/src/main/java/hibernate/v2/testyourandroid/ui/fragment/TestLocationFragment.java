@@ -235,7 +235,8 @@ public class TestLocationFragment extends BaseFragment implements
 
 	private void updateMap() {
 		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_1) == PackageManager.PERMISSION_GRANTED
-				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_2) == PackageManager.PERMISSION_GRANTED) {
+				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_2) == PackageManager.PERMISSION_GRANTED
+				&& googleMap != null) {
 			googleMap.setMyLocationEnabled(true);
 
 			if (lastKnowLocation != null) {

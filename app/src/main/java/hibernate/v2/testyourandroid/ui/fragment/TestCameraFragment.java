@@ -115,8 +115,12 @@ public class TestCameraFragment extends BaseFragment {
 	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				openChooseCameraDialog();
+			if (grantResults.length > 0) {
+				if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					openChooseCameraDialog();
+				} else {
+					C.openErrorPermissionDialog(mContext);
+				}
 			} else {
 				C.openErrorPermissionDialog(mContext);
 			}

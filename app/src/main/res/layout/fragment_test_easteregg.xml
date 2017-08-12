@@ -27,7 +27,7 @@
             android:text="@string/press_me"
             android:textColor="@color/grey600"
             android:textSize="26sp"
-            app:fontFamily="roboto"/>
+            app:robotoFontFamily="roboto"/>
     </LinearLayout>
 
 

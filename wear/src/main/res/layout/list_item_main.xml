@@ -31,8 +31,8 @@
             android:paddingStart="8dp"
             android:textColor="@color/grey600"
             android:textSize="16sp"
-            app:fontFamily="roboto"
-            app:textWeight="light">
+            app:robotoFontFamily="roboto"
+            app:robotoTextWeight="light">
         </com.devspark.robototextview.widget.RobotoTextView>
     </LinearLayout>
 </LinearLayout>

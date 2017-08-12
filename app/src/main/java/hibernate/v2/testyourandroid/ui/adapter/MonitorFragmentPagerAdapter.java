@@ -62,7 +62,7 @@ public class MonitorFragmentPagerAdapter extends FragmentPagerAdapter {
 
 	public View getTabView(int position) {
 		View v = LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
-		TextView tv = (TextView) v.findViewById(R.id.tabTitleTv);
+		TextView tv = v.findViewById(R.id.tabTitleTv);
 		tv.setText(tabTitles[position]);
 		return v;
 	}

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
 import android.nfc.tech.NfcF;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -61,13 +60,8 @@ public class TestNFCFragment extends BaseFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_settings:
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-					startActivity(new Intent(
-							Settings.ACTION_NFC_SETTINGS));
-				} else {
-					startActivity(new Intent(
-							Settings.ACTION_WIRELESS_SETTINGS));
-				}
+				startActivity(new Intent(
+						Settings.ACTION_NFC_SETTINGS));
 				break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -124,12 +118,10 @@ public class TestNFCFragment extends BaseFragment {
 				.onPositive(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-							startActivity(new Intent(
-									Settings.ACTION_NFC_SETTINGS));
-						} else {
-							startActivity(new Intent(
-									Settings.ACTION_WIRELESS_SETTINGS));
+						try {
+							startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
+						} catch (Exception e) {
+							startActivity(new Intent(Settings.ACTION_SETTINGS));
 						}
 					}
 				})

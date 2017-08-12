@@ -169,10 +169,10 @@ public class AppListFragment extends BaseFragment {
 		adapter = new AppItemAdapter(appList, mListener);
 		recyclerView.setAdapter(adapter);
 
-		new DragScrollBar(mContext, recyclerView, true)
-				.setDraggableFromAnywhere(true)
-				.setHandleColourRes(R.color.primary)
-				.setIndicator(new AlphabetIndicator(mContext), true);
+		DragScrollBar dragScrollBar = new DragScrollBar(mContext, recyclerView, true);
+		dragScrollBar.setDraggableFromAnywhere(true);
+		dragScrollBar.setHandleColourRes(R.color.primary);
+		dragScrollBar.setIndicator(new AlphabetIndicator(mContext), true);
 	}
 
 	public List<PackageInfo> getInstalledPackages(PackageManager packageManager, int flags) {

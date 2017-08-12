@@ -2,7 +2,6 @@ package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
@@ -197,21 +196,7 @@ public class InfoCPUFragment extends BaseFragment {
 		activityManager.getMemoryInfo(memoryInfo);
 
 		long totalMem;
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-			totalMem = memoryInfo.totalMem;
-		} else {
-			try {
-				FileReader localFileReader = new FileReader("/proc/meminfo");
-				BufferedReader localBufferedReader = new BufferedReader(
-						localFileReader, 8192);
-				String str2 = localBufferedReader.readLine(); // memory info
-				localBufferedReader.close();
-				String[] arrayOfString = str2.split("\\s+");
-				totalMem = (long) (Integer.valueOf(arrayOfString[1]) * 1024);
-			} catch (IOException e) {
-				totalMem = -1;
-			}
-		}
+		totalMem = memoryInfo.totalMem;
 
 		String text = "";
 		text += memoryArray[0] + C.formatBitSize(totalMem) + "\n";
@@ -222,23 +207,16 @@ public class InfoCPUFragment extends BaseFragment {
 		return text;
 	}
 
-	@SuppressWarnings("deprecation")
 	private long[] getRomMemory() {
 		long[] romInfo = new long[2];
 		File path = Environment.getDataDirectory();
 		StatFs stat = new StatFs(path.getPath());
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-			romInfo[0] = stat.getBlockSizeLong() * stat.getBlockCountLong();
-			romInfo[1] = stat.getBlockSizeLong() * stat.getAvailableBlocksLong();
-		} else {
-			romInfo[0] = stat.getBlockSize() * stat.getBlockCount();
-			romInfo[1] = stat.getBlockSize() * stat.getAvailableBlocks();
-		}
+		romInfo[0] = stat.getBlockSizeLong() * stat.getBlockCountLong();
+		romInfo[1] = stat.getBlockSizeLong() * stat.getAvailableBlocksLong();
 		return romInfo;
 	}
 
-	@SuppressWarnings("deprecation")
 	private long[] getSDCardMemory() {
 		long[] sdCardInfo = new long[2];
 		String state = Environment.getExternalStorageState();
@@ -246,13 +224,8 @@ public class InfoCPUFragment extends BaseFragment {
 			File path = Environment.getExternalStorageDirectory();
 			StatFs stat = new StatFs(path.getPath());
 
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-				sdCardInfo[0] = stat.getBlockSizeLong() * stat.getBlockCountLong();
-				sdCardInfo[1] = stat.getBlockSizeLong() * stat.getAvailableBlocksLong();
-			} else {
-				sdCardInfo[0] = stat.getBlockSize() * stat.getBlockCount();
-				sdCardInfo[1] = stat.getBlockSize() * stat.getAvailableBlocks();
-			}
+			sdCardInfo[0] = stat.getBlockSizeLong() * stat.getBlockCountLong();
+			sdCardInfo[1] = stat.getBlockSizeLong() * stat.getAvailableBlocksLong();
 		}
 		return sdCardInfo;
 	}

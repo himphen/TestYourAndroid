@@ -89,8 +89,11 @@ public class TestRingFragment extends BaseFragment {
 				@Override
 				public void onProgressChanged(SeekBar arg0, int progress,
 				                              boolean arg2) {
-					audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
-							progress, 0);
+					try {
+						audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+								progress, 0);
+					} catch (SecurityException e) {
+					}
 				}
 
 				@Override

@@ -3,7 +3,6 @@ package hibernate.v2.testyourandroid.ui.fragment;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -19,10 +18,6 @@ import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
 import com.jjoe64.graphview.GraphViewStyle;
 import com.jjoe64.graphview.LineGraphView;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -127,21 +122,7 @@ public class MonitorMemoryFragment extends BaseFragment {
 		activityManager.getMemoryInfo(memoryInfo);
 
 		long totalMem;
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-			totalMem = memoryInfo.totalMem;
-		} else {
-			try {
-				FileReader localFileReader = new FileReader("/proc/meminfo");
-				BufferedReader localBufferedReader = new BufferedReader(
-						localFileReader, 8192);
-				String str2 = localBufferedReader.readLine(); // memory info
-				localBufferedReader.close();
-				String[] arrayOfString = str2.split("\\s+");
-				totalMem = (long) (Integer.valueOf(arrayOfString[1]) * 1024);
-			} catch (IOException e) {
-				totalMem = -1;
-			}
-		}
+		totalMem = memoryInfo.totalMem;
 
 		totalValue = totalMem;
 		usedValue = totalMem - memoryInfo.availMem;

@@ -13,5 +13,5 @@
         android:layout_height="wrap_content"
         android:text="Medium Text"
         android:textColor="@color/white"
-        app:fontFamily="roboto"/>
+        app:robotoFontFamily="roboto"/>
 </LinearLayout>

@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:text="@string/adjust_volume"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        app:fontFamily="roboto"/>
+        app:robotoFontFamily="roboto"/>
 
     <SeekBar
         android:id="@+id/seekBar1"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="@string/vibrate_type"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        app:fontFamily="roboto"/>
+        app:robotoFontFamily="roboto"/>
 
     <Spinner
         android:id="@+id/spinner1"

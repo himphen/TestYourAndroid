@@ -46,8 +46,10 @@ public class MainFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+
+		adView = C.initAdView(mContext, adLayout);
 
 		// Note that we are passing childFragmentManager, not FragmentManager
 		MainFragmentPagerAdapter adapter = new MainFragmentPagerAdapter(getChildFragmentManager(), getContext());
@@ -62,13 +64,6 @@ public class MainFragment extends BaseFragment {
 				tab.setCustomView(adapter.getTabView(i));
 			}
 		}
-	}
-
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-
-		adView = C.initAdView(mContext, adLayout);
 	}
 
 	@Override

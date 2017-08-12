@@ -50,26 +50,11 @@ public class TestSensorStepActivity extends BaseActivity {
 		initActionBar(getSupportActionBar(), R.string.title_activity_test_step);
 		adView = C.initAdView(mContext, adLayout);
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 			Fragment fragment = TestSensorFragment.newInstance(Sensor.TYPE_STEP_COUNTER);
 			FragmentManager fragmentManager = getSupportFragmentManager();
 			fragmentManager.beginTransaction()
 					.replace(R.id.container, fragment)
 					.commit();
-		} else {
-			MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
-					.title(R.string.ui_error)
-					.content(R.string.notsupport_android_19)
-					.cancelable(false)
-					.positiveText(R.string.ui_okay)
-					.onPositive(new MaterialDialog.SingleButtonCallback() {
-						@Override
-						public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-							mContext.finish();
-						}
-					});
-			dialog.show();
-		}
 	}
 
 	@Override

@@ -23,8 +23,8 @@
             android:text="Android"
             android:textColor="@color/grey800"
             android:textSize="16sp"
-            app:fontFamily="roboto"
-            app:textWeight="light"
+            app:robotoFontFamily="roboto"
+            app:robotoTextWeight="light"
             tools:ignore="HardcodedText"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
@@ -34,8 +34,8 @@
             android:text="Android"
             android:textColor="@color/grey600"
             android:textSize="14sp"
-            app:fontFamily="roboto"
-            app:textWeight="light"
+            app:robotoFontFamily="roboto"
+            app:robotoTextWeight="light"
             tools:ignore="HardcodedText"/>
 
     </LinearLayout>

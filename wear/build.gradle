@@ -1,16 +1,15 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "25.0.3"
 
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 23
-        targetSdkVersion 25
-        versionCode 200507
-        versionName "5.0.7"
+        targetSdkVersion 26
+        versionCode 200510
+        versionName "5.1.0"
         multiDexEnabled true
     }
 
@@ -24,21 +23,21 @@ android {
 
 dependencies {
     // Google Android Support
-    provided 'com.google.android.wearable:wearable:2.0.2'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.google.android.support:wearable:2.0.2'
-    compile 'com.google.android.gms:play-services-wearable:10.2.6'
+    provided 'com.google.android.wearable:wearable:2.0.4'
+    compile 'com.android.support:appcompat-v7:26.0.0'
+    compile 'com.android.support:support-v4:26.0.0'
+    compile 'com.google.android.support:wearable:2.0.4'
+    compile 'com.google.android.gms:play-services-wearable:11.0.4'
 
     // RxBinding Butter Knife
-    compile 'com.jakewharton:butterknife:8.6.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // Glide
     compile 'com.github.bumptech.glide:glide:3.8.0'
 
     // Roboto TextView
-    compile 'com.github.johnkil.android-robototextview:robototextview:3.0.0'
+    compile 'com.github.johnkil.android-robototextview:robototextview:4.0.0'
 
     compile 'com.karumi:headerrecyclerview:1.1.0'
 }

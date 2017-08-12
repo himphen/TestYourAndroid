@@ -27,6 +27,6 @@
         android:gravity="center_horizontal"
         android:text="@string/nfc_tutor_message"
         android:textSize="20sp"
-        app:fontFamily="roboto"/>
+        app:robotoFontFamily="roboto"/>
 
 </LinearLayout>

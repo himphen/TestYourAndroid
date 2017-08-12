@@ -26,7 +26,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/app_name"
             android:textSize="18sp"
-            app:fontFamily="roboto"/>
+            app:robotoFontFamily="roboto"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/versionTv"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/ui_version"
-            app:fontFamily="roboto"/>
+            app:robotoFontFamily="roboto"/>
 
         <View style="@style/Border"/>
 

@@ -29,7 +29,7 @@
             android:gravity="center_horizontal"
             android:text="@string/iab_complete_message"
             android:textSize="20sp"
-            app:fontFamily="roboto"/>
+            app:robotoFontFamily="roboto"/>
     </LinearLayout>
 
 </LinearLayout>

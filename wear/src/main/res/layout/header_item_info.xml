@@ -17,7 +17,7 @@
         android:padding="12dp"
         android:textColor="@color/grey800"
         android:textSize="20sp"
-        app:fontFamily="roboto"
-        app:textWeight="medium">
+        app:robotoFontFamily="roboto"
+        app:robotoTextWeight="medium">
     </com.devspark.robototextview.widget.RobotoTextView>
 </LinearLayout>

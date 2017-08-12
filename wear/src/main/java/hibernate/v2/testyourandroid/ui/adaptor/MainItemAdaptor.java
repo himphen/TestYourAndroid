@@ -77,9 +77,9 @@ public class MainItemAdaptor extends WearableListView.Adapter {
 
 		public ItemViewHolder(View itemView) {
 			super(itemView);
-			rootView = (LinearLayout) itemView.findViewById(R.id.root_view);
-			mainIv = (ImageView) itemView.findViewById(R.id.mainIv);
-			mainTv = (TextView) itemView.findViewById(R.id.mainTv);
+			rootView = itemView.findViewById(R.id.root_view);
+			mainIv = itemView.findViewById(R.id.mainIv);
+			mainTv = itemView.findViewById(R.id.mainTv);
 		}
 	}
 }

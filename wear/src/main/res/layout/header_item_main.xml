@@ -24,7 +24,7 @@
         android:textColor="@color/grey800"
         android:textSize="18sp"
         android:text="@string/app_name"
-        app:fontFamily="roboto"
-        app:textWeight="light">
+        app:robotoFontFamily="roboto"
+        app:robotoTextWeight="light">
     </com.devspark.robototextview.widget.RobotoTextView>
 </LinearLayout>

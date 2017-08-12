@@ -55,14 +55,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/network_downspeed"
-                    app:fontFamily="roboto"/>
+                    app:robotoFontFamily="roboto"/>
 
                 <com.devspark.robototextview.widget.RobotoTextView
                     android:id="@+id/downspeedText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
-                    app:fontFamily="roboto"/>
+                    app:robotoFontFamily="roboto"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -88,14 +88,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/network_upspeed"
-                    app:fontFamily="roboto"/>
+                    app:robotoFontFamily="roboto"/>
 
                 <com.devspark.robototextview.widget.RobotoTextView
                     android:id="@+id/upspeedText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
-                    app:fontFamily="roboto"/>
+                    app:robotoFontFamily="roboto"/>
             </LinearLayout>
         </LinearLayout>
 
