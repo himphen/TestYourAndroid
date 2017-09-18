@@ -33,7 +33,6 @@ import hibernate.v2.testyourandroid.ui.activity.MainActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestCameraActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestColorActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestDrawActivity;
-import hibernate.v2.testyourandroid.ui.activity.TestEasterEggActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestFingerprintActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestFlashActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestLocationActivity;
@@ -79,7 +78,7 @@ public class MainGridFragment extends BaseFragment {
 			R.drawable.ic_test_compass, R.drawable.ic_test_system,
 			R.drawable.ic_test_chip, R.drawable.ic_test_chip,
 			R.drawable.ic_test_chip, R.drawable.ic_test_chip,
-			R.drawable.ic_test_chip, R.drawable.ic_test_easteregg};
+			R.drawable.ic_test_chip};
 
 	private Class[] classTestArray = {
 			TestColorActivity.class, TestDrawActivity.class, TestMultiTouchActivity.class,
@@ -90,7 +89,7 @@ public class MainGridFragment extends BaseFragment {
 			TestSensorCompassActivity.class, TestMonitorActivity.class,
 			TestSensorLightActivity.class, TestSensorAccelerometerActivity.class,
 			TestSensorProximityActivity.class, TestSensorPressureActivity.class,
-			TestSensorGravityActivity.class, TestEasterEggActivity.class
+			TestSensorGravityActivity.class
 	};
 
 	@BindView(R.id.gridRv)

@@ -238,10 +238,6 @@
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_test_step"/>
         <activity
-            android:name=".ui.activity.TestEasterEggActivity"
-            android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_test_easteregg"/>
-        <activity
             android:name=".ui.activity.TestFingerprintActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_test_fingerprint"/>

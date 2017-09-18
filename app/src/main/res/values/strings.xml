@@ -56,7 +56,6 @@
     <string name="title_activity_info_battery">Battery</string>
     <string name="title_activity_info_camera">Camera</string>
     <string name="title_activity_info_gsm">Network</string>
-    <string name="title_activity_test_easteregg">Play with Android</string>
     <string name="title_activity_test_ad_remover">Donate</string>
     <string name="title_activity_rate_us">Rate us!</string>
 
@@ -86,7 +85,6 @@
         <item>@string/title_activity_test_proximity</item>
         <item>@string/title_activity_test_pressure</item>
         <item>@string/title_activity_test_gravity</item>
-        <item>@string/title_activity_test_easteregg</item>
     </string-array>
     <string-array name="main_info_string_array" translatable="false">
         <item>@string/title_activity_test_wifi</item>

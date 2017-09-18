@@ -64,7 +64,7 @@ public class TestLocationFragment extends BaseFragment implements
 	RecyclerView recyclerView;
 
 	private GoogleApiClient mGoogleApiClient;
-	private static final LatLng DEFAULT_LATLNG = new LatLng(22.3185392, 114.1707091);
+	private static final LatLng DEFAULT_LAT_LNG = new LatLng(22.3185392, 114.1707091);
 
 	private GoogleMap googleMap;
 	private Location lastKnowLocation;
@@ -229,7 +229,7 @@ public class TestLocationFragment extends BaseFragment implements
 		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_1) == PackageManager.PERMISSION_GRANTED
 				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_2) == PackageManager.PERMISSION_GRANTED) {
 			this.googleMap.setMyLocationEnabled(true);
-			this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LATLNG, 15));
+			this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LAT_LNG, 15));
 		}
 	}
 
@@ -281,9 +281,12 @@ public class TestLocationFragment extends BaseFragment implements
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (grantResults[0] == PackageManager.PERMISSION_GRANTED &&
-					grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-				init();
+			if (grantResults.length == 2) {
+				if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+					init();
+				} else {
+					C.openErrorPermissionDialog(mContext);
+				}
 			} else {
 				C.openErrorPermissionDialog(mContext);
 			}
