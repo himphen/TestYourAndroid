@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,7 +27,6 @@ import hibernate.v2.testyourandroid.model.InfoItem;
 import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
 
 public class AppInfoPackageFragment extends BaseFragment {
-	private List<InfoItem> list = new ArrayList<>();
 	private InfoItemAdapter adapter;
 
 	@BindView(R.id.rvlist)
@@ -34,10 +34,6 @@ public class AppInfoPackageFragment extends BaseFragment {
 	private AppItem appItem;
 	private PackageManager packageManager;
 	private PackageInfo packageInfo;
-
-	public AppInfoPackageFragment() {
-		// Required empty public constructor
-	}
 
 	public static AppInfoPackageFragment newInstance(AppItem appItem) {
 		AppInfoPackageFragment fragment = new AppInfoPackageFragment();
@@ -48,7 +44,7 @@ public class AppInfoPackageFragment extends BaseFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_info_listview, container, false);
@@ -57,7 +53,7 @@ public class AppInfoPackageFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
 				new LinearLayoutManager(mContext,
@@ -75,7 +71,7 @@ public class AppInfoPackageFragment extends BaseFragment {
 				packageManager = mContext.getPackageManager();
 				packageInfo = packageManager.getPackageInfo(appItem.getPackageName(), 0);
 
-				list = new ArrayList<>();
+				List<InfoItem> list = new ArrayList<>();
 				String[] stringArray = getResources().getStringArray(R.array.app_package_string_array);
 
 				for (int i = 0; i < stringArray.length; i++) {

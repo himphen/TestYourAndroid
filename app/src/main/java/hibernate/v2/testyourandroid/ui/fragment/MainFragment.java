@@ -1,6 +1,7 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -32,12 +33,8 @@ public class MainFragment extends BaseFragment {
 	@BindView(R.id.vp_pages)
 	ViewPager pager;
 
-	public MainFragment() {
-		// Required empty public constructor
-	}
-
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
@@ -46,7 +43,7 @@ public class MainFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
 		adView = C.initAdView(mContext, adLayout);

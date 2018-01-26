@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +42,8 @@ public class TestRingFragment extends BaseFragment {
 	@BindView(R.id.spinner1)
 	Spinner spinner;
 
-	public TestRingFragment() {
-		// Required empty public constructor
-	}
-
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_test_ring, container, false);
@@ -55,7 +52,7 @@ public class TestRingFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		init();
 	}
@@ -81,6 +78,11 @@ public class TestRingFragment extends BaseFragment {
 		});
 		try {
 			audioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+
+			if (audioManager == null) {
+				throw new Exception();
+			}
+
 			seekBar.setMax(audioManager
 					.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
 			seekBar.setProgress(audioManager
@@ -92,7 +94,7 @@ public class TestRingFragment extends BaseFragment {
 					try {
 						audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
 								progress, 0);
-					} catch (SecurityException e) {
+					} catch (SecurityException ignored) {
 					}
 				}
 

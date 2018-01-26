@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -97,9 +98,6 @@ public class MainGridFragment extends BaseFragment {
 
 	private int gridType = ARG_GRID_TYPE_TEST;
 
-	public MainGridFragment() {
-	}
-
 	public static MainGridFragment newInstance(int sensorType) {
 		MainGridFragment fragment = new MainGridFragment();
 		Bundle args = new Bundle();
@@ -117,7 +115,7 @@ public class MainGridFragment extends BaseFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_main_gridview, container, false);
 		ButterKnife.bind(this, view);
@@ -125,7 +123,7 @@ public class MainGridFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
 		Integer[] imageArray;

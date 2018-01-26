@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.net.DhcpInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
@@ -16,7 +15,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -45,7 +43,7 @@ import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
  */
 public class InfoWifiFragment extends BaseFragment {
 
-	protected final String PERMISSION_NAME = Manifest.permission.ACCESS_COARSE_LOCATION;
+	protected final String[] PERMISSION_NAME = {Manifest.permission.ACCESS_COARSE_LOCATION};
 
 	private List<InfoItem> list = new ArrayList<>();
 	private InfoItemAdapter adapter;
@@ -91,7 +89,7 @@ public class InfoWifiFragment extends BaseFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_info_listview, container, false);
@@ -100,7 +98,7 @@ public class InfoWifiFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
 				new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
@@ -115,7 +113,7 @@ public class InfoWifiFragment extends BaseFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+		if (isPermissionsGranted(PERMISSION_NAME)) {
 			if (isFirstLoading) {
 				reload(false);
 				isFirstLoading = false;
@@ -123,7 +121,7 @@ public class InfoWifiFragment extends BaseFragment {
 				reload(true);
 			}
 		} else {
-			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
+			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
 		}
 	}
 
@@ -147,6 +145,9 @@ public class InfoWifiFragment extends BaseFragment {
 		wifiManager = (WifiManager) mContext.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
 		try {
+			if (wifiManager == null) {
+				throw new Exception();
+			}
 			wifiInfo = wifiManager.getConnectionInfo();
 			dhcpInfo = wifiManager.getDhcpInfo();
 		} catch (Exception e) {
@@ -214,7 +215,7 @@ public class InfoWifiFragment extends BaseFragment {
 	@SuppressLint("HardwareIds")
 	private String getData(int j) {
 		try {
-			String text = "";
+			StringBuilder text = new StringBuilder();
 			switch (j) {
 				case 0:
 					if (wifiInfo.getSSID() == null || wifiInfo.getSSID().equals("<unknown ssid>")) {
@@ -247,13 +248,13 @@ public class InfoWifiFragment extends BaseFragment {
 						});
 
 						for (WifiConfiguration config : configs) {
-							text += config.SSID.replaceAll("\"", "") + "\n";
+							text.append(config.SSID.replaceAll("\"", "")).append("\n");
 						}
-						text = text.length() > 2 ? text.substring(0, text.length() - 2) : text;
+						text = new StringBuilder(text.length() > 2 ? text.substring(0, text.length() - 2) : text.toString());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					return text.trim();
+					return text.toString().trim();
 				default:
 					return "N/A";
 			}
@@ -264,7 +265,7 @@ public class InfoWifiFragment extends BaseFragment {
 	}
 
 	private void updateScannedList(List<ScanResult> results) {
-		String text = "";
+		StringBuilder text = new StringBuilder();
 		Collections.sort(results, new Comparator<ScanResult>() {
 			@Override
 			public int compare(ScanResult lhs, ScanResult rhs) {
@@ -273,11 +274,11 @@ public class InfoWifiFragment extends BaseFragment {
 		});
 
 		for (ScanResult result : results) {
-			text += getScanResultText(result);
+			text.append(getScanResultText(result));
 		}
-		text = text.length() > 2 ? text.substring(0, text.length() - 2) : text;
+		text = new StringBuilder(text.length() > 2 ? text.substring(0, text.length() - 2) : text.toString());
 
-		list.get(1).setContentText(text);
+		list.get(1).setContentText(text.toString());
 		adapter.notifyDataSetChanged();
 	}
 
@@ -316,7 +317,7 @@ public class InfoWifiFragment extends BaseFragment {
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+			if (hasAllPermissionsGranted(grantResults)) {
 				reload(false);
 			} else {
 				C.openErrorPermissionDialog(mContext);

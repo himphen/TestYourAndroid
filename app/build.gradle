@@ -1,20 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
-        targetSdkVersion 26
-        versionCode 100512
-        versionName "5.1.2"
+        targetSdkVersion 27
+        versionCode 100520
+        versionName "5.2.0"
         multiDexEnabled true
     }
 
     buildTypes {
         debug {
+            minifyEnabled false
+            debuggable true
             buildConfigField "String", "ADMOB_KEY", "\"" + getSecretKey("ADMOB_KEY") + "\""
             buildConfigField "String[]", "DEVICE_ID", getSecretKey("DEVICE_ID")
             resValue "string", "GOOGLE_API_KEY", "\"" + getSecretKey("GOOGLE_API_KEY") + "\""
@@ -22,7 +24,8 @@ android {
             buildConfigField "String", "GA_TRACKING_ID", "\"" + getSecretKey("GA_TRACKING_ID") + "\""
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "ADMOB_KEY", "\"" + getSecretKey("ADMOB_KEY") + "\""
             buildConfigField "String[]", "DEVICE_ID", getSecretKey("DEVICE_ID")
@@ -51,25 +54,25 @@ static def getSecretKey(name) {
 dependencies {
     // Google Android Support
     compile 'com.android.support:multidex:1.0.2'
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:support-v4:26.1.0'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.android.support:cardview-v7:26.1.0'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:support-v4:27.0.2'
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.android.support:cardview-v7:27.0.2'
+    compile 'com.android.support:recyclerview-v7:27.0.2'
 
     // Google Play Services
-    compile 'com.google.android.gms:play-services-ads:11.4.2'
-    compile 'com.google.android.gms:play-services-analytics:11.4.2'
-    compile 'com.google.android.gms:play-services-maps:11.4.2'
-    compile 'com.google.android.gms:play-services-location:11.4.2'
-    compile 'com.google.android.gms:play-services-wearable:11.4.2'
+    compile 'com.google.android.gms:play-services-ads:11.8.0'
+    compile 'com.google.android.gms:play-services-analytics:11.8.0'
+    compile 'com.google.android.gms:play-services-maps:11.8.0'
+    compile 'com.google.android.gms:play-services-location:11.8.0'
+    compile 'com.google.android.gms:play-services-wearable:11.8.0'
 
     // RxBinding Butter Knife
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // Material Dialog
-    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
+    compile 'com.afollestad.material-dialogs:core:0.9.6.0'
 
     // Roboto TextView
     compile 'com.github.johnkil.android-robototextview:robototextview:4.0.0'

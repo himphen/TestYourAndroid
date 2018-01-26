@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid.ui.custom;
+package hibernate.v2.testyourandroid.ui.view;
 
 import android.app.Activity;
 import android.content.Context;

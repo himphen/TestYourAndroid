@@ -119,15 +119,19 @@ public class MainActivity extends BaseActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.new_main, menu);
 
-		AdService ads = AppBrain.getAds();
-		MenuItem adsItem = menu.add(ads.getOfferWallButtonLabel(this));
-		if (!PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(C.PREF_IAP, false)) {
-			adsItem.setShowAsAction(ActionMenuItem.SHOW_AS_ACTION_ALWAYS);
-		} else {
-			adsItem.setShowAsAction(ActionMenuItem.SHOW_AS_ACTION_NEVER);
+		try {
+			AdService ads = AppBrain.getAds();
+			MenuItem adsItem = menu.add(ads.getOfferWallButtonLabel(this));
+			if (!PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(C.PREF_IAP, false)) {
+				adsItem.setShowAsAction(ActionMenuItem.SHOW_AS_ACTION_ALWAYS);
+			} else {
+				adsItem.setShowAsAction(ActionMenuItem.SHOW_AS_ACTION_NEVER);
+			}
+			adsItem.setIcon(R.drawable.ic_local_play_white_24dp);
+			ads.setOfferWallMenuItemClickListener(this, adsItem);
+		} catch (Exception e) {
+
 		}
-		adsItem.setIcon(R.drawable.ic_local_play_white_24dp);
-		ads.setOfferWallMenuItemClickListener(this, adsItem);
 
 		return true;
 	}

@@ -51,7 +51,7 @@ public class InfoCameraFragment extends BaseFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_info_listview, container, false);
@@ -60,7 +60,7 @@ public class InfoCameraFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
 				new LinearLayoutManager(mContext,
@@ -145,7 +145,7 @@ public class InfoCameraFragment extends BaseFragment {
 	private String integerListToString(List<Integer> list, int type) {
 		if (list == null)
 			return "Not supported";
-		String tempList = "";
+		StringBuilder tempList = new StringBuilder();
 		String format = "";
 		for (Integer element : list) {
 			if (type == FORMAT) {
@@ -166,7 +166,7 @@ public class InfoCameraFragment extends BaseFragment {
 				else
 					format = "UNKNOWN";
 			}
-			tempList += format + "\n";
+			tempList.append(format).append("\n");
 		}
 		return tempList.substring(0, tempList.length() - 1);
 	}
@@ -174,16 +174,16 @@ public class InfoCameraFragment extends BaseFragment {
 	private String listToString(List<String> list) {
 		if (list == null)
 			return "Not supported";
-		String tempList = "";
+		StringBuilder tempList = new StringBuilder();
 		for (String element : list)
-			tempList += element + "\n";
+			tempList.append(element).append("\n");
 		return tempList.substring(0, tempList.length() - 1);
 	}
 
 	private String sizeListToString(List<Camera.Size> list) {
-		String tempList = "";
+		StringBuilder tempList = new StringBuilder();
 		for (Camera.Size element : list)
-			tempList += element.width + " X " + element.height + "\n";
+			tempList.append(element.width).append(" X ").append(element.height).append("\n");
 		return tempList.substring(0, tempList.length() - 1);
 	}
 
@@ -193,8 +193,11 @@ public class InfoCameraFragment extends BaseFragment {
 				case 0:
 				case 1:
 					DisplayMetrics displayMetrics = new DisplayMetrics();
-					WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-					wm.getDefaultDisplay().getMetrics(displayMetrics);
+					WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+					if (windowManager == null) {
+						throw new Exception();
+					}
+					windowManager.getDefaultDisplay().getMetrics(displayMetrics);
 					int screenWidth = displayMetrics.widthPixels;
 					int screenHeight = displayMetrics.heightPixels;
 					return j == 0 ? screenWidth + " px" : screenHeight + " px";
@@ -239,10 +242,10 @@ public class InfoCameraFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+			if (hasAllPermissionsGranted(grantResults)) {
 				openChooseCameraDialog();
 			} else {
 				C.openErrorPermissionDialog(mContext);

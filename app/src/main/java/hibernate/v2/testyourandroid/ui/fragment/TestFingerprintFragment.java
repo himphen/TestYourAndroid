@@ -5,7 +5,6 @@ import android.annotation.TargetApi;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,7 +50,7 @@ import hibernate.v2.testyourandroid.utils.FingerprintHandler;
  */
 public class TestFingerprintFragment extends BaseFragment {
 
-	protected final String PERMISSION_NAME = Manifest.permission.USE_FINGERPRINT;
+	protected final String[] PERMISSION_NAME = {Manifest.permission.USE_FINGERPRINT};
 
 	private FingerprintManager fingerprintManager;
 	private KeyguardManager keyguardManager;
@@ -68,10 +66,6 @@ public class TestFingerprintFragment extends BaseFragment {
 	ImageView fingerprintIv;
 	private FingerprintHandler fingerprintHandler = null;
 
-	public TestFingerprintFragment() {
-		// Required empty public constructor
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,16 +73,15 @@ public class TestFingerprintFragment extends BaseFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_test_fingerprint, container, false);
 		ButterKnife.bind(this, rootView);
 		return rootView;
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -111,10 +104,10 @@ public class TestFingerprintFragment extends BaseFragment {
 	public void onResume() {
 		super.onResume();
 
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+		if (isPermissionsGranted(PERMISSION_NAME)) {
 			init();
 		} else {
-			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
+			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
 		}
 
 	}
@@ -132,24 +125,24 @@ public class TestFingerprintFragment extends BaseFragment {
 
 	private void init() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
-				if (!fingerprintManager.isHardwareDetected()) {
-					C.openErrorDialog(mContext);
-				} else if (!keyguardManager.isKeyguardSecure()) {
-					helpText.setText(R.string.ui_fingerprint_not_locked);
-				} else if (!fingerprintManager.hasEnrolledFingerprints()) {
-					helpText.setText(R.string.ui_fingerprint_not_register);
-				} else {
-					try {
-						generateKey();
-						cipherInit();
-						cryptoObject = new FingerprintManager.CryptoObject(cipher);
+			if (fingerprintManager == null) {
+				C.openErrorDialog(mContext);
+			} else if (!fingerprintManager.isHardwareDetected()) {
+				C.openErrorDialog(mContext);
+			} else if (!keyguardManager.isKeyguardSecure()) {
+				helpText.setText(R.string.ui_fingerprint_not_locked);
+			} else if (!fingerprintManager.hasEnrolledFingerprints()) {
+				helpText.setText(R.string.ui_fingerprint_not_register);
+			} else {
+				try {
+					generateKey();
+					cipherInit();
+					cryptoObject = new FingerprintManager.CryptoObject(cipher);
 
-						fingerprintHandler = new FingerprintHandler(mContext, helpText, fingerprintIv);
-						fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
-					} catch (Exception e) {
-						C.openErrorDialog(mContext);
-					}
+					fingerprintHandler = new FingerprintHandler(mContext, helpText, fingerprintIv);
+					fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
+				} catch (Exception e) {
+					C.openErrorDialog(mContext);
 				}
 			}
 		} else {
@@ -213,10 +206,10 @@ public class TestFingerprintFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+			if (hasAllPermissionsGranted(grantResults)) {
 				init();
 			} else {
 				C.openErrorPermissionDialog(mContext);

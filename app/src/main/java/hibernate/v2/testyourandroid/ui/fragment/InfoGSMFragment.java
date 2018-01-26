@@ -6,7 +6,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.TelephonyManager;
@@ -29,7 +30,7 @@ import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
  */
 public class InfoGSMFragment extends BaseFragment {
 
-	protected final String PERMISSION_NAME = Manifest.permission.READ_PHONE_STATE;
+	protected final String[] PERMISSION_NAME = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.SEND_SMS};
 
 	@BindView(R.id.rvlist)
 	RecyclerView recyclerView;
@@ -37,31 +38,26 @@ public class InfoGSMFragment extends BaseFragment {
 	private TelephonyManager telephonyManager;
 	private String[] simStateArray;
 
-	public InfoGSMFragment() {
-		// Required empty public constructor
-	}
-
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_info_listview, container, false);
 		ButterKnife.bind(this, rootView);
 		return rootView;
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
 				new LinearLayoutManager(mContext,
 						LinearLayoutManager.VERTICAL, false)
 		);
 
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+		if (isPermissionsGranted(PERMISSION_NAME)) {
 			init();
 		} else {
-			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
+			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
 		}
 	}
 
@@ -82,55 +78,60 @@ public class InfoGSMFragment extends BaseFragment {
 
 	@SuppressLint("HardwareIds")
 	private String getData(int j) {
-		try {
-			switch (j) {
-				case 0:
-					return telephonyManager.getSimCountryIso();
-				case 1:
-					return telephonyManager.getSimOperator();
-				case 2:
-					return telephonyManager.getSimOperatorName();
-				case 3:
-					return simStateArray[telephonyManager.getSimState()];
-				case 4:
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-						if (telephonyManager.getPhoneCount() > 1) {
-							return "Sim Card 1: " + telephonyManager.getDeviceId(0) + "\nSim Card 2: " + telephonyManager.getDeviceId(1);
+		if (ActivityCompat.checkSelfPermission(mContext, PERMISSION_NAME[0]) == PackageManager.PERMISSION_GRANTED
+				&& ActivityCompat.checkSelfPermission(mContext, PERMISSION_NAME[1]) == PackageManager.PERMISSION_GRANTED) {
+			try {
+				switch (j) {
+					case 0:
+						return telephonyManager.getSimCountryIso();
+					case 1:
+						return telephonyManager.getSimOperator();
+					case 2:
+						return telephonyManager.getSimOperatorName();
+					case 3:
+						return simStateArray[telephonyManager.getSimState()];
+					case 4:
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+							if (telephonyManager.getPhoneCount() > 1) {
+								return "Sim Card 1: " + telephonyManager.getDeviceId(0) + "\nSim Card 2: " + telephonyManager.getDeviceId(1);
+							} else {
+								return telephonyManager.getDeviceId(0);
+							}
 						} else {
-							return telephonyManager.getDeviceId(0);
+							return telephonyManager.getDeviceId();
 						}
-					} else {
-						return telephonyManager.getDeviceId();
-					}
-				case 5:
-					return telephonyManager.getDeviceSoftwareVersion();
-				case 6:
-					return telephonyManager.getLine1Number();
-				case 7:
-					return telephonyManager.getNetworkCountryIso();
-				case 8:
-					return telephonyManager.getNetworkOperator();
-				case 9:
-					return telephonyManager.getNetworkOperatorName();
-				case 10:
-					return String.valueOf(telephonyManager.isNetworkRoaming());
-				case 11:
-					return telephonyManager.getSimSerialNumber();
-				case 12:
-					return telephonyManager.getSubscriberId();
-				default:
-					return "N/A";
+					case 5:
+						return telephonyManager.getDeviceSoftwareVersion();
+					case 6:
+						return telephonyManager.getLine1Number();
+					case 7:
+						return telephonyManager.getNetworkCountryIso();
+					case 8:
+						return telephonyManager.getNetworkOperator();
+					case 9:
+						return telephonyManager.getNetworkOperatorName();
+					case 10:
+						return String.valueOf(telephonyManager.isNetworkRoaming());
+					case 11:
+						return telephonyManager.getSimSerialNumber();
+					case 12:
+						return telephonyManager.getSubscriberId();
+					default:
+						return "N/A";
+				}
+			} catch (Exception e) {
+				return "N/A";
 			}
-		} catch (Exception e) {
+		} else {
 			return "N/A";
 		}
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+			if (hasAllPermissionsGranted(grantResults)) {
 				init();
 			} else {
 				C.openErrorPermissionDialog(mContext);

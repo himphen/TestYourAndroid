@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
-import hibernate.v2.testyourandroid.ui.custom.TestDrawView;
+import hibernate.v2.testyourandroid.ui.view.TestDrawView;
 
 public class TestDrawActivity extends Activity {
 

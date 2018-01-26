@@ -1,11 +1,9 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,41 +16,35 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
-import hibernate.v2.testyourandroid.ui.custom.TestCameraView;
+import hibernate.v2.testyourandroid.ui.view.TestCameraView;
 
 /**
  * Created by himphen on 21/5/16.
  */
-@SuppressWarnings("deprecation")
 public class TestCameraFragment extends BaseFragment {
 
 	private Camera mCamera = null;
-	protected final String PERMISSION_NAME = Manifest.permission.CAMERA;
+	protected final String[] PERMISSION_NAME = {Manifest.permission.CAMERA};
 
 	@BindView(R.id.cameraPreview)
 	FrameLayout cameraPreview;
 
-	public TestCameraFragment() {
-		// Required empty public constructor
-	}
-
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_test_camera, container, false);
 		ButterKnife.bind(this, rootView);
 		return rootView;
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+		if (isPermissionsGranted(PERMISSION_NAME)) {
 			openChooseCameraDialog();
 		} else {
-			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
+			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
 		}
 
 	}
@@ -112,15 +104,11 @@ public class TestCameraFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (grantResults.length > 0) {
-				if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					openChooseCameraDialog();
-				} else {
-					C.openErrorPermissionDialog(mContext);
-				}
+			if (hasAllPermissionsGranted(grantResults)) {
+				openChooseCameraDialog();
 			} else {
 				C.openErrorPermissionDialog(mContext);
 			}

@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 23
-        targetSdkVersion 26
-        versionCode 200512
-        versionName "5.1.2"
+        targetSdkVersion 27
+        versionCode 200520
+        versionName "5.2.0"
         multiDexEnabled true
     }
 
@@ -23,11 +23,11 @@ android {
 
 dependencies {
     // Google Android Support
-    provided 'com.google.android.wearable:wearable:2.1.0'
-    compile 'com.android.support:appcompat-v7:26.0.2'
-    compile 'com.android.support:support-v4:26.0.2'
-    compile 'com.google.android.support:wearable:2.1.0'
-    compile 'com.google.android.gms:play-services-wearable:11.4.2'
+    provided 'com.google.android.wearable:wearable:2.2.0'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:support-v4:27.0.2'
+    compile 'com.google.android.support:wearable:2.2.0'
+    compile 'com.google.android.gms:play-services-wearable:11.8.0'
 
     // RxBinding Butter Knife
     compile 'com.jakewharton:butterknife:8.8.1'

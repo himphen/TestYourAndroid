@@ -1,11 +1,13 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -57,10 +59,6 @@ public class AppListFragment extends BaseFragment {
 		return fragment;
 	}
 
-	public AppListFragment() {
-		// Required empty public constructor
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -71,7 +69,7 @@ public class AppListFragment extends BaseFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_info_listview_scrollbar, container, false);
@@ -80,7 +78,7 @@ public class AppListFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
 				new LinearLayoutManager(mContext,
@@ -94,6 +92,7 @@ public class AppListFragment extends BaseFragment {
 		loadAppList();
 	}
 
+	@SuppressLint("StaticFieldLeak")
 	private void loadAppList() {
 		new AsyncTask<Void, Void, Void>() {
 			private MaterialDialog dialog;

@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,10 +37,6 @@ public class AppInfoActionFragment extends BaseFragment {
 	RecyclerView recyclerView;
 	private AppItem appItem;
 
-	public AppInfoActionFragment() {
-		// Required empty public constructor
-	}
-
 	public static AppInfoActionFragment newInstance(AppItem appItem) {
 		AppInfoActionFragment fragment = new AppInfoActionFragment();
 		Bundle args = new Bundle();
@@ -49,7 +46,7 @@ public class AppInfoActionFragment extends BaseFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_info_listview, container, false);
@@ -58,7 +55,7 @@ public class AppInfoActionFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		init();
 	}

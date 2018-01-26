@@ -1,5 +1,6 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -47,13 +48,10 @@ public class TestFlashFragment extends BaseFragment {
 	private Camera.Parameters mParams;
 
 	private FlashLightUtilForL util;
-
-	public TestFlashFragment() {
-		// Required empty public constructor
-	}
+	protected final String[] PERMISSION_NAME = {Manifest.permission.CAMERA};
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_test_flash, container, false);
@@ -62,15 +60,15 @@ public class TestFlashFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
 		if (mContext.getPackageManager()
 				.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-				init_camera2();
+				initCamera2();
 			} else {
-				init_camera();
+				initCamera();
 			}
 		} else {
 			C.openErrorDialog(mContext);
@@ -92,7 +90,7 @@ public class TestFlashFragment extends BaseFragment {
 	}
 
 	@SuppressWarnings("deprecation")
-	private void init_camera() {
+	private void initCamera() {
 		try {
 			mCamera = Camera.open(0);
 		} catch (Exception e) {
@@ -102,9 +100,13 @@ public class TestFlashFragment extends BaseFragment {
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void init_camera2() {
+	private void initCamera2() {
 		try {
-			util = new FlashLightUtilForL(mContext);
+			if (isPermissionsGranted(PERMISSION_NAME)) {
+				util = new FlashLightUtilForL(mContext);
+			} else {
+				requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
+			}
 		} catch (Exception e) {
 			C.openErrorDialog(mContext);
 		}
@@ -266,6 +268,18 @@ public class TestFlashFragment extends BaseFragment {
 			mCameraDevice.close();
 			mCameraDevice = null;
 			mSession = null;
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == PERMISSION_REQUEST_CODE) {
+			if (hasAllPermissionsGranted(grantResults)) {
+				initCamera2();
+			} else {
+				C.openErrorPermissionDialog(mContext);
+			}
 		}
 	}
 }

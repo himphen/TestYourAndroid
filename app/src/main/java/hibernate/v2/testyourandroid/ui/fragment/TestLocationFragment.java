@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,8 +53,7 @@ public class TestLocationFragment extends BaseFragment implements
 		LocationListener,
 		OnMapReadyCallback {
 
-	protected final String PERMISSION_NAME_1 = Manifest.permission.ACCESS_FINE_LOCATION;
-	protected final String PERMISSION_NAME_2 = Manifest.permission.ACCESS_COARSE_LOCATION;
+	protected final String[] PERMISSION_NAME = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
 	private InfoItemAdapter adapter;
 	private List<InfoItem> list = new ArrayList<>();
@@ -69,10 +67,6 @@ public class TestLocationFragment extends BaseFragment implements
 	private GoogleMap googleMap;
 	private Location lastKnowLocation;
 
-	public TestLocationFragment() {
-		// Required empty public constructor
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,16 +74,15 @@ public class TestLocationFragment extends BaseFragment implements
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_test_location, container, false);
 		ButterKnife.bind(this, rootView);
 		return rootView;
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
 				new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
@@ -98,14 +91,10 @@ public class TestLocationFragment extends BaseFragment implements
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_1) == PackageManager.PERMISSION_GRANTED
-				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_2) == PackageManager.PERMISSION_GRANTED) {
+		if (isPermissionsGranted(PERMISSION_NAME)) {
 			init();
 		} else {
-			requestPermissions(new String[]{
-					PERMISSION_NAME_1,
-					PERMISSION_NAME_2
-			}, PERMISSION_REQUEST_CODE);
+			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
 		}
 	}
 
@@ -146,28 +135,32 @@ public class TestLocationFragment extends BaseFragment implements
 
 		LocationManager locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
 
-		List<String> providers = locationManager.getProviders(true);
-		if (providers.size() == 0) {
-			openFunctionDialog();
-		}
+		if (locationManager != null) {
+			List<String> providers = locationManager.getProviders(true);
+			if (providers.size() == 0) {
+				openFunctionDialog();
+			}
 
-		FragmentManager fm = getChildFragmentManager();
-		SupportMapFragment fragment = (SupportMapFragment) fm.findFragmentById(R.id.mapFragment);
-		if (fragment == null) {
-			fragment = SupportMapFragment.newInstance();
-			fm.beginTransaction().replace(R.id.mapFragment, fragment).commit();
-		}
+			FragmentManager fm = getChildFragmentManager();
+			SupportMapFragment fragment = (SupportMapFragment) fm.findFragmentById(R.id.mapFragment);
+			if (fragment == null) {
+				fragment = SupportMapFragment.newInstance();
+				fm.beginTransaction().replace(R.id.mapFragment, fragment).commit();
+			}
 
-		fragment.getMapAsync(this);
+			fragment.getMapAsync(this);
 
-		int status = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(mContext);
-		if (status != ConnectionResult.SUCCESS) {
-			if (GoogleApiAvailability.getInstance().isUserResolvableError(status)) {
-				GoogleApiAvailability.getInstance().getErrorDialog(getActivity(), status,
-						1972).show();
+			int status = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(mContext);
+			if (status != ConnectionResult.SUCCESS) {
+				if (GoogleApiAvailability.getInstance().isUserResolvableError(status)) {
+					GoogleApiAvailability.getInstance().getErrorDialog(getActivity(), status,
+							1972).show();
+				}
+			} else {
+				mGoogleApiClient.connect();
 			}
 		} else {
-			mGoogleApiClient.connect();
+			C.openErrorDialog(mContext);
 		}
 	}
 
@@ -188,20 +181,17 @@ public class TestLocationFragment extends BaseFragment implements
 
 	@Override
 	public void onLocationChanged(Location location) {
-		Log.d(C.TAG, "onLocationChanged");
-
 		lastKnowLocation = location;
 		updateMap();
 	}
 
 	@Override
 	public void onConnected(@Nullable Bundle bundle) {
-		Log.d(C.TAG, "onConnected");
 		LocationRequest mLocationRequest = LocationRequest.create();
 		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 		mLocationRequest.setInterval(1000); // Update location every second
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_1) == PackageManager.PERMISSION_GRANTED
-				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_2) == PackageManager.PERMISSION_GRANTED) {
+		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[0]) == PackageManager.PERMISSION_GRANTED
+				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[1]) == PackageManager.PERMISSION_GRANTED) {
 			if (mGoogleApiClient.isConnected()) {
 				LocationServices.FusedLocationApi.requestLocationUpdates(
 						mGoogleApiClient, mLocationRequest, this);
@@ -211,31 +201,27 @@ public class TestLocationFragment extends BaseFragment implements
 
 	@Override
 	public void onConnectionSuspended(int i) {
-		Log.d(C.TAG, "onConnectionSuspended");
 		Toast.makeText(mContext, R.string.wifi_reload_fail, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-		Log.d(C.TAG, "onConnectionFailed");
 		Toast.makeText(mContext, R.string.wifi_reload_fail, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onMapReady(GoogleMap googleMap) {
-		Log.d(C.TAG, "onMapReady");
-
 		this.googleMap = googleMap;
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_1) == PackageManager.PERMISSION_GRANTED
-				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_2) == PackageManager.PERMISSION_GRANTED) {
+		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[0]) == PackageManager.PERMISSION_GRANTED
+				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[1]) == PackageManager.PERMISSION_GRANTED) {
 			this.googleMap.setMyLocationEnabled(true);
 			this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LAT_LNG, 15));
 		}
 	}
 
 	private void updateMap() {
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_1) == PackageManager.PERMISSION_GRANTED
-				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME_2) == PackageManager.PERMISSION_GRANTED
+		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[0]) == PackageManager.PERMISSION_GRANTED
+				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[1]) == PackageManager.PERMISSION_GRANTED
 				&& googleMap != null) {
 			googleMap.setMyLocationEnabled(true);
 
@@ -281,12 +267,8 @@ public class TestLocationFragment extends BaseFragment implements
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (grantResults.length == 2) {
-				if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-					init();
-				} else {
-					C.openErrorPermissionDialog(mContext);
-				}
+			if (hasAllPermissionsGranted(grantResults)) {
+				init();
 			} else {
 				C.openErrorPermissionDialog(mContext);
 			}

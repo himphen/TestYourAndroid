@@ -3,6 +3,7 @@ package hibernate.v2.testyourandroid.ui.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +63,7 @@ public class MonitorCpuFragment extends BaseFragment {
 	TextView speedText;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_monitor_cpu, container, false);
 		ButterKnife.bind(this, view);
@@ -70,7 +71,7 @@ public class MonitorCpuFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		speedText.setText(getCPU(CPU_CURRENT) + " MHz");
 		coreText.setText(String.valueOf(getNumCores()));
@@ -127,12 +128,12 @@ public class MonitorCpuFragment extends BaseFragment {
 				e.printStackTrace();
 			}
 		}
-		String sd = "";
+		StringBuilder sd = new StringBuilder();
 		for (String e : list) {
-			sd += e;
+			sd.append(e);
 		}
 		try {
-			return Integer.valueOf(sd) / 1000;
+			return Integer.valueOf(sd.toString()) / 1000;
 		} catch (NumberFormatException e) {
 			return 0;
 		}

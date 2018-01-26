@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.net.TrafficStats;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,10 +37,10 @@ public class MonitorNetworkFragment extends BaseFragment {
 
 	@BindView(R.id.graph2)
 	LinearLayout layout;
-	@BindView(R.id.upspeedText)
-	TextView upspeedText;
-	@BindView(R.id.downspeedText)
-	TextView downspeedText;
+	@BindView(R.id.upSpeedText)
+	TextView upSpeedText;
+	@BindView(R.id.downSpeedText)
+	TextView downSpeedText;
 
 	private Runnable timer = new Runnable() {
 		@Override
@@ -53,8 +54,8 @@ public class MonitorNetworkFragment extends BaseFragment {
 				double Rx = Double
 						.parseDouble(C.formatSpeedSize(differenceRx, false));
 
-				upspeedText.setText(C.formatSpeedSize(differenceTx, true));
-				downspeedText.setText(C.formatSpeedSize(differenceRx, true));
+				upSpeedText.setText(C.formatSpeedSize(differenceTx, true));
+				downSpeedText.setText(C.formatSpeedSize(differenceRx, true));
 				series.appendData(
 						new GraphViewData(lastXValue, Rx),
 						true, 100);
@@ -62,8 +63,8 @@ public class MonitorNetworkFragment extends BaseFragment {
 						new GraphViewData(lastXValue, Tx),
 						true, 100);
 			} catch (Exception e) {
-				upspeedText.setText(R.string.notsupport);
-				downspeedText.setText(R.string.notsupport);
+				upSpeedText.setText(R.string.notsupport);
+				downSpeedText.setText(R.string.notsupport);
 			}
 			mHandler.postDelayed(timer, 1000);
 		}
@@ -71,7 +72,7 @@ public class MonitorNetworkFragment extends BaseFragment {
 	private boolean isSupported = false;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_monitor_network, container, false);
 		ButterKnife.bind(this, view);
@@ -79,7 +80,7 @@ public class MonitorNetworkFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
 		GraphView graphView = new LineGraphView(mContext, "");
@@ -89,8 +90,8 @@ public class MonitorNetworkFragment extends BaseFragment {
 
 		if (lastTotalRx == TrafficStats.UNSUPPORTED
 				|| lastTotalTx == TrafficStats.UNSUPPORTED) {
-			upspeedText.setText(R.string.notsupport);
-			downspeedText.setText(R.string.notsupport);
+			upSpeedText.setText(R.string.notsupport);
+			downSpeedText.setText(R.string.notsupport);
 		} else {
 			isSupported = true;
 			GraphViewData[] data = new GraphViewData[]{new GraphViewData(0, 0)};

@@ -68,11 +68,6 @@ public class InfoBluetoothFragment extends BaseFragment {
 	@BindView(R.id.rvlist)
 	RecyclerView recyclerView;
 
-
-	public InfoBluetoothFragment() {
-		// Required empty public constructor
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,21 +75,17 @@ public class InfoBluetoothFragment extends BaseFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		// Inflate the layout for this fragment
 		View rootView = inflater.inflate(R.layout.fragment_info_listview, container, false);
 		ButterKnife.bind(this, rootView);
 		return rootView;
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		recyclerView.setLayoutManager(
-				new LinearLayoutManager(mContext,
-						LinearLayoutManager.VERTICAL, false)
-		);
+		recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
 	}
 
 	@Override
@@ -198,7 +189,7 @@ public class InfoBluetoothFragment extends BaseFragment {
 
 	private String getData(int j) {
 		try {
-			String text = "";
+			StringBuilder text = new StringBuilder();
 			switch (j) {
 				case 0:
 					return getString(R.string.loading);
@@ -207,12 +198,12 @@ public class InfoBluetoothFragment extends BaseFragment {
 						// List paired devices
 						Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
 						for (BluetoothDevice result : pairedDevices) {
-							text += result.getName() + "\n";
+							text.append(result.getName()).append("\n");
 						}
-						text = text.length() > 1 ? text.substring(0, text.length() - 1) : text;
+						text = new StringBuilder(text.length() > 1 ? text.substring(0, text.length() - 1) : text.toString());
 					} catch (Exception ignored) {
 					}
-					return text;
+					return text.toString();
 				default:
 					return "N/A";
 			}
@@ -230,22 +221,24 @@ public class InfoBluetoothFragment extends BaseFragment {
 			}
 		});
 
-		String text = "";
+		StringBuilder text = new StringBuilder();
 		for (ExtendedBluetoothDevice item : scannedList) {
-			text += getScanResultText(item);
+			text.append(getScanResultText(item));
 		}
-		text = text.length() > 2 ? text.substring(0, text.length() - 2) : text;
+		text = new StringBuilder(text.length() > 2 ? text.substring(0, text.length() - 2) : text.toString());
 
-		list.get(0).setContentText(text);
+		list.get(0).setContentText(text.toString());
 		adapter.notifyDataSetChanged();
 	}
 
 	private String getScanResultText(ExtendedBluetoothDevice result) {
 		String text = "";
-		text += result.getName() + "\n";
+		text += result.getName();
+		text += "\n";
 
-		String rssi = result.getRiss();
-		text += rssi.trim() + "\n\n";
+		String riss = result.getRiss();
+		text += riss.trim();
+		text += "\n\n";
 		return text;
 	}
 
@@ -253,12 +246,8 @@ public class InfoBluetoothFragment extends BaseFragment {
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (grantResults.length == 2) {
-				if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-					reload(false);
-				} else {
-					C.openErrorPermissionDialog(mContext);
-				}
+			if (hasAllPermissionsGranted(grantResults)) {
+				reload(false);
 			} else {
 				C.openErrorPermissionDialog(mContext);
 			}

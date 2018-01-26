@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +67,7 @@ public class MonitorMemoryFragment extends BaseFragment {
 	private boolean isSupported = false;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_monitor_memory, container, false);
 		ButterKnife.bind(this, view);
@@ -74,7 +75,7 @@ public class MonitorMemoryFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		getRamMemory();
 		avaText.setText(C.formatBitSize(availableValue, true));
@@ -119,13 +120,12 @@ public class MonitorMemoryFragment extends BaseFragment {
 	private void getRamMemory() {
 		ActivityManager activityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
 		ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-		activityManager.getMemoryInfo(memoryInfo);
+		if (activityManager != null) {
+			activityManager.getMemoryInfo(memoryInfo);
 
-		long totalMem;
-		totalMem = memoryInfo.totalMem;
-
-		totalValue = totalMem;
-		usedValue = totalMem - memoryInfo.availMem;
-		availableValue = memoryInfo.availMem;
+			totalValue = memoryInfo.totalMem;
+			usedValue = memoryInfo.totalMem - memoryInfo.availMem;
+			availableValue = memoryInfo.availMem;
+		}
 	}
 }
