@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -50,8 +51,9 @@ public class GridItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 		ItemViewHolder holder = (ItemViewHolder) rawHolder;
 		Glide.with(holder.mainIv.getContext())
 				.load(item.getMainImageId())
-				.fitCenter()
-				.diskCacheStrategy(DiskCacheStrategy.ALL)
+				.apply(new RequestOptions()
+						.fitCenter()
+						.diskCacheStrategy(DiskCacheStrategy.ALL))
 				.into(holder.mainIv);
 
 		holder.mainTv.setText(item.getMainText());

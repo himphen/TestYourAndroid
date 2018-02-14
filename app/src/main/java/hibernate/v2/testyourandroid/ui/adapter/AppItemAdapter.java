@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.turingtechnologies.materialscrollbar.INameableAdapter;
 
 import java.util.List;
@@ -72,7 +74,10 @@ public class AppItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 		Glide.with(mContext)
 				.load("")
-				.placeholder(item.getIcon())
+				.apply(new RequestOptions()
+						.placeholder(item.getIcon())
+						.centerCrop()
+						.diskCacheStrategy(DiskCacheStrategy.ALL))
 				.into(holder.iconIv);
 
 		if (item.isSystemApp()) {
@@ -95,8 +100,7 @@ public class AppItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 		return mDataList == null ? 0 : mDataList.size();
 	}
 
-	@SuppressWarnings("WeakerAccess")
-	public static class ItemViewHolder extends RecyclerView.ViewHolder {
+	static class ItemViewHolder extends RecyclerView.ViewHolder {
 
 		@BindView(R.id.text1)
 		TextView titleTv;
