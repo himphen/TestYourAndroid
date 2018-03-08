@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 27
@@ -8,30 +9,28 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 100520
-        versionName "5.2.0"
+        versionCode 100550
+        versionName "5.5.0"
         multiDexEnabled true
     }
 
     buildTypes {
         debug {
+            shrinkResources false
             minifyEnabled false
-            debuggable true
             buildConfigField "String", "ADMOB_KEY", "\"" + getSecretKey("ADMOB_KEY") + "\""
             buildConfigField "String[]", "DEVICE_ID", getSecretKey("DEVICE_ID")
             resValue "string", "GOOGLE_API_KEY", "\"" + getSecretKey("GOOGLE_API_KEY") + "\""
             buildConfigField "String", "GOOGLE_IAP_KEY", "\"" + getSecretKey("GOOGLE_IAP_KEY") + "\""
-            buildConfigField "String", "GA_TRACKING_ID", "\"" + getSecretKey("GA_TRACKING_ID") + "\""
         }
         release {
+            shrinkResources true
             minifyEnabled true
-            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "ADMOB_KEY", "\"" + getSecretKey("ADMOB_KEY") + "\""
             buildConfigField "String[]", "DEVICE_ID", getSecretKey("DEVICE_ID")
             resValue "string", "GOOGLE_API_KEY", "\"" + getSecretKey("GOOGLE_API_KEY") + "\""
             buildConfigField "String", "GOOGLE_IAP_KEY", "\"" + getSecretKey("GOOGLE_IAP_KEY") + "\""
-            buildConfigField "String", "GA_TRACKING_ID", "\"" + getSecretKey("GA_TRACKING_ID") + "\""
         }
     }
 
@@ -53,16 +52,15 @@ static def getSecretKey(name) {
 
 dependencies {
     // Google Android Support
-    compile 'com.android.support:multidex:1.0.2'
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile 'com.android.support:support-v4:27.0.2'
-    compile 'com.android.support:design:27.0.2'
-    compile 'com.android.support:cardview-v7:27.0.2'
-    compile 'com.android.support:recyclerview-v7:27.0.2'
+    compile 'com.android.support:multidex:1.0.3'
+    compile 'com.android.support:appcompat-v7:27.1.0'
+    compile 'com.android.support:support-v4:27.1.0'
+    compile 'com.android.support:design:27.1.0'
+    compile 'com.android.support:cardview-v7:27.1.0'
+    compile 'com.android.support:recyclerview-v7:27.1.0'
 
     // Google Play Services
     compile 'com.google.android.gms:play-services-ads:11.8.0'
-    compile 'com.google.android.gms:play-services-analytics:11.8.0'
     compile 'com.google.android.gms:play-services-maps:11.8.0'
     compile 'com.google.android.gms:play-services-location:11.8.0'
     compile 'com.google.android.gms:play-services-wearable:11.8.0'
@@ -102,5 +100,15 @@ dependencies {
     // AppBrain SDK
     compile 'com.appbrain:appbrain-sdk:+@aar'
 
+    // Firebase
+    compile 'com.google.firebase:firebase-core:11.8.0'
+
+    // Crashlytics
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
+        transitive = true
+    }
+
     wearApp project(':wear')
 }
+
+apply plugin: 'com.google.gms.google-services'

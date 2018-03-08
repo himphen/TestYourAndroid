@@ -5,16 +5,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.appbrain.AppBrain;
-import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.Tracker;
 
 import hibernate.v2.testyourandroid.App;
 import hibernate.v2.testyourandroid.C;
-import hibernate.v2.testyourandroid.R;
 
 /**
  * Created by himphen on 21/5/16.
@@ -25,7 +21,6 @@ public class BaseActivity extends AppCompatActivity {
 	protected static final int DELAY_AD_LAYOUT = 0;
 
 	protected Activity mContext;
-	protected Tracker mTracker;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +30,6 @@ public class BaseActivity extends AppCompatActivity {
 		AppBrain.init(this);
 
 		App application = (App) getApplication();
-		mTracker = application.getDefaultTracker();
 	}
 
 	@Override

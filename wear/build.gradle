@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 27
@@ -8,8 +9,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 23
         targetSdkVersion 27
-        versionCode 200520
-        versionName "5.2.0"
+        versionCode 200550
+        versionName "5.5.0"
         multiDexEnabled true
     }
 
@@ -24,8 +25,8 @@ android {
 dependencies {
     // Google Android Support
     provided 'com.google.android.wearable:wearable:2.2.0'
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile 'com.android.support:support-v4:27.0.2'
+    compile 'com.android.support:appcompat-v7:27.1.0'
+    compile 'com.android.support:support-v4:27.1.0'
     compile 'com.google.android.support:wearable:2.2.0'
     compile 'com.google.android.gms:play-services-wearable:11.8.0'
 
@@ -40,4 +41,14 @@ dependencies {
     compile 'com.github.johnkil.android-robototextview:robototextview:4.0.0'
 
     compile 'com.karumi:headerrecyclerview:1.1.0'
+
+    // Firebase
+    compile 'com.google.firebase:firebase-core:11.8.0'
+
+    // Crashlytics
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
+        transitive = true
+    }
 }
+
+apply plugin: 'com.google.gms.google-services'
