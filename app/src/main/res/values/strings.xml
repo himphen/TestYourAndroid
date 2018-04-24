@@ -587,9 +587,9 @@
     <string name="rate_posbtn">Rate now</string>
     <string name="share_button">Share it!!!</string>
     <string name="share_message">Let\'s download \"Test Your Android\" app to test your Android devices.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
-    <string name="mic_start">Press the button to start recording</string>
-    <string name="mic_end">Press the button to stop recording and start playing</string>
-    <string name="mic_stop_playing">Press the button to stop playing</string>
+    <string name="mic_start">Start recording</string>
+    <string name="mic_end">Stop recording and start playing</string>
+    <string name="mic_stop_playing">Stop playing</string>
 
     <!--  -->
     <string name="dialog_camera_title">Please select camera</string>

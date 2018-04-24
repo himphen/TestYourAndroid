@@ -5,12 +5,14 @@ import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -19,26 +21,40 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
-import jaygoo.widget.wlv.WaveLineView;
+import hibernate.v2.testyourandroid.ui.view.VoiceView;
 
 /**
  * Created by himphen on 21/5/16.
  */
-public class TestMicFragment extends BaseFragment {
+public class TestMic2Fragment extends BaseFragment {
 
 	protected final String PERMISSION_NAME = Manifest.permission.RECORD_AUDIO;
 
-	@BindView(R.id.waveLineView)
-	WaveLineView waveLineView;
-	@BindView(R.id.playBtn)
-	Button playBtn;
+	@BindView(R.id.voiceview)
+	VoiceView voiceView;
+
+	@BindView(R.id.voiceTv)
+	TextView voiceTv;
 
 	private MediaRecorder mMediaRecorder;
 	private MediaPlayer mMediaPlayer;
+	private Handler mHandler;
 
 	private boolean mIsRecording = false;
 	private boolean mIsPlaying = false;
 	private File mFile;
+
+	private Runnable r = new Runnable() {
+		@Override
+		public void run() {
+			float radius = (float) Math.log10(Math.max(1, mMediaRecorder.getMaxAmplitude() - 500)) * C.convertDpToPixel(20, mContext);
+
+			voiceView.animateRadius(radius);
+			if (mIsRecording) {
+				mHandler.postDelayed(this, 50);
+			}
+		}
+	};
 
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -69,52 +85,55 @@ public class TestMicFragment extends BaseFragment {
 	private void init() {
 		mFile = new File(mContext.getFilesDir(), "TestYourAndroidMicTest.3gp");
 
-		playBtn.setOnClickListener(new View.OnClickListener() {
+		voiceView.setOnRecordListener(new VoiceView.OnRecordListener() {
 			@Override
-			public void onClick(View v) {
-				if (mIsRecording) {
-					try {
-						stopRecording();
-						if (mFile.exists()) {
-							mMediaPlayer = new MediaPlayer();
-							mMediaPlayer.setDataSource(mFile.getAbsolutePath());
-							mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-								@Override
-								public void onCompletion(MediaPlayer mp) {
-									stopPlaying();
-								}
-							});
-							mMediaPlayer.prepare();
-							mMediaPlayer.start();
-							mIsPlaying = true;
-							playBtn.setText(R.string.mic_stop_playing);
-						}
-					} catch (Exception e) {
-						waveLineView.stopAnim();
-					}
+			public void onRecordStart() {
+				stopPlaying();
+				try {
+					mMediaRecorder = new MediaRecorder();
+					mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+					mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+					mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+					mMediaRecorder.setOutputFile(mFile.getAbsolutePath());
+					mMediaRecorder.prepare();
+					mMediaRecorder.start();
+					mIsRecording = true;
+					voiceTv.setText(R.string.mic_end);
+					mHandler.post(r);
+				} catch (Exception e) {
+					Toast.makeText(mContext, "Fail", Toast.LENGTH_SHORT).show();
+					e.printStackTrace();
+				}
+			}
 
-				} else if (mIsPlaying) {
-					waveLineView.stopAnim();
-					stopPlaying();
-				} else {
-					waveLineView.startAnim();
-					try {
-						mMediaRecorder = new MediaRecorder();
-						mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-						mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-						mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-						mMediaRecorder.setOutputFile(mFile.getAbsolutePath());
-						mMediaRecorder.prepare();
-						mMediaRecorder.start();
-						mIsRecording = true;
-						playBtn.setText(R.string.mic_end);
-					} catch (Exception e) {
-						Toast.makeText(mContext, "Fail", Toast.LENGTH_SHORT).show();
-						waveLineView.stopAnim();
+			@Override
+			public void onRecordFinish() {
+				try {
+					stopRecording();
+					if (mFile.exists()) {
+						mMediaPlayer = new MediaPlayer();
+						mMediaPlayer.setDataSource(mFile.getAbsolutePath());
+						mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+							@Override
+							public void onCompletion(MediaPlayer mp) {
+								voiceTv.setText(R.string.mic_start);
+								mMediaPlayer.release();
+								mMediaPlayer = null;
+								mIsPlaying = false;
+							}
+						});
+						mMediaPlayer.prepare();
+						mMediaPlayer.start();
+						voiceTv.setText(R.string.mic_stop_playing);
+						mIsPlaying = true;
 					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		});
+
+		mHandler = new Handler(Looper.getMainLooper());
 	}
 
 	private void stopPlaying() {
@@ -128,11 +147,14 @@ public class TestMicFragment extends BaseFragment {
 			}
 			mMediaPlayer.release();
 			mMediaPlayer = null;
-			playBtn.setText(R.string.mic_stop_playing);
+			voiceTv.setText(R.string.mic_start);
 		}
 	}
 
 	private void stopRecording() {
+		if (mHandler != null) {
+			mHandler.removeCallbacks(r);
+		}
 		if (mMediaRecorder != null) {
 			if (mIsRecording) {
 				mIsRecording = false;
@@ -143,7 +165,6 @@ public class TestMicFragment extends BaseFragment {
 			}
 			mMediaRecorder.release();
 			mMediaRecorder = null;
-			playBtn.setText(R.string.mic_start);
 		}
 	}
 

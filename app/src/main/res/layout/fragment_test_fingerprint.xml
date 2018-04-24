@@ -18,11 +18,17 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
 
-        <ImageView
-            android:id="@+id/fingerprintIv"
+        <xyz.hanks.library.bang.SmallBangView
+            android:id="@+id/fingerprintIvSmallBangView"
             android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/ic_test_fingerprint"/>
+            android:layout_height="150dp">
+
+            <ImageView
+                android:id="@+id/fingerprintIv"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_test_fingerprint"/>
+        </xyz.hanks.library.bang.SmallBangView>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/helpText"

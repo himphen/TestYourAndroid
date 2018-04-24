@@ -2,7 +2,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -10,21 +9,19 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ui.activity.TestRingActivity">
+    android:paddingTop="@dimen/activity_vertical_margin">
 
-    <hibernate.v2.testyourandroid.ui.view.VoiceView
-        android:id="@+id/voiceview"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
-        android:layout_marginBottom="32dp"
-        android:background="#FFF"/>
+    <jaygoo.widget.wlv.WaveLineView
+        android:id="@+id/waveLineView"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:wlvBackgroundColor="@android:color/white"
+        app:wlvLineColor="@color/main_blue"
+        app:wlvMoveSpeed="290"/>
 
-    <com.devspark.robototextview.widget.RobotoTextView
-        android:id="@+id/voiceTv"
+    <com.devspark.robototextview.widget.RobotoButton
+        android:id="@+id/playBtn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mic_start"
-        app:robotoFontFamily="roboto"
-        app:robotoTextWeight="medium"/>
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

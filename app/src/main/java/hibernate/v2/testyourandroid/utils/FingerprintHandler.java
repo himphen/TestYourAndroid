@@ -2,38 +2,34 @@ package hibernate.v2.testyourandroid.utils;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.CancellationSignal;
 import android.support.v4.content.ContextCompat;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import hibernate.v2.testyourandroid.R;
-import xyz.hanks.library.SmallBang;
+import xyz.hanks.library.bang.SmallBangView;
 
 @TargetApi(Build.VERSION_CODES.M)
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
 
 	protected final String PERMISSION_NAME = Manifest.permission.USE_FINGERPRINT;
 
-	private SmallBang mSmallBang;
-	private ImageView fingerprintIv;
+	private SmallBangView fingerprintIvSmallBangView;
 	private TextView helpText;
 	private Context mContext;
 	private CancellationSignal cancellationSignal;
 
-	public FingerprintHandler(Context context, TextView helpText, ImageView fingerprintIv) {
+	public FingerprintHandler(Context context, TextView helpText, SmallBangView fingerprintIvSmallBangView) {
 		mContext = context;
 		this.helpText = helpText;
-		this.fingerprintIv = fingerprintIv;
-		mSmallBang = SmallBang.attach2Window((Activity) mContext);
+		this.fingerprintIvSmallBangView = fingerprintIvSmallBangView;
 	}
 
-	public void startAuth(FingerprintManager manager, FingerprintManager.CryptoObject cryptoObject) throws Exception {
+	public void startAuth(FingerprintManager manager, FingerprintManager.CryptoObject cryptoObject) {
 		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
 			cancellationSignal = new CancellationSignal();
 			manager.authenticate(cryptoObject, cancellationSignal, 0, this, null);
@@ -41,7 +37,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 		}
 	}
 
-	public void stopAuth() throws Exception {
+	public void stopAuth() {
 		if (cancellationSignal != null) {
 			cancellationSignal.cancel();
 		}
@@ -65,8 +61,8 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 	@Override
 	public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
 		helpText.setText(R.string.ui_fingerprint_succeeded);
-		mSmallBang.bang(fingerprintIv);
-		fingerprintIv.performClick();
+		fingerprintIvSmallBangView.performClick();
+		fingerprintIvSmallBangView.likeAnimation();
 	}
 
 }

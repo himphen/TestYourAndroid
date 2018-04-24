@@ -17,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -41,12 +40,13 @@ import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
 import hibernate.v2.testyourandroid.utils.FingerprintHandler;
+import xyz.hanks.library.bang.SmallBangView;
 
 @SuppressWarnings("FieldCanBeLocal")
 @TargetApi(Build.VERSION_CODES.M)
-/**
- * Created by himphen on 21/5/16.
- * http://joerichard.net/android/android-fingerprint-example/
+/*
+  Created by himphen on 21/5/16.
+  http://joerichard.net/android/android-fingerprint-example/
  */
 public class TestFingerprintFragment extends BaseFragment {
 
@@ -62,8 +62,8 @@ public class TestFingerprintFragment extends BaseFragment {
 
 	@BindView(R.id.helpText)
 	TextView helpText;
-	@BindView(R.id.fingerprintIv)
-	ImageView fingerprintIv;
+	@BindView(R.id.fingerprintIvSmallBangView)
+	SmallBangView fingerprintIvSmallBangView;
 	private FingerprintHandler fingerprintHandler = null;
 
 	@Override
@@ -139,7 +139,7 @@ public class TestFingerprintFragment extends BaseFragment {
 					cipherInit();
 					cryptoObject = new FingerprintManager.CryptoObject(cipher);
 
-					fingerprintHandler = new FingerprintHandler(mContext, helpText, fingerprintIv);
+					fingerprintHandler = new FingerprintHandler(mContext, helpText, fingerprintIvSmallBangView);
 					fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
 				} catch (Exception e) {
 					C.openErrorDialog(mContext);
