@@ -67,17 +67,15 @@ public class MainItemAdaptor extends WearableListView.Adapter {
 
 	@Override
 	public int getItemCount() {
-		if (mDataList == null)
-			return 0;
-		return this.mDataList.size();
+		return mDataList.size();
 	}
 
-	public static class ItemViewHolder extends WearableListView.ViewHolder {
+	static class ItemViewHolder extends WearableListView.ViewHolder {
 		LinearLayout rootView;
 		ImageView mainIv;
 		TextView mainTv;
 
-		public ItemViewHolder(View itemView) {
+		ItemViewHolder(View itemView) {
 			super(itemView);
 			rootView = itemView.findViewById(R.id.root_view);
 			mainIv = itemView.findViewById(R.id.mainIv);

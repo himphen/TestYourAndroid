@@ -481,9 +481,9 @@
         
     <string name="changelog_show_full">更多</string>
     <string name="title_activity_test_mic">麦克风</string>
-    <string name="mic_end">按键开始录音</string>
-    <string name="mic_start">按键停止录影并播放</string>
-    <string name="mic_stop_playing">按键停止播放</string>
+    <string name="mic_start_playing">按键开始录音</string>
+    <string name="mic_start_recording">按键停止录影并播放开始录音</string>
+    <string name="mic_stop">按键停止播放</string>
     <string name="info_hardware_string_8">生产商</string>
     <string name="info_hardware_string_9">序号</string>
     <string name="info_hardware_string_12">内部标志</string>

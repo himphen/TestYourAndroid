@@ -10,10 +10,6 @@ import android.support.multidex.MultiDexApplication;
 
 public class App extends MultiDexApplication {
 
-	public void onCreate() {
-		super.onCreate();
-	}
-
 	@Override
 	protected void attachBaseContext(Context base) {
 		super.attachBaseContext(base);

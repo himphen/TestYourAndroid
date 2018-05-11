@@ -71,7 +71,7 @@ public class MainActivity extends BaseActivity {
 		billingProcessor = new BillingProcessor(mContext, BuildConfig.GOOGLE_IAP_KEY,
 				new BillingProcessor.IBillingHandler() {
 					@Override
-					public void onProductPurchased(String productId, TransactionDetails details) {
+					public void onProductPurchased(@NonNull String productId, TransactionDetails details) {
 						if (productId.equals(C.IAP_PID)) {
 							settingDefault.edit().putBoolean(C.PREF_IAP, true).apply();
 							MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
@@ -129,8 +129,7 @@ public class MainActivity extends BaseActivity {
 			}
 			adsItem.setIcon(R.drawable.ic_local_play_white_24dp);
 			ads.setOfferWallMenuItemClickListener(this, adsItem);
-		} catch (Exception e) {
-
+		} catch (Exception ignored) {
 		}
 
 		return true;

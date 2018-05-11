@@ -2,16 +2,12 @@ package hibernate.v2.testyourandroid.ui.activity;
 
 import android.content.res.Configuration;
 import android.hardware.Sensor;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.widget.RelativeLayout;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.ads.AdView;
 
 import butterknife.BindView;
@@ -50,11 +46,11 @@ public class TestSensorStepActivity extends BaseActivity {
 		initActionBar(getSupportActionBar(), R.string.title_activity_test_step);
 		adView = C.initAdView(mContext, adLayout);
 
-			Fragment fragment = TestSensorFragment.newInstance(Sensor.TYPE_STEP_COUNTER);
-			FragmentManager fragmentManager = getSupportFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.container, fragment)
-					.commit();
+		Fragment fragment = TestSensorFragment.newInstance(Sensor.TYPE_STEP_COUNTER);
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.container, fragment)
+				.commit();
 	}
 
 	@Override

@@ -9,8 +9,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 23
         targetSdkVersion 27
-        versionCode 200550
-        versionName "5.5.0"
+        versionCode 206000
+        versionName "6.0.0"
         multiDexEnabled true
     }
 
@@ -25,17 +25,17 @@ android {
 dependencies {
     // Google Android Support
     compileOnly 'com.google.android.wearable:wearable:2.3.0'
-    implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation 'com.android.support:support-v4:27.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.google.android.support:wearable:2.3.0'
-    implementation 'com.google.android.gms:play-services-wearable:12.0.1'
+    implementation 'com.google.android.gms:play-services-wearable:15.0.1'
 
     // RxBinding Butter Knife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
 
     // Roboto TextView
     implementation 'com.github.johnkil.android-robototextview:robototextview:4.0.0'
@@ -43,7 +43,7 @@ dependencies {
     implementation 'com.karumi:headerrecyclerview:1.1.0'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-core:12.0.1'
+    implementation 'com.google.firebase:firebase-core:15.0.2'
 
     // Crashlytics
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {

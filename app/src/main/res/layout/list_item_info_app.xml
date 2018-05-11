@@ -11,6 +11,7 @@
     android:layout_marginStart="@dimen/activity_horizontal_margin"
     android:layout_marginTop="@dimen/activity_vertical_margin"
     android:clickable="true"
+    android:focusable="true"
     card_view:cardCornerRadius="4dp">
 
     <FrameLayout
@@ -37,7 +38,6 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
             android:src="@drawable/android_resources"/>
 
         <LinearLayout

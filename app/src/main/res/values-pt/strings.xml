@@ -325,9 +325,9 @@
     <string name="rate_posbtn">Classificar agora</string>
     <string name="share_button">Compartilhe!!!</string>
     <string name="share_message">Vamos fazer o download do aplicativo "Teste seu Android" para testar seu dispositivo Android.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
-    <string name="mic_start">Toque no botão para iniciar a gravação</string>
-    <string name="mic_end">Toque no botão para iniciar ou parar a gravação</string>
-    <string name="mic_stop_playing">Toque o botão para parar a reprodução</string>
+    <string name="mic_start_recording">Comece a gravar</string>
+    <string name="mic_start_playing">Começa a jogar</string>
+    <string name="mic_stop">Pare</string>
 
     <!--  -->
     <string name="dialog_camera_title">Selecione a câmera</string>

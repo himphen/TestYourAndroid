@@ -107,12 +107,16 @@ public class MonitorCpuFragment extends BaseFragment {
 
 	private int getCPU(int type) {
 		String filename = "";
-		if (type == CPU_MIN) {
-			filename = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq";
-		} else if (type == CPU_MAX) {
-			filename = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq";
-		} else if (type == CPU_CURRENT) {
-			filename = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";
+		switch (type) {
+			case CPU_MIN:
+				filename = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq";
+				break;
+			case CPU_MAX:
+				filename = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq";
+				break;
+			case CPU_CURRENT:
+				filename = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";
+				break;
 		}
 		ArrayList<String> list = new ArrayList<>();
 		if (new File(filename).exists()) {

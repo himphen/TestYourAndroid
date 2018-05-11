@@ -1,8 +1,7 @@
 package hibernate.v2.testyourandroid.ui.adapter;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -18,7 +17,7 @@ import hibernate.v2.testyourandroid.model.AppChooseItem;
 /**
  * Created by himphen on 25/5/16.
  */
-public class AppChooseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AppChooseAdapter extends BaseRecyclerViewAdapter {
 
 	private List<AppChooseItem> mDataList;
 	private ItemClickListener mListener;
@@ -32,24 +31,26 @@ public class AppChooseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 		this.mListener = mListener;
 	}
 
+	@NonNull
 	@Override
-	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		Context context = parent.getContext();
+	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		super.onCreateViewHolder(parent, viewType);
 
-		View itemView = LayoutInflater.from(context).inflate(R.layout.list_item_info, parent, false);
+		View itemView;
+		itemView = View.inflate(mContext, R.layout.list_item_info, parent);
 		return new ItemViewHolder(itemView);
 	}
 
 	@Override
-	public void onBindViewHolder(RecyclerView.ViewHolder rawHolder, int position) {
+	public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 		AppChooseItem item = mDataList.get(position);
-		ItemViewHolder holder = (ItemViewHolder) rawHolder;
+		ItemViewHolder viewHolder = (ItemViewHolder) holder;
 
-		holder.titleTv.setText(item.getTitleText());
-		holder.contentTv.setText(item.getContentText());
+		viewHolder.titleTv.setText(item.getTitleText());
+		viewHolder.contentTv.setText(item.getContentText());
 
-		holder.rootView.setTag(item);
-		holder.rootView.setOnClickListener(new View.OnClickListener() {
+		viewHolder.rootView.setTag(item);
+		viewHolder.rootView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				mListener.onItemDetailClick((AppChooseItem) v.getTag());
@@ -59,12 +60,10 @@ public class AppChooseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 	@Override
 	public int getItemCount() {
-		return mDataList == null ? 0 : mDataList.size();
+		return mDataList.size();
 	}
 
-	@SuppressWarnings("WeakerAccess")
-	class ItemViewHolder extends RecyclerView.ViewHolder {
-
+	static class ItemViewHolder extends RecyclerView.ViewHolder {
 		@BindView(R.id.root_view)
 		LinearLayout rootView;
 		@BindView(R.id.text1)

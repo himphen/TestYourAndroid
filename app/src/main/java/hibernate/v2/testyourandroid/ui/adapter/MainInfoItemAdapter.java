@@ -1,8 +1,7 @@
 package hibernate.v2.testyourandroid.ui.adapter;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -18,7 +17,7 @@ import hibernate.v2.testyourandroid.model.MainInfoItem;
 /**
  * Created by himphen on 25/5/16.
  */
-public class MainInfoItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MainInfoItemAdapter extends BaseRecyclerViewAdapter {
 
 	private List<MainInfoItem> mDataList;
 	private ItemClickListener mListener;
@@ -32,16 +31,18 @@ public class MainInfoItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 		this.mListener = mListener;
 	}
 
+	@NonNull
 	@Override
-	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		Context context = parent.getContext();
+	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		super.onCreateViewHolder(parent, viewType);
 
-		View itemView = LayoutInflater.from(context).inflate(R.layout.list_item_simple, parent, false);
+		View itemView;
+		itemView = View.inflate(mContext, R.layout.list_item_simple, parent);
 		return new ItemViewHolder(itemView);
 	}
 
 	@Override
-	public void onBindViewHolder(RecyclerView.ViewHolder rawHolder, int position) {
+	public void onBindViewHolder(@NonNull RecyclerView.ViewHolder rawHolder, int position) {
 		MainInfoItem item = mDataList.get(position);
 		ItemViewHolder holder = (ItemViewHolder) rawHolder;
 
@@ -58,13 +59,10 @@ public class MainInfoItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 	@Override
 	public int getItemCount() {
-		if (mDataList == null)
-			return 0;
-		return this.mDataList.size();
+		return mDataList.size();
 	}
 
-	@SuppressWarnings("WeakerAccess")
-	class ItemViewHolder extends RecyclerView.ViewHolder {
+	static class ItemViewHolder extends RecyclerView.ViewHolder {
 
 		@BindView(R.id.root_view)
 		LinearLayout rootView;

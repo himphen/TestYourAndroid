@@ -2,6 +2,7 @@ package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ public class TestColorFragment extends BaseFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_color, container, false);
 		ButterKnife.bind(this, rootView);
@@ -34,7 +35,7 @@ public class TestColorFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		init();
 		mContext.getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,

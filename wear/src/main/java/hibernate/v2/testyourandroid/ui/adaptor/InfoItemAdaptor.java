@@ -68,24 +68,24 @@ public class InfoItemAdaptor extends HeaderRecyclerViewAdapter<RecyclerView.View
 		return this.mDataList.size();
 	}
 
-	public static class HeaderViewHolder extends RecyclerView.ViewHolder {
+	static class HeaderViewHolder extends RecyclerView.ViewHolder {
 		@BindView(R.id.titleTv)
 		TextView titleTv;
 
-		public HeaderViewHolder(View itemView) {
+		HeaderViewHolder(View itemView) {
 			super(itemView);
 			ButterKnife.bind(this, itemView);
 		}
 	}
 
-	public static class ItemViewHolder extends RecyclerView.ViewHolder {
+	static class ItemViewHolder extends RecyclerView.ViewHolder {
 
 		@BindView(R.id.text1)
 		TextView titleTv;
 		@BindView(R.id.text2)
 		TextView contentTv;
 
-		public ItemViewHolder(View itemView) {
+		ItemViewHolder(View itemView) {
 			super(itemView);
 			ButterKnife.bind(this, itemView);
 		}

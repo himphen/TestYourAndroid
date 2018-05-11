@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -46,7 +47,7 @@ public class InfoCPUFragment extends BaseFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_info_listview, container, false);
 		ButterKnife.bind(this, rootView);
@@ -54,7 +55,7 @@ public class InfoCPUFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
 				new LinearLayoutManager(mContext,
@@ -136,20 +137,20 @@ public class InfoCPUFragment extends BaseFragment {
 	private String getAllMemory() {
 		String str1 = "/proc/meminfo";
 		String str2;
-		String str3 = "";
+		StringBuilder str3 = new StringBuilder();
 		try {
 			FileReader fr = new FileReader(str1);
 			BufferedReader localBufferedReader = new BufferedReader(fr, 8192);
 			while ((str2 = localBufferedReader.readLine()) != null) {
-				str3 += str2 + "\n";
+				str3.append(str2).append("\n");
 			}
-			str3 = str3.substring(0, str3.length() - 1);
+			str3 = new StringBuilder(str3.substring(0, str3.length() - 1));
 			localBufferedReader.close();
 		} catch (IOException ignored) {
 		}
-		str3 = str3.replaceAll(" ", "");
-		str3 = str3.replaceAll(":", ": ");
-		return str3;
+		str3 = new StringBuilder(str3.toString().replaceAll(" ", ""));
+		str3 = new StringBuilder(str3.toString().replaceAll(":", ": "));
+		return str3.toString();
 	}
 
 	private String getCPUInfo(String type) {
@@ -183,14 +184,14 @@ public class InfoCPUFragment extends BaseFragment {
 				e.printStackTrace();
 			}
 		}
-		String sd = "";
+		StringBuilder sd = new StringBuilder();
 		for (String e : list) {
-			sd += e;
+			sd.append(e);
 			if (single == 1) {
-				sd += "\n";
+				sd.append("\n");
 			}
 		}
-		return sd;
+		return sd.toString();
 	}
 
 	private int getNumCores() {

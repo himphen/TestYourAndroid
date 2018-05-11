@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ui.fragment.MonitorCpuFragment">
+    tools:mContext=".ui.fragment.MonitorCpuFragment">
 
     <LinearLayout
         android:id="@+id/graph2"
@@ -48,7 +48,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
                 android:orientation="vertical">
 
                 <com.devspark.robototextview.widget.RobotoTextView
@@ -81,7 +81,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
                 android:orientation="vertical">
 
                 <com.devspark.robototextview.widget.RobotoTextView

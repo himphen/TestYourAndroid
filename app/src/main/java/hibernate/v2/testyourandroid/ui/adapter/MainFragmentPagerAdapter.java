@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,16 +15,15 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
 
 	private String tabTitles[];
 
-	private final int PAGE_COUNT = 3;
-	private Context context;
+	private Context mContext;
 
 	/**
 	 * Constructor of the class
 	 */
-	public MainFragmentPagerAdapter(FragmentManager fm, Context context) {
+	public MainFragmentPagerAdapter(FragmentManager fm, Context mContext) {
 		super(fm);
-		tabTitles = context.getResources().getStringArray(R.array.main_tab_title);
-		this.context = context;
+		tabTitles = mContext.getResources().getStringArray(R.array.main_tab_title);
+		this.mContext = mContext;
 	}
 
 	/**
@@ -33,7 +31,7 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
 	 */
 	@Override
 	public int getCount() {
-		return PAGE_COUNT;
+		return 3;
 	}
 
 	/**
@@ -43,7 +41,7 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
 	public Fragment getItem(int position) {
 		Fragment fragment;
 		switch (position) {
-			/** Android tab is selected */
+			/* Android tab is selected */
 			case 0:
 				fragment = MainGridFragment.newInstance(MainGridFragment.ARG_GRID_TYPE_TEST);
 				break;
@@ -60,7 +58,7 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
 	}
 
 	public View getTabView(int position) {
-		View v = LayoutInflater.from(context).inflate(R.layout.custom_tab, null);
+		View v = View.inflate(mContext, R.layout.custom_tab, null);
 		TextView tv = v.findViewById(R.id.tabTitleTv);
 		tv.setText(tabTitles[position]);
 		return v;

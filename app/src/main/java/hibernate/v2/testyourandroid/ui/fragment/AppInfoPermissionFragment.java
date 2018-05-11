@@ -134,13 +134,13 @@ public class AppInfoPermissionFragment extends BaseFragment {
 						}
 					});
 
-					String permissionLabel = "";
+					StringBuilder permissionLabel = new StringBuilder();
 
 					for (AppPermissionItem s : value) {
-						permissionLabel += s.getPermissionLabel() + "\n";
+						permissionLabel.append(s.getPermissionLabel()).append("\n");
 					}
 
-					list.add(new InfoItem(permissionGroupLabel, permissionLabel.trim()));
+					list.add(new InfoItem(permissionGroupLabel, permissionLabel.toString().trim()));
 				}
 
 			} catch (Exception e) {

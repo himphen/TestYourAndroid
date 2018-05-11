@@ -9,7 +9,6 @@ import android.view.MenuItem;
 
 import com.appbrain.AppBrain;
 
-import hibernate.v2.testyourandroid.App;
 import hibernate.v2.testyourandroid.C;
 
 /**
@@ -28,8 +27,6 @@ public class BaseActivity extends AppCompatActivity {
 		mContext = this;
 		C.detectLanguage(this);
 		AppBrain.init(this);
-
-		App application = (App) getApplication();
 	}
 
 	@Override

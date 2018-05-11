@@ -7,13 +7,14 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +32,9 @@ public class TestMicFragment extends BaseFragment {
 	@BindView(R.id.waveLineView)
 	WaveLineView waveLineView;
 	@BindView(R.id.playBtn)
-	Button playBtn;
+	AppCompatButton playBtn;
+	@BindView(R.id.recordBtn)
+	AppCompatButton recordBtn;
 
 	private MediaRecorder mMediaRecorder;
 	private MediaPlayer mMediaPlayer;
@@ -67,54 +70,71 @@ public class TestMicFragment extends BaseFragment {
 	}
 
 	private void init() {
+		waveLineView.startAnim();
+		playBtn.setEnabled(false);
+
 		mFile = new File(mContext.getFilesDir(), "TestYourAndroidMicTest.3gp");
+
+		recordBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (mIsRecording) {
+					stopRecording();
+				} else {
+					startRecording();
+				}
+			}
+		});
 
 		playBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (mIsRecording) {
-					try {
-						stopRecording();
-						if (mFile.exists()) {
-							mMediaPlayer = new MediaPlayer();
-							mMediaPlayer.setDataSource(mFile.getAbsolutePath());
-							mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-								@Override
-								public void onCompletion(MediaPlayer mp) {
-									stopPlaying();
-								}
-							});
-							mMediaPlayer.prepare();
-							mMediaPlayer.start();
-							mIsPlaying = true;
-							playBtn.setText(R.string.mic_stop_playing);
-						}
-					} catch (Exception e) {
-						waveLineView.stopAnim();
-					}
-
-				} else if (mIsPlaying) {
-					waveLineView.stopAnim();
+				if (mIsPlaying) {
 					stopPlaying();
 				} else {
-					waveLineView.startAnim();
-					try {
-						mMediaRecorder = new MediaRecorder();
-						mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-						mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-						mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-						mMediaRecorder.setOutputFile(mFile.getAbsolutePath());
-						mMediaRecorder.prepare();
-						mMediaRecorder.start();
-						mIsRecording = true;
-						playBtn.setText(R.string.mic_end);
-					} catch (Exception e) {
-						Toast.makeText(mContext, "Fail", Toast.LENGTH_SHORT).show();
-						waveLineView.stopAnim();
-					}
+					startPlaying();
 				}
 			}
 		});
+	}
+
+	private void startPlaying() {
+		try {
+			if (mFile.exists()) {
+				mMediaPlayer = new MediaPlayer();
+				mMediaPlayer.setDataSource(mFile.getAbsolutePath());
+				mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+					@Override
+					public void onCompletion(MediaPlayer mp) {
+						stopPlaying();
+					}
+				});
+				mMediaPlayer.prepare();
+				mMediaPlayer.start();
+				playBtn.setText(R.string.mic_stop);
+				recordBtn.setEnabled(false);
+				mIsPlaying = true;
+			}
+		} catch (IOException e) {
+			Toast.makeText(mContext, "Fail", Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	private void startRecording() {
+		try {
+			mMediaRecorder = new MediaRecorder();
+			mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+			mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+			mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+			mMediaRecorder.setOutputFile(mFile.getAbsolutePath());
+			mMediaRecorder.prepare();
+			mMediaRecorder.start();
+			recordBtn.setText(R.string.mic_stop);
+			playBtn.setEnabled(false);
+			mIsRecording = true;
+		} catch (Exception e) {
+			Toast.makeText(mContext, "Fail", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	private void stopPlaying() {
@@ -128,8 +148,10 @@ public class TestMicFragment extends BaseFragment {
 			}
 			mMediaPlayer.release();
 			mMediaPlayer = null;
-			playBtn.setText(R.string.mic_stop_playing);
 		}
+		playBtn.setEnabled(true);
+		recordBtn.setEnabled(true);
+		playBtn.setText(R.string.mic_start_playing);
 	}
 
 	private void stopRecording() {
@@ -143,8 +165,10 @@ public class TestMicFragment extends BaseFragment {
 			}
 			mMediaRecorder.release();
 			mMediaRecorder = null;
-			playBtn.setText(R.string.mic_start);
 		}
+		playBtn.setEnabled(true);
+		recordBtn.setEnabled(true);
+		recordBtn.setText(R.string.mic_start_recording);
 	}
 
 	@Override

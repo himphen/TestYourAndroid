@@ -20,8 +20,15 @@
         app:wlvMoveSpeed="290"/>
 
     <com.devspark.robototextview.widget.RobotoButton
+        android:id="@+id/recordBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mic_start_recording"/>
+
+    <com.devspark.robototextview.widget.RobotoButton
         android:id="@+id/playBtn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="@string/mic_start_playing"/>
 
 </LinearLayout>

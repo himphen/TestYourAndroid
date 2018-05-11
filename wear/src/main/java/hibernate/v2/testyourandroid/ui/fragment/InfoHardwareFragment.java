@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.TelephonyManager;
@@ -68,7 +69,7 @@ public class InfoHardwareFragment extends BaseFragment {
 	};
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_info_listview, container, false);
 		ButterKnife.bind(this, rootView);
@@ -76,7 +77,7 @@ public class InfoHardwareFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
 				new LinearLayoutManager(mContext,

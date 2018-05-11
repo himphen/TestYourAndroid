@@ -1,8 +1,7 @@
 package hibernate.v2.testyourandroid.ui.adapter;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -25,11 +24,10 @@ import hibernate.v2.testyourandroid.model.AppItem;
 /**
  * Created by himphen on 25/5/16.
  */
-public class AppItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements INameableAdapter {
+public class AppItemAdapter extends BaseRecyclerViewAdapter implements INameableAdapter {
 
 	private List<AppItem> mDataList;
 	private ItemClickListener mListener;
-	private Context mContext;
 
 	@Override
 	public Character getCharacterForElement(int element) {
@@ -56,16 +54,18 @@ public class AppItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 		this.mListener = mListener;
 	}
 
+	@NonNull
 	@Override
-	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		mContext = parent.getContext();
+	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+		super.onCreateViewHolder(parent, viewType);
 
-		View itemView = LayoutInflater.from(mContext).inflate(R.layout.list_item_info_app, parent, false);
+		View itemView;
+		itemView = View.inflate(mContext, R.layout.list_item_info_app, parent);
 		return new ItemViewHolder(itemView);
 	}
 
 	@Override
-	public void onBindViewHolder(RecyclerView.ViewHolder rawHolder, int position) {
+	public void onBindViewHolder(@NonNull RecyclerView.ViewHolder rawHolder, int position) {
 		AppItem item = mDataList.get(position);
 		ItemViewHolder holder = (ItemViewHolder) rawHolder;
 
@@ -97,7 +97,7 @@ public class AppItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 	@Override
 	public int getItemCount() {
-		return mDataList == null ? 0 : mDataList.size();
+		return mDataList.size();
 	}
 
 	static class ItemViewHolder extends RecyclerView.ViewHolder {

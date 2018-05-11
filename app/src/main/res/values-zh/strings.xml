@@ -273,9 +273,9 @@
     <string name="changelog_ok_button">好的</string>
     <string name="changelog_show_full">更多</string>
     <string name="title_activity_test_mic">咪高峰</string>
-    <string name="mic_end">按鍵開始錄音</string>
-    <string name="mic_start">按鍵停止錄音並播放</string>
-    <string name="mic_stop_playing">按鍵停止播放</string>
+    <string name="mic_start_playing">按鍵播放錄音</string>
+    <string name="mic_start_recording">按鍵開始錄音</string>
+    <string name="mic_stop">按鍵停止播放</string>
     <string name="info_hardware_string_10">內部用戶</string>
     <string name="info_hardware_string_11">內部處理器</string>
     <string name="info_hardware_string_12">內部標誌</string>

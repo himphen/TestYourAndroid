@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,16 +18,15 @@ public class AppInfoFragmentPagerAdapter extends FragmentPagerAdapter {
 	private AppItem appItem;
 	private String tabTitles[];
 
-	private final int PAGE_COUNT = 3;
-	private Context context;
+	private Context mContext;
 
 	/**
 	 * Constructor of the class
 	 */
-	public AppInfoFragmentPagerAdapter(FragmentManager fm, Context context, AppItem appItem) {
+	public AppInfoFragmentPagerAdapter(FragmentManager fm, Context mContext, AppItem appItem) {
 		super(fm);
-		tabTitles = context.getResources().getStringArray(R.array.app_info_tab_title);
-		this.context = context;
+		tabTitles = mContext.getResources().getStringArray(R.array.app_info_tab_title);
+		this.mContext = mContext;
 		this.appItem = appItem;
 	}
 
@@ -37,7 +35,7 @@ public class AppInfoFragmentPagerAdapter extends FragmentPagerAdapter {
 	 */
 	@Override
 	public int getCount() {
-		return PAGE_COUNT;
+		return 3;
 	}
 
 	/**
@@ -47,7 +45,7 @@ public class AppInfoFragmentPagerAdapter extends FragmentPagerAdapter {
 	public Fragment getItem(int position) {
 		Fragment fragment;
 		switch (position) {
-			/** Android tab is selected */
+			/* Android tab is selected */
 			case 0:
 				fragment = AppInfoActionFragment.newInstance(appItem);
 				break;
@@ -64,7 +62,7 @@ public class AppInfoFragmentPagerAdapter extends FragmentPagerAdapter {
 	}
 
 	public View getTabView(int position) {
-		View v = LayoutInflater.from(context).inflate(R.layout.custom_tab_inverse, null);
+		View v = View.inflate(mContext, R.layout.custom_tab_inverse, null);
 		TextView tv = v.findViewById(R.id.tabTitleTv);
 		tv.setText(tabTitles[position]);
 		return v;

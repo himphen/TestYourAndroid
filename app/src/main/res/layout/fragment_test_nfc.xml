@@ -11,7 +11,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ui.activity.TestNFCActivity">
+    tools:mContext=".ui.activity.TestNFCActivity">
 
     <ImageView
         android:id="@+id/imageView1"

@@ -149,22 +149,32 @@ public class InfoCameraFragment extends BaseFragment {
 		String format = "";
 		for (Integer element : list) {
 			if (type == FORMAT) {
-				if (element == 256)
-					format = "JPEG";
-				else if (element == 16)
-					format = "NV16";
-				else if (element == 17)
-					format = "NV21";
-				else if (element == 4)
-					format = "RGB_565";
-				else if (element == 0)
-					format = "UNKNOWN";
-				else if (element == 20)
-					format = "YUY2";
-				else if (element == 842094169)
-					format = "YV12";
-				else
-					format = "UNKNOWN";
+				switch (element) {
+					case 256:
+						format = "JPEG";
+						break;
+					case 16:
+						format = "NV16";
+						break;
+					case 17:
+						format = "NV21";
+						break;
+					case 4:
+						format = "RGB_565";
+						break;
+					case 0:
+						format = "UNKNOWN";
+						break;
+					case 20:
+						format = "YUY2";
+						break;
+					case 842094169:
+						format = "YV12";
+						break;
+					default:
+						format = "UNKNOWN";
+						break;
+				}
 			}
 			tempList.append(format).append("\n");
 		}
