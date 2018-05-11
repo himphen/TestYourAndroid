@@ -1,7 +1,9 @@
 package hibernate.v2.testyourandroid.ui.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -24,10 +26,12 @@ import hibernate.v2.testyourandroid.model.AppItem;
 /**
  * Created by himphen on 25/5/16.
  */
-public class AppItemAdapter extends BaseRecyclerViewAdapter implements INameableAdapter {
+public class AppItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements INameableAdapter {
 
 	private List<AppItem> mDataList;
 	private ItemClickListener mListener;
+
+	private Context mContext;
 
 	@Override
 	public Character getCharacterForElement(int element) {
@@ -57,10 +61,10 @@ public class AppItemAdapter extends BaseRecyclerViewAdapter implements INameable
 	@NonNull
 	@Override
 	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		super.onCreateViewHolder(parent, viewType);
+		mContext = parent.getContext();
 
 		View itemView;
-		itemView = View.inflate(mContext, R.layout.list_item_info_app, parent);
+		itemView = LayoutInflater.from(mContext).inflate(R.layout.list_item_info_app, parent, false);
 		return new ItemViewHolder(itemView);
 	}
 

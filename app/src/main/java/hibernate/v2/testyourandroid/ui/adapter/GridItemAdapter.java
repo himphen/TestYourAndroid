@@ -1,7 +1,9 @@
 package hibernate.v2.testyourandroid.ui.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -22,10 +24,12 @@ import hibernate.v2.testyourandroid.model.GridItem;
 /**
  * Created by himphen on 24/5/16.
  */
-public class GridItemAdapter extends BaseRecyclerViewAdapter {
+public class GridItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 	private List<GridItem> mDataList;
 	private ItemClickListener mListener;
+
+	private Context mContext;
 
 	public interface ItemClickListener {
 		void onItemDetailClick(GridItem gridItem);
@@ -39,10 +43,10 @@ public class GridItemAdapter extends BaseRecyclerViewAdapter {
 	@NonNull
 	@Override
 	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		super.onCreateViewHolder(parent, viewType);
+		mContext = parent.getContext();
 
 		View itemView;
-		itemView = View.inflate(mContext, R.layout.grid_item_test, parent);
+		itemView = LayoutInflater.from(mContext).inflate(R.layout.grid_item_test, parent, false);
 		return new ItemViewHolder(itemView);
 	}
 

@@ -1,7 +1,9 @@
 package hibernate.v2.testyourandroid.ui.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,9 +18,10 @@ import hibernate.v2.testyourandroid.model.InfoItem;
 /**
  * Created by himphen on 25/5/16.
  */
-public class InfoItemAdapter extends BaseRecyclerViewAdapter {
+public class InfoItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 	private List<InfoItem> mDataList;
+	private Context mContext;
 
 	public InfoItemAdapter(List<InfoItem> mDataList) {
 		this.mDataList = mDataList;
@@ -27,10 +30,10 @@ public class InfoItemAdapter extends BaseRecyclerViewAdapter {
 	@NonNull
 	@Override
 	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		super.onCreateViewHolder(parent, viewType);
+		mContext = parent.getContext();
 
 		View itemView;
-		itemView = View.inflate(mContext, R.layout.list_item_info, parent);
+		itemView = LayoutInflater.from(mContext).inflate(R.layout.list_item_info, parent, false);
 		return new ItemViewHolder(itemView);
 	}
 
