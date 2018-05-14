@@ -86,7 +86,7 @@ public class TestNFCFragment extends BaseFragment {
 				openNFCDialog();
 			}
 		} else {
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 		}
 
 		// create an intent with tag data and deliver to this activity

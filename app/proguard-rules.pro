@@ -14,3 +14,12 @@
 -keepattributes *Annotation*
 -keepattributes SourceFile,LineNumberTable
 -keep public class * extends java.lang.Exception
+
+# Google AdMob
+# https://developers.google.com/mobile-ads-sdk/docs/admob/android/faq?hl=zh-tw
+-keep public class com.google.android.gms.ads.** {
+   public *;
+}
+-keep public class com.google.ads.** {
+   public *;
+}

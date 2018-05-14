@@ -136,7 +136,7 @@ public class InfoBluetoothFragment extends BaseFragment {
 				return;
 			}
 		} else {
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 			return;
 		}
 

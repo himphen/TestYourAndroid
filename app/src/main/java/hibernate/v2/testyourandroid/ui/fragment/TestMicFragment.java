@@ -63,10 +63,23 @@ public class TestMicFragment extends BaseFragment {
 	}
 
 	@Override
+	public void onResume() {
+		super.onResume();
+		waveLineView.onResume();
+	}
+
+	@Override
 	public void onPause() {
 		super.onPause();
 		stopRecording();
 		stopPlaying();
+		waveLineView.onPause();
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		waveLineView.release();
 	}
 
 	private void init() {

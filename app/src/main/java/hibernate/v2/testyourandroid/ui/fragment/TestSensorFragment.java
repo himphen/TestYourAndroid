@@ -139,11 +139,11 @@ public class TestSensorFragment extends BaseFragment {
 			}
 
 			if (mSensor == null) {
-				C.openErrorDialog(mContext);
+				C.errorNoFeatureDialog(mContext);
 				return;
 			}
 		} catch (Exception e) {
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 			return;
 		}
 

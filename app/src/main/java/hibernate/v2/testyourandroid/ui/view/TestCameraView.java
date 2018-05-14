@@ -73,7 +73,7 @@ public class TestCameraView extends SurfaceView implements
 			mCamera.setPreviewDisplay(surfaceHolder);
 			mCamera.startPreview();
 		} catch (Exception ignored) {
-			C.openErrorDialog(((Activity) mContext));
+			C.errorNoFeatureDialog(((Activity) mContext));
 		}
 	}
 
@@ -95,7 +95,7 @@ public class TestCameraView extends SurfaceView implements
 			mCamera.setPreviewDisplay(surfaceHolder);
 			mCamera.startPreview();
 		} catch (Exception ignored) {
-			C.openErrorDialog(((Activity) mContext));
+			C.errorNoFeatureDialog(((Activity) mContext));
 		}
 	}
 

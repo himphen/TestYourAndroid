@@ -127,7 +127,7 @@ public class InfoCameraFragment extends BaseFragment {
 			mParameters = mCamera.getParameters();
 		} catch (Exception e) {
 			e.printStackTrace();
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 			return;
 		}
 

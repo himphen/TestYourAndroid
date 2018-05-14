@@ -160,7 +160,7 @@ public class TestLocationFragment extends BaseFragment implements
 				mGoogleApiClient.connect();
 			}
 		} else {
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 		}
 	}
 

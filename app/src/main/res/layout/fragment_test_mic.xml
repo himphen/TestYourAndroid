@@ -17,7 +17,7 @@
         android:layout_height="120dp"
         app:wlvBackgroundColor="@android:color/white"
         app:wlvLineColor="@color/main_blue"
-        app:wlvMoveSpeed="290"/>
+        app:wlvThickLineWidth="3dp"/>
 
     <com.devspark.robototextview.widget.RobotoButton
         android:id="@+id/recordBtn"

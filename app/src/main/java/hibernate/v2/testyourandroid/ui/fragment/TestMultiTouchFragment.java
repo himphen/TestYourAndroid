@@ -35,7 +35,7 @@ public class TestMultiTouchFragment extends BaseFragment {
 
 		if (!mContext.getPackageManager().hasSystemFeature(
 				PackageManager.FEATURE_TOUCHSCREEN)) {
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 		} else {
 			Toast.makeText(mContext, R.string.touch_message, Toast.LENGTH_LONG).show();
 		}

@@ -9,8 +9,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 106010
-        versionName "6.0.1"
+        versionCode 196020
+        versionName "6.0.2"
         multiDexEnabled true
     }
 

@@ -114,7 +114,7 @@ public class TestRingFragment extends BaseFragment {
 
 	private void startVibrate(int vibrateType2) {
 		if (vibrator == null) {
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 		}
 		switch (vibrateType2) {
 			case 0:

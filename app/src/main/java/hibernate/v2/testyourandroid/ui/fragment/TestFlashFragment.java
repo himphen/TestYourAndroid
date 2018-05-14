@@ -71,7 +71,7 @@ public class TestFlashFragment extends BaseFragment {
 				initCamera();
 			}
 		} else {
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 		}
 	}
 
@@ -94,7 +94,7 @@ public class TestFlashFragment extends BaseFragment {
 		try {
 			mCamera = Camera.open(0);
 		} catch (Exception e) {
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 		}
 
 	}
@@ -108,7 +108,7 @@ public class TestFlashFragment extends BaseFragment {
 				requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
 			}
 		} catch (Exception e) {
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 		}
 	}
 

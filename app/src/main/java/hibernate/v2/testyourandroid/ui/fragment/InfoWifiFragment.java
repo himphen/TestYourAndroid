@@ -151,7 +151,7 @@ public class InfoWifiFragment extends BaseFragment {
 			wifiInfo = wifiManager.getConnectionInfo();
 			dhcpInfo = wifiManager.getDhcpInfo();
 		} catch (Exception e) {
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 			return;
 		}
 

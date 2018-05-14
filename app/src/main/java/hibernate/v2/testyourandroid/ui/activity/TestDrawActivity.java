@@ -19,7 +19,7 @@ public class TestDrawActivity extends Activity {
 		TestDrawView testDrawView = new TestDrawView(this);
 		setContentView(testDrawView);
 		if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN)) {
-			C.openErrorDialog(this);
+			C.errorNoFeatureDialog(this);
 		} else {
 			testDrawView.requestFocus();
 			testDrawView.setBackgroundColor(Color.WHITE);

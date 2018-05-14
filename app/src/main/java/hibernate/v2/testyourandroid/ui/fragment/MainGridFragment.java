@@ -1,5 +1,6 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -183,9 +184,13 @@ public class MainGridFragment extends BaseFragment {
 							((MainActivity) getActivity()).checkPayment();
 							break;
 						case "rate":
-							Uri uri = Uri.parse("market://details?id=hibernate.v2.testyourandroid");
-							Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-							startActivity(intent);
+							try {
+								Uri uri = Uri.parse("market://details?id=hibernate.v2.testyourandroid");
+								Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+								startActivity(intent);
+							} catch (ActivityNotFoundException e) {
+								C.notAppFound(mContext);
+							}
 							break;
 					}
 				}

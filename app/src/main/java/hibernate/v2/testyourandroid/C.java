@@ -1,6 +1,8 @@
 package hibernate.v2.testyourandroid;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
@@ -21,8 +23,8 @@ public class C extends Util {
 
 	public static final String IAP_PID = "iap1984";
 
-	public static void openErrorPermissionDialog(final Activity activity) {
-		MaterialDialog.Builder dialog = new MaterialDialog.Builder(activity)
+	public static void openErrorPermissionDialog(Context mContext) {
+		MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
 				.title(R.string.ui_caution)
 				.customView(R.layout.dialog_permission, true)
 				.cancelable(false)
@@ -31,28 +33,34 @@ public class C extends Util {
 				.onNegative(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						activity.finish();
+						Activity activity = scanForActivity(dialog.getContext());
+						if (activity != null) {
+							activity.finish();
+						}
 					}
 				})
 				.onPositive(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						Intent intent = new Intent();
-						intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-						intent.addCategory(Intent.CATEGORY_DEFAULT);
-						intent.setData(Uri.parse("package:" + activity.getPackageName()));
-						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-						intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-						activity.startActivity(intent);
-						activity.finish();
+						Activity activity = scanForActivity(dialog.getContext());
+						if (activity != null) {
+							Intent intent = new Intent();
+							intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+							intent.addCategory(Intent.CATEGORY_DEFAULT);
+							intent.setData(Uri.parse("package:" + activity.getPackageName()));
+							intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+							intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+							intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+							activity.startActivity(intent);
+							activity.finish();
+						}
 					}
 				});
 		dialog.show();
 	}
 
-	public static void openErrorDialog(final Activity activity) {
-		MaterialDialog.Builder dialog = new MaterialDialog.Builder(activity)
+	public static void errorNoFeatureDialog(Context mContext) {
+		MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
 				.title(R.string.ui_error)
 				.content(R.string.dialog_feature_na_message)
 				.cancelable(false)
@@ -60,7 +68,7 @@ public class C extends Util {
 				.onPositive(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						activity.finish();
+						scanForActivity(dialog.getContext()).finish();
 					}
 				});
 		dialog.show();
@@ -121,5 +129,16 @@ public class C extends Util {
 	public static void notAppFound(Activity mContext) {
 		Toast.makeText(mContext, R.string.app_notfound, Toast.LENGTH_LONG).show();
 		mContext.finish();
+	}
+
+	private static Activity scanForActivity(Context cont) {
+		if (cont == null)
+			return null;
+		else if (cont instanceof Activity)
+			return (Activity) cont;
+		else if (cont instanceof ContextWrapper)
+			return scanForActivity(((ContextWrapper) cont).getBaseContext());
+
+		return null;
 	}
 }

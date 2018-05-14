@@ -99,7 +99,7 @@ public class TestCameraFragment extends BaseFragment {
 			cameraPreview.addView(mCameraView); //add the SurfaceView to the layout
 		} catch (Exception e) {
 			e.printStackTrace();
-			C.openErrorDialog(mContext);
+			C.errorNoFeatureDialog(mContext);
 		}
 	}
 

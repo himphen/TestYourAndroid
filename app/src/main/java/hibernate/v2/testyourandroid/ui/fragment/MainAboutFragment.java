@@ -1,5 +1,6 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -38,9 +39,13 @@ public class MainAboutFragment extends BaseFragment {
 
 	@OnClick(R.id.moreButton)
 	public void onClickMore() {
-		Uri uri = Uri.parse("market://search?q=pub:\"Hibernate\"");
-		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-		startActivity(intent);
+		try {
+			Uri uri = Uri.parse("market://search?q=pub:\"Hibernate\"");
+			Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+			startActivity(intent);
+		} catch (ActivityNotFoundException e) {
+			C.notAppFound(mContext);
+		}
 	}
 
 	@OnClick(R.id.shareButton)

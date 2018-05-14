@@ -126,9 +126,9 @@ public class TestFingerprintFragment extends BaseFragment {
 	private void init() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if (fingerprintManager == null) {
-				C.openErrorDialog(mContext);
+				C.errorNoFeatureDialog(mContext);
 			} else if (!fingerprintManager.isHardwareDetected()) {
-				C.openErrorDialog(mContext);
+				C.errorNoFeatureDialog(mContext);
 			} else if (!keyguardManager.isKeyguardSecure()) {
 				helpText.setText(R.string.ui_fingerprint_not_locked);
 			} else if (!fingerprintManager.hasEnrolledFingerprints()) {
@@ -142,7 +142,7 @@ public class TestFingerprintFragment extends BaseFragment {
 					fingerprintHandler = new FingerprintHandler(mContext, helpText, fingerprintIvSmallBangView);
 					fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
 				} catch (Exception e) {
-					C.openErrorDialog(mContext);
+					C.errorNoFeatureDialog(mContext);
 				}
 			}
 		} else {
