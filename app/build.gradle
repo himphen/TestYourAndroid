@@ -9,23 +9,27 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 196020
-        versionName "6.0.2"
+        versionCode 196020 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Fish Ball 602a"
         multiDexEnabled true
     }
 
     buildTypes {
         debug {
-            shrinkResources false
+            debuggable true
             minifyEnabled false
+            shrinkResources false
+            useProguard false
             buildConfigField "String", "ADMOB_KEY", "\"" + getSecretKey("ADMOB_KEY") + "\""
             buildConfigField "String[]", "DEVICE_ID", getSecretKey("DEVICE_ID")
             resValue "string", "GOOGLE_API_KEY", "\"" + getSecretKey("GOOGLE_API_KEY") + "\""
             buildConfigField "String", "GOOGLE_IAP_KEY", "\"" + getSecretKey("GOOGLE_IAP_KEY") + "\""
         }
         release {
-            shrinkResources true
+            debuggable false
             minifyEnabled true
+            shrinkResources true
+            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "ADMOB_KEY", "\"" + getSecretKey("ADMOB_KEY") + "\""
             buildConfigField "String[]", "DEVICE_ID", getSecretKey("DEVICE_ID")
