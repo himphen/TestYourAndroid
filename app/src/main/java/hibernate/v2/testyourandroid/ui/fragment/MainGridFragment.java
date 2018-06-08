@@ -13,6 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.ScreenUtils;
+import com.divyanshu.draw.activity.DrawingActivity;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +37,6 @@ import hibernate.v2.testyourandroid.ui.activity.InfoWifiActivity;
 import hibernate.v2.testyourandroid.ui.activity.MainActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestCameraActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestColorActivity;
-import hibernate.v2.testyourandroid.ui.activity.TestDrawActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestFingerprintActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestFlashActivity;
 import hibernate.v2.testyourandroid.ui.activity.TestLocationActivity;
@@ -83,7 +85,7 @@ public class MainGridFragment extends BaseFragment {
 			R.drawable.ic_test_chip};
 
 	private Class[] classTestArray = {
-			TestColorActivity.class, TestDrawActivity.class, TestMultiTouchActivity.class,
+			TestColorActivity.class, DrawingActivity.class, TestMultiTouchActivity.class,
 			TestCameraActivity.class, TestFingerprintActivity.class, TestFlashActivity.class,
 			TestRingActivity.class, TestMicActivity.class,
 			TestNFCActivity.class, TestLocationActivity.class,
@@ -168,8 +170,7 @@ public class MainGridFragment extends BaseFragment {
 				return 1;
 			}
 		});
-		if (C.isTablet(mContext)
-				&& getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+		if (ScreenUtils.isTablet() && ScreenUtils.isLandscape()) {
 			columnCount = 4;
 		}
 		GridItemAdapter.ItemClickListener mListener = new GridItemAdapter.ItemClickListener() {

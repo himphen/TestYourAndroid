@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.ScreenUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -82,8 +84,7 @@ public class AppInfoActionFragment extends BaseFragment {
 					return 1;
 				}
 			});
-			if (C.isTablet(mContext)
-					&& getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			if (ScreenUtils.isTablet() && ScreenUtils.isLandscape()) {
 				columnCount = 4;
 			}
 

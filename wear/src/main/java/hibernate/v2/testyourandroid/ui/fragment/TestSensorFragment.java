@@ -23,7 +23,7 @@ import hibernate.v2.testyourandroid.R;
 import hibernate.v2.testyourandroid.model.InfoHeader;
 import hibernate.v2.testyourandroid.model.InfoItem;
 import hibernate.v2.testyourandroid.ui.adaptor.InfoItemAdaptor;
-import hibernate.v2.testyourandroid.utils.SensorHelper;
+import hibernate.v2.testyourandroid.helper.SensorHelper;
 
 /**
  * Created by himphen on 21/5/16.

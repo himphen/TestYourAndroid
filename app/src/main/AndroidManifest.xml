@@ -122,11 +122,6 @@
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_test_flash"/>
         <activity
-            android:name=".ui.activity.TestDrawActivity"
-            android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_test_draw"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
-        <activity
             android:name=".ui.activity.TestMultiTouchActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_test_multi_touch"/>

@@ -1,33 +1,36 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
-import android.Manifest;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.crashlytics.android.Crashlytics;
+import com.otaliastudios.cameraview.AspectRatio;
+import com.otaliastudios.cameraview.CameraLogger;
+import com.otaliastudios.cameraview.CameraView;
+import com.otaliastudios.cameraview.Facing;
+import com.otaliastudios.cameraview.Gesture;
+import com.otaliastudios.cameraview.GestureAction;
+import com.otaliastudios.cameraview.SessionType;
+import com.otaliastudios.cameraview.SizeSelectors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
-import hibernate.v2.testyourandroid.ui.view.TestCameraView;
 
 /**
  * Created by himphen on 21/5/16.
  */
 public class TestCameraFragment extends BaseFragment {
 
-	private Camera mCamera = null;
-	protected final String[] PERMISSION_NAME = {Manifest.permission.CAMERA};
-
-	@BindView(R.id.cameraPreview)
-	FrameLayout cameraPreview;
+	@BindView(R.id.cameraView)
+	CameraView cameraView;
 
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -40,28 +43,13 @@ public class TestCameraFragment extends BaseFragment {
 	@Override
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-
-		if (isPermissionsGranted(PERMISSION_NAME)) {
-			openChooseCameraDialog();
-		} else {
-			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
-		}
-
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		if (mCamera != null) {
-			mCamera.release();
-		}
 	}
 
 	private void openChooseCameraDialog() {
 		int numberOfCamera = Camera.getNumberOfCameras();
 
 		if (numberOfCamera == 1) {
-			initCamera(0);
+			initCamera(true);
 		} else {
 			MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
 					.title(R.string.dialog_camera_title)
@@ -69,7 +57,8 @@ public class TestCameraFragment extends BaseFragment {
 					.itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
 						@Override
 						public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
-							initCamera(which);
+							initCamera(which == 0);
+
 							return false;
 						}
 					})
@@ -83,35 +72,44 @@ public class TestCameraFragment extends BaseFragment {
 					});
 			dialog.show();
 		}
-
 	}
 
-	private void initCamera(int which) {
-		try {
-			mCamera = Camera.open(which);//you can use open(int) to use different cameras
-			Camera.Parameters params = mCamera.getParameters();
-			if (params.getSupportedFocusModes().contains(
-					Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)) {
-				params.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO);
-			}
-			mCamera.setParameters(params);
-			TestCameraView mCameraView = new TestCameraView(mContext, mCamera, which);
-			cameraPreview.addView(mCameraView); //add the SurfaceView to the layout
-		} catch (Exception e) {
-			e.printStackTrace();
-			C.errorNoFeatureDialog(mContext);
+	private void initCamera(boolean isCameraFacingBack) {
+		if (isCameraFacingBack) {
+			cameraView.setFacing(Facing.BACK);
+		} else {
+			cameraView.setFacing(Facing.FRONT);
 		}
+		cameraView.setSessionType(SessionType.PICTURE);
+		cameraView.mapGesture(Gesture.TAP, GestureAction.FOCUS_WITH_MARKER);
+		cameraView.mapGesture(Gesture.SCROLL_HORIZONTAL, GestureAction.ZOOM);
+		cameraView.setPictureSize(SizeSelectors.aspectRatio(AspectRatio.of(4, 3), 0));
+		CameraLogger.registerLogger(new CameraLogger.Logger() {
+			@Override
+			public void log(@CameraLogger.LogLevel int level, String tag, String message, @Nullable Throwable throwable) {
+				if (level == CameraLogger.LEVEL_ERROR) {
+					Crashlytics.log(message);
+				}
+			}
+		});
+		cameraView.start();
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (hasAllPermissionsGranted(grantResults)) {
-				openChooseCameraDialog();
-			} else {
-				C.openErrorPermissionDialog(mContext);
-			}
-		}
+	public void onResume() {
+		super.onResume();
+		openChooseCameraDialog();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		cameraView.stop();
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		cameraView.destroy();
 	}
 }

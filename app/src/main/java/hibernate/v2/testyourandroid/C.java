@@ -16,7 +16,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-public class C extends Util {
+import hibernate.v2.testyourandroid.helper.UtilHelper;
+
+public class C extends UtilHelper {
 
 	public static final String TAG = "TAG";
 	public static final String PREF = "PREF_OPTION";

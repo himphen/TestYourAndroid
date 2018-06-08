@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid.utils;
+package hibernate.v2.testyourandroid.helper;
 
 import android.hardware.Sensor;
 
@@ -90,7 +90,7 @@ public class SensorHelper {
 		i++;
 		arrayData[i] = String.valueOf(sensor.getMaximumRange()) + " cm";
 		i++;
-		arrayData[i] = String.valueOf(sensor.getMinDelay()) + " cm";
+		arrayData[i] = String.valueOf(sensor.getMinDelay()) + " μs";
 		i++;
 		arrayData[i] = "" + String.valueOf(sensor.getResolution()) + " cm";
 		i++;
@@ -115,6 +115,50 @@ public class SensorHelper {
 		arrayData[i] = String.valueOf(sensor.getMinDelay()) + " μT";
 		i++;
 		arrayData[i] = "" + String.valueOf(sensor.getResolution()) + " μT";
+		i++;
+		arrayData[i] = String.valueOf(sensor.getPower()) + " mA";
+
+		return arrayData[j];
+	}
+
+	public static String getStepCounterSensorData(int j, int size, String reading, Sensor sensor) {
+		String[] arrayData = new String[size];
+		int i = 0;
+		arrayData[i] = reading;
+		i++;
+		arrayData[i] = sensor.getName();
+		i++;
+		arrayData[i] = sensor.getVendor();
+		i++;
+		arrayData[i] = String.valueOf(sensor.getVersion());
+		i++;
+		arrayData[i] = String.valueOf(sensor.getMaximumRange());
+		i++;
+		arrayData[i] = String.valueOf(sensor.getMinDelay()) + " s";
+		i++;
+		arrayData[i] = "" + String.valueOf(sensor.getResolution());
+		i++;
+		arrayData[i] = String.valueOf(sensor.getPower()) + " mA";
+
+		return arrayData[j];
+	}
+
+	public static String getTemperatureCounterSensorData(int j, int size, String reading, Sensor sensor) {
+		String[] arrayData = new String[size];
+		int i = 0;
+		arrayData[i] = reading;
+		i++;
+		arrayData[i] = sensor.getName();
+		i++;
+		arrayData[i] = sensor.getVendor();
+		i++;
+		arrayData[i] = String.valueOf(sensor.getVersion());
+		i++;
+		arrayData[i] = String.valueOf(sensor.getMaximumRange());
+		i++;
+		arrayData[i] = String.valueOf(sensor.getMinDelay()) + " s";
+		i++;
+		arrayData[i] = "" + String.valueOf(sensor.getResolution());
 		i++;
 		arrayData[i] = String.valueOf(sensor.getPower()) + " mA";
 

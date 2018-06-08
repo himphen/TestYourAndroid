@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.AppUtils;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,7 +36,7 @@ public class MainAboutFragment extends BaseFragment {
 	@Override
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		versionTv.setText(String.format("%s %s", getString(R.string.ui_version), C.getCurrentVersionName(mContext)));
+		versionTv.setText(String.format("%s %s", getString(R.string.ui_version), AppUtils.getAppVersionName()));
 	}
 
 	@OnClick(R.id.moreButton)
@@ -63,7 +65,7 @@ public class MainAboutFragment extends BaseFragment {
 
 		String meta = "Android Version: " + android.os.Build.VERSION.RELEASE + "\n";
 		meta += "SDK Level: " + String.valueOf(android.os.Build.VERSION.SDK_INT) + "\n";
-		meta += "Version: " + C.getCurrentVersionName(mContext) + "\n";
+		meta += "Version: " + AppUtils.getAppVersionName() + "\n";
 		meta += "Brand: " + Build.BRAND + "\n";
 		meta += "Model: " + Build.MODEL + "\n\n\n";
 

@@ -1,13 +1,13 @@
 # Test Your Android
 
-##About
+## About
 This is the android app of Test Your Android.
 
 Feel free to contribute with pull requests to this project if you have any android specific improvements in mind.
 
 Google Play Store link: https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid
 
-##License
+## License
 Copyright 2018 Himphen Hui. 
 
 Licensed under the Apache License, Version 2.0 (the "License");

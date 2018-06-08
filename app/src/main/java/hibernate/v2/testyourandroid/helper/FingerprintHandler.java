@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid.utils;
+package hibernate.v2.testyourandroid.helper;
 
 import android.Manifest;
 import android.annotation.TargetApi;

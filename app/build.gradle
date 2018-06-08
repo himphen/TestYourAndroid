@@ -9,8 +9,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 196020 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Fish Ball 602a"
+        versionCode 196202 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Fish Ball 620"
         multiDexEnabled true
     }
 
@@ -68,7 +68,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
     implementation 'com.google.android.gms:play-services-location:15.0.1'
     implementation 'com.google.android.gms:play-services-wearable:15.0.1'
-    implementation 'com.google.firebase:firebase-core:15.0.2'
+    implementation 'com.google.firebase:firebase-core:16.0.0'
 
     // RxBinding Butter Knife
     implementation 'com.jakewharton:butterknife:8.8.1'
@@ -112,6 +112,15 @@ dependencies {
 
     // https://github.com/Jay-Goo/WaveLineView
     implementation 'com.github.Jay-Goo:WaveLineView:v1.0.3'
+
+    // https://github.com/natario1/CameraView
+    implementation 'com.otaliastudios:cameraview:1.5.0'
+
+    // https://github.com/divyanshub024/AndroidDraw
+    implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
+
+    // https://github.com/Blankj/AndroidUtilCode
+    implementation 'com.blankj:utilcode:1.16.3'
 
     wearApp project(':wear')
 }

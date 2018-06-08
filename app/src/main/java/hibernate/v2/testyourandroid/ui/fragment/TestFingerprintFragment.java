@@ -39,7 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
-import hibernate.v2.testyourandroid.utils.FingerprintHandler;
+import hibernate.v2.testyourandroid.helper.FingerprintHandler;
 import xyz.hanks.library.bang.SmallBangView;
 
 @SuppressWarnings("FieldCanBeLocal")
