@@ -30,7 +30,7 @@ public class InfoWifiActivity extends BaseActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		C.detectLanguage(mContext);
-		initActionBar(getSupportActionBar(), R.string.title_activity_test_wifi);
+		initActionBar(getSupportActionBar(), R.string.title_activity_wifi);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class InfoWifiActivity extends BaseActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 
-		initActionBar(getSupportActionBar(), R.string.title_activity_test_wifi);
+		initActionBar(getSupportActionBar(), R.string.title_activity_wifi);
 		adView = C.initAdView(mContext, adLayout);
 
 		Fragment fragment = new InfoWifiFragment();

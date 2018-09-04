@@ -30,7 +30,7 @@ public class InfoAndroidVersionActivity extends BaseActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		C.detectLanguage(mContext);
-		initActionBar(getSupportActionBar(), R.string.title_activity_info_android_version);
+		initActionBar(getSupportActionBar(), R.string.title_activity_android_version);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class InfoAndroidVersionActivity extends BaseActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 
-		initActionBar(getSupportActionBar(), R.string.title_activity_info_android_version);
+		initActionBar(getSupportActionBar(), R.string.title_activity_android_version);
 
 		new Handler().postDelayed(new Runnable() {
 			@Override

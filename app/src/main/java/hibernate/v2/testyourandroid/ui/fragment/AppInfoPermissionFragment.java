@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.apache.commons.lang3.text.WordUtils;
+import com.blankj.utilcode.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -83,27 +83,33 @@ public class AppInfoPermissionFragment extends BaseFragment {
 
 				if (requestedPermissions != null) {
 					for (String requestedPermission : requestedPermissions) {
-						PermissionInfo permissionInfo = packageManager.getPermissionInfo(requestedPermission, 0);
-
 						String permissionGroupLabel = NO_GROUP;
 						String permissionLabel = "";
 						String permissionDescription = "";
 
 						try {
-							PermissionGroupInfo permissionGroupInfo = packageManager.getPermissionGroupInfo(permissionInfo.group, 0);
-							permissionGroupLabel = permissionGroupInfo.loadLabel(packageManager).toString();
-						} catch (PackageManager.NameNotFoundException | NullPointerException ignored) {
-						}
-						try {
-							permissionLabel = permissionInfo.loadLabel(packageManager).toString();
-						} catch (NullPointerException ignored) {
-						}
-						try {
-							permissionDescription = permissionInfo.loadDescription(packageManager).toString();
-						} catch (NullPointerException ignored) {
+							PermissionInfo permissionInfo = packageManager.getPermissionInfo(requestedPermission, 0);
+
+							try {
+								PermissionGroupInfo permissionGroupInfo = packageManager.getPermissionGroupInfo(permissionInfo.group, 0);
+								permissionGroupLabel = permissionGroupInfo.loadLabel(packageManager).toString();
+							} catch (PackageManager.NameNotFoundException | NullPointerException ignored) {
+							}
+							try {
+								permissionLabel = permissionInfo.loadLabel(packageManager).toString();
+							} catch (NullPointerException ignored) {
+							}
+							try {
+								permissionDescription = permissionInfo.loadDescription(packageManager).toString();
+							} catch (NullPointerException ignored) {
+							}
+
+
+						} catch (Exception e) {
+							permissionLabel = requestedPermission;
 						}
 
-						permissionLabel = WordUtils.capitalize(permissionLabel);
+						permissionLabel = StringUtils.upperFirstLetter(permissionLabel);
 
 						AppPermissionItem appPermissionItem = new AppPermissionItem(permissionGroupLabel, permissionLabel, permissionDescription);
 

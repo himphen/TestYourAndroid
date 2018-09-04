@@ -29,7 +29,7 @@ public class InfoCPUActivity extends BaseActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		C.detectLanguage(mContext);
-		initActionBar(getSupportActionBar(), R.string.title_activity_info_cpu);
+		initActionBar(getSupportActionBar(), R.string.title_activity_cpu);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class InfoCPUActivity extends BaseActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 
-		initActionBar(getSupportActionBar(), R.string.title_activity_info_cpu);
+		initActionBar(getSupportActionBar(), R.string.title_activity_cpu);
 		adView = C.initAdView(mContext, adLayout);
 
 		Fragment fragment = new InfoCPUFragment();

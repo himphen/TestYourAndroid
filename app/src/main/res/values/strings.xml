@@ -7,13 +7,13 @@
     <string name="ui_error">Error</string>
     <string name="ui_na">N/A</string>
     <string name="ui_caution">Caution</string>
-    <string name="notsupport">Not supported</string>
-    <string name="notsupport_android_19">Only support by Android 4.4+</string>
-    <string name="notsupport_android_20">Only support by Android 4.4+</string>
-    <string name="notsupport_android_21">Only support by Android 5.0+</string>
-    <string name="notsupport_android_22">Only support by Android 5.1+</string>
-    <string name="notsupport_android_23">Only support by Android 6.0+</string>
-    <string name="notsupport_android_24">Only support by Android 7.0+</string>
+    <string name="ui_not_support">Not supported</string>
+    <string name="ui_not_support_android_19">Only support by Android 4.4+</string>
+    <string name="ui_not_support_android_20">Only support by Android 4.4+</string>
+    <string name="ui_not_support_android_21">Only support by Android 5.0+</string>
+    <string name="ui_not_support_android_22">Only support by Android 5.1+</string>
+    <string name="ui_not_support_android_23">Only support by Android 6.0+</string>
+    <string name="ui_not_support_android_24">Only support by Android 7.0+</string>
     <string name="dialog_feature_na_message">Your Android device does not have this feature or may be used by other apps.</string>
     <string name="dialog_permission_denied_message">Without granting permissions, it will probably not work.\n\nPlease give Test Your Android the permissions to access this feature.</string>
     <string name="dialog_permission_denied_posbtn">Setting »</string>
@@ -22,41 +22,42 @@
     <string-array name="language_choose" translatable="false">
         <item>System Default</item>
         <item>English</item>
-        <item>Norma del sistema</item>
-        <item>Padrão do Sistema</item>
+        <item>Español</item>
+        <item>Português</item>
         <item>中文（正體）</item>
         <item>中文（简体）</item>
     </string-array>
 
-    <string name="title_activity_test_color">Monitor Color</string>
-    <string name="title_activity_test_light_sensor">Light Sensor</string>
-    <string name="title_activity_test_camera">Camera</string>
-    <string name="title_activity_test_flash">Flashlight</string>
-    <string name="title_activity_test_fingerprint">Fingerprint</string>
-    <string name="title_activity_test_draw">Touch Screen</string>
-    <string name="title_activity_test_multi_touch">Multi Touch</string>
-    <string name="title_activity_test_ring">Sound and Vibrate</string>
-    <string name="title_activity_test_mic">Microphone</string>
-    <string name="title_activity_test_wifi">Wi-Fi</string>
-    <string name="title_activity_test_bluetooth">Bluetooth</string>
-    <string name="title_activity_test_accelerometer">Accelerometer</string>
-    <string name="title_activity_test_step">Pedometer</string>
-    <string name="title_activity_test_temperature">Temperature</string>
-    <string name="title_activity_test_gps">Location</string>
-    <string name="title_activity_test_nfc">NFC</string>
-    <string name="title_activity_test_proximity">Proximity Sensor</string>
-    <string name="title_activity_test_gravity">Gravity Sensor</string>
-    <string name="title_activity_test_pressure">Pressure Sensor</string>
-    <string name="title_activity_test_monitor">System Monitor</string>
-    <string name="title_activity_test_compass">Compass</string>
-    <string name="title_activity_info_hardware">Hardware</string>
-    <string name="title_activity_info_cpu">CPU/Memory</string>
-    <string name="title_activity_info_android_version">Android Version</string>
-    <string name="title_activity_info_application">Installed Apps</string>
-    <string name="title_activity_info_battery">Battery</string>
-    <string name="title_activity_info_camera">Camera</string>
-    <string name="title_activity_info_gsm">Network</string>
+    <string name="title_activity_screen">Monitor Color</string>
+    <string name="title_activity_light">Light Sensor</string>
+    <string name="title_activity_humidity">Humidity Sensor</string>
+    <string name="title_activity_camera">Camera</string>
+    <string name="title_activity_flashlight">Flashlight</string>
+    <string name="title_activity_fingerprint">Fingerprint</string>
+    <string name="title_activity_drawing">Touch Screen</string>
+    <string name="title_activity_touch">Multi Touch</string>
+    <string name="title_activity_speaker">Speaker and Vibrate</string>
+    <string name="title_activity_microphone">Microphone</string>
+    <string name="title_activity_wifi">Wi-Fi</string>
+    <string name="title_activity_bluetooth">Bluetooth</string>
+    <string name="title_activity_accelerometer">Accelerometer</string>
+    <string name="title_activity_step">Pedometer</string>
+    <string name="title_activity_temperature">Temperature Sensor</string>
+    <string name="title_activity_location">Location</string>
+    <string name="title_activity_nfc">NFC</string>
+    <string name="title_activity_proximity">Proximity Sensor</string>
+    <string name="title_activity_gravity">Gravity Sensor</string>
+    <string name="title_activity_pressure">Pressure Sensor</string>
+    <string name="title_activity_system_monitor">System Monitor</string>
+    <string name="title_activity_compass">Compass</string>
+    <string name="title_activity_device">Hardware</string>
+    <string name="title_activity_cpu">CPU/Memory</string>
+    <string name="title_activity_android_version">Android Version</string>
+    <string name="title_activity_application">Installed Apps</string>
+    <string name="title_activity_battery">Battery</string>
+    <string name="title_activity_gsm">Network</string>
     <string name="title_activity_test_ad_remover">Donate</string>
+    <string name="title_activity_app_brain">More App</string>
     <string name="title_activity_rate_us">Rate us!</string>
 
     <string name="title_activity_app_choose">Installed Apps</string>
@@ -65,37 +66,45 @@
     <string name="title_activity_app_all">All Apps</string>
     <string name="app_package">Application Package</string>
 
-    <string-array name="main_test_string_array" translatable="false">
-        <item>@string/title_activity_test_color</item>
-        <item>@string/title_activity_test_draw</item>
-        <item>@string/title_activity_test_multi_touch</item>
-        <item>@string/title_activity_test_camera</item>
-        <item>@string/title_activity_test_fingerprint</item>
-        <item>@string/title_activity_test_flash</item>
-        <item>@string/title_activity_test_ring</item>
-        <item>@string/title_activity_test_mic</item>
-        <item>@string/title_activity_test_nfc</item>
-        <item>@string/title_activity_test_gps</item>
-        <item>@string/title_activity_test_step</item>
-        <item>@string/title_activity_test_temperature</item>
-        <item>@string/title_activity_test_compass</item>
-        <item>@string/title_activity_test_monitor</item>
-        <item>@string/title_activity_test_light_sensor</item>
-        <item>@string/title_activity_test_accelerometer</item>
-        <item>@string/title_activity_test_proximity</item>
-        <item>@string/title_activity_test_pressure</item>
-        <item>@string/title_activity_test_gravity</item>
+    <string-array name="hardware_string_array" translatable="false">
+        <item>@string/title_activity_screen</item>
+        <item>@string/title_activity_drawing</item>
+        <item>@string/title_activity_touch</item>
+        <item>@string/title_activity_camera</item>
+        <item>@string/title_activity_fingerprint</item>
+        <item>@string/title_activity_flashlight</item>
+        <item>@string/title_activity_speaker</item>
+        <item>@string/title_activity_microphone</item>
+        <item>@string/title_activity_nfc</item>
+        <item>@string/title_activity_location</item>
     </string-array>
-    <string-array name="main_info_string_array" translatable="false">
-        <item>@string/title_activity_test_wifi</item>
-        <item>@string/title_activity_test_bluetooth</item>
-        <item>@string/title_activity_info_cpu</item>
-        <item>@string/title_activity_info_hardware</item>
-        <item>@string/title_activity_info_android_version</item>
-        <item>@string/title_activity_info_battery</item>
-        <item>@string/title_activity_info_camera</item>
-        <item>@string/title_activity_info_gsm</item>
-        <item>@string/title_activity_info_application</item>
+    <string-array name="sensor_string_array" translatable="false">
+        <item>@string/title_activity_step</item>
+        <item>@string/title_activity_temperature</item>
+        <item>@string/title_activity_compass</item>
+        <item>@string/title_activity_light</item>
+        <item>@string/title_activity_accelerometer</item>
+        <item>@string/title_activity_proximity</item>
+        <item>@string/title_activity_pressure</item>
+        <item>@string/title_activity_gravity</item>
+        <item>@string/title_activity_humidity</item>
+    </string-array>
+    <string-array name="info_string_array" translatable="false">
+        <item>@string/title_activity_system_monitor</item>
+        <item>@string/title_activity_wifi</item>
+        <item>@string/title_activity_bluetooth</item>
+        <item>@string/title_activity_cpu</item>
+        <item>@string/title_activity_device</item>
+        <item>@string/title_activity_android_version</item>
+        <item>@string/title_activity_battery</item>
+        <item>@string/title_activity_camera</item>
+        <item>@string/title_activity_gsm</item>
+        <item>@string/title_activity_application</item>
+    </string-array>
+    <string-array name="other_string_array" translatable="false">
+        <item>@string/title_activity_rate_us</item>
+        <item>@string/title_activity_test_ad_remover</item>
+        <item>@string/title_activity_app_brain</item>
     </string-array>
     <string-array name="app_choose_string_array" translatable="false">
         <item>@string/title_activity_app_user</item>
@@ -103,11 +112,20 @@
         <item>@string/title_activity_app_all</item>
     </string-array>
 
+    <string name="main_title_hardware">Hardware Testing</string>
+    <string name="main_title_sensor">Sensor Testing</string>
+    <string name="main_title_information">Device Information</string>
+    <string name="main_title_other">Other</string>
+
     <!--  -->
-    <string name="main_tab_title_1">Test</string>
+    <string name="main_tab_title_1">Device Test</string>
     <string name="main_tab_title_2">Information</string>
     <string name="main_tab_title_3">About</string>
     <string-array name="main_tab_title" translatable="false">
+        <item>@string/main_tab_title_1</item>
+        <item>@string/main_tab_title_3</item>
+    </string-array>
+    <string-array name="main_tab_title_old" translatable="false">
         <item>@string/main_tab_title_1</item>
         <item>@string/main_tab_title_2</item>
         <item>@string/main_tab_title_3</item>
@@ -592,6 +610,11 @@
     <string name="mic_stop">Stop</string>
 
     <!--  -->
+
+    <string name="ui_relative_humidity">Relative Humidity: </string>
+    <string name="ui_absolute_humidity">Absolute Humidity: </string>
+    <string name="ui_dew_point">Dew Point: </string>
+
     <string name="dialog_camera_title">Please select camera</string>
     <string name="changelog_full_title">Change Log</string>
     <string name="changelog_title">What\'s New</string>
@@ -609,10 +632,6 @@
     <string name="ui_fingerprint_help">Authentication Help</string>
     <string name="ui_fingerprint_succeeded">Succeeded.</string>
 
-    <string name="app_notfound">No application found.</string>
-    <string name="press_me">Press Me!!!</string>
-    <string name="press_me_1">Yeah!!!</string>
-    <string name="press_me_2">Want something new?!!!\nReload this page!</string>
-    <string name="title_app_wall">Suggested Apps</string>
+    <string name="app_not_found">No application found.</string>
 
 </resources>

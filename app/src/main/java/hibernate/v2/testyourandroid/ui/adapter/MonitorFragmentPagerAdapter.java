@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import hibernate.v2.testyourandroid.R;
-import hibernate.v2.testyourandroid.ui.fragment.MonitorCpuFragment;
-import hibernate.v2.testyourandroid.ui.fragment.MonitorMemoryFragment;
-import hibernate.v2.testyourandroid.ui.fragment.MonitorNetworkFragment;
+import hibernate.v2.testyourandroid.ui.fragment.InfoSystemMonitorCPUFragment;
+import hibernate.v2.testyourandroid.ui.fragment.InfoSystemMonitorMemoryFragment;
+import hibernate.v2.testyourandroid.ui.fragment.InfoSystemMonitorNetworkFragment;
 
 public class MonitorFragmentPagerAdapter extends FragmentPagerAdapter {
 
@@ -44,13 +44,13 @@ public class MonitorFragmentPagerAdapter extends FragmentPagerAdapter {
 		switch (position) {
 			/* Android tab is selected */
 			case 0:
-				fragment = new MonitorCpuFragment();
+				fragment = new InfoSystemMonitorCPUFragment();
 				break;
 			case 1:
-				fragment = new MonitorNetworkFragment();
+				fragment = new InfoSystemMonitorNetworkFragment();
 				break;
 			case 2:
-				fragment = new MonitorMemoryFragment();
+				fragment = new InfoSystemMonitorMemoryFragment();
 				break;
 			default:
 				fragment = null;

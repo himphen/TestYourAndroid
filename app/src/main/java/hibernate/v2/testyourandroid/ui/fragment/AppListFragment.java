@@ -30,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.R;
 import hibernate.v2.testyourandroid.model.AppItem;
-import hibernate.v2.testyourandroid.ui.activity.AppInfoActivity;
+import hibernate.v2.testyourandroid.ui.activity.AppDetailsActivity;
 import hibernate.v2.testyourandroid.ui.adapter.AppItemAdapter;
 
 /**
@@ -158,7 +158,7 @@ public class AppListFragment extends BaseFragment {
 		AppItemAdapter.ItemClickListener mListener = new AppItemAdapter.ItemClickListener() {
 			@Override
 			public void onItemDetailClick(final AppItem infoAppItem) {
-				Intent intent = new Intent().setClass(mContext, AppInfoActivity.class);
+				Intent intent = new Intent().setClass(mContext, AppDetailsActivity.class);
 				Bundle bundle = new Bundle();
 				bundle.putParcelable("APP", infoAppItem);
 				intent.putExtras(bundle);

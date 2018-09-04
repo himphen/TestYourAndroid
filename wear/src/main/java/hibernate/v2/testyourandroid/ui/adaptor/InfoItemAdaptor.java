@@ -63,9 +63,7 @@ public class InfoItemAdaptor extends HeaderRecyclerViewAdapter<RecyclerView.View
 
 	@Override
 	public int getItemCount() {
-		if (mDataList == null)
-			return 0;
-		return this.mDataList.size();
+		return mDataList.size();
 	}
 
 	static class HeaderViewHolder extends RecyclerView.ViewHolder {

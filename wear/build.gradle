@@ -2,15 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 23
-        targetSdkVersion 27
-        versionCode 236020
-        versionName "6.0.2"
+        targetSdkVersion 28
+        versionCode 237000 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Cheungfan 700a"
         multiDexEnabled true
     }
 
@@ -24,9 +24,9 @@ android {
 
 dependencies {
     // Google Android Support
-    implementation 'com.android.support:wear:27.1.1'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:wear:28.0.0-rc02'
+    implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
+    implementation 'com.android.support:support-v4:28.0.0-rc02'
     implementation 'com.google.android.support:wearable:2.3.0'
     implementation 'com.google.android.gms:play-services-wearable:15.0.1'
     compileOnly 'com.google.android.wearable:wearable:2.3.0'
@@ -36,15 +36,16 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
 
     // Roboto TextView
     implementation 'com.github.johnkil.android-robototextview:robototextview:4.0.0'
 
+    // https://github.com/Karumi/HeaderRecyclerView
     implementation 'com.karumi:headerrecyclerview:1.1.0'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-core:15.0.2'
+    implementation 'com.google.firebase:firebase-core:16.0.3'
 
     // Crashlytics
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {

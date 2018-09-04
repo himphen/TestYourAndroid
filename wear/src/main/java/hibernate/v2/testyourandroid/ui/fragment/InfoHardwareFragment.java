@@ -43,10 +43,6 @@ public class InfoHardwareFragment extends BaseFragment {
 	private InfoItemAdaptor adapter;
 	private ArrayList<InfoItem> list;
 
-	public InfoHardwareFragment() {
-		// Required empty public constructor
-	}
-
 	private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context arg0, Intent intent) {
@@ -131,8 +127,6 @@ public class InfoHardwareFragment extends BaseFragment {
 				case 4:
 					return arrayCharge[charge];
 				case 5:
-					return telephonyManager.getDeviceId();
-				case 6:
 					return Build.VERSION.RELEASE;
 				default:
 					return "N/A";

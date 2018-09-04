@@ -30,7 +30,7 @@ public class InfoBluetoothActivity extends BaseActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		C.detectLanguage(mContext);
-		initActionBar(getSupportActionBar(), R.string.title_activity_test_bluetooth);
+		initActionBar(getSupportActionBar(), R.string.title_activity_bluetooth);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class InfoBluetoothActivity extends BaseActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 
-		initActionBar(getSupportActionBar(), R.string.title_activity_test_bluetooth);
+		initActionBar(getSupportActionBar(), R.string.title_activity_bluetooth);
 		adView = C.initAdView(mContext, adLayout);
 
 		Fragment fragment = new InfoBluetoothFragment();

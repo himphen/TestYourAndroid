@@ -129,7 +129,7 @@ public class C extends UtilHelper {
 	}
 
 	public static void notAppFound(Activity mContext) {
-		Toast.makeText(mContext, R.string.app_notfound, Toast.LENGTH_LONG).show();
+		Toast.makeText(mContext, R.string.app_not_found, Toast.LENGTH_LONG).show();
 		mContext.finish();
 	}
 

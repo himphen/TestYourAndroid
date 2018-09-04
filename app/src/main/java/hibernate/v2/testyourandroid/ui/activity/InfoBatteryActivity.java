@@ -30,7 +30,7 @@ public class InfoBatteryActivity extends BaseActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		C.detectLanguage(mContext);
-		initActionBar(getSupportActionBar(), R.string.title_activity_info_battery);
+		initActionBar(getSupportActionBar(), R.string.title_activity_battery);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class InfoBatteryActivity extends BaseActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 
-		initActionBar(getSupportActionBar(), R.string.title_activity_info_battery);
+		initActionBar(getSupportActionBar(), R.string.title_activity_battery);
 
 		new Handler().postDelayed(new Runnable() {
 			@Override

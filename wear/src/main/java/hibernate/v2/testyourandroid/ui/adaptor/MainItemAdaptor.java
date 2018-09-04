@@ -1,6 +1,7 @@
 package hibernate.v2.testyourandroid.ui.adaptor;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.wearable.view.WearableListView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +36,9 @@ public class MainItemAdaptor extends WearableListView.Adapter {
 		this.mListener = mListener;
 	}
 
+	@NonNull
 	@Override
-	public WearableListView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public WearableListView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		Context context = parent.getContext();
 
 		View itemView = LayoutInflater.from(context).inflate(R.layout.list_item_main, parent, false);
@@ -44,7 +46,7 @@ public class MainItemAdaptor extends WearableListView.Adapter {
 	}
 
 	@Override
-	public void onBindViewHolder(WearableListView.ViewHolder rawHolder, int position) {
+	public void onBindViewHolder(@NonNull WearableListView.ViewHolder rawHolder, int position) {
 		MainItem item = mDataList.get(position);
 		ItemViewHolder holder = (ItemViewHolder) rawHolder;
 		Glide.with(holder.mainIv.getContext())

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import hibernate.v2.testyourandroid.R;
 import hibernate.v2.testyourandroid.ui.fragment.MainAboutFragment;
-import hibernate.v2.testyourandroid.ui.fragment.MainGridFragment;
+import hibernate.v2.testyourandroid.ui.fragment.MainTestFragment;
 
 public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
 
@@ -31,7 +31,7 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
 	 */
 	@Override
 	public int getCount() {
-		return 3;
+		return 2;
 	}
 
 	/**
@@ -43,16 +43,12 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
 		switch (position) {
 			/* Android tab is selected */
 			case 0:
-				fragment = MainGridFragment.newInstance(MainGridFragment.ARG_GRID_TYPE_TEST);
+				fragment = MainTestFragment.newInstance();
 				break;
 			case 1:
-				fragment = MainGridFragment.newInstance(MainGridFragment.ARG_GRID_TYPE_INFO);
-				break;
-			case 2:
+			default:
 				fragment = new MainAboutFragment();
 				break;
-			default:
-				fragment = null;
 		}
 		return fragment;
 	}

@@ -17,7 +17,7 @@
         android:id="@+id/imageView1"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/ic_test_nfc"/>
+        android:src="@drawable/ic_icon_nfc"/>
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/helpText"

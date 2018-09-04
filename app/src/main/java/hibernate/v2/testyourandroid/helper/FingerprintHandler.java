@@ -11,22 +11,19 @@ import android.support.v4.content.ContextCompat;
 import android.widget.TextView;
 
 import hibernate.v2.testyourandroid.R;
-import xyz.hanks.library.bang.SmallBangView;
 
 @TargetApi(Build.VERSION_CODES.M)
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
 
 	protected final String PERMISSION_NAME = Manifest.permission.USE_FINGERPRINT;
 
-	private SmallBangView fingerprintIvSmallBangView;
 	private TextView helpText;
 	private Context mContext;
 	private CancellationSignal cancellationSignal;
 
-	public FingerprintHandler(Context context, TextView helpText, SmallBangView fingerprintIvSmallBangView) {
+	public FingerprintHandler(Context context, TextView helpText) {
 		mContext = context;
 		this.helpText = helpText;
-		this.fingerprintIvSmallBangView = fingerprintIvSmallBangView;
 	}
 
 	public void startAuth(FingerprintManager manager, FingerprintManager.CryptoObject cryptoObject) {
@@ -61,8 +58,6 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 	@Override
 	public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
 		helpText.setText(R.string.ui_fingerprint_succeeded);
-		fingerprintIvSmallBangView.performClick();
-		fingerprintIvSmallBangView.likeAnimation();
 	}
 
 }

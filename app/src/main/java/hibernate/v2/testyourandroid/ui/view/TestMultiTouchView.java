@@ -1,5 +1,6 @@
 package hibernate.v2.testyourandroid.ui.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -37,9 +38,9 @@ public class TestMultiTouchView extends View {
 		textPaint.setTextSize(20);
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-
 		// get pointer index from the event object
 		int pointerIndex = event.getActionIndex();
 

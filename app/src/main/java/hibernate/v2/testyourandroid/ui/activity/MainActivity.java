@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.view.menu.ActionMenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,8 +20,6 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
-import com.appbrain.AdService;
-import com.appbrain.AppBrain;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -118,20 +115,6 @@ public class MainActivity extends BaseActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.new_main, menu);
-
-		try {
-			AdService ads = AppBrain.getAds();
-			MenuItem adsItem = menu.add(ads.getOfferWallButtonLabel(this));
-			if (!PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(C.PREF_IAP, false)) {
-				adsItem.setShowAsAction(ActionMenuItem.SHOW_AS_ACTION_ALWAYS);
-			} else {
-				adsItem.setShowAsAction(ActionMenuItem.SHOW_AS_ACTION_NEVER);
-			}
-			adsItem.setIcon(R.drawable.ic_local_play_white_24dp);
-			ads.setOfferWallMenuItemClickListener(this, adsItem);
-		} catch (Exception ignored) {
-		}
-
 		return true;
 	}
 

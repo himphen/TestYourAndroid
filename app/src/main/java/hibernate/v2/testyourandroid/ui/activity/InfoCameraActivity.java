@@ -29,7 +29,7 @@ public class InfoCameraActivity extends BaseActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		C.detectLanguage(mContext);
-		initActionBar(getSupportActionBar(), R.string.title_activity_info_camera);
+		initActionBar(getSupportActionBar(), R.string.title_activity_camera);
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class InfoCameraActivity extends BaseActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 
-		initActionBar(getSupportActionBar(), R.string.title_activity_info_camera);
+		initActionBar(getSupportActionBar(), R.string.title_activity_camera);
 		adView = C.initAdView(mContext, adLayout);
 
 		Fragment fragment = new InfoCameraFragment();

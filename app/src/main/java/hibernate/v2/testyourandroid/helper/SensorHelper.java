@@ -164,4 +164,26 @@ public class SensorHelper {
 
 		return arrayData[j];
 	}
+
+	public static String getHumiditySensorData(int j, int size, String reading, Sensor sensor) {
+		String[] arrayData = new String[size];
+		int i = 0;
+		arrayData[i] = reading;
+		i++;
+		arrayData[i] = sensor.getName();
+		i++;
+		arrayData[i] = sensor.getVendor();
+		i++;
+		arrayData[i] = String.valueOf(sensor.getVersion());
+		i++;
+		arrayData[i] = String.valueOf(sensor.getMaximumRange());
+		i++;
+		arrayData[i] = String.valueOf(sensor.getMinDelay()) + " s";
+		i++;
+		arrayData[i] = "" + String.valueOf(sensor.getResolution());
+		i++;
+		arrayData[i] = String.valueOf(sensor.getPower()) + " mA";
+
+		return arrayData[j];
+	}
 }

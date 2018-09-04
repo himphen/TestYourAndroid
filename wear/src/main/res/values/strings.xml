@@ -40,8 +40,8 @@
     <string name="info_hardware_string_3">Battery Level</string>
     <string name="info_hardware_string_4">Battery Health</string>
     <string name="info_hardware_string_5">Battery Status</string>
-    <string name="info_hardware_string_6">IMEI/ESN</string>
-    <string name="info_hardware_string_7">Android OS Version</string>
+    <string name="info_hardware_string_6">Android OS Version</string>
+
     <string-array name="info_hardware_string_array" translatable="false">
         <item>@string/info_hardware_string_1</item>
         <item>@string/info_hardware_string_2</item>
@@ -49,7 +49,6 @@
         <item>@string/info_hardware_string_4</item>
         <item>@string/info_hardware_string_5</item>
         <item>@string/info_hardware_string_6</item>
-        <item>@string/info_hardware_string_7</item>
     </string-array>
 
     <!--  -->

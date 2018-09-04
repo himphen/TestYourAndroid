@@ -75,7 +75,7 @@ public class AppInfoFragment extends BaseFragment {
 				}
 			}
 		} else {
-			Toast.makeText(mContext, R.string.app_notfound, Toast.LENGTH_LONG).show();
+			Toast.makeText(mContext, R.string.app_not_found, Toast.LENGTH_LONG).show();
 			mContext.finish();
 		}
 	}

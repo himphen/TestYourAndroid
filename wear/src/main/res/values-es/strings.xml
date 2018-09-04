@@ -29,8 +29,7 @@
     <string name="info_hardware_string_3">Nivel de la batería</string>
     <string name="info_hardware_string_4">Condición de la batería</string>
     <string name="info_hardware_string_5">Estado de la batería</string>
-    <string name="info_hardware_string_6">IMEI/ESN</string>
-    <string name="info_hardware_string_7">Versión del Android OS</string>
+    <string name="info_hardware_string_6">Versión del Android OS</string>
 
     <!--  -->
     <string name="info_battery_charge_string_1">Descargando</string>

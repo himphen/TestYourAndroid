@@ -120,11 +120,11 @@
     <string name="info_battery_health_string_6">注意：電壓過高</string>
     <string name="info_battery_health_string_7">不明</string>
     <string name="info_battery_health_string_8">注意：過冷</string>
-    <string name="info_hardware_string_1">Brand</string>
-    <string name="info_hardware_string_3">Battery Level</string>
-    <string name="info_hardware_string_2">Model</string>
-    <string name="info_hardware_string_4">Battery Health</string>
-    <string name="info_hardware_string_6">IMEI/ESN</string>
-    <string name="info_hardware_string_7">Android OS Version</string>
-    <string name="info_hardware_string_5">Battery Status</string>
+
+    <string name="info_hardware_string_1">品牌</string>
+    <string name="info_hardware_string_3">電池電量</string>
+    <string name="info_hardware_string_2">型號</string>
+    <string name="info_hardware_string_4">電池健康</string>
+    <string name="info_hardware_string_5">電池狀態</string>
+    <string name="info_hardware_string_6">Android 操作系統版本</string>
 </resources>
