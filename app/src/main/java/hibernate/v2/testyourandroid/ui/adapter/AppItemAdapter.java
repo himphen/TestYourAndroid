@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.turingtechnologies.materialscrollbar.INameableAdapter;
 
 import java.util.List;
 
@@ -26,28 +25,12 @@ import hibernate.v2.testyourandroid.model.AppItem;
 /**
  * Created by himphen on 25/5/16.
  */
-public class AppItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements INameableAdapter {
+public class AppItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
 	private List<AppItem> mDataList;
 	private ItemClickListener mListener;
 
 	private Context mContext;
-
-	@Override
-	public Character getCharacterForElement(int element) {
-
-		String appName = mDataList.get(element).getAppName();
-		Character c;
-		if (appName.length() > 0) {
-			c = mDataList.get(element).getAppName().charAt(0);
-			if (Character.isDigit(c)) {
-				c = '#';
-			}
-		} else {
-			c = '#';
-		}
-		return c;
-	}
 
 	public interface ItemClickListener {
 		void onItemDetailClick(AppItem catChoice);

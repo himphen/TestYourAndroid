@@ -20,7 +20,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
-import jaygoo.widget.wlv.WaveLineView;
 
 /**
  * Created by himphen on 21/5/16.
@@ -29,8 +28,6 @@ public class HardwareMicrophoneFragment extends BaseFragment {
 
 	protected final String PERMISSION_NAME = Manifest.permission.RECORD_AUDIO;
 
-	@BindView(R.id.waveLineView)
-	WaveLineView waveLineView;
 	@BindView(R.id.playBtn)
 	AppCompatButton playBtn;
 	@BindView(R.id.recordBtn)
@@ -46,7 +43,7 @@ public class HardwareMicrophoneFragment extends BaseFragment {
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_test_mic, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_hardware_microphone, container, false);
 		ButterKnife.bind(this, rootView);
 		return rootView;
 	}
@@ -63,27 +60,13 @@ public class HardwareMicrophoneFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
-		waveLineView.onResume();
-	}
-
-	@Override
 	public void onPause() {
 		super.onPause();
 		stopRecording();
 		stopPlaying();
-		waveLineView.onPause();
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		waveLineView.release();
 	}
 
 	private void init() {
-		waveLineView.startAnim();
 		playBtn.setEnabled(false);
 
 		mFile = new File(mContext.getFilesDir(), "TestYourAndroidMicTest.3gp");

@@ -3,6 +3,7 @@ package hibernate.v2.testyourandroid.ui.fragment;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.KeyguardManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
@@ -91,7 +92,11 @@ public class HardwareFingerprintFragment extends BaseFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_settings:
-				startActivity(new Intent(Settings.ACTION_SECURITY_SETTINGS));
+				try {
+					startActivity(new Intent(Settings.ACTION_SECURITY_SETTINGS));
+				} catch (ActivityNotFoundException e) {
+					startActivity(new Intent(Settings.ACTION_SETTINGS));
+				}
 				break;
 		}
 		return super.onOptionsItemSelected(item);

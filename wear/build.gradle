@@ -9,8 +9,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 237000 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Cheungfan 700a"
+        versionCode 237012 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Cheungfan 701"
         multiDexEnabled true
     }
 

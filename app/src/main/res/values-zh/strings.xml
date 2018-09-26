@@ -89,7 +89,7 @@
     <string name="title_activity_screen">螢幕顏色</string>
     <string name="title_activity_light">光源感應器測試</string>
     <string name="title_activity_fingerprint">指紋掃瞄器</string>
-    <string name="title_activity_camera">相機測試</string>
+    <string name="title_activity_camera">相機</string>
     <string name="title_activity_flashlight">閃光燈測試</string>
     <string name="title_activity_drawing">螢幕繪圖</string>
     <string name="title_activity_speaker">喇叭及震動測試</string>

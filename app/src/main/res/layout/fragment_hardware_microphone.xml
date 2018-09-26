@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -10,14 +9,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
-
-    <jaygoo.widget.wlv.WaveLineView
-        android:id="@+id/waveLineView"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        app:wlvBackgroundColor="@android:color/white"
-        app:wlvLineColor="@color/main_blue"
-        app:wlvThickLineWidth="3dp"/>
 
     <com.devspark.robototextview.widget.RobotoButton
         android:id="@+id/recordBtn"

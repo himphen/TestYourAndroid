@@ -15,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.turingtechnologies.materialscrollbar.AlphabetIndicator;
-import com.turingtechnologies.materialscrollbar.DragScrollBar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -167,11 +165,6 @@ public class AppListFragment extends BaseFragment {
 		};
 		adapter = new AppItemAdapter(appList, mListener);
 		recyclerView.setAdapter(adapter);
-
-		DragScrollBar dragScrollBar = new DragScrollBar(mContext, recyclerView, true);
-		dragScrollBar.setDraggableFromAnywhere(true);
-		dragScrollBar.setHandleColourRes(R.color.primary);
-		dragScrollBar.setIndicator(new AlphabetIndicator(mContext), true);
 	}
 
 	public List<PackageInfo> getInstalledPackages(PackageManager packageManager, int flags) {

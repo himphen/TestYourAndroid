@@ -4,9 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.appbrain.AppBrain;
 
 import hibernate.v2.testyourandroid.C;
@@ -15,14 +15,14 @@ import hibernate.v2.testyourandroid.C;
  * Created by himphen on 21/5/16.
  */
 @SuppressLint("Registered")
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends LocalizationActivity {
 
 	protected static final int DELAY_AD_LAYOUT = 0;
 
 	protected Activity mContext;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mContext = this;
 		C.detectLanguage(this);

@@ -20,8 +20,8 @@ import hibernate.v2.testyourandroid.R;
 public class HardwareScreenActivity extends Activity {
 
 	private View colorView;
-	boolean testMode = false;
-	int i = 0;
+	private boolean testMode = false;
+	private int i = 0;
 
 	private CountDownTimer timer = new CountDownTimer(1200000, 100) {
 		@Override

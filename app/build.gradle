@@ -3,14 +3,14 @@ apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.2'
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 197002 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Cheungfan 700"
+        versionCode 197100 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Cheungfan 710a"
         multiDexEnabled true
     }
 
@@ -57,11 +57,11 @@ static def getSecretKey(name) {
 dependencies {
     // Google Android Support
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
-    implementation 'com.android.support:support-v4:28.0.0-rc02'
-    implementation 'com.android.support:design:28.0.0-rc01'
-    implementation 'com.android.support:cardview-v7:28.0.0-rc02'
-    implementation 'com.android.support:recyclerview-v7:28.0.0-rc02'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 
     // Google Play Services
     implementation 'com.google.android.gms:play-services-ads:15.0.1'
@@ -92,10 +92,6 @@ dependencies {
     // Simple IAB
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
 
-    // MaterialScrollBar must be 11.2.1
-    //noinspection GradleDependency
-    implementation 'com.github.turing-tech:MaterialScrollBar:11.2.1'
-
     // AppBrain SDK
     implementation 'com.appbrain:appbrain-sdk:+@aar'
 
@@ -104,11 +100,8 @@ dependencies {
         transitive = true
     }
 
-    // https://github.com/Jay-Goo/WaveLineView
-    implementation 'com.github.Jay-Goo:WaveLineView:v1.0.3'
-
     // https://github.com/natario1/CameraView
-    implementation 'com.otaliastudios:cameraview:1.5.1'
+    implementation 'com.otaliastudios:cameraview:1.6.0'
 
     // https://github.com/divyanshub024/AndroidDraw
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
@@ -118,6 +111,9 @@ dependencies {
 
     // https://github.com/luizgrp/SectionedRecyclerViewAdapter
     implementation 'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:1.2.0'
+
+    // https://github.com/akexorcist/Android-LocalizationActivity
+    implementation 'com.akexorcist:localizationactivity:1.2.2'
 
     wearApp project(':wear')
 }

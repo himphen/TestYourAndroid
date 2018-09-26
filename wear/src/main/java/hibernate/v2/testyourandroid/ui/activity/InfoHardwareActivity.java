@@ -10,7 +10,7 @@ import hibernate.v2.testyourandroid.ui.fragment.InfoHardwareFragment;
 public class InfoHardwareActivity extends BaseActivity {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_container_no_drawer);
 

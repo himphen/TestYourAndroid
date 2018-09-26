@@ -1,6 +1,7 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -110,7 +111,11 @@ public class HardwareLocationFragment extends BaseFragment implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_settings:
-				startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+				try {
+					startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+				} catch (ActivityNotFoundException e) {
+					startActivity(new Intent(Settings.ACTION_SETTINGS));
+				}
 				break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -173,7 +178,11 @@ public class HardwareLocationFragment extends BaseFragment implements
 				.onPositive(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+						try {
+							startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+						} catch (ActivityNotFoundException e) {
+							startActivity(new Intent(Settings.ACTION_SETTINGS));
+						}
 					}
 				});
 		dialog.show();

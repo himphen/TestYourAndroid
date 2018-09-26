@@ -22,6 +22,7 @@ import com.otaliastudios.cameraview.SizeSelectors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
 
 /**
@@ -89,6 +90,8 @@ public class HardwareCameraFragment extends BaseFragment {
 			public void log(@CameraLogger.LogLevel int level, String tag, String message, @Nullable Throwable throwable) {
 				if (level == CameraLogger.LEVEL_ERROR) {
 					Crashlytics.log(message);
+
+					C.errorNoFeatureDialog(mContext);
 				}
 			}
 		});

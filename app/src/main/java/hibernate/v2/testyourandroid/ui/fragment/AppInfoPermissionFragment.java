@@ -30,7 +30,6 @@ import hibernate.v2.testyourandroid.model.InfoItem;
 import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
 
 public class AppInfoPermissionFragment extends BaseFragment {
-	private InfoItemAdapter adapter;
 	private final String NO_GROUP = "Ungrouped Permissions";
 
 	@BindView(R.id.rvlist)
@@ -122,8 +121,7 @@ public class AppInfoPermissionFragment extends BaseFragment {
 						map.put(permissionGroupLabel, arrayList);
 					}
 				}
-				//noinspection unchecked
-				ArrayList<String> sortedKeys = new ArrayList(map.keySet());
+				ArrayList<String> sortedKeys = new ArrayList<>(map.keySet());
 				Collections.sort(sortedKeys);
 
 				sortedKeys.remove(NO_GROUP);
@@ -153,7 +151,7 @@ public class AppInfoPermissionFragment extends BaseFragment {
 				list.add(new InfoItem("Fail to fetch the permissions", "Error: -1034"));
 			}
 
-			adapter = new InfoItemAdapter(list);
+			InfoItemAdapter adapter = new InfoItemAdapter(list);
 
 			recyclerView.setAdapter(adapter);
 		} else {

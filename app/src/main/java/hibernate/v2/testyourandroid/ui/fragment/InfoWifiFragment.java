@@ -2,6 +2,7 @@ package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -132,7 +133,11 @@ public class InfoWifiFragment extends BaseFragment {
 				reload(true);
 				break;
 			case R.id.action_settings:
-				startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+				try {
+					startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+				} catch (ActivityNotFoundException e) {
+					startActivity(new Intent(Settings.ACTION_SETTINGS));
+				}
 				break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -202,7 +207,11 @@ public class InfoWifiFragment extends BaseFragment {
 				.onPositive(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+						try {
+							startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+						} catch (ActivityNotFoundException e) {
+							startActivity(new Intent(Settings.ACTION_SETTINGS));
+						}
 					}
 				});
 		dialog.show();

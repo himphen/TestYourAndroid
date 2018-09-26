@@ -148,21 +148,21 @@ public class MainActivity extends BaseActivity {
 				.onNegative(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						setting.edit().putInt("countRate", 1000).apply();
+						setting.edit().putInt(C.PREF_COUNT_RATE, 1000).apply();
 					}
 				})
 				.neutralText(R.string.rate_netbtn)
 				.onNeutral(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						setting.edit().putInt("countRate", 0).apply();
+						setting.edit().putInt(C.PREF_COUNT_RATE, 0).apply();
 					}
 				})
 				.positiveText(R.string.rate_posbtn)
 				.onPositive(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						setting.edit().putInt("countRate", 1000).apply();
+						setting.edit().putInt(C.PREF_COUNT_RATE, 1000).apply();
 						Uri uri = Uri
 								.parse("market://details?id=hibernate.v2.testyourandroid");
 						Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -173,36 +173,31 @@ public class MainActivity extends BaseActivity {
 	}
 
 	private void countRate() {
-		int countRate = setting.getInt("countRate", 0);
+		int countRate = setting.getInt(C.PREF_COUNT_RATE, 0);
 		if (countRate == 5) {
 			openDialogRate();
 		}
 		countRate++;
-		setting.edit().putInt("countRate", countRate).apply();
+		setting.edit().putInt(C.PREF_COUNT_RATE, countRate).apply();
 	}
 
 	private void language() {
-		String language = settingDefault.getString(C.PREF_LANGUAGE, "auto");
+		String language = settingDefault.getString(C.PREF_LANGUAGE, "");
+		String languageCountry = settingDefault.getString(C.PREF_LANGUAGE_COUNTRY, "");
 		int a = 0;
-		switch (language) {
-			case "auto":
-				a = 0;
-				break;
-			case "en":
-				a = 1;
-				break;
-			case "es":
-				a = 2;
-				break;
-			case "pt":
-				a = 3;
-				break;
-			case "zh":
-				a = 4;
-				break;
-			case "zh-rCN":
+
+		if ("en".equals(language)) {
+			a = 1;
+		} else if ("es".equals(language)) {
+			a = 2;
+		} else if ("pt".equals(language)) {
+			a = 3;
+		} else if ("zh".equals(language)) {
+			if ("CN".equals(languageCountry)) {
 				a = 5;
-				break;
+			} else {
+				a = 4;
+			}
 		}
 
 		MaterialDialog.Builder dialog = new MaterialDialog.Builder(this)
@@ -211,32 +206,35 @@ public class MainActivity extends BaseActivity {
 				.itemsCallbackSingleChoice(a, new MaterialDialog.ListCallbackSingleChoice() {
 					@Override
 					public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
+						SharedPreferences.Editor editor = settingDefault.edit();
 						switch (which) {
-							case 0:
-								settingDefault.edit().putString(C.PREF_LANGUAGE, "auto")
-										.apply();
-								break;
 							case 1:
-								settingDefault.edit().putString(C.PREF_LANGUAGE, "en")
-										.apply();
+								editor.putString(C.PREF_LANGUAGE, "en")
+										.putString(C.PREF_LANGUAGE_COUNTRY, "");
 								break;
 							case 2:
-								settingDefault.edit().putString(C.PREF_LANGUAGE, "es")
-										.apply();
+								editor.putString(C.PREF_LANGUAGE, "es")
+										.putString(C.PREF_LANGUAGE_COUNTRY, "");
 								break;
 							case 3:
-								settingDefault.edit().putString(C.PREF_LANGUAGE, "pt")
-										.apply();
+								editor.putString(C.PREF_LANGUAGE, "pt")
+										.putString(C.PREF_LANGUAGE_COUNTRY, "");
 								break;
 							case 4:
-								settingDefault.edit().putString(C.PREF_LANGUAGE, "zh")
-										.apply();
+								editor.putString(C.PREF_LANGUAGE, "zh")
+										.putString(C.PREF_LANGUAGE_COUNTRY, "");
 								break;
 							case 5:
-								settingDefault.edit().putString(C.PREF_LANGUAGE, "zh-rCN")
-										.apply();
+								editor.putString(C.PREF_LANGUAGE, "zh")
+										.putString(C.PREF_LANGUAGE_COUNTRY, "CN");
+								break;
+							default:
+								editor.putString(C.PREF_LANGUAGE, "")
+										.putString(C.PREF_LANGUAGE_COUNTRY, "");
 								break;
 						}
+
+						editor.apply();
 						startActivity(new Intent(mContext, MainActivity.class));
 						finish();
 						return false;

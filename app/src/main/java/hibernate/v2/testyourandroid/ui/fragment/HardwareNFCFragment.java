@@ -41,7 +41,7 @@ public class HardwareNFCFragment extends BaseFragment {
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		View rootView = inflater.inflate(R.layout.fragment_test_nfc, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_hardware_nfc, container, false);
 		ButterKnife.bind(this, rootView);
 		return rootView;
 	}

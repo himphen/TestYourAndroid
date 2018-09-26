@@ -4,7 +4,7 @@
         <name>Butter Knife</name>
         <url>http://jakewharton.github.io/butterknife/</url>
         <copyright>Copyright 2013 Jake Wharton</copyright>
-        <license>Apache License 2.0</license>
+        <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>Material Dialogs</name>
@@ -16,31 +16,31 @@
         <name>Android-RobotoTextView</name>
         <url>https://github.com/johnkil/Android-RobotoTextView</url>
         <copyright>Copyright 2014 Evgeny Shishkin</copyright>
-        <license>Apache License 2.0</license>
+        <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>Glide</name>
         <url>https://github.com/bumptech/glide</url>
         <copyright>https://github.com/bumptech/glide</copyright>
-        <license>Apache License 2.0</license>
+        <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>Licenses Dialog</name>
         <url>https://github.com/PSDev/LicensesDialog</url>
         <copyright>Copyright 2013-2016 Philip Schiffer</copyright>
-        <license>Apache License 2.0</license>
+        <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>OrmLite</name>
         <url>http://www.android-graphview.org/</url>
         <copyright>Copyright Jonas Gehring</copyright>
-        <license>Apache License 2.0</license>
+        <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>Android In-App Billing v3 Library</name>
         <url>https://github.com/anjlab/android-inapp-billing-v3/</url>
         <copyright>AnjLab</copyright>
-        <license>Apache License 2.0</license>
+        <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>SectionedRecyclerViewAdapter</name>
@@ -52,19 +52,19 @@
         <name>MaterialScrollBar</name>
         <url>https://github.com/turing-tech/MaterialScrollBar</url>
         <copyright>Turing Technologies, an unincorporated organisation of Wynne Plaga</copyright>
-        <license>Apache License 2.0</license>
+        <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>WaveLineView</name>
         <url>https://github.com/Jay-Goo/WaveLineView</url>
         <copyright>Jay-Goo</copyright>
-        <license>Apache License 2.0</license>
+        <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>Android Draw</name>
         <url>https://github.com/divyanshub024/AndroidDraw</url>
         <copyright>Divyanshu Bhargava</copyright>
-        <license>Apache License 2.0</license>
+        <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>CameraView</name>
@@ -76,6 +76,6 @@
         <name>AndroidUtilCode</name>
         <url>https://github.com/Blankj/AndroidUtilCode/</url>
         <copyright>The Apache Software Foundation</copyright>
-        <license>Apache License 2.0</license>
+        <license>Apache Software License 2.0</license>
     </notice>
 </notices>

@@ -3,7 +3,6 @@ package hibernate.v2.testyourandroid.ui.fragment;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -106,15 +105,19 @@ public class AppInfoActionFragment extends BaseFragment {
 								intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 								startActivity(intent);
 							} catch (Exception e) {
-								ComponentName componentName = new ComponentName(
-										"com.android.settings",
-										"com.android.settings.applications.InstalledAppDetails");
-								intent = new Intent();
-								intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-								intent.setData(Uri.fromParts("package", appItem.getPackageName(), null));
-								intent.setComponent(componentName);
-								intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-								startActivity(intent);
+								try {
+									ComponentName componentName = new ComponentName(
+											"com.android.settings",
+											"com.android.settings.applications.InstalledAppDetails");
+									intent = new Intent();
+									intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+									intent.setData(Uri.fromParts("package", appItem.getPackageName(), null));
+									intent.setComponent(componentName);
+									intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+									startActivity(intent);
+								} catch (Exception e1) {
+									startActivity(new Intent(Settings.ACTION_SETTINGS));
+								}
 							}
 							break;
 						case "play_store":

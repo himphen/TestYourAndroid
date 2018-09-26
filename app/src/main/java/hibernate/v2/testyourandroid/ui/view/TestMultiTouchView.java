@@ -18,9 +18,9 @@ public class TestMultiTouchView extends View {
 
 	private SparseArray<PointF> mActivePointers;
 	private Paint mPaint;
-	private int[] colors = {Color.BLUE, Color.GREEN, Color.MAGENTA,
-			Color.BLACK, Color.CYAN, Color.GRAY, Color.RED, Color.DKGRAY,
-			Color.LTGRAY, Color.YELLOW};
+	private int[] colors = {Color.parseColor("#3F51B5"), Color.parseColor("#4CAF50"), Color.parseColor("#9C27B0"),
+			Color.parseColor("#FF9800"), Color.parseColor("#CDDC39"), Color.parseColor("#03A9F4"), Color.parseColor("#B71C1C"), Color.parseColor("#263238"),
+			Color.parseColor("#607D8B"), Color.parseColor("#FFEB3B")};
 
 
 	public TestMultiTouchView(Context context) {
@@ -32,7 +32,7 @@ public class TestMultiTouchView extends View {
 		mActivePointers = new SparseArray<>();
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		// set painter color to a color you like
-		mPaint.setColor(Color.BLUE);
+		mPaint.setColor(colors[0]);
 		mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 		Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		textPaint.setTextSize(20);

@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.view.ViewConfiguration;
 import android.widget.RelativeLayout;
 
+import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -33,6 +34,8 @@ public class UtilHelper {
 
 	public static final String PREF_IAP = "iap";
 	public static final String PREF_LANGUAGE = "PREF_LANGUAGE";
+	public static final String PREF_LANGUAGE_COUNTRY = "PREF_LANGUAGE_COUNTRY";
+	public static final String PREF_COUNT_RATE = "PREF_COUNT_RATE";
 
 	@Nullable
 	public static AdView initAdView(Activity c, RelativeLayout adLayout) {
@@ -88,33 +91,36 @@ public class UtilHelper {
 		return bigDecimal.toPlainString();
 	}
 
-	@SuppressWarnings("deprecation")
-	public static void detectLanguage(Context context) {
-		SharedPreferences setting = PreferenceManager
-				.getDefaultSharedPreferences(context);
-		String language = setting.getString(UtilHelper.PREF_LANGUAGE, "auto");
-		Resources res = context.getResources();
-		Configuration conf = res.getConfiguration();
-		switch (language) {
-			case "en":
-			case "es":
-			case "pt":
-			case "zh":
-			case "zh-rCN":
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-					conf.setLocale(new Locale(language));
-				} else {
-					conf.locale = new Locale(language);
-				}
-				break;
-			default:
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-					conf.setLocale(Resources.getSystem().getConfiguration().getLocales().get(0));
-				} else {
-					conf.locale = Resources.getSystem().getConfiguration().locale;
-				}
+	public static void detectLanguage(Context mContext) {
+		SharedPreferences setting = PreferenceManager.getDefaultSharedPreferences(mContext);
+		String language = setting.getString(UtilHelper.PREF_LANGUAGE, "");
+		String languageCountry = setting.getString(UtilHelper.PREF_LANGUAGE_COUNTRY, "");
+
+		if (language.equals("")) {
+			Locale locale;
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+				locale = Resources.getSystem().getConfiguration().getLocales().get(0);
+			} else {
+				locale = Resources.getSystem().getConfiguration().locale;
+			}
+			language = locale.getLanguage();
+			languageCountry = locale.getCountry();
 		}
-		DisplayMetrics dm = res.getDisplayMetrics();
-		res.updateConfiguration(conf, dm);
+
+		if (mContext instanceof LocalizationActivity) {
+			((LocalizationActivity) mContext).setLanguage(new Locale(language, languageCountry));
+		} else {
+			Resources res = mContext.getResources();
+			Configuration conf = res.getConfiguration();
+
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+				conf.setLocale(new Locale(language, languageCountry));
+			} else {
+				conf.locale = new Locale(language, languageCountry);
+			}
+
+			DisplayMetrics dm = res.getDisplayMetrics();
+			res.updateConfiguration(conf, dm);
+		}
 	}
 }

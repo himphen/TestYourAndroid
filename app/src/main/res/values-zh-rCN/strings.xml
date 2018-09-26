@@ -96,7 +96,7 @@
     <string name="title_activity_device">其他硬件资料</string>
     <string name="title_activity_android_version">Android 版本</string>
     <string name="title_activity_battery">电池资料</string>
-    <string name="title_activity_camera">相机资料</string>
+    <string name="title_activity_camera">相机</string>
     <string name="title_activity_gsm">SIM 卡资料</string>
     <string name="title_activity_system_monitor">系统监视器</string>
     <string name="title_activity_test_ad_remover">移除广告</string><!-- NEW -->
