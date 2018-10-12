@@ -30,8 +30,8 @@ import hibernate.v2.testyourandroid.ui.fragment.MainFragment;
 
 public class MainActivity extends BaseActivity {
 
-	private SharedPreferences setting;
-	private SharedPreferences settingDefault;
+	private SharedPreferences preferences;
+	private SharedPreferences defaultPreferences;
 	private BillingProcessor billingProcessor;
 
 	@BindView(R.id.toolbar)
@@ -52,8 +52,8 @@ public class MainActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_container);
-		setting = getSharedPreferences(C.PREF, 0);
-		settingDefault = PreferenceManager
+		preferences = getSharedPreferences(C.PREF, 0);
+		defaultPreferences = PreferenceManager
 				.getDefaultSharedPreferences(mContext);
 
 		ButterKnife.bind(this);
@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity {
 					@Override
 					public void onProductPurchased(@NonNull String productId, TransactionDetails details) {
 						if (productId.equals(C.IAP_PID)) {
-							settingDefault.edit().putBoolean(C.PREF_IAP, true).apply();
+							defaultPreferences.edit().putBoolean(C.PREF_IAP, true).apply();
 							MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
 									.title(R.string.iab_complete_title)
 									.customView(R.layout.dialog_donate, true)
@@ -82,7 +82,7 @@ public class MainActivity extends BaseActivity {
 					@Override
 					public void onPurchaseHistoryRestored() {
 						if (billingProcessor.isPurchased(C.IAP_PID)) {
-							settingDefault.edit().putBoolean(C.PREF_IAP, true).apply();
+							defaultPreferences.edit().putBoolean(C.PREF_IAP, true).apply();
 						}
 					}
 
@@ -148,21 +148,21 @@ public class MainActivity extends BaseActivity {
 				.onNegative(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						setting.edit().putInt(C.PREF_COUNT_RATE, 1000).apply();
+						preferences.edit().putInt(C.PREF_COUNT_RATE, 1000).apply();
 					}
 				})
 				.neutralText(R.string.rate_netbtn)
 				.onNeutral(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						setting.edit().putInt(C.PREF_COUNT_RATE, 0).apply();
+						preferences.edit().putInt(C.PREF_COUNT_RATE, 0).apply();
 					}
 				})
 				.positiveText(R.string.rate_posbtn)
 				.onPositive(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						setting.edit().putInt(C.PREF_COUNT_RATE, 1000).apply();
+						preferences.edit().putInt(C.PREF_COUNT_RATE, 1000).apply();
 						Uri uri = Uri
 								.parse("market://details?id=hibernate.v2.testyourandroid");
 						Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -173,17 +173,17 @@ public class MainActivity extends BaseActivity {
 	}
 
 	private void countRate() {
-		int countRate = setting.getInt(C.PREF_COUNT_RATE, 0);
+		int countRate = preferences.getInt(C.PREF_COUNT_RATE, 0);
 		if (countRate == 5) {
 			openDialogRate();
 		}
 		countRate++;
-		setting.edit().putInt(C.PREF_COUNT_RATE, countRate).apply();
+		preferences.edit().putInt(C.PREF_COUNT_RATE, countRate).apply();
 	}
 
 	private void language() {
-		String language = settingDefault.getString(C.PREF_LANGUAGE, "");
-		String languageCountry = settingDefault.getString(C.PREF_LANGUAGE_COUNTRY, "");
+		String language = defaultPreferences.getString(C.PREF_LANGUAGE, "");
+		String languageCountry = defaultPreferences.getString(C.PREF_LANGUAGE_COUNTRY, "");
 		int a = 0;
 
 		if ("en".equals(language)) {
@@ -206,7 +206,7 @@ public class MainActivity extends BaseActivity {
 				.itemsCallbackSingleChoice(a, new MaterialDialog.ListCallbackSingleChoice() {
 					@Override
 					public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
-						SharedPreferences.Editor editor = settingDefault.edit();
+						SharedPreferences.Editor editor = defaultPreferences.edit();
 						switch (which) {
 							case 1:
 								editor.putString(C.PREF_LANGUAGE, "en")

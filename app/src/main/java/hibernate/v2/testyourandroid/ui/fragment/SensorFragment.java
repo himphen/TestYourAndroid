@@ -9,6 +9,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -190,20 +191,20 @@ public class SensorFragment extends BaseFragment {
 
 		GraphView.GraphViewData[] data = new GraphView.GraphViewData[]{};
 		series = new GraphViewSeries("", new GraphViewSeries.GraphViewSeriesStyle(
-				getResources().getColor(R.color.blue500), 3), data);
+				ContextCompat.getColor(mContext, R.color.blue500), 3), data);
 		graphView.addSeries(series);
 
 		if (isGraph2) {
 			GraphView.GraphViewData[] data1 = new GraphView.GraphViewData[]{};
 			series2 = new GraphViewSeries("", new GraphViewSeries.GraphViewSeriesStyle(
-					getResources().getColor(R.color.pink500), 3), data1);
+					ContextCompat.getColor(mContext, R.color.pink500), 3), data1);
 			graphView.addSeries(series2);
 		}
 
 		if (isGraph3) {
 			GraphView.GraphViewData[] data2 = new GraphView.GraphViewData[]{};
 			series3 = new GraphViewSeries("", new GraphViewSeries.GraphViewSeriesStyle(
-					getResources().getColor(R.color.green500), 3), data2);
+					ContextCompat.getColor(mContext, R.color.green500), 3), data2);
 			graphView.addSeries(series3);
 		}
 

@@ -6,7 +6,7 @@
     <string name="ui_share">分享</string>
     <string name="action_iap">移除广告</string><!-- -->
     <string name="color_title">使用方法</string>
-    <string name="color_message">正常模式：\n按一下可转换下一种颜色\n长按弹出颜色选单\n\n修复模式：\n自动快速转换颜色</string>
+    <string name="color_message">正常模式：\n按一下可转换下一种颜色\n\n修复模式：\n自动快速转换颜色</string>
     <string name="color_normal_btn">正常模式</string>
     <string name="color_test_btn">修复模式</string>
     <string name="color_test_message">修复模式进行期间，萤幕将会不停闪动及快速转换颜色，请避免看着萤幕以免对眼晴受损。
@@ -25,28 +25,13 @@
     <string name="vibrate_type">震动模式</string>
     <!-- -->
     <string name="main_tab_title_1">测试功能</string>
-    <string name="main_tab_title_2">硬件资讯</string>
-    <string name="main_tab_title_3">关于程式</string>
+    <string name="main_tab_title_2">关于程式</string>
     <!-- -->
     <string name="test_monitor_tab_title_1">CPU</string>
     <string name="test_monitor_tab_title_2">网络流量</string>
     <string name="test_monitor_tab_title_3">RAM</string>
 
-    <string name="color_choose_title">请选择颜色：</string>
-    <string name="color_choose_red">红色</string>
-    <string name="color_choose_green">绿色</string>
-    <string name="color_choose_blue">蓝色</string>
-    <string name="color_choose_cyan">青色</string>
-    <string name="color_choose_magenta">酒红色</string>
-    <string name="color_choose_yellow">黄色</string>
-    <string name="color_choose_black">黑色</string>
-    <string name="color_choose_white">白色</string>
-    <string name="color_choose_gray">灰色</string>
-    <string name="color_choose_dark_gray">深灰色</string>
-    <string name="color_choose_light_gray">浅灰色</string>
-
     <string name="ui_caution">注意</string>
-    <string name="draw_message">请绘画直线来测试萤幕敏感度</string>
     <string name="touch_message">请按萤幕来测试多点触控</string>
     <!-- -->
     <string name="info_hardware_string_1">品牌</string>
@@ -69,7 +54,7 @@
     <string name="info_battery_health_string_4">注意：电池温度过高</string>
     <string name="info_battery_health_string_5">注意：电池出现故障，请尽快更换</string>
     <string name="info_battery_health_string_6">注意：电池电压过高</string>
-    <string name="info_battery_health_string_7">注意：不能辨识电池状况</string>
+    <string name="info_battery_health_string_7">不能辨识电池状况</string>
     <string name="info_battery_health_string_8">注意：电池温度过低</string>
 
     <string name="flash_on">开启闪光灯</string>
@@ -210,17 +195,12 @@
     <string name="gps_enable_posbtn">前往定位设定</string>
     <string name="nfc_enable_message">你需要开启 NFC 来测试此功能。 </string>
     <string name="nfc_enable_posbtn">前往 NFC 设定</string>
-    <string name="nfc_message">请扫瞄任何 NFC 标签</string>
-    <string name="nfc_help">说明</string>
     <string name="nfc_setting">NFC 设定</string>
-    <string name="nfc_tutor_title">使用方法</string>
-    <string name="nfc_tutor_message">"请将任何 NFC 标签放在机背，成功扫瞄时有声响，并弹出对话框显示 NFC 内容（如有）。 "</string>
     <string name="ui_version">版本</string>
     <string name="feedback">回报问题</string>
     <string name="feedback_title">Android 测试工具 App 回报问题及意见</string>
     <string name="more">开发人员更多程式</string>
     <string name="cpu_speed">速度</string>
-    <string name="cpu_range">可用速度</string>
     <string name="cpu_core">核心数目</string>
     <string name="cpu_min">最小速度</string>
     <string name="cpu_max">最大速度</string>
@@ -240,10 +220,6 @@
     <string name="title_activity_touch">多点测试</string>
     <string name="title_activity_fingerprint">指纹扫瞄</string>
 
-    <string name="changelog_full_title">更新日志</string>
-    <string name="changelog_title">有什么更新？ </string>
-    <string name="changelog_ok_button">好的</string>
-    <string name="changelog_show_full">更多</string>
     <string name="title_activity_microphone">麦克风</string>
     <string name="mic_start_playing">按键开始录音</string>
     <string name="mic_start_recording">按键停止录影并播放开始录音</string>
@@ -266,17 +242,14 @@
     <string name="info_android_version_string_9">VM 程式码版本</string>
     <string name="iab_complete_title">好的</string>
     <string name="iab_complete_message">请重新启动程式以套用更新。</string>
-    <string name="iap_not_found">没有纪录</string>
-    <string name="loading">载入中</string>
+    <string name="ui_loading">载入中</string>
     <string name="ui_fingerprint_not_locked">请先在系统设定解锁方式。</string>
     <string name="ui_fingerprint_not_register">请先登记最少一个指模。</string>
     <string name="ui_fingerprint_succeeded">验证成功。</string>
     <string name="ui_fingerprint_start_message">请将手指放在扫描器上。</string>
     <string name="ui_fingerprint_help">验证提示</string>
     <string name="ui_fingerprint_fail">无法识别。</string>
-    <string name="ui_fingerprint_error">验证错误</string>
     <string name="title_activity_application">安装应用程式列表</string>
-    <string name="dialog_fingerprint_sdk_message">这项功能需要 Android 6.0+ 支持才能使用。</string>
     <string name="security_setting">设定</string>
     <string name="info_android_version_string_19">时区</string>
     <string name="app_action_string_1">开启</string>
@@ -287,11 +260,6 @@
     <string name="app_info_tab_title_2">Package</string>
     <string name="app_info_tab_title_3">权限</string>
     <string name="app_not_found">找不到应用程式。</string>
-    <string name="ui_not_support_android_20">只支持 Android 4.4+</string>
-    <string name="ui_not_support_android_21">只支持 Android 5.0+</string>
-    <string name="ui_not_support_android_22">只支持 Android 5.1+</string>
-    <string name="ui_not_support_android_23">只支持 Android 6.0+</string>
-    <string name="ui_not_support_android_24">只支持 Android 7.0+</string>
     <string name="title_activity_app_all">所有应用程式</string>
     <string name="title_activity_app_choose">已安装应用程式</string>
     <string name="title_activity_app_system">系统应用程式</string>
@@ -309,7 +277,6 @@
     <string name="app_package_string_9">Min. SDK Version</string>
     <string name="app_package_string_8">APK Directory</string>
     <string name="about_credit_btn">Open source licenses</string>
-    <string name="ui_not_support_android_19">只支持 Android 4.4+</string>
     <string name="title_activity_step">计步器</string>
     <string name="title_activity_temperature">温度感应器</string>
     <string name="title_activity_bluetooth">蓝牙</string>
@@ -317,10 +284,6 @@
     <string name="test_bluetooth_string_2">已配对设备</string>
     <string name="bluetooth_enable_message">你需要开启蓝牙来测试此功能。</string>
     <string name="bluetooth_enable_posbtn">前往蓝牙设定</string>
-    <string name="bluetooth_no">没有蓝牙设备连接</string>
-    <string name="bluetooth_reload">重新扫描</string>
-    <string name="bluetooth_reload_done">扫瞄完成</string>
-    <string name="bluetooth_reload_fail">扫瞄失败</string>
     <string name="bluetooth_setting">设定</string>
     <string name="dialog_permission_denied_posbtn">设定 »</string>
     <string name="dialog_permission_denied_message">请给予应用程式相关权限，这样才能测试及提供相关资讯。</string>
@@ -333,5 +296,6 @@
     <string name="ui_relative_humidity">相对湿度：</string>
     <string name="ui_absolute_humidity">绝对湿度：</string>
     <string name="ui_dew_point">露点：</string>
+    <string name="ui_not_support_android_version">只支持 Android %1$s+</string>
 
 </resources>

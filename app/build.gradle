@@ -9,8 +9,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 197100 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Cheungfan 710a"
+        versionCode 197110 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Cheungfan 711a"
         multiDexEnabled true
     }
 
@@ -21,7 +21,10 @@ android {
             shrinkResources false
             useProguard false
             buildConfigField "String", "ADMOB_KEY", "\"" + getSecretKey("ADMOB_KEY") + "\""
-            buildConfigField "String[]", "DEVICE_ID", getSecretKey("DEVICE_ID")
+            buildConfigField "String", "ADMOB_APP_ID", "\"" + getSecretKey("ADMOB_APP_ID") + "\""
+            resValue "string", "ADMOB_APP_ID", "\"" + getSecretKey("ADMOB_APP_ID") + "\""
+            buildConfigField "String[]", "ADMOB_DEVICE_ID", getSecretKey("ADMOB_DEVICE_ID")
+            buildConfigField "String[]", "APPBRAIN_DEVICE_ID", getSecretKey("APPBRAIN_DEVICE_ID")
             resValue "string", "GOOGLE_API_KEY", "\"" + getSecretKey("GOOGLE_API_KEY") + "\""
             buildConfigField "String", "GOOGLE_IAP_KEY", "\"" + getSecretKey("GOOGLE_IAP_KEY") + "\""
         }
@@ -32,7 +35,10 @@ android {
             useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "ADMOB_KEY", "\"" + getSecretKey("ADMOB_KEY") + "\""
-            buildConfigField "String[]", "DEVICE_ID", getSecretKey("DEVICE_ID")
+            buildConfigField "String", "ADMOB_APP_ID", "\"" + getSecretKey("ADMOB_APP_ID") + "\""
+            resValue "string", "ADMOB_APP_ID", "\"" + getSecretKey("ADMOB_APP_ID") + "\""
+            buildConfigField "String[]", "ADMOB_DEVICE_ID", getSecretKey("ADMOB_DEVICE_ID")
+            buildConfigField "String[]", "APPBRAIN_DEVICE_ID", getSecretKey("APPBRAIN_DEVICE_ID")
             resValue "string", "GOOGLE_API_KEY", "\"" + getSecretKey("GOOGLE_API_KEY") + "\""
             buildConfigField "String", "GOOGLE_IAP_KEY", "\"" + getSecretKey("GOOGLE_IAP_KEY") + "\""
         }
@@ -64,11 +70,11 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
 
     // Google Play Services
-    implementation 'com.google.android.gms:play-services-ads:15.0.1'
-    implementation 'com.google.android.gms:play-services-maps:15.0.1'
-    implementation 'com.google.android.gms:play-services-location:15.0.1'
-    implementation 'com.google.android.gms:play-services-wearable:15.0.1'
-    implementation 'com.google.firebase:firebase-core:16.0.3'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-wearable:16.0.1'
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.firebase:firebase-ads:17.0.0'
 
     // https://github.com/JakeWharton/butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
@@ -107,7 +113,7 @@ dependencies {
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
 
     // https://github.com/Blankj/AndroidUtilCode
-    implementation 'com.blankj:utilcode:1.19.3'
+    implementation 'com.blankj:utilcode:1.20.4'
 
     // https://github.com/luizgrp/SectionedRecyclerViewAdapter
     implementation 'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:1.2.0'

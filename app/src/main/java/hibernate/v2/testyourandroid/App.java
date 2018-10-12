@@ -7,6 +7,7 @@ import android.support.multidex.MultiDexApplication;
 
 import com.akexorcist.localizationactivity.core.LocalizationApplicationDelegate;
 import com.blankj.utilcode.util.Utils;
+import com.google.android.gms.ads.MobileAds;
 
 /**
  * Created by himphen on 24/5/16.

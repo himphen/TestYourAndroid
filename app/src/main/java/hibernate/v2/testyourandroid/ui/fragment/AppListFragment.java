@@ -99,7 +99,7 @@ public class AppListFragment extends BaseFragment {
 			protected void onPreExecute() {
 				super.onPreExecute();
 				dialog = new MaterialDialog.Builder(mContext)
-						.content(R.string.loading)
+						.content(R.string.ui_loading)
 						.progress(true, 0)
 						.cancelable(false)
 						.show();

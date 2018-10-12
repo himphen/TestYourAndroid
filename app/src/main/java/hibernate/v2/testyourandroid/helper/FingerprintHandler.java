@@ -47,7 +47,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
 	@Override
 	public void onAuthenticationHelp(int helpMsgId, CharSequence helpString) {
-		helpText.setText(mContext.getString(R.string.ui_fingerprint_help) + "\n" + helpString);
+		helpText.setText(String.format("%s\n%s", mContext.getString(R.string.ui_fingerprint_help), helpString));
 	}
 
 	@Override

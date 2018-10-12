@@ -1,25 +1,28 @@
 package hibernate.v2.testyourandroid.ui.activity;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.WindowManager;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
 
-public class HardwareScreenActivity extends Activity {
+public class HardwareScreenActivity extends BaseActivity {
 
-	private View colorView;
+	@BindView(R.id.colorView)
+	View colorView;
+
 	private boolean testMode = false;
 	private int i = 0;
 
@@ -43,24 +46,19 @@ public class HardwareScreenActivity extends Activity {
 	}
 
 	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		changeColor(item.getItemId());
-		return super.onContextItemSelected(item);
-	}
-
-	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_color);
+		ButterKnife.bind(this);
 		init();
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
 	@Override
-	public void onDestroy() {
+	public void onPause() {
 		timer.cancel();
-		super.onDestroy();
+		super.onPause();
 	}
 
 	private void changeColor(int j) {
@@ -103,37 +101,15 @@ public class HardwareScreenActivity extends Activity {
 	}
 
 	private void init() {
-		colorView = findViewById(R.id.colorView);
-		colorView.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if (!testMode) {
-					i++;
-					changeColor(i);
-				}
-			}
-		});
-		colorView.setOnLongClickListener(new View.OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				CharSequence[] arrayName = getResources().getStringArray(R.array.color_string_array);
-				MaterialDialog.Builder dialog = new MaterialDialog.Builder(HardwareScreenActivity.this)
-						.title(R.string.color_choose_title)
-						.items(arrayName)
-						.itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
-							@Override
-							public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
-								i = which;
-								changeColor(which);
-								return false;
-							}
-						})
-						.negativeText(R.string.ui_cancel);
-				dialog.show();
-				return false;
-			}
-		});
 		openDialogTutor();
+	}
+
+	@OnClick(R.id.colorView)
+	public void onClickColorView() {
+		if (!testMode) {
+			i++;
+			changeColor(i);
+		}
 	}
 
 	private void openDialogTestMode() {

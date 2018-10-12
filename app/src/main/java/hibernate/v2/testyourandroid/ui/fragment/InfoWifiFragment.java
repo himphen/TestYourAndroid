@@ -244,7 +244,7 @@ public class InfoWifiFragment extends BaseFragment {
 							+ currentStringArray[10] + intToIp(dhcpInfo.dns2) + "\n"
 							+ currentStringArray[11] + intToIp(dhcpInfo.serverAddress);
 				case 1:
-					return getString(R.string.loading);
+					return getString(R.string.ui_loading);
 				case 2:
 					try {
 						// List saved networks

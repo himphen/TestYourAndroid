@@ -8,13 +8,7 @@
     <string name="ui_na">N/A</string>
     <string name="ui_caution">Caution</string>
     <string name="ui_not_support">No soportado</string>
-    <string name="ui_not_support_android_20">Soporte Android 4.4+</string>
-    <string name="ui_not_support_android_21">Soporte Android 5.0+</string>
-    <string name="ui_not_support_android_22">Soporte Android 5.1+</string>
-    <string name="ui_not_support_android_23">Soporte Android 6.0+</string>
-    <string name="ui_not_support_android_24">Soporte Android 7.0+</string>
     <string name="dialog_feature_na_message">El dispositivo Android no tiene esta característica o está siendo utilizado por otras aplicaciones.</string>
-    <string name="dialog_fingerprint_sdk_message">Esta función sólo es compatible con Android 6.0 o superior de Android API Oficial.</string>
 
     <string name="title_activity_screen">Color del monitor</string>
     <string name="title_activity_light">Sensor de luminosidad</string>
@@ -51,8 +45,7 @@
 
     <!--  -->
     <string name="main_tab_title_1">Prueba</string>
-    <string name="main_tab_title_2">Información</string>
-    <string name="main_tab_title_3">Acerca de</string>
+    <string name="main_tab_title_2">Acerca de</string>
 
     <!--  -->
     <string name="app_info_tab_title_1">Acciones</string>
@@ -66,9 +59,7 @@
 
     <!--  -->
     <string name="color_title">Por favor, seleccione</string>
-    <string name="color_message">El modo normal:
-        \nToque para cambiar el siguiente color\nToque en color para seleccionar el selector de colores
-        \n\nModo de fijación: \nCambio de color de forma rápida</string>
+    <string name="color_message">El modo normal:\nToque para cambiar el siguiente color\n\nModo de fijación:\nCambio de color de forma rápida</string>
     <string name="color_normal_btn">El modo normal</string>
     <string name="color_test_btn">Modo de fijación</string>
     <string name="color_test_message">Durante el modo de ajuste, la pantalla parpadeará rápidamente cambiando de color.
@@ -76,19 +67,6 @@
         \n\nSe recomienda hacerlo durante la carga. Este modo se cerrará automáticamente después de 20 minutos.
         \n\nEste modo de fijación no está garantizada para corregir los píxeles defectuosos. Póngase en contacto con el fabricante si tiene algún problema.
         \n\nPuede pulsar el botón ATRÁS para ir a la pantalla principal.</string>
-
-    <string name="color_choose_title">Por favor, seleccione</string>
-    <string name="color_choose_red">Rojo</string>
-    <string name="color_choose_green">Verde</string>
-    <string name="color_choose_blue">Azul</string>
-    <string name="color_choose_cyan">Cian</string>
-    <string name="color_choose_magenta">Magenta</string>
-    <string name="color_choose_yellow">Amarillo</string>
-    <string name="color_choose_black">Negro</string>
-    <string name="color_choose_white">Blanco</string>
-    <string name="color_choose_gray">Gris</string>
-    <string name="color_choose_dark_gray">Gris negro</string>
-    <string name="color_choose_light_gray">Gris claro</string>
 
     <!--  -->
     <string name="vibrate_button">Prueba de vibración</string>
@@ -103,9 +81,7 @@
     <string name="vibrate_type">El modo de vibración</string>
 
     <!--  -->
-    <string name="draw_message">Trazar una línea para probar la sensibilidad de la pantalla táctil.</string>
     <string name="touch_message">Toque en la pantalla con algunos dedos.</string>
-    <string name="nfc_tutor_title">Como hacer</string>
     <string name="nfc_tutor_message">Tire cualquier etiqueta NFC detrás del dispositivo y recibirá pitidos cuando tiene éxito.</string>
 
     <!--  -->
@@ -283,12 +259,8 @@
     <string name="wifi_enable_posbtn">Ir a la configuración Wi-Fi</string>
     <string name="wifi_no">No hay Wi-Fi conectado</string>
     <string name="bluetooth_setting">Configuración</string>
-    <string name="bluetooth_reload">Actualizar</string>
-    <string name="bluetooth_reload_done">Actualizado</string>
-    <string name="bluetooth_reload_fail">Error al actualizar</string>
     <string name="bluetooth_enable_message">Es necesario activar el Bluetooth para continuar.</string>
     <string name="bluetooth_enable_posbtn">Ir a la configuración Bluetooth</string>
-    <string name="bluetooth_no">No hay Bluetooth conectado</string>
     <string name="gps_setting">Configuración de localización</string>
     <string name="security_setting">Ajustes</string>
     <string name="gps_scanning">Buscando</string>
@@ -296,15 +268,12 @@
     <string name="gps_enable_posbtn">Ir a la configuración de la localización</string>
     <string name="nfc_enable_message">Debe habilitar el NFC para continuar.</string>
     <string name="nfc_enable_posbtn">Ir a la configuración NFC</string>
-    <string name="nfc_message">Cerca de una etiqueta NFC.</string>
-    <string name="nfc_help">Ayuda</string>
     <string name="nfc_setting">Configuración del NFC</string>
     <string name="flash_on">Activar flash</string>
     <string name="flash_off">Desactivar Flash</string>
     <string name="ui_share">Compartir</string>
     <string name="action_iap">Eliminar los anuncios</string>
     <string name="cpu_speed">Velocidad</string>
-    <string name="cpu_range">Alcance</string>
     <string name="cpu_core">Nº de núcleos</string>
     <string name="cpu_min">Velocidad Min</string>
     <string name="cpu_max">Velocidad Max</string>
@@ -331,24 +300,17 @@
 
     <!--  -->
     <string name="dialog_camera_title">Detener</string>
-    <string name="changelog_full_title">Histórico de cambios</string>
-    <string name="changelog_title">Qué hay de nuevo</string>
-    <string name="changelog_ok_button">OK</string>
-    <string name="changelog_show_full">Más…</string>
     <string name="iab_complete_title">Gracias</string>
     <string name="iab_complete_message">Reinicia la aplicación para aplicar el cambio.</string>
-    <string name="iap_not_found">No se encontraron registros.</string>
-    <string name="loading">Cargando...</string>
+    <string name="ui_loading">Cargando...</string>
     <string name="ui_fingerprint_not_locked">Active la pantalla de bloqueo en Ajustes.</string>
     <string name="ui_fingerprint_not_register">Registrar al menos una huella digital en Configuración.</string>
     <string name="ui_fingerprint_start_message">Coloca el dedo en el sensor.</string>
     <string name="ui_fingerprint_fail">No soportado.</string>
-    <string name="ui_fingerprint_error">Error de autenticación</string>
     <string name="ui_fingerprint_help">Ayuda de autenticación</string>
     <string name="ui_fingerprint_succeeded">Completado.</string>
 
     <string name="app_not_found">No se encontró aplicación.</string>
-    <string name="ui_not_support_android_19">Soporte Android 4.4+</string>
     <string name="title_activity_step">Podómetro</string>
     <string name="title_activity_temperature">Sensor de temperatura</string>
     <string name="title_activity_bluetooth">Bluetooth</string>
@@ -365,5 +327,6 @@
     <string name="ui_relative_humidity">"Humedad relativa: "</string>
     <string name="ui_absolute_humidity">"Humedad absoluta: "</string>
     <string name="ui_dew_point">"Punto de rocío: "</string>
+    <string name="ui_not_support_android_version">Soporte Android %1$s+</string>
 
 </resources>

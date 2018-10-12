@@ -50,7 +50,7 @@ public class UtilHelper {
 				AdRequest.Builder adRequest = new AdRequest.Builder();
 				adRequest.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
 
-				for (String id : BuildConfig.DEVICE_ID) {
+				for (String id : BuildConfig.ADMOB_DEVICE_ID) {
 					adRequest.addTestDevice(id);
 				}
 
@@ -92,9 +92,9 @@ public class UtilHelper {
 	}
 
 	public static void detectLanguage(Context mContext) {
-		SharedPreferences setting = PreferenceManager.getDefaultSharedPreferences(mContext);
-		String language = setting.getString(UtilHelper.PREF_LANGUAGE, "");
-		String languageCountry = setting.getString(UtilHelper.PREF_LANGUAGE_COUNTRY, "");
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+		String language = preferences.getString(UtilHelper.PREF_LANGUAGE, "");
+		String languageCountry = preferences.getString(UtilHelper.PREF_LANGUAGE_COUNTRY, "");
 
 		if (language.equals("")) {
 			Locale locale;

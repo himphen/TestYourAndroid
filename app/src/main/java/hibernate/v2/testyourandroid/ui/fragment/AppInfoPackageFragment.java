@@ -117,7 +117,7 @@ public class AppInfoPackageFragment extends BaseFragment {
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 						return String.valueOf(packageInfo.applicationInfo.minSdkVersion);
 					} else {
-						return getString(R.string.ui_not_support_android_24);
+						return getString(R.string.ui_not_support_android_version, "7.0");
 					}
 				case 9:
 					return String.valueOf(packageInfo.applicationInfo.targetSdkVersion);

@@ -201,7 +201,7 @@ public class InfoBluetoothFragment extends BaseFragment {
 			StringBuilder text = new StringBuilder();
 			switch (j) {
 				case 0:
-					return getString(R.string.loading);
+					return getString(R.string.ui_loading);
 				case 1:
 					try {
 						// List paired devices

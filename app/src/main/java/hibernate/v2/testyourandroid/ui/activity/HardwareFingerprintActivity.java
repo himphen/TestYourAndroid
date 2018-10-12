@@ -63,7 +63,7 @@ public class HardwareFingerprintActivity extends BaseActivity {
 		} else {
 			MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
 					.title(R.string.ui_error)
-					.content(R.string.dialog_fingerprint_sdk_message)
+					.content(getString(R.string.ui_not_support_android_version, "6.0"))
 					.cancelable(false)
 					.positiveText(R.string.ui_okay)
 					.onPositive(new MaterialDialog.SingleButtonCallback() {

@@ -8,7 +8,9 @@ import android.view.MenuItem;
 
 import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.appbrain.AppBrain;
+import com.google.android.gms.ads.MobileAds;
 
+import hibernate.v2.testyourandroid.BuildConfig;
 import hibernate.v2.testyourandroid.C;
 
 /**
@@ -27,6 +29,12 @@ public class BaseActivity extends LocalizationActivity {
 		mContext = this;
 		C.detectLanguage(this);
 		AppBrain.init(this);
+
+		for (String deviceId : BuildConfig.APPBRAIN_DEVICE_ID) {
+			AppBrain.addTestDevice(deviceId);
+		}
+
+		MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
 	}
 
 	@Override
