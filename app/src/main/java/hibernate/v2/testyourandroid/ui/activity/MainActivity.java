@@ -163,10 +163,15 @@ public class MainActivity extends BaseActivity {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
 						preferences.edit().putInt(C.PREF_COUNT_RATE, 1000).apply();
-						Uri uri = Uri
-								.parse("market://details?id=hibernate.v2.testyourandroid");
-						Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-						startActivity(intent);
+
+						Intent intent = new Intent(Intent.ACTION_VIEW);
+						try {
+							intent.setData(Uri.parse("market://details?id=hibernate.v2.testyourandroid"));
+							startActivity(intent);
+						} catch (ActivityNotFoundException e) {
+							intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid"));
+							startActivity(intent);
+						}
 					}
 				});
 		dialog.show();
@@ -186,17 +191,25 @@ public class MainActivity extends BaseActivity {
 		String languageCountry = defaultPreferences.getString(C.PREF_LANGUAGE_COUNTRY, "");
 		int a = 0;
 
-		if ("en".equals(language)) {
+		if ("in".equals(language)) {
 			a = 1;
-		} else if ("es".equals(language)) {
+		} else if ("en".equals(language)) {
 			a = 2;
-		} else if ("pt".equals(language)) {
+		} else if ("es".equals(language)) {
 			a = 3;
+		} else if ("fr".equals(language)) {
+			a = 4;
+		} else if ("it".equals(language)) {
+			a = 5;
+		} else if ("pt".equals(language)) {
+			a = 6;
 		} else if ("zh".equals(language)) {
-			if ("CN".equals(languageCountry)) {
-				a = 5;
+			if ("HK".equals(languageCountry)) {
+				a = 8;
+			} else if ("CN".equals(languageCountry)) {
+				a = 9;
 			} else {
-				a = 4;
+				a = 7;
 			}
 		}
 
@@ -209,22 +222,38 @@ public class MainActivity extends BaseActivity {
 						SharedPreferences.Editor editor = defaultPreferences.edit();
 						switch (which) {
 							case 1:
-								editor.putString(C.PREF_LANGUAGE, "en")
+								editor.putString(C.PREF_LANGUAGE, "in")
 										.putString(C.PREF_LANGUAGE_COUNTRY, "");
 								break;
 							case 2:
-								editor.putString(C.PREF_LANGUAGE, "es")
+								editor.putString(C.PREF_LANGUAGE, "en")
 										.putString(C.PREF_LANGUAGE_COUNTRY, "");
 								break;
 							case 3:
-								editor.putString(C.PREF_LANGUAGE, "pt")
+								editor.putString(C.PREF_LANGUAGE, "es")
 										.putString(C.PREF_LANGUAGE_COUNTRY, "");
 								break;
 							case 4:
-								editor.putString(C.PREF_LANGUAGE, "zh")
+								editor.putString(C.PREF_LANGUAGE, "fr")
 										.putString(C.PREF_LANGUAGE_COUNTRY, "");
 								break;
 							case 5:
+								editor.putString(C.PREF_LANGUAGE, "it")
+										.putString(C.PREF_LANGUAGE_COUNTRY, "");
+								break;
+							case 6:
+								editor.putString(C.PREF_LANGUAGE, "pt")
+										.putString(C.PREF_LANGUAGE_COUNTRY, "");
+								break;
+							case 7:
+								editor.putString(C.PREF_LANGUAGE, "zh")
+										.putString(C.PREF_LANGUAGE_COUNTRY, "");
+								break;
+							case 8:
+								editor.putString(C.PREF_LANGUAGE, "zh")
+										.putString(C.PREF_LANGUAGE_COUNTRY, "HK");
+								break;
+							case 9:
 								editor.putString(C.PREF_LANGUAGE, "zh")
 										.putString(C.PREF_LANGUAGE_COUNTRY, "CN");
 								break;

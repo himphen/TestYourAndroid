@@ -252,12 +252,14 @@ public class MainTestFragment extends BaseFragment {
 								((MainActivity) getActivity()).checkPayment();
 								break;
 							case "rate":
+
+								Intent intent = new Intent(Intent.ACTION_VIEW);
 								try {
-									Uri uri = Uri.parse("market://details?id=hibernate.v2.testyourandroid");
-									Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+									intent.setData(Uri.parse("market://details?id=hibernate.v2.testyourandroid"));
 									startActivity(intent);
 								} catch (ActivityNotFoundException e) {
-									C.notAppFound(mContext);
+									intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid"));
+									startActivity(intent);
 								}
 								break;
 							case "app_brain":

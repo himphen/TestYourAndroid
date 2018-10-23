@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tes Android Anda</string>
+    <string name="ui_okay">Ok</string>
+    <string name="ui_cancel">Batalkan</string>
+    <string name="ui_error">Error</string>
+    <string name="ui_na">N/A</string>
+    <string name="ui_caution">Hati hati</string>
+    <string name="ui_not_support">Tidak Didukung</string>
+    <string name="ui_not_support_android_version">Hanya didukung oleh Android %1$s+</string>
+    <string name="dialog_feature_na_message">Perangkat Android Anda tidak memiliki fitur ini atau bisa sedang digunakan oleh aplikasi lain.</string>
+    <string name="dialog_permission_denied_message">Tanpa memberikan izin, kami tidak dapat melakukan hal ini.\n\n Harap beri izin Android untuk mengakses fitur ini.</string>
+    <string name="dialog_permission_denied_posbtn">Pengaturan »</string>
+
+    <string name="title_activity_screen">Warna Monitor</string>
+    <string name="title_activity_light">Sensor Cahaya</string>
+    <string name="title_activity_humidity">Sensor Kelembaban</string>
+    <string name="title_activity_camera">Kamera</string>
+    <string name="title_activity_flashlight">Senter</string>
+    <string name="title_activity_fingerprint">Sidik Jari</string>
+    <string name="title_activity_drawing">Layar Sentuh</string>
+    <string name="title_activity_touch">Multi Sentuh </string>
+    <string name="title_activity_speaker">Pengeras Suara dan Getaran </string>
+    <string name="title_activity_microphone">Mikrofon</string>
+    <string name="title_activity_wifi">Wi-Fi</string>
+    <string name="title_activity_bluetooth">Bluetooth</string>
+    <string name="title_activity_accelerometer">Pengukur kecepatan</string>
+    <string name="title_activity_step">Penghitung</string>
+    <string name="title_activity_temperature">Sensor Suhu Udara</string>
+    <string name="title_activity_location">Lokasi</string>
+    <string name="title_activity_nfc">NFC</string>
+    <string name="title_activity_proximity">Sensor Kedekatan</string>
+    <string name="title_activity_gravity">Sensor Gravitasi</string>
+    <string name="title_activity_pressure">Sensor Tekanan</string>
+    <string name="title_activity_system_monitor">Monitor Sistem</string>
+    <string name="title_activity_compass">Kompas</string>
+    <string name="title_activity_device">Perangkat Keras</string>
+    <string name="title_activity_cpu">CPU/Memory</string>
+    <string name="title_activity_android_version">Android Versi</string>
+    <string name="title_activity_application">Aplikasi Terpasang</string>
+    <string name="title_activity_battery">Baterai</string>
+    <string name="title_activity_gsm">Jaringan</string>
+    <string name="title_activity_test_ad_remover">Donasi</string>
+    <string name="title_activity_app_brain">Aplikasi Lain</string>
+    <string name="title_activity_rate_us">Beri kami Rating!</string>
+
+    <string name="title_activity_app_choose">Aplikasi Terpasang</string>
+    <string name="title_activity_app_user">Aplikasi Terpasang oleh Pengguna</string>
+    <string name="title_activity_app_system">Aplikasi Sistem</string>
+    <string name="title_activity_app_all">Semua Aplikasi</string>
+    <string name="app_package">Paket Aplikasi</string>
+
+    <string name="main_title_hardware">Tes Perangkat Keras </string>
+    <string name="main_title_sensor">Tes Sensor</string>
+    <string name="main_title_information">Informas Perangkat</string>
+    <string name="main_title_other">Lainnya</string>
+
+    <!--  -->
+    <string name="main_tab_title_1">Tes Perangkat</string>
+    <string name="main_tab_title_2">Tentang</string>
+
+    <!--  -->
+    <string name="app_info_tab_title_1">Tindakan</string>
+    <string name="app_info_tab_title_2">Paket</string>
+    <string name="app_info_tab_title_3">Ijin</string>
+
+    <!--  -->
+    <string name="test_monitor_tab_title_1">CPU</string>
+    <string name="test_monitor_tab_title_2">Jaringan</string>
+    <string name="test_monitor_tab_title_3">Memory</string>
+
+    <!--  -->
+    <string name="color_title">Mohon Pilih</string>
+    <string name="color_message">Mode Normal mode:\nTekan untuk mengganti warna berikut\n\nMode Perbaikan:\nMengganti warna dengan cepat</string>
+    <string name="color_normal_btn">Mode Normal</string>
+    <string name="color_test_btn">Mode Perbaikan</string>
+    <string name="color_test_message">Selama mode pengaturan, layar akan berkedip dan berubah warna dengan cepat.
+         \nJANGAN MELIHAT ke layar, karena itu bisa melukai mata Anda.
+         \n\nDisarankan untuk melakukannya saat Anda mengisi baterai. Mode ini akan ditutup setelah 20 menit secara otomatis.
+         \n\n Mode pengaturan ini tidak dijamin untuk memperbaiki piksel yang rusak. Silakan hubungi produsen jika Anda memiliki masalah.
+         \n\nAnda dapat menekan tombol KEMBALI ke layar utama.</string>
+
+    <!--  -->
+    <string name="vibrate_button">Tes Getaran</string>
+    <string name="vibrate_stop_button">Stop Getaran</string>
+    <string name="vibrate_string_1">Getaran Panjang</string>
+    <string name="vibrate_string_2">Getaran Singkat</string>
+
+    <!--  -->
+    <string name="ring_button">Mainkan Musi</string>
+    <string name="ring_stop_button">Stop Musik</string>
+    <string name="adjust_volume">Atur Volume </string>
+    <string name="vibrate_type">Mode Getaran</string>
+
+    <!--  -->
+    <string name="nfc_tutor_message">Letakkan semua tag NFC di belakang perangkat, dan Anda akan mendapatkan bunyi bip ketika berhasil</string>
+    <string name="touch_message">Sentuh layar dengan beberapa jari.</string>
+
+    <!--  -->
+    <string name="info_hardware_string_1">Merek</string>
+    <string name="info_hardware_string_2">Perangkat</string>
+    <string name="info_hardware_string_3">Model</string>
+    <string name="info_hardware_string_4">Nama Produk</string>
+    <string name="info_hardware_string_5">Tampilan</string>
+    <string name="info_hardware_string_6">Sidik Jari</string>
+    <string name="info_hardware_string_7">Papan</string>
+    <string name="info_hardware_string_8">Produsen</string>
+    <string name="info_hardware_string_9">Nomor seri</string>
+    <string name="info_hardware_string_10">Pengguna</string>
+    <string name="info_hardware_string_11">Host</string>
+    <string name="info_hardware_string_12">Papan</string>
+
+    <!--  -->
+    <string name="app_package_string_1">Paket</string>
+    <string name="app_package_string_2">Nama Paket</string>
+    <string name="app_package_string_3">Kode Versi</string>
+    <string name="app_package_string_4">Versi</string>
+    <string name="app_package_string_5">Waktu Terpasang</string>
+    <string name="app_package_string_6">Update Waktu</string>
+    <string name="app_package_string_7">Directori Data</string>
+    <string name="app_package_string_8">Directori APL</string>
+    <string name="app_package_string_9">Min. SDK Versi</string>
+    <string name="app_package_string_10">Target SDK Versi</string>
+
+    <!--  -->
+    <string name="app_action_string_1">Luncurkan Aplikasi</string>
+    <string name="app_action_string_2">Uninstall</string>
+    <string name="app_action_string_3">Panel Kontrol</string>
+    <string name="app_action_string_4">Play Store</string>
+
+    <!--  -->
+    <string name="info_battery_charge_string_1">Tidak sedang charging</string>
+    <string name="info_battery_charge_string_2">AC Charging</string>
+    <string name="info_battery_charge_string_3">USB Charging</string>
+    <string name="info_battery_charge_string_4">Tidak Diketahui</string>
+    <string name="info_battery_charge_string_5">Charging Nirkabel</string>
+
+    <!--  -->
+    <string name="info_battery_health_string_1">Tidak Diketahui</string>
+    <string name="info_battery_health_string_2">Tidak Diketahui</string>
+    <string name="info_battery_health_string_3">Baik</string>
+    <string name="info_battery_health_string_4">Hati hati: Terlalu Panas</string>
+    <string name="info_battery_health_string_5">Hati hati: Mati</string>
+    <string name="info_battery_health_string_6">Hati hati: Voltase terlalu tinggi</string>
+    <string name="info_battery_health_string_7">Tidak Diketahui</string>
+    <string name="info_battery_health_string_8">Hati hati: Terlalu Dingin</string>
+
+    <!--  -->
+    <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
+    <string name="test_wifi_current_string_2"><![CDATA[BSSID: ]]></string>
+    <string name="test_wifi_current_string_3"><![CDATA[ID Jaringan: ]]></string>
+    <string name="test_wifi_current_string_4"><![CDATA[Alamat Mac: ]]></string>
+    <string name="test_wifi_current_string_5"><![CDATA[Kecepatan Wi-Fi: ]]></string>
+    <string name="test_wifi_current_string_6"><![CDATA[Kekuatan Wi-Fi: ]]></string>
+    <string name="test_wifi_current_string_7"><![CDATA[Alamat IP: ]]></string>
+    <string name="test_wifi_current_string_8"><![CDATA[Gateway Default: ]]></string>
+    <string name="test_wifi_current_string_9"><![CDATA[Subnetmask: ]]></string>
+    <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
+    <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
+    <string name="test_wifi_current_string_12"><![CDATA[Alamat server: ]]></string>
+
+    <!--  -->
+    <string name="test_wifi_string_1">Wi-Fi Sekarang</string>
+    <string name="test_wifi_string_2">Wi-Fi Tersedia</string>
+    <string name="test_wifi_string_3">Wi-Fi SSID Tersimpan</string>
+
+    <!--  -->
+    <string name="test_bluetooth_string_1">Perangkat Tersedia</string>
+    <string name="test_bluetooth_string_2">Perangkat Berpasangan</string>
+
+    <!--  -->
+    <string name="info_cpu_string_1">Min Feq.</string>
+    <string name="info_cpu_string_2">Max Feq.</string>
+    <string name="info_cpu_string_3">CPU Core no.</string>
+    <string name="info_cpu_string_4">Internal Memory</string>
+    <string name="info_cpu_string_5">External Memory</string>
+    <string name="info_cpu_string_6">RAM Memory</string>
+    <string name="info_cpu_string_7">Detail Memory</string>
+
+    <!--  -->
+    <string name="memory_string_1"><![CDATA[Total: ]]></string>
+    <string name="memory_string_2"><![CDATA[Tersedia: ]]></string>
+    <string name="memory_string_3"><![CDATA[Bekas: ]]></string>
+    <string name="memory_string_4"><![CDATA[Ambang: ]]></string>
+
+    <!--  -->
+    <string name="info_android_version_string_1">Android Versi</string>
+    <string name="info_android_version_string_2">Kodenama</string>
+    <string name="info_android_version_string_3">INCREMENTAL</string>
+    <string name="info_android_version_string_4">SDK Level</string>
+    <string name="info_android_version_string_5">Kernel Tipe</string>
+    <string name="info_android_version_string_6">Kernel OS</string>
+    <string name="info_android_version_string_7">Kernel OS Versi</string>
+    <string name="info_android_version_string_8">JNI Pustaka</string>
+    <string name="info_android_version_string_9">VM Pustaka versi</string>
+    <string name="info_android_version_string_10">VM Pustaka vendor</string>
+    <string name="info_android_version_string_11">VM Pustaka nama</string>
+    <string name="info_android_version_string_12">VM implementasi versi</string>
+    <string name="info_android_version_string_13">VM implementasi vendor</string>
+    <string name="info_android_version_string_14">VM implementasi nama</string>
+    <string name="info_android_version_string_15">VM spesifikasi versi</string>
+    <string name="info_android_version_string_16">VM spesifikasi vendor</string>
+    <string name="info_android_version_string_17">VM spesifikasi nama</string>
+    <string name="info_android_version_string_18">Lokasi VM</string>
+    <string name="info_android_version_string_19">Zona Waktu</string>
+
+    <!--  -->
+    <string name="info_camera_string_1">Lebar Layar</string>
+    <string name="info_camera_string_2">Tinggi Layar</string>
+    <string name="info_camera_string_3">Resolusi Gambar</string>
+    <string name="info_camera_string_4">Antibanding</string>
+    <string name="info_camera_string_5">Efek Warna</string>
+    <string name="info_camera_string_6">Mode Flash</string>
+    <string name="info_camera_string_7">Mode Fokus</string>
+    <string name="info_camera_string_8">Keseimbangan Putih</string>
+    <string name="info_camera_string_9">Mode Layar</string>
+    <string name="info_camera_string_10">Format Gambar</string>
+
+    <!--  -->
+    <string name="info_battery_string_1">Baterai Level</string>
+    <string name="info_battery_string_2">Max baterai Level</string>
+    <string name="info_battery_string_3">kesehatan baterai</string>
+    <string name="info_battery_string_4">baterai Status</string>
+    <string name="info_battery_string_5">baterai teknology</string>
+    <string name="info_battery_string_6">baterai suhu</string>
+    <string name="info_battery_string_7">baterai voltage</string>
+
+    <!--  -->
+    <string name="test_sensor_string_1">Membaca</string>
+    <string name="test_sensor_string_2">Nama</string>
+    <string name="test_sensor_string_3">Vendor</string>
+    <string name="test_sensor_string_4">Versi</string>
+    <string name="test_sensor_string_5">Max. Jarak</string>
+    <string name="test_sensor_string_6">Min. Tunda</string>
+    <string name="test_sensor_string_7">Resolusi</string>
+    <string name="test_sensor_string_8">Tenaga</string>
+
+    <!--  -->
+    <string name="test_gps_string_1">Lintang</string>
+    <string name="test_gps_string_2">Garis bujur</string>
+    <string name="test_gps_string_3">Kecepatan</string>
+    <string name="test_gps_string_4">Ketinggian</string>
+    <string name="test_gps_string_5">Bearing</string>
+    <string name="test_gps_string_6">Akurasi</string>
+
+    <!--  -->
+    <string name="info_gsm_string_1">Negara SIM Card</string>
+    <string name="info_gsm_string_2">SIM Card Operator Kode</string>
+    <string name="info_gsm_string_3">SIM Card Operator Nama</string>
+    <string name="info_gsm_string_4">SIM Card Daerah</string>
+    <string name="info_gsm_string_5">IMEI/ESN</string>
+    <string name="info_gsm_string_6">Software Perangkat Version</string>
+    <string name="info_gsm_string_7">Nomor telepon</string>
+    <string name="info_gsm_string_8">Negara Jaringan</string>
+    <string name="info_gsm_string_9">Kode Operator Jaringan</string>
+    <string name="info_gsm_string_10">Nama Operator Jaringan</string>
+    <string name="info_gsm_string_11">Roaming Roaming</string>
+    <string name="info_gsm_string_12">SIM Nomor Seri</string>
+    <string name="info_gsm_string_13">ID Anggota</string>
+
+    <!--  -->
+    <string name="info_sim_status_string_1">Tidak diketahui</string>
+    <string name="info_sim_status_string_2">No SIM card</string>
+    <string name="info_sim_status_string_3">Terkunci: membutuhkan PIN SIM pengguna untuk membuka kunci</string>
+    <string name="info_sim_status_string_4">Terkunci: membutuhkan PUK SIM pengguna untuk membuka kunci</string>
+    <string name="info_sim_status_string_5">Terkunci: membutuhkan PIN jaringan untuk membuka kunci</string>
+    <string name="info_sim_status_string_6">Siap</string>
+
+    <string name="wifi_setting">Pengaturan</string>
+    <string name="wifi_reload">Menyegarkan</string>
+    <string name="wifi_reload_done">Reload Berhasil</string>
+    <string name="wifi_reload_fail">Reload Gagal</string>
+    <string name="wifi_enable_message">Anda harus mengaktifkan Wi-Fi untuk melanjutkan.</string>
+    <string name="wifi_enable_posbtn">Pergi ke Pengaturan Wifin</string>
+    <string name="wifi_no">Tidak ada koneksi Wi-Fi</string>
+    <string name="bluetooth_setting">Pengaturan</string>
+    <string name="bluetooth_enable_message">Anda harus mengaktifkan Bluetooth untuk melanjutkan.</string>
+    <string name="bluetooth_enable_posbtn">Pergi ke Pengaturan Bluetooth</string>
+    <string name="gps_setting">Lokasi Pengaturan</string>
+    <string name="security_setting">Pengaturan</string>
+    <string name="gps_scanning">Scanning</string>
+    <string name="gps_enable_message">Anda harus mengaktifkan Lokasi untuk melanjutkan.</string>
+    <string name="gps_enable_posbtn">Pergi ke pengaturan Lokasi</string>
+    <string name="nfc_enable_message">YAnda harus mengaktifkan NFC untuk melanjutkan.</string>
+    <string name="nfc_enable_posbtn">Pergi ke Pengaturan NFC</string>
+    <string name="nfc_setting">Pengaturan NFC</string>
+    <string name="flash_on">Nyalakan Senter</string>
+    <string name="flash_off">matikan Senter</string>
+    <string name="ui_share">bagikan</string>
+    <string name="action_iap">Hapus Iklan</string>
+    <string name="cpu_speed">Kecepatan</string>
+    <string name="cpu_core">No. of Core</string>
+    <string name="cpu_min">Min Kecepatan</string>
+    <string name="cpu_max">Max Kecepatan</string>
+    <string name="network_upspeed">Kecepatan mengunggah</string>
+    <string name="network_downspeed">Kecepatan unduh</string>
+    <string name="memory_ava">Tersedia</string>
+    <string name="memory_total">Total</string>
+    <string name="memory_used">Dipakai</string>
+    <string name="ui_version">Versi</string>
+    <string name="feedback">Beri saya umpan balik</string>
+    <string name="about_credit_btn">Lisensi Open source</string>
+    <string name="feedback_title">Aplikasi Tes Android Anda: Laporan dan Masukan</string>
+    <string name="more">Pengembang Aplikasi</string>
+    <string name="rate_title">Berikan masukan kepada pengembangk</string>
+    <string name="rate_message">Beri aplikasi ini rating di Google Play untuk mendukung pengembang. Hubungi pengembang jika Anda memiliki pertanyaan.</string>
+    <string name="rate_navbtn">Tdak, terima kasih</string>
+    <string name="rate_netbtn">Nanti</string>
+    <string name="rate_posbtn">Rate sekarang</string>
+    <string name="share_button">Bagikan!!!</string>
+    <string name="share_message">Mari\'s Unduh \"Tes Your Android Anda\" untuk menguji Android Anda.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="mic_start_recording">Mulai merekam</string>
+    <string name="mic_start_playing">Mulai bermain</string>
+    <string name="mic_stop">Stop</string>
+
+    <!--  -->
+
+    <string name="ui_relative_humidity"><![CDATA[Kelembaban relatif: ]]></string>
+    <string name="ui_absolute_humidity"><![CDATA[Kelembaban Absoluty: ]]></string>
+    <string name="ui_dew_point"><![CDATA[Dew Point: ]]></string>
+
+    <string name="dialog_camera_title">Silakan pilih kamera</string>
+    <string name="iab_complete_title">Terima kasih</string>
+    <string name="iab_complete_message">Silakan restart aplikasi untuk menerapkan perubahan.</string>
+    <string name="ui_loading">Memuat...</string>
+    <string name="ui_fingerprint_not_locked">Silakan aktifkan keamanan layar kunci di Pengaturan.</string>
+    <string name="ui_fingerprint_not_register">Daftarkan setidaknya satu sidik jari masuk Pengaturans.</string>
+    <string name="ui_fingerprint_start_message">Taruh jari di sensor.</string>
+    <string name="ui_fingerprint_fail">Tidak dikenal.</string>
+    <string name="ui_fingerprint_help">Bantuan aplikasi</string>
+    <string name="ui_fingerprint_succeeded">Sukses.</string>
+
+    <string name="app_not_found">Tidak ada aplikasi.</string>
+
+</resources>

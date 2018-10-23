@@ -93,9 +93,15 @@ public class AppInfoActionFragment extends BaseFragment {
 					Intent intent;
 					switch (item.getActionType()) {
 						case "uninstall":
-							intent = new Intent(Intent.ACTION_DELETE, Uri.fromParts("package", appItem.getPackageName(), null));
-							intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-							startActivity(intent);
+							try {
+								intent = new Intent(Intent.ACTION_DELETE, Uri.fromParts("package", appItem.getPackageName(), null));
+								intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								startActivity(intent);
+							} catch (Exception e) {
+								intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+								intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								startActivity(intent);
+							}
 							break;
 						case "settings":
 							try {
@@ -122,13 +128,14 @@ public class AppInfoActionFragment extends BaseFragment {
 							break;
 						case "play_store":
 							intent = new Intent(Intent.ACTION_VIEW);
+							intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 							try {
 								intent.setData(Uri.parse("market://details?id=" + appItem.getPackageName()));
+								startActivity(intent);
 							} catch (ActivityNotFoundException e) {
 								intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + appItem.getPackageName()));
+								startActivity(intent);
 							}
-							intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-							startActivity(intent);
 							break;
 						case "open":
 							intent = mContext.getPackageManager().getLaunchIntentForPackage(appItem.getPackageName());

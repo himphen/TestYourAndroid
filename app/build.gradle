@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'io.fabric'
 
 android {
@@ -9,8 +10,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 197110 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Cheungfan 711a"
+        versionCode 197312 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Cheungfan 731"
         multiDexEnabled true
     }
 
@@ -47,6 +48,11 @@ android {
     dexOptions {
         javaMaxHeapSize "4g"
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 static def getSecretKey(name) {
@@ -75,10 +81,11 @@ dependencies {
     implementation 'com.google.android.gms:play-services-wearable:16.0.1'
     implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.firebase:firebase-ads:17.0.0'
+    implementation 'com.google.firebase:firebase-perf:16.1.2'
 
     // https://github.com/JakeWharton/butterknife
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.jakewharton:butterknife:9.0.0-rc1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
 
     // https://github.com/afollestad/material-dialogs
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
@@ -88,9 +95,10 @@ dependencies {
 
     // https://github.com/bumptech/glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     // License Dialog
-    implementation 'de.psdev.licensesdialog:licensesdialog:1.8.2'
+    implementation 'de.psdev.licensesdialog:licensesdialog:1.9.0'
 
     // GraphView
     implementation files('libs/graphview.jar')
@@ -102,9 +110,7 @@ dependencies {
     implementation 'com.appbrain:appbrain-sdk:+@aar'
 
     // Crashlytics
-    implementation('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
-        transitive = true
-    }
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
 
     // https://github.com/natario1/CameraView
     implementation 'com.otaliastudios:cameraview:1.6.0'
@@ -113,7 +119,7 @@ dependencies {
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
 
     // https://github.com/Blankj/AndroidUtilCode
-    implementation 'com.blankj:utilcode:1.20.4'
+    implementation 'com.blankj:utilcode:1.21.0'
 
     // https://github.com/luizgrp/SectionedRecyclerViewAdapter
     implementation 'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:1.2.0'

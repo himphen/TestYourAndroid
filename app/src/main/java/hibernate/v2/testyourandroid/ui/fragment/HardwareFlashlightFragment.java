@@ -234,6 +234,8 @@ public class HardwareFlashlightFragment extends BaseFragment {
 					mSession.setRepeatingRequest(mBuilder.build(), null, null);
 				} catch (CameraAccessException e) {
 					e.printStackTrace();
+				} catch (Exception e) {
+					C.errorNoFeatureDialog(mContext);
 				}
 			}
 

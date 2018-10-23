@@ -186,7 +186,7 @@
     <string name="info_gsm_string_3">SIM 卡供應商</string>
     <string name="info_gsm_string_4">SIM 卡辨識</string>
     <string name="info_gsm_string_5">IMEI/ESN</string>
-    <string name="info_gsm_string_6">設備軟體版本</string>
+    <string name="info_gsm_string_6">設備軟件版本</string>
     <string name="info_gsm_string_7">電話號碼</string>
     <string name="info_gsm_string_8">網絡國家/地區</string>
     <string name="info_gsm_string_9">網絡供應商編號</string>

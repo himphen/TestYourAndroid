@@ -323,9 +323,9 @@
     <string name="main_title_other">De outros</string>
     <string name="title_activity_app_brain">Mais aplicativos</string>
     <string name="title_activity_humidity">Sensor de umidade</string>
-    <string name="ui_relative_humidity">"Umidade Relativa: "</string>
-    <string name="ui_absolute_humidity">"Umidade absoluta: "</string>
-    <string name="ui_dew_point">"Ponto de Orvalho: "</string>
+    <string name="ui_relative_humidity"><![CDATA[Umidade Relativa: ]]></string>
+    <string name="ui_absolute_humidity"><![CDATA[Umidade absoluta: ]]></string>
+    <string name="ui_dew_point"><![CDATA[Ponto de Orvalho: ]]></string>
     <string name="ui_not_support_android_version">Suporte ao Android %1$s+</string>
 
 </resources>

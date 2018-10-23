@@ -137,16 +137,16 @@
     <!--  -->
     <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
     <string name="test_wifi_current_string_2"><![CDATA[BSSID: ]]></string>
-    <string name="test_wifi_current_string_3"><![CDATA[Network ID: ]]></string>
-    <string name="test_wifi_current_string_4"><![CDATA[Mac Address: ]]></string>
-    <string name="test_wifi_current_string_5"><![CDATA[Wi-Fi Speed: ]]></string>
-    <string name="test_wifi_current_string_6"><![CDATA[Wi-Fi Strength: ]]></string>
-    <string name="test_wifi_current_string_7"><![CDATA[IP Address: ]]></string>
-    <string name="test_wifi_current_string_8"><![CDATA[Default Gateway: ]]></string>
-    <string name="test_wifi_current_string_9"><![CDATA[Subnet Mask: ]]></string>
+    <string name="test_wifi_current_string_3"><![CDATA[Identificación de red: ]]></string>
+    <string name="test_wifi_current_string_4"><![CDATA[Dirección MAC: ]]></string>
+    <string name="test_wifi_current_string_5"><![CDATA[Velocidad de wifi: ]]></string>
+    <string name="test_wifi_current_string_6"><![CDATA[Fuerza Wi-Fi: ]]></string>
+    <string name="test_wifi_current_string_7"><![CDATA[Dirección IP: ]]></string>
+    <string name="test_wifi_current_string_8"><![CDATA[Puerta de enlace predeterminada: ]]></string>
+    <string name="test_wifi_current_string_9"><![CDATA[Máscara de subred: ]]></string>
     <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
     <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
-    <string name="test_wifi_current_string_12"><![CDATA[Server Address: ]]></string>
+    <string name="test_wifi_current_string_12"><![CDATA[Dirección del servidor: ]]></string>
 
     <!--  -->
     <string name="test_wifi_string_1">Wi-Fi actual</string>
@@ -164,9 +164,9 @@
 
     <!--  -->
     <string name="memory_string_1"><![CDATA[Total: ]]></string>
-    <string name="memory_string_2"><![CDATA[Available: ]]></string>
-    <string name="memory_string_3"><![CDATA[Used: ]]></string>
-    <string name="memory_string_4"><![CDATA[Threshold: ]]></string>
+    <string name="memory_string_2"><![CDATA[Disponible: ]]></string>
+    <string name="memory_string_3"><![CDATA[Usado: ]]></string>
+    <string name="memory_string_4"><![CDATA[Límite: ]]></string>
 
     <!--  -->
     <string name="info_android_version_string_1">Versión de Android</string>
@@ -293,7 +293,7 @@
     <string name="rate_netbtn">Más tarde</string>
     <string name="rate_posbtn">Clalificar agora</string>
     <string name="share_button">Compartes!!!</string>
-    <string name="share_message">Vamos a descargar la "Prueba tu Android" aplicación para probar su dispositivo Android.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="share_message">Vamos a descargar la \"Prueba tu Android\" aplicación para probar su dispositivo Android.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
     <string name="mic_start_recording">Toque el botón para iniciar la grabación</string>
     <string name="mic_start_playing">Comienza a jugar</string>
     <string name="mic_stop">Toque el botón para detener la reproducción</string>
@@ -324,9 +324,9 @@
     <string name="main_title_other">Otro</string>
     <string name="title_activity_app_brain">Más aplicaciones</string>
     <string name="title_activity_humidity">Sensor de humedad</string>
-    <string name="ui_relative_humidity">"Humedad relativa: "</string>
-    <string name="ui_absolute_humidity">"Humedad absoluta: "</string>
-    <string name="ui_dew_point">"Punto de rocío: "</string>
+    <string name="ui_relative_humidity"><![CDATA[Humedad relativa: ]]></string>
+    <string name="ui_absolute_humidity"><![CDATA[Humedad absoluta: ]]></string>
+    <string name="ui_dew_point"><![CDATA[Punto de rocío: ]]></string>
     <string name="ui_not_support_android_version">Soporte Android %1$s+</string>
 
 </resources>

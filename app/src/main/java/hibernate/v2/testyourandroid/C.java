@@ -46,15 +46,25 @@ public class C extends UtilHelper {
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
 						Activity activity = scanForActivity(dialog.getContext());
 						if (activity != null) {
-							Intent intent = new Intent();
-							intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-							intent.addCategory(Intent.CATEGORY_DEFAULT);
-							intent.setData(Uri.parse("package:" + activity.getPackageName()));
-							intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-							intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-							intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-							activity.startActivity(intent);
-							activity.finish();
+							try {
+								Intent intent = new Intent();
+								intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+								intent.addCategory(Intent.CATEGORY_DEFAULT);
+								intent.setData(Uri.parse("package:" + activity.getPackageName()));
+								intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+								intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+								activity.startActivity(intent);
+								activity.finish();
+							} catch (Exception e) {
+								Intent intent = new Intent();
+								intent.setAction(Settings.ACTION_APPLICATION_SETTINGS);
+								intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+								intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+								activity.startActivity(intent);
+								activity.finish();
+							}
 						}
 					}
 				});
