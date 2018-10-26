@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="8dp"
@@ -14,25 +14,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables,UselessParent">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/mainIv"
             android:layout_width="30dp"
-            android:layout_height="30dp">
-        </ImageView>
+            android:layout_height="30dp"
+            android:contentDescription="@string/app_name"/>
 
-        <com.devspark.robototextview.widget.RobotoTextView
+       <android.support.v7.widget.AppCompatTextView
             android:id="@+id/mainTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
             android:gravity="start"
             android:paddingStart="8dp"
             android:paddingEnd="0dp"
             android:textColor="@color/grey600"
-            android:textSize="16sp"
-            app:robotoFontFamily="roboto"
-            app:robotoTextWeight="light">
-        </com.devspark.robototextview.widget.RobotoTextView>
+            android:textSize="16sp"/>
     </LinearLayout>
 </LinearLayout>

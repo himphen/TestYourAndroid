@@ -28,7 +28,6 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
 import hibernate.v2.testyourandroid.model.GridItem;
 import hibernate.v2.testyourandroid.ui.activity.HardwareCameraActivity;
@@ -252,7 +251,6 @@ public class MainTestFragment extends BaseFragment {
 								((MainActivity) getActivity()).checkPayment();
 								break;
 							case "rate":
-
 								Intent intent = new Intent(Intent.ACTION_VIEW);
 								try {
 									intent.setData(Uri.parse("market://details?id=hibernate.v2.testyourandroid"));

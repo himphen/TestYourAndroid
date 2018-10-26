@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:paddingBottom="12dp"
     android:paddingLeft="8dp"
+    android:paddingTop="12dp"
     android:paddingRight="8dp"
-    android:paddingTop="12dp">
+    android:paddingBottom="12dp">
 
-    <com.devspark.robototextview.widget.RobotoTextView
+   <android.support.v7.widget.AppCompatTextView
         android:id="@+id/titleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:textColor="@color/grey800"
-        android:textSize="20sp"
-        app:robotoFontFamily="roboto"
-        app:robotoTextWeight="medium">
-    </com.devspark.robototextview.widget.RobotoTextView>
+        android:textSize="20sp"/>
 </LinearLayout>

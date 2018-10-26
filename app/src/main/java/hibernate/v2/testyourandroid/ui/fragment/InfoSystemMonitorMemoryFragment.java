@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +44,6 @@ public class InfoSystemMonitorMemoryFragment extends BaseFragment {
 						.parseDouble(C.formatBitSize(usedValue, false));
 				usedText.setText(C.formatBitSize(usedValue, true));
 				avaText.setText(C.formatBitSize(availableValue, true));
-				Log.d(C.TAG, "appendData " + v);
 				series.appendData(
 						new GraphViewData(lastXValue, v), true, 100);
 			} catch (Exception e) {

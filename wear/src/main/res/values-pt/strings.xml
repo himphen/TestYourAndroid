@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Teste seu Wear</string>
-    <string name="hello_round">Olá mundo redondo!</string>
-    <string name="hello_square">Olá mundo quadrado!</string>
     <string name="notsupport">Não suportado</string>
     <string name="dialog_feature_na_message">Não há este recurso.</string>
 
     <string name="title_activity_test_color">Cor do monitor</string>
     <string name="title_activity_test_light_sensor">Sensor de luz</string>
-    <string name="title_activity_test_draw">Touch Screen</string>
-    <string name="title_activity_test_ring">Som e vibração</string>
-    <string name="title_activity_test_wifi">Teste Wi-Fi</string>
     <string name="title_activity_test_accelerometer">Acelerômetro</string>
-    <string name="title_activity_test_gps">Localização</string>
-    <string name="title_activity_test_proximity">Sensor de proximidade</string>
     <string name="title_activity_test_gravity">Sensor de Gravidade</string>
-    <string name="title_activity_test_pressure">Sensor de pressão</string>
-    <string name="title_activity_test_compass">Bússola</string>
     <string name="title_activity_info_hardware">Info de Hardware</string>
     <string name="title_activity_info_cpu">Info. CPU/Memória</string>
     <string name="title_activity_info_android_version">Versão do Android</string>
     <string name="title_activity_info_battery">Info. da Bateria</string>
-    <string name="title_activity_test_monitor">Monitor do sistema</string>
 
     <!--  -->
     <string name="info_hardware_string_1">Marca</string>
@@ -49,23 +39,8 @@
     <string name="info_battery_health_string_8">Cuidado: Muito frio</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
-    <string name="test_wifi_current_string_2"><![CDATA[BSSID: ]]></string>
-    <string name="test_wifi_current_string_3"><![CDATA[Network ID: ]]></string>
-    <string name="test_wifi_current_string_4"><![CDATA[Mac Address: ]]></string>
-    <string name="test_wifi_current_string_5"><![CDATA[Wi-Fi Speed: ]]></string>
-    <string name="test_wifi_current_string_6"><![CDATA[Wi-Fi Strength: ]]></string>
-    <string name="test_wifi_current_string_7"><![CDATA[IP Address: ]]></string>
-    <string name="test_wifi_current_string_8"><![CDATA[Default Gateway: ]]></string>
-    <string name="test_wifi_current_string_9"><![CDATA[Subnet Mask: ]]></string>
-    <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
-    <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
-    <string name="test_wifi_current_string_12"><![CDATA[Server Address: ]]></string>
 
     <!--  -->
-    <string name="test_wifi_string_1">Wi-Fi atual</string>
-    <string name="test_wifi_string_2">Wi-Fi disponíveis</string>
-    <string name="test_wifi_string_3">Wi-Fi SSID salvos</string>
 
     <!--  -->
     <string name="info_cpu_string_1">Feq. Min</string>
@@ -94,16 +69,6 @@
     <string name="info_android_version_string_9">Banda base</string>
 
     <!--  -->
-    <string name="info_camera_string_1">Largura da tela</string>
-    <string name="info_camera_string_2">Altura da tela</string>
-    <string name="info_camera_string_3">Resolução</string>
-    <string name="info_camera_string_4">Antibanding</string>
-    <string name="info_camera_string_5">Efeitos de cor</string>
-    <string name="info_camera_string_6">Modo de Flash</string>
-    <string name="info_camera_string_7">Modo de Foco</string>
-    <string name="info_camera_string_8">Balanço de brancos</string>
-    <string name="info_camera_string_9">Modos de Cena</string>
-    <string name="info_camera_string_10">Formatos de Imagem</string>
 
     <!--  -->
     <string name="info_battery_string_1">Nível de bateria</string>
@@ -125,10 +90,4 @@
     <string name="test_sensor_string_8">Energia</string>
 
     <!--  -->
-    <string name="test_gps_string_1">Latitude</string>
-    <string name="test_gps_string_2">Longitude</string>
-    <string name="test_gps_string_3">Velocidade</string>
-    <string name="test_gps_string_4">Altitude</string>
-    <string name="test_gps_string_5">Rolamento</string>
-    <string name="test_gps_string_6">Precisão</string>
 </resources>

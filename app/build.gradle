@@ -90,9 +90,6 @@ dependencies {
     // https://github.com/afollestad/material-dialogs
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 
-    // Roboto TextView
-    implementation 'com.github.johnkil.android-robototextview:robototextview:4.0.0'
-
     // https://github.com/bumptech/glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'

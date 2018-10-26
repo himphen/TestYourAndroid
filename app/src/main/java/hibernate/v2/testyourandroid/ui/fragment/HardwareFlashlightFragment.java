@@ -17,18 +17,15 @@ import android.hardware.camera2.CaptureRequest;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import hibernate.v2.testyourandroid.C;
@@ -38,10 +35,6 @@ import hibernate.v2.testyourandroid.R;
  * Created by himphen on 21/5/16.
  */
 public class HardwareFlashlightFragment extends BaseFragment {
-
-	@BindView(R.id.back)
-	RelativeLayout layout;
-
 	@SuppressWarnings("deprecation")
 	private Camera mCamera;
 	@SuppressWarnings("deprecation")
@@ -112,8 +105,8 @@ public class HardwareFlashlightFragment extends BaseFragment {
 		}
 	}
 
-	@OnCheckedChanged(R.id.toggleButton)
-	public void toggleButton(boolean isChecked) {
+	@OnCheckedChanged(R.id.turnSwitch)
+	public void turnSwitch(boolean isChecked) {
 		if (isChecked) {
 			openFlash();
 		} else {
@@ -136,7 +129,6 @@ public class HardwareFlashlightFragment extends BaseFragment {
 				}
 			}
 		}
-		layout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));
 	}
 
 	@SuppressWarnings("deprecation")
@@ -154,7 +146,6 @@ public class HardwareFlashlightFragment extends BaseFragment {
 				}
 			}
 		}
-		layout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.black));
 	}
 
 	@SuppressLint("NewApi")

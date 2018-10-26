@@ -24,8 +24,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/grey100"
-        android:gravity="center">
-    </RelativeLayout>
+        android:gravity="center"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tpi_header"

@@ -1,5 +1,6 @@
 package hibernate.v2.testyourandroid.ui.activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;

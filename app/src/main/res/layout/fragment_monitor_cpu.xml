@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:mContext=".ui.fragment.MonitorCpuFragment">
 
     <LinearLayout
         android:id="@+id/graph2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="32dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="32dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="32dp"
         android:layout_weight="1"
         android:orientation="vertical">
     </LinearLayout>
@@ -51,18 +50,16 @@
                 android:layout_marginStart="4dp"
                 android:orientation="vertical">
 
-                <com.devspark.robototextview.widget.RobotoTextView
+                <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cpu_speed"
-                    app:robotoFontFamily="roboto"/>
+                    android:text="@string/cpu_speed"/>
 
-                <com.devspark.robototextview.widget.RobotoTextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/speedText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    app:robotoFontFamily="roboto"/>
+                    android:textSize="24sp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -79,23 +76,20 @@
                 android:layout_marginEnd="12dp"
                 android:orientation="vertical">
 
-                <com.devspark.robototextview.widget.RobotoTextView
+                <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cpu_core"
-                    app:robotoFontFamily="roboto"/>
+                    android:text="@string/cpu_core"/>
 
-                <com.devspark.robototextview.widget.RobotoTextView
+                <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cpu_max"
-                    app:robotoFontFamily="roboto"/>
+                    android:text="@string/cpu_max"/>
 
-                <com.devspark.robototextview.widget.RobotoTextView
+                <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/cpu_min"
-                    app:robotoFontFamily="roboto"/>
+                    android:text="@string/cpu_min"/>
             </LinearLayout>
 
 
@@ -104,26 +98,23 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.devspark.robototextview.widget.RobotoTextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/coreText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    app:robotoFontFamily="roboto"/>
+                    android:text=""/>
 
-                <com.devspark.robototextview.widget.RobotoTextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/maxText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    app:robotoFontFamily="roboto"/>
+                    android:text=""/>
 
-                <com.devspark.robototextview.widget.RobotoTextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/minText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    app:robotoFontFamily="roboto"/>
+                    android:text=""/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -13,12 +13,6 @@
         <license>MIT License</license>
     </notice>
     <notice>
-        <name>Android-RobotoTextView</name>
-        <url>https://github.com/johnkil/Android-RobotoTextView</url>
-        <copyright>Copyright 2014 Evgeny Shishkin</copyright>
-        <license>Apache Software License 2.0</license>
-    </notice>
-    <notice>
         <name>Glide</name>
         <url>https://github.com/bumptech/glide</url>
         <copyright>https://github.com/bumptech/glide</copyright>
