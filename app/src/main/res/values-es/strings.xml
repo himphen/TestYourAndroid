@@ -9,7 +9,6 @@
     <string name="ui_caution">Caution</string>
     <string name="ui_not_support">No soportado</string>
     <string name="dialog_feature_na_message">El dispositivo Android no tiene esta característica o está siendo utilizado por otras aplicaciones.</string>
-
     <string name="title_activity_screen">Color del monitor</string>
     <string name="title_activity_light">Sensor de luminosidad</string>
     <string name="title_activity_camera">Cámara</string>
@@ -135,18 +134,18 @@
     <string name="info_battery_health_string_8">Precaución: Muy frío</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
-    <string name="test_wifi_current_string_2"><![CDATA[BSSID: ]]></string>
-    <string name="test_wifi_current_string_3"><![CDATA[Identificación de red: ]]></string>
-    <string name="test_wifi_current_string_4"><![CDATA[Dirección MAC: ]]></string>
-    <string name="test_wifi_current_string_5"><![CDATA[Velocidad de wifi: ]]></string>
-    <string name="test_wifi_current_string_6"><![CDATA[Fuerza Wi-Fi: ]]></string>
-    <string name="test_wifi_current_string_7"><![CDATA[Dirección IP: ]]></string>
-    <string name="test_wifi_current_string_8"><![CDATA[Puerta de enlace predeterminada: ]]></string>
-    <string name="test_wifi_current_string_9"><![CDATA[Máscara de subred: ]]></string>
-    <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
-    <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
-    <string name="test_wifi_current_string_12"><![CDATA[Dirección del servidor: ]]></string>
+    <string name="test_wifi_current_string_1">SSID:&#160;</string>
+    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
+    <string name="test_wifi_current_string_3">Identificación de red:&#160;</string>
+    <string name="test_wifi_current_string_4">Dirección MAC:&#160;</string>
+    <string name="test_wifi_current_string_5">Velocidad de wifi:&#160;</string>
+    <string name="test_wifi_current_string_6">Fuerza Wi-Fi:&#160;</string>
+    <string name="test_wifi_current_string_7">Dirección IP:&#160;</string>
+    <string name="test_wifi_current_string_8">Puerta de enlace predeterminada:&#160;</string>
+    <string name="test_wifi_current_string_9">Máscara de subred:&#160;</string>
+    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
+    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
+    <string name="test_wifi_current_string_12">Dirección del servidor:&#160;</string>
 
     <!--  -->
     <string name="test_wifi_string_1">Wi-Fi actual</string>
@@ -163,10 +162,10 @@
     <string name="info_cpu_string_7">Memoria detallada</string>
 
     <!--  -->
-    <string name="memory_string_1"><![CDATA[Total: ]]></string>
-    <string name="memory_string_2"><![CDATA[Disponible: ]]></string>
-    <string name="memory_string_3"><![CDATA[Usado: ]]></string>
-    <string name="memory_string_4"><![CDATA[Límite: ]]></string>
+    <string name="memory_string_1">Total:&#160;</string>
+    <string name="memory_string_2">Disponible:&#160;</string>
+    <string name="memory_string_3">Usado:&#160;</string>
+    <string name="memory_string_4">Límite:&#160;</string>
 
     <!--  -->
     <string name="info_android_version_string_1">Versión de Android</string>
@@ -324,9 +323,9 @@
     <string name="main_title_other">Otro</string>
     <string name="title_activity_app_brain">Más aplicaciones</string>
     <string name="title_activity_humidity">Sensor de humedad</string>
-    <string name="ui_relative_humidity"><![CDATA[Humedad relativa: ]]></string>
-    <string name="ui_absolute_humidity"><![CDATA[Humedad absoluta: ]]></string>
-    <string name="ui_dew_point"><![CDATA[Punto de rocío: ]]></string>
+    <string name="ui_relative_humidity">Humedad relativa:&#160;</string>
+    <string name="ui_absolute_humidity">Humedad absoluta:&#160;</string>
+    <string name="ui_dew_point">Punto de rocío:&#160;</string>
     <string name="ui_not_support_android_version">Soporte Android %1$s+</string>
 
 </resources>

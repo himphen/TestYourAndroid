@@ -98,10 +98,10 @@
     </string-array>
 
     <!--  -->
-    <string name="memory_string_1"><![CDATA[Total: ]]></string>
-    <string name="memory_string_2"><![CDATA[Available: ]]></string>
-    <string name="memory_string_3"><![CDATA[Used: ]]></string>
-    <string name="memory_string_4"><![CDATA[Threshold: ]]></string>
+    <string name="memory_string_1">Total:&#160;</string>
+    <string name="memory_string_2">Available:&#160;</string>
+    <string name="memory_string_3">Used:&#160;</string>
+    <string name="memory_string_4">Threshold:&#160;</string>
     <string-array name="memory_string_array" translatable="false">
         <item>@string/memory_string_1</item>
         <item>@string/memory_string_2</item>

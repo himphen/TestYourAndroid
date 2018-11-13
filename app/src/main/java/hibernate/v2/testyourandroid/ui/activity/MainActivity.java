@@ -115,7 +115,7 @@ public class MainActivity extends BaseActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.new_main, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
@@ -188,29 +188,38 @@ public class MainActivity extends BaseActivity {
 	}
 
 	private void language() {
-		String language = defaultPreferences.getString(C.PREF_LANGUAGE, "");
-		String languageCountry = defaultPreferences.getString(C.PREF_LANGUAGE_COUNTRY, "");
+		String preferencesLanguage = defaultPreferences.getString(C.PREF_LANGUAGE, "");
+		String preferencesLanguageCountry = defaultPreferences.getString(C.PREF_LANGUAGE_COUNTRY, "");
+
 		int a = 0;
 
-		if ("in".equals(language)) {
+		if ("in".equals(preferencesLanguage)) {
 			a = 1;
-		} else if ("en".equals(language)) {
+		} else if ("de".equals(preferencesLanguage)) {
 			a = 2;
-		} else if ("es".equals(language)) {
+		} else if ("en".equals(preferencesLanguage)) {
 			a = 3;
-		} else if ("fr".equals(language)) {
+		} else if ("es".equals(preferencesLanguage)) {
 			a = 4;
-		} else if ("it".equals(language)) {
+		} else if ("fr".equals(preferencesLanguage)) {
 			a = 5;
-		} else if ("pt".equals(language)) {
+		} else if ("it".equals(preferencesLanguage)) {
 			a = 6;
-		} else if ("zh".equals(language)) {
-			if ("HK".equals(languageCountry)) {
-				a = 8;
-			} else if ("CN".equals(languageCountry)) {
-				a = 9;
-			} else {
-				a = 7;
+		} else if ("pt".equals(preferencesLanguage)) {
+			a = 7;
+		} else if ("ru".equals(preferencesLanguage)) {
+			a = 8;
+		} else if ("hi".equals(preferencesLanguage)) {
+			a = 9;
+		} else if ("jp".equals(preferencesLanguage)) {
+			a = 10;
+		} else if ("zh".equals(preferencesLanguage)) {
+			if ("".equals(preferencesLanguageCountry)) {
+				a = 11;
+			} else if ("HK".equals(preferencesLanguageCountry)) {
+				a = 12;
+			} else if ("CN".equals(preferencesLanguageCountry)) {
+				a = 13;
 			}
 		}
 
@@ -221,50 +230,14 @@ public class MainActivity extends BaseActivity {
 					@Override
 					public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
 						SharedPreferences.Editor editor = defaultPreferences.edit();
-						switch (which) {
-							case 1:
-								editor.putString(C.PREF_LANGUAGE, "in")
-										.putString(C.PREF_LANGUAGE_COUNTRY, "");
-								break;
-							case 2:
-								editor.putString(C.PREF_LANGUAGE, "en")
-										.putString(C.PREF_LANGUAGE_COUNTRY, "");
-								break;
-							case 3:
-								editor.putString(C.PREF_LANGUAGE, "es")
-										.putString(C.PREF_LANGUAGE_COUNTRY, "");
-								break;
-							case 4:
-								editor.putString(C.PREF_LANGUAGE, "fr")
-										.putString(C.PREF_LANGUAGE_COUNTRY, "");
-								break;
-							case 5:
-								editor.putString(C.PREF_LANGUAGE, "it")
-										.putString(C.PREF_LANGUAGE_COUNTRY, "");
-								break;
-							case 6:
-								editor.putString(C.PREF_LANGUAGE, "pt")
-										.putString(C.PREF_LANGUAGE_COUNTRY, "");
-								break;
-							case 7:
-								editor.putString(C.PREF_LANGUAGE, "zh")
-										.putString(C.PREF_LANGUAGE_COUNTRY, "");
-								break;
-							case 8:
-								editor.putString(C.PREF_LANGUAGE, "zh")
-										.putString(C.PREF_LANGUAGE_COUNTRY, "HK");
-								break;
-							case 9:
-								editor.putString(C.PREF_LANGUAGE, "zh")
-										.putString(C.PREF_LANGUAGE_COUNTRY, "CN");
-								break;
-							default:
-								editor.putString(C.PREF_LANGUAGE, "")
-										.putString(C.PREF_LANGUAGE_COUNTRY, "");
-								break;
-						}
 
-						editor.apply();
+						String[] languageLocaleCodeArray = mContext.getResources().getStringArray(R.array.language_locale_code);
+						String[] languageLocaleCountryCodeArray = mContext.getResources().getStringArray(R.array.language_locale_country_code);
+
+						editor.putString(C.PREF_LANGUAGE, languageLocaleCodeArray[which])
+								.putString(C.PREF_LANGUAGE_COUNTRY, languageLocaleCountryCodeArray[which])
+								.apply();
+
 						startActivity(new Intent(mContext, MainActivity.class));
 						finish();
 						return false;

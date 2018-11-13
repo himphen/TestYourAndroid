@@ -11,7 +11,6 @@
     <string name="dialog_feature_na_message">Your Android device does not have this feature or may be used by other apps.</string>
     <string name="dialog_permission_denied_message">Without granting permissions, it will probably not work.\n\nPlease give Test Your Android the permissions to access this feature.</string>
     <string name="dialog_permission_denied_posbtn">Setting »</string>
-
     <string name="title_activity_screen">Monitor Color</string>
     <string name="title_activity_light">Light Sensor</string>
     <string name="title_activity_humidity">Humidity Sensor</string>
@@ -43,33 +42,23 @@
     <string name="title_activity_test_ad_remover">Donate</string>
     <string name="title_activity_app_brain">More App</string>
     <string name="title_activity_rate_us">Rate us!</string>
-
     <string name="title_activity_app_choose">Installed Apps</string>
     <string name="title_activity_app_user">User Installed Apps</string>
     <string name="title_activity_app_system">System Apps</string>
     <string name="title_activity_app_all">All Apps</string>
     <string name="app_package">Application Package</string>
-
     <string name="main_title_hardware">Hardware Testing</string>
     <string name="main_title_sensor">Sensor Testing</string>
     <string name="main_title_information">Device Information</string>
     <string name="main_title_other">Other</string>
-
-    <!--  -->
     <string name="main_tab_title_1">Device Test</string>
     <string name="main_tab_title_2">About</string>
-
-    <!--  -->
     <string name="app_info_tab_title_1">Actions</string>
     <string name="app_info_tab_title_2">Package</string>
     <string name="app_info_tab_title_3">Permissions</string>
-
-    <!--  -->
     <string name="test_monitor_tab_title_1">CPU</string>
     <string name="test_monitor_tab_title_2">Network</string>
     <string name="test_monitor_tab_title_3">Memory</string>
-
-    <!--  -->
     <string name="color_title">Please choose</string>
     <string name="color_message">Normal mode:\nPress to change next color\n\nFixing mode:\nChanging color rapidly</string>
     <string name="color_normal_btn">Normal mode</string>
@@ -79,24 +68,16 @@
         \n\nIt is recommend to do it in charging. This mode will be closed after 20 minutes automatically.
         \n\nThis fixing mode is not guaranteed to fix the defective pixels. Please contact manufacturer if you have any problem.
         \n\nYou may press the BACK key to the main screen.</string>
-
-    <!--  -->
     <string name="vibrate_button">Test Vibration</string>
     <string name="vibrate_stop_button">Stop Vibration</string>
     <string name="vibrate_string_1">Long Vibration</string>
     <string name="vibrate_string_2">Short Vibration</string>
-
-    <!--  -->
     <string name="ring_button">Play Music</string>
     <string name="ring_stop_button">Stop Music</string>
     <string name="adjust_volume">Adjust the Volume</string>
     <string name="vibrate_type">Vibration Mode</string>
-
-    <!--  -->
     <string name="nfc_tutor_message">Place any NFC tag behind the device, and you will get beep sounds when it is successful.</string>
     <string name="touch_message">Touch the screen with multiple fingers.</string>
-
-    <!--  -->
     <string name="info_hardware_string_1">Brand</string>
     <string name="info_hardware_string_2">Device</string>
     <string name="info_hardware_string_3">Model</string>
@@ -109,8 +90,6 @@
     <string name="info_hardware_string_10">User</string>
     <string name="info_hardware_string_11">Host</string>
     <string name="info_hardware_string_12">Board</string>
-
-    <!--  -->
     <string name="app_package_string_1">Package</string>
     <string name="app_package_string_2">Package Name</string>
     <string name="app_package_string_3">Version Code</string>
@@ -121,21 +100,15 @@
     <string name="app_package_string_8">APK Directory</string>
     <string name="app_package_string_9">Min. SDK Version</string>
     <string name="app_package_string_10">Target SDK Version</string>
-
-    <!--  -->
     <string name="app_action_string_1">Launch App</string>
     <string name="app_action_string_2">Uninstall</string>
     <string name="app_action_string_3">Control Panel</string>
     <string name="app_action_string_4">Play Store</string>
-
-    <!--  -->
     <string name="info_battery_charge_string_1">Discharging</string>
     <string name="info_battery_charge_string_2">AC Charging</string>
     <string name="info_battery_charge_string_3">USB Charging</string>
     <string name="info_battery_charge_string_4">Unknown</string>
     <string name="info_battery_charge_string_5">Wireless Charging</string>
-
-    <!--  -->
     <string name="info_battery_health_string_1">Unknown</string>
     <string name="info_battery_health_string_2">Unknown</string>
     <string name="info_battery_health_string_3">Good</string>
@@ -144,31 +117,23 @@
     <string name="info_battery_health_string_6">Caution: Over-Voltage</string>
     <string name="info_battery_health_string_7">Unknown</string>
     <string name="info_battery_health_string_8">Caution: Too Cold</string>
-
-    <!--  -->
-    <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
-    <string name="test_wifi_current_string_2"><![CDATA[BSSID: ]]></string>
-    <string name="test_wifi_current_string_3"><![CDATA[Network ID: ]]></string>
-    <string name="test_wifi_current_string_4"><![CDATA[Mac Address: ]]></string>
-    <string name="test_wifi_current_string_5"><![CDATA[Wi-Fi Speed: ]]></string>
-    <string name="test_wifi_current_string_6"><![CDATA[Wi-Fi Strength: ]]></string>
-    <string name="test_wifi_current_string_7"><![CDATA[IP Address: ]]></string>
-    <string name="test_wifi_current_string_8"><![CDATA[Default Gateway: ]]></string>
-    <string name="test_wifi_current_string_9"><![CDATA[Subnet Mask: ]]></string>
-    <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
-    <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
-    <string name="test_wifi_current_string_12"><![CDATA[Server Address: ]]></string>
-
-    <!--  -->
+    <string name="test_wifi_current_string_1">SSID:&#160;</string>
+    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
+    <string name="test_wifi_current_string_3">Network ID:&#160;</string>
+    <string name="test_wifi_current_string_4">Mac Address:&#160;</string>
+    <string name="test_wifi_current_string_5">Wi-Fi Speed:&#160;</string>
+    <string name="test_wifi_current_string_6">Wi-Fi Strength:&#160;</string>
+    <string name="test_wifi_current_string_7">IP Address:&#160;</string>
+    <string name="test_wifi_current_string_8">Default Gateway:&#160;</string>
+    <string name="test_wifi_current_string_9">Subnet Mask:&#160;</string>
+    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
+    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
+    <string name="test_wifi_current_string_12">Server Address:&#160;</string>
     <string name="test_wifi_string_1">Current Wi-Fi</string>
     <string name="test_wifi_string_2">Available Wi-Fi</string>
     <string name="test_wifi_string_3">Saved Wi-Fi SSID</string>
-
-    <!--  -->
     <string name="test_bluetooth_string_1">Available Devices</string>
     <string name="test_bluetooth_string_2">Paired Devices</string>
-
-    <!--  -->
     <string name="info_cpu_string_1">Min Feq.</string>
     <string name="info_cpu_string_2">Max Feq.</string>
     <string name="info_cpu_string_3">CPU Core no.</string>
@@ -176,14 +141,10 @@
     <string name="info_cpu_string_5">External Memory</string>
     <string name="info_cpu_string_6">RAM Memory</string>
     <string name="info_cpu_string_7">Detail Memory</string>
-
-    <!--  -->
-    <string name="memory_string_1"><![CDATA[Total: ]]></string>
-    <string name="memory_string_2"><![CDATA[Available: ]]></string>
-    <string name="memory_string_3"><![CDATA[Used: ]]></string>
-    <string name="memory_string_4"><![CDATA[Threshold: ]]></string>
-
-    <!--  -->
+    <string name="memory_string_1">Total:&#160;</string>
+    <string name="memory_string_2">Available:&#160;</string>
+    <string name="memory_string_3">Used:&#160;</string>
+    <string name="memory_string_4">Threshold:&#160;</string>
     <string name="info_android_version_string_1">Android Version</string>
     <string name="info_android_version_string_2">Codename</string>
     <string name="info_android_version_string_3">INCREMENTAL</string>
@@ -203,8 +164,6 @@
     <string name="info_android_version_string_17">VM specification name</string>
     <string name="info_android_version_string_18">Location of the VM</string>
     <string name="info_android_version_string_19">Timezone</string>
-
-    <!--  -->
     <string name="info_camera_string_1">Screen Width</string>
     <string name="info_camera_string_2">Screen Height</string>
     <string name="info_camera_string_3">Image Resolution</string>
@@ -215,8 +174,6 @@
     <string name="info_camera_string_8">White Balance</string>
     <string name="info_camera_string_9">Scene Modes</string>
     <string name="info_camera_string_10">Picture Formats</string>
-
-    <!--  -->
     <string name="info_battery_string_1">Battery Level</string>
     <string name="info_battery_string_2">Max Battery Level</string>
     <string name="info_battery_string_3">Battery Health</string>
@@ -224,8 +181,6 @@
     <string name="info_battery_string_5">Battery technology</string>
     <string name="info_battery_string_6">Battery temperature</string>
     <string name="info_battery_string_7">Battery voltage</string>
-
-    <!--  -->
     <string name="test_sensor_string_1">Reading</string>
     <string name="test_sensor_string_2">Name</string>
     <string name="test_sensor_string_3">Vendor</string>
@@ -234,16 +189,12 @@
     <string name="test_sensor_string_6">Min. Delay</string>
     <string name="test_sensor_string_7">Resolution</string>
     <string name="test_sensor_string_8">Power</string>
-
-    <!--  -->
     <string name="test_gps_string_1">Latitude</string>
     <string name="test_gps_string_2">Longitude</string>
     <string name="test_gps_string_3">Speed</string>
     <string name="test_gps_string_4">Altitude</string>
     <string name="test_gps_string_5">Bearing</string>
     <string name="test_gps_string_6">Accuracy</string>
-
-    <!--  -->
     <string name="info_gsm_string_1">SIM Card Country</string>
     <string name="info_gsm_string_2">SIM Card Operator Code</string>
     <string name="info_gsm_string_3">SIM Card Operator Name</string>
@@ -257,15 +208,12 @@
     <string name="info_gsm_string_11">Network Roaming</string>
     <string name="info_gsm_string_12">SIM Serial Number</string>
     <string name="info_gsm_string_13">Subscriber ID</string>
-
-    <!--  -->
     <string name="info_sim_status_string_1">Unknown</string>
     <string name="info_sim_status_string_2">No SIM card</string>
     <string name="info_sim_status_string_3">Locked: requires the user\'s SIM PIN to unlock</string>
     <string name="info_sim_status_string_4">Locked: requires the user\'s SIM PUK to unlock</string>
     <string name="info_sim_status_string_5">Locked: requires a network PIN to unlock</string>
     <string name="info_sim_status_string_6">Ready</string>
-
     <string name="wifi_setting">Setting</string>
     <string name="wifi_reload">Refresh</string>
     <string name="wifi_reload_done">Reload Succeeded</string>
@@ -308,17 +256,13 @@
     <string name="rate_netbtn">Later on</string>
     <string name="rate_posbtn">Rate now</string>
     <string name="share_button">Share it!!!</string>
-    <string name="share_message">Let\'s download \"Test Your Android\" app to test your Android devices.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="share_message">Download Test Your Android app to test your Android devices.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
     <string name="mic_start_recording">Start recording</string>
     <string name="mic_start_playing">Start playing</string>
     <string name="mic_stop">Stop</string>
-
-    <!--  -->
-
-    <string name="ui_relative_humidity"><![CDATA[Relative Humidity: ]]></string>
-    <string name="ui_absolute_humidity"><![CDATA[Absolute Humidity: ]]></string>
-    <string name="ui_dew_point"><![CDATA[Dew Point: ]]></string>
-
+    <string name="ui_relative_humidity">Relative Humidity:&#160;</string>
+    <string name="ui_absolute_humidity">Absolute Humidity:&#160;</string>
+    <string name="ui_dew_point">Dew Point:&#160;</string>
     <string name="dialog_camera_title">Please select camera</string>
     <string name="iab_complete_title">Thanks</string>
     <string name="iab_complete_message">Please restart the app to apply the change.</string>
@@ -329,7 +273,6 @@
     <string name="ui_fingerprint_fail">Not recognized.</string>
     <string name="ui_fingerprint_help">Authentication Help</string>
     <string name="ui_fingerprint_succeeded">Succeeded.</string>
-
     <string name="app_not_found">No application found.</string>
 
 </resources>

@@ -10,8 +10,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 197312 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Cheungfan 731"
+        versionCode 198002 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Egg waffle 800"
         multiDexEnabled true
     }
 
@@ -107,7 +107,7 @@ dependencies {
     implementation 'com.appbrain:appbrain-sdk:+@aar'
 
     // Crashlytics
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.6'
 
     // https://github.com/natario1/CameraView
     implementation 'com.otaliastudios:cameraview:1.6.0'

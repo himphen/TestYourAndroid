@@ -1,335 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Test Your Android</string>
-    <string name="ui_okay">Okay</string>
-    <string name="ui_cancel">Cancel</string>
-    <string name="ui_error">Error</string>
-    <string name="ui_na">N/A</string>
-    <string name="ui_caution">Caution</string>
-    <string name="ui_not_support">Not supported</string>
-    <string name="ui_not_support_android_version">Only support by Android %1$s+</string>
-    <string name="dialog_feature_na_message">Your Android device does not have this feature or may be used by other apps.</string>
-    <string name="dialog_permission_denied_message">Without granting permissions, it will probably not work.\n\nPlease give Test Your Android the permissions to access this feature.</string>
-    <string name="dialog_permission_denied_posbtn">Setting »</string>
-
-    <string name="title_activity_screen">Monitor Color</string>
-    <string name="title_activity_light">Light Sensor</string>
-    <string name="title_activity_humidity">Humidity Sensor</string>
-    <string name="title_activity_camera">Camera</string>
-    <string name="title_activity_flashlight">Flashlight</string>
-    <string name="title_activity_fingerprint">Fingerprint</string>
-    <string name="title_activity_drawing">Touch Screen</string>
-    <string name="title_activity_touch">Multi Touch</string>
-    <string name="title_activity_speaker">Speaker and Vibrate</string>
-    <string name="title_activity_microphone">Microphone</string>
+    <string name="app_name">Androidをテストする</string>
+    <string name="ui_okay">はい</string>
+    <string name="ui_cancel">キャンセル</string>
+    <string name="ui_error">エラー</string>
+    <string name="ui_na">N / A</string>
+    <string name="ui_caution">あぶない</string>
+    <string name="ui_not_support">サポートされていません</string>
+    <string name="ui_not_support_android_version">Android %1$s+によるサポートのみ</string>
+    <string name="dialog_feature_na_message">お使いのAndroid搭載端末にはこの機能がないか、他のアプリで使用されている可能性があります。</string>
+    <string name="dialog_permission_denied_message">許可を与えなければ、おそらく動作しません。\n\nAndroidにこの機能にアクセスするためのアクセス許可をテストしてください。</string>
+    <string name="dialog_permission_denied_posbtn">設定»</string>
+    <string name="title_activity_screen">モニターの色</string>
+    <string name="title_activity_light">光センサー</string>
+    <string name="title_activity_humidity">湿度センサ</string>
+    <string name="title_activity_camera">カメラ</string>
+    <string name="title_activity_flashlight">懐中電灯</string>
+    <string name="title_activity_fingerprint">指紋</string>
+    <string name="title_activity_drawing">タッチスクリーン</string>
+    <string name="title_activity_touch">マルチタッチ</string>
+    <string name="title_activity_speaker">スピーカーと振動</string>
+    <string name="title_activity_microphone">マイクロフォン</string>
     <string name="title_activity_wifi">Wi-Fi</string>
-    <string name="title_activity_bluetooth">Bluetooth</string>
-    <string name="title_activity_accelerometer">Accelerometer</string>
-    <string name="title_activity_step">Pedometer</string>
-    <string name="title_activity_temperature">Temperature Sensor</string>
-    <string name="title_activity_location">Location</string>
+    <string name="title_activity_bluetooth">ブルートゥース</string>
+    <string name="title_activity_accelerometer">加速度計</string>
+    <string name="title_activity_step">歩数計</string>
+    <string name="title_activity_temperature">温度センサー</string>
+    <string name="title_activity_location">ロケーション</string>
     <string name="title_activity_nfc">NFC</string>
-    <string name="title_activity_proximity">Proximity Sensor</string>
-    <string name="title_activity_gravity">Gravity Sensor</string>
-    <string name="title_activity_pressure">Pressure Sensor</string>
-    <string name="title_activity_system_monitor">System Monitor</string>
-    <string name="title_activity_compass">Compass</string>
-    <string name="title_activity_device">Hardware</string>
-    <string name="title_activity_cpu">CPU/Memory</string>
-    <string name="title_activity_android_version">Android Version</string>
-    <string name="title_activity_application">Installed Apps</string>
-    <string name="title_activity_battery">Battery</string>
-    <string name="title_activity_gsm">Network</string>
-    <string name="title_activity_test_ad_remover">Donate</string>
-    <string name="title_activity_app_brain">More App</string>
-    <string name="title_activity_rate_us">Rate us!</string>
-
-    <string name="title_activity_app_choose">Installed Apps</string>
-    <string name="title_activity_app_user">User Installed Apps</string>
-    <string name="title_activity_app_system">System Apps</string>
-    <string name="title_activity_app_all">All Apps</string>
-    <string name="app_package">Application Package</string>
-
-    <string name="main_title_hardware">Hardware Testing</string>
-    <string name="main_title_sensor">Sensor Testing</string>
-    <string name="main_title_information">Device Information</string>
-    <string name="main_title_other">Other</string>
-
-    <!--  -->
-    <string name="main_tab_title_1">Device Test</string>
-    <string name="main_tab_title_2">About</string>
-
-    <!--  -->
-    <string name="app_info_tab_title_1">Actions</string>
-    <string name="app_info_tab_title_2">Package</string>
-    <string name="app_info_tab_title_3">Permissions</string>
-
-    <!--  -->
+    <string name="title_activity_proximity">近接センサー</string>
+    <string name="title_activity_gravity">重力センサ</string>
+    <string name="title_activity_pressure">圧力センサ</string>
+    <string name="title_activity_system_monitor">システムモニタ</string>
+    <string name="title_activity_compass">コンパス</string>
+    <string name="title_activity_device">ハードウェア</string>
+    <string name="title_activity_cpu">CPU/メモリ</string>
+    <string name="title_activity_android_version">Androidバージョン</string>
+    <string name="title_activity_application">インストールされたアプリ</string>
+    <string name="title_activity_battery">電池</string>
+    <string name="title_activity_gsm">ネットワーク</string>
+    <string name="title_activity_test_ad_remover">寄付する</string>
+    <string name="title_activity_app_brain">より多くのアプリ</string>
+    <string name="title_activity_rate_us">私たちを評価してください！</string>
+    <string name="title_activity_app_choose">インストールされたアプリ</string>
+    <string name="title_activity_app_user">ユーザーがインストールしたアプリ</string>
+    <string name="title_activity_app_system">システムアプリ</string>
+    <string name="title_activity_app_all">すべてのアプリ</string>
+    <string name="app_package">アプリケーションパッケージ</string>
+    <string name="main_title_hardware">ハードウェアテスト</string>
+    <string name="main_title_sensor">センサーテスト</string>
+    <string name="main_title_information">デバイス情報</string>
+    <string name="main_title_other">その他</string>
+    <string name="main_tab_title_1">デバイステスト</string>
+    <string name="main_tab_title_2">約</string>
+    <string name="app_info_tab_title_1">行動</string>
+    <string name="app_info_tab_title_2">パッケージ</string>
+    <string name="app_info_tab_title_3">アクセス許可</string>
     <string name="test_monitor_tab_title_1">CPU</string>
-    <string name="test_monitor_tab_title_2">Network</string>
-    <string name="test_monitor_tab_title_3">Memory</string>
-
-    <!--  -->
-    <string name="color_title">Please choose</string>
-    <string name="color_message">Normal mode:\nPress to change next color\n\nFixing mode:\nChanging color rapidly</string>
-    <string name="color_normal_btn">Normal mode</string>
-    <string name="color_test_btn">Fixing mode</string>
-    <string name="color_test_message">During the fixing mode, the screen will be flashing and changing color rapidly.
-        \nDO NOT WATCH to the screen otherwise it may hurt your eyes.
-        \n\nIt is recommend to do it in charging. This mode will be closed after 20 minutes automatically.
-        \n\nThis fixing mode is not guaranteed to fix the defective pixels. Please contact manufacturer if you have any problem.
-        \n\nYou may press the BACK key to the main screen.</string>
-
-    <!--  -->
-    <string name="vibrate_button">Test Vibration</string>
-    <string name="vibrate_stop_button">Stop Vibration</string>
-    <string name="vibrate_string_1">Long Vibration</string>
-    <string name="vibrate_string_2">Short Vibration</string>
-
-    <!--  -->
-    <string name="ring_button">Play Music</string>
-    <string name="ring_stop_button">Stop Music</string>
-    <string name="adjust_volume">Adjust the Volume</string>
-    <string name="vibrate_type">Vibration Mode</string>
-
-    <!--  -->
-    <string name="nfc_tutor_message">Place any NFC tag behind the device, and you will get beep sounds when it is successful.</string>
-    <string name="touch_message">Touch the screen with multiple fingers.</string>
-
-    <!--  -->
-    <string name="info_hardware_string_1">Brand</string>
-    <string name="info_hardware_string_2">Device</string>
-    <string name="info_hardware_string_3">Model</string>
-    <string name="info_hardware_string_4">Product name</string>
-    <string name="info_hardware_string_5">Display</string>
-    <string name="info_hardware_string_6">Fingerprint</string>
-    <string name="info_hardware_string_7">Board</string>
-    <string name="info_hardware_string_8">Manufacturer</string>
-    <string name="info_hardware_string_9">Serial</string>
-    <string name="info_hardware_string_10">User</string>
-    <string name="info_hardware_string_11">Host</string>
-    <string name="info_hardware_string_12">Board</string>
-
-    <!--  -->
-    <string name="app_package_string_1">Package</string>
-    <string name="app_package_string_2">Package Name</string>
-    <string name="app_package_string_3">Version Code</string>
-    <string name="app_package_string_4">Version</string>
-    <string name="app_package_string_5">Installed Time</string>
-    <string name="app_package_string_6">Update Time</string>
-    <string name="app_package_string_7">Data Directory</string>
-    <string name="app_package_string_8">APK Directory</string>
-    <string name="app_package_string_9">Min. SDK Version</string>
-    <string name="app_package_string_10">Target SDK Version</string>
-
-    <!--  -->
-    <string name="app_action_string_1">Launch App</string>
-    <string name="app_action_string_2">Uninstall</string>
-    <string name="app_action_string_3">Control Panel</string>
-    <string name="app_action_string_4">Play Store</string>
-
-    <!--  -->
-    <string name="info_battery_charge_string_1">Discharging</string>
-    <string name="info_battery_charge_string_2">AC Charging</string>
-    <string name="info_battery_charge_string_3">USB Charging</string>
-    <string name="info_battery_charge_string_4">Unknown</string>
-    <string name="info_battery_charge_string_5">Wireless Charging</string>
-
-    <!--  -->
-    <string name="info_battery_health_string_1">Unknown</string>
-    <string name="info_battery_health_string_2">Unknown</string>
-    <string name="info_battery_health_string_3">Good</string>
-    <string name="info_battery_health_string_4">Caution: Overheat</string>
-    <string name="info_battery_health_string_5">Caution: Dead</string>
-    <string name="info_battery_health_string_6">Caution: Over-Voltage</string>
-    <string name="info_battery_health_string_7">Unknown</string>
-    <string name="info_battery_health_string_8">Caution: Too Cold</string>
-
-    <!--  -->
-    <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
-    <string name="test_wifi_current_string_2"><![CDATA[BSSID: ]]></string>
-    <string name="test_wifi_current_string_3"><![CDATA[Network ID: ]]></string>
-    <string name="test_wifi_current_string_4"><![CDATA[Mac Address: ]]></string>
-    <string name="test_wifi_current_string_5"><![CDATA[Wi-Fi Speed: ]]></string>
-    <string name="test_wifi_current_string_6"><![CDATA[Wi-Fi Strength: ]]></string>
-    <string name="test_wifi_current_string_7"><![CDATA[IP Address: ]]></string>
-    <string name="test_wifi_current_string_8"><![CDATA[Default Gateway: ]]></string>
-    <string name="test_wifi_current_string_9"><![CDATA[Subnet Mask: ]]></string>
-    <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
-    <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
-    <string name="test_wifi_current_string_12"><![CDATA[Server Address: ]]></string>
-
-    <!--  -->
-    <string name="test_wifi_string_1">Current Wi-Fi</string>
-    <string name="test_wifi_string_2">Available Wi-Fi</string>
-    <string name="test_wifi_string_3">Saved Wi-Fi SSID</string>
-
-    <!--  -->
-    <string name="test_bluetooth_string_1">Available Devices</string>
-    <string name="test_bluetooth_string_2">Paired Devices</string>
-
-    <!--  -->
-    <string name="info_cpu_string_1">Min Feq.</string>
-    <string name="info_cpu_string_2">Max Feq.</string>
-    <string name="info_cpu_string_3">CPU Core no.</string>
-    <string name="info_cpu_string_4">Internal Memory</string>
-    <string name="info_cpu_string_5">External Memory</string>
-    <string name="info_cpu_string_6">RAM Memory</string>
-    <string name="info_cpu_string_7">Detail Memory</string>
-
-    <!--  -->
-    <string name="memory_string_1"><![CDATA[Total: ]]></string>
-    <string name="memory_string_2"><![CDATA[Available: ]]></string>
-    <string name="memory_string_3"><![CDATA[Used: ]]></string>
-    <string name="memory_string_4"><![CDATA[Threshold: ]]></string>
-
-    <!--  -->
-    <string name="info_android_version_string_1">Android Version</string>
-    <string name="info_android_version_string_2">Codename</string>
-    <string name="info_android_version_string_3">INCREMENTAL</string>
-    <string name="info_android_version_string_4">SDK Level</string>
-    <string name="info_android_version_string_5">Kernel Type</string>
-    <string name="info_android_version_string_6">Kernel OS</string>
-    <string name="info_android_version_string_7">Kernel OS Version</string>
-    <string name="info_android_version_string_8">JNI libraries</string>
-    <string name="info_android_version_string_9">VM libraries version</string>
-    <string name="info_android_version_string_10">VM libraries vendor</string>
-    <string name="info_android_version_string_11">VM libraries name</string>
-    <string name="info_android_version_string_12">VM implementation version</string>
-    <string name="info_android_version_string_13">VM implementation vendor</string>
-    <string name="info_android_version_string_14">VM implementation name</string>
-    <string name="info_android_version_string_15">VM specification version</string>
-    <string name="info_android_version_string_16">VM specification vendor</string>
-    <string name="info_android_version_string_17">VM specification name</string>
-    <string name="info_android_version_string_18">Location of the VM</string>
-    <string name="info_android_version_string_19">Timezone</string>
-
-    <!--  -->
-    <string name="info_camera_string_1">Screen Width</string>
-    <string name="info_camera_string_2">Screen Height</string>
-    <string name="info_camera_string_3">Image Resolution</string>
-    <string name="info_camera_string_4">Antibanding</string>
-    <string name="info_camera_string_5">Color Effects</string>
-    <string name="info_camera_string_6">Flash Modes</string>
-    <string name="info_camera_string_7">Focus Modes</string>
-    <string name="info_camera_string_8">White Balance</string>
-    <string name="info_camera_string_9">Scene Modes</string>
-    <string name="info_camera_string_10">Picture Formats</string>
-
-    <!--  -->
-    <string name="info_battery_string_1">Battery Level</string>
-    <string name="info_battery_string_2">Max Battery Level</string>
-    <string name="info_battery_string_3">Battery Health</string>
-    <string name="info_battery_string_4">Battery Status</string>
-    <string name="info_battery_string_5">Battery technology</string>
-    <string name="info_battery_string_6">Battery temperature</string>
-    <string name="info_battery_string_7">Battery voltage</string>
-
-    <!--  -->
-    <string name="test_sensor_string_1">Reading</string>
-    <string name="test_sensor_string_2">Name</string>
-    <string name="test_sensor_string_3">Vendor</string>
-    <string name="test_sensor_string_4">Version</string>
-    <string name="test_sensor_string_5">Max. Range</string>
-    <string name="test_sensor_string_6">Min. Delay</string>
-    <string name="test_sensor_string_7">Resolution</string>
-    <string name="test_sensor_string_8">Power</string>
-
-    <!--  -->
-    <string name="test_gps_string_1">Latitude</string>
-    <string name="test_gps_string_2">Longitude</string>
-    <string name="test_gps_string_3">Speed</string>
-    <string name="test_gps_string_4">Altitude</string>
-    <string name="test_gps_string_5">Bearing</string>
-    <string name="test_gps_string_6">Accuracy</string>
-
-    <!--  -->
-    <string name="info_gsm_string_1">SIM Card Country</string>
-    <string name="info_gsm_string_2">SIM Card Operator Code</string>
-    <string name="info_gsm_string_3">SIM Card Operator Name</string>
-    <string name="info_gsm_string_4">SIM Card State</string>
-    <string name="info_gsm_string_5">IMEI/ESN</string>
-    <string name="info_gsm_string_6">Device Software Version</string>
-    <string name="info_gsm_string_7">Phone Number</string>
-    <string name="info_gsm_string_8">Network Country</string>
-    <string name="info_gsm_string_9">Network Operator Code</string>
-    <string name="info_gsm_string_10">Network Operator Name</string>
-    <string name="info_gsm_string_11">Network Roaming</string>
-    <string name="info_gsm_string_12">SIM Serial Number</string>
-    <string name="info_gsm_string_13">Subscriber ID</string>
-
-    <!--  -->
-    <string name="info_sim_status_string_1">Unknown</string>
-    <string name="info_sim_status_string_2">No SIM card</string>
-    <string name="info_sim_status_string_3">Locked: requires the user\'s SIM PIN to unlock</string>
-    <string name="info_sim_status_string_4">Locked: requires the user\'s SIM PUK to unlock</string>
-    <string name="info_sim_status_string_5">Locked: requires a network PIN to unlock</string>
-    <string name="info_sim_status_string_6">Ready</string>
-
-    <string name="wifi_setting">Setting</string>
-    <string name="wifi_reload">Refresh</string>
-    <string name="wifi_reload_done">Reload Succeeded</string>
-    <string name="wifi_reload_fail">Reload failed</string>
-    <string name="wifi_enable_message">You need to enable Wi-Fi to continue.</string>
-    <string name="wifi_enable_posbtn">Go to Wi-Fi setting</string>
-    <string name="wifi_no">No Wi-Fi Connected</string>
-    <string name="bluetooth_setting">Setting</string>
-    <string name="bluetooth_enable_message">You need to enable Bluetooth to continue.</string>
-    <string name="bluetooth_enable_posbtn">Go to Bluetooth setting</string>
-    <string name="gps_setting">Location Setting</string>
-    <string name="security_setting">Setting</string>
-    <string name="gps_scanning">Scanning</string>
-    <string name="gps_enable_message">You need to enable Location to continue.</string>
-    <string name="gps_enable_posbtn">Go to Location setting</string>
-    <string name="nfc_enable_message">You need to enable NFC to continue.</string>
-    <string name="nfc_enable_posbtn">Go to NFC setting</string>
-    <string name="nfc_setting">NFC setting</string>
-    <string name="flash_on">Turn On Flashlight</string>
-    <string name="flash_off">Turn Off Flashlight</string>
-    <string name="ui_share">Share</string>
-    <string name="action_iap">Ad Remove</string>
-    <string name="cpu_speed">Speed</string>
-    <string name="cpu_core">No. of Core</string>
-    <string name="cpu_min">Min Speed</string>
-    <string name="cpu_max">Max Speed</string>
-    <string name="network_upspeed">Upload Speed</string>
-    <string name="network_downspeed">Download Speed</string>
-    <string name="memory_ava">Available</string>
-    <string name="memory_total">Total</string>
-    <string name="memory_used">Used</string>
-    <string name="ui_version">Version</string>
-    <string name="feedback">Give me Feedback</string>
-    <string name="about_credit_btn">Open source licenses</string>
-    <string name="feedback_title">Test Your Android App: Report and Feedback</string>
-    <string name="more">Developer\'s app</string>
-    <string name="rate_title">Give developer some feedback</string>
-    <string name="rate_message">Rate this app in Google Play to support developer. Contact developer if you have any questions.</string>
-    <string name="rate_navbtn">No, thanks</string>
-    <string name="rate_netbtn">Later on</string>
-    <string name="rate_posbtn">Rate now</string>
-    <string name="share_button">Share it!!!</string>
-    <string name="share_message">Let\'s download \"Test Your Android\" app to test your Android devices.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
-    <string name="mic_start_recording">Start recording</string>
-    <string name="mic_start_playing">Start playing</string>
-    <string name="mic_stop">Stop</string>
-
-    <!--  -->
-
-    <string name="ui_relative_humidity"><![CDATA[Relative Humidity: ]]></string>
-    <string name="ui_absolute_humidity"><![CDATA[Absolute Humidity: ]]></string>
-    <string name="ui_dew_point"><![CDATA[Dew Point: ]]></string>
-
-    <string name="dialog_camera_title">Please select camera</string>
-    <string name="iab_complete_title">Thanks</string>
-    <string name="iab_complete_message">Please restart the app to apply the change.</string>
-    <string name="ui_loading">Loading...</string>
-    <string name="ui_fingerprint_not_locked">Please enable lock screen security in Settings.</string>
-    <string name="ui_fingerprint_not_register">Register at least one fingerprint in Settings.</string>
-    <string name="ui_fingerprint_start_message">Put your finger on the sensor.</string>
-    <string name="ui_fingerprint_fail">Not recognized.</string>
-    <string name="ui_fingerprint_help">Authentication Help</string>
-    <string name="ui_fingerprint_succeeded">Succeeded.</string>
-
-    <string name="app_not_found">No application found.</string>
-
+    <string name="test_monitor_tab_title_2">ネットワーク</string>
+    <string name="test_monitor_tab_title_3">メモリ</string>
+    <string name="color_title">選んでください</string>
+    <string name="color_message">ノーマルモード：次の色を変更するにはを押します。\n\n固定モード：色をすばやく変更します。</string>
+    <string name="color_normal_btn">ノーマルモード</string>
+    <string name="color_test_btn">固定モード</string>
+    <string name="color_test_message">固定モード中は画面が点滅し、色が急に変わります。目を傷つける可能性があります。それは充電することをお勧めします。このモードは自動的に20分後に閉じます。この固定モードでは、欠陥画素を固定することはできません。何か問題があれば、メーカーに連絡してください。メイン画面のBACKキーを押すことができます。</string>
+    <string name="vibrate_button">試験振動</string>
+    <string name="vibrate_stop_button">振動を止める</string>
+    <string name="vibrate_string_1">長時間の振動</string>
+    <string name="vibrate_string_2">短い振動</string>
+    <string name="ring_button">音楽を再生</string>
+    <string name="ring_stop_button">音楽を止める</string>
+    <string name="adjust_volume">音量を調整する</string>
+    <string name="vibrate_type">振動モード</string>
+    <string name="nfc_tutor_message">デバイスの後ろにNFCタグを配置すると、成功時にビープ音が鳴ります。</string>
+    <string name="touch_message">複数の指で画面をタッチします。</string>
+    <string name="info_hardware_string_1">ブランド</string>
+    <string name="info_hardware_string_2">デバイス</string>
+    <string name="info_hardware_string_3">モデル</string>
+    <string name="info_hardware_string_4">商品名</string>
+    <string name="info_hardware_string_5">表示</string>
+    <string name="info_hardware_string_6">指紋</string>
+    <string name="info_hardware_string_7">ボード</string>
+    <string name="info_hardware_string_8">メーカー</string>
+    <string name="info_hardware_string_9">シリアル</string>
+    <string name="info_hardware_string_10">ユーザー</string>
+    <string name="info_hardware_string_11">ホスト</string>
+    <string name="info_hardware_string_12">ボード</string>
+    <string name="app_package_string_1">パッケージ</string>
+    <string name="app_package_string_2">パッケージ名</string>
+    <string name="app_package_string_3">バージョンコード</string>
+    <string name="app_package_string_4">バージョン</string>
+    <string name="app_package_string_5">インストール時間</string>
+    <string name="app_package_string_6">更新時間</string>
+    <string name="app_package_string_7">データディレクトリ</string>
+    <string name="app_package_string_8">APKディレクトリ</string>
+    <string name="app_package_string_9">Min。 SDKのバージョン</string>
+    <string name="app_package_string_10">ターゲットSDKのバージョン</string>
+    <string name="app_action_string_1">アプリケーションを起動する</string>
+    <string name="app_action_string_2">アンインストール</string>
+    <string name="app_action_string_3">コントロールパネル</string>
+    <string name="app_action_string_4">プレイストア</string>
+    <string name="info_battery_charge_string_1">放電</string>
+    <string name="info_battery_charge_string_2">AC充電</string>
+    <string name="info_battery_charge_string_3">USB充電</string>
+    <string name="info_battery_charge_string_4">道の</string>
+    <string name="info_battery_charge_string_5">ワイヤレス充電</string>
+    <string name="info_battery_health_string_1">道の</string>
+    <string name="info_battery_health_string_2">道の</string>
+    <string name="info_battery_health_string_3">良い</string>
+    <string name="info_battery_health_string_4">注意：過熱</string>
+    <string name="info_battery_health_string_5">注意：死んだ</string>
+    <string name="info_battery_health_string_6">注意：過電圧</string>
+    <string name="info_battery_health_string_7">道の</string>
+    <string name="info_battery_health_string_8">注意：寒すぎる</string>
+    <string name="test_wifi_current_string_1">SSID：</string>
+    <string name="test_wifi_current_string_2">BSSID：</string>
+    <string name="test_wifi_current_string_3">ネットワークID：</string>
+    <string name="test_wifi_current_string_4">Macアドレス：</string>
+    <string name="test_wifi_current_string_5">Wi-Fiスピード：</string>
+    <string name="test_wifi_current_string_6">Wi-Fi強度：</string>
+    <string name="test_wifi_current_string_7">IPアドレス：</string>
+    <string name="test_wifi_current_string_8">デフォルトゲートウェイ：</string>
+    <string name="test_wifi_current_string_9">サブネットマスク：</string>
+    <string name="test_wifi_current_string_10">DNS 1：</string>
+    <string name="test_wifi_current_string_11">DNS 2：</string>
+    <string name="test_wifi_current_string_12">サーバーアドレス：</string>
+    <string name="test_wifi_string_1">現在のWi-Fi</string>
+    <string name="test_wifi_string_2">利用可能なWi-Fi</string>
+    <string name="test_wifi_string_3">保存されたWi-Fi SSID</string>
+    <string name="test_bluetooth_string_1">利用可能なデバイス</string>
+    <string name="test_bluetooth_string_2">ペアデバイス</string>
+    <string name="info_cpu_string_1">Min Feq。</string>
+    <string name="info_cpu_string_2">Max Feq。</string>
+    <string name="info_cpu_string_3">CPUコア番号。</string>
+    <string name="info_cpu_string_4">内部メモリ</string>
+    <string name="info_cpu_string_5">外部メモリ</string>
+    <string name="info_cpu_string_6">RAMメモリ</string>
+    <string name="info_cpu_string_7">詳細メモリ</string>
+    <string name="memory_string_1">合計：</string>
+    <string name="memory_string_2">利用可能な：</string>
+    <string name="memory_string_3">中古：</string>
+    <string name="memory_string_4">しきい値：</string>
+    <string name="info_android_version_string_1">Androidバージョン</string>
+    <string name="info_android_version_string_2">コード名</string>
+    <string name="info_android_version_string_3">増分</string>
+    <string name="info_android_version_string_4">SDKレベル</string>
+    <string name="info_android_version_string_5">カーネルタイプ</string>
+    <string name="info_android_version_string_6">カーネルOS</string>
+    <string name="info_android_version_string_7">カーネルOSのバージョン</string>
+    <string name="info_android_version_string_8">JNIライブラリ</string>
+    <string name="info_android_version_string_9">VMライブラリのバージョン</string>
+    <string name="info_android_version_string_10">VMライブラリベンダー</string>
+    <string name="info_android_version_string_11">VMライブラリ名</string>
+    <string name="info_android_version_string_12">VM実装バージョン</string>
+    <string name="info_android_version_string_13">VM実装ベンダー</string>
+    <string name="info_android_version_string_14">VM実装名</string>
+    <string name="info_android_version_string_15">VM仕様バージョン</string>
+    <string name="info_android_version_string_16">VM仕様ベンダー</string>
+    <string name="info_android_version_string_17">VM仕様名</string>
+    <string name="info_android_version_string_18">VMの場所</string>
+    <string name="info_android_version_string_19">タイムゾーン</string>
+    <string name="info_camera_string_1">画面幅</string>
+    <string name="info_camera_string_2">画面の高さ</string>
+    <string name="info_camera_string_3">画像解像度</string>
+    <string name="info_camera_string_4">アンチバンディング</string>
+    <string name="info_camera_string_5">カラーエフェクト</string>
+    <string name="info_camera_string_6">フラッシュモード</string>
+    <string name="info_camera_string_7">フォーカスモード</string>
+    <string name="info_camera_string_8">ホワイトバランス</string>
+    <string name="info_camera_string_9">シーンモード</string>
+    <string name="info_camera_string_10">画像フォーマット</string>
+    <string name="info_battery_string_1">バッテリーレベル</string>
+    <string name="info_battery_string_2">最大バッテリレベル</string>
+    <string name="info_battery_string_3">バッテリーの健康</string>
+    <string name="info_battery_string_4">バッテリー状態</string>
+    <string name="info_battery_string_5">バッテリー技術</string>
+    <string name="info_battery_string_6">バッテリー温度</string>
+    <string name="info_battery_string_7">バッテリ電圧</string>
+    <string name="test_sensor_string_1">読書</string>
+    <string name="test_sensor_string_2">名</string>
+    <string name="test_sensor_string_3">ベンダー</string>
+    <string name="test_sensor_string_4">バージョン</string>
+    <string name="test_sensor_string_5">マックス範囲</string>
+    <string name="test_sensor_string_6">Min。ディレイ</string>
+    <string name="test_sensor_string_7">解決</string>
+    <string name="test_sensor_string_8">力</string>
+    <string name="test_gps_string_1">緯度</string>
+    <string name="test_gps_string_2">経度</string>
+    <string name="test_gps_string_3">速度</string>
+    <string name="test_gps_string_4">高度</string>
+    <string name="test_gps_string_5">ベアリング</string>
+    <string name="test_gps_string_6">正確さ</string>
+    <string name="info_gsm_string_1">SIMカードの国</string>
+    <string name="info_gsm_string_2">SIMカードオペレータコード</string>
+    <string name="info_gsm_string_3">SIMカードのオペレータ名</string>
+    <string name="info_gsm_string_4">SIMカードの状態</string>
+    <string name="info_gsm_string_5">IMEI / ESN</string>
+    <string name="info_gsm_string_6">デバイスソフトウェアのバージョン</string>
+    <string name="info_gsm_string_7">電話番号</string>
+    <string name="info_gsm_string_8">ネットワーク国</string>
+    <string name="info_gsm_string_9">ネットワークオペレータコード</string>
+    <string name="info_gsm_string_10">ネットワークオペレータ名</string>
+    <string name="info_gsm_string_11">ネットワークローミング</string>
+    <string name="info_gsm_string_12">SIMシリアル番号</string>
+    <string name="info_gsm_string_13">購読者ID</string>
+    <string name="info_sim_status_string_1">道の</string>
+    <string name="info_sim_status_string_2">SIMカードなし</string>
+    <string name="info_sim_status_string_3">Locked：ユーザーのSIM PINのロックを解除する必要があります</string>
+    <string name="info_sim_status_string_4">ロックされている：ユーザーのSIM PUKのロックを解除する必要があります</string>
+    <string name="info_sim_status_string_5">Locked：ロックを解除するにはネットワークPINが必要</string>
+    <string name="info_sim_status_string_6">準備完了</string>
+    <string name="wifi_setting">設定</string>
+    <string name="wifi_reload">リフレッシュ</string>
+    <string name="wifi_reload_done">再ロードが成功しました</string>
+    <string name="wifi_reload_fail">リロードに失敗しました</string>
+    <string name="wifi_enable_message">Wi-Fiを有効にして続行する必要があります。</string>
+    <string name="wifi_enable_posbtn">Wi-Fi設定に移動</string>
+    <string name="wifi_no">Wi-Fi接続なし</string>
+    <string name="bluetooth_setting">設定</string>
+    <string name="bluetooth_enable_message">Bluetoothを有効にして続行する必要があります。</string>
+    <string name="bluetooth_enable_posbtn">Bluetooth設定に移動</string>
+    <string name="gps_setting">場所の設定</string>
+    <string name="security_setting">設定</string>
+    <string name="gps_scanning">走査</string>
+    <string name="gps_enable_message">場所を有効にして続行する必要があります。</string>
+    <string name="gps_enable_posbtn">場所の設定に移動</string>
+    <string name="nfc_enable_message">続行するには、NFCを有効にする必要があります。</string>
+    <string name="nfc_enable_posbtn">NFC設定に移動</string>
+    <string name="nfc_setting">NFC設定</string>
+    <string name="flash_on">懐中電灯をオンにする</string>
+    <string name="flash_off">懐中電灯をオフにする</string>
+    <string name="ui_share">シェア</string>
+    <string name="action_iap">広告の削除</string>
+    <string name="cpu_speed">速度</string>
+    <string name="cpu_core">コア数</string>
+    <string name="cpu_min">最小速度</string>
+    <string name="cpu_max">マックス・スピード</string>
+    <string name="network_upspeed">アップロードスピード</string>
+    <string name="network_downspeed">ダウンロード速度</string>
+    <string name="memory_ava">利用可能</string>
+    <string name="memory_total">合計</string>
+    <string name="memory_used">中古</string>
+    <string name="ui_version">バージョン</string>
+    <string name="feedback">フィードバックをください</string>
+    <string name="about_credit_btn">オープンソースライセンス</string>
+    <string name="feedback_title">Androidアプリのテスト：レポートとフィードバック</string>
+    <string name="more">開発者のアプリ</string>
+    <string name="rate_title">開発者にいくつかのフィードバックを与える</string>
+    <string name="rate_message">開発者をサポートするには、このアプリをGoogle Playで評価してください。ご不明な点がございましたら、開発者にご連絡ください。</string>
+    <string name="rate_navbtn">結構です</string>
+    <string name="rate_netbtn">後で</string>
+    <string name="rate_posbtn">今すぐ評価する</string>
+    <string name="share_button">共有する！！！</string>
+    <string name="share_message">ダウンロードAndroidデバイスをテストするためにあなたのAndroidアプリをテストしてください。\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="mic_start_recording">録音開始</string>
+    <string name="mic_start_playing">演奏を開始する</string>
+    <string name="mic_stop">やめる</string>
+    <string name="ui_relative_humidity">相対湿度：</string>
+    <string name="ui_absolute_humidity">絶対湿度：</string>
+    <string name="ui_dew_point">露点：</string>
+    <string name="dialog_camera_title">カメラを選択してください</string>
+    <string name="iab_complete_title">ありがとう</string>
+    <string name="iab_complete_message">変更を適用するには、アプリを再起動してください。</string>
+    <string name="ui_loading">読み込んでいます...</string>
+    <string name="ui_fingerprint_not_locked">設定でロック画面のセキュリティを有効にしてください。</string>
+    <string name="ui_fingerprint_not_register">設定で少なくとも1つの指紋を登録してください。</string>
+    <string name="ui_fingerprint_start_message">センサーに指をかけます。</string>
+    <string name="ui_fingerprint_fail">認識されません。</string>
+    <string name="ui_fingerprint_help">認証ヘルプ</string>
+    <string name="ui_fingerprint_succeeded">成功しました。</string>
+    <string name="app_not_found">アプリケーションが見つかりませんでした。</string>
 </resources>

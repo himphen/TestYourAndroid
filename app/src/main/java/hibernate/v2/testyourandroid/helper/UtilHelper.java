@@ -69,10 +69,8 @@ public class UtilHelper {
 			ViewConfiguration config = ViewConfiguration.get(mContext);
 			Field menuKeyField = ViewConfiguration.class
 					.getDeclaredField("sHasPermanentMenuKey");
-			if (menuKeyField != null) {
-				menuKeyField.setAccessible(true);
-				menuKeyField.setBoolean(config, false);
-			}
+			menuKeyField.setAccessible(true);
+			menuKeyField.setBoolean(config, false);
 		} catch (Exception ignored) {
 		}
 	}

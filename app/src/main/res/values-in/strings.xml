@@ -146,18 +146,18 @@
     <string name="info_battery_health_string_8">Hati hati: Terlalu Dingin</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
-    <string name="test_wifi_current_string_2"><![CDATA[BSSID: ]]></string>
-    <string name="test_wifi_current_string_3"><![CDATA[ID Jaringan: ]]></string>
-    <string name="test_wifi_current_string_4"><![CDATA[Alamat Mac: ]]></string>
-    <string name="test_wifi_current_string_5"><![CDATA[Kecepatan Wi-Fi: ]]></string>
-    <string name="test_wifi_current_string_6"><![CDATA[Kekuatan Wi-Fi: ]]></string>
-    <string name="test_wifi_current_string_7"><![CDATA[Alamat IP: ]]></string>
-    <string name="test_wifi_current_string_8"><![CDATA[Gateway Default: ]]></string>
-    <string name="test_wifi_current_string_9"><![CDATA[Subnetmask: ]]></string>
-    <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
-    <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
-    <string name="test_wifi_current_string_12"><![CDATA[Alamat server: ]]></string>
+    <string name="test_wifi_current_string_1">SSID:&#160;</string>
+    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
+    <string name="test_wifi_current_string_3">ID Jaringan:&#160;</string>
+    <string name="test_wifi_current_string_4">Alamat Mac:&#160;</string>
+    <string name="test_wifi_current_string_5">Kecepatan Wi-Fi:&#160;</string>
+    <string name="test_wifi_current_string_6">Kekuatan Wi-Fi:&#160;</string>
+    <string name="test_wifi_current_string_7">Alamat IP:&#160;</string>
+    <string name="test_wifi_current_string_8">Gateway Default:&#160;</string>
+    <string name="test_wifi_current_string_9">Subnetmask:&#160;</string>
+    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
+    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
+    <string name="test_wifi_current_string_12">Alamat server:&#160;</string>
 
     <!--  -->
     <string name="test_wifi_string_1">Wi-Fi Sekarang</string>
@@ -178,10 +178,10 @@
     <string name="info_cpu_string_7">Detail Memory</string>
 
     <!--  -->
-    <string name="memory_string_1"><![CDATA[Total: ]]></string>
-    <string name="memory_string_2"><![CDATA[Tersedia: ]]></string>
-    <string name="memory_string_3"><![CDATA[Bekas: ]]></string>
-    <string name="memory_string_4"><![CDATA[Ambang: ]]></string>
+    <string name="memory_string_1">Total:&#160;</string>
+    <string name="memory_string_2">Tersedia:&#160;</string>
+    <string name="memory_string_3">Bekas:&#160;</string>
+    <string name="memory_string_4">Ambang:&#160;</string>
 
     <!--  -->
     <string name="info_android_version_string_1">Android Versi</string>
@@ -315,9 +315,9 @@
 
     <!--  -->
 
-    <string name="ui_relative_humidity"><![CDATA[Kelembaban relatif: ]]></string>
-    <string name="ui_absolute_humidity"><![CDATA[Kelembaban Absoluty: ]]></string>
-    <string name="ui_dew_point"><![CDATA[Dew Point: ]]></string>
+    <string name="ui_relative_humidity">Kelembaban relatif:&#160;</string>
+    <string name="ui_absolute_humidity">Kelembaban Absoluty:&#160;</string>
+    <string name="ui_dew_point">Dew Point:&#160;</string>
 
     <string name="dialog_camera_title">Silakan pilih kamera</string>
     <string name="iab_complete_title">Terima kasih</string>

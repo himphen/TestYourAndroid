@@ -9,8 +9,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 237312 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Cheungfan 731"
+        versionCode 238002 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Egg waffle 800"
         multiDexEnabled true
     }
 

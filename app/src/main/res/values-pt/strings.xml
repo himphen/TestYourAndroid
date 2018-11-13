@@ -134,18 +134,18 @@
     <string name="info_battery_health_string_8">Cuidado: Muito fria</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
-    <string name="test_wifi_current_string_2"><![CDATA[BSSID: ]]></string>
-    <string name="test_wifi_current_string_3"><![CDATA[Network ID: ]]></string>
-    <string name="test_wifi_current_string_4"><![CDATA[Mac Address: ]]></string>
-    <string name="test_wifi_current_string_5"><![CDATA[Wi-Fi Speed: ]]></string>
-    <string name="test_wifi_current_string_6"><![CDATA[Wi-Fi Strength: ]]></string>
-    <string name="test_wifi_current_string_7"><![CDATA[IP Address: ]]></string>
-    <string name="test_wifi_current_string_8"><![CDATA[Default Gateway: ]]></string>
-    <string name="test_wifi_current_string_9"><![CDATA[Subnet Mask: ]]></string>
-    <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
-    <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
-    <string name="test_wifi_current_string_12"><![CDATA[Server Address: ]]></string>
+    <string name="test_wifi_current_string_1">SSID:&#160;</string>
+    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
+    <string name="test_wifi_current_string_3">Network ID:&#160;</string>
+    <string name="test_wifi_current_string_4">Mac Address:&#160;</string>
+    <string name="test_wifi_current_string_5">Wi-Fi Speed:&#160;</string>
+    <string name="test_wifi_current_string_6">Wi-Fi Strength:&#160;</string>
+    <string name="test_wifi_current_string_7">IP Address:&#160;</string>
+    <string name="test_wifi_current_string_8">Default Gateway:&#160;</string>
+    <string name="test_wifi_current_string_9">Subnet Mask:&#160;</string>
+    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
+    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
+    <string name="test_wifi_current_string_12">Server Address:&#160;</string>
 
     <!--  -->
     <string name="test_wifi_string_1">Wi-Fi atual</string>
@@ -162,10 +162,10 @@
     <string name="info_cpu_string_7">Memória detalhada</string>
 
     <!--  -->
-    <string name="memory_string_1"><![CDATA[Total: ]]></string>
-    <string name="memory_string_2"><![CDATA[Available: ]]></string>
-    <string name="memory_string_3"><![CDATA[Used: ]]></string>
-    <string name="memory_string_4"><![CDATA[Threshold: ]]></string>
+    <string name="memory_string_1">Total:&#160;</string>
+    <string name="memory_string_2">Available:&#160;</string>
+    <string name="memory_string_3">Used:&#160;</string>
+    <string name="memory_string_4">Threshold:&#160;</string>
 
     <!--  -->
     <string name="info_android_version_string_1">Versão Android</string>
@@ -323,9 +323,9 @@
     <string name="main_title_other">De outros</string>
     <string name="title_activity_app_brain">Mais aplicativos</string>
     <string name="title_activity_humidity">Sensor de umidade</string>
-    <string name="ui_relative_humidity"><![CDATA[Umidade Relativa: ]]></string>
-    <string name="ui_absolute_humidity"><![CDATA[Umidade absoluta: ]]></string>
-    <string name="ui_dew_point"><![CDATA[Ponto de Orvalho: ]]></string>
+    <string name="ui_relative_humidity">Umidade Relativa:&#160;</string>
+    <string name="ui_absolute_humidity">Umidade absoluta:&#160;</string>
+    <string name="ui_dew_point">Ponto de Orvalho:&#160;</string>
     <string name="ui_not_support_android_version">Suporte ao Android %1$s+</string>
 
 </resources>

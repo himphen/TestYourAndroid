@@ -15,14 +15,53 @@
     <string-array name="language_choose" translatable="false">
         <item>System Default</item>
         <item>Bahasa indonesia</item>
+        <item>Deutsch</item>
         <item>English</item>
         <item>Español</item>
         <item>Français</item>
         <item>Italiano</item>
         <item>Português</item>
+        <item>Pу́сский</item>
+        <item>हिन्दी</item>
+        <item>日本語</item>
         <item>中文（正體）</item>
         <item>中文（香港）</item>
         <item>中文（简体）</item>
+    </string-array>
+
+    <string-array name="language_locale_code" translatable="false">
+        <item/>
+        <item>in</item>
+        <item>de</item>
+        <item>en</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>it</item>
+        <item>pt</item>
+        <item>ru</item>
+        <item>hi</item>
+        <item>jp</item>
+        <item>zh</item>
+        <item>zh</item>
+        <item>zh</item>
+    </string-array>
+
+    <string-array name="language_locale_country_code" translatable="false">
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item>HK</item>
+        <item>CN</item>
     </string-array>
 
     <string name="title_activity_screen">Monitor Color</string>
@@ -274,18 +313,18 @@
     </string-array>
 
     <!--  -->
-    <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
-    <string name="test_wifi_current_string_2"><![CDATA[BSSID: ]]></string>
-    <string name="test_wifi_current_string_3"><![CDATA[Network ID: ]]></string>
-    <string name="test_wifi_current_string_4"><![CDATA[Mac Address: ]]></string>
-    <string name="test_wifi_current_string_5"><![CDATA[Wi-Fi Speed: ]]></string>
-    <string name="test_wifi_current_string_6"><![CDATA[Wi-Fi Strength: ]]></string>
-    <string name="test_wifi_current_string_7"><![CDATA[IP Address: ]]></string>
-    <string name="test_wifi_current_string_8"><![CDATA[Default Gateway: ]]></string>
-    <string name="test_wifi_current_string_9"><![CDATA[Subnet Mask: ]]></string>
-    <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
-    <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
-    <string name="test_wifi_current_string_12"><![CDATA[Server Address: ]]></string>
+    <string name="test_wifi_current_string_1">SSID:&#160;</string>
+    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
+    <string name="test_wifi_current_string_3">Network ID:&#160;</string>
+    <string name="test_wifi_current_string_4">Mac Address:&#160;</string>
+    <string name="test_wifi_current_string_5">Wi-Fi Speed:&#160;</string>
+    <string name="test_wifi_current_string_6">Wi-Fi Strength:&#160;</string>
+    <string name="test_wifi_current_string_7">IP Address:&#160;</string>
+    <string name="test_wifi_current_string_8">Default Gateway:&#160;</string>
+    <string name="test_wifi_current_string_9">Subnet Mask:&#160;</string>
+    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
+    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
+    <string name="test_wifi_current_string_12">Server Address:&#160;</string>
     <string-array name="test_wifi_current_string_array" translatable="false">
         <item>@string/test_wifi_current_string_1</item>
         <item>@string/test_wifi_current_string_2</item>
@@ -338,10 +377,10 @@
     </string-array>
 
     <!--  -->
-    <string name="memory_string_1"><![CDATA[Total: ]]></string>
-    <string name="memory_string_2"><![CDATA[Available: ]]></string>
-    <string name="memory_string_3"><![CDATA[Used: ]]></string>
-    <string name="memory_string_4"><![CDATA[Threshold: ]]></string>
+    <string name="memory_string_1">Total:&#160;</string>
+    <string name="memory_string_2">Available:&#160;</string>
+    <string name="memory_string_3">Used:&#160;</string>
+    <string name="memory_string_4">Threshold:&#160;</string>
     <string-array name="memory_string_array" translatable="false">
         <item>@string/memory_string_1</item>
         <item>@string/memory_string_2</item>
@@ -565,9 +604,9 @@
 
     <!--  -->
 
-    <string name="ui_relative_humidity"><![CDATA[Relative Humidity: ]]></string>
-    <string name="ui_absolute_humidity"><![CDATA[Absolute Humidity: ]]></string>
-    <string name="ui_dew_point"><![CDATA[Dew Point: ]]></string>
+    <string name="ui_relative_humidity">Relative Humidity:&#160;</string>
+    <string name="ui_absolute_humidity">Absolute Humidity:&#160;</string>
+    <string name="ui_dew_point">Dew Point:&#160;</string>
 
     <string name="dialog_camera_title">Please select camera</string>
     <string name="iab_complete_title">Thanks</string>

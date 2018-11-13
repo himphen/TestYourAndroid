@@ -146,18 +146,18 @@
     <string name="info_battery_health_string_8">Attenzione: troppo freddo</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1"><![CDATA[SSID: ]]></string>
-    <string name="test_wifi_current_string_2"><![CDATA[BSSID: ]]></string>
-    <string name="test_wifi_current_string_3"><![CDATA[ID di rete: ]]></string>
-    <string name="test_wifi_current_string_4"><![CDATA[Indirizzo MAC: ]]></string>
-    <string name="test_wifi_current_string_5"><![CDATA[Wi-Fi Speed: ]]></string>
-    <string name="test_wifi_current_string_6"><![CDATA[Forza Wi-Fi: ]]></string>
-    <string name="test_wifi_current_string_7"><![CDATA[Indirizzo IP: ]]></string>
-    <string name="test_wifi_current_string_8"><![CDATA[Gateway predefinito: ]]></string>
-    <string name="test_wifi_current_string_9"><![CDATA[Maschera di sottorete: ]]></string>
-    <string name="test_wifi_current_string_10"><![CDATA[DNS 1: ]]></string>
-    <string name="test_wifi_current_string_11"><![CDATA[DNS 2: ]]></string>
-    <string name="test_wifi_current_string_12"><![CDATA[Indirizzo del server: ]]></string>
+    <string name="test_wifi_current_string_1">SSID:&#160;</string>
+    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
+    <string name="test_wifi_current_string_3">ID di rete:&#160;</string>
+    <string name="test_wifi_current_string_4">Indirizzo MAC:&#160;</string>
+    <string name="test_wifi_current_string_5">Wi-Fi Speed:&#160;</string>
+    <string name="test_wifi_current_string_6">Forza Wi-Fi:&#160;</string>
+    <string name="test_wifi_current_string_7">Indirizzo IP:&#160;</string>
+    <string name="test_wifi_current_string_8">Gateway predefinito:&#160;</string>
+    <string name="test_wifi_current_string_9">Maschera di sottorete:&#160;</string>
+    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
+    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
+    <string name="test_wifi_current_string_12">Indirizzo del server:&#160;</string>
 
     <!--  -->
     <string name="test_wifi_string_1">Corrente Wi-Fi</string>
@@ -178,10 +178,10 @@
     <string name="info_cpu_string_7">Memoria in dettaglio</string>
 
     <!--  -->
-    <string name="memory_string_1"><![CDATA[Totale: ]]></string>
-    <string name="memory_string_2"><![CDATA[A disposizione: ]]></string>
-    <string name="memory_string_3"><![CDATA[Usato: ]]></string>
-    <string name="memory_string_4"><![CDATA[Soglia: ]]></string>
+    <string name="memory_string_1">Totale:&#160;</string>
+    <string name="memory_string_2">A disposizione:&#160;</string>
+    <string name="memory_string_3">Usato:&#160;</string>
+    <string name="memory_string_4">Soglia:&#160;</string>
 
     <!--  -->
     <string name="info_android_version_string_1">Versione Android</string>
@@ -315,9 +315,9 @@
 
     <!--  -->
 
-    <string name="ui_relative_humidity"><![CDATA[Umidità relativa: ]]></string>
-    <string name="ui_absolute_humidity"><![CDATA[Umidità assoluta: ]]></string>
-    <string name="ui_dew_point"><![CDATA[Punto di rugiada: ]]></string>
+    <string name="ui_relative_humidity">Umidità relativa:&#160;</string>
+    <string name="ui_absolute_humidity">Umidità assoluta:&#160;</string>
+    <string name="ui_dew_point">Punto di rugiada:&#160;</string>
 
     <string name="dialog_camera_title">Si prega di selezionare la fotocamera</string>
     <string name="iab_complete_title">Grazie</string>
