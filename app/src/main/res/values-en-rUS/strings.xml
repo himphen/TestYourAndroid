@@ -4,12 +4,12 @@
     <string name="ui_okay">Okay</string>
     <string name="ui_cancel">Cancel</string>
     <string name="ui_error">Error</string>
-    <string name="ui_na">N/A</string>
+    <string name="ui_na">Not Applicable</string>
     <string name="ui_caution">Caution</string>
     <string name="ui_not_support">Not supported</string>
-    <string name="ui_not_support_android_version">Only support by Android %1$s+</string>
+    <string name="ui_not_support_android_version">Only support Android %1$s+</string>
     <string name="dialog_feature_na_message">Your Android device does not have this feature or may be used by other apps.</string>
-    <string name="dialog_permission_denied_message">Without granting permissions, it will probably not work.\n\nPlease give Test Your Android the permissions to access this feature.</string>
+    <string name="dialog_permission_denied_message">Without granting permissions, it will probably not work.\n\nPlease give this app the permissions to access this feature.</string>
     <string name="dialog_permission_denied_posbtn">Setting »</string>
     <string name="title_activity_screen">Monitor Color</string>
     <string name="title_activity_light">Light Sensor</string>
@@ -248,7 +248,7 @@
     <string name="ui_version">Version</string>
     <string name="feedback">Give me Feedback</string>
     <string name="about_credit_btn">Open source licenses</string>
-    <string name="feedback_title">Test Your Android App: Report and Feedback</string>
+    <string name="feedback_title">Test Your Android: Report and Feedback</string>
     <string name="more">Developer\'s app</string>
     <string name="rate_title">Give developer some feedback</string>
     <string name="rate_message">Rate this app in Google Play to support developer. Contact developer if you have any questions.</string>
@@ -256,7 +256,7 @@
     <string name="rate_netbtn">Later on</string>
     <string name="rate_posbtn">Rate now</string>
     <string name="share_button">Share it!!!</string>
-    <string name="share_message">Download Test Your Android app to test your Android devices.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="share_message">Test Your Android is the best app to test your Android devices.</string>
     <string name="mic_start_recording">Start recording</string>
     <string name="mic_start_playing">Start playing</string>
     <string name="mic_stop">Stop</string>

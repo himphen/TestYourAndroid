@@ -252,7 +252,7 @@
     <string name="rate_netbtn">後で</string>
     <string name="rate_posbtn">今すぐ評価する</string>
     <string name="share_button">共有する！！！</string>
-    <string name="share_message">ダウンロードAndroidデバイスをテストするためにあなたのAndroidアプリをテストしてください。\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="share_message">ダウンロードAndroidデバイスをテストするためにあなたのAndroidアプリをテストしてください。</string>
     <string name="mic_start_recording">録音開始</string>
     <string name="mic_start_playing">演奏を開始する</string>
     <string name="mic_stop">やめる</string>

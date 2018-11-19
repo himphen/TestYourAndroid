@@ -252,7 +252,7 @@
     <string name="rate_netbtn">Später</string>
     <string name="rate_posbtn">Jetzt bewerten</string>
     <string name="share_button">Teilt es!!!</string>
-    <string name="share_message">Laden Sie die App &quot;Testen Sie Ihr Android&quot; herunter, um Ihre Android-Geräte zu testen. https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="share_message">Laden Sie die App Testen Sie Ihr Androidherunter, um Ihre Android-Geräte zu testen.</string>
     <string name="mic_start_recording">Starte die Aufnahme</string>
     <string name="mic_start_playing">Jetzt Spielen</string>
     <string name="mic_stop">Halt</string>

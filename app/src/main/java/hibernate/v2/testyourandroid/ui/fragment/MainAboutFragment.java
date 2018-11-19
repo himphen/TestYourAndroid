@@ -52,9 +52,11 @@ public class MainAboutFragment extends BaseFragment {
 
 	@OnClick(R.id.shareButton)
 	public void onClickShare() {
+		String text = getString(R.string.share_message) + "\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid";
+
 		Intent intent = new Intent();
 		intent.setAction(Intent.ACTION_SEND);
-		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message));
+		intent.putExtra(Intent.EXTRA_TEXT, text);
 		intent.setType("text/plain");
 		startActivity(Intent.createChooser(intent, getString(R.string.share_button)));
 	}
@@ -63,16 +65,16 @@ public class MainAboutFragment extends BaseFragment {
 	public void onClickFeedback() {
 		Intent intent = new Intent(Intent.ACTION_SEND);
 
-		String meta = "Android Version: " + android.os.Build.VERSION.RELEASE + "\n";
-		meta += "SDK Level: " + String.valueOf(android.os.Build.VERSION.SDK_INT) + "\n";
-		meta += "Version: " + AppUtils.getAppVersionName() + "\n";
-		meta += "Brand: " + Build.BRAND + "\n";
-		meta += "Model: " + Build.MODEL + "\n\n\n";
+		String text = "Android Version: " + android.os.Build.VERSION.RELEASE + "\n";
+		text += "SDK Level: " + String.valueOf(android.os.Build.VERSION.SDK_INT) + "\n";
+		text += "Version: " + AppUtils.getAppVersionName() + "\n";
+		text += "Brand: " + Build.BRAND + "\n";
+		text += "Model: " + Build.MODEL + "\n\n\n";
 
 		intent.setType("text/plain");
 		intent.putExtra(Intent.EXTRA_EMAIL, "hibernatev2@gmail.com");
 		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_title));
-		intent.putExtra(Intent.EXTRA_TEXT, meta);
+		intent.putExtra(Intent.EXTRA_TEXT, text);
 		startActivity(intent);
 	}
 

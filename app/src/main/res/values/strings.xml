@@ -7,22 +7,31 @@
     <string name="ui_na">N/A</string>
     <string name="ui_caution">Caution</string>
     <string name="ui_not_support">Not supported</string>
-    <string name="ui_not_support_android_version">Only support by Android %1$s+</string>
+    <string name="ui_not_support_android_version">Only support Android %1$s+</string>
     <string name="dialog_feature_na_message">Your Android device does not have this feature or may be used by other apps.</string>
     <string name="dialog_permission_denied_message">Without granting permissions, it will probably not work.\n\nPlease give Test Your Android the permissions to access this feature.</string>
     <string name="dialog_permission_denied_posbtn">Setting »</string>
 
     <string-array name="language_choose" translatable="false">
         <item>System Default</item>
+        <item>Afrikaans</item>
         <item>Bahasa indonesia</item>
+        <item>Bahasa Melayu</item>
+        <item>Bosnian</item>
+        <item>Català</item>
+        <item>Dansk</item>
         <item>Deutsch</item>
         <item>English</item>
         <item>Español</item>
         <item>Français</item>
+        <item>Hrvatski</item>
         <item>Italiano</item>
         <item>Português</item>
-        <item>Pу́сский</item>
+        <item>Pýсский</item>
+        <item>Svenska</item>
         <item>हिन्दी</item>
+        <item>ภาษาไทย</item>
+        <item>한국어</item>
         <item>日本語</item>
         <item>中文（正體）</item>
         <item>中文（香港）</item>
@@ -31,15 +40,24 @@
 
     <string-array name="language_locale_code" translatable="false">
         <item/>
+        <item>af</item>
         <item>in</item>
+        <item>ms</item>
+        <item>bs</item>
+        <item>ca</item>
+        <item>da</item>
         <item>de</item>
         <item>en</item>
         <item>es</item>
         <item>fr</item>
+        <item>hr</item>
         <item>it</item>
         <item>pt</item>
         <item>ru</item>
+        <item>sv</item>
         <item>hi</item>
+        <item>th</item>
+        <item>ko</item>
         <item>jp</item>
         <item>zh</item>
         <item>zh</item>
@@ -47,6 +65,14 @@
     </string-array>
 
     <string-array name="language_locale_country_code" translatable="false">
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
         <item/>
         <item/>
         <item/>
@@ -597,7 +623,7 @@
     <string name="rate_netbtn">Later on</string>
     <string name="rate_posbtn">Rate now</string>
     <string name="share_button">Share it!!!</string>
-    <string name="share_message">Let\'s download \"Test Your Android\" app to test your Android devices.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="share_message">Test Your Android is the best app to test your Android devices.</string>
     <string name="mic_start_recording">Start recording</string>
     <string name="mic_start_playing">Start playing</string>
     <string name="mic_stop">Stop</string>

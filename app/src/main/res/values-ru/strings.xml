@@ -252,7 +252,7 @@
     <string name="rate_netbtn">Позже</string>
     <string name="rate_posbtn">Оценить сейчас</string>
     <string name="share_button">Поделиться! ! !</string>
-    <string name="share_message">Скачайте приложение «Тест на Android», чтобы протестировать устройства Android. https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="share_message">Скачайте приложение «Тест на Android», чтобы протестировать устройства Android.</string>
     <string name="mic_start_recording">Начать запись</string>
     <string name="mic_start_playing">Начните играть</string>
     <string name="mic_stop">Стоп</string>

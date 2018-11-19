@@ -308,7 +308,7 @@
     <string name="rate_netbtn">बाद में</string>
     <string name="rate_posbtn">अभी रेट करें</string>
     <string name="share_button">इसे साझा करें !!!</string>
-    <string name="share_message">अपने एंड्रॉइड डिवाइसों का परीक्षण करने के लिए \"अपने एंड्रॉइड का परीक्षण करें \" ऐप डाउनलोड करें।\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="share_message">अपने एंड्रॉइड डिवाइसों का परीक्षण करने के लिए अपने एंड्रॉइड का परीक्षण करें  ऐप डाउनलोड करें।</string>
     <string name="mic_start_recording">रिकॉर्डिंग प्रारंभ करें</string>
     <string name="mic_start_playing">खेलना प्रारंभ करें</string>
     <string name="mic_stop">रोकें</string>

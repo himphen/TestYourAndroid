@@ -188,40 +188,7 @@ public class MainActivity extends BaseActivity {
 	}
 
 	private void language() {
-		String preferencesLanguage = defaultPreferences.getString(C.PREF_LANGUAGE, "");
-		String preferencesLanguageCountry = defaultPreferences.getString(C.PREF_LANGUAGE_COUNTRY, "");
-
-		int a = 0;
-
-		if ("in".equals(preferencesLanguage)) {
-			a = 1;
-		} else if ("de".equals(preferencesLanguage)) {
-			a = 2;
-		} else if ("en".equals(preferencesLanguage)) {
-			a = 3;
-		} else if ("es".equals(preferencesLanguage)) {
-			a = 4;
-		} else if ("fr".equals(preferencesLanguage)) {
-			a = 5;
-		} else if ("it".equals(preferencesLanguage)) {
-			a = 6;
-		} else if ("pt".equals(preferencesLanguage)) {
-			a = 7;
-		} else if ("ru".equals(preferencesLanguage)) {
-			a = 8;
-		} else if ("hi".equals(preferencesLanguage)) {
-			a = 9;
-		} else if ("jp".equals(preferencesLanguage)) {
-			a = 10;
-		} else if ("zh".equals(preferencesLanguage)) {
-			if ("".equals(preferencesLanguageCountry)) {
-				a = 11;
-			} else if ("HK".equals(preferencesLanguageCountry)) {
-				a = 12;
-			} else if ("CN".equals(preferencesLanguageCountry)) {
-				a = 13;
-			}
-		}
+		int a = -1;
 
 		MaterialDialog.Builder dialog = new MaterialDialog.Builder(this)
 				.title(R.string.action_language)

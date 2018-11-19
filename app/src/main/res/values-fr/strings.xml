@@ -308,7 +308,7 @@
     <string name="rate_netbtn">Plus tard</string>
     <string name="rate_posbtn">Évaluer maintenant</string>
     <string name="share_button">Partagez le !!!</string>
-    <string name="share_message">Téléchargez\'s l\'application \"Testez votre Android"\" pour tester vos appareils Android.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="share_message">Téléchargez\'s l\'application Testez votre Android pour tester vos appareils Android.</string>
     <string name="mic_start_recording">Commencer l\'enregistrement</string>
     <string name="mic_start_playing">Commencer à jouer</string>
     <string name="mic_stop">Arrêtez</string>

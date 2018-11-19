@@ -87,7 +87,7 @@
     <string name="title_activity_test_ad_remover">移除广告</string><!-- NEW -->
 
     <string name="share_button">分享此程式</string>
-    <string name="share_message">我刚用了「Android测试工具」APP 来测试我的 Android 功能，你也快来试试吧！ ！ \n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="share_message">"我刚用了「Android测试工具」APP 来测试我的 Android 功能，你也快来试试吧！ ！ "</string>
     <!-- -->
     <string name="info_cpu_string_1">最低频率</string>
     <string name="info_cpu_string_2">最高频率</string>

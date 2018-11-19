@@ -292,7 +292,7 @@
     <string name="rate_netbtn">Más tarde</string>
     <string name="rate_posbtn">Clalificar agora</string>
     <string name="share_button">Compartes!!!</string>
-    <string name="share_message">Vamos a descargar la \"Prueba tu Android\" aplicación para probar su dispositivo Android.\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid</string>
+    <string name="share_message">Vamos a descargar la Prueba tu Android aplicación para probar su dispositivo Android.</string>
     <string name="mic_start_recording">Toque el botón para iniciar la grabación</string>
     <string name="mic_start_playing">Comienza a jugar</string>
     <string name="mic_stop">Toque el botón para detener la reproducción</string>
