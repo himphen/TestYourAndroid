@@ -9,6 +9,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.ViewConfiguration;
 import android.widget.RelativeLayout;
 
@@ -24,6 +25,7 @@ import java.math.RoundingMode;
 import java.util.Locale;
 
 import hibernate.v2.testyourandroid.BuildConfig;
+import hibernate.v2.testyourandroid.Environment;
 
 /**
  * UtilHelper Class
@@ -31,6 +33,9 @@ import hibernate.v2.testyourandroid.BuildConfig;
  */
 @SuppressWarnings("unused")
 public class UtilHelper {
+
+	public static final String TAG = "tag";
+	public static final String DEBUG_TAG = "debug_tag";
 
 	public static final String PREF_IAP = "iap";
 	public static final String PREF_LANGUAGE = "PREF_LANGUAGE";
@@ -119,6 +124,16 @@ public class UtilHelper {
 
 			DisplayMetrics dm = res.getDisplayMetrics();
 			res.updateConfiguration(conf, dm);
+		}
+	}
+
+	public static void log(String message) {
+		Log.d(TAG, message);
+	}
+
+	public static void debug(String message) {
+		if (Environment.CONFIG.isDebug()) {
+			Log.d(DEBUG_TAG, message);
 		}
 	}
 }

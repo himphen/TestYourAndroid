@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- By Google Translate -->
 <resources>
     <string name="app_name">Android Toets Gereedskap</string>
     <string name="ui_okay">Goed</string>
@@ -8,9 +9,9 @@
     <string name="ui_caution">versigtigheid</string>
     <string name="ui_not_support">Nie ondersteun nie</string>
     <string name="ui_not_support_android_version">Ondersteun slegs Android %1$s+</string>
-    <string name="dialog_feature_na_message">Jou Android-toestel het nie hierdie kenmerk nie of kan deur ander programme gebruik word.</string>
-    <string name="dialog_permission_denied_message">Sonder om toestemmings toe te staan, sal dit waarskynlik nie werk nie. Gee asseblief die regte om toegang tot hierdie funksie te verkry.</string>
-    <string name="dialog_permission_denied_posbtn">Instelling »</string>
+    <string name="dialog_feature_na_message">Jou Android-toestel het nie hierdie kenmerk nie, of hierdie funksie kan deur ander programme gebruik word.</string>
+    <string name="dialog_permission_denied_message">Sonder om toestemmings toe te staan, sal dit waarskynlik nie werk nie.\n\nGee asseblief die regte om toegang tot hierdie funksie te verkry.</string>
+    <string name="dialog_permission_denied_posbtn">instellings</string>
     <string name="title_activity_screen">Monitor Kleur</string>
     <string name="title_activity_light">Lig Sensor</string>
     <string name="title_activity_humidity">Humiditeits sensor</string>
@@ -60,10 +61,10 @@
     <string name="test_monitor_tab_title_2">Network</string>
     <string name="test_monitor_tab_title_3">Geheue</string>
     <string name="color_title">Kies asseblief</string>
-    <string name="color_message">Normale modus: Druk om volgende kleur te verander. Vaste modus: Verander kleur vinnig</string>
+    <string name="color_message">Normale modus:\nDruk om die volgende kleur te verander\n\nVaste modus:\nVerander kleur vinnig</string>
     <string name="color_normal_btn">Normale modus</string>
     <string name="color_test_btn">Vaste modus</string>
-    <string name="color_test_message">Tydens die vasstelling af sal die skerm flits en die kleur vinnig verander. Moenie na die skerm kyk nie, anders kan dit jou oë seermaak. Dit word aanbeveel om dit te laai. Hierdie modus sal outomaties gesluit word na 20 minute. Hierdie bevestigingsmodus is nie gewaarborg om die gebrekkige pixels reg te stel nie. Kontak asseblief die vervaardiger as u enige probleem het. U mag die TERUG-sleutel na die hoofskerm druk.</string>
+    <string name="color_test_message">Tydens die vasstelling af sal die skerm flits en die kleur vinnig verander.\nMoenie na die skerm kyk nie, anders kan dit jou oë seermaak.\n\nDit word aanbeveel om dit te laai. Hierdie modus sal outomaties gesluit word na 20 minute.\n\nHierdie bevestigingsmodus is nie gewaarborg om die gebrekkige pixels reg te stel nie. Kontak asseblief die vervaardiger as u enige probleem het.\n\nU mag die TERUG-sleutel na die hoofskerm druk.</string>
     <string name="vibrate_button">Toets Vibrasie</string>
     <string name="vibrate_stop_button">Stop vibrasie</string>
     <string name="vibrate_string_1">Lang vibrasie</string>
@@ -73,7 +74,7 @@
     <string name="adjust_volume">Pas die volume aan</string>
     <string name="vibrate_type">Vibrasiemodus</string>
     <string name="nfc_tutor_message">Plaas enige NFC-tag agter die toestel en jy sal biepgeluide kry wanneer dit suksesvol is.</string>
-    <string name="touch_message">Raak die skerm met veelvuldige vingers aan.</string>
+    <string name="touch_message">Raak die skerm met veelvuldige vingers.</string>
     <string name="info_hardware_string_1">Brand</string>
     <string name="info_hardware_string_2">toestel</string>
     <string name="info_hardware_string_3">model</string>
@@ -94,7 +95,7 @@
     <string name="app_package_string_6">Dateer op</string>
     <string name="app_package_string_7">Data Directory</string>
     <string name="app_package_string_8">APK Directory</string>
-    <string name="app_package_string_9">Min. SDK weergawe</string>
+    <string name="app_package_string_9">Min SDK-weergawe</string>
     <string name="app_package_string_10">Teiken SDK Weergawe</string>
     <string name="app_action_string_1">Begin App</string>
     <string name="app_action_string_2">verwyder</string>
@@ -113,34 +114,34 @@
     <string name="info_battery_health_string_6">Let op: Oorspanning</string>
     <string name="info_battery_health_string_7">onbekend</string>
     <string name="info_battery_health_string_8">Let op: Te koud</string>
-    <string name="test_wifi_current_string_1">SSID:&#160;</string>
-    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
-    <string name="test_wifi_current_string_3">Netwerk ID:&#160;</string>
-    <string name="test_wifi_current_string_4">Mac-adres:&#160;</string>
-    <string name="test_wifi_current_string_5">Wi-Fi Spoed:&#160;</string>
-    <string name="test_wifi_current_string_6">Wi-Fi sterkte:&#160;</string>
-    <string name="test_wifi_current_string_7">IP adres:&#160;</string>
-    <string name="test_wifi_current_string_8">Default Gateway:&#160;</string>
-    <string name="test_wifi_current_string_9">Subnet masker:&#160;</string>
-    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
-    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
-    <string name="test_wifi_current_string_12">Bediener adres:&#160;</string>
+    <string name="test_wifi_current_string_1">SSID: ~ 12.021</string>
+    <string name="test_wifi_current_string_2">BSSID: ~ 12.021</string>
+    <string name="test_wifi_current_string_3">Netwerk ID:\u0020</string>
+    <string name="test_wifi_current_string_4">Mac-adres:\u0020</string>
+    <string name="test_wifi_current_string_5">Wi-Fi Spoed:\u0020</string>
+    <string name="test_wifi_current_string_6">Wi-Fi sterkte:\u0020</string>
+    <string name="test_wifi_current_string_7">IP-adres:\u0020</string>
+    <string name="test_wifi_current_string_8">Default Gateway:\u0020</string>
+    <string name="test_wifi_current_string_9">Subnetmasker:\u0020</string>
+    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
+    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
+    <string name="test_wifi_current_string_12">Server Adres:\u0020</string>
     <string name="test_wifi_string_1">Huidige Wi-Fi</string>
     <string name="test_wifi_string_2">Beskikbaar Wi-Fi</string>
     <string name="test_wifi_string_3">Gestoorde Wi-Fi SSID</string>
     <string name="test_bluetooth_string_1">Beskikbare toestelle</string>
     <string name="test_bluetooth_string_2">Gekoppelde toestelle</string>
-    <string name="info_cpu_string_1">Min Feq.</string>
-    <string name="info_cpu_string_2">Max Feq.</string>
-    <string name="info_cpu_string_3">CPU Kernnr.</string>
+    <string name="info_cpu_string_1">Min Frekwensie</string>
+    <string name="info_cpu_string_2">Maksimum frekwensie</string>
+    <string name="info_cpu_string_3">CPU Core</string>
     <string name="info_cpu_string_4">Interne geheue</string>
     <string name="info_cpu_string_5">Eksterne geheue</string>
     <string name="info_cpu_string_6">RAM geheue</string>
     <string name="info_cpu_string_7">Detail Geheue</string>
-    <string name="memory_string_1">Totaal:&#160;</string>
-    <string name="memory_string_2">beskikbaar:&#160;</string>
-    <string name="memory_string_3">gebruik:&#160;</string>
-    <string name="memory_string_4">drumpel:&#160;</string>
+    <string name="memory_string_1">Totaal: ~ 12.021</string>
+    <string name="memory_string_2">Beskikbaar: ~ 12.021</string>
+    <string name="memory_string_3">Gebruik: ~ 12.021</string>
+    <string name="memory_string_4">Drumpel: ~ 12.021</string>
     <string name="info_android_version_string_1">Android Weergawe</string>
     <string name="info_android_version_string_2">Kodenaam</string>
     <string name="info_android_version_string_3">INKREMENTELE</string>
@@ -181,8 +182,8 @@
     <string name="test_sensor_string_2">naam</string>
     <string name="test_sensor_string_3">verkoper</string>
     <string name="test_sensor_string_4">weergawe</string>
-    <string name="test_sensor_string_5">Max. verskeidenheid</string>
-    <string name="test_sensor_string_6">Min. vertraging</string>
+    <string name="test_sensor_string_5">Max Bereik</string>
+    <string name="test_sensor_string_6">Min vertraging</string>
     <string name="test_sensor_string_7">resolusie</string>
     <string name="test_sensor_string_8">krag</string>
     <string name="test_gps_string_1">Latitude</string>
@@ -206,8 +207,8 @@
     <string name="info_gsm_string_13">Inskrywing ID</string>
     <string name="info_sim_status_string_1">onbekend</string>
     <string name="info_sim_status_string_2">Geen SIM-kaart nie</string>
-    <string name="info_sim_status_string_3">Gesluit: vereis dat die gebruiker se SIM-PIN moet ontsluit word</string>
-    <string name="info_sim_status_string_4">Gesluit: vereis dat die gebruiker se SIM PUK ontsluit word</string>
+    <string name="info_sim_status_string_3">Gesluit: vereis dat die SIM-PIN ontsluit word</string>
+    <string name="info_sim_status_string_4">Gesluit: vereis dat die SIM-PUK ontsluit word</string>
     <string name="info_sim_status_string_5">Gesluit: vereis \'n netwerk-PIN om te ontsluit</string>
     <string name="info_sim_status_string_6">gereed</string>
     <string name="wifi_setting">omgewing</string>
@@ -245,9 +246,9 @@
     <string name="feedback">Gee my terugvoer</string>
     <string name="about_credit_btn">Oop bron lisensies</string>
     <string name="feedback_title">Android Toets Tool: Verslag en terugvoer</string>
-    <string name="more">Ontwikkelaar se program</string>
-    <string name="rate_title">Gee ontwikkelaar \'n paar terugvoer</string>
-    <string name="rate_message">Gradeer hierdie program in Google Play om ontwikkelaar te ondersteun. Kontak ontwikkelaar as u enige vrae het.</string>
+    <string name="more">Meer programme van ontwikkelaar</string>
+    <string name="rate_title">Het jy die program gese?</string>
+    <string name="rate_message">Laat ons weet wat u dink</string>
     <string name="rate_navbtn">Nee dankie</string>
     <string name="rate_netbtn">Later</string>
     <string name="rate_posbtn">Beoordeel nou</string>
@@ -256,9 +257,9 @@
     <string name="mic_start_recording">Begin opname</string>
     <string name="mic_start_playing">Begin speel</string>
     <string name="mic_stop">stop</string>
-    <string name="ui_relative_humidity">Relatiewe humiditeit:&#160;</string>
-    <string name="ui_absolute_humidity">Absolute humiditeit:&#160;</string>
-    <string name="ui_dew_point">Doupunt:&#160;</string>
+    <string name="ui_relative_humidity">Relatiewe humiditeit:\u0020</string>
+    <string name="ui_absolute_humidity">Absolute humiditeit:\u0020</string>
+    <string name="ui_dew_point">Dauwpunt:\u0020</string>
     <string name="dialog_camera_title">Kies asseblief kamera</string>
     <string name="iab_complete_title">Dankie</string>
     <string name="iab_complete_message">Herbegin asseblief die program om die verandering toe te pas.</string>
@@ -270,4 +271,5 @@
     <string name="ui_fingerprint_help">Verifikasiehulp</string>
     <string name="ui_fingerprint_succeeded">Opgevolg.</string>
     <string name="app_not_found">Geen aansoek gevind nie.</string>
+    <string name="title_activity_language">Taal</string>
 </resources>

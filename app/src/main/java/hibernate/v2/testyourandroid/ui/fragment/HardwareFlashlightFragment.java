@@ -2,7 +2,6 @@ package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
@@ -55,17 +54,6 @@ public class HardwareFlashlightFragment extends BaseFragment {
 	@Override
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-
-		if (mContext.getPackageManager()
-				.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-				initCamera2();
-			} else {
-				initCamera();
-			}
-		} else {
-			C.errorNoFeatureDialog(mContext);
-		}
 	}
 
 	@Override
@@ -82,29 +70,6 @@ public class HardwareFlashlightFragment extends BaseFragment {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
-	private void initCamera() {
-		try {
-			mCamera = Camera.open(0);
-		} catch (Exception e) {
-			C.errorNoFeatureDialog(mContext);
-		}
-
-	}
-
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void initCamera2() {
-		try {
-			if (isPermissionsGranted(PERMISSION_NAME)) {
-				util = new FlashLightUtilForL(mContext);
-			} else {
-				requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
-			}
-		} catch (Exception e) {
-			C.errorNoFeatureDialog(mContext);
-		}
-	}
-
 	@OnCheckedChanged(R.id.turnSwitch)
 	public void turnSwitch(boolean isChecked) {
 		if (isChecked) {
@@ -116,25 +81,37 @@ public class HardwareFlashlightFragment extends BaseFragment {
 
 	@SuppressWarnings("deprecation")
 	private void openFlash() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			util.turnOnFlashLight();
-		} else {
-			if (mCamera != null) {
-				try {
+		if (mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
+			try {
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+					if (isPermissionsGranted(PERMISSION_NAME)) {
+						util = new FlashLightUtilForL(mContext);
+						util.turnOnFlashLight();
+					} else {
+						requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
+					}
+				} else {
+					mCamera = Camera.open(0);
 					mParams = mCamera.getParameters();
 					mParams.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
 					mCamera.setParameters(mParams);
 					mCamera.startPreview();
-				} catch (Exception ignored) {
 				}
+			} catch (Exception e) {
+				C.errorNoFeatureDialog(mContext);
 			}
+		} else {
+			C.errorNoFeatureDialog(mContext);
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	private void closeFlash() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			util.turnOffFlashLight();
+			if (util != null) {
+				util.turnOffFlashLight();
+			}
 		} else {
 			if (mCamera != null) {
 				try {
@@ -269,7 +246,7 @@ public class HardwareFlashlightFragment extends BaseFragment {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
 			if (hasAllPermissionsGranted(grantResults)) {
-				initCamera2();
+				openFlash();
 			} else {
 				C.openErrorPermissionDialog(mContext);
 			}

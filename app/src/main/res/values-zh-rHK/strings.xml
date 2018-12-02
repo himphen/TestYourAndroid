@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Android 測試工具</string>
     <string name="ui_okay">確定</string>
     <string name="ui_cancel">取消</string>
@@ -9,7 +8,6 @@
     <string name="ui_na">無法剖析</string>
     <string name="dialog_feature_na_message">你的 Android 設備沒有這項功能或正由其他程式使用中。</string>
     <string name="action_iap">移除廣告</string>
-    <!--  -->
     <string name="color_title">使用方法</string>
     <string name="color_message">正常模式：\n按一下可轉換下一種顏色\n\n修復模式：\n自動快速轉換顏色</string>
     <string name="color_normal_btn">正常模式</string>
@@ -18,31 +16,21 @@
         \n\n建議在充電期間進行修復模式，二十分鐘後將會自動關閉並退出至主畫面。
         \n\n此修復模式並不確保能消除光點死點，如有任何疑問，請向生產商查詢。
         \n\n修復時如要離開請按Android返回鍵。</string>
-
-    <!--  -->
     <string name="vibrate_button">測試震動</string>
     <string name="vibrate_stop_button">停止震動</string>
     <string name="vibrate_string_1">長震</string>
     <string name="vibrate_string_2">短震</string>
-
     <string name="ring_button">播放聲音</string>
     <string name="ring_stop_button">停止播放</string>
     <string name="adjust_volume">調整音量</string>
     <string name="vibrate_type">震動模式</string>
-
-    <!--  -->
     <string name="main_tab_title_1">測試功能</string>
     <string name="main_tab_title_2">關於程式</string>
-
-    <!--  -->
     <string name="test_monitor_tab_title_1">CPU</string>
     <string name="test_monitor_tab_title_2">網絡流量</string>
     <string name="test_monitor_tab_title_3">RAM</string>
-
     <string name="ui_caution">注意</string>
     <string name="touch_message">請按螢幕來測試多點觸控</string>
-
-    <!--  -->
     <string name="info_hardware_string_1">品牌</string>
     <string name="info_hardware_string_2">設備</string>
     <string name="info_hardware_string_3">型號</string>
@@ -50,15 +38,11 @@
     <string name="info_hardware_string_5">產品標誌</string>
     <string name="info_hardware_string_6">Fingerprint</string>
     <string name="info_hardware_string_7">Board</string>
-
-    <!--  -->
     <string name="info_battery_charge_string_1">放電中</string>
     <string name="info_battery_charge_string_2">AC 充電</string>
     <string name="info_battery_charge_string_3">USB 充電</string>
     <string name="info_battery_charge_string_4">不明</string>
     <string name="info_battery_charge_string_5">無線充電</string>
-
-    <!--  -->
     <string name="info_battery_health_string_1">不明</string>
     <string name="info_battery_health_string_2">不明</string>
     <string name="info_battery_health_string_3">良好</string>
@@ -67,10 +51,8 @@
     <string name="info_battery_health_string_6">注意：電池電壓過高</string>
     <string name="info_battery_health_string_7">不能辨識電池狀況</string>
     <string name="info_battery_health_string_8">注意：電池溫度過低</string>
-
     <string name="flash_on">開啟閃光燈</string>
     <string name="flash_off">關閉閃光燈</string>
-
     <string name="title_activity_screen">螢幕顏色</string>
     <string name="title_activity_light">光源感應器測試</string>
     <string name="title_activity_fingerprint">指紋掃瞄器</string>
@@ -93,12 +75,8 @@
     <string name="title_activity_gsm">SIM 卡資料</string>
     <string name="title_activity_system_monitor">系統監視器</string>
     <string name="title_activity_test_ad_remover">移除廣告</string>
-    <!-- NEW -->
-
     <string name="share_button">分享此程式</string>
     <string name="share_message">我剛用了「Android測試工具」APP 來測試我的 Android 功能，你也快來試試吧！！</string>
-
-    <!--  -->
     <string name="info_cpu_string_1">最低頻率</string>
     <string name="info_cpu_string_2">最高頻率</string>
     <string name="info_cpu_string_3">CPU 核心數目</string>
@@ -106,14 +84,10 @@
     <string name="info_cpu_string_5">外置空間記憶體</string>
     <string name="info_cpu_string_6">RAM 記憶體</string>
     <string name="info_cpu_string_7">詳細記憶體資料</string>
-
-    <!--  -->
     <string name="memory_string_1">總空間：</string>
     <string name="memory_string_2">可用空間：</string>
     <string name="memory_string_3">已使用空間：</string>
     <string name="memory_string_4">Threshold：</string>
-
-    <!--  -->
     <string name="info_android_version_string_1">Android 版本</string>
     <string name="info_android_version_string_2">代號</string>
     <string name="info_android_version_string_3">SDK 版本</string>
@@ -121,8 +95,6 @@
     <string name="info_android_version_string_5">內核版本</string>
     <string name="info_android_version_string_6">內核作業系統</string>
     <string name="info_android_version_string_7">內核作業系統版本</string>
-
-    <!--  -->
     <string name="info_camera_string_1">螢幕闊度</string>
     <string name="info_camera_string_2">螢幕高度</string>
     <string name="info_camera_string_3">支持解像度</string>
@@ -133,8 +105,6 @@
     <string name="info_camera_string_8">白平衝模式</string>
     <string name="info_camera_string_9">場境模式</string>
     <string name="info_camera_string_10">相片輸出格式</string>
-
-    <!--  -->
     <string name="info_battery_string_1">電量 Level</string>
     <string name="info_battery_string_2">電池最高容量</string>
     <string name="info_battery_string_3">電池健康度</string>
@@ -142,8 +112,6 @@
     <string name="info_battery_string_5">電池技術</string>
     <string name="info_battery_string_6">電池溫度</string>
     <string name="info_battery_string_7">電池電壓</string>
-
-    <!--  -->
     <string name="test_wifi_current_string_1">SSID：</string>
     <string name="test_wifi_current_string_2">BSSID：</string>
     <string name="test_wifi_current_string_3">網絡等級：</string>
@@ -156,13 +124,9 @@
     <string name="test_wifi_current_string_10">DNS 1：</string>
     <string name="test_wifi_current_string_11">DNS 2：</string>
     <string name="test_wifi_current_string_12">伺服器位址：</string>
-
-    <!--  -->
     <string name="test_wifi_string_1">現在連接中</string>
     <string name="test_wifi_string_2">可用 Wi-Fi</string>
     <string name="test_wifi_string_3">已記錄 Wi-Fi SSID</string>
-
-    <!--  -->
     <string name="test_sensor_string_1">讀數</string>
     <string name="test_sensor_string_2">感應器名稱</string>
     <string name="test_sensor_string_3">感應器廠商</string>
@@ -171,22 +135,18 @@
     <string name="test_sensor_string_6">最小延遲度</string>
     <string name="test_sensor_string_7">解析率</string>
     <string name="test_sensor_string_8">功率</string>
-
-    <!--  -->
     <string name="test_gps_string_1">緯度</string>
     <string name="test_gps_string_2">經度</string>
     <string name="test_gps_string_3">速度</string>
     <string name="test_gps_string_4">海拔</string>
     <string name="test_gps_string_5">方位角度</string>
     <string name="test_gps_string_6">精確度</string>
-
-    <!--  -->
     <string name="info_gsm_string_1">SIM 卡國家/地區</string>
     <string name="info_gsm_string_2">SIM 卡供應商編號</string>
     <string name="info_gsm_string_3">SIM 卡供應商</string>
     <string name="info_gsm_string_4">SIM 卡辨識</string>
     <string name="info_gsm_string_5">IMEI/ESN</string>
-    <string name="info_gsm_string_6">設備軟件版本</string>
+    <string name="info_gsm_string_6">設備軟體版本</string>
     <string name="info_gsm_string_7">電話號碼</string>
     <string name="info_gsm_string_8">網絡國家/地區</string>
     <string name="info_gsm_string_9">網絡供應商編號</string>
@@ -194,15 +154,12 @@
     <string name="info_gsm_string_11">網絡漫遊</string>
     <string name="info_gsm_string_12">SIM SN 編號</string>
     <string name="info_gsm_string_13">唯一 ID</string>
-
-    <!--  -->
     <string name="info_sim_status_string_1">不明</string>
     <string name="info_sim_status_string_2">沒有 SIM 卡</string>
     <string name="info_sim_status_string_3">鎖定: 需要 PIN 解鎖</string>
     <string name="info_sim_status_string_4">鎖定: 需要 PUK 解鎖</string>
     <string name="info_sim_status_string_5">鎖定: 需要 Network PIN 解鎖</string>
     <string name="info_sim_status_string_6">正常</string>
-
     <string name="wifi_reload">重新掃瞄</string>
     <string name="wifi_setting">設定</string>
     <string name="wifi_reload_done">掃瞄完成</string>
@@ -235,15 +192,13 @@
     <string name="memory_total">總共的</string>
     <string name="memory_used">使用中</string>
     <string name="ui_not_support">不支援</string>
-
-    <string name="rate_title">給開發人員一些回饋</string>
-    <string name="rate_message">希望你能繼續支持開發人員更新及開發更多程式。\n\n如對本程式感到滿意，請給我們一些評價及分享此程式給親朋好友。</string>
+    <string name="rate_title">你喜歡這個程式嗎？</string>
+    <string name="rate_message">如對本程式感到滿意，請給我們一些評價及分享此程式給親朋好友。</string>
     <string name="rate_navbtn">不用了</string>
     <string name="rate_netbtn">以後再提醒</string>
     <string name="rate_posbtn">立即評價</string>
     <string name="dialog_camera_title">請選擇相機</string>
     <string name="title_activity_touch">多點測試</string>
-
     <string name="title_activity_microphone">咪高峰</string>
     <string name="mic_start_playing">按鍵播放錄音</string>
     <string name="mic_start_recording">按鍵開始錄音</string>
@@ -298,7 +253,7 @@
     <string name="app_package_string_5">Installed Time</string>
     <string name="app_package_string_6">Update Time</string>
     <string name="app_package_string_7">Data Directory</string>
-    <string name="app_package_string_9">Min. SDK Version</string>
+    <string name="app_package_string_9">Min SDK Version</string>
     <string name="app_package_string_8">APK Directory</string>
     <string name="about_credit_btn">開源庫</string>
     <string name="title_activity_step">計步器</string>
@@ -318,5 +273,5 @@
     <string name="ui_relative_humidity">相對濕度：</string>
     <string name="title_activity_humidity">濕度感應器</string>
     <string name="ui_not_support_android_version">只支援 Android %1$s+</string>
-
+    <string name="title_activity_language">語言</string>
 </resources>

@@ -1,5 +1,6 @@
 package hibernate.v2.testyourandroid.ui.activity;
 
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import android.view.WindowManager;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -125,7 +125,9 @@ public class HardwareScreenActivity extends BaseActivity {
 					}
 				})
 				.negativeText(R.string.ui_cancel);
-		dialog.show();
+		if (((Activity) mContext).hasWindowFocus()) {
+			dialog.show();
+		}
 	}
 
 	private void openDialogTutor() {
@@ -140,8 +142,9 @@ public class HardwareScreenActivity extends BaseActivity {
 						openDialogTestMode();
 					}
 				});
-		dialog.show();
-
+		if (mContext.hasWindowFocus()) {
+			dialog.show();
+		}
 	}
 
 }

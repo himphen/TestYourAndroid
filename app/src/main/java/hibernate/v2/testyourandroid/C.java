@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -12,15 +14,19 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import hibernate.v2.testyourandroid.helper.UtilHelper;
 
 public class C extends UtilHelper {
 
-	public static final String TAG = "TAG";
 	public static final String PREF = "PREF_OPTION";
 
 	public static final String IAP_PID = "iap1984";
@@ -68,7 +74,9 @@ public class C extends UtilHelper {
 						}
 					}
 				});
-		dialog.show();
+		if (((Activity) mContext).hasWindowFocus()) {
+			dialog.show();
+		}
 	}
 
 	public static void errorNoFeatureDialog(Context mContext) {
@@ -83,7 +91,9 @@ public class C extends UtilHelper {
 						scanForActivity(dialog.getContext()).finish();
 					}
 				});
-		dialog.show();
+		if (((Activity) mContext).hasWindowFocus()) {
+			dialog.show();
+		}
 	}
 
 	public static String formatBitSize(long size, boolean isSuffix) {
@@ -153,4 +163,45 @@ public class C extends UtilHelper {
 
 		return null;
 	}
+
+	public static List<PackageInfo> getInstalledPackages(PackageManager packageManager, int flags) {
+		try {
+			return packageManager.getInstalledPackages(flags);
+		} catch (Exception ignored) {
+			// we don't care why it didn't succeed. We'll do it using an alternative way instead
+		}
+		// use fallback:
+		List<PackageInfo> result = new ArrayList<>();
+		BufferedReader bufferedReader = null;
+		try {
+			Process process = Runtime.getRuntime().exec("pm list packages");
+			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String line;
+			while ((line = bufferedReader.readLine()) != null) {
+				final String packageName = line.substring(line.indexOf(':') + 1);
+				final PackageInfo packageInfo = packageManager.getPackageInfo(packageName, flags);
+				result.add(packageInfo);
+			}
+			process.waitFor();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (bufferedReader != null)
+				try {
+					bufferedReader.close();
+				} catch (IOException ignored) {
+
+				}
+		}
+		return result;
+	}
+
+	public static void startSettingsActivity(Context mContext, String action) {
+		try {
+			mContext.startActivity(new Intent(action));
+		} catch (Exception e) {
+			mContext.startActivity(new Intent(Settings.ACTION_SETTINGS));
+		}
+	}
+
 }

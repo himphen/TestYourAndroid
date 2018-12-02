@@ -158,11 +158,11 @@ public class TestSensorFragment extends BaseFragment {
 						infoItem = new InfoItem(stringArray[i], SensorHelper.getProximitySensorData(i, stringArray.length, reading, sensor));
 						break;
 					default:
-						infoItem = new InfoItem(stringArray[i], getString(R.string.notsupport));
+						infoItem = new InfoItem(stringArray[i], getString(R.string.ui_not_support));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				infoItem = new InfoItem(stringArray[i], getString(R.string.notsupport));
+				infoItem = new InfoItem(stringArray[i], getString(R.string.ui_not_support));
 			}
 
 			list.add(infoItem);

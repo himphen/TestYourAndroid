@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Android Wear 測試工具</string>
-    <string name="notsupport">不支援</string>
-    <string name="dialog_feature_na_message">沒有這項功能。</string>
-
+    <string name="ui_not_support">不支援</string>
+    <string name="dialog_feature_na_message">你的 Android 設備沒有這項功能或正由其他程式使用中。</string>
     <string name="title_activity_test_color">螢幕顏色</string>
     <string name="title_activity_test_light_sensor">光源感應器測試</string>
     <string name="title_activity_test_accelerometer">加速感應器測試</string>
@@ -12,8 +11,6 @@
     <string name="title_activity_info_hardware">其他硬件資料</string>
     <string name="title_activity_info_android_version">Android 版本</string>
     <string name="title_activity_info_battery">電池資料</string>
-
-    <!--  -->
     <string name="info_cpu_string_1">最低頻率</string>
     <string name="info_cpu_string_2">最高頻率</string>
     <string name="info_cpu_string_3">CPU 核心數目</string>
@@ -21,14 +18,10 @@
     <string name="info_cpu_string_5">外置空間記憶體</string>
     <string name="info_cpu_string_6">RAM 記憶體</string>
     <string name="info_cpu_string_7">詳細記憶體資料</string>
-
-    <!--  -->
     <string name="memory_string_1">總空間：</string>
     <string name="memory_string_2">可用空間：</string>
     <string name="memory_string_3">已使用空間：</string>
     <string name="memory_string_4">Threshold：</string>
-
-    <!--  -->
     <string name="info_android_version_string_1">Android 版本</string>
     <string name="info_android_version_string_2">代號</string>
     <string name="info_android_version_string_3">SDK 版本</string>
@@ -38,10 +31,6 @@
     <string name="info_android_version_string_7">內核作業系統版本</string>
     <string name="info_android_version_string_8">底板版本</string>
     <string name="info_android_version_string_9">基頻版本</string>
-
-    <!--  -->
-
-    <!--  -->
     <string name="info_battery_string_1">電量 Level</string>
     <string name="info_battery_string_2">電池最高容量</string>
     <string name="info_battery_string_3">電池健康度</string>
@@ -49,12 +38,6 @@
     <string name="info_battery_string_5">電池技術</string>
     <string name="info_battery_string_6">電池溫度</string>
     <string name="info_battery_string_7">電池電壓</string>
-
-    <!--  -->
-
-    <!--  -->
-
-    <!--  -->
     <string name="test_sensor_string_1">讀數</string>
     <string name="test_sensor_string_2">感應器名稱</string>
     <string name="test_sensor_string_3">感應器廠商</string>
@@ -63,9 +46,6 @@
     <string name="test_sensor_string_6">最小延遲度</string>
     <string name="test_sensor_string_7">解析率</string>
     <string name="test_sensor_string_8">功率</string>
-
-    <!--  -->
-
     <string name="info_battery_charge_string_1">放電中</string>
     <string name="info_battery_charge_string_2">AC 充電中</string>
     <string name="info_battery_charge_string_3">USB 充電中</string>
@@ -79,7 +59,6 @@
     <string name="info_battery_health_string_6">注意：電壓過高</string>
     <string name="info_battery_health_string_7">不明</string>
     <string name="info_battery_health_string_8">注意：過冷</string>
-
     <string name="info_hardware_string_1">品牌</string>
     <string name="info_hardware_string_3">電池電量</string>
     <string name="info_hardware_string_2">型號</string>

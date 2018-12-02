@@ -146,18 +146,18 @@
     <string name="info_battery_health_string_8">सावधानी: बहुत ठंडा</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1">एसएसआईडी:&#160;</string>
-    <string name="test_wifi_current_string_2">बीएसएसआईडी:&#160;</string>
-    <string name="test_wifi_current_string_3">नेटवर्क आईडी:&#160;</string>
-    <string name="test_wifi_current_string_4">मैक पता:&#160;</string>
-    <string name="test_wifi_current_string_5">वाई-फाई स्पीड:&#160;</string>
-    <string name="test_wifi_current_string_6">वाई-फाई ताकत:&#160;</string>
-    <string name="test_wifi_current_string_7">आईपी पता:&#160;</string>
-    <string name="test_wifi_current_string_8">डिफ़ॉल्ट गेटवे:&#160;</string>
-    <string name="test_wifi_current_string_9">सबनेट मास्क:&#160;</string>
-    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
-    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
-    <string name="test_wifi_current_string_12">सर्वर पता:&#160;</string>
+    <string name="test_wifi_current_string_1">एसएसआईडी:\u0020</string>
+    <string name="test_wifi_current_string_2">बीएसएसआईडी:\u0020</string>
+    <string name="test_wifi_current_string_3">नेटवर्क आईडी:\u0020</string>
+    <string name="test_wifi_current_string_4">मैक पता:\u0020</string>
+    <string name="test_wifi_current_string_5">वाई-फाई स्पीड:\u0020</string>
+    <string name="test_wifi_current_string_6">वाई-फाई ताकत:\u0020</string>
+    <string name="test_wifi_current_string_7">आईपी पता:\u0020</string>
+    <string name="test_wifi_current_string_8">डिफ़ॉल्ट गेटवे:\u0020</string>
+    <string name="test_wifi_current_string_9">सबनेट मास्क:\u0020</string>
+    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
+    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
+    <string name="test_wifi_current_string_12">सर्वर पता:\u0020</string>
 
     <!--  -->
     <string name="test_wifi_string_1">वर्तमान वाई-फाई</string>
@@ -178,10 +178,10 @@
     <string name="info_cpu_string_7">विस्तार स्मृति</string>
 
     <!--  -->
-    <string name="memory_string_1">कुल:&#160;</string>
-    <string name="memory_string_2">उपलब्ध:&#160;</string>
-    <string name="memory_string_3">प्रयुक्त:&#160;</string>
-    <string name="memory_string_4">थ्रेसहोल्ड:&#160;</string>
+    <string name="memory_string_1">कुल:\u0020</string>
+    <string name="memory_string_2">उपलब्ध:\u0020</string>
+    <string name="memory_string_3">प्रयुक्त:\u0020</string>
+    <string name="memory_string_4">थ्रेसहोल्ड:\u0020</string>
 
     <!--  -->
     <string name="info_android_version_string_1">एंड्रॉइड संस्करण</string>
@@ -315,9 +315,9 @@
 
     <!-- -->
 
-    <string name="ui_relative_humidity">सापेक्ष आर्द्रता:&#160;</string>
-    <string name="ui_absolute_humidity">पूर्ण आर्द्रता:&#160;</string>
-    <string name="ui_dew_point">ओस बिंदु:&#160;</string>
+    <string name="ui_relative_humidity">सापेक्ष आर्द्रता:\u0020</string>
+    <string name="ui_absolute_humidity">पूर्ण आर्द्रता:\u0020</string>
+    <string name="ui_dew_point">ओस बिंदु:\u0020</string>
 
     <string name="dialog_camera_title">कृपया कैमरा चुनें</string>
     <string name="iab_complete_title">धन्यवाद</string>
@@ -331,5 +331,6 @@
     <string name="ui_fingerprint_succeeded">सफल हुआ।</string>
 
     <string name="app_not_found">कोई एप्लिकेशन नहीं मिला।</string>
+    <string name="title_activity_language">भाषा</string>
 
 </resources>

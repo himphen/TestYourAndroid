@@ -17,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
 import hibernate.v2.testyourandroid.model.AppChooseItem;
 import hibernate.v2.testyourandroid.ui.activity.AppListActivity;
@@ -52,7 +53,7 @@ public class AppChooseFragment extends BaseFragment {
 		int[] countArray = {0, 0, 0};
 
 		PackageManager packageManager = mContext.getPackageManager();
-		List<PackageInfo> packs = packageManager.getInstalledPackages(0);
+		List<PackageInfo> packs = C.getInstalledPackages(packageManager, 0);
 		for (PackageInfo packageInfo : packs) {
 			if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
 				countArray[0]++;

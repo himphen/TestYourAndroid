@@ -56,8 +56,7 @@ public class HardwareNFCFragment extends BaseFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_settings:
-				startActivity(new Intent(
-						Settings.ACTION_NFC_SETTINGS));
+				C.startSettingsActivity(mContext, Settings.ACTION_NFC_SETTINGS);
 				break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -114,14 +113,12 @@ public class HardwareNFCFragment extends BaseFragment {
 				.onPositive(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						try {
-							startActivity(new Intent(Settings.ACTION_NFC_SETTINGS));
-						} catch (Exception e) {
-							startActivity(new Intent(Settings.ACTION_SETTINGS));
-						}
+						C.startSettingsActivity(mContext, Settings.ACTION_NFC_SETTINGS);
 					}
 				})
 				.negativeText(R.string.ui_cancel);
-		dialog.show();
+		if (mContext.hasWindowFocus()) {
+			dialog.show();
+		}
 	}
 }

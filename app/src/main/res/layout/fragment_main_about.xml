@@ -11,12 +11,13 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/logo"
+        <ImageView
+            android:id="@+id/logoIv"
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:src="@drawable/android_resources"/>
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/name"

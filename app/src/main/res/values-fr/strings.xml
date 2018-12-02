@@ -11,7 +11,6 @@
     <string name="dialog_feature_na_message">Votre appareil Android ne possède pas cette fonctionnalité ou peut être utilisé par d\'autres applications.</string>
     <string name="dialog_permission_denied_message">Sans accorder des autorisations, il ne fonctionnera probablement pas.\n\nS\'il vous plaît donner Testez votre Android les autorisations pour accéder à cette fonctionnalité.</string>
     <string name="dialog_permission_denied_posbtn">Réglage»</string>
-
     <string name="title_activity_screen">Couleur du moniteur</string>
     <string name="title_activity_light">Capteur de lumière</string>
     <string name="title_activity_humidity">Capteur d\'humidité</string>
@@ -146,18 +145,18 @@
     <string name="info_battery_health_string_8">Attention: trop froid</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1">SSID:&#160;</string>
-    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
-    <string name="test_wifi_current_string_3">ID de réseau:&#160;</string>
-    <string name="test_wifi_current_string_4">Adresse Mac:&#160;</string>
-    <string name="test_wifi_current_string_5">Vitesse Wi-Fi:&#160;</string>
-    <string name="test_wifi_current_string_6">Force du Wi-Fi:&#160;</string>
-    <string name="test_wifi_current_string_7">Adresse IP:&#160;</string>
-    <string name="test_wifi_current_string_8">Passerelle par défaut:&#160;</string>
-    <string name="test_wifi_current_string_9">Masque de sous-réseau:&#160;</string>
-    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
-    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
-    <string name="test_wifi_current_string_12">Adresse du serveur:&#160;</string>
+    <string name="test_wifi_current_string_1">SSID:\u0020</string>
+    <string name="test_wifi_current_string_2">BSSID:\u0020</string>
+    <string name="test_wifi_current_string_3">ID de réseau:\u0020</string>
+    <string name="test_wifi_current_string_4">Adresse Mac:\u0020</string>
+    <string name="test_wifi_current_string_5">Vitesse Wi-Fi:\u0020</string>
+    <string name="test_wifi_current_string_6">Force du Wi-Fi:\u0020</string>
+    <string name="test_wifi_current_string_7">Adresse IP:\u0020</string>
+    <string name="test_wifi_current_string_8">Passerelle par défaut:\u0020</string>
+    <string name="test_wifi_current_string_9">Masque de sous-réseau:\u0020</string>
+    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
+    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
+    <string name="test_wifi_current_string_12">Adresse du serveur:\u0020</string>
 
     <!--  -->
     <string name="test_wifi_string_1">Wi-Fi actuel</string>
@@ -178,10 +177,10 @@
     <string name="info_cpu_string_7">Détail de la mémoire</string>
 
     <!--  -->
-    <string name="memory_string_1">Total:&#160;</string>
-    <string name="memory_string_2">Disponible:&#160;</string>
-    <string name="memory_string_3">Utilisé:&#160;</string>
-    <string name="memory_string_4">Seuil:&#160;</string>
+    <string name="memory_string_1">Total:\u0020</string>
+    <string name="memory_string_2">Disponible:\u0020</string>
+    <string name="memory_string_3">Utilisé:\u0020</string>
+    <string name="memory_string_4">Seuil:\u0020</string>
 
     <!--  -->
     <string name="info_android_version_string_1">Version Android</string>
@@ -302,8 +301,8 @@
     <string name="about_credit_btn">Licences Open Source</string>
     <string name="feedback_title">Testez votre application Android: Rapporter et donner des Commentaires</string>
     <string name="more">Développeur\'s application</string>
-    <string name="rate_title">Donner des commentaires au développeur</string>
-    <string name="rate_message">Évaluer cette application dans Google Play pour aider le développeur. Contactez le développeur si vous avez des questions.</string>
+    <string name="rate_title">Avez-vous aimé l\'application?</string>
+    <string name="rate_message">Contactez le développeur si vous avez des questions.</string>
     <string name="rate_navbtn">Non, merci</string>
     <string name="rate_netbtn">Plus tard</string>
     <string name="rate_posbtn">Évaluer maintenant</string>
@@ -315,9 +314,9 @@
 
     <!--  -->
 
-    <string name="ui_relative_humidity">Humidité relative:&#160;</string>
-    <string name="ui_absolute_humidity">Humidité absolue:&#160;</string>
-    <string name="ui_dew_point">Point de rosée:&#160;</string>
+    <string name="ui_relative_humidity">Humidité relative:\u0020</string>
+    <string name="ui_absolute_humidity">Humidité absolue:\u0020</string>
+    <string name="ui_dew_point">Point de rosée:\u0020</string>
 
     <string name="dialog_camera_title">Veuillez sélectionner la caméra</string>
     <string name="iab_complete_title">Merci</string>
@@ -331,5 +330,6 @@
     <string name="ui_fingerprint_succeeded">Réussi.</string>
 
     <string name="app_not_found">Aucune application trouvée.</string>
+    <string name="title_activity_language">La langue</string>
 
 </resources>

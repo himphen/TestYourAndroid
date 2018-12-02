@@ -118,11 +118,7 @@ public class InfoBluetoothFragment extends BaseFragment {
 				reload(true);
 				break;
 			case R.id.action_settings:
-				try {
-					startActivity(new Intent(Settings.ACTION_BLUETOOTH_SETTINGS));
-				} catch (ActivityNotFoundException e) {
-					startActivity(new Intent(Settings.ACTION_SETTINGS));
-				}
+				C.startSettingsActivity(mContext, Settings.ACTION_BLUETOOTH_SETTINGS);
 				break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -186,14 +182,12 @@ public class InfoBluetoothFragment extends BaseFragment {
 				.onPositive(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						try {
-							startActivity(new Intent(Settings.ACTION_BLUETOOTH_SETTINGS));
-						} catch (ActivityNotFoundException e) {
-							startActivity(new Intent(Settings.ACTION_SETTINGS));
-						}
+						C.startSettingsActivity(mContext, Settings.ACTION_BLUETOOTH_SETTINGS);
 					}
 				});
-		dialog.show();
+		if (mContext.hasWindowFocus()) {
+			dialog.show();
+		}
 	}
 
 	private String getData(int j) {

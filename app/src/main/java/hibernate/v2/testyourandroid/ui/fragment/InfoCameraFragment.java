@@ -113,10 +113,10 @@ public class InfoCameraFragment extends BaseFragment {
 							mContext.finish();
 						}
 					});
-			dialog.show();
-
+			if (mContext.hasWindowFocus()) {
+				dialog.show();
+			}
 		}
-
 	}
 
 	private void initCamera(int which) {

@@ -72,7 +72,9 @@ public class HardwareFingerprintActivity extends BaseActivity {
 							mContext.finish();
 						}
 					});
-			dialog.show();
+			if (mContext.hasWindowFocus()) {
+				dialog.show();
+			}
 		}
 	}
 

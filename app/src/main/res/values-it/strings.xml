@@ -146,18 +146,18 @@
     <string name="info_battery_health_string_8">Attenzione: troppo freddo</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1">SSID:&#160;</string>
-    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
-    <string name="test_wifi_current_string_3">ID di rete:&#160;</string>
-    <string name="test_wifi_current_string_4">Indirizzo MAC:&#160;</string>
-    <string name="test_wifi_current_string_5">Wi-Fi Speed:&#160;</string>
-    <string name="test_wifi_current_string_6">Forza Wi-Fi:&#160;</string>
-    <string name="test_wifi_current_string_7">Indirizzo IP:&#160;</string>
-    <string name="test_wifi_current_string_8">Gateway predefinito:&#160;</string>
-    <string name="test_wifi_current_string_9">Maschera di sottorete:&#160;</string>
-    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
-    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
-    <string name="test_wifi_current_string_12">Indirizzo del server:&#160;</string>
+    <string name="test_wifi_current_string_1">SSID:\u0020</string>
+    <string name="test_wifi_current_string_2">BSSID:\u0020</string>
+    <string name="test_wifi_current_string_3">ID di rete:\u0020</string>
+    <string name="test_wifi_current_string_4">Indirizzo MAC:\u0020</string>
+    <string name="test_wifi_current_string_5">Wi-Fi Speed:\u0020</string>
+    <string name="test_wifi_current_string_6">Forza Wi-Fi:\u0020</string>
+    <string name="test_wifi_current_string_7">Indirizzo IP:\u0020</string>
+    <string name="test_wifi_current_string_8">Gateway predefinito:\u0020</string>
+    <string name="test_wifi_current_string_9">Maschera di sottorete:\u0020</string>
+    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
+    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
+    <string name="test_wifi_current_string_12">Indirizzo del server:\u0020</string>
 
     <!--  -->
     <string name="test_wifi_string_1">Corrente Wi-Fi</string>
@@ -178,10 +178,10 @@
     <string name="info_cpu_string_7">Memoria in dettaglio</string>
 
     <!--  -->
-    <string name="memory_string_1">Totale:&#160;</string>
-    <string name="memory_string_2">A disposizione:&#160;</string>
-    <string name="memory_string_3">Usato:&#160;</string>
-    <string name="memory_string_4">Soglia:&#160;</string>
+    <string name="memory_string_1">Totale:\u0020</string>
+    <string name="memory_string_2">A disposizione:\u0020</string>
+    <string name="memory_string_3">Usato:\u0020</string>
+    <string name="memory_string_4">Soglia:\u0020</string>
 
     <!--  -->
     <string name="info_android_version_string_1">Versione Android</string>
@@ -302,8 +302,8 @@
     <string name="about_credit_btn">Licenze open source</string>
     <string name="feedback_title">Testare la vostra applicazione Android: Segnalare e DARE una valutazione</string>
     <string name="more">Svilupattore\'s applicazione</string>
-    <string name="rate_title">Dai una valutazione allo sviluppatore</string>
-    <string name="rate_message">Valuta questa app su Google Play per supportare lo sviluppatore. Contatta lo sviluppatore se hai domande.</string>
+    <string name="rate_title">Ti è piaciuta l\'app?</string>
+    <string name="rate_message">Fateci sapere cosa ne pensate</string>
     <string name="rate_navbtn">No, grazie</string>
     <string name="rate_netbtn">Più tardi</string>
     <string name="rate_posbtn">Vota adesso</string>
@@ -315,9 +315,9 @@
 
     <!--  -->
 
-    <string name="ui_relative_humidity">Umidità relativa:&#160;</string>
-    <string name="ui_absolute_humidity">Umidità assoluta:&#160;</string>
-    <string name="ui_dew_point">Punto di rugiada:&#160;</string>
+    <string name="ui_relative_humidity">Umidità relativa:\u0020</string>
+    <string name="ui_absolute_humidity">Umidità assoluta:\u0020</string>
+    <string name="ui_dew_point">Punto di rugiada:\u0020</string>
 
     <string name="dialog_camera_title">Si prega di selezionare la fotocamera</string>
     <string name="iab_complete_title">Grazie</string>
@@ -331,5 +331,6 @@
     <string name="ui_fingerprint_succeeded">Riuscito.</string>
 
     <string name="app_not_found">Nessuna applicazione trovata.</string>
+    <string name="title_activity_language">linguaggio</string>
 
 </resources>

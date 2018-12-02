@@ -10,8 +10,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 198202 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Egg waffle 820"
+        versionCode 198322 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Egg waffle 832"
         multiDexEnabled true
     }
 
@@ -84,8 +84,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-perf:16.2.0'
 
     // https://github.com/JakeWharton/butterknife
-    implementation 'com.jakewharton:butterknife:9.0.0-rc1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // https://github.com/afollestad/material-dialogs
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
@@ -116,13 +116,16 @@ dependencies {
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
 
     // https://github.com/Blankj/AndroidUtilCode
-    implementation 'com.blankj:utilcode:1.21.0'
+    implementation 'com.blankj:utilcode:1.22.0'
 
     // https://github.com/luizgrp/SectionedRecyclerViewAdapter
     implementation 'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:1.2.0'
 
     // https://github.com/akexorcist/Android-LocalizationActivity
     implementation 'com.akexorcist:localizationactivity:1.2.2'
+
+    // https://github.com/stepstone-tech/android-material-app-rating
+    implementation 'com.stepstone.apprating:app-rating:2.3.0'
 
     wearApp project(':wear')
 }

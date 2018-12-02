@@ -19,7 +19,7 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <android.support.v7.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/mainIv"
             android:layout_width="60dp"
             android:layout_height="60dp"/>

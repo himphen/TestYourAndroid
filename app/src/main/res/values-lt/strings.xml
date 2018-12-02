@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Test Your Android</string>
+    <string name="app_name">Android Testing Tool</string>
     <string name="ui_okay">Okay</string>
     <string name="ui_cancel">Cancel</string>
     <string name="ui_error">Error</string>
@@ -8,8 +8,8 @@
     <string name="ui_caution">Caution</string>
     <string name="ui_not_support">Not supported</string>
     <string name="ui_not_support_android_version">Only support Android %1$s+</string>
-    <string name="dialog_feature_na_message">Your Android device does not have this feature or may be used by other apps.</string>
-    <string name="dialog_permission_denied_message">Without granting permissions, it will probably not work.\n\nPlease give this app the permissions to access this feature.</string>
+    <string name="dialog_feature_na_message">Your Android device does not have this feature, or this feature may be using by other apps.</string>
+    <string name="dialog_permission_denied_message">Without granting permissions, it will probably not work.\n\nPlease grant the permissions to access this feature.</string>
     <string name="dialog_permission_denied_posbtn">Setting »</string>
     <string name="title_activity_screen">Monitor Color</string>
     <string name="title_activity_light">Light Sensor</string>
@@ -117,18 +117,18 @@
     <string name="info_battery_health_string_6">Caution: Over-Voltage</string>
     <string name="info_battery_health_string_7">Unknown</string>
     <string name="info_battery_health_string_8">Caution: Too Cold</string>
-    <string name="test_wifi_current_string_1">SSID:&#160;</string>
-    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
-    <string name="test_wifi_current_string_3">Network ID:&#160;</string>
-    <string name="test_wifi_current_string_4">Mac Address:&#160;</string>
-    <string name="test_wifi_current_string_5">Wi-Fi Speed:&#160;</string>
-    <string name="test_wifi_current_string_6">Wi-Fi Strength:&#160;</string>
-    <string name="test_wifi_current_string_7">IP Address:&#160;</string>
-    <string name="test_wifi_current_string_8">Default Gateway:&#160;</string>
-    <string name="test_wifi_current_string_9">Subnet Mask:&#160;</string>
-    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
-    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
-    <string name="test_wifi_current_string_12">Server Address:&#160;</string>
+    <string name="test_wifi_current_string_1">SSID:\u0020</string>
+    <string name="test_wifi_current_string_2">BSSID:\u0020</string>
+    <string name="test_wifi_current_string_3">Network ID:\u0020</string>
+    <string name="test_wifi_current_string_4">Mac Address:\u0020</string>
+    <string name="test_wifi_current_string_5">Wi-Fi Speed:\u0020</string>
+    <string name="test_wifi_current_string_6">Wi-Fi Strength:\u0020</string>
+    <string name="test_wifi_current_string_7">IP Address:\u0020</string>
+    <string name="test_wifi_current_string_8">Default Gateway:\u0020</string>
+    <string name="test_wifi_current_string_9">Subnet Mask:\u0020</string>
+    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
+    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
+    <string name="test_wifi_current_string_12">Server Address:\u0020</string>
     <string name="test_wifi_string_1">Current Wi-Fi</string>
     <string name="test_wifi_string_2">Available Wi-Fi</string>
     <string name="test_wifi_string_3">Saved Wi-Fi SSID</string>
@@ -141,10 +141,10 @@
     <string name="info_cpu_string_5">External Memory</string>
     <string name="info_cpu_string_6">RAM Memory</string>
     <string name="info_cpu_string_7">Detail Memory</string>
-    <string name="memory_string_1">Total:&#160;</string>
-    <string name="memory_string_2">Available:&#160;</string>
-    <string name="memory_string_3">Used:&#160;</string>
-    <string name="memory_string_4">Threshold:&#160;</string>
+    <string name="memory_string_1">Total:\u0020</string>
+    <string name="memory_string_2">Available:\u0020</string>
+    <string name="memory_string_3">Used:\u0020</string>
+    <string name="memory_string_4">Threshold:\u0020</string>
     <string name="info_android_version_string_1">Android Version</string>
     <string name="info_android_version_string_2">Codename</string>
     <string name="info_android_version_string_3">INCREMENTAL</string>
@@ -248,7 +248,7 @@
     <string name="ui_version">Version</string>
     <string name="feedback">Give me Feedback</string>
     <string name="about_credit_btn">Open source licenses</string>
-    <string name="feedback_title">Test Your Android: Report and Feedback</string>
+    <string name="feedback_title">Android Testing Tool: Report and Feedback</string>
     <string name="more">Developer\'s app</string>
     <string name="rate_title">Give developer some feedback</string>
     <string name="rate_message">Rate this app in Google Play to support developer. Contact developer if you have any questions.</string>
@@ -256,13 +256,13 @@
     <string name="rate_netbtn">Later on</string>
     <string name="rate_posbtn">Rate now</string>
     <string name="share_button">Share it!!!</string>
-    <string name="share_message">Test Your Android is the best app to test your Android devices.</string>
+    <string name="share_message">Android Testing Tool is the best app to test your Android devices.</string>
     <string name="mic_start_recording">Start recording</string>
     <string name="mic_start_playing">Start playing</string>
     <string name="mic_stop">Stop</string>
-    <string name="ui_relative_humidity">Relative Humidity:&#160;</string>
-    <string name="ui_absolute_humidity">Absolute Humidity:&#160;</string>
-    <string name="ui_dew_point">Dew Point:&#160;</string>
+    <string name="ui_relative_humidity">Relative Humidity:\u0020</string>
+    <string name="ui_absolute_humidity">Absolute Humidity:\u0020</string>
+    <string name="ui_dew_point">Dew Point:\u0020</string>
     <string name="dialog_camera_title">Please select camera</string>
     <string name="iab_complete_title">Thanks</string>
     <string name="iab_complete_message">Please restart the app to apply the change.</string>
@@ -274,5 +274,6 @@
     <string name="ui_fingerprint_help">Authentication Help</string>
     <string name="ui_fingerprint_succeeded">Succeeded.</string>
     <string name="app_not_found">No application found.</string>
+    <string name="title_activity_language">Language</string>
 
 </resources>

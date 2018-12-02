@@ -4,21 +4,23 @@
     <string name="ui_okay">Okay</string>
     <string name="ui_cancel">Cancel</string>
     <string name="ui_error">Error</string>
-    <string name="ui_na">N/A</string>
+    <string name="ui_na">Not Applicable</string>
     <string name="ui_caution">Caution</string>
     <string name="ui_not_support">Not supported</string>
     <string name="ui_not_support_android_version">Only support Android %1$s+</string>
-    <string name="dialog_feature_na_message">Your Android device does not have this feature or may be used by other apps.</string>
-    <string name="dialog_permission_denied_message">Without granting permissions, it will probably not work.\n\nPlease give Test Your Android the permissions to access this feature.</string>
-    <string name="dialog_permission_denied_posbtn">Setting »</string>
+    <string name="dialog_feature_na_message">Your Android device does not have this feature, or this feature may be using by other apps.</string>
+    <string name="dialog_permission_denied_message">Without granting permissions, it will probably not work.\n\nPlease grant the permissions to access this feature.</string>
+    <string name="dialog_permission_denied_posbtn">Settings</string>
 
     <string-array name="language_choose" translatable="false">
         <item>System Default</item>
         <item>Afrikaans</item>
+        <item>Azərbaycan</item>
         <item>Bahasa indonesia</item>
         <item>Bahasa Melayu</item>
-        <item>Bosnian</item>
+        <item>Bosanski</item>
         <item>Català</item>
+        <item>Čeština</item>
         <item>Dansk</item>
         <item>Deutsch</item>
         <item>English</item>
@@ -26,25 +28,39 @@
         <item>Français</item>
         <item>Hrvatski</item>
         <item>Italiano</item>
+        <item>Latviešu</item>
+        <item>Lietùviškai</item>
+        <item>Malti</item>
+        <item>Nederlands</item>
+        <item>Norsk</item>
+        <item>O\'zbek</item>
+        <item>Polski</item>
         <item>Português</item>
         <item>Pýсский</item>
+        <item>Română</item>
+        <item>Shqip</item>
+        <item>Suomi</item>
         <item>Svenska</item>
+        <item>Tagalog</item>
         <item>हिन्दी</item>
         <item>ภาษาไทย</item>
+        <item>සිංහල</item>
         <item>한국어</item>
-        <item>日本語</item>
         <item>中文（正體）</item>
         <item>中文（香港）</item>
         <item>中文（简体）</item>
+        <item>日本語</item>
     </string-array>
 
     <string-array name="language_locale_code" translatable="false">
         <item/>
         <item>af</item>
+        <item>az</item>
         <item>in</item>
         <item>ms</item>
         <item>bs</item>
         <item>ca</item>
+        <item>cs</item>
         <item>da</item>
         <item>de</item>
         <item>en</item>
@@ -52,16 +68,28 @@
         <item>fr</item>
         <item>hr</item>
         <item>it</item>
+        <item>lv</item>
+        <item>lt</item>
+        <item>mt</item>
+        <item>nl</item>
+        <item>no</item>
+        <item>uz</item>
+        <item>pl</item>
         <item>pt</item>
         <item>ru</item>
+        <item>ro</item>
+        <item>sq</item>
+        <item>fi</item>
         <item>sv</item>
+        <item>tl</item>
         <item>hi</item>
         <item>th</item>
+        <item>si</item>
         <item>ko</item>
-        <item>jp</item>
         <item>zh</item>
         <item>zh</item>
         <item>zh</item>
+        <item>ja</item>
     </string-array>
 
     <string-array name="language_locale_country_code" translatable="false">
@@ -86,8 +114,22 @@
         <item/>
         <item/>
         <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
         <item>HK</item>
         <item>CN</item>
+        <item/>
     </string-array>
 
     <string name="title_activity_screen">Monitor Color</string>
@@ -121,6 +163,7 @@
     <string name="title_activity_test_ad_remover">Donate</string>
     <string name="title_activity_app_brain">More App</string>
     <string name="title_activity_rate_us">Rate us!</string>
+    <string name="title_activity_language">Language</string>
 
     <string name="title_activity_app_choose">Installed Apps</string>
     <string name="title_activity_app_user">User Installed Apps</string>
@@ -165,6 +208,7 @@
     </string-array>
     <string-array name="other_string_array" translatable="false">
         <item>@string/title_activity_rate_us</item>
+        <item>@string/title_activity_language</item>
         <item>@string/title_activity_test_ad_remover</item>
         <item>@string/title_activity_app_brain</item>
     </string-array>
@@ -339,18 +383,18 @@
     </string-array>
 
     <!--  -->
-    <string name="test_wifi_current_string_1">SSID:&#160;</string>
-    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
-    <string name="test_wifi_current_string_3">Network ID:&#160;</string>
-    <string name="test_wifi_current_string_4">Mac Address:&#160;</string>
-    <string name="test_wifi_current_string_5">Wi-Fi Speed:&#160;</string>
-    <string name="test_wifi_current_string_6">Wi-Fi Strength:&#160;</string>
-    <string name="test_wifi_current_string_7">IP Address:&#160;</string>
-    <string name="test_wifi_current_string_8">Default Gateway:&#160;</string>
-    <string name="test_wifi_current_string_9">Subnet Mask:&#160;</string>
-    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
-    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
-    <string name="test_wifi_current_string_12">Server Address:&#160;</string>
+    <string name="test_wifi_current_string_1">SSID:\u0020</string>
+    <string name="test_wifi_current_string_2">BSSID:\u0020</string>
+    <string name="test_wifi_current_string_3">Network ID:\u0020</string>
+    <string name="test_wifi_current_string_4">Mac Address:\u0020</string>
+    <string name="test_wifi_current_string_5">Wi-Fi Speed:\u0020</string>
+    <string name="test_wifi_current_string_6">Wi-Fi Strength:\u0020</string>
+    <string name="test_wifi_current_string_7">IP Address:\u0020</string>
+    <string name="test_wifi_current_string_8">Default Gateway:\u0020</string>
+    <string name="test_wifi_current_string_9">Subnet Mask:\u0020</string>
+    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
+    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
+    <string name="test_wifi_current_string_12">Server Address:\u0020</string>
     <string-array name="test_wifi_current_string_array" translatable="false">
         <item>@string/test_wifi_current_string_1</item>
         <item>@string/test_wifi_current_string_2</item>
@@ -403,10 +447,10 @@
     </string-array>
 
     <!--  -->
-    <string name="memory_string_1">Total:&#160;</string>
-    <string name="memory_string_2">Available:&#160;</string>
-    <string name="memory_string_3">Used:&#160;</string>
-    <string name="memory_string_4">Threshold:&#160;</string>
+    <string name="memory_string_1">Total:\u0020</string>
+    <string name="memory_string_2">Available:\u0020</string>
+    <string name="memory_string_3">Used:\u0020</string>
+    <string name="memory_string_4">Threshold:\u0020</string>
     <string-array name="memory_string_array" translatable="false">
         <item>@string/memory_string_1</item>
         <item>@string/memory_string_2</item>
@@ -567,8 +611,8 @@
     <!--  -->
     <string name="info_sim_status_string_1">Unknown</string>
     <string name="info_sim_status_string_2">No SIM card</string>
-    <string name="info_sim_status_string_3">Locked: requires the user\'s SIM PIN to unlock</string>
-    <string name="info_sim_status_string_4">Locked: requires the user\'s SIM PUK to unlock</string>
+    <string name="info_sim_status_string_3">Locked: requires the SIM PIN to unlock</string>
+    <string name="info_sim_status_string_4">Locked: requires the SIM PUK to unlock</string>
     <string name="info_sim_status_string_5">Locked: requires a network PIN to unlock</string>
     <string name="info_sim_status_string_6">Ready</string>
     <string-array name="info_sim_status_string_array" translatable="false">
@@ -601,7 +645,6 @@
     <string name="flash_on">Turn On Flashlight</string>
     <string name="flash_off">Turn Off Flashlight</string>
     <string name="ui_share">Share</string>
-    <string name="action_language" translatable="false">Language</string>
     <string name="action_iap">Ad Remove</string>
     <string name="cpu_speed">Speed</string>
     <string name="cpu_core">No. of Core</string>
@@ -617,8 +660,8 @@
     <string name="about_credit_btn">Open source licenses</string>
     <string name="feedback_title">Test Your Android App: Report and Feedback</string>
     <string name="more">Developer\'s app</string>
-    <string name="rate_title">Give developer some feedback</string>
-    <string name="rate_message">Rate this app in Google Play to support developer. Contact developer if you have any questions.</string>
+    <string name="rate_title">Did you like the app?</string>
+    <string name="rate_message">Let us know what you think</string>
     <string name="rate_navbtn">No, thanks</string>
     <string name="rate_netbtn">Later on</string>
     <string name="rate_posbtn">Rate now</string>
@@ -630,9 +673,9 @@
 
     <!--  -->
 
-    <string name="ui_relative_humidity">Relative Humidity:&#160;</string>
-    <string name="ui_absolute_humidity">Absolute Humidity:&#160;</string>
-    <string name="ui_dew_point">Dew Point:&#160;</string>
+    <string name="ui_relative_humidity">Relative Humidity:\u0020</string>
+    <string name="ui_absolute_humidity">Absolute Humidity:\u0020</string>
+    <string name="ui_dew_point">Dew Point:\u0020</string>
 
     <string name="dialog_camera_title">Please select camera</string>
     <string name="iab_complete_title">Thanks</string>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- By Google Translate -->
 <resources>
     <string name="app_name">Android Testing Tool</string>
     <string name="ui_okay">okay</string>
@@ -8,9 +9,9 @@
     <string name="ui_caution">Advarsel</string>
     <string name="ui_not_support">Ikke understøttet</string>
     <string name="ui_not_support_android_version">Support kun Android %1$s+</string>
-    <string name="dialog_feature_na_message">Din Android-enhed har ikke denne funktion eller kan bruges af andre apps.</string>
-    <string name="dialog_permission_denied_message">Uden at give tilladelser vil det nok ikke fungere. Giv venligst tilladelserne for at få adgang til denne funktion.</string>
-    <string name="dialog_permission_denied_posbtn">Indstilling »</string>
+    <string name="dialog_feature_na_message">Din Android-enhed har ikke denne funktion, eller denne funktion kan muligvis bruges af andre apps.</string>
+    <string name="dialog_permission_denied_message">Uden at give tilladelser vil det nok ikke fungere.\n\nGiv venligst tilladelserne for at få adgang til denne funktion.</string>
+    <string name="dialog_permission_denied_posbtn">Indstillinger</string>
     <string name="title_activity_screen">Overvåg farve</string>
     <string name="title_activity_light">Lyssensor</string>
     <string name="title_activity_humidity">Fugtighedssensor</string>
@@ -60,10 +61,10 @@
     <string name="test_monitor_tab_title_2">Netværk</string>
     <string name="test_monitor_tab_title_3">Hukommelse</string>
     <string name="color_title">Vælg venligst</string>
-    <string name="color_message">Normal tilstand: Tryk for at ændre næste farve. Fastgøringsfunktion: Ændrer farve hurtigt</string>
+    <string name="color_message">Normal tilstand:\nTryk for at ændre næste farve\n\nFixing mode:\nÆndrer farve hurtigt</string>
     <string name="color_normal_btn">Normal tilstand</string>
     <string name="color_test_btn">Fixing mode</string>
-    <string name="color_test_message">Under fastgørelsestilstanden blinker skærmen og ændrer farve hurtigt. Kig ikke på skærmen ellers kan det skade dine øjne. Det anbefales at gøre det ved opladning. Denne tilstand lukkes automatisk efter 20 minutter. Denne fikseringsfunktion garanterer ikke at reparere de defekte pixels. Kontakt venligst producenten, hvis du har noget problem. Du kan trykke på BACK-tasten på hovedskærmen.</string>
+    <string name="color_test_message">Under fastgørelsestilstanden blinker skærmen og ændrer farve hurtigt.\nKig ikke på skærmen ellers kan det skade dine øjne.\n\nDet anbefales at gøre det ved opladning. Denne tilstand lukkes automatisk efter 20 minutter.\n\nDenne fikseringsfunktion garanteres ikke at rette de defekte pixels. Kontakt venligst producenten, hvis du har noget problem.\n\nDu kan trykke på BACK-tasten på hovedskærmen.</string>
     <string name="vibrate_button">Test Vibration</string>
     <string name="vibrate_stop_button">Stop Vibration</string>
     <string name="vibrate_string_1">Lang vibration</string>
@@ -73,7 +74,7 @@
     <string name="adjust_volume">Juster lydstyrken</string>
     <string name="vibrate_type">Vibration Mode</string>
     <string name="nfc_tutor_message">Anbring et NFC-tag bag enheden, og du får biplyd, når det lykkes.</string>
-    <string name="touch_message">Tryk på skærmen med flere fingre.</string>
+    <string name="touch_message">Tryk på skærmen ved hjælp af flere fingre.</string>
     <string name="info_hardware_string_1">Brand</string>
     <string name="info_hardware_string_2">Apparat</string>
     <string name="info_hardware_string_3">Model</string>
@@ -94,7 +95,7 @@
     <string name="app_package_string_6">Opdateringstid</string>
     <string name="app_package_string_7">Datakatalog</string>
     <string name="app_package_string_8">APK Directory</string>
-    <string name="app_package_string_9">Min. SDK Version</string>
+    <string name="app_package_string_9">Min SDK Version</string>
     <string name="app_package_string_10">Mål SDK Version</string>
     <string name="app_action_string_1">Start app</string>
     <string name="app_action_string_2">Afinstaller</string>
@@ -113,34 +114,34 @@
     <string name="info_battery_health_string_6">Forsigtig: Overspænding</string>
     <string name="info_battery_health_string_7">Ukendt</string>
     <string name="info_battery_health_string_8">Forsigtig: For kold</string>
-    <string name="test_wifi_current_string_1">SSID:&#160;</string>
-    <string name="test_wifi_current_string_2">BSSID:&#160;</string>
-    <string name="test_wifi_current_string_3">Netværks-id:&#160;</string>
-    <string name="test_wifi_current_string_4">Mac-adresse:&#160;</string>
-    <string name="test_wifi_current_string_5">Wi-Fi-hastighed:&#160;</string>
-    <string name="test_wifi_current_string_6">Wi-Fi styrke:&#160;</string>
-    <string name="test_wifi_current_string_7">IP-adresse:&#160;</string>
-    <string name="test_wifi_current_string_8">Standard Gateway:&#160;</string>
-    <string name="test_wifi_current_string_9">Undernetmaske:&#160;</string>
-    <string name="test_wifi_current_string_10">DNS 1:&#160;</string>
-    <string name="test_wifi_current_string_11">DNS 2:&#160;</string>
-    <string name="test_wifi_current_string_12">Serveradresse:&#160;</string>
+    <string name="test_wifi_current_string_1">SSID:\u0020</string>
+    <string name="test_wifi_current_string_2">BSSID:\u0020</string>
+    <string name="test_wifi_current_string_3">Netværks-id:\u0020</string>
+    <string name="test_wifi_current_string_4">Mac-adresse:\u0020</string>
+    <string name="test_wifi_current_string_5">Wi-Fi-hastighed:\u0020</string>
+    <string name="test_wifi_current_string_6">Wi-Fi-styrke:\u0020</string>
+    <string name="test_wifi_current_string_7">IP-adresse:\u0020</string>
+    <string name="test_wifi_current_string_8">Standard Gateway:\u0020</string>
+    <string name="test_wifi_current_string_9">Undernetmaske:\u0020</string>
+    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
+    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
+    <string name="test_wifi_current_string_12">Serveradresse:\u0020</string>
     <string name="test_wifi_string_1">Nuværende Wi-Fi</string>
     <string name="test_wifi_string_2">Tilgængelig Wi-Fi</string>
     <string name="test_wifi_string_3">Gemt Wi-Fi SSID</string>
     <string name="test_bluetooth_string_1">Tilgængelige enheder</string>
     <string name="test_bluetooth_string_2">Parrede enheder</string>
-    <string name="info_cpu_string_1">Min Feq.</string>
-    <string name="info_cpu_string_2">Max Feq.</string>
-    <string name="info_cpu_string_3">CPU Core nr.</string>
+    <string name="info_cpu_string_1">Min Frekvens</string>
+    <string name="info_cpu_string_2">Max frekvens</string>
+    <string name="info_cpu_string_3">CPU Core</string>
     <string name="info_cpu_string_4">Intern hukommelse</string>
     <string name="info_cpu_string_5">Ekstern hukommelse</string>
     <string name="info_cpu_string_6">RAM-hukommelse</string>
     <string name="info_cpu_string_7">Detaljehukommelse</string>
-    <string name="memory_string_1">I alt:&#160;</string>
-    <string name="memory_string_2">Ledig:&#160;</string>
-    <string name="memory_string_3">Brugt:&#160;</string>
-    <string name="memory_string_4">Grænseværdi:&#160;</string>
+    <string name="memory_string_1">Totalt:\u0020</string>
+    <string name="memory_string_2">Tilgængelig:\u0020</string>
+    <string name="memory_string_3">Brugt:\u0020</string>
+    <string name="memory_string_4">Threshold:\u0020</string>
     <string name="info_android_version_string_1">Android Version</string>
     <string name="info_android_version_string_2">Codename</string>
     <string name="info_android_version_string_3">INCREMENTAL</string>
@@ -181,8 +182,8 @@
     <string name="test_sensor_string_2">Navn</string>
     <string name="test_sensor_string_3">Sælger</string>
     <string name="test_sensor_string_4">Version</string>
-    <string name="test_sensor_string_5">Maks. Rækkevidde</string>
-    <string name="test_sensor_string_6">Min. Forsinke</string>
+    <string name="test_sensor_string_5">Max rækkevidde</string>
+    <string name="test_sensor_string_6">Min forsinkelse</string>
     <string name="test_sensor_string_7">Løsning</string>
     <string name="test_sensor_string_8">Strøm</string>
     <string name="test_gps_string_1">Breddegrad</string>
@@ -206,8 +207,8 @@
     <string name="info_gsm_string_13">Abonnent ID</string>
     <string name="info_sim_status_string_1">Ukendt</string>
     <string name="info_sim_status_string_2">Intet SIM-kort</string>
-    <string name="info_sim_status_string_3">Låst: kræver, at brugerens SIM-kode skal låse op</string>
-    <string name="info_sim_status_string_4">Låst: kræver, at brugerens SIM PUK låser op</string>
+    <string name="info_sim_status_string_3">Låst: kræver SIM-PIN-kode for at låse op</string>
+    <string name="info_sim_status_string_4">Låst: kræver, at SIM PUK låser op</string>
     <string name="info_sim_status_string_5">Låst: kræver en netværkskode for at låse op</string>
     <string name="info_sim_status_string_6">Parat</string>
     <string name="wifi_setting">Indstilling</string>
@@ -245,9 +246,9 @@
     <string name="feedback">Giv mig feedback</string>
     <string name="about_credit_btn">Open source licenser</string>
     <string name="feedback_title">Android Testing Tool: Rapport og feedback</string>
-    <string name="more">Udviklerens app</string>
-    <string name="rate_title">Giv udvikleren lidt feedback</string>
-    <string name="rate_message">Vurder denne app i Google Play for at understøtte udvikleren. Kontakt udvikler, hvis du har spørgsmål.</string>
+    <string name="more">Flere programmer fra udvikleren</string>
+    <string name="rate_title">Kan du lide appen?</string>
+    <string name="rate_message">Lad os vide, hvad du synes</string>
     <string name="rate_navbtn">Nej tak</string>
     <string name="rate_netbtn">Senere</string>
     <string name="rate_posbtn">Vurder nu</string>
@@ -256,9 +257,9 @@
     <string name="mic_start_recording">Start optagelsen</string>
     <string name="mic_start_playing">Begynd at spille</string>
     <string name="mic_stop">Hold op</string>
-    <string name="ui_relative_humidity">Relativ luftfugtighed:&#160;</string>
-    <string name="ui_absolute_humidity">Absolut fugtighed:&#160;</string>
-    <string name="ui_dew_point">Dugpunkt:&#160;</string>
+    <string name="ui_relative_humidity">Relativ luftfugtighed:\u0020</string>
+    <string name="ui_absolute_humidity">Absolut luftfugtighed:\u0020</string>
+    <string name="ui_dew_point">Dugpunkt:\u0020</string>
     <string name="dialog_camera_title">Vælg venligst kamera</string>
     <string name="iab_complete_title">Tak</string>
     <string name="iab_complete_message">Genstart appen for at anvende ændringen.</string>
@@ -270,4 +271,5 @@
     <string name="ui_fingerprint_help">Autentificering Hjælp</string>
     <string name="ui_fingerprint_succeeded">Lykkedes.</string>
     <string name="app_not_found">Ingen ansøgning fundet.</string>
+    <string name="title_activity_language">Sprog</string>
 </resources>

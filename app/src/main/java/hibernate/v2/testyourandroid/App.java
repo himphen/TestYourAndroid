@@ -20,7 +20,6 @@ public class App extends MultiDexApplication {
 	@Override
 	protected void attachBaseContext(Context base) {
 		super.attachBaseContext(localizationDelegate.attachBaseContext(base));
-		MultiDex.install(this);
 		Utils.init(this);
 	}
 

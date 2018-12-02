@@ -24,6 +24,7 @@ import com.divyanshu.draw.activity.DrawingActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -65,11 +66,11 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
 
 public class MainTestFragment extends BaseFragment {
 
-	private SectionedRecyclerViewAdapter sectionAdapter;
-
 	@BindView(R.id.gridRv)
 	RecyclerView recyclerView;
+
 	private int columnCount;
+	private SectionedRecyclerViewAdapter sectionAdapter;
 
 	public static MainTestFragment newInstance() {
 		return new MainTestFragment();
@@ -132,7 +133,7 @@ public class MainTestFragment extends BaseFragment {
 		};
 
 		String[] otherStringArray = {
-				"rate", "donate", "app_brain"
+				"rate", "language", "donate", "app_brain"
 		};
 
 		sectionAdapter.addSection(new MovieSection(getString(R.string.main_title_information), addList(
@@ -248,7 +249,10 @@ public class MainTestFragment extends BaseFragment {
 					} else {
 						switch (gridItem.getActionType()) {
 							case "donate":
-								((MainActivity) getActivity()).checkPayment();
+								((MainActivity) Objects.requireNonNull(getActivity())).checkPayment();
+								break;
+							case "language":
+								((MainActivity) Objects.requireNonNull(getActivity())).openDialogLanguage();
 								break;
 							case "rate":
 								Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -286,15 +290,15 @@ public class MainTestFragment extends BaseFragment {
 		switch (new Random().nextInt(3)) {
 			case 0:
 				return new Integer[]{
-						R.drawable.ic_icon_rating, R.drawable.ic_icon_donate_1, R.drawable.ic_icon_app_brain
+						R.drawable.ic_icon_rating, R.drawable.ic_icon_language, R.drawable.ic_icon_donate_1, R.drawable.ic_icon_app_brain
 				};
 			case 1:
 				return new Integer[]{
-						R.drawable.ic_icon_rating, R.drawable.ic_icon_donate_2, R.drawable.ic_icon_app_brain
+						R.drawable.ic_icon_rating, R.drawable.ic_icon_language, R.drawable.ic_icon_donate_2, R.drawable.ic_icon_app_brain
 				};
 			default:
 				return new Integer[]{
-						R.drawable.ic_icon_rating, R.drawable.ic_icon_donate_3, R.drawable.ic_icon_app_brain
+						R.drawable.ic_icon_rating, R.drawable.ic_icon_language, R.drawable.ic_icon_donate_3, R.drawable.ic_icon_app_brain
 				};
 		}
 	}

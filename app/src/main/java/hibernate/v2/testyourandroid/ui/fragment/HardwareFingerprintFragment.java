@@ -3,9 +3,7 @@ package hibernate.v2.testyourandroid.ui.fragment;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.KeyguardManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -92,11 +90,7 @@ public class HardwareFingerprintFragment extends BaseFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_settings:
-				try {
-					startActivity(new Intent(Settings.ACTION_SECURITY_SETTINGS));
-				} catch (ActivityNotFoundException e) {
-					startActivity(new Intent(Settings.ACTION_SETTINGS));
-				}
+				C.startSettingsActivity(mContext, Settings.ACTION_SECURITY_SETTINGS);
 				break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -159,7 +153,9 @@ public class HardwareFingerprintFragment extends BaseFragment {
 							mContext.finish();
 						}
 					});
-			dialog.show();
+			if (mContext.hasWindowFocus()) {
+				dialog.show();
+			}
 		}
 	}
 

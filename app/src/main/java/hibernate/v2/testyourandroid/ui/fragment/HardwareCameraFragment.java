@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.crashlytics.android.Crashlytics;
 import com.otaliastudios.cameraview.AspectRatio;
 import com.otaliastudios.cameraview.CameraLogger;
 import com.otaliastudios.cameraview.CameraView;
@@ -71,20 +70,13 @@ public class HardwareCameraFragment extends BaseFragment {
 							mContext.finish();
 						}
 					});
-			dialog.show();
+			if (mContext.hasWindowFocus()) {
+				dialog.show();
+			}
 		}
 	}
 
 	private void initCamera(boolean isCameraFacingBack) {
-		if (isCameraFacingBack) {
-			cameraView.setFacing(Facing.BACK);
-		} else {
-			cameraView.setFacing(Facing.FRONT);
-		}
-		cameraView.setSessionType(SessionType.PICTURE);
-		cameraView.mapGesture(Gesture.TAP, GestureAction.FOCUS_WITH_MARKER);
-		cameraView.mapGesture(Gesture.SCROLL_HORIZONTAL, GestureAction.ZOOM);
-		cameraView.setPictureSize(SizeSelectors.aspectRatio(AspectRatio.of(4, 3), 0));
 		CameraLogger.registerLogger(new CameraLogger.Logger() {
 			@Override
 			public void log(@CameraLogger.LogLevel int level, String tag, String message, @Nullable Throwable throwable) {
@@ -95,6 +87,15 @@ public class HardwareCameraFragment extends BaseFragment {
 				}
 			}
 		});
+		if (isCameraFacingBack) {
+			cameraView.setFacing(Facing.BACK);
+		} else {
+			cameraView.setFacing(Facing.FRONT);
+		}
+		cameraView.setSessionType(SessionType.PICTURE);
+		cameraView.mapGesture(Gesture.TAP, GestureAction.FOCUS_WITH_MARKER);
+		cameraView.mapGesture(Gesture.SCROLL_HORIZONTAL, GestureAction.ZOOM);
+		cameraView.setPictureSize(SizeSelectors.aspectRatio(AspectRatio.of(4, 3), 0));
 		cameraView.start();
 	}
 

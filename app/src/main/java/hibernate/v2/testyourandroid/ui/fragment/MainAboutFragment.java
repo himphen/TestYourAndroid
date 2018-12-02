@@ -9,9 +9,13 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.AppUtils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +28,8 @@ public class MainAboutFragment extends BaseFragment {
 
 	@BindView(R.id.versionTv)
 	TextView versionTv;
+	@BindView(R.id.logoIv)
+	ImageView logoIv;
 
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -37,6 +43,12 @@ public class MainAboutFragment extends BaseFragment {
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		versionTv.setText(String.format("%s %s", getString(R.string.ui_version), AppUtils.getAppVersionName()));
+
+		Glide.with(mContext)
+				.load(R.drawable.android_resources)
+				.apply(new RequestOptions()
+						.diskCacheStrategy(DiskCacheStrategy.ALL))
+				.into(logoIv);
 	}
 
 	@OnClick(R.id.moreButton)
@@ -75,6 +87,7 @@ public class MainAboutFragment extends BaseFragment {
 		intent.putExtra(Intent.EXTRA_EMAIL, "hibernatev2@gmail.com");
 		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_title));
 		intent.putExtra(Intent.EXTRA_TEXT, text);
+
 		startActivity(intent);
 	}
 

@@ -1,10 +1,12 @@
 package hibernate.v2.testyourandroid.ui.activity;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -17,10 +19,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
+import com.blankj.utilcode.util.AppUtils;
+import com.stepstone.apprating.AppRatingDialog;
+import com.stepstone.apprating.listener.RatingDialogListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +35,7 @@ import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
 import hibernate.v2.testyourandroid.ui.fragment.MainFragment;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements RatingDialogListener {
 
 	private SharedPreferences preferences;
 	private SharedPreferences defaultPreferences;
@@ -76,7 +82,9 @@ public class MainActivity extends BaseActivity {
 									.title(R.string.iab_complete_title)
 									.customView(R.layout.dialog_donate, true)
 									.positiveText(R.string.ui_okay);
-							dialog.show();
+							if (mContext.hasWindowFocus()) {
+								dialog.show();
+							}
 						}
 					}
 
@@ -123,7 +131,7 @@ public class MainActivity extends BaseActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_language:
-				language();
+				openDialogLanguage();
 				break;
 			case R.id.action_iap:
 				checkPayment();
@@ -142,40 +150,23 @@ public class MainActivity extends BaseActivity {
 	}
 
 	public void openDialogRate() {
-		MaterialDialog.Builder dialog = new MaterialDialog.Builder(this)
-				.title(R.string.rate_title)
-				.content(R.string.rate_message)
-				.negativeText(R.string.rate_navbtn)
-				.onNegative(new MaterialDialog.SingleButtonCallback() {
-					@Override
-					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						preferences.edit().putInt(C.PREF_COUNT_RATE, 1000).apply();
-					}
-				})
-				.neutralText(R.string.rate_netbtn)
-				.onNeutral(new MaterialDialog.SingleButtonCallback() {
-					@Override
-					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						preferences.edit().putInt(C.PREF_COUNT_RATE, 0).apply();
-					}
-				})
-				.positiveText(R.string.rate_posbtn)
-				.onPositive(new MaterialDialog.SingleButtonCallback() {
-					@Override
-					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						preferences.edit().putInt(C.PREF_COUNT_RATE, 1000).apply();
-
-						Intent intent = new Intent(Intent.ACTION_VIEW);
-						try {
-							intent.setData(Uri.parse("market://details?id=hibernate.v2.testyourandroid"));
-							startActivity(intent);
-						} catch (ActivityNotFoundException e) {
-							intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid"));
-							startActivity(intent);
-						}
-					}
-				});
-		dialog.show();
+		new AppRatingDialog.Builder()
+				.setPositiveButtonText(R.string.rate_posbtn)
+				.setNegativeButtonText(R.string.rate_navbtn)
+				.setNeutralButtonText(R.string.rate_netbtn)
+				.setNumberOfStars(5)
+				.setDefaultRating(5)
+				.setTitle(R.string.rate_title)
+				.setDescription(R.string.rate_message)
+				.setCommentInputEnabled(false)
+				.setStarColor(R.color.gold)
+				.setTitleTextColor(R.color.white)
+				.setDescriptionTextColor(R.color.grey200)
+				.setWindowAnimation(R.style.RatingDialogFadeAnimation)
+				.setCancelable(false)
+				.setCanceledOnTouchOutside(false)
+				.create(MainActivity.this)
+				.show();
 	}
 
 	private void countRate() {
@@ -187,13 +178,11 @@ public class MainActivity extends BaseActivity {
 		preferences.edit().putInt(C.PREF_COUNT_RATE, countRate).apply();
 	}
 
-	private void language() {
-		int a = -1;
-
-		MaterialDialog.Builder dialog = new MaterialDialog.Builder(this)
-				.title(R.string.action_language)
+	public void openDialogLanguage() {
+		MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
+				.title(R.string.title_activity_language)
 				.items(R.array.language_choose)
-				.itemsCallbackSingleChoice(a, new MaterialDialog.ListCallbackSingleChoice() {
+				.itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
 					@Override
 					public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
 						SharedPreferences.Editor editor = defaultPreferences.edit();
@@ -206,19 +195,61 @@ public class MainActivity extends BaseActivity {
 								.apply();
 
 						startActivity(new Intent(mContext, MainActivity.class));
-						finish();
+						mContext.finish();
 						return false;
 					}
 				})
 				.negativeText(R.string.ui_cancel);
-		dialog.show();
-
+		if (mContext.hasWindowFocus()) {
+			dialog.show();
+		}
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (!billingProcessor.handleActivityResult(requestCode, resultCode, data)) {
 			super.onActivityResult(requestCode, resultCode, data);
+		}
+	}
+
+	@Override
+	public void onNegativeButtonClicked() {
+		preferences.edit().putInt(C.PREF_COUNT_RATE, 1000).apply();
+	}
+
+	@Override
+	public void onNeutralButtonClicked() {
+		preferences.edit().putInt(C.PREF_COUNT_RATE, 0).apply();
+	}
+
+	@Override
+	public void onPositiveButtonClicked(int i, @NotNull String s) {
+		preferences.edit().putInt(C.PREF_COUNT_RATE, 1000).apply();
+
+		if (i >= 4) {
+			Intent intent = new Intent(Intent.ACTION_VIEW);
+			try {
+				intent.setData(Uri.parse("market://details?id=hibernate.v2.testyourandroid"));
+				startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid"));
+				startActivity(intent);
+			}
+		} else {
+			Intent intent = new Intent(Intent.ACTION_SEND);
+
+			String text = "Android Version: " + android.os.Build.VERSION.RELEASE + "\n";
+			text += "SDK Level: " + String.valueOf(android.os.Build.VERSION.SDK_INT) + "\n";
+			text += "Version: " + AppUtils.getAppVersionName() + "\n";
+			text += "Brand: " + Build.BRAND + "\n";
+			text += "Model: " + Build.MODEL + "\n\n\n";
+
+			intent.setType("text/plain");
+			intent.putExtra(Intent.EXTRA_EMAIL, "hibernatev2@gmail.com");
+			intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_title));
+			intent.putExtra(Intent.EXTRA_TEXT, text);
+
+			startActivity(intent);
 		}
 	}
 }
