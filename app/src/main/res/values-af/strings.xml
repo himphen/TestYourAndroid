@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Opgevolg.</string>
     <string name="app_not_found">Geen aansoek gevind nie.</string>
     <string name="title_activity_language">Taal</string>
+    <string name="title_activity_qr_scanner">QR Kode Skandeerder</string>
+    <string name="main_title_tools">Gereedskap vir nutsprogramme</string>
+    <string name="bubble_level_vertical">Plumb</string>
+    <string name="bubble_level_horizontal">vlak</string>
+    <string name="title_activity_bubble_level">Bubble vlak</string>
+    <string name="title_activity_sound_meter">Klank meter</string>
 </resources>

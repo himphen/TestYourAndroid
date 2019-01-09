@@ -331,5 +331,11 @@
 
     <string name="app_not_found">Aucune application trouvée.</string>
     <string name="title_activity_language">La langue</string>
+    <string name="title_activity_qr_scanner">Scanner de code QR</string>
+    <string name="main_title_tools">Outils utilitaires</string>
+    <string name="bubble_level_vertical">Sonder</string>
+    <string name="bubble_level_horizontal">Niveau</string>
+    <string name="title_activity_bubble_level">Niveau à bulle</string>
+    <string name="title_activity_sound_meter">Sonomètre</string>
 
 </resources>

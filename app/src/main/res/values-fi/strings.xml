@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Onnistui.</string>
     <string name="app_not_found">Hakemusta ei löytynyt.</string>
     <string name="title_activity_language">Kieli</string>
+    <string name="title_activity_qr_scanner">QR-koodinlukija</string>
+    <string name="main_title_tools">Apuohjelmat</string>
+    <string name="bubble_level_vertical">luoti</string>
+    <string name="bubble_level_horizontal">Taso</string>
+    <string name="title_activity_bubble_level">Bubble Level</string>
+    <string name="title_activity_sound_meter">Äänimittari</string>
 </resources>

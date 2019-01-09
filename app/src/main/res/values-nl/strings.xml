@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Geslaagd.</string>
     <string name="app_not_found">Geen applicatie gevonden.</string>
     <string name="title_activity_language">Taal</string>
+    <string name="title_activity_qr_scanner">QR Code Scanner</string>
+    <string name="main_title_tools">Hulpprogramma\'s</string>
+    <string name="bubble_level_vertical">schietlood</string>
+    <string name="bubble_level_horizontal">Niveau</string>
+    <string name="title_activity_bubble_level">Belniveau</string>
+    <string name="title_activity_sound_meter">Geluidsmeter</string>
 </resources>

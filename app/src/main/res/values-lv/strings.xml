@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Panākumi</string>
     <string name="app_not_found">Neviens pieteikums nav atrasts.</string>
     <string name="title_activity_language">Valoda</string>
+    <string name="title_activity_qr_scanner">QR koda skeneris</string>
+    <string name="main_title_tools">Lietderības rīki</string>
+    <string name="bubble_level_vertical">Plumb</string>
+    <string name="bubble_level_horizontal">Līmenis</string>
+    <string name="title_activity_bubble_level">Burbulis</string>
+    <string name="title_activity_sound_meter">Skaņas mērītājs</string>
 </resources>

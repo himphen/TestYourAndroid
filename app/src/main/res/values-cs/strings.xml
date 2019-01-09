@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Uspěl.</string>
     <string name="app_not_found">Žádná aplikace nebyla nalezena.</string>
     <string name="title_activity_language">Jazyk</string>
+    <string name="title_activity_qr_scanner">QR Code Scanner</string>
+    <string name="main_title_tools">Nástroje nástroje</string>
+    <string name="bubble_level_vertical">Kolmo</string>
+    <string name="bubble_level_horizontal">Úroveň</string>
+    <string name="title_activity_bubble_level">Úroveň bublin</string>
+    <string name="title_activity_sound_meter">Zvukový měřič</string>
 </resources>

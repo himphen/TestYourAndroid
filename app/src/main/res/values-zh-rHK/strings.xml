@@ -274,4 +274,10 @@
     <string name="title_activity_humidity">濕度感應器</string>
     <string name="ui_not_support_android_version">只支援 Android %1$s+</string>
     <string name="title_activity_language">語言</string>
+    <string name="title_activity_qr_scanner">QR碼掃描器</string>
+    <string name="main_title_tools">常用工具</string>
+    <string name="bubble_level_vertical">垂直</string>
+    <string name="bubble_level_horizontal">水平</string>
+    <string name="title_activity_bubble_level">水平儀</string>
+    <string name="title_activity_sound_meter">聲級計</string>
 </resources>

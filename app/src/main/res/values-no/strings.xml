@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Lyktes.</string>
     <string name="app_not_found">Ingen søknad funnet.</string>
     <string name="title_activity_language">Språk</string>
+    <string name="title_activity_qr_scanner">QR Kode Skanner</string>
+    <string name="main_title_tools">Verktøy</string>
+    <string name="bubble_level_vertical">Plumb</string>
+    <string name="bubble_level_horizontal">Nivå</string>
+    <string name="title_activity_bubble_level">Boble nivå</string>
+    <string name="title_activity_sound_meter">Lydmåler</string>
 </resources>

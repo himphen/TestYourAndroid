@@ -175,9 +175,7 @@ public class HardwareLocationFragment extends BaseFragment implements
 						C.startSettingsActivity(mContext, Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 					}
 				});
-		if (mContext.hasWindowFocus()) {
-			dialog.show();
-		}
+		dialog.show();
 	}
 
 	@Override

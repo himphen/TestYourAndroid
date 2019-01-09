@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Suċċess.</string>
     <string name="app_not_found">Ma nstabet l-ebda applikazzjoni.</string>
     <string name="title_activity_language">Lingwa</string>
+    <string name="title_activity_qr_scanner">Skaner tal-Kodiċi QR</string>
+    <string name="main_title_tools">Għodod ta \'Utilità</string>
+    <string name="bubble_level_vertical">Plumb</string>
+    <string name="bubble_level_horizontal">Livell</string>
+    <string name="title_activity_bubble_level">Livell bżieżaq</string>
+    <string name="title_activity_sound_meter">Meter tal-Ħoss</string>
 </resources>

@@ -63,7 +63,25 @@
     <notice>
         <name>AndroidUtilCode</name>
         <url>https://github.com/Blankj/AndroidUtilCode/</url>
-        <copyright>The Apache Software Foundation</copyright>
+        <copyright>Blankj</copyright>
         <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Android-LocalizationActivity</name>
+        <url>https://github.com/akexorcist/Android-LocalizationActivity/</url>
+        <copyright>Akexorcist</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Android Material App Rating</name>
+        <url>https://github.com/stepstone-tech/android-material-app-rating/</url>
+        <copyright>StepStone Servicesn</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Code scanner library for Android</name>
+        <url>https://github.com/yuriy-budiyev/code-scanner/</url>
+        <copyright>Yuriy Budiyev</copyright>
+        <license>MIT License</license>
     </notice>
 </notices>

@@ -117,8 +117,6 @@ public class HardwareNFCFragment extends BaseFragment {
 					}
 				})
 				.negativeText(R.string.ui_cancel);
-		if (mContext.hasWindowFocus()) {
-			dialog.show();
-		}
+		dialog.show();
 	}
 }

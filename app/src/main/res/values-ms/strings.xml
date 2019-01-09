@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Berjaya.</string>
     <string name="app_not_found">Tiada permohonan dijumpai.</string>
     <string name="title_activity_language">Bahasa</string>
+    <string name="title_activity_qr_scanner">Pengimbas Kod QR</string>
+    <string name="main_title_tools">Alat Utiliti</string>
+    <string name="bubble_level_vertical">Terbakar</string>
+    <string name="bubble_level_horizontal">Tahap</string>
+    <string name="title_activity_bubble_level">Tahap Bubble</string>
+    <string name="title_activity_sound_meter">Meter Bunyi</string>
 </resources>

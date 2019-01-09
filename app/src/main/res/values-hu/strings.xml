@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Sikerült.</string>
     <string name="app_not_found">Nem található alkalmazás.</string>
     <string name="title_activity_language">Nyelv</string>
+    <string name="title_activity_qr_scanner">QR-kódolvasó</string>
+    <string name="main_title_tools">Segédprogramok</string>
+    <string name="bubble_level_vertical">Függőleges</string>
+    <string name="bubble_level_horizontal">Szint</string>
+    <string name="title_activity_bubble_level">Buborék szint</string>
+    <string name="title_activity_sound_meter">Hangmérő</string>
 </resources>

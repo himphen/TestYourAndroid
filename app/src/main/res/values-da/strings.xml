@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Lykkedes.</string>
     <string name="app_not_found">Ingen ansøgning fundet.</string>
     <string name="title_activity_language">Sprog</string>
+    <string name="title_activity_qr_scanner">QR kode scanner</string>
+    <string name="main_title_tools">Værktøj til værktøj</string>
+    <string name="bubble_level_vertical">Plumb</string>
+    <string name="bubble_level_horizontal">Niveau</string>
+    <string name="title_activity_bubble_level">Boble niveau</string>
+    <string name="title_activity_sound_meter">Lydmåler</string>
 </resources>

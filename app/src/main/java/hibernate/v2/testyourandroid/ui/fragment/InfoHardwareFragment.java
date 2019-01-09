@@ -29,10 +29,6 @@ public class InfoHardwareFragment extends BaseFragment {
 	@BindView(R.id.rvlist)
 	RecyclerView recyclerView;
 
-	public InfoHardwareFragment() {
-		// Required empty public constructor
-	}
-
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {

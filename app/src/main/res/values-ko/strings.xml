@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">성공했습니다.</string>
     <string name="app_not_found">애플리케이션을 찾을 수 없습니다.</string>
     <string name="title_activity_language">언어</string>
+    <string name="title_activity_qr_scanner">QR 코드 스캐너</string>
+    <string name="main_title_tools">유틸리티 도구</string>
+    <string name="bubble_level_vertical">추</string>
+    <string name="bubble_level_horizontal">수평</string>
+    <string name="title_activity_bubble_level">버블 레벨</string>
+    <string name="title_activity_sound_meter">소리 측정기</string>
 </resources>

@@ -332,5 +332,11 @@
 
     <string name="app_not_found">Tidak ada aplikasi.</string>
     <string name="title_activity_language">Bahasa</string>
+    <string name="title_activity_qr_scanner">Pemindai Kode QR</string>
+    <string name="main_title_tools">Alat</string>
+    <string name="bubble_level_vertical">Tegak lurus</string>
+    <string name="bubble_level_horizontal">Tingkat</string>
+    <string name="title_activity_bubble_level">Tingkat gelembung</string>
+    <string name="title_activity_sound_meter">Pengukur Suara</string>
 
 </resources>

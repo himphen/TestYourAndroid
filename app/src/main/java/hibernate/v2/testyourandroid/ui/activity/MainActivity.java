@@ -1,6 +1,5 @@
 package hibernate.v2.testyourandroid.ui.activity;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -82,9 +81,7 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 									.title(R.string.iab_complete_title)
 									.customView(R.layout.dialog_donate, true)
 									.positiveText(R.string.ui_okay);
-							if (mContext.hasWindowFocus()) {
-								dialog.show();
-							}
+							dialog.show();
 						}
 					}
 
@@ -200,9 +197,7 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 					}
 				})
 				.negativeText(R.string.ui_cancel);
-		if (mContext.hasWindowFocus()) {
-			dialog.show();
-		}
+		dialog.show();
 	}
 
 	@Override

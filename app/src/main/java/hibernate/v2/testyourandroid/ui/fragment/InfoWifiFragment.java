@@ -205,9 +205,7 @@ public class InfoWifiFragment extends BaseFragment {
 						C.startSettingsActivity(mContext, Settings.ACTION_WIFI_SETTINGS);
 					}
 				});
-		if (mContext.hasWindowFocus()) {
-			dialog.show();
-		}
+		dialog.show();
 	}
 
 	private String intToIp(int i) {

@@ -70,9 +70,7 @@ public class HardwareCameraFragment extends BaseFragment {
 							mContext.finish();
 						}
 					});
-			if (mContext.hasWindowFocus()) {
-				dialog.show();
-			}
+			dialog.show();
 		}
 	}
 

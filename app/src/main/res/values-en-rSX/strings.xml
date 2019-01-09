@@ -271,4 +271,10 @@
     <string name="ui_fingerprint_succeeded">Succeeded.</string>
     <string name="app_not_found">No application found.</string>
     <string name="title_activity_language">Language</string>
+    <string name="title_activity_qr_scanner">QR Code Scanner</string>
+    <string name="main_title_tools">Tools</string>
+    <string name="bubble_level_vertical">Plumb</string>
+    <string name="bubble_level_horizontal">Level</string>
+    <string name="title_activity_bubble_level">Bubble Level</string>
+    <string name="title_activity_sound_meter">Sound Meter</string>
 </resources>

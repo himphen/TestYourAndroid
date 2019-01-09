@@ -328,5 +328,11 @@
     <string name="ui_dew_point">Punto de rocío:\u0020</string>
     <string name="ui_not_support_android_version">Soporte Android %1$s+</string>
     <string name="title_activity_language">Idioma</string>
+    <string name="title_activity_qr_scanner">Escáner de códigos QR</string>
+    <string name="main_title_tools">Herramientas</string>
+    <string name="bubble_level_vertical">Sondear</string>
+    <string name="bubble_level_horizontal">Nivel</string>
+    <string name="title_activity_bubble_level">Nivel burbuja</string>
+    <string name="title_activity_sound_meter">Medidor de sonido</string>
 
 </resources>

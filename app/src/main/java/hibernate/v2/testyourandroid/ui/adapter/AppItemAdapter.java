@@ -25,7 +25,7 @@ import hibernate.v2.testyourandroid.model.AppItem;
 /**
  * Created by himphen on 25/5/16.
  */
-public class AppItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
+public class AppItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 	private List<AppItem> mDataList;
 	private ItemClickListener mListener;

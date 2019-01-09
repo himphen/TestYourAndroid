@@ -62,6 +62,11 @@
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_test_gravity">
         </activity>
+        <activity
+            android:name=".ui.activity.TestSensorGravityActivity"
+            android:configChanges="orientation|screenSize|locale|layoutDirection"
+            android:label="@string/title_activity_test_gravity">
+        </activity>
     </application>
 
 </manifest>

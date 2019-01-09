@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Mükəmməl oldu.</string>
     <string name="app_not_found">Heç bir tətbiq tapılmadı.</string>
     <string name="title_activity_language">Dil</string>
+    <string name="title_activity_qr_scanner">QR Code Scanner</string>
+    <string name="main_title_tools">Utility Tools</string>
+    <string name="bubble_level_vertical">Plumb</string>
+    <string name="bubble_level_horizontal">Səviyyə</string>
+    <string name="title_activity_bubble_level">Bubble səviyyəsi</string>
+    <string name="title_activity_sound_meter">Sound Meter</string>
 </resources>

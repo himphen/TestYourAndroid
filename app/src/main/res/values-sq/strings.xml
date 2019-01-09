@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Sukses.</string>
     <string name="app_not_found">Asnjë aplikacion nuk u gjet.</string>
     <string name="title_activity_language">Gjuhe</string>
+    <string name="title_activity_qr_scanner">QR Kodi Skaner</string>
+    <string name="main_title_tools">Veglat e veglave</string>
+    <string name="bubble_level_vertical">pingul</string>
+    <string name="bubble_level_horizontal">nivel</string>
+    <string name="title_activity_bubble_level">Niveli i flluskës</string>
+    <string name="title_activity_sound_meter">Meter i zërit</string>
 </resources>

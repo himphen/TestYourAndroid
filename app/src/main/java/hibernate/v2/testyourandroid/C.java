@@ -74,9 +74,7 @@ public class C extends UtilHelper {
 						}
 					}
 				});
-		if (((Activity) mContext).hasWindowFocus()) {
-			dialog.show();
-		}
+		dialog.show();
 	}
 
 	public static void errorNoFeatureDialog(Context mContext) {
@@ -91,9 +89,7 @@ public class C extends UtilHelper {
 						scanForActivity(dialog.getContext()).finish();
 					}
 				});
-		if (((Activity) mContext).hasWindowFocus()) {
-			dialog.show();
-		}
+		dialog.show();
 	}
 
 	public static String formatBitSize(long size, boolean isSuffix) {
@@ -204,4 +200,14 @@ public class C extends UtilHelper {
 		}
 	}
 
+	public static double calculateAverage(List<Integer> marks) {
+		Integer sum = 0;
+		if (!marks.isEmpty()) {
+			for (Integer mark : marks) {
+				sum += mark;
+			}
+			return sum.doubleValue() / marks.size();
+		}
+		return sum;
+	}
 }

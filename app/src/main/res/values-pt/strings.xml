@@ -328,5 +328,11 @@
     <string name="ui_dew_point">Ponto de Orvalho:\u0020</string>
     <string name="ui_not_support_android_version">Suporte ao Android %1$s+</string>
     <string name="title_activity_language">Língua</string>
+    <string name="title_activity_qr_scanner">Scanner de código QR</string>
+    <string name="main_title_tools">Ferramentas</string>
+    <string name="bubble_level_vertical">Prumo</string>
+    <string name="bubble_level_horizontal">Nível</string>
+    <string name="title_activity_bubble_level">Nível de bolha</string>
+    <string name="title_activity_sound_meter">Medidor de som</string>
 
 </resources>

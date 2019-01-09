@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">کامیابی ہوئی.</string>
     <string name="app_not_found">کوئی درخواست نہیں ملی.</string>
     <string name="title_activity_language">زبان</string>
+    <string name="title_activity_qr_scanner">QR کوڈ سکینر</string>
+    <string name="main_title_tools">اوزار</string>
+    <string name="bubble_level_vertical">پلمب</string>
+    <string name="bubble_level_horizontal">سطح</string>
+    <string name="title_activity_bubble_level">بلبلا سطح</string>
+    <string name="title_activity_sound_meter">صوتی میٹر</string>
 </resources>

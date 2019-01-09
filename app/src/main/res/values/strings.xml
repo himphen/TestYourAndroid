@@ -136,6 +136,9 @@
     <string name="title_activity_light">Light Sensor</string>
     <string name="title_activity_humidity">Humidity Sensor</string>
     <string name="title_activity_camera">Camera</string>
+    <string name="title_activity_qr_scanner">QR Code Scanner</string>
+    <string name="title_activity_bubble_level">Bubble level</string>
+    <string name="title_activity_sound_meter">Sound Meter</string>
     <string name="title_activity_flashlight">Flashlight</string>
     <string name="title_activity_fingerprint">Fingerprint</string>
     <string name="title_activity_drawing">Touch Screen</string>
@@ -171,6 +174,11 @@
     <string name="title_activity_app_all">All Apps</string>
     <string name="app_package">Application Package</string>
 
+    <string-array name="tools_string_array" translatable="false">
+        <item>@string/title_activity_qr_scanner</item>
+        <item>@string/title_activity_bubble_level</item>
+        <item>@string/title_activity_sound_meter</item>
+    </string-array>
     <string-array name="hardware_string_array" translatable="false">
         <item>@string/title_activity_screen</item>
         <item>@string/title_activity_drawing</item>
@@ -218,6 +226,7 @@
         <item>@string/title_activity_app_all</item>
     </string-array>
 
+    <string name="main_title_tools">Utilities &amp; Tools</string>
     <string name="main_title_hardware">Hardware Testing</string>
     <string name="main_title_sensor">Sensor Testing</string>
     <string name="main_title_information">Device Information</string>
@@ -689,5 +698,7 @@
     <string name="ui_fingerprint_succeeded">Succeeded.</string>
 
     <string name="app_not_found">No application found.</string>
+    <string name="bubble_level_vertical">Plumb</string>
+    <string name="bubble_level_horizontal">Level</string>
 
 </resources>

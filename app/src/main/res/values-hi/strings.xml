@@ -332,5 +332,11 @@
 
     <string name="app_not_found">कोई एप्लिकेशन नहीं मिला।</string>
     <string name="title_activity_language">भाषा</string>
+    <string name="title_activity_qr_scanner">QR कोड स्कैनर</string>
+    <string name="main_title_tools">उपयोगिता उपकरण</string>
+    <string name="bubble_level_vertical">साहुल</string>
+    <string name="bubble_level_horizontal">स्तर</string>
+    <string name="title_activity_bubble_level">बबल लेवल</string>
+    <string name="title_activity_sound_meter">ध्वनि मीटर</string>
 
 </resources>

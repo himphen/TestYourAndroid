@@ -46,10 +46,6 @@ public class InfoCameraFragment extends BaseFragment {
 	private int cameraId = 0;
 	private Camera.Parameters mParameters;
 
-	public InfoCameraFragment() {
-		// Required empty public constructor
-	}
-
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
@@ -113,9 +109,7 @@ public class InfoCameraFragment extends BaseFragment {
 							mContext.finish();
 						}
 					});
-			if (mContext.hasWindowFocus()) {
-				dialog.show();
-			}
+			dialog.show();
 		}
 	}
 

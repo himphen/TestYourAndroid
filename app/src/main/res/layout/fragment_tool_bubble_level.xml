@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <hibernate.v2.testyourandroid.ui.view.LevelView
+        android:id="@+id/levelView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="50dp"
+        android:layout_weight="2"
+        app:bubbleColor="@color/primary"
+        app:bubbleRadius="24dp"
+        app:bubbleRuleColor="@color/green500"
+        app:bubbleRuleRadius="26dp"
+        app:bubbleRuleWidth="1dp"
+        app:horizontalColor="@color/green500"
+        app:limitCircleWidth="6dp"
+        app:limitColor="@color/primary"
+        app:limitRadius="120dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/verticalTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="13°"
+                    android:textColor="@color/grey900"
+                    android:textSize="32sp"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/bubble_level_vertical"
+                    android:textColor="@color/grey600"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/horizontalTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="13°"
+                    android:textColor="@color/grey900"
+                    android:textSize="32sp"
+                    tools:ignore="HardcodedText"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/bubble_level_horizontal"
+                    android:textColor="@color/grey600"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

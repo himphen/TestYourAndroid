@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">成功しました。</string>
     <string name="app_not_found">アプリケーションが見つかりませんでした。</string>
     <string name="title_activity_language">言語</string>
+    <string name="title_activity_qr_scanner">QRコードスキャナー</string>
+    <string name="main_title_tools">ユーティリティツール</string>
+    <string name="bubble_level_vertical">鉛直</string>
+    <string name="bubble_level_horizontal">レベル</string>
+    <string name="title_activity_bubble_level">バブルレベル</string>
+    <string name="title_activity_sound_meter">サウンドメーター</string>
 </resources>

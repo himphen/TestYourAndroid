@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Nagtagumpay.</string>
     <string name="app_not_found">Walang nakitang application.</string>
     <string name="title_activity_language">Wika</string>
+    <string name="title_activity_qr_scanner">QR-kodskanner</string>
+    <string name="main_title_tools">Verktyg</string>
+    <string name="bubble_level_vertical">Lod</string>
+    <string name="bubble_level_horizontal">Nivå</string>
+    <string name="title_activity_bubble_level">Bubbel nivå</string>
+    <string name="title_activity_sound_meter">Ljudmätare</string>
 </resources>

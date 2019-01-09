@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Succeït.</string>
     <string name="app_not_found">No s\'ha trobat cap aplicació.</string>
     <string name="title_activity_language">Llenguatge</string>
+    <string name="title_activity_qr_scanner">Escàner de codi QR</string>
+    <string name="main_title_tools">Eines d\'utilitat</string>
+    <string name="bubble_level_vertical">Ploma</string>
+    <string name="bubble_level_horizontal">Nivell</string>
+    <string name="title_activity_bubble_level">Nivell de bombolles</string>
+    <string name="title_activity_sound_meter">Mesurador de so</string>
 </resources>

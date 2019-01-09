@@ -10,8 +10,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 198322 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Egg waffle 832"
+        versionCode 198412 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Egg waffle 841"
         multiDexEnabled true
     }
 
@@ -107,7 +107,7 @@ dependencies {
     implementation 'com.appbrain:appbrain-sdk:+@aar'
 
     // Crashlytics
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.6'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.8'
 
     // https://github.com/natario1/CameraView
     implementation 'com.otaliastudios:cameraview:1.6.0'
@@ -126,6 +126,10 @@ dependencies {
 
     // https://github.com/stepstone-tech/android-material-app-rating
     implementation 'com.stepstone.apprating:app-rating:2.3.0'
+
+    // https://github.com/yuriy-budiyev/code-scanner
+    //noinspection GradleDependency
+    implementation 'com.budiyev.android:code-scanner:1.9.4'
 
     wearApp project(':wear')
 }

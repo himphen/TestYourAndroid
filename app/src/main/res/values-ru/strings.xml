@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Преемник.</string>
     <string name="app_not_found">Приложение не найдено.</string>
     <string name="title_activity_language">язык</string>
+    <string name="title_activity_qr_scanner">QR-код сканер</string>
+    <string name="main_title_tools">инструменты</string>
+    <string name="bubble_level_vertical">отвес</string>
+    <string name="bubble_level_horizontal">уровень</string>
+    <string name="title_activity_bubble_level">Пузырьковый уровень</string>
+    <string name="title_activity_sound_meter">Звукомер</string>
 </resources>

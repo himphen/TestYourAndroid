@@ -3,7 +3,6 @@ package hibernate.v2.testyourandroid.ui.fragment;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -185,9 +184,7 @@ public class InfoBluetoothFragment extends BaseFragment {
 						C.startSettingsActivity(mContext, Settings.ACTION_BLUETOOTH_SETTINGS);
 					}
 				});
-		if (mContext.hasWindowFocus()) {
-			dialog.show();
-		}
+		dialog.show();
 	}
 
 	private String getData(int j) {

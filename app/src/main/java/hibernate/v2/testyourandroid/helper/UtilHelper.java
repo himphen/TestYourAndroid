@@ -14,6 +14,8 @@ import android.view.ViewConfiguration;
 import android.widget.RelativeLayout;
 
 import com.akexorcist.localizationactivity.ui.LocalizationActivity;
+import com.blankj.utilcode.util.SizeUtils;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -44,6 +46,16 @@ public class UtilHelper {
 
 	@Nullable
 	public static AdView initAdView(Activity c, RelativeLayout adLayout) {
+		return initAdView(c, adLayout, false);
+	}
+
+	@Nullable
+	public static AdView initAdView(Activity c, RelativeLayout adLayout, Boolean isPreserveSpace) {
+
+		if (isPreserveSpace) {
+			adLayout.getLayoutParams().height = SizeUtils.dp2px(50);
+		}
+
 		AdView adView = null;
 		try {
 			if (!PreferenceManager.getDefaultSharedPreferences(c).getBoolean(UtilHelper.PREF_IAP, false)) {
@@ -134,6 +146,14 @@ public class UtilHelper {
 	public static void debug(String message) {
 		if (Environment.CONFIG.isDebug()) {
 			Log.d(DEBUG_TAG, message);
+		}
+	}
+
+	public static void logException(Exception e) {
+		if (Environment.CONFIG.isDebug()) {
+			e.printStackTrace();
+		} else {
+			Crashlytics.logException(e);
 		}
 	}
 }

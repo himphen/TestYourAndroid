@@ -271,4 +271,10 @@
     <string name="ui_fingerprint_succeeded">ที่ประสบความสำเร็จ.</string>
     <string name="app_not_found">ไม่พบแอปพลิเคชัน</string>
     <string name="title_activity_language">ภาษา</string>
+    <string name="title_activity_qr_scanner">เครื่องสแกนรหัส QR</string>
+    <string name="main_title_tools">เครื่องมือ</string>
+    <string name="bubble_level_vertical">ลูกดิ่ง</string>
+    <string name="bubble_level_horizontal">ชั้น</string>
+    <string name="title_activity_bubble_level">ระดับฟอง</string>
+    <string name="title_activity_sound_meter">เครื่องวัดเสียง</string>
 </resources>

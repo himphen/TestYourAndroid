@@ -30,7 +30,7 @@ import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
  */
 public class InfoGSMFragment extends BaseFragment {
 
-	protected final String[] PERMISSION_NAME = {Manifest.permission.READ_PHONE_STATE, Manifest.permission.SEND_SMS};
+	protected final String[] PERMISSION_NAME = {Manifest.permission.READ_PHONE_STATE};
 
 	@BindView(R.id.rvlist)
 	RecyclerView recyclerView;
@@ -78,8 +78,7 @@ public class InfoGSMFragment extends BaseFragment {
 
 	@SuppressLint("HardwareIds")
 	private String getData(int j) {
-		if (ActivityCompat.checkSelfPermission(mContext, PERMISSION_NAME[0]) == PackageManager.PERMISSION_GRANTED
-				&& ActivityCompat.checkSelfPermission(mContext, PERMISSION_NAME[1]) == PackageManager.PERMISSION_GRANTED) {
+		if (ActivityCompat.checkSelfPermission(mContext, PERMISSION_NAME[0]) == PackageManager.PERMISSION_GRANTED) {
 			try {
 				switch (j) {
 					case 0:
@@ -91,7 +90,13 @@ public class InfoGSMFragment extends BaseFragment {
 					case 3:
 						return simStateArray[telephonyManager.getSimState()];
 					case 4:
-						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+							if (telephonyManager.getPhoneCount() > 1) {
+								return "Sim Card 1: " + telephonyManager.getImei(0) + "\nSim Card 2: " + telephonyManager.getImei(1);
+							} else {
+								return telephonyManager.getImei();
+							}
+						} else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 							if (telephonyManager.getPhoneCount() > 1) {
 								return "Sim Card 1: " + telephonyManager.getDeviceId(0) + "\nSim Card 2: " + telephonyManager.getDeviceId(1);
 							} else {

@@ -148,6 +148,7 @@ public class SensorFragment extends BaseFragment {
 				return;
 			}
 		} catch (Exception e) {
+			C.logException(e);
 			C.errorNoFeatureDialog(mContext);
 			return;
 		}
@@ -243,7 +244,6 @@ public class SensorFragment extends BaseFragment {
 						infoItem = new InfoItem(stringArray[i], getString(R.string.ui_not_support));
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
 				infoItem = new InfoItem(stringArray[i], getString(R.string.ui_not_support));
 			}
 

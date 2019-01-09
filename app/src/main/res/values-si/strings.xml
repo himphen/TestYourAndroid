@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">සාර්ථකයි.</string>
     <string name="app_not_found">යෙදුම සොයාගත නොහැකි විය.</string>
     <string name="title_activity_language">භාෂාව</string>
+    <string name="title_activity_qr_scanner">QR කේත ස්කෑනර්</string>
+    <string name="main_title_tools">මෙවලම්</string>
+    <string name="bubble_level_vertical">ප්ලාස්ටික්</string>
+    <string name="bubble_level_horizontal">මට්ටමින්</string>
+    <string name="title_activity_bubble_level">බබල් මට්ටම</string>
+    <string name="title_activity_sound_meter">ශබ්ද මිණුම්</string>
 </resources>

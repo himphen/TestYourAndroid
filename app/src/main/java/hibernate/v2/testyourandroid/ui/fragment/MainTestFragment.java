@@ -60,6 +60,9 @@ import hibernate.v2.testyourandroid.ui.activity.SensorPressureActivity;
 import hibernate.v2.testyourandroid.ui.activity.SensorProximityActivity;
 import hibernate.v2.testyourandroid.ui.activity.SensorStepActivity;
 import hibernate.v2.testyourandroid.ui.activity.SensorTemperatureActivity;
+import hibernate.v2.testyourandroid.ui.activity.ToolBubbleLevelActivity;
+import hibernate.v2.testyourandroid.ui.activity.ToolQRScannerActivity;
+import hibernate.v2.testyourandroid.ui.activity.ToolSoundMeterActivity;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
@@ -89,6 +92,14 @@ public class MainTestFragment extends BaseFragment {
 		super.onViewCreated(view, savedInstanceState);
 
 		sectionAdapter = new SectionedRecyclerViewAdapter();
+
+		Integer[] toolsImageArray = {
+				R.drawable.ic_icon_qrcode, R.drawable.ic_icon_bubble_level, R.drawable.ic_icon_sound_meter
+		};
+
+		Class[] toolsClassArray = {
+				ToolQRScannerActivity.class, ToolBubbleLevelActivity.class, ToolSoundMeterActivity.class
+		};
 
 		Integer[] hardwareImageArray = {
 				R.drawable.ic_icon_screen, R.drawable.ic_icon_drawing, R.drawable.ic_icon_touch,
@@ -135,6 +146,12 @@ public class MainTestFragment extends BaseFragment {
 		String[] otherStringArray = {
 				"rate", "language", "donate", "app_brain"
 		};
+
+		sectionAdapter.addSection(new MovieSection(getString(R.string.main_title_tools), addList(
+				getResources().getStringArray(R.array.tools_string_array),
+				toolsImageArray,
+				toolsClassArray
+		)));
 
 		sectionAdapter.addSection(new MovieSection(getString(R.string.main_title_information), addList(
 				getResources().getStringArray(R.array.info_string_array),

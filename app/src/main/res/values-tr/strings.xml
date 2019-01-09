@@ -272,4 +272,10 @@
     <string name="ui_fingerprint_succeeded">Başarılı.</string>
     <string name="app_not_found">Uygulama bulunamadı.</string>
     <string name="title_activity_language">Dil</string>
+    <string name="title_activity_qr_scanner">QR Kod Tarayıcı</string>
+    <string name="main_title_tools">Araçlar</string>
+    <string name="bubble_level_vertical">çekül</string>
+    <string name="bubble_level_horizontal">seviye</string>
+    <string name="title_activity_bubble_level">Kabarcık Seviyesi</string>
+    <string name="title_activity_sound_meter">Ses ölçer</string>
 </resources>
