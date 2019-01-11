@@ -100,8 +100,11 @@ public class InfoWifiFragment extends BaseFragment {
 	@Override
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		recyclerView.setLayoutManager(
-				new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+		recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+
+		if (!isPermissionsGranted(PERMISSION_NAME)) {
+			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
+		}
 	}
 
 	@Override
@@ -120,8 +123,6 @@ public class InfoWifiFragment extends BaseFragment {
 			} else {
 				reload(true);
 			}
-		} else {
-			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
 		}
 	}
 
@@ -317,9 +318,7 @@ public class InfoWifiFragment extends BaseFragment {
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (hasAllPermissionsGranted(grantResults)) {
-				reload(false);
-			} else {
+			if (!hasAllPermissionsGranted(grantResults)) {
 				C.openErrorPermissionDialog(mContext);
 			}
 		}

@@ -1,31 +1,30 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -47,9 +46,6 @@ import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
  * Created by himphen on 21/5/16.
  */
 public class HardwareLocationFragment extends BaseFragment implements
-		GoogleApiClient.ConnectionCallbacks,
-		GoogleApiClient.OnConnectionFailedListener,
-		LocationListener,
 		OnMapReadyCallback {
 
 	protected final String[] PERMISSION_NAME = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -60,11 +56,11 @@ public class HardwareLocationFragment extends BaseFragment implements
 	@BindView(R.id.rvlist)
 	RecyclerView recyclerView;
 
-	private GoogleApiClient mGoogleApiClient;
 	private static final LatLng DEFAULT_LAT_LNG = new LatLng(22.3185392, 114.1707091);
 
-	private GoogleMap googleMap;
+	private GoogleMap mGoogleMap;
 	private Location lastKnowLocation;
+	private FusedLocationProviderClient mFusedLocationClient;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -85,24 +81,28 @@ public class HardwareLocationFragment extends BaseFragment implements
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
 				new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-	}
 
-	@Override
-	public void onResume() {
-		super.onResume();
-		if (isPermissionsGranted(PERMISSION_NAME)) {
-			init();
-		} else {
+
+		if (!isPermissionsGranted(PERMISSION_NAME)) {
 			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
 		}
 	}
 
 	@Override
-	public void onPause() {
-		super.onPause();
-		if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
-			mGoogleApiClient.disconnect();
+	public void onResume() {
+		super.onResume();
+
+		if (isPermissionsGranted(PERMISSION_NAME)) {
+			init();
 		}
+	}
+
+	@Override
+	public void onPause() {
+		if (mFusedLocationClient != null) {
+			mFusedLocationClient.removeLocationUpdates(mLocationCallback);
+		}
+		super.onPause();
 	}
 
 	@Override
@@ -125,12 +125,6 @@ public class HardwareLocationFragment extends BaseFragment implements
 
 		adapter = new InfoItemAdapter(list);
 		recyclerView.setAdapter(adapter);
-
-		mGoogleApiClient = new GoogleApiClient.Builder(mContext)
-				.addConnectionCallbacks(this)
-				.addOnConnectionFailedListener(this)
-				.addApi(LocationServices.API)
-				.build();
 
 		LocationManager locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
 
@@ -156,7 +150,7 @@ public class HardwareLocationFragment extends BaseFragment implements
 							1972).show();
 				}
 			} else {
-				mGoogleApiClient.connect();
+				mFusedLocationClient = LocationServices.getFusedLocationProviderClient(mContext);
 			}
 		} else {
 			C.errorNoFeatureDialog(mContext);
@@ -178,51 +172,39 @@ public class HardwareLocationFragment extends BaseFragment implements
 		dialog.show();
 	}
 
-	@Override
-	public void onLocationChanged(Location location) {
-		lastKnowLocation = location;
-		updateMap();
-	}
-
-	@Override
-	public void onConnected(@Nullable Bundle bundle) {
-		LocationRequest mLocationRequest = LocationRequest.create();
-		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-		mLocationRequest.setInterval(1000); // Update location every second
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[0]) == PackageManager.PERMISSION_GRANTED
-				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[1]) == PackageManager.PERMISSION_GRANTED) {
-			if (mGoogleApiClient.isConnected()) {
-				LocationServices.FusedLocationApi.requestLocationUpdates(
-						mGoogleApiClient, mLocationRequest, this);
+	LocationCallback mLocationCallback = new LocationCallback() {
+		@Override
+		public void onLocationResult(LocationResult locationResult) {
+			List<Location> locationList = locationResult.getLocations();
+			if (locationList.size() > 0) {
+				//The last location in the list is the newest
+				lastKnowLocation = locationList.get(locationList.size() - 1);
+				updateMap();
 			}
 		}
-	}
+	};
 
-	@Override
-	public void onConnectionSuspended(int i) {
-		Toast.makeText(mContext, R.string.wifi_reload_fail, Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-		Toast.makeText(mContext, R.string.wifi_reload_fail, Toast.LENGTH_SHORT).show();
-	}
-
+	@SuppressLint("MissingPermission")
 	@Override
 	public void onMapReady(GoogleMap googleMap) {
-		this.googleMap = googleMap;
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[0]) == PackageManager.PERMISSION_GRANTED
-				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[1]) == PackageManager.PERMISSION_GRANTED) {
-			this.googleMap.setMyLocationEnabled(true);
-			this.googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LAT_LNG, 15));
+		if (isPermissionsGranted(PERMISSION_NAME)) {
+			mGoogleMap = googleMap;
+
+			LocationRequest mLocationRequest = LocationRequest.create();
+			mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+			mLocationRequest.setInterval(1000); // Update location every second
+			mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
+			mGoogleMap.setMyLocationEnabled(true);
+			mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LAT_LNG, 15));
+			mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
 		}
 	}
 
+	@SuppressLint("MissingPermission")
 	private void updateMap() {
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[0]) == PackageManager.PERMISSION_GRANTED
-				&& ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME[1]) == PackageManager.PERMISSION_GRANTED
-				&& googleMap != null) {
-			googleMap.setMyLocationEnabled(true);
+		if (isPermissionsGranted(PERMISSION_NAME) && mGoogleMap != null) {
+			mGoogleMap.setMyLocationEnabled(true);
 
 			if (lastKnowLocation != null) {
 				for (int i = 0; i < list.size(); i++) {
@@ -230,7 +212,7 @@ public class HardwareLocationFragment extends BaseFragment implements
 				}
 				adapter.notifyDataSetChanged();
 
-				googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+				mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
 						new LatLng(
 								lastKnowLocation.getLatitude(),
 								lastKnowLocation.getLongitude()
@@ -266,9 +248,7 @@ public class HardwareLocationFragment extends BaseFragment implements
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (hasAllPermissionsGranted(grantResults)) {
-				init();
-			} else {
+			if (!hasAllPermissionsGranted(grantResults)) {
 				C.openErrorPermissionDialog(mContext);
 			}
 		}

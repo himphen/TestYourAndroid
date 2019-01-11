@@ -83,6 +83,12 @@ public class HardwareFingerprintFragment extends BaseFragment {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			keyguardManager = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
 			fingerprintManager = (FingerprintManager) mContext.getSystemService(Context.FINGERPRINT_SERVICE);
+
+			if (!isPermissionsGranted(PERMISSION_NAME)) {
+				requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
+			}
+		} else {
+			C.errorNoFeatureDialog(mContext);
 		}
 	}
 
@@ -102,10 +108,7 @@ public class HardwareFingerprintFragment extends BaseFragment {
 
 		if (isPermissionsGranted(PERMISSION_NAME)) {
 			init();
-		} else {
-			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
 		}
-
 	}
 
 	@Override
@@ -205,9 +208,7 @@ public class HardwareFingerprintFragment extends BaseFragment {
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (hasAllPermissionsGranted(grantResults)) {
-				init();
-			} else {
+			if (!hasAllPermissionsGranted(grantResults)) {
 				C.openErrorPermissionDialog(mContext);
 			}
 		}

@@ -1,11 +1,11 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.app.Activity;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+
+import hibernate.v2.testyourandroid.C;
 
 public class BaseFragment extends Fragment {
 
@@ -20,21 +20,11 @@ public class BaseFragment extends Fragment {
 	}
 
 	protected boolean isPermissionsGranted(String[] permissions) {
-		for (String permission : permissions) {
-			if (ContextCompat.checkSelfPermission(mContext, permission) == PackageManager.PERMISSION_DENIED) {
-				return false;
-			}
-		}
-		return true;
+		return C.isPermissionsGranted(mContext, permissions);
 	}
 
 	protected boolean hasAllPermissionsGranted(@NonNull int[] grantResults) {
-		for (int grantResult : grantResults) {
-			if (grantResult == PackageManager.PERMISSION_DENIED) {
-				return false;
-			}
-		}
-		return true;
+		return C.hasAllPermissionsGranted(grantResults);
 	}
 
 }

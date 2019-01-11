@@ -3,17 +3,19 @@ package hibernate.v2.testyourandroid.helper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ViewConfiguration;
 import android.widget.RelativeLayout;
 
-import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.blankj.utilcode.util.SizeUtils;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.ads.AdRequest;
@@ -122,21 +124,18 @@ public class UtilHelper {
 			languageCountry = locale.getCountry();
 		}
 
-		if (mContext instanceof LocalizationActivity) {
-			((LocalizationActivity) mContext).setLanguage(new Locale(language, languageCountry));
+
+		Resources res = mContext.getResources();
+		Configuration conf = res.getConfiguration();
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			conf.setLocale(new Locale(language, languageCountry));
 		} else {
-			Resources res = mContext.getResources();
-			Configuration conf = res.getConfiguration();
-
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-				conf.setLocale(new Locale(language, languageCountry));
-			} else {
-				conf.locale = new Locale(language, languageCountry);
-			}
-
-			DisplayMetrics dm = res.getDisplayMetrics();
-			res.updateConfiguration(conf, dm);
+			conf.locale = new Locale(language, languageCountry);
 		}
+
+		DisplayMetrics dm = res.getDisplayMetrics();
+		res.updateConfiguration(conf, dm);
 	}
 
 	public static void log(String message) {
@@ -155,5 +154,23 @@ public class UtilHelper {
 		} else {
 			Crashlytics.logException(e);
 		}
+	}
+
+	public static boolean isPermissionsGranted(Context mContext, String[] permissions) {
+		for (String permission : permissions) {
+			if (ContextCompat.checkSelfPermission(mContext, permission) == PackageManager.PERMISSION_DENIED) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static boolean hasAllPermissionsGranted(@NonNull int[] grantResults) {
+		for (int grantResult : grantResults) {
+			if (grantResult == PackageManager.PERMISSION_DENIED) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

@@ -40,11 +40,6 @@ public class HardwareCameraFragment extends BaseFragment {
 		return rootView;
 	}
 
-	@Override
-	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-	}
-
 	private void openChooseCameraDialog() {
 		int numberOfCamera = Camera.getNumberOfCameras();
 

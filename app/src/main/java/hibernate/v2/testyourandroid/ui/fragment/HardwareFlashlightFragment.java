@@ -16,6 +16,7 @@ import android.hardware.camera2.CaptureRequest;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.Surface;
@@ -25,6 +26,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import hibernate.v2.testyourandroid.C;
@@ -34,6 +36,10 @@ import hibernate.v2.testyourandroid.R;
  * Created by himphen on 21/5/16.
  */
 public class HardwareFlashlightFragment extends BaseFragment {
+
+	@BindView(R.id.turnSwitch)
+	SwitchCompat turnSwitch;
+
 	@SuppressWarnings("deprecation")
 	private Camera mCamera;
 	@SuppressWarnings("deprecation")
@@ -52,13 +58,8 @@ public class HardwareFlashlightFragment extends BaseFragment {
 	}
 
 	@Override
-	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
+	public void onPause() {
+		super.onPause();
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			if (util != null) {
 				util.close();
@@ -84,12 +85,12 @@ public class HardwareFlashlightFragment extends BaseFragment {
 		if (mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
 			try {
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
 					if (isPermissionsGranted(PERMISSION_NAME)) {
 						util = new FlashLightUtilForL(mContext);
 						util.turnOnFlashLight();
 					} else {
 						requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
+						turnSwitch.setChecked(false);
 					}
 				} else {
 					mCamera = Camera.open(0);
@@ -100,9 +101,11 @@ public class HardwareFlashlightFragment extends BaseFragment {
 				}
 			} catch (Exception e) {
 				C.errorNoFeatureDialog(mContext);
+				turnSwitch.setChecked(false);
 			}
 		} else {
 			C.errorNoFeatureDialog(mContext);
+			turnSwitch.setChecked(false);
 		}
 	}
 
@@ -123,6 +126,8 @@ public class HardwareFlashlightFragment extends BaseFragment {
 				}
 			}
 		}
+
+		turnSwitch.setChecked(false);
 	}
 
 	@SuppressLint("NewApi")
@@ -245,9 +250,7 @@ public class HardwareFlashlightFragment extends BaseFragment {
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (hasAllPermissionsGranted(grantResults)) {
-				openFlash();
-			} else {
+			if (!hasAllPermissionsGranted(grantResults)) {
 				C.openErrorPermissionDialog(mContext);
 			}
 		}

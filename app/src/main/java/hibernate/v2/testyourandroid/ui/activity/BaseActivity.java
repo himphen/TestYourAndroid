@@ -4,9 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.appbrain.AppBrain;
 import com.google.android.gms.ads.MobileAds;
 
@@ -17,7 +17,7 @@ import hibernate.v2.testyourandroid.C;
  * Created by himphen on 21/5/16.
  */
 @SuppressLint("Registered")
-public class BaseActivity extends LocalizationActivity {
+public class BaseActivity extends AppCompatActivity {
 
 	protected static final int DELAY_AD_LAYOUT = 0;
 

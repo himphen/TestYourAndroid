@@ -1,7 +1,6 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -32,7 +31,7 @@ import hibernate.v2.testyourandroid.R;
  */
 public class ToolSoundMeterFragment extends BaseFragment {
 
-	protected final String PERMISSION_NAME = Manifest.permission.RECORD_AUDIO;
+	protected final String[] PERMISSION_NAME = {Manifest.permission.RECORD_AUDIO};
 
 	@BindView(R.id.meterCurrentTv)
 	TextView meterCurrentTv;
@@ -78,6 +77,15 @@ public class ToolSoundMeterFragment extends BaseFragment {
 	}
 
 	@Override
+	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+
+		if (!isPermissionsGranted(PERMISSION_NAME)) {
+			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
+		}
+	}
+
+	@Override
 	public void onPause() {
 		stopRecording();
 		super.onPause();
@@ -87,10 +95,8 @@ public class ToolSoundMeterFragment extends BaseFragment {
 	public void onResume() {
 		super.onResume();
 
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
+		if (isPermissionsGranted(PERMISSION_NAME)) {
 			startRecording();
-		} else {
-			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
 		}
 	}
 
@@ -199,9 +205,7 @@ public class ToolSoundMeterFragment extends BaseFragment {
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (hasAllPermissionsGranted(grantResults)) {
-				startRecording();
-			} else {
+			if (!hasAllPermissionsGranted(grantResults)) {
 				C.openErrorPermissionDialog(mContext);
 			}
 		}

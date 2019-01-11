@@ -10,8 +10,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 198412 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Egg waffle 841"
+        versionCode 198422 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Egg waffle 842"
         multiDexEnabled true
     }
 
@@ -120,9 +120,6 @@ dependencies {
 
     // https://github.com/luizgrp/SectionedRecyclerViewAdapter
     implementation 'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:1.2.0'
-
-    // https://github.com/akexorcist/Android-LocalizationActivity
-    implementation 'com.akexorcist:localizationactivity:1.2.2'
 
     // https://github.com/stepstone-tech/android-material-app-rating
     implementation 'com.stepstone.apprating:app-rating:2.3.0'

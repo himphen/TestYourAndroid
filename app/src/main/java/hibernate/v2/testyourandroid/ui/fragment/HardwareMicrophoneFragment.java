@@ -1,12 +1,10 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +24,7 @@ import hibernate.v2.testyourandroid.R;
  */
 public class HardwareMicrophoneFragment extends BaseFragment {
 
-	protected final String PERMISSION_NAME = Manifest.permission.RECORD_AUDIO;
+	protected final String[] PERMISSION_NAME = {Manifest.permission.RECORD_AUDIO};
 
 	@BindView(R.id.playBtn)
 	AppCompatButton playBtn;
@@ -52,21 +50,6 @@ public class HardwareMicrophoneFragment extends BaseFragment {
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
-			init();
-		} else {
-			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
-		}
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		stopRecording();
-		stopPlaying();
-	}
-
-	private void init() {
 		playBtn.setEnabled(false);
 
 		mFile = new File(mContext.getFilesDir(), "TestYourAndroidMicTest.3gp");
@@ -92,6 +75,17 @@ public class HardwareMicrophoneFragment extends BaseFragment {
 				}
 			}
 		});
+
+		if (!isPermissionsGranted(PERMISSION_NAME)) {
+			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
+		}
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		stopRecording();
+		stopPlaying();
 	}
 
 	private void startPlaying() {
@@ -171,9 +165,7 @@ public class HardwareMicrophoneFragment extends BaseFragment {
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (hasAllPermissionsGranted(grantResults)) {
-				init();
-			} else {
+			if (!hasAllPermissionsGranted(grantResults)) {
 				C.openErrorPermissionDialog(mContext);
 			}
 		}

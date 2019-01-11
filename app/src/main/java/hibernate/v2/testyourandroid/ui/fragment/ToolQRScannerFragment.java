@@ -1,12 +1,10 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +24,7 @@ import hibernate.v2.testyourandroid.R;
  */
 public class ToolQRScannerFragment extends BaseFragment {
 
-	protected final String PERMISSION_NAME = Manifest.permission.CAMERA;
+	protected final String[] PERMISSION_NAME = {Manifest.permission.CAMERA};
 
 	@BindView(R.id.scannerView)
 	CodeScannerView scannerView;
@@ -73,18 +71,24 @@ public class ToolQRScannerFragment extends BaseFragment {
 				mCodeScanner.startPreview();
 			}
 		});
+
+		if (!isPermissionsGranted(PERMISSION_NAME)) {
+			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
+		}
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
-			mCodeScanner.startPreview();
-		} else {
-			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
+		try {
+			if (isPermissionsGranted(PERMISSION_NAME)) {
+				mCodeScanner.startPreview();
+			}
+		} catch (Exception e) {
+			C.logException(e);
+			C.errorNoFeatureDialog(mContext);
 		}
-
 	}
 
 	@Override
@@ -97,9 +101,7 @@ public class ToolQRScannerFragment extends BaseFragment {
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (hasAllPermissionsGranted(grantResults)) {
-				mCodeScanner.startPreview();
-			} else {
+			if (!hasAllPermissionsGranted(grantResults)) {
 				C.openErrorPermissionDialog(mContext);
 			}
 		}

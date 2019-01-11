@@ -2,11 +2,9 @@ package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -35,7 +33,7 @@ import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter;
 public class InfoCameraFragment extends BaseFragment {
 
 	private final int FORMAT = 1;
-	protected final String PERMISSION_NAME = Manifest.permission.CAMERA;
+	protected final String[] PERMISSION_NAME = {Manifest.permission.CAMERA};
 	private Camera mCamera;
 
 	private InfoItemAdapter adapter;
@@ -62,18 +60,21 @@ public class InfoCameraFragment extends BaseFragment {
 				new LinearLayoutManager(mContext,
 						LinearLayoutManager.VERTICAL, false)
 		);
-		if (ContextCompat.checkSelfPermission(mContext, PERMISSION_NAME) == PackageManager.PERMISSION_GRANTED) {
-			openChooseCameraDialog();
-		} else {
-			requestPermissions(new String[]{PERMISSION_NAME}, PERMISSION_REQUEST_CODE);
+
+		if (!isPermissionsGranted(PERMISSION_NAME)) {
+			requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE);
 		}
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (mCamera != null) {
-			initCamera(cameraId);
+		if (isPermissionsGranted(PERMISSION_NAME)) {
+			if (mCamera == null) {
+				openChooseCameraDialog();
+			} else {
+				initCamera(cameraId);
+			}
 		}
 	}
 
@@ -249,9 +250,7 @@ public class InfoCameraFragment extends BaseFragment {
 	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == PERMISSION_REQUEST_CODE) {
-			if (hasAllPermissionsGranted(grantResults)) {
-				openChooseCameraDialog();
-			} else {
+			if (!hasAllPermissionsGranted(grantResults)) {
 				C.openErrorPermissionDialog(mContext);
 			}
 		}
