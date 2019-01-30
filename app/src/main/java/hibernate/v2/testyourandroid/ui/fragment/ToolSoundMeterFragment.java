@@ -46,10 +46,9 @@ public class ToolSoundMeterFragment extends BaseFragment {
 
 
 	static final int SAMPLE_RATE_IN_HZ = 44100;
-	static final int BUFFER_SIZE = AudioRecord.getMinBufferSize(SAMPLE_RATE_IN_HZ,
-			AudioFormat.CHANNEL_IN_DEFAULT, AudioFormat.ENCODING_PCM_16BIT);
 
-	short[] buffer = new short[BUFFER_SIZE];
+	int BUFFER_SIZE;
+	short[] buffer;
 
 	private GraphViewSeries series = null;
 	private double lastXValue = 0;
@@ -101,6 +100,15 @@ public class ToolSoundMeterFragment extends BaseFragment {
 	}
 
 	private void startRecording() {
+		BUFFER_SIZE = AudioRecord.getMinBufferSize(SAMPLE_RATE_IN_HZ,
+				AudioFormat.CHANNEL_IN_DEFAULT, AudioFormat.ENCODING_PCM_16BIT);
+
+		if (BUFFER_SIZE < 0) {
+			C.errorNoFeatureDialog(mContext);
+			return;
+		}
+
+		buffer = new short[BUFFER_SIZE];
 		try {
 			LineGraphView graphView = new LineGraphView(mContext, "");
 			graphView.setShowHorizontalLabels(false);

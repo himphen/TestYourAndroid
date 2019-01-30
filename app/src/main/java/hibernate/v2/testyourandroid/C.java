@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import hibernate.v2.testyourandroid.helper.UtilHelper;
@@ -30,6 +31,9 @@ public class C extends UtilHelper {
 	public static final String PREF = "PREF_OPTION";
 
 	public static final String IAP_PID = "iap1984";
+	public static final String IAP_PID_10 = "adfree_orange";
+	public static final String IAP_PID_20 = "adfree_coffee";
+	public static final String IAP_PID_40 = "adfree_bigmac";
 
 	public static void openErrorPermissionDialog(Context mContext) {
 		MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
@@ -78,6 +82,10 @@ public class C extends UtilHelper {
 	}
 
 	public static void errorNoFeatureDialog(Context mContext) {
+		errorNoFeatureDialog(mContext, true);
+	}
+
+	public static void errorNoFeatureDialog(Context mContext, Boolean isFinish) {
 		MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
 				.title(R.string.ui_error)
 				.content(R.string.dialog_feature_na_message)
@@ -86,7 +94,9 @@ public class C extends UtilHelper {
 				.onPositive(new MaterialDialog.SingleButtonCallback() {
 					@Override
 					public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-						scanForActivity(dialog.getContext()).finish();
+						if (isFinish) {
+							scanForActivity(dialog.getContext()).finish();
+						}
 					}
 				});
 		dialog.show();
@@ -160,6 +170,13 @@ public class C extends UtilHelper {
 		return null;
 	}
 
+	/**
+	 * For Android 4.4 or below
+	 *
+	 * @param packageManager PackageManager
+	 * @param flags          int
+	 * @return List<PackageInfo>
+	 */
 	public static List<PackageInfo> getInstalledPackages(PackageManager packageManager, int flags) {
 		try {
 			return packageManager.getInstalledPackages(flags);
@@ -209,5 +226,17 @@ public class C extends UtilHelper {
 			return sum.doubleValue() / marks.size();
 		}
 		return sum;
+	}
+
+	public static ArrayList<String> iapProductIdList() {
+		String[] array = {IAP_PID_10, IAP_PID_20, IAP_PID_40};
+
+		return new ArrayList<>(Arrays.asList(array));
+	}
+
+	public static ArrayList<String> iapProductIdListAll() {
+		String[] array = {IAP_PID, IAP_PID_10, IAP_PID_20, IAP_PID_40};
+
+		return new ArrayList<>(Arrays.asList(array));
 	}
 }

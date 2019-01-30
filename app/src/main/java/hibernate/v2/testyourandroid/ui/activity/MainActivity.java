@@ -32,6 +32,7 @@ import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.BuildConfig;
 import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
+import hibernate.v2.testyourandroid.helper.UtilHelper;
 import hibernate.v2.testyourandroid.ui.fragment.MainFragment;
 
 public class MainActivity extends BaseActivity implements RatingDialogListener {
@@ -42,6 +43,8 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 
 	@BindView(R.id.toolbar)
 	Toolbar toolbar;
+
+	private String[] productIDArray = {"Buy Me A Orange Juice", "Buy Me A Coffee", "Buy Me A Big Mac"};
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -75,8 +78,8 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 				new BillingProcessor.IBillingHandler() {
 					@Override
 					public void onProductPurchased(@NonNull String productId, TransactionDetails details) {
-						if (productId.equals(C.IAP_PID)) {
-							defaultPreferences.edit().putBoolean(C.PREF_IAP, true).apply();
+						if (C.iapProductIdList().contains(productId)) {
+							defaultPreferences.edit().putBoolean(UtilHelper.PREF_IAP, true).apply();
 							MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
 									.title(R.string.iab_complete_title)
 									.customView(R.layout.dialog_donate, true)
@@ -87,8 +90,11 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 
 					@Override
 					public void onPurchaseHistoryRestored() {
-						if (billingProcessor.isPurchased(C.IAP_PID)) {
-							defaultPreferences.edit().putBoolean(C.PREF_IAP, true).apply();
+						for (String productId : C.iapProductIdListAll()) {
+							if (billingProcessor.isPurchased(productId)) {
+								defaultPreferences.edit().putBoolean(UtilHelper.PREF_IAP, true).apply();
+								break;
+							}
 						}
 					}
 
@@ -140,7 +146,7 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 	public void checkPayment() {
 		boolean isAvailable = BillingProcessor.isIabServiceAvailable(mContext);
 		if (isAvailable) {
-			billingProcessor.purchase(mContext, C.IAP_PID);
+			openDialogIAP();
 		} else {
 			Toast.makeText(mContext, R.string.ui_error, Toast.LENGTH_LONG).show();
 		}
@@ -193,6 +199,21 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 
 						startActivity(new Intent(mContext, MainActivity.class));
 						mContext.finish();
+						return false;
+					}
+				})
+				.negativeText(R.string.ui_cancel);
+		dialog.show();
+	}
+
+	public void openDialogIAP() {
+		MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
+				.title(R.string.title_activity_test_ad_remover)
+				.items(productIDArray)
+				.itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+					@Override
+					public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
+						billingProcessor.purchase(mContext, C.iapProductIdList().get(which));
 						return false;
 					}
 				})

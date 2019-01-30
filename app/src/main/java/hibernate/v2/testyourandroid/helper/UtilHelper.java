@@ -52,16 +52,16 @@ public class UtilHelper {
 	}
 
 	@Nullable
-	public static AdView initAdView(Activity c, RelativeLayout adLayout, Boolean isPreserveSpace) {
-
+	public static AdView initAdView(Activity mContext, RelativeLayout adLayout, Boolean isPreserveSpace) {
 		if (isPreserveSpace) {
 			adLayout.getLayoutParams().height = SizeUtils.dp2px(50);
 		}
 
+		SharedPreferences defaultPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
 		AdView adView = null;
 		try {
-			if (!PreferenceManager.getDefaultSharedPreferences(c).getBoolean(UtilHelper.PREF_IAP, false)) {
-				adView = new AdView(c);
+			if (!defaultPreferences.getBoolean(PREF_IAP, false)) {
+				adView = new AdView(mContext);
 				adView.setAdUnitId(BuildConfig.ADMOB_KEY);
 				adView.setAdSize(AdSize.BANNER);
 				adLayout.addView(adView);
