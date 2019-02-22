@@ -22,6 +22,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.blankj.utilcode.util.AppUtils;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.stepstone.apprating.AppRatingDialog;
 import com.stepstone.apprating.listener.RatingDialogListener;
 
@@ -44,7 +45,7 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 	@BindView(R.id.toolbar)
 	Toolbar toolbar;
 
-	private String[] productIDArray = {"Buy Me A Orange Juice", "Buy Me A Coffee", "Buy Me A Big Mac"};
+	private String[] productNameArray = {"Buy Me A Orange Juice", "Buy Me A Coffee", "Buy Me A Big Mac"};
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -90,12 +91,6 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 
 					@Override
 					public void onPurchaseHistoryRestored() {
-						for (String productId : C.iapProductIdListAll()) {
-							if (billingProcessor.isPurchased(productId)) {
-								defaultPreferences.edit().putBoolean(UtilHelper.PREF_IAP, true).apply();
-								break;
-							}
-						}
 					}
 
 					@Override
@@ -114,6 +109,12 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 				.commit();
 
 		countRate();
+
+		if ("SHORTCUT_LAUNCH".equals(getIntent().getAction())) {
+			Bundle bundle = new Bundle();
+			bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, getIntent().getDataString());
+			FirebaseAnalytics.getInstance(mContext).logEvent("shortcut_launch", bundle);
+		}
 	}
 
 	@Override
@@ -209,7 +210,7 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 	public void openDialogIAP() {
 		MaterialDialog.Builder dialog = new MaterialDialog.Builder(mContext)
 				.title(R.string.title_activity_test_ad_remover)
-				.items(productIDArray)
+				.items(productNameArray)
 				.itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
 					@Override
 					public boolean onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {

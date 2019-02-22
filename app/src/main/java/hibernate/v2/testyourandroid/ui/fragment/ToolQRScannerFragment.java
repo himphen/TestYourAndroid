@@ -86,7 +86,6 @@ public class ToolQRScannerFragment extends BaseFragment {
 				mCodeScanner.startPreview();
 			}
 		} catch (Exception e) {
-			C.logException(e);
 			C.errorNoFeatureDialog(mContext);
 		}
 	}

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 28
@@ -9,16 +8,28 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 238002 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Egg waffle 820"
+        versionCode 238502 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Egg waffle 850"
         multiDexEnabled true
     }
 
     buildTypes {
         release {
+            debuggable false
             minifyEnabled true
+            shrinkResources true
+            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -41,12 +52,6 @@ dependencies {
 
     // https://github.com/Karumi/HeaderRecyclerView
     implementation 'com.karumi:headerrecyclerview:1.1.0'
-
-    // Firebase
-    implementation 'com.google.firebase:firebase-core:16.0.5'
-
-    // Crashlytics
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.6'
 }
 
 apply plugin: 'com.google.gms.google-services'

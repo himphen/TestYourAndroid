@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="hibernate.v2.testyourandroid">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="hibernate.v2.testyourandroid">
 
     <uses-feature android:name="android.hardware.type.watch"/>
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/android_resources"
@@ -56,11 +58,6 @@
             android:name=".ui.activity.TestSensorAccelerometerActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_test_accelerometer">
-        </activity>
-        <activity
-            android:name=".ui.activity.TestSensorGravityActivity"
-            android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_test_gravity">
         </activity>
         <activity
             android:name=".ui.activity.TestSensorGravityActivity"

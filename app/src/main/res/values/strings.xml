@@ -176,6 +176,7 @@
 
     <string-array name="tools_string_array" translatable="false">
         <item>@string/title_activity_qr_scanner</item>
+        <item>@string/title_activity_flashlight</item>
         <item>@string/title_activity_bubble_level</item>
         <item>@string/title_activity_sound_meter</item>
     </string-array>
@@ -185,7 +186,6 @@
         <item>@string/title_activity_touch</item>
         <item>@string/title_activity_camera</item>
         <item>@string/title_activity_fingerprint</item>
-        <item>@string/title_activity_flashlight</item>
         <item>@string/title_activity_speaker</item>
         <item>@string/title_activity_microphone</item>
         <item>@string/title_activity_nfc</item>

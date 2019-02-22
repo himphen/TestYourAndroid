@@ -21,6 +21,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.divyanshu.draw.activity.DrawingActivity;
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,6 @@ import hibernate.v2.testyourandroid.R;
 import hibernate.v2.testyourandroid.model.GridItem;
 import hibernate.v2.testyourandroid.ui.activity.HardwareCameraActivity;
 import hibernate.v2.testyourandroid.ui.activity.HardwareFingerprintActivity;
-import hibernate.v2.testyourandroid.ui.activity.HardwareFlashlightActivity;
 import hibernate.v2.testyourandroid.ui.activity.HardwareLocationActivity;
 import hibernate.v2.testyourandroid.ui.activity.HardwareMicrophoneActivity;
 import hibernate.v2.testyourandroid.ui.activity.HardwareNFCActivity;
@@ -61,6 +62,7 @@ import hibernate.v2.testyourandroid.ui.activity.SensorProximityActivity;
 import hibernate.v2.testyourandroid.ui.activity.SensorStepActivity;
 import hibernate.v2.testyourandroid.ui.activity.SensorTemperatureActivity;
 import hibernate.v2.testyourandroid.ui.activity.ToolBubbleLevelActivity;
+import hibernate.v2.testyourandroid.ui.activity.ToolFlashlightActivity;
 import hibernate.v2.testyourandroid.ui.activity.ToolQRScannerActivity;
 import hibernate.v2.testyourandroid.ui.activity.ToolSoundMeterActivity;
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters;
@@ -91,27 +93,34 @@ public class MainTestFragment extends BaseFragment {
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
+		AppUpdater appUpdater = new AppUpdater(mContext)
+				.showEvery(4)
+				.setDisplay(Display.NOTIFICATION);
+		appUpdater.start();
+
 		sectionAdapter = new SectionedRecyclerViewAdapter();
 
 		Integer[] toolsImageArray = {
-				R.drawable.ic_icon_qrcode, R.drawable.ic_icon_bubble_level, R.drawable.ic_icon_sound_meter
+				R.drawable.ic_icon_qrcode, R.drawable.ic_icon_flashlight,
+				R.drawable.ic_icon_bubble_level, R.drawable.ic_icon_sound_meter
 		};
 
 		Class[] toolsClassArray = {
-				ToolQRScannerActivity.class, ToolBubbleLevelActivity.class, ToolSoundMeterActivity.class
+				ToolQRScannerActivity.class, ToolFlashlightActivity.class,
+				ToolBubbleLevelActivity.class, ToolSoundMeterActivity.class
 		};
 
 		Integer[] hardwareImageArray = {
 				R.drawable.ic_icon_screen, R.drawable.ic_icon_drawing, R.drawable.ic_icon_touch,
 				R.drawable.ic_icon_camera, R.drawable.ic_icon_fingerprint,
-				R.drawable.ic_icon_flashlight, R.drawable.ic_icon_speaker, R.drawable.ic_icon_microphone,
+				R.drawable.ic_icon_speaker, R.drawable.ic_icon_microphone,
 				R.drawable.ic_icon_nfc, R.drawable.ic_icon_location
 		};
 
 		Class[] hardwareClassArray = {
 				HardwareScreenActivity.class, DrawingActivity.class, HardwareTouchActivity.class,
 				HardwareCameraActivity.class, HardwareFingerprintActivity.class,
-				HardwareFlashlightActivity.class, HardwareSpeakerActivity.class, HardwareMicrophoneActivity.class,
+				HardwareSpeakerActivity.class, HardwareMicrophoneActivity.class,
 				HardwareNFCActivity.class, HardwareLocationActivity.class
 		};
 

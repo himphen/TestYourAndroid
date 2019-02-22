@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.pm.ShortcutInfoCompat;
@@ -21,9 +22,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.C;
 import hibernate.v2.testyourandroid.R;
-import hibernate.v2.testyourandroid.ui.fragment.ToolQRScannerFragment;
+import hibernate.v2.testyourandroid.ui.fragment.ToolFlashlightFragment;
 
-public class ToolQRScannerActivity extends BaseActivity {
+public class ToolFlashlightActivity extends BaseActivity {
 
 	@BindView(R.id.toolbar)
 	Toolbar toolbar;
@@ -37,7 +38,6 @@ public class ToolQRScannerActivity extends BaseActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		C.detectLanguage(mContext);
-		initActionBar(getSupportActionBar(), R.string.title_activity_qr_scanner);
 	}
 
 	@Override
@@ -47,10 +47,16 @@ public class ToolQRScannerActivity extends BaseActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 
-		initActionBar(getSupportActionBar(), R.string.title_activity_qr_scanner);
-		adView = C.initAdView(mContext, adLayout, true);
+		initActionBar(getSupportActionBar(), R.string.title_activity_flashlight);
 
-		Fragment fragment = new ToolQRScannerFragment();
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				adView = C.initAdView(mContext, adLayout);
+			}
+		}, DELAY_AD_LAYOUT);
+
+		Fragment fragment = new ToolFlashlightFragment();
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, fragment)
@@ -75,12 +81,12 @@ public class ToolQRScannerActivity extends BaseActivity {
 				if (ShortcutManagerCompat.isRequestPinShortcutSupported(mContext)) {
 					Intent shortcutIntent = new Intent();
 					shortcutIntent.setAction("SHORTCUT_LAUNCH")
-							.setData(Uri.parse("LAUNCH_QR_SCANNER"));
+							.setData(Uri.parse("LAUNCH_FLASHLIGHT"));
 
-					ShortcutInfoCompat shortcut = new ShortcutInfoCompat.Builder(mContext, "qr_scanner")
-							.setShortLabel(getString(R.string.title_activity_qr_scanner))
-							.setLongLabel(getString(R.string.title_activity_qr_scanner))
-							.setIcon(IconCompat.createWithResource(mContext, R.drawable.ic_icon_qrcode))
+					ShortcutInfoCompat shortcut = new ShortcutInfoCompat.Builder(mContext, "flashlight")
+							.setShortLabel(getString(R.string.title_activity_flashlight))
+							.setLongLabel(getString(R.string.title_activity_flashlight))
+							.setIcon(IconCompat.createWithResource(mContext, R.drawable.ic_icon_flashlight))
 							.setIntent(shortcutIntent)
 							.build();
 
@@ -107,4 +113,5 @@ public class ToolQRScannerActivity extends BaseActivity {
 		}
 		super.onDestroy();
 	}
+
 }

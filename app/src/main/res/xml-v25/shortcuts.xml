@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_icon_qrcode"
+        android:shortcutId="qr_scanner"
+        android:shortcutLongLabel="@string/title_activity_qr_scanner"
+        android:shortcutShortLabel="@string/title_activity_qr_scanner">
+
+        <intent
+            android:action="SHORTCUT_LAUNCH"
+            android:data="LAUNCH_QR_SCANNER"
+            android:targetClass="hibernate.v2.testyourandroid.ui.activity.MainActivity"
+            android:targetPackage="hibernate.v2.testyourandroid"/>
+
+        <intent
+            android:action="SHORTCUT_LAUNCH"
+            android:data="LAUNCH_QR_SCANNER"
+            android:targetClass="hibernate.v2.testyourandroid.ui.activity.ToolQRScannerActivity"
+            android:targetPackage="hibernate.v2.testyourandroid"/>
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_icon_sound_meter"
+        android:shortcutId="sound_meter"
+        android:shortcutLongLabel="@string/title_activity_sound_meter"
+        android:shortcutShortLabel="@string/title_activity_sound_meter">
+
+        <intent
+            android:action="SHORTCUT_LAUNCH"
+            android:data="LAUNCH_SOUND_METER"
+            android:targetClass="hibernate.v2.testyourandroid.ui.activity.MainActivity"
+            android:targetPackage="hibernate.v2.testyourandroid"/>
+
+        <intent
+            android:action="SHORTCUT_LAUNCH"
+            android:data="LAUNCH_SOUND_METER"
+            android:targetClass="hibernate.v2.testyourandroid.ui.activity.ToolSoundMeterActivity"
+            android:targetPackage="hibernate.v2.testyourandroid"/>
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_icon_flashlight"
+        android:shortcutId="flashlight"
+        android:shortcutLongLabel="@string/title_activity_flashlight"
+        android:shortcutShortLabel="@string/title_activity_flashlight">
+
+        <intent
+            android:action="SHORTCUT_LAUNCH"
+            android:data="LAUNCH_FLASHLIGHT"
+            android:targetClass="hibernate.v2.testyourandroid.ui.activity.MainActivity"
+            android:targetPackage="hibernate.v2.testyourandroid"/>
+
+        <intent
+            android:action="SHORTCUT_LAUNCH"
+            android:data="LAUNCH_FLASHLIGHT"
+            android:targetClass="hibernate.v2.testyourandroid.ui.activity.ToolFlashlightActivity"
+            android:targetPackage="hibernate.v2.testyourandroid"/>
+    </shortcut>
+</shortcuts>
