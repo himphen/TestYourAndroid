@@ -159,17 +159,6 @@ public class C extends UtilHelper {
 		mContext.finish();
 	}
 
-	private static Activity scanForActivity(Context cont) {
-		if (cont == null)
-			return null;
-		else if (cont instanceof Activity)
-			return (Activity) cont;
-		else if (cont instanceof ContextWrapper)
-			return scanForActivity(((ContextWrapper) cont).getBaseContext());
-
-		return null;
-	}
-
 	/**
 	 * For Android 4.4 or below
 	 *
@@ -207,14 +196,6 @@ public class C extends UtilHelper {
 				}
 		}
 		return result;
-	}
-
-	public static void startSettingsActivity(Context mContext, String action) {
-		try {
-			mContext.startActivity(new Intent(action));
-		} catch (Exception e) {
-			mContext.startActivity(new Intent(Settings.ACTION_SETTINGS));
-		}
 	}
 
 	public static double calculateAverage(List<Integer> marks) {

@@ -2,12 +2,15 @@ package hibernate.v2.testyourandroid.helper;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -62,7 +65,7 @@ public class UtilHelper {
 		try {
 			if (!defaultPreferences.getBoolean(PREF_IAP, false)) {
 				adView = new AdView(mContext);
-				adView.setAdUnitId(BuildConfig.ADMOB_KEY);
+				adView.setAdUnitId(BuildConfig.ADMOB_BANNER_ID);
 				adView.setAdSize(AdSize.BANNER);
 				adLayout.addView(adView);
 
@@ -172,5 +175,24 @@ public class UtilHelper {
 			}
 		}
 		return true;
+	}
+
+	protected static Activity scanForActivity(Context cont) {
+		if (cont == null)
+			return null;
+		else if (cont instanceof Activity)
+			return (Activity) cont;
+		else if (cont instanceof ContextWrapper)
+			return scanForActivity(((ContextWrapper) cont).getBaseContext());
+
+		return null;
+	}
+
+	public static void startSettingsActivity(Context mContext, String action) {
+		try {
+			mContext.startActivity(new Intent(action));
+		} catch (Exception e) {
+			mContext.startActivity(new Intent(Settings.ACTION_SETTINGS));
+		}
 	}
 }

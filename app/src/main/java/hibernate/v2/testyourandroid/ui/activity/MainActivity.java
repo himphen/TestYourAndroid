@@ -22,6 +22,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.blankj.utilcode.util.AppUtils;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.stepstone.apprating.AppRatingDialog;
 import com.stepstone.apprating.listener.RatingDialogListener;
@@ -72,6 +73,8 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 		ActionBar ab = initActionBar(getSupportActionBar(), R.string.app_name);
 		ab.setDisplayHomeAsUpEnabled(false);
 		ab.setHomeButtonEnabled(false);
+
+		MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
 
 		C.forceShowMenu(mContext);
 
@@ -255,8 +258,8 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 		} else {
 			Intent intent = new Intent(Intent.ACTION_SEND);
 
-			String text = "Android Version: " + android.os.Build.VERSION.RELEASE + "\n";
-			text += "SDK Level: " + String.valueOf(android.os.Build.VERSION.SDK_INT) + "\n";
+			String text = "Android Version: " + Build.VERSION.RELEASE + "\n";
+			text += "SDK Level: " + String.valueOf(Build.VERSION.SDK_INT) + "\n";
 			text += "Version: " + AppUtils.getAppVersionName() + "\n";
 			text += "Brand: " + Build.BRAND + "\n";
 			text += "Model: " + Build.MODEL + "\n\n\n";

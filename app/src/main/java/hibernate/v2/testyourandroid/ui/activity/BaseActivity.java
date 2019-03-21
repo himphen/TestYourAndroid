@@ -33,8 +33,6 @@ public class BaseActivity extends AppCompatActivity {
 		for (String deviceId : BuildConfig.APPBRAIN_DEVICE_ID) {
 			AppBrain.addTestDevice(deviceId);
 		}
-
-		MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
 	}
 
 	@Override
