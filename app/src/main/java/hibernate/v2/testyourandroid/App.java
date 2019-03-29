@@ -1,7 +1,7 @@
 package hibernate.v2.testyourandroid;
 
 import android.content.Context;
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 
 import com.blankj.utilcode.util.Utils;
 

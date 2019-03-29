@@ -6,12 +6,12 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.pm.ShortcutInfoCompat;
-import android.support.v4.content.pm.ShortcutManagerCompat;
-import android.support.v4.graphics.drawable.IconCompat;
-import android.support.v7.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.core.content.pm.ShortcutInfoCompat;
+import androidx.core.content.pm.ShortcutManagerCompat;
+import androidx.core.graphics.drawable.IconCompat;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
@@ -68,7 +68,7 @@ public class ToolFlashlightActivity extends BaseActivity {
 		if (ShortcutManagerCompat.isRequestPinShortcutSupported(mContext)) {
 			MenuItem menuItem = menu.add(0, 0, 0, "Add to home screen");
 			menuItem.setIcon(R.drawable.baseline_add_white_24)
-					.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS);
+					.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 		}
 		return true;
 	}

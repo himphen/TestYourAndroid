@@ -10,7 +10,7 @@
     android:layout_marginBottom="12dp"
     android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/headerTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,18 +1,14 @@
 package hibernate.v2.testyourandroid.ui.activity;
 
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.pm.ShortcutInfoCompat;
-import android.support.v4.content.pm.ShortcutManagerCompat;
-import android.support.v4.graphics.drawable.IconCompat;
-import android.support.v7.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.core.content.pm.ShortcutInfoCompat;
+import androidx.core.content.pm.ShortcutManagerCompat;
+import androidx.core.graphics.drawable.IconCompat;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.ads.AdView;

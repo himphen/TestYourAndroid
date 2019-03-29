@@ -1,12 +1,15 @@
 package hibernate.v2.testyourandroid.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by himphen on 25/5/16.
  */
+@SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
 
 	protected Activity mContext;

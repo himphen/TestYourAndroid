@@ -50,12 +50,12 @@
                 android:layout_marginStart="4dp"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/network_downspeed"/>
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/downSpeedText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,12 +81,12 @@
                 android:layout_marginStart="4dp"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/network_upspeed"/>
 
-                <android.support.v7.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/upSpeedText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

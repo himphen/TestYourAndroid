@@ -5,7 +5,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -125,7 +125,7 @@ public class HardwareScreenActivity extends BaseActivity {
 					}
 				})
 				.negativeText(R.string.ui_cancel);
-		if (((Activity) mContext).hasWindowFocus()) {
+		if (mContext.hasWindowFocus()) {
 			dialog.show();
 		}
 	}

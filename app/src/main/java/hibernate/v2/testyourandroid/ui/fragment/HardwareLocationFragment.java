@@ -8,10 +8,10 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,7 +80,7 @@ public class HardwareLocationFragment extends BaseFragment implements
 	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
-				new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+				new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false));
 
 
 		if (!isPermissionsGranted(PERMISSION_NAME)) {

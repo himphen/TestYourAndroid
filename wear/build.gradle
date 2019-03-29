@@ -8,8 +8,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 238502 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Egg waffle 850"
+        versionCode 238602 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Egg waffle 860"
         multiDexEnabled true
     }
 
@@ -35,20 +35,20 @@ android {
 
 dependencies {
     // Google Android Support
-    implementation 'com.android.support:wear:28.0.0'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'androidx.wear:wear:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.support:wearable:2.4.0'
     implementation 'com.google.android.gms:play-services-wearable:16.0.1'
     compileOnly 'com.google.android.wearable:wearable:2.4.0'
 
     // RxBinding Butter Knife
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
     // https://github.com/Karumi/HeaderRecyclerView
     implementation 'com.karumi:headerrecyclerview:1.1.0'

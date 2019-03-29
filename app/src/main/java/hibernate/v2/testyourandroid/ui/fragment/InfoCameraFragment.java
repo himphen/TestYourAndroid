@@ -4,9 +4,9 @@ import android.Manifest;
 import android.content.Context;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +58,7 @@ public class InfoCameraFragment extends BaseFragment {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
 				new LinearLayoutManager(mContext,
-						LinearLayoutManager.VERTICAL, false)
+						RecyclerView.VERTICAL, false)
 		);
 
 		if (!isPermissionsGranted(PERMISSION_NAME)) {

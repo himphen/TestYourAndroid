@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_pages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -26,7 +26,7 @@
         android:background="@color/grey100"
         android:gravity="center"/>
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/tpi_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

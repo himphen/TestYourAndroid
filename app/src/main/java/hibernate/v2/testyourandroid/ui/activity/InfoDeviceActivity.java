@@ -2,9 +2,9 @@ package hibernate.v2.testyourandroid.ui.activity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.ads.AdView;

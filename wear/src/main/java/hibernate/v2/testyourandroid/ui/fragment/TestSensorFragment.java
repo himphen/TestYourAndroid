@@ -1,14 +1,15 @@
 package hibernate.v2.testyourandroid.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +80,7 @@ public class TestSensorFragment extends BaseFragment {
 		super.onViewCreated(view, savedInstanceState);
 		recyclerView.setLayoutManager(
 				new LinearLayoutManager(mContext,
-						LinearLayoutManager.VERTICAL, false)
+						RecyclerView.VERTICAL, false)
 		);
 		init();
 	}
@@ -178,6 +179,7 @@ public class TestSensorFragment extends BaseFragment {
 		public void onAccuracyChanged(Sensor arg0, int arg1) {
 		}
 
+		@SuppressLint("DefaultLocale")
 		@Override
 		public void onSensorChanged(SensorEvent event) {
 			reading = "X: " + String.format("%1.4f", event.values[0]) + " m/s²\nY: "
@@ -219,6 +221,7 @@ public class TestSensorFragment extends BaseFragment {
 		public void onAccuracyChanged(Sensor arg0, int arg1) {
 		}
 
+		@SuppressLint("DefaultLocale")
 		@Override
 		public void onSensorChanged(SensorEvent event) {
 			reading = String.format("%1.2f", event.values[0]) + " cm";
