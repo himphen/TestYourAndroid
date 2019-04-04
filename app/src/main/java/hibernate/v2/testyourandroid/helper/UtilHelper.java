@@ -177,7 +177,7 @@ public class UtilHelper {
 		return true;
 	}
 
-	protected static Activity scanForActivity(Context cont) {
+	public static Activity scanForActivity(Context cont) {
 		if (cont == null)
 			return null;
 		else if (cont instanceof Activity)
