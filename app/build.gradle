@@ -10,8 +10,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 198602 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Egg waffle 860"
+        versionCode 198612 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Egg waffle 861"
         multiDexEnabled true
     }
 
@@ -78,7 +78,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-wearable:16.0.1'
     implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.google.firebase:firebase-ads:17.2.0'
-    implementation 'com.google.firebase:firebase-perf:16.2.4'
+    implementation 'com.google.firebase:firebase-perf:16.2.5'
 
     // https://github.com/JakeWharton/butterknife
     implementation 'com.jakewharton:butterknife:10.1.0'

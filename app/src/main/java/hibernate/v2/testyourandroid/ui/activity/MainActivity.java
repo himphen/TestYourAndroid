@@ -22,12 +22,15 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.blankj.utilcode.util.AppUtils;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.stepstone.apprating.AppRatingDialog;
 import com.stepstone.apprating.listener.RatingDialogListener;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,6 +64,12 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		String installerPackageName = mContext.getPackageManager().getInstallerPackageName(AppUtils.getAppPackageName());
+		ArrayList<String> allowedPackageNames = new ArrayList<>();
+		allowedPackageNames.add("com.android.vending");
+		allowedPackageNames.add("com.google.android.feedback");
+		Crashlytics.setBool("isGooglePlay", allowedPackageNames.contains(installerPackageName));
 
 		setContentView(R.layout.activity_container);
 		preferences = getSharedPreferences(C.PREF, 0);

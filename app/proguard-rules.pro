@@ -14,6 +14,8 @@
 -keepattributes *Annotation*
 -keepattributes SourceFile,LineNumberTable
 -keep public class * extends java.lang.Exception
+-keep class com.crashlytics.** { *; }
+-dontwarn com.crashlytics.**
 
 # Google AdMob
 # https://developers.google.com/mobile-ads-sdk/docs/admob/android/faq?hl=zh-tw

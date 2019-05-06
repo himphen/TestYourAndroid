@@ -4,9 +4,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +26,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.R;
@@ -312,7 +312,7 @@ public class MainTestFragment extends BaseFragment {
 		}
 	}
 
-	public Integer[] otherImageArray() {
+	private Integer[] otherImageArray() {
 		switch (new Random().nextInt(3)) {
 			case 0:
 				return new Integer[]{
