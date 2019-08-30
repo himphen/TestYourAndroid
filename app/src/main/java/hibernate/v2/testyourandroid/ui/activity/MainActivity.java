@@ -8,11 +8,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +27,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.BuildConfig;
@@ -268,7 +268,7 @@ public class MainActivity extends BaseActivity implements RatingDialogListener {
 			Intent intent = new Intent(Intent.ACTION_SEND);
 
 			String text = "Android Version: " + Build.VERSION.RELEASE + "\n";
-			text += "SDK Level: " + String.valueOf(Build.VERSION.SDK_INT) + "\n";
+			text += "SDK Level: " + Build.VERSION.SDK_INT + "\n";
 			text += "Version: " + AppUtils.getAppVersionName() + "\n";
 			text += "Brand: " + Build.BRAND + "\n";
 			text += "Model: " + Build.MODEL + "\n\n\n";

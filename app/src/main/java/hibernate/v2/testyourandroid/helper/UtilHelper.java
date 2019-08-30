@@ -11,9 +11,6 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ViewConfiguration;
@@ -31,6 +28,9 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import hibernate.v2.testyourandroid.BuildConfig;
 import hibernate.v2.testyourandroid.Environment;
 

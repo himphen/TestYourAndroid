@@ -10,8 +10,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 198612 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Egg waffle 861"
+        versionCode 198640 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Egg waffle 864a"
         multiDexEnabled true
     }
 
@@ -70,15 +70,16 @@ dependencies {
     // Google Android Support
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'com.google.android.material:material:1.0.0'
 
     // Google Play Services
-    implementation 'com.google.android.gms:play-services-maps:16.1.0'
-    implementation 'com.google.android.gms:play-services-location:16.0.0'
-    implementation 'com.google.android.gms:play-services-wearable:16.0.1'
-    implementation 'com.google.firebase:firebase-core:16.0.8'
-    implementation 'com.google.firebase:firebase-ads:17.2.0'
-    implementation 'com.google.firebase:firebase-perf:16.2.5'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-wearable:17.0.0'
+    implementation 'com.google.firebase:firebase-core:17.0.1'
+    implementation 'com.google.firebase:firebase-ads:18.1.1'
+    implementation 'com.google.firebase:firebase-perf:18.0.1'
 
     // https://github.com/JakeWharton/butterknife
     implementation 'com.jakewharton:butterknife:10.1.0'
@@ -105,7 +106,7 @@ dependencies {
     implementation 'com.appbrain:appbrain-sdk:+@aar'
 
     // Crashlytics
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 
     // https://github.com/natario1/CameraView
     implementation 'com.otaliastudios:cameraview:1.6.0'
@@ -129,6 +130,7 @@ dependencies {
     implementation 'com.github.javiersantos:AppUpdater:2.7'
 
     wearApp project(':wear')
+    implementation 'org.jetbrains:annotations:15.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

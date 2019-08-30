@@ -47,6 +47,7 @@ public class MainFragment extends BaseFragment {
 		super.onViewCreated(view, savedInstanceState);
 
 		adView = C.initAdView(mContext, adLayout);
+//		adView = C.showBanner(mContext, adLayout);
 
 		// Note that we are passing childFragmentManager, not FragmentManager
 		MainFragmentPagerAdapter adapter = new MainFragmentPagerAdapter(getChildFragmentManager(), getContext());
