@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.appbrain.AdService;
 import com.appbrain.AppBrain;
+import com.blankj.utilcode.util.DeviceUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -187,7 +188,7 @@ public class MainTestFragment extends BaseFragment {
 				otherStringArray
 		)));
 
-		columnCount = ScreenUtils.isTablet() && ScreenUtils.isLandscape() ? 4 : 3;
+		columnCount = DeviceUtils.isTablet() && ScreenUtils.isLandscape() ? 4 : 3;
 
 		GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), columnCount);
 		gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {

@@ -18,7 +18,6 @@ android {
             debuggable false
             minifyEnabled true
             shrinkResources true
-            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -36,15 +35,15 @@ android {
 dependencies {
     // Google Android Support
     implementation 'androidx.wear:wear:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.support:wearable:2.4.0'
-    implementation 'com.google.android.gms:play-services-wearable:16.0.1'
-    compileOnly 'com.google.android.wearable:wearable:2.4.0'
+    implementation 'com.google.android.support:wearable:2.5.0'
+    implementation 'com.google.android.gms:play-services-wearable:17.0.0'
+    compileOnly 'com.google.android.wearable:wearable:2.5.0'
 
     // RxBinding Butter Knife
-    implementation 'com.jakewharton:butterknife:10.1.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation 'com.jakewharton:butterknife:10.2.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.9.0'

@@ -136,7 +136,7 @@
     <string name="title_activity_light">Light Sensor</string>
     <string name="title_activity_humidity">Humidity Sensor</string>
     <string name="title_activity_camera">Camera</string>
-    <string name="title_activity_qr_scanner">QR Code Scanner</string>
+    <string name="title_activity_qr_scanner">Barcode/QR Code Scanner</string>
     <string name="title_activity_bubble_level">Bubble level</string>
     <string name="title_activity_sound_meter">Sound Meter</string>
     <string name="title_activity_flashlight">Flashlight</string>

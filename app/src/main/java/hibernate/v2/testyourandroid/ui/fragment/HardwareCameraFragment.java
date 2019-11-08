@@ -2,23 +2,23 @@ package hibernate.v2.testyourandroid.ui.fragment;
 
 import android.hardware.Camera;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.otaliastudios.cameraview.AspectRatio;
 import com.otaliastudios.cameraview.CameraLogger;
 import com.otaliastudios.cameraview.CameraView;
-import com.otaliastudios.cameraview.Facing;
-import com.otaliastudios.cameraview.Gesture;
-import com.otaliastudios.cameraview.GestureAction;
-import com.otaliastudios.cameraview.SessionType;
-import com.otaliastudios.cameraview.SizeSelectors;
+import com.otaliastudios.cameraview.controls.Facing;
+import com.otaliastudios.cameraview.controls.Mode;
+import com.otaliastudios.cameraview.gesture.Gesture;
+import com.otaliastudios.cameraview.gesture.GestureAction;
+import com.otaliastudios.cameraview.size.AspectRatio;
+import com.otaliastudios.cameraview.size.SizeSelectors;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hibernate.v2.testyourandroid.C;
@@ -72,7 +72,7 @@ public class HardwareCameraFragment extends BaseFragment {
 	private void initCamera(boolean isCameraFacingBack) {
 		CameraLogger.registerLogger(new CameraLogger.Logger() {
 			@Override
-			public void log(@CameraLogger.LogLevel int level, String tag, String message, @Nullable Throwable throwable) {
+			public void log(@CameraLogger.LogLevel int level, @NonNull String tag, @NonNull String message, @Nullable Throwable throwable) {
 				if (level == CameraLogger.LEVEL_ERROR) {
 					if (throwable != null) {
 						C.errorNoFeatureDialog(mContext);
@@ -85,11 +85,11 @@ public class HardwareCameraFragment extends BaseFragment {
 		} else {
 			cameraView.setFacing(Facing.FRONT);
 		}
-		cameraView.setSessionType(SessionType.PICTURE);
-		cameraView.mapGesture(Gesture.TAP, GestureAction.FOCUS_WITH_MARKER);
+		cameraView.setMode(Mode.PICTURE);
+		cameraView.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS);
 		cameraView.mapGesture(Gesture.SCROLL_HORIZONTAL, GestureAction.ZOOM);
 		cameraView.setPictureSize(SizeSelectors.aspectRatio(AspectRatio.of(4, 3), 0));
-		cameraView.start();
+		cameraView.open();
 	}
 
 	@Override
@@ -101,7 +101,7 @@ public class HardwareCameraFragment extends BaseFragment {
 	@Override
 	public void onPause() {
 		super.onPause();
-		cameraView.stop();
+		cameraView.close();
 	}
 
 	@Override

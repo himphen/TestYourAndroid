@@ -1,71 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="hibernate.v2.testyourandroid">
 
-    <!-- Normal permissions -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.NFC"/>
-    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
-    <uses-permission android:name="com.android.vending.BILLING"/>
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-
-    <!-- Dangerous permissions -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true"/>
-    <uses-feature
-        android:name="android.hardware.wifi"
-        android:required="true"/>
-    <uses-feature
-        android:name="android.hardware.location"
-        android:required="false"/>
-    <uses-feature
-        android:name="android.hardware.location.GPS"
-        android:required="false"/>
-    <uses-feature
-        android:name="android.hardware.location.NETWORK"
-        android:required="false"/>
-    <uses-feature
-        android:name="android.hardware.touchscreen"
-        android:required="true"/>
-    <uses-feature
-        android:name="android.hardware.nfc"
-        android:required="false"/>
-    <uses-feature
-        android:name="android.hardware.camera.flash"
-        android:required="false"/>
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false"/>
-    <uses-feature
-        android:name="android.hardware.camera.front"
-        android:required="false"/>
-    <uses-feature
-        android:name="android.hardware.telephony"
-        android:required="false"/>
 
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
-        android:smallScreens="true"/>
+        android:smallScreens="true" />
+
+    <!-- Normal permissions -->
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.GPS"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.NETWORK"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Dangerous permissions -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
         android:name="hibernate.v2.testyourandroid.App"
@@ -79,173 +84,189 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <!-- For Google Ads -->
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false"/>
-
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/ADMOB_APP_ID"/>
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/GOOGLE_API_KEY"/>
-
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+
         <activity
             android:name=".ui.activity.MainActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
             <meta-data
                 android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"/>
+                android:resource="@xml/shortcuts" />
         </activity>
+
         <activity
             android:name=".ui.activity.HardwareScreenActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_screen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".ui.activity.HardwareSpeakerActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_speaker"/>
+            android:label="@string/title_activity_speaker" />
+
         <activity
             android:name=".ui.activity.HardwareMicrophoneActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_microphone"/>
+            android:label="@string/title_activity_microphone" />
         <activity
             android:name=".ui.activity.SensorLightActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_light"/>
+            android:label="@string/title_activity_light" />
         <activity
             android:name=".ui.activity.HardwareCameraActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_camera"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.ToolFlashlightActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_flashlight"/>
+            android:label="@string/title_activity_flashlight" />
         <activity
             android:name=".ui.activity.HardwareTouchActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_touch"/>
+            android:label="@string/title_activity_touch" />
         <activity
             android:name=".ui.activity.InfoDeviceActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_device"/>
+            android:label="@string/title_activity_device" />
         <activity
             android:name=".ui.activity.InfoCPUActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_cpu"/>
+            android:label="@string/title_activity_cpu" />
         <activity
             android:name=".ui.activity.InfoAndroidVersionActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_android_version"/>
+            android:label="@string/title_activity_android_version" />
         <activity
             android:name=".ui.activity.InfoBatteryActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_battery"/>
+            android:label="@string/title_activity_battery" />
         <activity
             android:name=".ui.activity.InfoCameraActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_battery"/>
+            android:label="@string/title_activity_battery" />
         <activity
             android:name=".ui.activity.InfoWifiActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_wifi"/>
+            android:label="@string/title_activity_wifi" />
         <activity
             android:name=".ui.activity.InfoBluetoothActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_bluetooth"/>
+            android:label="@string/title_activity_bluetooth" />
         <activity
             android:name=".ui.activity.SensorAccelerometerActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_accelerometer"/>
+            android:label="@string/title_activity_accelerometer" />
         <activity
             android:name=".ui.activity.HardwareLocationActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_location"/>
+            android:label="@string/title_activity_location" />
         <activity
             android:name=".ui.activity.HardwareNFCActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_nfc">
-        </activity>
+            android:label="@string/title_activity_nfc" />
         <activity
             android:name=".ui.activity.SensorProximityActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_proximity"/>
+            android:label="@string/title_activity_proximity" />
         <activity
             android:name=".ui.activity.InfoGSMActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_gsm"/>
+            android:label="@string/title_activity_gsm" />
         <activity
             android:name=".ui.activity.AppListActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_application"/>
+            android:label="@string/title_activity_application" />
         <activity
             android:name=".ui.activity.InfoAppTypeChooseActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_app_choose"/>
+            android:label="@string/title_activity_app_choose" />
         <activity
             android:name=".ui.activity.AppDetailsActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_application"/>
+            android:label="@string/title_activity_application" />
         <activity
             android:name=".ui.activity.InfoSystemMonitorActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_system_monitor"/>
+            android:label="@string/title_activity_system_monitor" />
         <activity
             android:name=".ui.activity.SensorGravityActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_system_monitor"/>
+            android:label="@string/title_activity_system_monitor" />
         <activity
             android:name=".ui.activity.SensorPressureActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_pressure"/>
+            android:label="@string/title_activity_pressure" />
         <activity
             android:name=".ui.activity.SensorCompassActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_compass"/>
+            android:label="@string/title_activity_compass" />
         <activity
             android:name=".ui.activity.SensorStepActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_step"/>
+            android:label="@string/title_activity_step" />
         <activity
             android:name=".ui.activity.SensorTemperatureActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_step"/>
+            android:label="@string/title_activity_step" />
         <activity
             android:name=".ui.activity.HardwareFingerprintActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_fingerprint"/>
+            android:label="@string/title_activity_fingerprint" />
         <activity
             android:name=".ui.activity.SensorHumidityActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_humidity"/>
+            android:label="@string/title_activity_humidity" />
         <activity
             android:name=".ui.activity.ToolQRScannerActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_qr_scanner"/>
+            android:icon="@drawable/ic_icon_qrcode_launcher"
+            android:label="@string/title_activity_qr_scanner">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.activity.ToolBubbleLevelActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_bubble_level"/>
+            android:icon="@drawable/ic_icon_bubble_level_launcher"
+            android:label="@string/title_activity_bubble_level">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.activity.ToolSoundMeterActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_sound_meter"/>
+            android:label="@string/title_activity_sound_meter" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/ADMOB_APP_ID" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/GOOGLE_API_KEY" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>
