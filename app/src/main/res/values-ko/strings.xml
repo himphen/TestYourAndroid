@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- By Google Translate -->
+<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
 <resources>
     <string name="app_name">Android 테스팅 도구</string>
     <string name="ui_okay">괜찮아</string>
@@ -278,4 +277,5 @@
     <string name="bubble_level_horizontal">수평</string>
     <string name="title_activity_bubble_level">버블 레벨</string>
     <string name="title_activity_sound_meter">소리 측정기</string>
+    <string name="title_activity_speed_test">속도 테스트</string>
 </resources>

@@ -281,5 +281,6 @@
     <string name="bubble_level_horizontal">Antas</string>
     <string name="title_activity_bubble_level">Bubble Level</string>
     <string name="title_activity_sound_meter">Sound Metro</string>
+    <string name="title_activity_speed_test">Bilis ng Pagsubok</string>
 
 </resources>

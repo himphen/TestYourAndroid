@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- By Google Translate -->
+<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
 <resources>
     <string name="app_name">Alat za testiranje Androida</string>
     <string name="ui_okay">u redu</string>
@@ -278,4 +277,5 @@
     <string name="bubble_level_horizontal">nivo</string>
     <string name="title_activity_bubble_level">Razina mjehurića</string>
     <string name="title_activity_sound_meter">Mjerač zvuka</string>
+    <string name="title_activity_speed_test">Speed Test</string>
 </resources>

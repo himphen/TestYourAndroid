@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <notices>
     <notice>
-        <name>Butter Knife</name>
-        <url>http://jakewharton.github.io/butterknife/</url>
-        <copyright>Copyright 2013 Jake Wharton</copyright>
-        <license>Apache Software License 2.0</license>
-    </notice>
-    <notice>
         <name>Material Dialogs</name>
         <url>http://acra.ch/</url>
         <copyright>Copyright (c) 2014-2016 Aidan Michael Follestad</copyright>

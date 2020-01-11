@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- By Google Translate -->
+<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
 <resources>
     <string name="app_name">Android Toets Gereedskap</string>
     <string name="ui_okay">Goed</string>
@@ -278,4 +277,5 @@
     <string name="bubble_level_horizontal">vlak</string>
     <string name="title_activity_bubble_level">Bubble vlak</string>
     <string name="title_activity_sound_meter">Klank meter</string>
+    <string name="title_activity_speed_test">Speed Test</string>
 </resources>

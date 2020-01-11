@@ -281,5 +281,6 @@
     <string name="bubble_level_horizontal">Lygis</string>
     <string name="title_activity_bubble_level">Burbulo lygis</string>
     <string name="title_activity_sound_meter">Garso matuoklis</string>
+    <string name="title_activity_speed_test">Speed Test</string>
 
 </resources>

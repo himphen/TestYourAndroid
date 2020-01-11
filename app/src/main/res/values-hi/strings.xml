@@ -338,5 +338,6 @@
     <string name="bubble_level_horizontal">स्तर</string>
     <string name="title_activity_bubble_level">बबल लेवल</string>
     <string name="title_activity_sound_meter">ध्वनि मीटर</string>
+    <string name="title_activity_speed_test">Speed Test</string>
 
 </resources>

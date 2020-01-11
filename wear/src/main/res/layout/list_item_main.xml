@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="8dp"
+    android:paddingStart="8dp"
     android:paddingTop="12dp"
-    android:paddingRight="8dp"
+    android:paddingEnd="8dp"
     android:paddingBottom="12dp">
 
     <LinearLayout
@@ -21,9 +20,9 @@
             android:id="@+id/mainIv"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:contentDescription="@string/app_name"/>
+            android:contentDescription="@string/app_name" />
 
-       <androidx.appcompat.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/mainTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,6 +31,6 @@
             android:paddingStart="8dp"
             android:paddingEnd="0dp"
             android:textColor="@color/grey600"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

@@ -53,7 +53,7 @@
     </string-array>
 
     <string-array name="language_locale_code" translatable="false">
-        <item/>
+        <item />
         <item>af</item>
         <item>az</item>
         <item>in</item>
@@ -93,43 +93,43 @@
     </string-array>
 
     <string-array name="language_locale_country_code" translatable="false">
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
         <item>HK</item>
         <item>CN</item>
-        <item/>
+        <item />
     </string-array>
 
     <string name="title_activity_screen">Monitor Color</string>
@@ -139,6 +139,7 @@
     <string name="title_activity_qr_scanner">Barcode/QR Code Scanner</string>
     <string name="title_activity_bubble_level">Bubble level</string>
     <string name="title_activity_sound_meter">Sound Meter</string>
+    <string name="title_activity_speed_test">Speed Test</string>
     <string name="title_activity_flashlight">Flashlight</string>
     <string name="title_activity_fingerprint">Fingerprint</string>
     <string name="title_activity_drawing">Touch Screen</string>
@@ -179,6 +180,7 @@
         <item>@string/title_activity_flashlight</item>
         <item>@string/title_activity_bubble_level</item>
         <item>@string/title_activity_sound_meter</item>
+        <item>Speed Test</item>
     </string-array>
     <string-array name="hardware_string_array" translatable="false">
         <item>@string/title_activity_screen</item>
@@ -700,5 +702,10 @@
     <string name="app_not_found">No application found.</string>
     <string name="bubble_level_vertical">Plumb</string>
     <string name="bubble_level_horizontal">Level</string>
+
+    <string-array name="speed_test_string_array" translatable="false">
+        <item>10MB</item>
+        <item>100MB</item>
+    </string-array>
 
 </resources>

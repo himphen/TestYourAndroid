@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- By Google Translate -->
+<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
 <resources>
     <string name="app_name">Android Test Aracı</string>
     <string name="ui_okay">Tamam</string>
@@ -278,4 +277,5 @@
     <string name="bubble_level_horizontal">seviye</string>
     <string name="title_activity_bubble_level">Kabarcık Seviyesi</string>
     <string name="title_activity_sound_meter">Ses ölçer</string>
+    <string name="title_activity_speed_test">Hız Testi</string>
 </resources>

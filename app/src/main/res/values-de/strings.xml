@@ -277,4 +277,5 @@
     <string name="bubble_level_horizontal">Niveau</string>
     <string name="title_activity_bubble_level">Wasserwaage</string>
     <string name="title_activity_sound_meter">Schallmesser</string>
+    <string name="title_activity_speed_test">Speed Test</string>
 </resources>

@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:paddingLeft="8dp"
+    android:paddingStart="8dp"
     android:paddingTop="12dp"
-    android:paddingRight="8dp"
+    android:paddingEnd="8dp"
     android:paddingBottom="12dp">
 
-   <androidx.appcompat.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/titleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:textColor="@color/grey800"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 </LinearLayout>

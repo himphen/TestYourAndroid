@@ -334,5 +334,6 @@
     <string name="bubble_level_horizontal">Nivel</string>
     <string name="title_activity_bubble_level">Nivel burbuja</string>
     <string name="title_activity_sound_meter">Medidor de sonido</string>
+    <string name="title_activity_speed_test">Prueba de velocidad</string>
 
 </resources>

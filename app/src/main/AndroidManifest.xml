@@ -66,11 +66,9 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
 
     <application
         android:name="hibernate.v2.testyourandroid.App"
@@ -81,7 +79,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        android:usesCleartextTraffic="true"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+        tools:targetApi="m">
 
         <!-- For Google Ads -->
         <activity
@@ -91,7 +91,8 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -108,7 +109,7 @@
             android:name=".ui.activity.HardwareScreenActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_screen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".ui.activity.HardwareSpeakerActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
@@ -192,7 +193,7 @@
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_app_choose" />
         <activity
-            android:name=".ui.activity.AppDetailsActivity"
+            android:name=".ui.activity.AppInfoActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_application" />
         <activity
@@ -251,6 +252,10 @@
         </activity>
         <activity
             android:name=".ui.activity.ToolSoundMeterActivity"
+            android:configChanges="orientation|screenSize|locale|layoutDirection"
+            android:label="@string/title_activity_sound_meter" />
+        <activity
+            android:name=".ui.activity.ToolSpeedTestActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_sound_meter" />
 

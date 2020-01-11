@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- By Google Translate -->
+<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
 <resources>
     <string name="app_name">Għodda għat-Testjar Android</string>
     <string name="ui_okay">Okay</string>
@@ -278,4 +277,5 @@
     <string name="bubble_level_horizontal">Livell</string>
     <string name="title_activity_bubble_level">Livell bżieżaq</string>
     <string name="title_activity_sound_meter">Meter tal-Ħoss</string>
+    <string name="title_activity_speed_test">Test tal-Veloċità</string>
 </resources>

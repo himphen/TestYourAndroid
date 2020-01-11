@@ -1,15 +1,17 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 23
-        targetSdkVersion 28
-        versionCode 238602 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Egg waffle 860"
+        targetSdkVersion 29
+        versionCode 239002 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Fishballs 900"
         multiDexEnabled true
     }
 
@@ -41,16 +43,17 @@ dependencies {
     implementation 'com.google.android.gms:play-services-wearable:17.0.0'
     compileOnly 'com.google.android.wearable:wearable:2.5.0'
 
-    // RxBinding Butter Knife
-    implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
-
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
     // https://github.com/Karumi/HeaderRecyclerView
     implementation 'com.karumi:headerrecyclerview:1.1.0'
+    implementation "androidx.core:core-ktx:1.1.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 apply plugin: 'com.google.gms.google-services'
+repositories {
+    mavenCentral()
+}

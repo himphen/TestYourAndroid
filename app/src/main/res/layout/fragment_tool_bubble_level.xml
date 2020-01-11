@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,7 +21,7 @@
         app:horizontalColor="@color/green500"
         app:limitCircleWidth="6dp"
         app:limitColor="@color/primary"
-        app:limitRadius="120dp"/>
+        app:limitRadius="120dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,7 +54,7 @@
                     android:text="13°"
                     android:textColor="@color/grey900"
                     android:textSize="32sp"
-                    tools:ignore="HardcodedText"/>
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -63,7 +62,7 @@
                     android:gravity="center_horizontal"
                     android:text="@string/bubble_level_vertical"
                     android:textColor="@color/grey600"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -80,7 +79,7 @@
                     android:text="13°"
                     android:textColor="@color/grey900"
                     android:textSize="32sp"
-                    tools:ignore="HardcodedText"/>
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -88,7 +87,7 @@
                     android:gravity="center_horizontal"
                     android:text="@string/bubble_level_horizontal"
                     android:textColor="@color/grey600"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- By Google Translate -->
+<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
 <resources>
     <string name="app_name">Instrument de testare Android</string>
     <string name="ui_okay">bine</string>
@@ -278,4 +277,5 @@
     <string name="bubble_level_horizontal">Nivel</string>
     <string name="title_activity_bubble_level">Nivelul de bule</string>
     <string name="title_activity_sound_meter">Metru sunet</string>
+    <string name="title_activity_speed_test">Test de viteză</string>
 </resources>

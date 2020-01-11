@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shortcuts
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
     <shortcut
         android:enabled="true"
         android:icon="@drawable/ic_icon_qrcode"
@@ -12,13 +11,13 @@
             android:action="SHORTCUT_LAUNCH"
             android:data="LAUNCH_QR_SCANNER"
             android:targetClass="hibernate.v2.testyourandroid.ui.activity.MainActivity"
-            android:targetPackage="hibernate.v2.testyourandroid"/>
+            android:targetPackage="hibernate.v2.testyourandroid" />
 
         <intent
             android:action="SHORTCUT_LAUNCH"
             android:data="LAUNCH_QR_SCANNER"
             android:targetClass="hibernate.v2.testyourandroid.ui.activity.ToolQRScannerActivity"
-            android:targetPackage="hibernate.v2.testyourandroid"/>
+            android:targetPackage="hibernate.v2.testyourandroid" />
     </shortcut>
     <shortcut
         android:enabled="true"
@@ -31,13 +30,13 @@
             android:action="SHORTCUT_LAUNCH"
             android:data="LAUNCH_SOUND_METER"
             android:targetClass="hibernate.v2.testyourandroid.ui.activity.MainActivity"
-            android:targetPackage="hibernate.v2.testyourandroid"/>
+            android:targetPackage="hibernate.v2.testyourandroid" />
 
         <intent
             android:action="SHORTCUT_LAUNCH"
             android:data="LAUNCH_SOUND_METER"
             android:targetClass="hibernate.v2.testyourandroid.ui.activity.ToolSoundMeterActivity"
-            android:targetPackage="hibernate.v2.testyourandroid"/>
+            android:targetPackage="hibernate.v2.testyourandroid" />
     </shortcut>
     <shortcut
         android:enabled="true"
@@ -50,12 +49,12 @@
             android:action="SHORTCUT_LAUNCH"
             android:data="LAUNCH_FLASHLIGHT"
             android:targetClass="hibernate.v2.testyourandroid.ui.activity.MainActivity"
-            android:targetPackage="hibernate.v2.testyourandroid"/>
+            android:targetPackage="hibernate.v2.testyourandroid" />
 
         <intent
             android:action="SHORTCUT_LAUNCH"
             android:data="LAUNCH_FLASHLIGHT"
             android:targetClass="hibernate.v2.testyourandroid.ui.activity.ToolFlashlightActivity"
-            android:targetPackage="hibernate.v2.testyourandroid"/>
+            android:targetPackage="hibernate.v2.testyourandroid" />
     </shortcut>
 </shortcuts>

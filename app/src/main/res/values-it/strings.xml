@@ -338,5 +338,6 @@
     <string name="bubble_level_horizontal">Livello</string>
     <string name="title_activity_bubble_level">Livella a bolla</string>
     <string name="title_activity_sound_meter">Fonometro</string>
+    <string name="title_activity_speed_test">Test di velocità</string>
 
 </resources>

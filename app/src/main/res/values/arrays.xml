@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="main_tools_image">
+        <item>@drawable/ic_icon_qrcode</item>
+        <item>@drawable/ic_icon_flashlight</item>
+        <item>@drawable/ic_icon_bubble_level</item>
+        <item>@drawable/ic_icon_sound_meter</item>
+        <item>@drawable/ic_icon_speed_test</item>
+    </integer-array>
+
+    <integer-array name="main_hardware_image">
+        <item>@drawable/ic_icon_screen</item>
+        <item>@drawable/ic_icon_drawing</item>
+        <item>@drawable/ic_icon_touch</item>
+        <item>@drawable/ic_icon_camera</item>
+        <item>@drawable/ic_icon_fingerprint</item>
+        <item>@drawable/ic_icon_speaker</item>
+        <item>@drawable/ic_icon_microphone</item>
+        <item>@drawable/ic_icon_nfc</item>
+        <item>@drawable/ic_icon_location</item>
+    </integer-array>
+
+    <integer-array name="main_sensor_image">
+        <item>@drawable/ic_icon_step</item>
+        <item>@drawable/ic_icon_temperature</item>
+        <item>@drawable/ic_icon_compass</item>
+        <item>@drawable/ic_icon_light</item>
+        <item>@drawable/ic_icon_accelerometer</item>
+        <item>@drawable/ic_icon_chip</item>
+        <item>@drawable/ic_icon_chip</item>
+        <item>@drawable/ic_icon_chip</item>
+        <item>@drawable/ic_icon_humidity</item>
+    </integer-array>
+
+    <integer-array name="main_info_image">
+        <item>@drawable/ic_icon_system_monitor</item>
+        <item>@drawable/ic_icon_wifi</item>
+        <item>@drawable/ic_icon_bluetooth</item>
+        <item>@drawable/ic_icon_cpu</item>
+        <item>@drawable/ic_icon_device</item>
+        <item>@drawable/ic_icon_android</item>
+        <item>@drawable/ic_icon_battery</item>
+        <item>@drawable/ic_icon_camera</item>
+        <item>@drawable/ic_icon_network</item>
+        <item>@drawable/ic_icon_apps</item>
+    </integer-array>
+
+    <integer-array name="main_other_image_1">
+        <item>@drawable/ic_icon_rating</item>
+        <item>@drawable/ic_icon_language</item>
+        <item>@drawable/ic_icon_donate_1</item>
+        <item>@drawable/ic_icon_app_brain</item>
+    </integer-array>
+
+    <integer-array name="main_other_image_2">
+        <item>@drawable/ic_icon_rating</item>
+        <item>@drawable/ic_icon_language</item>
+        <item>@drawable/ic_icon_donate_2</item>
+        <item>@drawable/ic_icon_app_brain</item>
+    </integer-array>
+
+    <integer-array name="main_other_image_3">
+        <item>@drawable/ic_icon_rating</item>
+        <item>@drawable/ic_icon_language</item>
+        <item>@drawable/ic_icon_donate_3</item>
+        <item>@drawable/ic_icon_app_brain</item>
+    </integer-array>
+</resources>

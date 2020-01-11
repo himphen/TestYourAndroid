@@ -334,5 +334,6 @@
     <string name="bubble_level_horizontal">Nível</string>
     <string name="title_activity_bubble_level">Nível de bolha</string>
     <string name="title_activity_sound_meter">Medidor de som</string>
+    <string name="title_activity_speed_test">Teste de velocidade</string>
 
 </resources>

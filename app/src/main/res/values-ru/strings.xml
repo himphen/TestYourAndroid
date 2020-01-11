@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- By Google Translate -->
+<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
 <resources>
     <string name="app_name">Инструмент тестирования Android</string>
     <string name="ui_okay">Хорошо</string>
@@ -278,4 +277,5 @@
     <string name="bubble_level_horizontal">уровень</string>
     <string name="title_activity_bubble_level">Пузырьковый уровень</string>
     <string name="title_activity_sound_meter">Звукомер</string>
+    <string name="title_activity_speed_test">Тест скорости</string>
 </resources>

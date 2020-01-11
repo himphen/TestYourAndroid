@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- By Google Translate -->
+<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
 <resources>
     <string name="app_name">Mjet i testimit Android</string>
     <string name="ui_okay">Mirë</string>
@@ -278,4 +277,5 @@
     <string name="bubble_level_horizontal">nivel</string>
     <string name="title_activity_bubble_level">Niveli i flluskës</string>
     <string name="title_activity_sound_meter">Meter i zërit</string>
+    <string name="title_activity_speed_test">Speed Test</string>
 </resources>

@@ -277,4 +277,5 @@
     <string name="bubble_level_horizontal">ชั้น</string>
     <string name="title_activity_bubble_level">ระดับฟอง</string>
     <string name="title_activity_sound_meter">เครื่องวัดเสียง</string>
+    <string name="title_activity_speed_test">ทดสอบความเร็ว</string>
 </resources>

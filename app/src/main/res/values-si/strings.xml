@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- By Google Translate -->
+<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
 <resources>
     <string name="app_name">ඇන්ඩ්රොයිඩ් පරීක්ෂා කිරීමේ මෙවලම</string>
     <string name="ui_okay">හරි හරී</string>
@@ -278,4 +277,5 @@
     <string name="bubble_level_horizontal">මට්ටමින්</string>
     <string name="title_activity_bubble_level">බබල් මට්ටම</string>
     <string name="title_activity_sound_meter">ශබ්ද මිණුම්</string>
+    <string name="title_activity_speed_test">වේග පරීක්ෂණය</string>
 </resources>

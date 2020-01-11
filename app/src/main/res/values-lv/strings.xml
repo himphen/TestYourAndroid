@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- By Google Translate -->
+<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
 <resources>
     <string name="app_name">Android testēšanas rīks</string>
     <string name="ui_okay">Labi</string>
@@ -278,4 +277,5 @@
     <string name="bubble_level_horizontal">Līmenis</string>
     <string name="title_activity_bubble_level">Burbulis</string>
     <string name="title_activity_sound_meter">Skaņas mērītājs</string>
+    <string name="title_activity_speed_test">Speed Test</string>
 </resources>

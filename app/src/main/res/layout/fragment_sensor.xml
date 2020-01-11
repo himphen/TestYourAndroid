@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey100"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/graph2"
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graphView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
-        android:layout_weight="2"
-        android:orientation="vertical"/>
+        android:layout_weight="2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvlist"
@@ -25,6 +23,6 @@
         android:clipToPadding="false"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
-        android:scrollbars="vertical"/>
+        android:scrollbars="vertical" />
 
 </LinearLayout>

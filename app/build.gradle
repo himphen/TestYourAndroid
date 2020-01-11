@@ -1,17 +1,18 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
-        targetSdkVersion 28
-        versionCode 198712 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Egg waffle 871"
+        targetSdkVersion 29
+        versionCode 199002 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Fishballs 900"
         multiDexEnabled true
     }
 
@@ -55,7 +56,7 @@ android {
 
 static def getSecretKey(name) {
     Properties props = new Properties()
-    File f = new File('./../Key/testyourandroid.secrets.properties')
+    File f = new File('./secrets.properties')
     if (f.exists()) {
         props.load(new FileInputStream(f))
         return props[name]
@@ -65,11 +66,15 @@ static def getSecretKey(name) {
 }
 
 dependencies {
+    wearApp project(':wear')
+
     // Google Android Support
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.annotation:annotation:1.1.0'
+    implementation "androidx.preference:preference-ktx:1.1.0"
     implementation 'com.google.android.material:material:1.0.0'
+    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
 
     // Google Play Services
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
@@ -77,31 +82,23 @@ dependencies {
     implementation 'com.google.android.gms:play-services-wearable:17.0.0'
     implementation 'com.google.firebase:firebase-core:17.2.1'
     implementation 'com.google.firebase:firebase-ads:18.3.0'
-    implementation 'com.google.firebase:firebase-perf:19.0.1'
-
-    // https://github.com/JakeWharton/butterknife
-    implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 
     // https://github.com/afollestad/material-dialogs
-    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    implementation 'com.afollestad.material-dialogs:core:3.1.1'
 
     // https://github.com/bumptech/glide
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
     // https://github.com/PSDev/LicensesDialog
-    implementation 'de.psdev.licensesdialog:licensesdialog:2.0.0'
-
-    // GraphView
-    implementation files('libs/graphview.jar')
+    implementation 'de.psdev.licensesdialog:licensesdialog:2.1.0'
 
     // Simple IAB
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
 
     // AppBrain SDK
     //noinspection GradleDynamicVersion
-    implementation 'com.appbrain:appbrain-sdk:+@aar'
+    implementation 'com.appbrain:appbrain-sdk:+'
 
     // Crashlytics
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
@@ -113,10 +110,10 @@ dependencies {
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
 
     // https://github.com/Blankj/AndroidUtilCode
-    implementation 'com.blankj:utilcode:1.25.9'
+    implementation 'com.blankj:utilcode:1.26.0'
 
     // https://github.com/luizgrp/SectionedRecyclerViewAdapter
-    implementation 'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:2.0.0'
+    implementation 'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:3.1.0'
 
     // https://github.com/stepstone-tech/android-material-app-rating
     implementation 'com.stepstone.apprating:app-rating:2.3.1'
@@ -127,8 +124,17 @@ dependencies {
     // https://github.com/javiersantos/AppUpdater
     implementation 'com.github.javiersantos:AppUpdater:2.7'
 
-    wearApp project(':wear')
-    implementation 'org.jetbrains:annotations:15.0'
+    implementation 'org.jetbrains:annotations:16.0.1'
+    implementation "androidx.core:core-ktx:1.1.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // https://github.com/orhanobut/logger
+    implementation 'com.orhanobut:logger:2.2.0'
+
+    implementation 'com.jjoe64:graphview:4.2.2'
 }
 
 apply plugin: 'com.google.gms.google-services'
+repositories {
+    mavenCentral()
+}

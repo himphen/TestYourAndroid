@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- By Google Translate -->
+<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
 <resources>
     <string name="app_name">Android Testing Tool</string>
     <string name="ui_okay">Sige</string>
@@ -278,4 +277,5 @@
     <string name="bubble_level_horizontal">Nivå</string>
     <string name="title_activity_bubble_level">Bubbel nivå</string>
     <string name="title_activity_sound_meter">Ljudmätare</string>
+    <string name="title_activity_speed_test">Hastighetstest</string>
 </resources>
