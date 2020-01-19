@@ -43,9 +43,9 @@ class MainActivity : BaseActivity(), RatingDialogListener {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         detectLanguage(this)
-        val ab = initActionBar(supportActionBar, R.string.app_name)
-        ab?.setDisplayHomeAsUpEnabled(false)
-        ab?.setHomeButtonEnabled(false)
+        initActionBar(toolbar, titleId = R.string.app_name)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setHomeButtonEnabled(false)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,9 +60,9 @@ class MainActivity : BaseActivity(), RatingDialogListener {
         preferences = getSharedPreferences(UtilHelper.PREF, 0)
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         setSupportActionBar(toolbar)
-        val ab = initActionBar(supportActionBar, R.string.app_name)
-        ab?.setDisplayHomeAsUpEnabled(false)
-        ab?.setHomeButtonEnabled(false)
+        initActionBar(toolbar, titleId = R.string.app_name)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setHomeButtonEnabled(false)
         MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID)
         forceShowMenu(this)
         billingProcessor = BillingProcessor(this, BuildConfig.GOOGLE_IAP_KEY,

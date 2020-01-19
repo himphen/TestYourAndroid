@@ -13,7 +13,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
@@ -141,13 +140,15 @@ class HardwareLocationFragment : BaseFragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         if (isPermissionsGranted(PERMISSION_NAME)) {
             mGoogleMap = googleMap
-            val mLocationRequest = LocationRequest.create()
-            mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            mLocationRequest.interval = 1000 // Update location every second
-            mLocationRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
-            mGoogleMap!!.isMyLocationEnabled = true
-            mGoogleMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LAT_LNG, 15f))
-            mFusedLocationClient!!.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
+            mGoogleMap?.let { mGoogleMap ->
+                val mLocationRequest = LocationRequest.create()
+                mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+                mLocationRequest.interval = 1000 // Update location every second
+                mLocationRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
+                mGoogleMap.isMyLocationEnabled = true
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LAT_LNG, 15f))
+                mFusedLocationClient!!.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
+            }
         }
     }
 

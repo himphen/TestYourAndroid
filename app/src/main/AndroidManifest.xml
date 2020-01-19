@@ -221,10 +221,6 @@
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_step" />
         <activity
-            android:name=".ui.activity.HardwareFingerprintActivity"
-            android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_fingerprint" />
-        <activity
             android:name=".ui.activity.SensorHumidityActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_humidity" />

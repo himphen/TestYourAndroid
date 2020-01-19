@@ -36,14 +36,13 @@ class AppInfoPackageFragment : BaseFragment() {
     private fun init() {
         arguments?.getParcelable<AppItem>("APP")?.let { appItem ->
             try {
-                packageInfo = context?.packageManager?.getPackageInfo(appItem.packageName, 0)
+                packageInfo = context?.packageManager?.getPackageInfo(appItem.packageName!!, 0)
                 val list: ArrayList<InfoItem> = ArrayList()
                 val stringArray = resources.getStringArray(R.array.app_package_string_array)
                 for (i in stringArray.indices) {
                     list.add(InfoItem(stringArray[i], getData(i)))
                 }
-                val adapter = InfoItemAdapter(list)
-                rvlist!!.adapter = adapter
+                rvlist.adapter = InfoItemAdapter(list)
             } catch (e: PackageManager.NameNotFoundException) {
                 notAppFound(activity)
             }

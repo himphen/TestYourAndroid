@@ -56,9 +56,9 @@ class AppInfoActionFragment : BaseFragment() {
                 columnCount = 4
             }
             val mListener: GridItemAdapter.ItemClickListener = object : GridItemAdapter.ItemClickListener {
-                override fun onItemDetailClick(gridItem: GridItem?) {
+                override fun onItemDetailClick(gridItem: GridItem) {
                     var intent: Intent?
-                    when (gridItem!!.actionType) {
+                    when (gridItem.actionType) {
                         "uninstall" -> try {
                             intent = Intent(Intent.ACTION_DELETE, Uri.fromParts("package", appItem.packageName, null))
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -101,8 +101,8 @@ class AppInfoActionFragment : BaseFragment() {
                             }
                         }
                         "open" -> {
-                            appItem.packageName?.let {
-                                intent = context?.packageManager?.getLaunchIntentForPackage(appItem.packageName!!)
+                            appItem.packageName?.let { packageName ->
+                                intent = context?.packageManager?.getLaunchIntentForPackage(packageName)
                                 intent?.let { intent ->
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                                     startActivity(intent)

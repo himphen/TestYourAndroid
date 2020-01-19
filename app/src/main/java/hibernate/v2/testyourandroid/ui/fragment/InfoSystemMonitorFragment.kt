@@ -27,7 +27,7 @@ class InfoSystemMonitorFragment : BaseFragment() {
         tabTitles = resources.getStringArray(R.array.test_monitor_tab_title)
         // Note that we are passing childFragmentManager, not FragmentManager
         val adapter = MonitorFragmentPagerAdapter(context!!, childFragmentManager)
-        (activity as BaseActivity?)?.setActionBarTitle(tabTitles[0])
+        (activity as BaseActivity?)?.supportActionBar?.title = tabTitles[0]
         viewPager.adapter = adapter
         viewPager.offscreenPageLimit = 2
         tabLayout.setupWithViewPager(viewPager)
@@ -39,7 +39,7 @@ class InfoSystemMonitorFragment : BaseFragment() {
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
             override fun onPageSelected(position: Int) {
-                (activity as BaseActivity?)?.setActionBarTitle(tabTitles[position])
+                (activity as BaseActivity?)?.supportActionBar?.title = (tabTitles[position])
             }
 
             override fun onPageScrollStateChanged(state: Int) {}

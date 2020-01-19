@@ -15,8 +15,8 @@ import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper
-import hibernate.v2.testyourandroid.helper.UtilHelper.calculateAverage
 import hibernate.v2.testyourandroid.helper.UtilHelper.logException
+import hibernate.v2.testyourandroid.helper.format
 import kotlinx.android.synthetic.main.fragment_tool_sound_meter.*
 import java.util.ArrayList
 import kotlin.math.log10
@@ -119,7 +119,7 @@ class ToolSoundMeterFragment : BaseFragment() {
                                 meterMinTv.text = mindB.toString()
                             }
                             avgdB.add(db)
-                            meterAvgTv.text = calculateAverage(avgdB).toInt().toString()
+                            meterAvgTv.text = avgdB.average().format(0)
                             meterCurrentTv.text = db.toString()
                             lastXValue += 0.5
                             series.appendData(DataPoint(lastXValue, db.toDouble()), true, 100)

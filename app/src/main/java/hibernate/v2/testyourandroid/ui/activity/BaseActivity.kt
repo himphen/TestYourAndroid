@@ -3,8 +3,9 @@ package hibernate.v2.testyourandroid.ui.activity
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBar
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.appbrain.AppBrain
 import com.google.android.gms.ads.AdView
@@ -33,54 +34,37 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        if (id == android.R.id.home) {
-            finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    protected fun initActionBar(ab: ActionBar?, title: String?, subtitle: String? = null): ActionBar? {
-        ab?.let {
-            ab.elevation = 100f
-            ab.setDisplayHomeAsUpEnabled(true)
-            ab.setHomeButtonEnabled(true)
-            ab.title = title
-            if (subtitle != null) {
-                ab.subtitle = subtitle
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
             }
+            else -> super.onOptionsItemSelected(item)
         }
-        return ab
     }
 
-    protected fun initActionBar(ab: ActionBar?, titleId: Int, subtitleId: Int = 0): ActionBar? {
-        ab?.let {
-            ab.elevation = 100f
+    protected fun initActionBar(
+            toolbar: Toolbar,
+            titleString: String? = null, subtitleString: String? = null,
+            @StringRes titleId: Int? = null, @StringRes subtitleId: Int? = null
+    ) {
+        setSupportActionBar(toolbar)
+        supportActionBar?.let { ab ->
             ab.setDisplayHomeAsUpEnabled(true)
             ab.setHomeButtonEnabled(true)
-            ab.setTitle(titleId)
-            if (subtitleId != 0) {
+            titleString?.let {
+                ab.title = titleString
+            }
+            titleId?.let {
+                ab.setTitle(titleId)
+            }
+            subtitleString?.let {
+                ab.subtitle = subtitleString
+            }
+            subtitleId?.let {
                 ab.setSubtitle(subtitleId)
             }
         }
-        return ab
-    }
-
-    fun setActionBarTitle(titleId: Int) {
-        val ab = supportActionBar
-        ab?.setTitle(titleId)
-    }
-
-    fun setActionBarTitle(title: String?) {
-        val ab = supportActionBar
-        if (ab != null) {
-            ab.title = title
-        }
-    }
-
-    companion object {
-        const val DELAY_AD_LAYOUT = 100
     }
 
     public override fun onDestroy() {
@@ -89,17 +73,18 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    fun initFragment(fragment: Fragment, title: String) {
-        setContentView(R.layout.activity_container_adview)
-        setSupportActionBar(toolbar)
-        initActionBar(supportActionBar, title)
+    fun initFragment(fragment: Fragment?, titleString: String?, titleId: Int?) {
+        fragment?.let {
+            setContentView(R.layout.activity_container_adview)
+            initActionBar(toolbar, titleString = titleString, titleId = titleId)
 
-        Handler().postDelayed({
-            adView = UtilHelper.initAdView(this, adLayout, isAdViewPreserveSpace)
-        }, DELAY_AD_LAYOUT.toLong())
+            Handler().postDelayed({
+                adView = UtilHelper.initAdView(this, adLayout, isAdViewPreserveSpace)
+            }, UtilHelper.DELAY_AD_LAYOUT)
 
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.container, fragment)
-                .commit()
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment)
+                    .commit()
+        }
     }
 }

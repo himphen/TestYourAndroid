@@ -7,7 +7,6 @@ import android.nfc.NfcAdapter
 import android.nfc.tech.NfcF
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -21,7 +20,7 @@ import hibernate.v2.testyourandroid.helper.UtilHelper.startSettingsActivity
  * Created by himphen on 21/5/16.
  */
 class HardwareNFCFragment : BaseFragment() {
-    private var mAdapter: NfcAdapter? = null
+    private var nfcAdapter: NfcAdapter? = null
     private var mPendingIntent: PendingIntent? = null
     private lateinit var mIntentFilters: Array<IntentFilter>
     private lateinit var mNFCTechLists: Array<Array<String>>
@@ -49,37 +48,36 @@ class HardwareNFCFragment : BaseFragment() {
 
     override fun onPause() {
         super.onPause()
-        if (mAdapter != null) mAdapter!!.disableForegroundDispatch(activity)
+        nfcAdapter?.disableForegroundDispatch(activity)
     }
 
     override fun onResume() {
         super.onResume()
-        if (mAdapter != null) mAdapter!!.enableForegroundDispatch(activity, mPendingIntent,
-                mIntentFilters, mNFCTechLists)
+        nfcAdapter?.enableForegroundDispatch(activity, mPendingIntent, mIntentFilters, mNFCTechLists)
     }
 
     private fun init() {
-        mAdapter = NfcAdapter.getDefaultAdapter(context)
-        if (mAdapter != null) {
-            if (!mAdapter!!.isEnabled) {
+        nfcAdapter = NfcAdapter.getDefaultAdapter(context)
+        nfcAdapter?.let { nfcAdapter ->
+            if (!nfcAdapter.isEnabled) {
                 openFunctionDialog()
             }
-        } else {
+            // create an intent with tag data and deliver to this activity
+            mPendingIntent = PendingIntent.getActivity(context, 0, Intent(context,
+                    javaClass).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0)
+            // set an intent filter for all MIME data
+            val ndefIntent = IntentFilter(
+                    NfcAdapter.ACTION_NDEF_DISCOVERED)
+            try {
+                ndefIntent.addDataType("*/*")
+                mIntentFilters = arrayOf(ndefIntent)
+            } catch (e: Exception) {
+            }
+            mNFCTechLists = arrayOf(arrayOf(NfcF::class.java.name))
+        } ?: run {
             errorNoFeatureDialog(context)
         }
-        // create an intent with tag data and deliver to this activity
-        mPendingIntent = PendingIntent.getActivity(context, 0, Intent(context,
-                javaClass).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0)
-        // set an intent filter for all MIME data
-        val ndefIntent = IntentFilter(
-                NfcAdapter.ACTION_NDEF_DISCOVERED)
-        try {
-            ndefIntent.addDataType("*/*")
-            mIntentFilters = arrayOf(ndefIntent)
-        } catch (e: Exception) {
-            Log.e("TagDispatch", e.toString())
-        }
-        mNFCTechLists = arrayOf(arrayOf(NfcF::class.java.name))
+
     }
 
     private fun openFunctionDialog() {
@@ -88,7 +86,7 @@ class HardwareNFCFragment : BaseFragment() {
                     .title(R.string.ui_caution)
                     .message(R.string.nfc_enable_message)
                     .cancelable(false)
-                    .positiveButton(R.string.nfc_enable_posbtn) { dialog ->
+                    .positiveButton(R.string.nfc_enable_posbtn) {
                         startSettingsActivity(context, Settings.ACTION_NFC_SETTINGS)
                     }
                     .negativeButton(R.string.ui_cancel)

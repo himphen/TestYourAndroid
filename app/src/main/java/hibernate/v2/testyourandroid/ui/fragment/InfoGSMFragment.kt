@@ -52,7 +52,7 @@ class InfoGSMFragment : BaseFragment() {
 
     private fun init() {
         context?.let { context ->
-            telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+            telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
             val list: MutableList<InfoItem> = ArrayList()
             val stringArray = resources.getStringArray(R.array.info_gsm_string_array)
             simStateArray = resources.getStringArray(R.array.info_sim_status_string_array)
@@ -67,44 +67,48 @@ class InfoGSMFragment : BaseFragment() {
     @Suppress("DEPRECATION")
     @SuppressLint("HardwareIds")
     private fun getData(j: Int): String {
-        return if (context?.let { ActivityCompat.checkSelfPermission(it, PERMISSION_NAME[0]) } == PackageManager.PERMISSION_GRANTED) {
-            try {
-                when (j) {
-                    0 -> telephonyManager!!.simCountryIso
-                    1 -> telephonyManager!!.simOperator
-                    2 -> telephonyManager!!.simOperatorName
-                    3 -> simStateArray[telephonyManager!!.simState]
-                    4 -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        if (telephonyManager!!.phoneCount > 1) {
-                            "Sim Card 1: " + telephonyManager!!.getImei(0) + "\nSim Card 2: " + telephonyManager!!.getImei(1)
-                        } else {
-                            telephonyManager!!.imei
+        context?.let {
+            if (ActivityCompat.checkSelfPermission(it, PERMISSION_NAME[0]) == PackageManager.PERMISSION_GRANTED) {
+                telephonyManager?.let { telephonyManager ->
+                    return try {
+                        when (j) {
+                            0 -> telephonyManager.simCountryIso
+                            1 -> telephonyManager.simOperator
+                            2 -> telephonyManager.simOperatorName
+                            3 -> simStateArray[telephonyManager.simState]
+                            4 -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                if (telephonyManager.phoneCount > 1) {
+                                    "Sim Card 1: " + telephonyManager.getImei(0) + "\nSim Card 2: " + telephonyManager.getImei(1)
+                                } else {
+                                    telephonyManager.imei
+                                }
+                            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                if (telephonyManager.phoneCount > 1) {
+                                    "Sim Card 1: " + telephonyManager.getDeviceId(0) + "\nSim Card 2: " + telephonyManager.getDeviceId(1)
+                                } else {
+                                    telephonyManager.getDeviceId(0)
+                                }
+                            } else {
+                                telephonyManager.deviceId
+                            }
+                            5 -> telephonyManager.deviceSoftwareVersion
+                            6 -> telephonyManager.line1Number
+                            7 -> telephonyManager.networkCountryIso
+                            8 -> telephonyManager.networkOperator
+                            9 -> telephonyManager.networkOperatorName
+                            10 -> telephonyManager.isNetworkRoaming.toString()
+                            11 -> telephonyManager.simSerialNumber
+                            12 -> telephonyManager.subscriberId
+                            else -> "N/A"
                         }
-                    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (telephonyManager!!.phoneCount > 1) {
-                            "Sim Card 1: " + telephonyManager!!.getDeviceId(0) + "\nSim Card 2: " + telephonyManager!!.getDeviceId(1)
-                        } else {
-                            telephonyManager!!.getDeviceId(0)
-                        }
-                    } else {
-                        telephonyManager!!.deviceId
+                    } catch (e: Exception) {
+                        "N/A"
                     }
-                    5 -> telephonyManager!!.deviceSoftwareVersion
-                    6 -> telephonyManager!!.line1Number
-                    7 -> telephonyManager!!.networkCountryIso
-                    8 -> telephonyManager!!.networkOperator
-                    9 -> telephonyManager!!.networkOperatorName
-                    10 -> telephonyManager!!.isNetworkRoaming.toString()
-                    11 -> telephonyManager!!.simSerialNumber
-                    12 -> telephonyManager!!.subscriberId
-                    else -> "N/A"
                 }
-            } catch (e: Exception) {
-                "N/A"
             }
-        } else {
-            "N/A"
         }
+
+        return "N/A"
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {

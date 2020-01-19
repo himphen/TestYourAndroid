@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.round
+import hibernate.v2.testyourandroid.helper.roundTo
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.adapter.InfoItemAdapter
 import kotlinx.android.synthetic.main.fragment_info_listview.*
@@ -42,7 +42,7 @@ class InfoBatteryFragment : BaseFragment() {
             charge = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0)
             health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0)
             celsiusTemperature = temperature.toDouble() / 10
-            fahrenheitTemperature = round(32 + celsiusTemperature * 9 / 5, 2)
+            fahrenheitTemperature = (32 + celsiusTemperature * 9 / 5).roundTo(2)
             for (i in list.indices) {
                 list[i].contentText = getData(i)
             }

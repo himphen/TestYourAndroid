@@ -11,8 +11,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 199002 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Fishballs 900"
+        versionCode 199012 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Fishballs 901"
         multiDexEnabled true
     }
 
@@ -80,7 +80,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-wearable:17.0.0'
-    implementation 'com.google.firebase:firebase-core:17.2.1'
+    implementation 'com.google.firebase:firebase-core:17.2.2'
     implementation 'com.google.firebase:firebase-ads:18.3.0'
 
     // https://github.com/afollestad/material-dialogs

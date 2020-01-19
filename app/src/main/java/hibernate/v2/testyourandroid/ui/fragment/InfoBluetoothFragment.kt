@@ -40,12 +40,13 @@ class InfoBluetoothFragment : BaseFragment() {
             val action = intent.action
             if (BluetoothDevice.ACTION_FOUND == action) {
                 val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
-                val rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE).toInt()
-                val edevice = ExtendedBluetoothDevice()
                 device?.let {
-                    edevice.name = if (device.name == null) device.address else device.name
-                    edevice.setRiss(rssi)
-                    updateScannedList(edevice)
+                    val rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE).toInt()
+                    val extendedBluetoothDevice = ExtendedBluetoothDevice(
+                            name = if (device.name == null) device.address else device.name,
+                            rssi = rssi
+                    )
+                    updateScannedList(extendedBluetoothDevice)
                 }
             }
         }
@@ -99,8 +100,8 @@ class InfoBluetoothFragment : BaseFragment() {
         scannedList.clear()
         val stringArray = resources.getStringArray(R.array.test_bluetooth_string_array)
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-        // Register Broadcast Receiver
 
+        // Register Broadcast Receiver
         bluetoothAdapter?.let { bluetoothAdapter ->
             if (!bluetoothAdapter.isEnabled) {
                 openBluetoothDialog()
@@ -178,24 +179,18 @@ class InfoBluetoothFragment : BaseFragment() {
 
     private fun updateScannedList(device: ExtendedBluetoothDevice) {
         scannedList.add(device)
-        scannedList.sortWith(Comparator { lhs, rhs -> lhs.name!!.compareTo(rhs.name!!, ignoreCase = true) })
+        scannedList.sortWith(Comparator { lhs, rhs -> lhs.name.compareTo(rhs.name, ignoreCase = true) })
         var text = StringBuilder()
         for (item in scannedList) {
             text.append(getScanResultText(item))
         }
         text = StringBuilder(if (text.length > 2) text.substring(0, text.length - 2) else text.toString())
         list[0].contentText = text.toString()
-        adapter!!.notifyDataSetChanged()
+        adapter?.notifyDataSetChanged()
     }
 
-    private fun getScanResultText(result: ExtendedBluetoothDevice): String? {
-        var text: String? = ""
-        text += result.name
-        text += "\n"
-        val riss = result.riss
-        text += riss?.trim { it <= ' ' }
-        text += "\n\n"
-        return text
+    private fun getScanResultText(device: ExtendedBluetoothDevice): String {
+        return device.name + "\n" + device.getRssi() + "\n\n"
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {

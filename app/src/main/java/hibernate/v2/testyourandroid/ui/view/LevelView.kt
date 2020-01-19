@@ -148,9 +148,13 @@ class LevelView : View {
      * @return boolean
      */
     private fun outLimit(bubblePnt: PointF?, limitRadius: Float): Boolean {
-        val cSqrt = ((bubblePnt!!.x - centerPnt.x) * (bubblePnt.x - centerPnt.x)
-                + (centerPnt.y - bubblePnt.y) * +(centerPnt.y - bubblePnt.y))
-        return cSqrt - limitRadius * limitRadius > 0
+        bubblePnt?.let {
+            val cSqrt = ((bubblePnt.x - centerPnt.x) * (bubblePnt.x - centerPnt.x)
+                    + (centerPnt.y - bubblePnt.y) * +(centerPnt.y - bubblePnt.y))
+            return cSqrt - limitRadius * limitRadius > 0
+        }
+
+        return false
     }
 
     /**
@@ -159,11 +163,13 @@ class LevelView : View {
      * @return PointF
      */
     private fun onCirclePoint(bubblePnt: PointF?, limitRadius: Double): PointF? {
-        var azimuth = atan2((bubblePnt!!.y - centerPnt.y).toDouble(), (bubblePnt.x - centerPnt.x).toDouble())
-        azimuth = if (azimuth < 0) 2 * Math.PI + azimuth else azimuth
-        val x1 = centerPnt.x + limitRadius * cos(azimuth)
-        val y1 = centerPnt.y + limitRadius * sin(azimuth)
-        bubblePnt[x1.toFloat()] = y1.toFloat()
+        bubblePnt?.let {
+            var azimuth = atan2((bubblePnt.y - centerPnt.y).toDouble(), (bubblePnt.x - centerPnt.x).toDouble())
+            azimuth = if (azimuth < 0) 2 * Math.PI + azimuth else azimuth
+            val x1 = centerPnt.x + limitRadius * cos(azimuth)
+            val y1 = centerPnt.y + limitRadius * sin(azimuth)
+            bubblePnt[x1.toFloat()] = y1.toFloat()
+        }
         return bubblePnt
     }
 

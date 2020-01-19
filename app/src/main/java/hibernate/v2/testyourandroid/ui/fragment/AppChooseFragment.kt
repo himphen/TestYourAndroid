@@ -50,6 +50,6 @@ class AppChooseFragment : BaseFragment() {
                 startActivity(intent)
             }
         }
-        rvlist!!.adapter = AppChooseAdapter(list, mListener)
+        rvlist.adapter = AppChooseAdapter(list, mListener)
     }
 }

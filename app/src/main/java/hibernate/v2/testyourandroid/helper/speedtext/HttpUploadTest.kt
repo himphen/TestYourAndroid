@@ -1,7 +1,7 @@
 package hibernate.v2.testyourandroid.helper.speedtext
 
 import com.orhanobut.logger.Logger
-import hibernate.v2.testyourandroid.helper.UtilHelper
+import hibernate.v2.testyourandroid.helper.roundTo
 import java.io.DataOutputStream
 import java.io.IOException
 import java.math.BigDecimal
@@ -25,14 +25,14 @@ class HttpUploadTest(private val fileURL: String) : Thread() {
             return if (uploadedKByte >= 0) {
                 val now = System.currentTimeMillis()
                 val elapsedTime = (now - startTime) / 1000.0
-                UtilHelper.round((uploadedKByte * 8 / 1000 / elapsedTime), 2)
+                (uploadedKByte * 8 / 1000 / elapsedTime).roundTo(2)
             } else {
                 0.0
             }
         }
 
     fun getRoundedFinalUploadRate(): Double {
-        return UtilHelper.round(finalUploadRate, 2)
+        return finalUploadRate.roundTo(2)
     }
 
     override fun run() {

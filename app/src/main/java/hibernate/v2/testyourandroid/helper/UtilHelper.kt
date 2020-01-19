@@ -7,13 +7,17 @@ import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.res.Resources
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import android.view.View
 import android.view.ViewConfiguration
 import android.webkit.URLUtil
 import android.widget.RelativeLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.afollestad.materialdialogs.MaterialDialog
@@ -23,14 +27,13 @@ import com.crashlytics.android.Crashlytics
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.google.android.material.snackbar.Snackbar
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.Environment
 import hibernate.v2.testyourandroid.R
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.math.BigDecimal
-import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.ArrayList
 import java.util.Locale
@@ -41,16 +44,14 @@ object UtilHelper {
     const val PREF_LANGUAGE_COUNTRY = "PREF_LANGUAGE_COUNTRY"
     const val PREF_COUNT_RATE = "PREF_COUNT_RATE"
 
-    fun initAdView(context: Context?, adLayout: RelativeLayout): AdView? {
-        return initAdView(context, adLayout, false)
-    }
+    const val DELAY_AD_LAYOUT = 100L
 
-    fun initAdView(context: Context?, adLayout: RelativeLayout, isPreserveSpace: Boolean): AdView? {
+    fun initAdView(context: Context?, adLayout: RelativeLayout, isPreserveSpace: Boolean = false): AdView? {
         if (isPreserveSpace) {
             adLayout.layoutParams.height = SizeUtils.dp2px(50f)
         }
-        val defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         var adView: AdView? = null
+        val defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         try {
             if (!defaultPreferences.getBoolean(PREF_IAP, false)) {
                 adView = AdView(context)
@@ -115,12 +116,16 @@ object UtilHelper {
     }
 
     fun isPermissionsGranted(context: Context?, permissions: Array<String>): Boolean {
-        for (permission in permissions) {
-            if (context?.let { ContextCompat.checkSelfPermission(it, permission) } == PackageManager.PERMISSION_DENIED) {
-                return false
+        context?.let {
+            for (permission in permissions) {
+                if (ContextCompat.checkSelfPermission(it, permission) == PackageManager.PERMISSION_DENIED) {
+                    return false
+                }
             }
+            return true
+        } ?: run {
+            return false
         }
-        return true
     }
 
     fun hasAllPermissionsGranted(grantResults: IntArray): Boolean {
@@ -239,22 +244,7 @@ object UtilHelper {
         return temp
     }
 
-    fun round(value: Double, places: Int): Double {
-        var bd: BigDecimal?
-        try {
-            bd = BigDecimal(value)
-        } catch (ex: Exception) {
-            return 0.0
-        }
-        bd = bd.setScale(places, RoundingMode.HALF_UP)
-        return bd.toDouble()
-    }
-
-    fun notAppFound(activity: Activity?) {
-        notAppFound(activity, true)
-    }
-
-    fun notAppFound(activity: Activity?, finish: Boolean) {
+    fun notAppFound(activity: Activity?, finish: Boolean = true) {
         Toast.makeText(activity, R.string.app_not_found, Toast.LENGTH_LONG).show()
         if (finish) {
             activity?.finish()
@@ -301,17 +291,6 @@ object UtilHelper {
         return result
     }
 
-    fun calculateAverage(marks: List<Int>): Double {
-        var sum = 0
-        if (marks.isNotEmpty()) {
-            for (mark in marks) {
-                sum += mark
-            }
-            return sum.toDouble() / marks.size
-        }
-        return sum.toDouble()
-    }
-
     fun iapProductIdList(): ArrayList<String> {
         return arrayListOf(IAP_PID_10, IAP_PID_20, IAP_PID_40)
     }
@@ -329,4 +308,27 @@ object UtilHelper {
 
         return "https://$urlString"
     }
+
+    fun snackbar(view: View?, string: String? = null, @StringRes stringRid: Int? = null): Snackbar? {
+        val snackbar: Snackbar
+        view?.let {
+            snackbar = when {
+                string != null -> Snackbar.make(view, string, Snackbar.LENGTH_LONG)
+                stringRid != null -> Snackbar.make(view, stringRid, Snackbar.LENGTH_LONG)
+                else -> return null
+            }
+
+            val sbView = snackbar.view
+            sbView.setBackgroundResource(R.color.primary_dark)
+            sbView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).setTextColor(Color.WHITE)
+            sbView.findViewById<TextView>(com.google.android.material.R.id.snackbar_action).setTextColor(
+                    ContextCompat.getColor(snackbar.context, R.color.gold))
+
+            return snackbar
+        }
+
+        return null
+    }
 }
+
+fun Double.format(digits: Int) = "%.${digits}f".format(this)

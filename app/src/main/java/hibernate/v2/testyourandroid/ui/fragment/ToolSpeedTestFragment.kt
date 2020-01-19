@@ -14,6 +14,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.helper.roundTo
 import hibernate.v2.testyourandroid.helper.speedtext.HttpDownloadTest
 import hibernate.v2.testyourandroid.helper.speedtext.HttpUploadTest
 import hibernate.v2.testyourandroid.helper.speedtext.PingTest
@@ -222,7 +223,7 @@ class ToolSpeedTestFragment : BaseFragment() {
                     }
                     if (downloadTestFinished && !uploadTestStarted) {
                         if (downloadTest.finalDownloadRate != 0.0) {
-                            activity?.runOnUiThread { downloadTextView?.text = "${dec.format(downloadTest.getRoundedFinalDownloadRate())} Mbps" }
+                            activity?.runOnUiThread { downloadTextView?.text = "${dec.format(downloadTest.finalDownloadRate.roundTo(2))} Mbps" }
                         }
                         uploadTest.start()
                         uploadTestStarted = true

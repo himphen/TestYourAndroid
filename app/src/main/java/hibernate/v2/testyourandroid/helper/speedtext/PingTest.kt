@@ -23,22 +23,21 @@ class PingTest(
             ps.redirectErrorStream(true)
             val pr = ps.start()
             val bufferedReader = BufferedReader(InputStreamReader(pr.inputStream))
-            var line: String
-            while (bufferedReader.readLine().also { line = it } != null) {
+            bufferedReader.forEachLine { line ->
                 if (shouldStopNow) {
-                    break
+                    return@forEachLine
                 }
                 if (line.contains("icmp_seq")) {
                     instantRtt = line.split(" ").toTypedArray()[line.split(" ").toTypedArray().size - 2].replace("time=", "").toDouble()
                 }
                 if (line.startsWith("rtt ")) {
                     avgRtt = line.split("/").toTypedArray()[4].toDouble()
-                    break
+                    return@forEachLine
                 }
             }
             pr.waitFor()
             bufferedReader.close()
-        } catch (e: IOException) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
         isFinished = true

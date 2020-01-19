@@ -14,7 +14,7 @@ import hibernate.v2.testyourandroid.model.InfoItem
  * Created by himphen on 25/5/16.
  */
 class InfoItemAdaptor(
-        private val mDataList: List<InfoItem>
+        private val dataList: List<InfoItem>
 ) : HeaderRecyclerViewAdapter<RecyclerView.ViewHolder, InfoHeader?, InfoItem?, RecyclerView.ViewHolder?>() {
 
     public override fun onCreateHeaderViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -24,7 +24,7 @@ class InfoItemAdaptor(
     public override fun onBindHeaderViewHolder(rawHolder: RecyclerView.ViewHolder, position: Int) {
         val header = header
         val holder = rawHolder as HeaderViewHolder
-        holder.titleTv.text = header!!.titleText
+        holder.titleTv.text = header?.titleText
     }
 
     public override fun onCreateItemViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -35,14 +35,14 @@ class InfoItemAdaptor(
 
     public override fun onBindItemViewHolder(rawHolder: RecyclerView.ViewHolder, position: Int) {
         // Due to adding header, we need to position -1
-        val item = mDataList[position - 1]
+        val item = dataList[position - 1]
         val holder = rawHolder as ItemViewHolder
         holder.titleTv.text = item.titleText
         holder.contentTv.text = item.contentText
     }
 
     override fun getItemCount(): Int {
-        return mDataList.size
+        return dataList.size
     }
 
     internal class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -18,10 +18,10 @@ import kotlinx.android.synthetic.main.fragment_hardware_flashlight.*
 /**
  * Created by himphen on 21/5/16.
  */
+@Suppress("DEPRECATION")
 class ToolFlashlightFragment : BaseFragment() {
 
     private var mCamera: Camera? = null
-    private var mParams: Camera.Parameters? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_hardware_flashlight, container, false)
@@ -38,8 +38,8 @@ class ToolFlashlightFragment : BaseFragment() {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroy() {
+        super.onDestroy()
         closeFlash()
     }
 
@@ -65,11 +65,12 @@ class ToolFlashlightFragment : BaseFragment() {
                         }
                     } else {
                         mCamera = Camera.open(0)
-                        mParams = mCamera?.parameters
-                        mParams?.flashMode = Camera.Parameters.FLASH_MODE_TORCH
-                        mCamera?.parameters = mParams
-                        mCamera?.startPreview()
-
+                        mCamera?.let { mCamera ->
+                            val mParams = mCamera.parameters
+                            mCamera.parameters?.flashMode = Camera.Parameters.FLASH_MODE_TORCH
+                            mCamera.parameters = mParams
+                            mCamera.startPreview()
+                        }
                         return
                     }
                 } catch (e: Exception) {
@@ -82,22 +83,23 @@ class ToolFlashlightFragment : BaseFragment() {
     }
 
     private fun closeFlash() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val cameraManager = context?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
-            try {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                val cameraManager = context?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+
                 val cameraId = cameraManager.cameraIdList[0] // Usually front camera is at 0 position.
                 cameraManager.setTorchMode(cameraId, false)
-            } catch (ignored: Exception) {
-            }
-        } else {
-            if (mCamera != null) {
-                mParams = mCamera?.parameters
-                mParams?.flashMode = Camera.Parameters.FLASH_MODE_OFF
-                mCamera?.parameters = mParams
-                mCamera?.stopPreview()
-                mCamera?.release()
+            } else {
+                mCamera?.let { mCamera ->
+                    val mParams = mCamera.parameters
+                    mParams?.flashMode = Camera.Parameters.FLASH_MODE_OFF
+                    mCamera.parameters = mParams
+                    mCamera.stopPreview()
+                    mCamera.release()
+                }
                 mCamera = null
             }
+        } catch (ignored: Exception) {
         }
         turnSwitch.isChecked = false
     }

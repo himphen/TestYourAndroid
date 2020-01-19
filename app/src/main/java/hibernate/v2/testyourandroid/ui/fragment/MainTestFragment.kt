@@ -16,7 +16,6 @@ import com.github.javiersantos.appupdater.enums.Display
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.model.GridItem
 import hibernate.v2.testyourandroid.ui.activity.HardwareCameraActivity
-import hibernate.v2.testyourandroid.ui.activity.HardwareFingerprintActivity
 import hibernate.v2.testyourandroid.ui.activity.HardwareLocationActivity
 import hibernate.v2.testyourandroid.ui.activity.HardwareMicrophoneActivity
 import hibernate.v2.testyourandroid.ui.activity.HardwareNFCActivity
@@ -77,8 +76,7 @@ class MainTestFragment : BaseFragment() {
         )
         val hardwareClassArray = arrayOf<Class<*>>(
                 HardwareScreenActivity::class.java, DrawingActivity::class.java, HardwareTouchActivity::class.java,
-                HardwareCameraActivity::class.java, HardwareFingerprintActivity::class.java,
-                HardwareSpeakerActivity::class.java, HardwareMicrophoneActivity::class.java,
+                HardwareCameraActivity::class.java, HardwareSpeakerActivity::class.java, HardwareMicrophoneActivity::class.java,
                 HardwareNFCActivity::class.java, HardwareLocationActivity::class.java
         )
         val sensorClassArray = arrayOf<Class<*>>(

@@ -160,16 +160,19 @@ class InfoCPUFragment : BaseFragment() {
 
     private val ramMemory: String
         get() {
-            val activityManager = context!!.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-            val memoryInfo = ActivityManager.MemoryInfo()
-            activityManager.getMemoryInfo(memoryInfo)
-            val totalMem = memoryInfo.totalMem
-            var text = ""
-            text += memoryArray[0] + formatBitSize(totalMem) + "\n"
-            text += memoryArray[1] + formatBitSize(memoryInfo.availMem) + "\n"
-            text += memoryArray[2] + formatBitSize(totalMem - memoryInfo.availMem) + "\n"
-            text += memoryArray[3] + formatBitSize(memoryInfo.threshold)
-            return text
+            context?.let { context ->
+                val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+                val memoryInfo = ActivityManager.MemoryInfo()
+                activityManager.getMemoryInfo(memoryInfo)
+                val totalMem = memoryInfo.totalMem
+                var text = ""
+                text += memoryArray[0] + formatBitSize(totalMem) + "\n"
+                text += memoryArray[1] + formatBitSize(memoryInfo.availMem) + "\n"
+                text += memoryArray[2] + formatBitSize(totalMem - memoryInfo.availMem) + "\n"
+                text += memoryArray[3] + formatBitSize(memoryInfo.threshold)
+                return text
+            }
+            return ""
         }
 
     private val romMemory: LongArray

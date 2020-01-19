@@ -25,24 +25,23 @@ class InfoHardwareFragment : BaseFragment() {
     private var level = 0
     private var charge = 0
     private var health = 0
+
     private lateinit var arrayCharge: Array<String>
     private lateinit var arrayHealth: Array<String>
-    private var adapter: InfoItemAdaptor? = null
-    private var list: ArrayList<InfoItem>? = null
+    private lateinit var adapter: InfoItemAdaptor
+
+    private var list: ArrayList<InfoItem> = arrayListOf()
+
     private val mBatInfoReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(arg0: Context, intent: Intent) {
             level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
             charge = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0)
             if (charge > 4) charge = 3
             health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0)
-            if (list != null) {
-                list!![2].contentText = "$level %"
-                list!![3].contentText = arrayHealth[health]
-                list!![4].contentText = arrayCharge[charge]
-            }
-            if (adapter != null) {
-                adapter!!.notifyDataSetChanged()
-            }
+            list[2].contentText = "$level %"
+            list[3].contentText = arrayHealth[health]
+            list[4].contentText = arrayCharge[charge]
+            adapter.notifyDataSetChanged()
         }
     }
 
@@ -58,26 +57,25 @@ class InfoHardwareFragment : BaseFragment() {
     }
 
     override fun onPause() {
-        context!!.unregisterReceiver(mBatInfoReceiver)
+        context?.unregisterReceiver(mBatInfoReceiver)
         super.onPause()
     }
 
     override fun onResume() {
         super.onResume()
-        context!!.registerReceiver(mBatInfoReceiver, IntentFilter(
-                Intent.ACTION_BATTERY_CHANGED))
+        context?.registerReceiver(mBatInfoReceiver, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
     }
 
     private fun init() {
         arrayCharge = resources.getStringArray(R.array.info_battery_charge_string_array)
         arrayHealth = resources.getStringArray(R.array.info_battery_health_string_array)
-        list = ArrayList()
+        list = arrayListOf()
         val stringArray = resources.getStringArray(R.array.info_hardware_string_array)
         for (i in stringArray.indices) {
-            list!!.add(InfoItem(stringArray[i], getData(i)))
+            list.add(InfoItem(stringArray[i], getData(i)))
         }
-        adapter = InfoItemAdaptor(list!!)
-        adapter!!.header = InfoHeader(activity?.title.toString())
+        adapter = InfoItemAdaptor(list)
+        adapter.header = InfoHeader(activity?.title.toString())
         rvlist.adapter = adapter
     }
 

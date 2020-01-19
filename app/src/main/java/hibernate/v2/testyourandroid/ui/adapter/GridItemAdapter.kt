@@ -22,7 +22,7 @@ class GridItemAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface ItemClickListener {
-        fun onItemDetailClick(gridItem: GridItem?)
+        fun onItemDetailClick(gridItem: GridItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

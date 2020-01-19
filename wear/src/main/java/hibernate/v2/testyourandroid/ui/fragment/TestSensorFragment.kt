@@ -24,12 +24,12 @@ import java.util.ArrayList
  * Created by himphen on 21/5/16.
  */
 class TestSensorFragment : BaseFragment() {
-    private var mgr: SensorManager? = null
+    private lateinit var sensorManager: SensorManager
     private var sensor: Sensor? = null
     private var sensorEventListener: SensorEventListener? = null
     private var sensorType = 0
     private var reading = ""
-    private var adapter: InfoItemAdaptor? = null
+    private lateinit var adapter: InfoItemAdaptor
     private var list: MutableList<InfoItem> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,14 +51,14 @@ class TestSensorFragment : BaseFragment() {
     override fun onPause() {
         super.onPause()
         if (sensor != null && sensorEventListener != null) {
-            mgr!!.unregisterListener(sensorEventListener)
+            sensorManager.unregisterListener(sensorEventListener)
         }
     }
 
     override fun onResume() {
         super.onResume()
         if (sensor != null && sensorEventListener != null) {
-            mgr!!.registerListener(sensorEventListener, sensor,
+            sensorManager.registerListener(sensorEventListener, sensor,
                     SensorManager.SENSOR_DELAY_NORMAL)
         }
     }
@@ -66,9 +66,9 @@ class TestSensorFragment : BaseFragment() {
     private fun init() {
         list = ArrayList()
         val stringArray = resources.getStringArray(R.array.test_sensor_string_array)
-        mgr = context!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = context!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         try {
-            sensor = mgr!!.getDefaultSensor(sensorType)
+            sensor = sensorManager.getDefaultSensor(sensorType)
             if (sensor == null) {
                 Toast.makeText(context, R.string.dialog_feature_na_message, Toast.LENGTH_LONG).show()
                 activity?.finish()
@@ -105,8 +105,8 @@ class TestSensorFragment : BaseFragment() {
             list.add(infoItem)
         }
         adapter = InfoItemAdaptor(list)
-        adapter!!.header = InfoHeader(activity?.title.toString())
-        rvlist!!.adapter = adapter
+        adapter.header = InfoHeader(activity?.title.toString())
+        rvlist.adapter = adapter
     }
 
     private val accelerometerListener: SensorEventListener = object : SensorEventListener {
@@ -117,7 +117,7 @@ class TestSensorFragment : BaseFragment() {
                     + String.format("%1.4f", event.values[1]) + " m/s²\nZ: "
                     + String.format("%1.4f", event.values[2]) + " m/s²")
             list[0].contentText = reading
-            adapter!!.notifyDataSetChanged()
+            adapter.notifyDataSetChanged()
         }
     }
     private val lightListener: SensorEventListener = object : SensorEventListener {
@@ -125,7 +125,7 @@ class TestSensorFragment : BaseFragment() {
         override fun onSensorChanged(event: SensorEvent) {
             reading = event.values[0].toString() + " lux"
             list[0].contentText = reading
-            adapter!!.notifyDataSetChanged()
+            adapter.notifyDataSetChanged()
         }
     }
     private val pressureListener: SensorEventListener = object : SensorEventListener {
@@ -133,7 +133,7 @@ class TestSensorFragment : BaseFragment() {
         override fun onSensorChanged(event: SensorEvent) {
             reading = event.values[0].toString() + " hPa"
             list[0].contentText = reading
-            adapter!!.notifyDataSetChanged()
+            adapter.notifyDataSetChanged()
         }
     }
     private val proximityListener: SensorEventListener = object : SensorEventListener {
@@ -142,7 +142,7 @@ class TestSensorFragment : BaseFragment() {
         override fun onSensorChanged(event: SensorEvent) {
             reading = String.format("%1.2f", event.values[0]) + " cm"
             list[0].contentText = reading
-            adapter!!.notifyDataSetChanged()
+            adapter.notifyDataSetChanged()
         }
     }
 

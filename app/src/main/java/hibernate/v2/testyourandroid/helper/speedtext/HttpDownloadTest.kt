@@ -1,6 +1,6 @@
 package hibernate.v2.testyourandroid.helper.speedtext
 
-import hibernate.v2.testyourandroid.helper.UtilHelper
+import hibernate.v2.testyourandroid.helper.roundTo
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.ArrayList
@@ -19,14 +19,10 @@ class HttpDownloadTest(private val fileURL: String) : Thread() {
 
     private fun setInstantDownloadRate(downloadedByte: Int, elapsedTime: Double) {
         instantDownloadRate = if (downloadedByte >= 0) {
-            UtilHelper.round((downloadedByte * 8 / (1000 * 1000) / elapsedTime), 2)
+            (downloadedByte * 8 / (1000 * 1000) / elapsedTime).roundTo(2)
         } else {
             0.00
         }
-    }
-
-    fun getRoundedFinalDownloadRate(): Double {
-        return UtilHelper.round(finalDownloadRate, 2)
     }
 
     override fun run() {
