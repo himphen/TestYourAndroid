@@ -187,7 +187,6 @@
         <item>@string/title_activity_drawing</item>
         <item>@string/title_activity_touch</item>
         <item>@string/title_activity_camera</item>
-        <item>@string/title_activity_fingerprint</item>
         <item>@string/title_activity_speaker</item>
         <item>@string/title_activity_microphone</item>
         <item>@string/title_activity_nfc</item>

@@ -11,8 +11,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 199012 // 0 = alpha, 1 = beta, 2 = release
-        versionName "Fishballs 901"
+        versionCode 199022 // 0 = alpha, 1 = beta, 2 = release
+        versionName "Fishballs 902"
         multiDexEnabled true
     }
 
