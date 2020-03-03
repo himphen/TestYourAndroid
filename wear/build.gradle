@@ -44,12 +44,12 @@ dependencies {
     compileOnly 'com.google.android.wearable:wearable:2.5.0'
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     // https://github.com/Karumi/HeaderRecyclerView
     implementation 'com.karumi:headerrecyclerview:1.1.0'
-    implementation "androidx.core:core-ktx:1.1.0"
+    implementation 'androidx.core:core-ktx:1.2.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
