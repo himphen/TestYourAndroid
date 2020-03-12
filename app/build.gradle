@@ -12,7 +12,7 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 199100
+        versionCode 199102
         versionName "Fishballs 910"
         multiDexEnabled true
         flavorDimensions "default"
