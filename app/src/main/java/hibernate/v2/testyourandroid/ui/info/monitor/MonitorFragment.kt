@@ -18,31 +18,32 @@ class MonitorFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_view_pager_conatiner, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tabTitles = resources.getStringArray(R.array.test_monitor_tab_title)
-        // Note that we are passing childFragmentManager, not FragmentManager
-        val adapter = MonitorFragmentPagerAdapter(context!!, childFragmentManager)
-        (activity as BaseActivity?)?.supportActionBar?.title = tabTitles[0]
-        viewPager.adapter = adapter
-        viewPager.offscreenPageLimit = 2
-        tabLayout.setupWithViewPager(viewPager)
-        // Iterate over all tabs and set the custom view
-        for (i in 0 until tabLayout.tabCount) {
-            val tab = tabLayout.getTabAt(i)
-            tab?.customView = adapter.getTabView(i)
-        }
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-            override fun onPageSelected(position: Int) {
-                (activity as BaseActivity?)?.supportActionBar?.title = (tabTitles[position])
+        activity?.let { activity ->
+            tabTitles = resources.getStringArray(R.array.test_monitor_tab_title)
+            val adapter = MonitorFragmentPagerAdapter(activity, childFragmentManager)
+            (activity as BaseActivity).supportActionBar?.title = tabTitles[0]
+            viewPager.adapter = adapter
+            viewPager.offscreenPageLimit = 2
+            tabLayout.setupWithViewPager(viewPager)
+            // Iterate over all tabs and set the custom view
+            for (i in 0 until tabLayout.tabCount) {
+                val tab = tabLayout.getTabAt(i)
+                tab?.customView = adapter.getTabView(i)
             }
+            viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+                override fun onPageSelected(position: Int) {
+                    activity.supportActionBar?.title = (tabTitles[position])
+                }
 
-            override fun onPageScrollStateChanged(state: Int) {}
-        })
+                override fun onPageScrollStateChanged(state: Int) {}
+            })
+        }
     }
 }

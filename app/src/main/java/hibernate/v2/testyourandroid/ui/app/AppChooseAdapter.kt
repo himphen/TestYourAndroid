@@ -27,11 +27,11 @@ class AppChooseAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
-        val viewHolder = holder as ItemViewHolder
-        viewHolder.titleTv.text = item.titleText
-        viewHolder.contentTv.text = item.contentText
-        viewHolder.rootView.tag = item
-        viewHolder.rootView.setOnClickListener { v -> itemClickListener.onItemDetailClick(v.tag as AppChooseItem) }
+        holder as ItemViewHolder
+        holder.titleTv.text = item.titleText
+        holder.contentTv.text = item.contentText
+        holder.rootView.tag = item
+        holder.rootView.setOnClickListener { v -> itemClickListener.onItemDetailClick(v.tag as AppChooseItem) }
     }
 
     override fun getItemCount(): Int = list.size

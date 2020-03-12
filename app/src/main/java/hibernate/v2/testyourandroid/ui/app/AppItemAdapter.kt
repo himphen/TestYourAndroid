@@ -30,9 +30,9 @@ class AppItemAdapter(
         return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_info_app, parent, false))
     }
 
-    override fun onBindViewHolder(rawHolder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
-        val holder = rawHolder as ItemViewHolder
+        holder as ItemViewHolder
         holder.titleTv.text = item.appName
         holder.contentTv.text = item.packageName
         Glide.with(holder.iconIv.context)

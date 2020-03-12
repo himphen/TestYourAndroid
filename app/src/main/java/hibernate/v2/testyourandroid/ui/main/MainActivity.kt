@@ -18,8 +18,6 @@ import com.anjlab.android.iab.v3.BillingProcessor
 import com.anjlab.android.iab.v3.BillingProcessor.IBillingHandler
 import com.anjlab.android.iab.v3.TransactionDetails
 import com.blankj.utilcode.util.AppUtils
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.orhanobut.logger.Logger
 import com.stepstone.apprating.AppRatingDialog
 import com.stepstone.apprating.listener.RatingDialogListener
 import hibernate.v2.testyourandroid.BuildConfig
@@ -204,7 +202,7 @@ class MainActivity : BaseActivity(), RatingDialogListener {
             text += "Brand: " + Build.BRAND + "\n"
             text += "Model: " + Build.MODEL + "\n\n\n"
             intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("hibernatev2@gmail.com"))
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(BuildConfig.CONTACT_EMAIL))
             intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_title))
             intent.putExtra(Intent.EXTRA_TEXT, text)
             startActivity(intent)

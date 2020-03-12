@@ -134,18 +134,18 @@
     <string name="info_battery_health_string_8">Precaución: Muy frío</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1">SSID:\u0020</string>
-    <string name="test_wifi_current_string_2">BSSID:\u0020</string>
-    <string name="test_wifi_current_string_3">Identificación de red:\u0020</string>
-    <string name="test_wifi_current_string_4">Dirección MAC:\u0020</string>
-    <string name="test_wifi_current_string_5">Velocidad de wifi:\u0020</string>
-    <string name="test_wifi_current_string_6">Fuerza Wi-Fi:\u0020</string>
-    <string name="test_wifi_current_string_7">Dirección IP:\u0020</string>
-    <string name="test_wifi_current_string_8">Puerta de enlace predeterminada:\u0020</string>
-    <string name="test_wifi_current_string_9">Máscara de subred:\u0020</string>
-    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
-    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
-    <string name="test_wifi_current_string_12">Dirección del servidor:\u0020</string>
+    <string name="test_wifi_current_string_ssid">SSID:\u0020</string>
+    <string name="test_wifi_current_string_bssid">BSSID:\u0020</string>
+    <string name="test_wifi_current_string_network_id">Identificación de red:\u0020</string>
+    <string name="test_wifi_current_string_mac_address">Dirección MAC</string>
+    <string name="test_wifi_current_string_speed">Velocidad de wifi</string>
+    <string name="test_wifi_current_string_rssi">Fuerza Wi-Fi</string>
+    <string name="test_wifi_current_string_ip_address">Dirección IP</string>
+    <string name="test_wifi_current_string_gateway">Puerta de enlace predeterminada</string>
+    <string name="test_wifi_current_string_subnet_mask">Máscara de subred</string>
+    <string name="test_wifi_current_string_dns">DNS 1</string>
+    <string name="test_wifi_current_string_dns_2">DNS 2</string>
+    <string name="test_wifi_current_string_server_address">Dirección del servidor</string>
 
     <!--  -->
     <string name="test_wifi_string_1">Wi-Fi actual</string>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.blankj.utilcode.util.ConvertUtils
+import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
@@ -21,15 +22,16 @@ import java.util.ArrayList
 import java.util.regex.Pattern
 
 class MonitorCPUFragment : BaseFragment() {
-    private var series = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
+    private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
     private val mHandler = Handler()
     private val timer: Runnable = object : Runnable {
         override fun run() {
-            lastXValue += 1.0
             speedText.text = "${getCPU(CPU_CURRENT)} MHz"
-            series.appendData(DataPoint(lastXValue, getCPU(CPU_CURRENT).toDouble()), true, 100)
-            mHandler.postDelayed(this, 1000)
+            series.appendData(DataPoint(lastXValue, getCPU(CPU_CURRENT).toDouble()), true, 36)
+            graphView.viewport.scrollToEnd()
+            lastXValue += 1.0
+            mHandler.postDelayed(this, UPDATE_CHART_INTERVAL)
         }
     }
 
@@ -53,6 +55,7 @@ class MonitorCPUFragment : BaseFragment() {
         graphView.gridLabelRenderer.isHighlightZeroLines = false
         graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
         graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+        graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
         graphView.viewport.isYAxisBoundsManual = true
         graphView.viewport.setMinY(0.0)
         graphView.viewport.setMaxY(getCPU(CPU_MAX).toDouble())
@@ -65,7 +68,7 @@ class MonitorCPUFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        mHandler.postDelayed(timer, 1000)
+        mHandler.postDelayed(timer, UPDATE_CHART_INTERVAL)
     }
 
     override fun onPause() {
@@ -132,5 +135,6 @@ class MonitorCPUFragment : BaseFragment() {
         private const val CPU_MIN = 0
         private const val CPU_MAX = 1
         private const val CPU_CURRENT = 2
+        const val UPDATE_CHART_INTERVAL = 1000L
     }
 }

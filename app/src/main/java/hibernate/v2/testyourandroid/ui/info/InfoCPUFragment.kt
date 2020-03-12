@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper.formatBitSize
 import hibernate.v2.testyourandroid.model.InfoItem
-import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import kotlinx.android.synthetic.main.fragment_info_listview.*
 import java.io.BufferedReader
 import java.io.File

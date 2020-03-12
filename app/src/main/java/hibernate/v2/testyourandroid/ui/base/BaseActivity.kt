@@ -7,9 +7,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.appbrain.AppBrain
 import com.google.android.gms.ads.AdView
-import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper
 import hibernate.v2.testyourandroid.helper.UtilHelper.detectLanguage
@@ -27,10 +25,6 @@ abstract class BaseActivity : AppCompatActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         detectLanguage(this)
-        AppBrain.init(this)
-        for (deviceId in BuildConfig.APPBRAIN_DEVICE_ID) {
-            AppBrain.addTestDevice(deviceId)
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

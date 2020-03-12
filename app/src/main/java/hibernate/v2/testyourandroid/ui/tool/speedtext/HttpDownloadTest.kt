@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid.helper.speedtext
+package hibernate.v2.testyourandroid.ui.tool.speedtext
 
 import hibernate.v2.testyourandroid.helper.roundTo
 import java.net.HttpURLConnection

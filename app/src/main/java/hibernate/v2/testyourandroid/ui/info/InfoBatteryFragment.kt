@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.roundTo
 import hibernate.v2.testyourandroid.model.InfoItem
-import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import kotlinx.android.synthetic.main.fragment_info_listview.*
 import java.util.ArrayList
 
@@ -65,7 +65,10 @@ class InfoBatteryFragment : BaseFragment() {
     }
 
     override fun onPause() {
-        context?.unregisterReceiver(batteryReceiver)
+        try {
+            context?.unregisterReceiver(batteryReceiver)
+        } catch (ignored: IllegalArgumentException) {
+        }
         super.onPause()
     }
 

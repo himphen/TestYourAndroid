@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import de.psdev.licensesdialog.LicensesDialog
+import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
@@ -62,7 +63,7 @@ class MainAboutFragment : BaseFragment() {
             text += "Brand: " + Build.BRAND + "\n"
             text += "Model: " + Build.MODEL + "\n\n\n"
             intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("hibernatev2@gmail.com"))
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(BuildConfig.CONTACT_EMAIL))
             intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_title))
             intent.putExtra(Intent.EXTRA_TEXT, text)
             startActivity(intent)

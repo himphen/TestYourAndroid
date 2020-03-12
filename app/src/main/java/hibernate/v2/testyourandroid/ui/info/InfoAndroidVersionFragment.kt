@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.model.InfoItem
-import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import kotlinx.android.synthetic.main.fragment_info_listview.*
 import java.util.ArrayList
 import java.util.TimeZone

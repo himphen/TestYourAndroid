@@ -62,7 +62,10 @@ class InfoBatteryFragment : BaseFragment() {
 
     override fun onPause() {
         super.onPause()
-        context?.unregisterReceiver(mBatInfoReceiver)
+        try {
+            context?.unregisterReceiver(mBatInfoReceiver)
+        } catch (ignored: IllegalArgumentException) {
+        }
     }
 
     override fun onResume() {

@@ -12,8 +12,8 @@ import hibernate.v2.testyourandroid.helper.UtilHelper.notAppFound
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.model.AppPermissionItem
 import hibernate.v2.testyourandroid.model.InfoItem
-import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import kotlinx.android.synthetic.main.fragment_info_listview.*
 import java.util.ArrayList
 import java.util.Comparator

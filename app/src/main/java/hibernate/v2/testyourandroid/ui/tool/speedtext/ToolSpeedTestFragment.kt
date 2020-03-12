@@ -1,5 +1,6 @@
-package hibernate.v2.testyourandroid.ui.tool
+package hibernate.v2.testyourandroid.ui.tool.speedtext
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
@@ -11,13 +12,11 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
+import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.roundTo
-import hibernate.v2.testyourandroid.helper.speedtext.HttpDownloadTest
-import hibernate.v2.testyourandroid.helper.speedtext.HttpUploadTest
-import hibernate.v2.testyourandroid.helper.speedtext.PingTest
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.view.GetSpeedTestHostsHandler
 import kotlinx.android.synthetic.main.fragment_tool_speed_test.*
@@ -55,6 +54,7 @@ class ToolSpeedTestFragment : BaseFragment() {
             // Init Ping graphic
             graphViewPing.gridLabelRenderer.isHorizontalLabelsVisible = false
             graphViewPing.gridLabelRenderer.isVerticalLabelsVisible = false
+            graphViewPing.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
             graphViewPing.gridLabelRenderer.gridColor = Color.GRAY
             seriesPing.thickness = 3
             seriesPing.color = ContextCompat.getColor(it, R.color.grey800)
@@ -68,6 +68,7 @@ class ToolSpeedTestFragment : BaseFragment() {
             // Init Download graphic
             graphViewDownload.gridLabelRenderer.isHorizontalLabelsVisible = false
             graphViewDownload.gridLabelRenderer.isVerticalLabelsVisible = false
+            graphViewDownload.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
             graphViewDownload.gridLabelRenderer.gridColor = Color.GRAY
             seriesDownload.thickness = 3
             seriesDownload.color = ContextCompat.getColor(it, R.color.grey800)
@@ -81,6 +82,7 @@ class ToolSpeedTestFragment : BaseFragment() {
             // Init Upload graphic
             graphViewUpload.gridLabelRenderer.isHorizontalLabelsVisible = false
             graphViewUpload.gridLabelRenderer.isVerticalLabelsVisible = false
+            graphViewUpload.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
             graphViewUpload.gridLabelRenderer.gridColor = Color.GRAY
             seriesUpload.thickness = 3
             seriesUpload.color = ContextCompat.getColor(it, R.color.grey800)
@@ -105,6 +107,8 @@ class ToolSpeedTestFragment : BaseFragment() {
     private fun initThread() {
         thread = Thread(object : Runnable {
             val dec = DecimalFormat("#.##")
+
+            @SuppressLint("SetTextI18n")
             override fun run() {
                 shouldStopNow = false
                 HttpUploadTest.shouldStopNow = false

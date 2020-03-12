@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
+import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
@@ -29,8 +30,8 @@ import hibernate.v2.testyourandroid.helper.SensorHelper.getTemperatureCounterSen
 import hibernate.v2.testyourandroid.helper.UtilHelper
 import hibernate.v2.testyourandroid.helper.UtilHelper.logException
 import hibernate.v2.testyourandroid.model.InfoItem
-import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import kotlinx.android.synthetic.main.fragment_sensor.*
 import java.util.ArrayList
 import kotlin.math.exp
@@ -48,9 +49,9 @@ class SensorFragment : BaseFragment() {
     private var sensorType = 0
     private var reading = ""
     private var initReading = 0f
-    private var series = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
-    private var series2 = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
-    private var series3 = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
+    private var series = LineGraphSeries(arrayOf<DataPoint>())
+    private var series2 = LineGraphSeries(arrayOf<DataPoint>())
+    private var series3 = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
     private var adapter: InfoItemAdapter? = null
     private var list: MutableList<InfoItem> = ArrayList()
@@ -115,14 +116,14 @@ class SensorFragment : BaseFragment() {
                 UtilHelper.errorNoFeatureDialog(context)
                 return
             }
-            var isGraph1 = false
+            var isGraph2 = false
             var isGraph3 = false
             when (sensorType) {
                 Sensor.TYPE_ACCELEROMETER, Sensor.TYPE_GRAVITY -> {
                     sensorEventListener = accelerometerListener
                     run {
                         isGraph3 = true
-                        isGraph1 = isGraph3
+                        isGraph2 = isGraph3
                     }
                 }
                 Sensor.TYPE_LIGHT -> sensorEventListener = lightListener
@@ -155,7 +156,7 @@ class SensorFragment : BaseFragment() {
             series.color = ContextCompat.getColor(context, R.color.blue500)
             series.thickness = ConvertUtils.dp2px(4f)
             graphView.addSeries(series)
-            if (isGraph1) {
+            if (isGraph2) {
                 series2.color = ContextCompat.getColor(context, R.color.pink500)
                 series2.thickness = 3
                 graphView.addSeries(series2)
@@ -165,9 +166,8 @@ class SensorFragment : BaseFragment() {
                 series2.thickness = 3
                 graphView.addSeries(series3)
             }
-            var infoItem: InfoItem
             for (i in stringArray.indices) {
-                infoItem = try {
+                val infoItem: InfoItem = try {
                     when (sensorType) {
                         Sensor.TYPE_ACCELEROMETER -> InfoItem(stringArray[i], getAccelerometerSensorData(i, stringArray.size, reading, mSensor!!))
                         Sensor.TYPE_GRAVITY -> InfoItem(stringArray[i], getGravitySensorData(i, stringArray.size, reading, mSensor!!))
@@ -191,6 +191,7 @@ class SensorFragment : BaseFragment() {
             graphView.gridLabelRenderer.isHighlightZeroLines = false
             graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
             graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+            graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
             graphView.viewport.isXAxisBoundsManual = true
             graphView.viewport.setMinX(0.0)
             graphView.viewport.setMaxX(36.0)
@@ -212,28 +213,31 @@ class SensorFragment : BaseFragment() {
                     true, 100)
             series3.appendData(DataPoint(lastXValue, event.values[2].toDouble()),
                     true, 100)
+            graphView.viewport.scrollToEnd()
             list[0].contentText = reading
-            adapter!!.notifyDataSetChanged()
+            adapter?.notifyDataSetChanged()
         }
     }
     private val lightListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
         override fun onSensorChanged(event: SensorEvent) {
             reading = event.values[0].toString() + " lux"
+            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
+            graphView.viewport.scrollToEnd()
             lastXValue += 1.0
-            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 100)
             list[0].contentText = reading
-            adapter!!.notifyDataSetChanged()
+            adapter?.notifyDataSetChanged()
         }
     }
     private val pressureListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
         override fun onSensorChanged(event: SensorEvent) {
             reading = event.values[0].toString() + " hPa"
+            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
+            graphView.viewport.scrollToEnd()
             lastXValue += 1.0
-            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 100)
             list[0].contentText = reading
-            adapter!!.notifyDataSetChanged()
+            adapter?.notifyDataSetChanged()
         }
     }
     private val proximityListener: SensorEventListener = object : SensorEventListener {
@@ -241,9 +245,10 @@ class SensorFragment : BaseFragment() {
         override fun onSensorChanged(event: SensorEvent) {
             reading = String.format("%1.2f", event.values[0]) + " cm"
             lastXValue += 1.0
-            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 100)
             list[0].contentText = reading
-            adapter!!.notifyDataSetChanged()
+            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
+            graphView.viewport.scrollToEnd()
+            adapter?.notifyDataSetChanged()
         }
     }
     private val stepListener: SensorEventListener = object : SensorEventListener {
@@ -255,9 +260,10 @@ class SensorFragment : BaseFragment() {
             val value = (event.values[0] - initReading).toInt()
             reading = "$value Steps"
             lastXValue += 1.0
-            series.appendData(DataPoint(lastXValue, value.toDouble()), true, 100)
             list[0].contentText = reading
-            adapter!!.notifyDataSetChanged()
+            series.appendData(DataPoint(lastXValue, value.toDouble()), true, 36)
+            graphView.viewport.scrollToEnd()
+            adapter?.notifyDataSetChanged()
         }
     }
     private val temperatureListener: SensorEventListener = object : SensorEventListener {
@@ -266,10 +272,11 @@ class SensorFragment : BaseFragment() {
             val valueC = event.values[0].toDouble()
             val valueF = valueC * 1.8 + 32
             reading = String.format("%1.2f", valueC) + " °C\n" + String.format("%1.2f", valueF) + " °F"
+            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
+            graphView.viewport.scrollToEnd()
             lastXValue += 1.0
-            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 100)
             list[0].contentText = reading
-            adapter!!.notifyDataSetChanged()
+            adapter?.notifyDataSetChanged()
         }
     }
     private val compassListener: SensorEventListener = object : SensorEventListener {
@@ -288,7 +295,8 @@ class SensorFragment : BaseFragment() {
                 values[0] = values[0] + 359
             }
             lastXValue += 1.0
-            series.appendData(DataPoint(lastXValue, values[0].toDouble()), true, 100)
+            series.appendData(DataPoint(lastXValue, values[0].toDouble()), true, 36)
+            graphView.viewport.scrollToEnd()
             if (values[0] >= 315 || values[0] < 45) {
                 reading = "N " + values[0] + "°"
             } else if (values[0] >= 45 && values[0] < 135) {
@@ -299,7 +307,7 @@ class SensorFragment : BaseFragment() {
                 reading = "W " + values[0] + "°"
             }
             list[0].contentText = reading
-            adapter!!.notifyDataSetChanged()
+            adapter?.notifyDataSetChanged()
         }
     }
     private var mLastKnownRelativeHumidity = 0f

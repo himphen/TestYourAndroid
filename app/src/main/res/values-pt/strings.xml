@@ -134,18 +134,18 @@
     <string name="info_battery_health_string_8">Cuidado: Muito fria</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1">SSID:\u0020</string>
-    <string name="test_wifi_current_string_2">BSSID:\u0020</string>
-    <string name="test_wifi_current_string_3">Network ID:\u0020</string>
-    <string name="test_wifi_current_string_4">Mac Address:\u0020</string>
-    <string name="test_wifi_current_string_5">Wi-Fi Speed:\u0020</string>
-    <string name="test_wifi_current_string_6">Wi-Fi Strength:\u0020</string>
-    <string name="test_wifi_current_string_7">IP Address:\u0020</string>
-    <string name="test_wifi_current_string_8">Default Gateway:\u0020</string>
-    <string name="test_wifi_current_string_9">Subnet Mask:\u0020</string>
-    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
-    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
-    <string name="test_wifi_current_string_12">Server Address:\u0020</string>
+    <string name="test_wifi_current_string_ssid">SSID</string>
+    <string name="test_wifi_current_string_bssid">BSSID</string>
+    <string name="test_wifi_current_string_network_id">Network ID</string>
+    <string name="test_wifi_current_string_mac_address">Mac Address</string>
+    <string name="test_wifi_current_string_speed">Wi-Fi Speed</string>
+    <string name="test_wifi_current_string_rssi">Wi-Fi Strength</string>
+    <string name="test_wifi_current_string_ip_address">IP Address</string>
+    <string name="test_wifi_current_string_gateway">Default Gateway</string>
+    <string name="test_wifi_current_string_subnet_mask">Subnet Mask</string>
+    <string name="test_wifi_current_string_dns">DNS 1</string>
+    <string name="test_wifi_current_string_dns_2">DNS 2</string>
+    <string name="test_wifi_current_string_server_address">Server Address</string>
 
     <!--  -->
     <string name="test_wifi_string_1">Wi-Fi atual</string>

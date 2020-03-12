@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid.ui.tool
+package hibernate.v2.testyourandroid.ui.tool.speedtext
 
 import androidx.fragment.app.Fragment
 import hibernate.v2.testyourandroid.R

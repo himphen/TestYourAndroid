@@ -153,7 +153,7 @@
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_battery" />
         <activity
-            android:name=".ui.info.InfoWifiActivity"
+            android:name=".ui.info.wifi.WifiActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_wifi" />
         <activity
@@ -264,7 +264,7 @@
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_sound_meter" />
         <activity
-            android:name=".ui.tool.ToolSpeedTestActivity"
+            android:name=".ui.tool.speedtext.ToolSpeedTestActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_sound_meter" />
 

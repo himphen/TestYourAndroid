@@ -6,7 +6,6 @@ import android.hardware.Sensor
  * Created by himphen on 21/5/16.
  */
 object SensorHelper {
-    @JvmStatic
     fun getAccelerometerSensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
         val arrayData = arrayOfNulls<String>(size)
         var i = 0
@@ -28,12 +27,10 @@ object SensorHelper {
         return arrayData[j]
     }
 
-    @JvmStatic
     fun getGravitySensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
         return getAccelerometerSensorData(j, size, reading, sensor)
     }
 
-    @JvmStatic
     fun getPressureSensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
         val arrayData = arrayOfNulls<String>(size)
         var i = 0
@@ -55,7 +52,6 @@ object SensorHelper {
         return arrayData[j]
     }
 
-    @JvmStatic
     fun getLightSensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
         val arrayData = arrayOfNulls<String>(size)
         var i = 0
@@ -77,7 +73,6 @@ object SensorHelper {
         return arrayData[j]
     }
 
-    @JvmStatic
     fun getProximitySensorData(j: Int, size: Int, @Suppress("UNUSED_PARAMETER") reading: String?, sensor: Sensor): String? {
         val arrayData = arrayOfNulls<String>(size)
         var i = 0
@@ -99,7 +94,6 @@ object SensorHelper {
         return arrayData[j]
     }
 
-    @JvmStatic
     fun getMagneticSensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
         val arrayData = arrayOfNulls<String>(size)
         var i = 0
@@ -121,7 +115,6 @@ object SensorHelper {
         return arrayData[j]
     }
 
-    @JvmStatic
     fun getStepCounterSensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
         val arrayData = arrayOfNulls<String>(size)
         var i = 0
@@ -143,7 +136,6 @@ object SensorHelper {
         return arrayData[j]
     }
 
-    @JvmStatic
     fun getTemperatureCounterSensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
         val arrayData = arrayOfNulls<String>(size)
         var i = 0
@@ -165,7 +157,6 @@ object SensorHelper {
         return arrayData[j]
     }
 
-    @JvmStatic
     fun getHumiditySensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
         val arrayData = arrayOfNulls<String>(size)
         var i = 0

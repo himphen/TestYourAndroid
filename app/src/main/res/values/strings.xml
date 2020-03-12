@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Test Your Android</string>
     <string name="ui_okay">Okay</string>
     <string name="ui_cancel">Cancel</string>
@@ -147,6 +147,7 @@
     <string name="title_activity_speaker">Speaker and Vibrate</string>
     <string name="title_activity_microphone">Microphone</string>
     <string name="title_activity_wifi">Wi-Fi</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">Bluetooth</string>
     <string name="title_activity_accelerometer">Accelerometer</string>
     <string name="title_activity_step">Pedometer</string>
@@ -180,7 +181,7 @@
         <item>@string/title_activity_flashlight</item>
         <item>@string/title_activity_bubble_level</item>
         <item>@string/title_activity_sound_meter</item>
-        <item>Speed Test</item>
+        <item>@string/title_activity_speed_test</item>
     </string-array>
     <string-array name="hardware_string_array" translatable="false">
         <item>@string/title_activity_screen</item>
@@ -393,38 +394,45 @@
     </string-array>
 
     <!--  -->
-    <string name="test_wifi_current_string_1">SSID:\u0020</string>
-    <string name="test_wifi_current_string_2">BSSID:\u0020</string>
-    <string name="test_wifi_current_string_3">Network ID:\u0020</string>
-    <string name="test_wifi_current_string_4">Mac Address:\u0020</string>
-    <string name="test_wifi_current_string_5">Wi-Fi Speed:\u0020</string>
-    <string name="test_wifi_current_string_6">Wi-Fi Strength:\u0020</string>
-    <string name="test_wifi_current_string_7">IP Address:\u0020</string>
-    <string name="test_wifi_current_string_8">Default Gateway:\u0020</string>
-    <string name="test_wifi_current_string_9">Subnet Mask:\u0020</string>
-    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
-    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
-    <string name="test_wifi_current_string_12">Server Address:\u0020</string>
-    <string-array name="test_wifi_current_string_array" translatable="false">
-        <item>@string/test_wifi_current_string_1</item>
-        <item>@string/test_wifi_current_string_2</item>
-        <item>@string/test_wifi_current_string_3</item>
-        <item>@string/test_wifi_current_string_4</item>
-        <item>@string/test_wifi_current_string_5</item>
-        <item>@string/test_wifi_current_string_6</item>
-        <item>@string/test_wifi_current_string_7</item>
-        <item>@string/test_wifi_current_string_8</item>
-        <item>@string/test_wifi_current_string_9</item>
-        <item>@string/test_wifi_current_string_10</item>
-        <item>@string/test_wifi_current_string_11</item>
-        <item>@string/test_wifi_current_string_12</item>
+    <string name="test_wifi_current_string_ssid">SSID</string>
+    <string name="test_wifi_current_string_bssid">BSSID</string>
+    <string name="test_wifi_current_string_network_id">Network ID</string>
+    <string name="test_wifi_current_string_mac_address">Mac Address</string>
+    <string name="test_wifi_current_string_speed">Speed</string>
+    <string name="test_wifi_current_string_txspeed" translatable="false">Tx Speed</string>
+    <string name="test_wifi_current_string_rxspeed" translatable="false">Tx Speed</string>
+    <string name="test_wifi_current_string_rssi">Strength</string>
+    <string name="test_wifi_current_string_frequency" translatable="false">Frequency</string>
+    <string name="test_wifi_current_string_ip_address">IP Address</string>
+    <string name="test_wifi_current_string_gateway">Default Gateway</string>
+    <string name="test_wifi_current_string_subnet_mask">Subnet Mask</string>
+    <string name="test_wifi_current_string_dns">DNS 1</string>
+    <string name="test_wifi_current_string_dns_2">DNS 2</string>
+    <string name="test_wifi_current_string_server_address">Server Address</string>
+
+    <string-array name="test_wifi_strength_string_array" translatable="false">
+        <item>@string/test_wifi_current_string_ssid</item>
+        <item>@string/test_wifi_current_string_bssid</item>
+        <item>@string/test_wifi_current_string_network_id</item>
+        <item>@string/test_wifi_current_string_mac_address</item>
+        <item>@string/test_wifi_current_string_speed</item>
+        <item>@string/test_wifi_current_string_txspeed</item>
+        <item>@string/test_wifi_current_string_rxspeed</item>
+        <item>@string/test_wifi_current_string_rssi</item>
+        <item>@string/test_wifi_current_string_frequency</item>
+        <item>@string/test_wifi_current_string_ip_address</item>
+        <item>@string/test_wifi_current_string_gateway</item>
+        <item>@string/test_wifi_current_string_subnet_mask</item>
+        <item>@string/test_wifi_current_string_dns</item>
+        <item>@string/test_wifi_current_string_dns_2</item>
+        <item>@string/test_wifi_current_string_server_address</item>
     </string-array>
 
     <!--  -->
-    <string name="test_wifi_string_1">Current Wi-Fi</string>
-    <string name="test_wifi_string_2">Available Wi-Fi</string>
-    <string name="test_wifi_string_3">Saved Wi-Fi SSID</string>
-    <string-array name="test_wifi_string_array" translatable="false">
+    <string name="test_wifi_string_1">Current</string>
+    <string name="test_wifi_string_2">Available</string>
+    <string name="test_wifi_string_3">Saved SSID</string>
+    <string-array name="test_wifi_tab_title" translatable="false">
         <item>@string/test_wifi_string_1</item>
         <item>@string/test_wifi_string_2</item>
         <item>@string/test_wifi_string_3</item>
@@ -701,10 +709,5 @@
     <string name="app_not_found">No application found.</string>
     <string name="bubble_level_vertical">Plumb</string>
     <string name="bubble_level_horizontal">Level</string>
-
-    <string-array name="speed_test_string_array" translatable="false">
-        <item>10MB</item>
-        <item>100MB</item>
-    </string-array>
 
 </resources>

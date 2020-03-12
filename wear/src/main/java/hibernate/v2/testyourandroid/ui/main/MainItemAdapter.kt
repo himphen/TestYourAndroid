@@ -17,8 +17,8 @@ import hibernate.v2.testyourandroid.model.MainItem
  * Created by himphen on 25/5/16.
  */
 class MainItemAdapter(
-        private val mDataList: List<MainItem>,
-        private val mListener: ItemClickListener
+        private val list: List<MainItem>,
+        private val listener: ItemClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface ItemClickListener {
@@ -26,14 +26,12 @@ class MainItemAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val context = parent.context
-        val itemView = LayoutInflater.from(context).inflate(R.layout.list_item_main, parent, false)
-        return ItemViewHolder(itemView)
+        return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_main, parent, false))
     }
 
-    override fun onBindViewHolder(rawHolder: RecyclerView.ViewHolder, position: Int) {
-        val item = mDataList[position]
-        val holder = rawHolder as ItemViewHolder
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = list[position]
+        holder as ItemViewHolder
         Glide.with(holder.mainIv.context)
                 .load(item.mainImageId)
                 .apply(RequestOptions()
@@ -42,18 +40,14 @@ class MainItemAdapter(
                 .into(holder.mainIv)
         holder.mainTv.text = item.mainText
         holder.rootView.tag = item
-        holder.rootView.setOnClickListener { v -> mListener.onItemDetailClick(v.tag as MainItem) }
+        holder.rootView.setOnClickListener { v -> listener.onItemDetailClick(v.tag as MainItem) }
     }
 
-    override fun getItemCount(): Int {
-        return mDataList.size
-    }
+    override fun getItemCount(): Int = list.size
 
     internal class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val rootView: LinearLayout = itemView.findViewById(R.id.root_view)
         val mainIv: ImageView = itemView.findViewById(R.id.mainIv)
         val mainTv: TextView = itemView.findViewById(R.id.mainTv)
-
     }
-
 }

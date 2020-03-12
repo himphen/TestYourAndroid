@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.blankj.utilcode.util.ConvertUtils
+import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
@@ -16,8 +17,8 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_monitor_network.*
 
 class MonitorNetworkFragment : BaseFragment() {
-    private var series = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
-    private var series2 = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
+    private var series = LineGraphSeries(arrayOf<DataPoint>())
+    private var series2 = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
     private val mHandler = Handler()
     private var differenceRx: Long = 0
@@ -28,19 +29,20 @@ class MonitorNetworkFragment : BaseFragment() {
     private val timer: Runnable = object : Runnable {
         override fun run() {
             networkUsage
-            lastXValue += 1.0
             try {
                 val Tx = formatSpeedSize(differenceTx, false).toDouble()
                 val Rx = formatSpeedSize(differenceRx, false).toDouble()
                 upSpeedText.text = formatSpeedSize(differenceTx, true)
                 downSpeedText.text = formatSpeedSize(differenceRx, true)
-                series.appendData(DataPoint(lastXValue, Rx), true, 100)
-                series2.appendData(DataPoint(lastXValue, Tx), true, 100)
+                series.appendData(DataPoint(lastXValue, Rx), true, 36)
+                series2.appendData(DataPoint(lastXValue, Tx), true, 36)
+                graphView.viewport.scrollToEnd()
+                lastXValue += 1.0
             } catch (e: Exception) {
                 upSpeedText.setText(R.string.ui_not_support)
                 downSpeedText.setText(R.string.ui_not_support)
             }
-            mHandler.postDelayed(this, 1000)
+            mHandler.postDelayed(this, UPDATE_CHART_INTERVAL)
         }
     }
     private var isSupported = false
@@ -72,6 +74,7 @@ class MonitorNetworkFragment : BaseFragment() {
             graphView.gridLabelRenderer.isHighlightZeroLines = false
             graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
             graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+            graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
             graphView.viewport.isXAxisBoundsManual = true
             graphView.viewport.setMinX(0.0)
             graphView.viewport.setMaxX(36.0)
@@ -82,7 +85,7 @@ class MonitorNetworkFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        if (isSupported) mHandler.postDelayed(timer, 1000)
+        if (isSupported) mHandler.postDelayed(timer, UPDATE_CHART_INTERVAL)
     }
 
     override fun onPause() {
@@ -97,4 +100,8 @@ class MonitorNetworkFragment : BaseFragment() {
             differenceTx = TrafficStats.getTotalTxBytes() - lastTotalTx
             lastTotalTx = TrafficStats.getTotalTxBytes()
         }
+
+    companion object {
+        const val UPDATE_CHART_INTERVAL = 1000L
+    }
 }

@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.ui.main.MainAboutFragment
-import hibernate.v2.testyourandroid.ui.main.MainTestFragment
 
 class MainFragmentPagerAdapter(
         private val context: Context,
@@ -16,6 +14,7 @@ class MainFragmentPagerAdapter(
 ) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val tabTitles: Array<String> = context.resources.getStringArray(R.array.main_tab_title)
+
     /**
      * Returns the number of pages
      */

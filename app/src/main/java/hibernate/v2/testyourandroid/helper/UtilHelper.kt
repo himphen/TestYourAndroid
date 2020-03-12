@@ -1,5 +1,6 @@
 package hibernate.v2.testyourandroid.helper
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
@@ -9,6 +10,7 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
+import android.net.wifi.WifiInfo
 import android.os.Build
 import android.provider.Settings
 import android.view.View
@@ -34,6 +36,9 @@ import hibernate.v2.testyourandroid.R
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
+import java.math.BigInteger
+import java.net.NetworkInterface
+import java.security.MessageDigest
 import java.text.DecimalFormat
 import java.util.ArrayList
 import java.util.Locale
@@ -47,28 +52,26 @@ object UtilHelper {
     const val DELAY_AD_LAYOUT = 100L
 
     fun initAdView(context: Context?, adLayout: RelativeLayout, isPreserveSpace: Boolean = false): AdView? {
+        if (context == null) return null
+
         if (isPreserveSpace) {
             adLayout.layoutParams.height = SizeUtils.dp2px(50f)
         }
-        var adView: AdView? = null
         val defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
         try {
             if (!defaultPreferences.getBoolean(PREF_IAP, false)) {
-                adView = AdView(context)
+                val adView = AdView(context)
                 adView.adUnitId = BuildConfig.ADMOB_BANNER_ID
                 adView.adSize = AdSize.BANNER
                 adLayout.addView(adView)
-                val adRequest = AdRequest.Builder()
-                adRequest.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                for (id in BuildConfig.ADMOB_DEVICE_ID) {
-                    adRequest.addTestDevice(id)
-                }
-                adView.loadAd(adRequest.build())
+                adView.loadAd(AdRequest.Builder().build())
+                return adView
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        return adView
+        return null
     }
 
     fun forceShowMenu(context: Context?) {
@@ -329,6 +332,41 @@ object UtilHelper {
 
         return null
     }
+
+    @SuppressLint("HardwareIds")
+    fun getAdMobDeviceID(context: Context): String {
+        val androidId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+        return androidId.md5().toUpperCase(Locale.getDefault())
+    }
+
+    fun ipAddressIntToString(i: Int): String {
+        return (i and 0xFF).toString() + "." + (i shr 8 and 0xFF) + "." + (i shr 16 and 0xFF) + "." + (i shr 24 and 0xFF)
+    }
+
+    @SuppressLint("HardwareIds")
+    fun getMacAddress(wifiInfo: WifiInfo): String? {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return wifiInfo.macAddress
+        }
+        return try {
+            NetworkInterface.getNetworkInterfaces()
+                    .toList()
+                    .find { networkInterface -> networkInterface.name.equals("wlan0", ignoreCase = true) }
+                    ?.hardwareAddress
+                    ?.joinToString(separator = ":") { byte -> "%02X".format(byte) }
+        } catch (ex: Exception) {
+            null
+        }
+    }
 }
 
 fun Double.format(digits: Int) = "%.${digits}f".format(this)
+
+fun String.md5(): String {
+    return try {
+        val md = MessageDigest.getInstance("MD5")
+        BigInteger(1, md.digest(toByteArray())).toString(16).padStart(32, '0')
+    } catch (e: Exception) {
+        ""
+    }
+}

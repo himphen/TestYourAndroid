@@ -9,7 +9,7 @@ class InfoBluetoothActivity : BaseFragmentActivity() {
     override var fragment: Fragment? = InfoBluetoothFragment()
     override var titleId: Int? = R.string.title_activity_bluetooth
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.test_bluetooth, menu)
         return true
     }

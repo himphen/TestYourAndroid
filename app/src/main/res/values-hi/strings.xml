@@ -146,18 +146,18 @@
     <string name="info_battery_health_string_8">सावधानी: बहुत ठंडा</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1">एसएसआईडी:\u0020</string>
-    <string name="test_wifi_current_string_2">बीएसएसआईडी:\u0020</string>
-    <string name="test_wifi_current_string_3">नेटवर्क आईडी:\u0020</string>
-    <string name="test_wifi_current_string_4">मैक पता:\u0020</string>
-    <string name="test_wifi_current_string_5">वाई-फाई स्पीड:\u0020</string>
-    <string name="test_wifi_current_string_6">वाई-फाई ताकत:\u0020</string>
-    <string name="test_wifi_current_string_7">आईपी पता:\u0020</string>
-    <string name="test_wifi_current_string_8">डिफ़ॉल्ट गेटवे:\u0020</string>
-    <string name="test_wifi_current_string_9">सबनेट मास्क:\u0020</string>
-    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
-    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
-    <string name="test_wifi_current_string_12">सर्वर पता:\u0020</string>
+    <string name="test_wifi_current_string_ssid">एसएसआईडी</string>
+    <string name="test_wifi_current_string_bssid">बीएसएसआईडी</string>
+    <string name="test_wifi_current_string_network_id">नेटवर्क आईडी</string>
+    <string name="test_wifi_current_string_mac_address">मैक पता</string>
+    <string name="test_wifi_current_string_speed">वाई-फाई स्पीड</string>
+    <string name="test_wifi_current_string_rssi">वाई-फाई ताकत</string>
+    <string name="test_wifi_current_string_ip_address">आईपी पता</string>
+    <string name="test_wifi_current_string_gateway">डिफ़ॉल्ट गेटवे</string>
+    <string name="test_wifi_current_string_subnet_mask">सबनेट मास्क</string>
+    <string name="test_wifi_current_string_dns">DNS 1</string>
+    <string name="test_wifi_current_string_dns_2">DNS 2</string>
+    <string name="test_wifi_current_string_server_address">सर्वर पता</string>
 
     <!--  -->
     <string name="test_wifi_string_1">वर्तमान वाई-फाई</string>

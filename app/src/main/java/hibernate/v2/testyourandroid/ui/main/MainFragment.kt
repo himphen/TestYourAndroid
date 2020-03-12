@@ -8,7 +8,7 @@ import com.google.android.gms.ads.AdView
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_view_pager_conatiner.*
 
 /**
  * Created by himphen on 21/5/16.
@@ -18,7 +18,7 @@ class MainFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_view_pager_conatiner, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

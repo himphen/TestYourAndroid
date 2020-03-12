@@ -29,15 +29,16 @@ class GridItemAdapter(
         return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.grid_item_test, parent, false))
     }
 
-    override fun onBindViewHolder(rawHolder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
-        val holder = rawHolder as ItemViewHolder
+        holder as ItemViewHolder
         Glide.with(holder.mainIv.context)
                 .load(item.mainImageId)
                 .apply(RequestOptions()
                         .fitCenter()
                         .diskCacheStrategy(DiskCacheStrategy.ALL))
                 .into(holder.mainIv)
+
         holder.mainTv.text = item.mainText
         holder.rootView.tag = item
         holder.rootView.setOnClickListener { v -> itemClickListener.onItemDetailClick(v.tag as GridItem) }

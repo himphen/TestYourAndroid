@@ -1,7 +1,6 @@
 package hibernate.v2.testyourandroid.ui.hardware
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
 import android.location.LocationManager
@@ -30,20 +29,23 @@ import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper.openErrorPermissionDialog
 import hibernate.v2.testyourandroid.helper.UtilHelper.startSettingsActivity
 import hibernate.v2.testyourandroid.model.InfoItem
-import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import kotlinx.android.synthetic.main.fragment_hardware_location.*
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
-class HardwareLocationFragment : BaseFragment(), OnMapReadyCallback {
-    private var adapter: InfoItemAdapter? = null
+class HardwareLocationFragment : BaseFragment() {
+    private var locationManager: LocationManager? = null
+
+    private lateinit var adapter: InfoItemAdapter
     private val list: MutableList<InfoItem> = ArrayList()
     private var mGoogleMap: GoogleMap? = null
     private var lastKnowLocation: Location? = null
     private var mFusedLocationClient: FusedLocationProviderClient? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -56,7 +58,17 @@ class HardwareLocationFragment : BaseFragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val stringArray = resources.getStringArray(R.array.test_gps_string_array)
+        for (string in stringArray) {
+            list.add(InfoItem(string, getString(R.string.gps_scanning)))
+        }
+        adapter = InfoItemAdapter(list)
+        rvlist.adapter = adapter
         rvlist.layoutManager = LinearLayoutManager(context)
+
+        locationManager = context?.applicationContext?.getSystemService(Context.LOCATION_SERVICE)
+                as LocationManager?
+
         if (!isPermissionsGranted(PERMISSION_NAME)) {
             requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE)
         }
@@ -65,14 +77,12 @@ class HardwareLocationFragment : BaseFragment(), OnMapReadyCallback {
     override fun onResume() {
         super.onResume()
         if (isPermissionsGranted(PERMISSION_NAME)) {
-            init()
+            onStartScanning()
         }
     }
 
     override fun onPause() {
-        if (mFusedLocationClient != null) {
-            mFusedLocationClient!!.removeLocationUpdates(mLocationCallback)
-        }
+        onStopScanning()
         super.onPause()
     }
 
@@ -83,35 +93,51 @@ class HardwareLocationFragment : BaseFragment(), OnMapReadyCallback {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun init() {
-        val stringArray = resources.getStringArray(R.array.test_gps_string_array)
-        list.clear()
-        for (aStringArray in stringArray) {
-            list.add(InfoItem(aStringArray, getString(R.string.gps_scanning)))
-        }
-        adapter = InfoItemAdapter(list)
-        rvlist.adapter = adapter
-        val locationManager = context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val providers = locationManager.getProviders(true)
-        if (providers.size == 0) {
-            openFunctionDialog()
-        }
-        val fm = childFragmentManager
-        var fragment = fm.findFragmentById(R.id.mapFragment) as SupportMapFragment?
-        if (fragment == null) {
-            fragment = SupportMapFragment.newInstance()
-            fm.beginTransaction().replace(R.id.mapFragment, fragment).commit()
-        }
-        fragment!!.getMapAsync(this)
-        val status = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context)
-        if (status != ConnectionResult.SUCCESS) {
-            if (GoogleApiAvailability.getInstance().isUserResolvableError(status)) {
-                GoogleApiAvailability.getInstance().getErrorDialog(activity, status,
-                        1972).show()
+    private fun onStartScanning() {
+        context?.let { context ->
+            val providers = locationManager?.getProviders(true)
+
+            if (providers == null || providers.size == 0) {
+                openFunctionDialog()
+                return
             }
-        } else {
-            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
+
+            val status = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context)
+            if (status != ConnectionResult.SUCCESS) {
+                if (GoogleApiAvailability.getInstance().isUserResolvableError(status)) {
+                    GoogleApiAvailability.getInstance().getErrorDialog(activity, status,
+                            1972).show()
+                }
+
+                return
+            }
+
+            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+
+            val fragment = SupportMapFragment.newInstance()
+            fragment.getMapAsync(object : OnMapReadyCallback {
+                override fun onMapReady(googleMap: GoogleMap) {
+                    if (!isPermissionsGranted(PERMISSION_NAME)) return
+
+                    mGoogleMap = googleMap
+                    mGoogleMap?.let { mGoogleMap ->
+                        val mLocationRequest = LocationRequest.create()
+                        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+                        mLocationRequest.interval = 1000 // Update location every second
+                        mLocationRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
+                        mGoogleMap.isMyLocationEnabled = true
+                        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LAT_LNG, 15f))
+                        mFusedLocationClient?.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
+                    }
+                }
+            })
+
+            childFragmentManager.beginTransaction().replace(R.id.mapFragment, fragment).commit()
         }
+    }
+
+    private fun onStopScanning() {
+        mFusedLocationClient?.removeLocationUpdates(mLocationCallback)
     }
 
     private fun openFunctionDialog() {
@@ -129,62 +155,46 @@ class HardwareLocationFragment : BaseFragment(), OnMapReadyCallback {
 
     private var mLocationCallback: LocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
+            if (!isPermissionsGranted(PERMISSION_NAME)) return
+
             val locationList = locationResult.locations
             if (locationList.size > 0) { //The last location in the list is the newest
-                lastKnowLocation = locationList[locationList.size - 1]
-                updateMap()
-            }
-        }
-    }
+                lastKnowLocation = locationList.last()
 
-    @SuppressLint("MissingPermission")
-    override fun onMapReady(googleMap: GoogleMap) {
-        if (isPermissionsGranted(PERMISSION_NAME)) {
-            mGoogleMap = googleMap
-            mGoogleMap?.let { mGoogleMap ->
-                val mLocationRequest = LocationRequest.create()
-                mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-                mLocationRequest.interval = 1000 // Update location every second
-                mLocationRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
-                mGoogleMap.isMyLocationEnabled = true
-                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LAT_LNG, 15f))
-                mFusedLocationClient!!.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
-            }
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun updateMap() {
-        if (isPermissionsGranted(PERMISSION_NAME) && mGoogleMap != null) {
-            mGoogleMap!!.isMyLocationEnabled = true
-            if (lastKnowLocation != null) {
-                for (i in list.indices) {
-                    list[i].contentText = getData(i)
+                mGoogleMap?.let { mGoogleMap ->
+                    mGoogleMap.isMyLocationEnabled = true
+                    lastKnowLocation?.let { lastKnowLocation ->
+                        for (i in list.indices) {
+                            list[i].contentText = getData(i)
+                        }
+                        adapter.notifyDataSetChanged()
+                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                                LatLng(
+                                        lastKnowLocation.latitude,
+                                        lastKnowLocation.longitude
+                                ), 15f))
+                    }
                 }
-                adapter!!.notifyDataSetChanged()
-                mGoogleMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                        LatLng(
-                                lastKnowLocation!!.latitude,
-                                lastKnowLocation!!.longitude
-                        ), 15f))
             }
         }
     }
 
     private fun getData(j: Int): String {
-        return try {
-            when (j) {
-                0 -> lastKnowLocation!!.latitude.toString()
-                1 -> lastKnowLocation!!.longitude.toString()
-                2 -> lastKnowLocation!!.speed.toString() + " m/s"
-                3 -> lastKnowLocation!!.altitude.toString() + " m"
-                4 -> lastKnowLocation!!.bearing.toString()
-                5 -> lastKnowLocation!!.accuracy.toString()
-                else -> "N/A"
+        try {
+            lastKnowLocation?.let { lastKnowLocation ->
+                return when (j) {
+                    0 -> lastKnowLocation.latitude.toString()
+                    1 -> lastKnowLocation.longitude.toString()
+                    2 -> lastKnowLocation.speed.toString() + " m/s"
+                    3 -> lastKnowLocation.altitude.toString() + " m"
+                    4 -> lastKnowLocation.bearing.toString()
+                    5 -> lastKnowLocation.accuracy.toString()
+                    else -> "N/A"
+                }
             }
         } catch (e: Exception) {
-            "N/A"
         }
+        return "N/A"
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {

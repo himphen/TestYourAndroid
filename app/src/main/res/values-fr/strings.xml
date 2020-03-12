@@ -145,18 +145,18 @@
     <string name="info_battery_health_string_8">Attention: trop froid</string>
 
     <!--  -->
-    <string name="test_wifi_current_string_1">SSID:\u0020</string>
-    <string name="test_wifi_current_string_2">BSSID:\u0020</string>
-    <string name="test_wifi_current_string_3">ID de réseau:\u0020</string>
-    <string name="test_wifi_current_string_4">Adresse Mac:\u0020</string>
-    <string name="test_wifi_current_string_5">Vitesse Wi-Fi:\u0020</string>
-    <string name="test_wifi_current_string_6">Force du Wi-Fi:\u0020</string>
-    <string name="test_wifi_current_string_7">Adresse IP:\u0020</string>
-    <string name="test_wifi_current_string_8">Passerelle par défaut:\u0020</string>
-    <string name="test_wifi_current_string_9">Masque de sous-réseau:\u0020</string>
-    <string name="test_wifi_current_string_10">DNS 1:\u0020</string>
-    <string name="test_wifi_current_string_11">DNS 2:\u0020</string>
-    <string name="test_wifi_current_string_12">Adresse du serveur:\u0020</string>
+    <string name="test_wifi_current_string_ssid">SSID</string>
+    <string name="test_wifi_current_string_bssid">BSSID</string>
+    <string name="test_wifi_current_string_network_id">ID de réseau</string>
+    <string name="test_wifi_current_string_mac_address">Adresse Mac</string>
+    <string name="test_wifi_current_string_speed">Vitesse Wi-Fi</string>
+    <string name="test_wifi_current_string_rssi">Force du Wi-Fi</string>
+    <string name="test_wifi_current_string_ip_address">Adresse IP</string>
+    <string name="test_wifi_current_string_gateway">Passerelle par défaut</string>
+    <string name="test_wifi_current_string_subnet_mask">Masque de sous-réseau</string>
+    <string name="test_wifi_current_string_dns">DNS 1</string>
+    <string name="test_wifi_current_string_dns_2">DNS 2</string>
+    <string name="test_wifi_current_string_server_address">Adresse du serveur</string>
 
     <!--  -->
     <string name="test_wifi_string_1">Wi-Fi actuel</string>

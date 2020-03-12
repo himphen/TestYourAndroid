@@ -130,18 +130,18 @@
     <string name="info_battery_string_6">电池温度</string>
     <string name="info_battery_string_7">电池电压</string>
 
-    <string name="test_wifi_current_string_1">SSID：</string>
-    <string name="test_wifi_current_string_2">BSSID：</string>
-    <string name="test_wifi_current_string_3">网络等级：</string>
-    <string name="test_wifi_current_string_4">Mac 位址：</string>
-    <string name="test_wifi_current_string_5">Wi-Fi 速度：</string>
-    <string name="test_wifi_current_string_6">Wi-Fi 信号强度：</string>
-    <string name="test_wifi_current_string_7">IP 位址：</string>
-    <string name="test_wifi_current_string_8">预设闸道：</string>
-    <string name="test_wifi_current_string_9">网路遮罩：</string>
-    <string name="test_wifi_current_string_10">DNS 1：</string>
-    <string name="test_wifi_current_string_11">DNS 2：</string>
-    <string name="test_wifi_current_string_12">伺服器位址：</string>
+    <string name="test_wifi_current_string_ssid">SSID：</string>
+    <string name="test_wifi_current_string_bssid">BSSID：</string>
+    <string name="test_wifi_current_string_network_id">网络等级：</string>
+    <string name="test_wifi_current_string_mac_address">Mac 位址：</string>
+    <string name="test_wifi_current_string_speed">Wi-Fi 速度：</string>
+    <string name="test_wifi_current_string_rssi">Wi-Fi 信号强度：</string>
+    <string name="test_wifi_current_string_ip_address">IP 位址：</string>
+    <string name="test_wifi_current_string_gateway">预设闸道：</string>
+    <string name="test_wifi_current_string_subnet_mask">网路遮罩：</string>
+    <string name="test_wifi_current_string_dns">DNS 1：</string>
+    <string name="test_wifi_current_string_dns_2">DNS 2：</string>
+    <string name="test_wifi_current_string_server_address">伺服器位址：</string>
 
     <string name="test_wifi_string_1">现在连接中</string>
     <string name="test_wifi_string_2">可用 Wi-Fi</string>
