@@ -21,8 +21,8 @@ import kotlinx.android.synthetic.main.fragment_hardware_flashlight.*
  */
 @Suppress("DEPRECATION")
 class ToolFlashlightFragment : BaseFragment() {
-
     private var mCamera: Camera? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_hardware_flashlight, container, false)
@@ -36,6 +36,10 @@ class ToolFlashlightFragment : BaseFragment() {
             } else {
                 closeFlash()
             }
+        }
+
+        if (arguments?.getBoolean(ARG_AUTO_OPEN, false) == true) {
+            turnSwitch.toggle()
         }
     }
 
@@ -116,5 +120,14 @@ class ToolFlashlightFragment : BaseFragment() {
 
     companion object {
         val PERMISSION_NAME = arrayOf(Manifest.permission.CAMERA)
+
+        private const val ARG_AUTO_OPEN = "auto_open"
+        fun newInstance(autoOpen: Boolean): ToolFlashlightFragment {
+            val fragment = ToolFlashlightFragment()
+            val args = Bundle()
+            args.putBoolean(ARG_AUTO_OPEN, autoOpen)
+            fragment.arguments = args
+            return fragment
+        }
     }
 }
