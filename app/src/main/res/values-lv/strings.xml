@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Mitruma sensors</string>
     <string name="title_activity_camera">Kamera</string>
     <string name="title_activity_flashlight">Lukturis</string>
-    <string name="title_activity_fingerprint">Pirkstu nospiedums</string>
+    <string name="title_activity_biometric">Pirkstu nospiedums</string>
     <string name="title_activity_drawing">Skārienekrāns</string>
     <string name="title_activity_touch">Multi pieskāriens</string>
     <string name="title_activity_speaker">Skaļrunis un vibrēt</string>

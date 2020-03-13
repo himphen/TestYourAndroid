@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">습도 센서</string>
     <string name="title_activity_camera">카메라</string>
     <string name="title_activity_flashlight">플래시</string>
-    <string name="title_activity_fingerprint">지문</string>
+    <string name="title_activity_biometric">지문</string>
     <string name="title_activity_drawing">터치 스크린</string>
     <string name="title_activity_touch">멀티 터치</string>
     <string name="title_activity_speaker">스피커 및 진동</string>

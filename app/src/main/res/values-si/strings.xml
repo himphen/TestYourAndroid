@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">ආර්ද්රතාවය සංවේදකය</string>
     <string name="title_activity_camera">කැමරා</string>
     <string name="title_activity_flashlight">සැණෙළිය</string>
-    <string name="title_activity_fingerprint">ඇඟිලි සලකුණ</string>
+    <string name="title_activity_biometric">ඇඟිලි සලකුණ</string>
     <string name="title_activity_drawing">ස්පර්ශ තිරය</string>
     <string name="title_activity_touch">මල්ටිප් ටච්</string>
     <string name="title_activity_speaker">කතානායක සහ කම්පනය</string>

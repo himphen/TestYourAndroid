@@ -9,6 +9,8 @@ fun Float.roundTo(n: Int): Float {
 }
 
 fun Double.roundTo(n: Int): Double {
+    if (this.isNaN()) return 0.0
+
     return try {
         BigDecimal(this).setScale(n, RoundingMode.HALF_EVEN).toDouble()
     } catch (e: NumberFormatException) {

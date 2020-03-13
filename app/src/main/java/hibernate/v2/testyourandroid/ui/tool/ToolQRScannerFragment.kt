@@ -2,6 +2,8 @@ package hibernate.v2.testyourandroid.ui.tool
 
 import android.Manifest
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +32,9 @@ class ToolQRScannerFragment : BaseFragment() {
         context?.let { context ->
             mCodeScanner = CodeScanner(context, scannerView)
             mCodeScanner.setErrorCallback {
-                UtilHelper.errorNoFeatureDialog(context)
+                Handler(Looper.getMainLooper()).post {
+                    UtilHelper.errorNoFeatureDialog(context)
+                }
             }
             mCodeScanner.decodeCallback = DecodeCallback { result ->
                 activity?.runOnUiThread {

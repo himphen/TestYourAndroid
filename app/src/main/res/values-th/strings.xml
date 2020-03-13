@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">เซนเซอร์วัดความชื้น</string>
     <string name="title_activity_camera">กล้อง</string>
     <string name="title_activity_flashlight">ไฟฉาย</string>
-    <string name="title_activity_fingerprint">ลายนิ้วมือ</string>
+    <string name="title_activity_biometric">ลายนิ้วมือ</string>
     <string name="title_activity_drawing">หน้าจอสัมผัส</string>
     <string name="title_activity_touch">มัลติทัช</string>
     <string name="title_activity_speaker">ลำโพงและสั่น</string>

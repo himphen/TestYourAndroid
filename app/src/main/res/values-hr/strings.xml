@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Senzor vlage</string>
     <string name="title_activity_camera">Fotoaparat</string>
     <string name="title_activity_flashlight">baterija</string>
-    <string name="title_activity_fingerprint">Otisak prsta</string>
+    <string name="title_activity_biometric">Otisak prsta</string>
     <string name="title_activity_drawing">Ekran na dodir</string>
     <string name="title_activity_touch">Multi Touch</string>
     <string name="title_activity_speaker">Zvučnik i vibracije</string>

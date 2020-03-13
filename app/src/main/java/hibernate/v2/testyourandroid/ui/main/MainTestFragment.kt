@@ -17,6 +17,7 @@ import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.model.GridItem
 import hibernate.v2.testyourandroid.ui.app.AppChooseActivity
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.ui.hardware.HardwareBiometricActivity
 import hibernate.v2.testyourandroid.ui.hardware.HardwareCameraActivity
 import hibernate.v2.testyourandroid.ui.hardware.HardwareLocationActivity
 import hibernate.v2.testyourandroid.ui.hardware.HardwareMicrophoneActivity
@@ -77,7 +78,7 @@ class MainTestFragment : BaseFragment() {
         val hardwareBadgeArray = arrayOf(
                 GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
                 GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
-                GridItem.Badge.NONE, GridItem.Badge.NONE
+                GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NEW
         )
         val sensorBadgeArray = arrayOf(
                 GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
@@ -99,7 +100,7 @@ class MainTestFragment : BaseFragment() {
         val hardwareClassArray = arrayOf<Class<*>>(
                 HardwareScreenActivity::class.java, DrawingActivity::class.java, HardwareTouchActivity::class.java,
                 HardwareCameraActivity::class.java, HardwareSpeakerActivity::class.java, HardwareMicrophoneActivity::class.java,
-                HardwareNFCActivity::class.java, HardwareLocationActivity::class.java
+                HardwareNFCActivity::class.java, HardwareLocationActivity::class.java, HardwareBiometricActivity::class.java
         )
         val sensorClassArray = arrayOf<Class<*>>(
                 SensorStepActivity::class.java, SensorTemperatureActivity::class.java, SensorCompassActivity::class.java,

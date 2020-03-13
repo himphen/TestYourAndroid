@@ -17,6 +17,7 @@
         <item>@drawable/ic_icon_microphone</item>
         <item>@drawable/ic_icon_nfc</item>
         <item>@drawable/ic_icon_location</item>
+        <item>@drawable/ic_icon_biometric</item>
     </integer-array>
 
     <integer-array name="main_sensor_image">

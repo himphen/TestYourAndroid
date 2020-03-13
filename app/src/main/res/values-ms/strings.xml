@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Sensor kelembapan</string>
     <string name="title_activity_camera">Kamera</string>
     <string name="title_activity_flashlight">Lampu suluh</string>
-    <string name="title_activity_fingerprint">Cap jari</string>
+    <string name="title_activity_biometric">Cap jari</string>
     <string name="title_activity_drawing">Skrin sentuh</string>
     <string name="title_activity_touch">Multi Touch</string>
     <string name="title_activity_speaker">Speaker dan Getaran</string>

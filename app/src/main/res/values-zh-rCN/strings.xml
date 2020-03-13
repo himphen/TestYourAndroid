@@ -218,7 +218,7 @@
     <string name="rate_posbtn">立即评价</string>
     <string name="dialog_camera_title">请选择相机</string>
     <string name="title_activity_touch">多点测试</string>
-    <string name="title_activity_fingerprint">指纹扫瞄</string>
+    <string name="title_activity_biometric">指纹扫瞄</string>
 
     <string name="title_activity_microphone">麦克风</string>
     <string name="mic_start_playing">按键开始录音</string>

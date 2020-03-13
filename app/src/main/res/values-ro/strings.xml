@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Senzor de umiditate</string>
     <string name="title_activity_camera">aparat foto</string>
     <string name="title_activity_flashlight">Lanternă</string>
-    <string name="title_activity_fingerprint">amprentă digitală</string>
+    <string name="title_activity_biometric">amprentă digitală</string>
     <string name="title_activity_drawing">Ecran tactil</string>
     <string name="title_activity_touch">Atingere multiplă</string>
     <string name="title_activity_speaker">Difuzor și vibrați</string>

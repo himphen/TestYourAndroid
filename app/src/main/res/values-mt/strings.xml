@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Sensor tal-Umdità</string>
     <string name="title_activity_camera">Kamera</string>
     <string name="title_activity_flashlight">Torċ</string>
-    <string name="title_activity_fingerprint">Marki tas-swaba \'</string>
+    <string name="title_activity_biometric">Marki tas-swaba \'</string>
     <string name="title_activity_drawing">Touch Screen</string>
     <string name="title_activity_touch">Multi Touch</string>
     <string name="title_activity_speaker">Speaker u Vibrat</string>

@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">湿度センサ</string>
     <string name="title_activity_camera">カメラ</string>
     <string name="title_activity_flashlight">懐中電灯</string>
-    <string name="title_activity_fingerprint">指紋</string>
+    <string name="title_activity_biometric">指紋</string>
     <string name="title_activity_drawing">タッチスクリーン</string>
     <string name="title_activity_touch">マルチタッチ</string>
     <string name="title_activity_speaker">スピーカーと振動</string>

@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Sensor d\'humitat</string>
     <string name="title_activity_camera">Càmera</string>
     <string name="title_activity_flashlight">Llanterna</string>
-    <string name="title_activity_fingerprint">Empremta digital</string>
+    <string name="title_activity_biometric">Empremta digital</string>
     <string name="title_activity_drawing">Pantalla tàctil</string>
     <string name="title_activity_touch">Multi-tàctil</string>
     <string name="title_activity_speaker">Altaveu i vibració</string>

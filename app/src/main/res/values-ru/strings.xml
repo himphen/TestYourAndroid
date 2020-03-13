@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Датчик влажности</string>
     <string name="title_activity_camera">камера</string>
     <string name="title_activity_flashlight">Фонарик</string>
-    <string name="title_activity_fingerprint">отпечаток пальца</string>
+    <string name="title_activity_biometric">отпечаток пальца</string>
     <string name="title_activity_drawing">Сенсорный экран</string>
     <string name="title_activity_touch">Мультитач</string>
     <string name="title_activity_speaker">Динамик и вибрация</string>

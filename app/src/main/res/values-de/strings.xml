@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Feuchtigkeitssensor</string>
     <string name="title_activity_camera">Kamera</string>
     <string name="title_activity_flashlight">Taschenlampe</string>
-    <string name="title_activity_fingerprint">Fingerabdruck</string>
+    <string name="title_activity_biometric">Fingerabdruck</string>
     <string name="title_activity_drawing">Berührungsempfindlicher Bildschirm</string>
     <string name="title_activity_touch">Multi-Touch</string>
     <string name="title_activity_speaker">Lautsprecher und vibrieren</string>

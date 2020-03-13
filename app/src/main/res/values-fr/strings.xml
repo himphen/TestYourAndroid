@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Capteur d\'humidité</string>
     <string name="title_activity_camera">Caméra</string>
     <string name="title_activity_flashlight">Flash</string>
-    <string name="title_activity_fingerprint">Empreinte digitale</string>
+    <string name="title_activity_biometric">Empreinte digitale</string>
     <string name="title_activity_drawing">Écran tactile</string>
     <string name="title_activity_touch">Multi-touches</string>
     <string name="title_activity_speaker">Haut-parleur et vibrer</string>

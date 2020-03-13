@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Czujnik wilgotności</string>
     <string name="title_activity_camera">Aparat fotograficzny</string>
     <string name="title_activity_flashlight">Latarka</string>
-    <string name="title_activity_fingerprint">Odcisk palca</string>
+    <string name="title_activity_biometric">Odcisk palca</string>
     <string name="title_activity_drawing">Ekran dotykowy</string>
     <string name="title_activity_touch">Wielodotykowy</string>
     <string name="title_activity_speaker">Głośnik i Wibracja</string>

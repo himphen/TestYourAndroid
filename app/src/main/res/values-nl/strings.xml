@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Vochtigheidssensor</string>
     <string name="title_activity_camera">Camera</string>
     <string name="title_activity_flashlight">Zaklamp</string>
-    <string name="title_activity_fingerprint">Vingerafdruk</string>
+    <string name="title_activity_biometric">Vingerafdruk</string>
     <string name="title_activity_drawing">Touch screen</string>
     <string name="title_activity_touch">Multi touch</string>
     <string name="title_activity_speaker">Luidspreker en trillen</string>

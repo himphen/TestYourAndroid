@@ -1,5 +1,6 @@
 package hibernate.v2.testyourandroid
 
+import android.content.Context
 import androidx.multidex.MultiDexApplication
 import com.appbrain.AppBrain
 import com.blankj.utilcode.util.Utils
@@ -10,6 +11,7 @@ import com.google.android.gms.ads.RequestConfiguration
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import hibernate.v2.testyourandroid.helper.UtilHelper
+import io.fabric.sdk.android.Fabric
 import java.util.ArrayList
 
 /**
@@ -17,8 +19,13 @@ import java.util.ArrayList
  */
 class App : MultiDexApplication() {
 
+    companion object {
+        lateinit var context: Context
+    }
+
     override fun onCreate() {
         super.onCreate()
+        context = applicationContext
 
         // init logger
         Logger.addLogAdapter(object : AndroidLogAdapter() {
@@ -68,6 +75,10 @@ class App : MultiDexApplication() {
             allowedPackageNames.add("com.google.android.feedback")
             isGooglePlay = allowedPackageNames.contains(installerPackageName)
         }
-        Crashlytics.setBool("isGooglePlay", isGooglePlay)
+
+        if (isGooglePlay || BuildConfig.DEBUG) {
+            Fabric.with(this, Crashlytics())
+            Crashlytics.setBool("isGooglePlay", isGooglePlay)
+        }
     }
 }

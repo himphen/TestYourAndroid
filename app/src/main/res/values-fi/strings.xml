@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Kosteusanturi</string>
     <string name="title_activity_camera">Kamera</string>
     <string name="title_activity_flashlight">Taskulamppu</string>
-    <string name="title_activity_fingerprint">Sormenjälki</string>
+    <string name="title_activity_biometric">Sormenjälki</string>
     <string name="title_activity_drawing">Kosketusnäyttö</string>
     <string name="title_activity_touch">Monikosketus</string>
     <string name="title_activity_speaker">Puhuja ja värinää</string>

@@ -13,7 +13,7 @@
     <string name="title_activity_light">Sensor de luminosidad</string>
     <string name="title_activity_camera">Cámara</string>
     <string name="title_activity_flashlight">Flash</string>
-    <string name="title_activity_fingerprint">Impresión digital</string>
+    <string name="title_activity_biometric">Impresión digital</string>
     <string name="title_activity_drawing">Pantalla táctil</string>
     <string name="title_activity_touch">Múltiple táctil</string>
     <string name="title_activity_speaker">Sonido y la vibración</string>

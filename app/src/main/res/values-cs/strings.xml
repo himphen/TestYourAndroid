@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Snímač vlhkosti</string>
     <string name="title_activity_camera">Fotoaparát</string>
     <string name="title_activity_flashlight">Svítilna</string>
-    <string name="title_activity_fingerprint">Otisky prstů</string>
+    <string name="title_activity_biometric">Otisky prstů</string>
     <string name="title_activity_drawing">Dotyková obrazovka</string>
     <string name="title_activity_touch">Multi Touch</string>
     <string name="title_activity_speaker">Reproduktor a vibrace</string>

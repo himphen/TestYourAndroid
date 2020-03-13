@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Humidity Sensor</string>
     <string name="title_activity_camera">Camera</string>
     <string name="title_activity_flashlight">Flashlight</string>
-    <string name="title_activity_fingerprint">Fingerprint</string>
+    <string name="title_activity_biometric">Fingerprint</string>
     <string name="title_activity_drawing">Touch Screen</string>
     <string name="title_activity_touch">Multi Touch</string>
     <string name="title_activity_speaker">Tagapagsalita at Mag-vibrate</string>

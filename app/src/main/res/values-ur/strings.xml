@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">نمی سینسر</string>
     <string name="title_activity_camera">کیمرے</string>
     <string name="title_activity_flashlight">ٹارچ</string>
-    <string name="title_activity_fingerprint">فنگر پرنٹ</string>
+    <string name="title_activity_biometric">فنگر پرنٹ</string>
     <string name="title_activity_drawing">ٹچ اسکرین</string>
     <string name="title_activity_touch">ملٹی ٹچ</string>
     <string name="title_activity_speaker">اسپیکر اور کمپن</string>

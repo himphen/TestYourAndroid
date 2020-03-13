@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Namlik sensori</string>
     <string name="title_activity_camera">Kamera</string>
     <string name="title_activity_flashlight">Chiroq</string>
-    <string name="title_activity_fingerprint">Barmoq izi</string>
+    <string name="title_activity_biometric">Barmoq izi</string>
     <string name="title_activity_drawing">Sensorli ekran</string>
     <string name="title_activity_touch">Multi Touch</string>
     <string name="title_activity_speaker">Karnay va vibratsiya</string>

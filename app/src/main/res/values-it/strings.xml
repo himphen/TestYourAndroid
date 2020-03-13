@@ -17,7 +17,7 @@
     <string name="title_activity_humidity">Sensore di umidità</string>
     <string name="title_activity_camera">Telecamera</string>
     <string name="title_activity_flashlight">Torcia</string>
-    <string name="title_activity_fingerprint">Impronta digitale</string>
+    <string name="title_activity_biometric">Impronta digitale</string>
     <string name="title_activity_drawing">Touch Screen</string>
     <string name="title_activity_touch">Multi Tocco</string>
     <string name="title_activity_speaker">Altoparlante e vibrare</string>

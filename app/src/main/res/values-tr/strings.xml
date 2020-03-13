@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Nem sensörü</string>
     <string name="title_activity_camera">Kamera</string>
     <string name="title_activity_flashlight">El feneri</string>
-    <string name="title_activity_fingerprint">Parmak izi</string>
+    <string name="title_activity_biometric">Parmak izi</string>
     <string name="title_activity_drawing">Dokunmatik ekran</string>
     <string name="title_activity_touch">Çoklu dokunuş</string>
     <string name="title_activity_speaker">Hoparlör ve Titreşim</string>

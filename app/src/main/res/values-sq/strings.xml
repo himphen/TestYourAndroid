@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Sensor lagështie</string>
     <string name="title_activity_camera">aparat fotografik</string>
     <string name="title_activity_flashlight">dritë sinjalizimi</string>
-    <string name="title_activity_fingerprint">gjurmë gishtash</string>
+    <string name="title_activity_biometric">gjurmë gishtash</string>
     <string name="title_activity_drawing">Ekran me prekje</string>
     <string name="title_activity_touch">Multi Touch</string>
     <string name="title_activity_speaker">Folës dhe dridhje</string>

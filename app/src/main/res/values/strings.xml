@@ -141,7 +141,7 @@
     <string name="title_activity_sound_meter">Sound Meter</string>
     <string name="title_activity_speed_test">Speed Test</string>
     <string name="title_activity_flashlight">Flashlight</string>
-    <string name="title_activity_fingerprint">Fingerprint</string>
+    <string name="title_activity_biometric">Fingerprint</string>
     <string name="title_activity_drawing">Touch Screen</string>
     <string name="title_activity_touch">Multi Touch</string>
     <string name="title_activity_speaker">Speaker and Vibrate</string>
@@ -192,6 +192,7 @@
         <item>@string/title_activity_microphone</item>
         <item>@string/title_activity_nfc</item>
         <item>@string/title_activity_location</item>
+        <item>@string/title_activity_biometric</item>
     </string-array>
     <string-array name="sensor_string_array" translatable="false">
         <item>@string/title_activity_step</item>

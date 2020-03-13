@@ -17,7 +17,7 @@
     <string name="title_activity_humidity">Sensor Kelembaban</string>
     <string name="title_activity_camera">Kamera</string>
     <string name="title_activity_flashlight">Senter</string>
-    <string name="title_activity_fingerprint">Sidik Jari</string>
+    <string name="title_activity_biometric">Sidik Jari</string>
     <string name="title_activity_drawing">Layar Sentuh</string>
     <string name="title_activity_touch">Multi Sentuh </string>
     <string name="title_activity_speaker">Pengeras Suara dan Getaran </string>

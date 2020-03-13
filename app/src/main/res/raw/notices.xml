@@ -19,57 +19,69 @@
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
-        <name>OrmLite</name>
-        <url>http://www.android-graphview.org/</url>
-        <copyright>Copyright Jonas Gehring</copyright>
+        <name>GraphView</name>
+        <url>https://github.com/jjoe64/GraphView</url>
+        <copyright>Copyright 2016 Jonas Gehring</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>Android In-App Billing v3 Library</name>
         <url>https://github.com/anjlab/android-inapp-billing-v3/</url>
-        <copyright>AnjLab</copyright>
+        <copyright>Copyright AnjLab</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>SectionedRecyclerViewAdapter</name>
         <url>https://github.com/luizgrp/SectionedRecyclerViewAdapter/</url>
-        <copyright>Gustavo Pagani</copyright>
+        <copyright>Copyright Gustavo Pagani</copyright>
         <license>MIT License</license>
-    </notice>
-    <notice>
-        <name>MaterialScrollBar</name>
-        <url>https://github.com/turing-tech/MaterialScrollBar</url>
-        <copyright>Turing Technologies, an unincorporated organisation of Wynne Plaga</copyright>
-        <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>Android Draw</name>
         <url>https://github.com/divyanshub024/AndroidDraw</url>
-        <copyright>Divyanshu Bhargava</copyright>
+        <copyright>Copyright Divyanshu Bhargava</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>CameraView</name>
         <url>https://github.com/natario1/CameraView</url>
-        <copyright>natario1</copyright>
+        <copyright>Copyright natario1</copyright>
         <license>MIT License</license>
     </notice>
     <notice>
         <name>AndroidUtilCode</name>
         <url>https://github.com/Blankj/AndroidUtilCode/</url>
-        <copyright>Blankj</copyright>
+        <copyright>Copyright Blankj</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>Android Material App Rating</name>
         <url>https://github.com/stepstone-tech/android-material-app-rating/</url>
-        <copyright>StepStone Servicesn</copyright>
+        <copyright>Copyright StepStone Servicesn</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>Code scanner library for Android</name>
         <url>https://github.com/yuriy-budiyev/code-scanner/</url>
-        <copyright>Yuriy Budiyev</copyright>
+        <copyright>Copyright Yuriy Budiyev</copyright>
         <license>MIT License</license>
+    </notice>
+    <notice>
+        <name>AppUpdater</name>
+        <url>https://github.com/javiersantos/AppUpdater</url>
+        <copyright>Copyright Javier Santos</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Logger</name>
+        <url>https://github.com/orhanobut/logger</url>
+        <copyright>Copyright Orhan Obut</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+    <notice>
+        <name>Badge</name>
+        <url>https://github.com/nekocode/Badge</url>
+        <copyright>Copyright nekocode</copyright>
+        <license>Apache Software License 2.0</license>
     </notice>
 </notices>

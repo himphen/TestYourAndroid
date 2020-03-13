@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Rütubət sensoru</string>
     <string name="title_activity_camera">Kamera</string>
     <string name="title_activity_flashlight">Fənər</string>
-    <string name="title_activity_fingerprint">Parmak izi</string>
+    <string name="title_activity_biometric">Parmak izi</string>
     <string name="title_activity_drawing">Toxunma ekran</string>
     <string name="title_activity_touch">Multi Touch</string>
     <string name="title_activity_speaker">Spiker və Titrəmə</string>

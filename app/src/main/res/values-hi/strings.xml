@@ -17,7 +17,7 @@
     <string name="title_activity_humidity">आर्द्रता सेंसर</string>
     <string name="title_activity_camera">कैमरा</string>
     <string name="title_activity_flashlight">फ्लैशलाइट</string>
-    <string name="title_activity_fingerprint">फ़िंगरप्रिंट</string>
+    <string name="title_activity_biometric">फ़िंगरप्रिंट</string>
     <string name="title_activity_drawing">टच स्क्रीन</string>
     <string name="title_activity_touch">मल्टी टच</string>
     <string name="title_activity_speaker">अध्यक्ष और कंपन</string>

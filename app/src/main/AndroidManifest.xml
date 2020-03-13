@@ -240,6 +240,7 @@
             android:name=".ui.tool.speedtest.ToolSpeedTestActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_sound_meter" />
+        <activity android:name=".ui.hardware.HardwareBiometricActivity" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -250,6 +251,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/GOOGLE_API_KEY" />
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
 
         <uses-library
             android:name="org.apache.http.legacy"

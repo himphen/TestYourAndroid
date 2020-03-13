@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Páratartalom érzékelő</string>
     <string name="title_activity_camera">Kamera</string>
     <string name="title_activity_flashlight">Zseblámpa</string>
-    <string name="title_activity_fingerprint">Ujjlenyomat</string>
+    <string name="title_activity_biometric">Ujjlenyomat</string>
     <string name="title_activity_drawing">Érintőkijelző</string>
     <string name="title_activity_touch">Több ponton érzékelő</string>
     <string name="title_activity_speaker">Hangszóró és rezgés</string>

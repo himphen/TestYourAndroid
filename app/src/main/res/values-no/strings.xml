@@ -16,7 +16,7 @@
     <string name="title_activity_humidity">Fuktighetssensor</string>
     <string name="title_activity_camera">Kamera</string>
     <string name="title_activity_flashlight">Lommelykt</string>
-    <string name="title_activity_fingerprint">Fingeravtrykk</string>
+    <string name="title_activity_biometric">Fingeravtrykk</string>
     <string name="title_activity_drawing">Touch-skjerm</string>
     <string name="title_activity_touch">Flerpunktsberøring</string>
     <string name="title_activity_speaker">Høyttaler og vibrere</string>
