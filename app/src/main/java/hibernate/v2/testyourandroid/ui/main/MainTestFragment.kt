@@ -46,7 +46,7 @@ import hibernate.v2.testyourandroid.ui.tool.ToolBubbleLevelActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolFlashlightActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolQRScannerActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolSoundMeterActivity
-import hibernate.v2.testyourandroid.ui.tool.speedtext.ToolSpeedTestActivity
+import hibernate.v2.testyourandroid.ui.tool.speedtest.ToolSpeedTestActivity
 import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_main_gridview.*
 import java.util.ArrayList

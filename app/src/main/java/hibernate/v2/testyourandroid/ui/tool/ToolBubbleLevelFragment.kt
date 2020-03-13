@@ -89,10 +89,7 @@ class ToolBubbleLevelFragment : BaseFragment(), SensorEventListener {
 
     companion object {
         fun newInstance(): ToolBubbleLevelFragment {
-            val fragment = ToolBubbleLevelFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
+            return ToolBubbleLevelFragment()
         }
     }
 }

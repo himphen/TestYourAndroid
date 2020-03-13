@@ -3,8 +3,12 @@ package hibernate.v2.testyourandroid.ui.base
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.analytics.FirebaseAnalytics
+import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper.detectLanguage
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -15,6 +19,7 @@ abstract class BaseFragmentActivity : BaseActivity() {
     open var fragment: Fragment? = null
     open var titleId: Int? = null
     open var titleString: String? = null
+    open var pinShortcut = false
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
@@ -52,5 +57,17 @@ abstract class BaseFragmentActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        if (pinShortcut) {
+            if (ShortcutManagerCompat.isRequestPinShortcutSupported(this)) {
+                val menuItem = menu.add(0, 0, 0, "Add to home screen")
+                menuItem.setIcon(R.drawable.baseline_add_white_24)
+                        .setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM)
+                return true
+            }
+        }
+        return super.onCreateOptionsMenu(menu)
     }
 }

@@ -80,5 +80,9 @@ class ToolQRScannerFragment : BaseFragment() {
 
     companion object {
         private val PERMISSION_NAME = arrayOf(Manifest.permission.CAMERA)
+
+        fun newInstance(): ToolQRScannerFragment {
+            return ToolQRScannerFragment()
+        }
     }
 }

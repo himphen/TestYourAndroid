@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid.ui.tool.speedtext
+package hibernate.v2.testyourandroid.ui.tool.speedtest
 
 import com.orhanobut.logger.Logger
 import hibernate.v2.testyourandroid.helper.roundTo

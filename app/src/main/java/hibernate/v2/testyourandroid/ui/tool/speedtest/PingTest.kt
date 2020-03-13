@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid.ui.tool.speedtext
+package hibernate.v2.testyourandroid.ui.tool.speedtest
 
 import java.io.BufferedReader
 import java.io.InputStreamReader

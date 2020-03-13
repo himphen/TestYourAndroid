@@ -223,48 +223,21 @@
         <activity
             android:name=".ui.tool.ToolQRScannerActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:exported="true"
-            android:icon="@drawable/ic_icon_qrcode_launcher"
-            android:label="@string/title_activity_qr_scanner"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/title_activity_qr_scanner" />
         <activity
             android:name=".ui.tool.ToolBubbleLevelActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:exported="true"
-            android:icon="@drawable/ic_icon_bubble_level_launcher"
-            android:label="@string/title_activity_bubble_level"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/title_activity_bubble_level" />
         <activity
             android:name=".ui.tool.ToolFlashlightActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:exported="true"
-            android:icon="@drawable/ic_icon_flashlight_launcher"
-            android:label="@string/title_activity_flashlight"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/title_activity_flashlight" />
         <activity
             android:name=".ui.tool.ToolSoundMeterActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_sound_meter" />
         <activity
-            android:name=".ui.tool.speedtext.ToolSpeedTestActivity"
+            android:name=".ui.tool.speedtest.ToolSpeedTestActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_sound_meter" />
 
