@@ -46,8 +46,10 @@ class MonitorNetworkFragment : BaseFragment() {
         }
     }
     private var isSupported = false
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_monitor_network, container, false)
     }
 

@@ -7,8 +7,8 @@ import java.io.InputStreamReader
  * @author erdigurbuz
  */
 class PingTest(
-        private val serverIpAddress: String,
-        private val pingTryCount: Int
+    private val serverIpAddress: String,
+    private val pingTryCount: Int
 ) : Thread() {
     var instantRtt = 0.0
     var avgRtt = 0.0
@@ -27,7 +27,8 @@ class PingTest(
                     return@forEachLine
                 }
                 if (line.contains("icmp_seq")) {
-                    instantRtt = line.split(" ").toTypedArray()[line.split(" ").toTypedArray().size - 2].replace("time=", "").toDouble()
+                    instantRtt = line.split(" ").toTypedArray()[line.split(" ")
+                        .toTypedArray().size - 2].replace("time=", "").toDouble()
                 }
                 if (line.startsWith("rtt ")) {
                     avgRtt = line.split("/").toTypedArray()[4].toDouble()

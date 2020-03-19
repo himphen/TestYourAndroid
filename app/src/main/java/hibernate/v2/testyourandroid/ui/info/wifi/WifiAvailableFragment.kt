@@ -70,8 +70,10 @@ class WifiAvailableFragment : BaseFragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
@@ -98,8 +100,11 @@ class WifiAvailableFragment : BaseFragment() {
     private fun onStartScanning() {
         if ((parentFragment as WifiFragment?)?.isScanning == true) {
             context?.let { context ->
-                context.registerReceiver(wifiScanReceiver, IntentFilter(
-                        WifiManager.SCAN_RESULTS_AVAILABLE_ACTION))
+                context.registerReceiver(
+                    wifiScanReceiver, IntentFilter(
+                        WifiManager.SCAN_RESULTS_AVAILABLE_ACTION
+                    )
+                )
 
                 handler.post(scanWifiRunnable)
 
@@ -125,7 +130,8 @@ class WifiAvailableFragment : BaseFragment() {
         list.clear()
         sort(results) { lhs, rhs -> lhs.SSID.compareTo(rhs.SSID, ignoreCase = true) }
         for (result in results) {
-            val ssid = (if (result.SSID == null || result.SSID == "") "__Hidden SSID__" else result.SSID)
+            val ssid =
+                (if (result.SSID == null || result.SSID == "") "__Hidden SSID__" else result.SSID)
 
             list.add(InfoItem(ssid, getScanResultText(result)))
         }

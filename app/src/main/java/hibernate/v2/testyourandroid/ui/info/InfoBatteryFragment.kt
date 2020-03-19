@@ -36,7 +36,8 @@ class InfoBatteryFragment : BaseFragment() {
         override fun onReceive(arg0: Context, intent: Intent) {
             scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, 0)
             technology = intent.extras?.getString(
-                    BatteryManager.EXTRA_TECHNOLOGY) ?: "-"
+                BatteryManager.EXTRA_TECHNOLOGY
+            ) ?: "-"
             val temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0)
             voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)
             level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
@@ -53,8 +54,10 @@ class InfoBatteryFragment : BaseFragment() {
     private lateinit var chargeString: Array<String>
     private lateinit var healthString: Array<String>
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
@@ -74,8 +77,11 @@ class InfoBatteryFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        context?.registerReceiver(batteryReceiver, IntentFilter(
-                Intent.ACTION_BATTERY_CHANGED))
+        context?.registerReceiver(
+            batteryReceiver, IntentFilter(
+                Intent.ACTION_BATTERY_CHANGED
+            )
+        )
     }
 
     private fun init() {

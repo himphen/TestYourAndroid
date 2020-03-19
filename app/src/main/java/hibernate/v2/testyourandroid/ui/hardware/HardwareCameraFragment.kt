@@ -26,8 +26,10 @@ import kotlinx.android.synthetic.main.fragment_hardware_camera.*
 @Suppress("DEPRECATION")
 class HardwareCameraFragment : BaseFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_hardware_camera, container, false)
     }
 
@@ -38,19 +40,19 @@ class HardwareCameraFragment : BaseFragment() {
         } else {
             context?.let {
                 MaterialDialog(it)
-                        .title(R.string.dialog_camera_title)
-                        .listItemsSingleChoice(
-                                items = arrayListOf("Camera 1", "Camera 2"),
-                                waitForPositiveButton = false
-                        ) { dialog, index, _ ->
-                            initCamera(index == 0)
-                            dialog.dismiss()
-                        }
-                        .cancelable(false)
-                        .negativeButton(R.string.ui_cancel) { dialog ->
-                            UtilHelper.scanForActivity(dialog.context)?.finish()
-                        }
-                        .show()
+                    .title(R.string.dialog_camera_title)
+                    .listItemsSingleChoice(
+                        items = arrayListOf("Camera 1", "Camera 2"),
+                        waitForPositiveButton = false
+                    ) { dialog, index, _ ->
+                        initCamera(index == 0)
+                        dialog.dismiss()
+                    }
+                    .cancelable(false)
+                    .negativeButton(R.string.ui_cancel) { dialog ->
+                        UtilHelper.scanForActivity(dialog.context)?.finish()
+                    }
+                    .show()
             }
         }
     }

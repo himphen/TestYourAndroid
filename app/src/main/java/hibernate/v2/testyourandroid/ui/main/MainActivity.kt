@@ -3,7 +3,6 @@ package hibernate.v2.testyourandroid.ui.main
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -23,8 +22,6 @@ import com.stepstone.apprating.listener.RatingDialogListener
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper
-import hibernate.v2.testyourandroid.helper.UtilHelper.detectLanguage
-import hibernate.v2.testyourandroid.helper.UtilHelper.forceShowMenu
 import hibernate.v2.testyourandroid.helper.UtilHelper.iapProductIdList
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.toolbar.*
@@ -35,14 +32,8 @@ class MainActivity : BaseActivity(), RatingDialogListener {
     private lateinit var defaultPreferences: SharedPreferences
     private lateinit var billingProcessor: BillingProcessor
 
-    private val productNameArray = arrayOf("Buy Me A Orange Juice", "Buy Me A Coffee", "Buy Me A Big Mac")
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        detectLanguage(this)
-        initActionBar(toolbar, titleId = R.string.app_name)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        supportActionBar?.setHomeButtonEnabled(false)
-    }
+    private val productNameArray =
+        arrayOf("Buy Me A Orange Juice", "Buy Me A Coffee", "Buy Me A Big Mac")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,29 +45,28 @@ class MainActivity : BaseActivity(), RatingDialogListener {
         initActionBar(toolbar, titleId = R.string.app_name)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setHomeButtonEnabled(false)
-        forceShowMenu(this)
         billingProcessor = BillingProcessor(this, BuildConfig.GOOGLE_IAP_KEY,
-                object : IBillingHandler {
-                    override fun onProductPurchased(productId: String, details: TransactionDetails?) {
-                        if (iapProductIdList().contains(productId)) {
-                            defaultPreferences.edit().putBoolean(UtilHelper.PREF_IAP, true).apply()
-                            MaterialDialog(this@MainActivity)
-                                    .title(R.string.iab_complete_title)
-                                    .customView(R.layout.dialog_donate)
-                                    .positiveButton(R.string.ui_okay)
-                                    .show()
-                        }
+            object : IBillingHandler {
+                override fun onProductPurchased(productId: String, details: TransactionDetails?) {
+                    if (iapProductIdList().contains(productId)) {
+                        defaultPreferences.edit().putBoolean(UtilHelper.PREF_IAP, true).apply()
+                        MaterialDialog(this@MainActivity)
+                            .title(R.string.iab_complete_title)
+                            .customView(R.layout.dialog_donate)
+                            .positiveButton(R.string.ui_okay)
+                            .show()
                     }
+                }
 
-                    override fun onPurchaseHistoryRestored() {}
-                    override fun onBillingError(errorCode: Int, error: Throwable?) {}
-                    override fun onBillingInitialized() {}
-                })
+                override fun onPurchaseHistoryRestored() {}
+                override fun onBillingError(errorCode: Int, error: Throwable?) {}
+                override fun onBillingInitialized() {}
+            })
 
         supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.container, MainFragment())
-                .commit()
+            .beginTransaction()
+            .replace(R.id.container, MainFragment())
+            .commit()
 
         countRate()
     }
@@ -110,22 +100,22 @@ class MainActivity : BaseActivity(), RatingDialogListener {
 
     private fun openDialogRate() {
         AppRatingDialog.Builder()
-                .setPositiveButtonText(R.string.rate_posbtn)
-                .setNegativeButtonText(R.string.rate_navbtn)
-                .setNeutralButtonText(R.string.rate_netbtn)
-                .setNumberOfStars(5)
-                .setDefaultRating(5)
-                .setTitle(R.string.rate_title)
-                .setDescription(R.string.rate_message)
-                .setCommentInputEnabled(false)
-                .setStarColor(R.color.gold)
-                .setTitleTextColor(R.color.white)
-                .setDescriptionTextColor(R.color.grey200)
-                .setWindowAnimation(R.style.RatingDialogFadeAnimation)
-                .setCancelable(false)
-                .setCanceledOnTouchOutside(false)
-                .create(this@MainActivity)
-                .show()
+            .setPositiveButtonText(R.string.rate_posbtn)
+            .setNegativeButtonText(R.string.rate_navbtn)
+            .setNeutralButtonText(R.string.rate_netbtn)
+            .setNumberOfStars(5)
+            .setDefaultRating(5)
+            .setTitle(R.string.rate_title)
+            .setDescription(R.string.rate_message)
+            .setCommentInputEnabled(false)
+            .setStarColor(R.color.gold)
+            .setTitleTextColor(R.color.white)
+            .setDescriptionTextColor(R.color.grey200)
+            .setWindowAnimation(R.style.RatingDialogFadeAnimation)
+            .setCancelable(false)
+            .setCanceledOnTouchOutside(false)
+            .create(this@MainActivity)
+            .show()
     }
 
     private fun countRate() {
@@ -139,34 +129,49 @@ class MainActivity : BaseActivity(), RatingDialogListener {
 
     fun openDialogLanguage() {
         MaterialDialog(this)
-                .title(R.string.title_activity_language)
-                .listItemsSingleChoice(R.array.language_choose, waitForPositiveButton = false) { dialog, index, _ ->
-                    dialog.dismiss()
-                    val editor = defaultPreferences.edit()
-                    val languageLocaleCodeArray = resources.getStringArray(R.array.language_locale_code)
-                    val languageLocaleCountryCodeArray = resources.getStringArray(R.array.language_locale_country_code)
-                    editor.putString(UtilHelper.PREF_LANGUAGE, languageLocaleCodeArray[index])
-                            .putString(UtilHelper.PREF_LANGUAGE_COUNTRY, languageLocaleCountryCodeArray[index])
-                            .apply()
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+            .title(R.string.title_activity_language)
+            .listItemsSingleChoice(
+                R.array.language_choose,
+                waitForPositiveButton = false
+            ) { dialog, index, _ ->
+                dialog.dismiss()
+                val editor = defaultPreferences.edit()
+                val languageLocaleCodeArray = resources.getStringArray(R.array.language_locale_code)
+                val languageLocaleCountryCodeArray =
+                    resources.getStringArray(R.array.language_locale_country_code)
+                editor
+                    .putString(UtilHelper.PREF_LANGUAGE, languageLocaleCodeArray[index])
+                    .putString(
+                        UtilHelper.PREF_LANGUAGE_COUNTRY,
+                        languageLocaleCountryCodeArray[index]
+                    )
+                    .apply()
+
+                val intent = packageManager.getLaunchIntentForPackage(packageName)
+                intent?.let {
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    intent.addCategory(Intent.CATEGORY_HOME)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
                 }
-                .negativeButton(R.string.ui_cancel)
-                .show()
+            }
+            .negativeButton(R.string.ui_cancel)
+            .show()
     }
 
     private fun openDialogIAP() {
         MaterialDialog(this)
-                .title(R.string.title_activity_test_ad_remover)
-                .listItemsSingleChoice(
-                        items = productNameArray.toCollection(ArrayList()),
-                        waitForPositiveButton = false
-                ) { dialog, index, _ ->
-                    billingProcessor.purchase(this, iapProductIdList()[index])
-                    dialog.dismiss()
-                }
-                .negativeButton(R.string.ui_cancel)
-                .show()
+            .title(R.string.title_activity_test_ad_remover)
+            .listItemsSingleChoice(
+                items = productNameArray.toCollection(ArrayList()),
+                waitForPositiveButton = false
+            ) { dialog, index, _ ->
+                billingProcessor.purchase(this, iapProductIdList()[index])
+                dialog.dismiss()
+            }
+            .negativeButton(R.string.ui_cancel)
+            .show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -191,7 +196,8 @@ class MainActivity : BaseActivity(), RatingDialogListener {
                 intent.data = Uri.parse("market://details?id=hibernate.v2.testyourandroid")
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {
-                intent.data = Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid")
+                intent.data =
+                    Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid")
                 startActivity(intent)
             }
         } else {

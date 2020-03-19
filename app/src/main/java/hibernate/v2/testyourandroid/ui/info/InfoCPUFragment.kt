@@ -34,8 +34,10 @@ class InfoCPUFragment : BaseFragment() {
 
     private lateinit var memoryArray: Array<String>
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
@@ -161,7 +163,8 @@ class InfoCPUFragment : BaseFragment() {
         get() {
             var text = ""
             context?.let { context ->
-                val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+                val activityManager =
+                    context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                 val memoryInfo = ActivityManager.MemoryInfo()
                 activityManager.getMemoryInfo(memoryInfo)
                 val totalMem = memoryInfo.totalMem
@@ -188,13 +191,15 @@ class InfoCPUFragment : BaseFragment() {
         get() {
             val sdCardInfo = LongArray(2)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val storageManager = context?.getSystemService(Context.STORAGE_SERVICE) as StorageManager
-                val storageStatsManager = context?.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
+                val storageManager =
+                    context?.getSystemService(Context.STORAGE_SERVICE) as StorageManager
+                val storageStatsManager =
+                    context?.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
                 val storageVolumes = storageManager.storageVolumes
 
                 for (storageVolume in storageVolumes) {
                     val uuid = storageVolume.uuid?.let { UUID.fromString(it) }
-                            ?: StorageManager.UUID_DEFAULT
+                        ?: StorageManager.UUID_DEFAULT
                     storageStatsManager.getFreeBytes(uuid)
                     storageStatsManager.getTotalBytes(uuid)
 

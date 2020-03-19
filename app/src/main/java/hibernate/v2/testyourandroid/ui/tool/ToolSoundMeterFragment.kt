@@ -34,8 +34,10 @@ class ToolSoundMeterFragment : BaseFragment() {
     private val avgdB = ArrayList<Int>()
     private var mIsRecording = false
     private var mAudioRecord: AudioRecord? = null
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_tool_sound_meter, container, false)
     }
 
@@ -60,8 +62,10 @@ class ToolSoundMeterFragment : BaseFragment() {
 
     private fun startRecording() {
         context?.let { context ->
-            BUFFER_SIZE = AudioRecord.getMinBufferSize(SAMPLE_RATE_IN_HZ,
-                    AudioFormat.CHANNEL_IN_DEFAULT, AudioFormat.ENCODING_PCM_16BIT)
+            BUFFER_SIZE = AudioRecord.getMinBufferSize(
+                SAMPLE_RATE_IN_HZ,
+                AudioFormat.CHANNEL_IN_DEFAULT, AudioFormat.ENCODING_PCM_16BIT
+            )
             if (BUFFER_SIZE < 0) {
                 UtilHelper.errorNoFeatureDialog(context)
                 return
@@ -87,15 +91,15 @@ class ToolSoundMeterFragment : BaseFragment() {
                 graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
                 graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
                 mAudioRecord = AudioRecord(
-                        MediaRecorder.AudioSource.MIC,
+                    MediaRecorder.AudioSource.MIC,
+                    SAMPLE_RATE_IN_HZ,
+                    AudioFormat.CHANNEL_IN_DEFAULT,
+                    AudioFormat.ENCODING_PCM_16BIT,
+                    AudioRecord.getMinBufferSize(
                         SAMPLE_RATE_IN_HZ,
                         AudioFormat.CHANNEL_IN_DEFAULT,
-                        AudioFormat.ENCODING_PCM_16BIT,
-                        AudioRecord.getMinBufferSize(
-                                SAMPLE_RATE_IN_HZ,
-                                AudioFormat.CHANNEL_IN_DEFAULT,
-                                AudioFormat.ENCODING_PCM_16BIT
-                        )
+                        AudioFormat.ENCODING_PCM_16BIT
+                    )
                 )
                 mAudioRecord?.let {
                     it.startRecording()
@@ -164,7 +168,11 @@ class ToolSoundMeterFragment : BaseFragment() {
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {

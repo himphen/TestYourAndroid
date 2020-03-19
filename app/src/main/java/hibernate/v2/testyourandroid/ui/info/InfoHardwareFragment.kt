@@ -24,8 +24,10 @@ class InfoHardwareFragment : BaseFragment() {
         val PERMISSION_NAME = arrayOf(Manifest.permission.READ_PHONE_STATE)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
@@ -81,7 +83,11 @@ class InfoHardwareFragment : BaseFragment() {
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {

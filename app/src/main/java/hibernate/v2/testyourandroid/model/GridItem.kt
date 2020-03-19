@@ -10,14 +10,24 @@ class GridItem {
     var actionType: String? = null
     var badge: Badge = Badge.NONE
 
-    constructor(mainText: String, mainImageId: Int, intentClass: Class<*>?, badge: Badge = Badge.NONE) {
+    constructor(
+        mainText: String,
+        mainImageId: Int,
+        intentClass: Class<*>?,
+        badge: Badge = Badge.NONE
+    ) {
         this.mainText = mainText
         this.mainImageId = mainImageId
         this.intentClass = intentClass
         this.badge = badge
     }
 
-    constructor(mainText: String, mainImageId: Int, actionType: String?, badge: Badge = Badge.NONE) {
+    constructor(
+        mainText: String,
+        mainImageId: Int,
+        actionType: String?,
+        badge: Badge = Badge.NONE
+    ) {
         this.mainText = mainText
         this.mainImageId = mainImageId
         this.actionType = actionType

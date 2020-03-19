@@ -35,8 +35,10 @@ class AppListFragment : BaseFragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview_scrollbar, container, false)
     }
 
@@ -60,8 +62,8 @@ class AppListFragment : BaseFragment() {
                 context?.let {
                     // TODO
                     dialog = MaterialDialog(it)
-                            .message(R.string.ui_loading)
-                            .cancelable(false)
+                        .message(R.string.ui_loading)
+                        .cancelable(false)
                     dialog?.show()
                 }
             }
@@ -80,18 +82,22 @@ class AppListFragment : BaseFragment() {
                             }
                         }
                         val appItem = AppItem()
-                        appItem.appName = packageInfo.applicationInfo.loadLabel(packageManager).toString()
+                        appItem.appName =
+                            packageInfo.applicationInfo.loadLabel(packageManager).toString()
                         appItem.sourceDir = packageInfo.applicationInfo.dataDir
                         appItem.packageName = packageInfo.packageName
-                        appItem.versionCode = PackageInfoCompat.getLongVersionCode(packageInfo).toString()
+                        appItem.versionCode =
+                            PackageInfoCompat.getLongVersionCode(packageInfo).toString()
                         appItem.versionName = packageInfo.versionName
                         appItem.firstInstallTime = packageInfo.firstInstallTime
                         appItem.icon = packageInfo.applicationInfo.loadIcon(packageManager)
-                        appItem.isSystemApp = packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
+                        appItem.isSystemApp =
+                            packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
                         appList.add(appItem)
                     }
                     appList.sortWith(Comparator { item1, item2 ->
-                        item1.appName!!.toLowerCase(Locale.getDefault()).compareTo(item2.appName!!.toLowerCase(Locale.getDefault()))
+                        item1.appName!!.toLowerCase(Locale.getDefault())
+                            .compareTo(item2.appName!!.toLowerCase(Locale.getDefault()))
                     })
                 }
                 return null
@@ -100,15 +106,16 @@ class AppListFragment : BaseFragment() {
             override fun onPostExecute(void: Void?) {
                 super.onPostExecute(void)
                 dialog?.dismiss()
-                rvlist?.adapter = AppItemAdapter(appList, object : AppItemAdapter.ItemClickListener {
-                    override fun onItemDetailClick(appItem: AppItem) {
-                        val intent = Intent(context, AppInfoActivity::class.java)
-                        val bundle = Bundle()
-                        bundle.putParcelable("APP", appItem)
-                        intent.putExtras(bundle)
-                        startActivity(intent)
-                    }
-                })
+                rvlist?.adapter =
+                    AppItemAdapter(appList, object : AppItemAdapter.ItemClickListener {
+                        override fun onItemDetailClick(appItem: AppItem) {
+                            val intent = Intent(context, AppInfoActivity::class.java)
+                            val bundle = Bundle()
+                            bundle.putParcelable("APP", appItem)
+                            intent.putExtras(bundle)
+                            startActivity(intent)
+                        }
+                    })
             }
         }.execute()
     }

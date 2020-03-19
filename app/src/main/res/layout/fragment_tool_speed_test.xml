@@ -10,51 +10,120 @@
     android:paddingBottom="@dimen/activity_vertical_margin">
 
     <LinearLayout
-        android:id="@+id/graphLl"
+        android:id="@+id/infoLl"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:baselineAligned="false"
+        android:layout_height="80dp"
         android:orientation="horizontal"
-        android:paddingTop="24dp"
-        android:weightSum="3"
+        android:paddingBottom="20dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PING"
-                android:textAlignment="center"
-                android:textColor="@color/color_black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Latency"
+                android:textColor="@color/grey600" />
 
             <TextView
-                android:id="@+id/pingTextView"
+                android:id="@+id/latencyTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0 ms"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-
-
-            <com.jjoe64.graphview.GraphView
-                android:id="@+id/graphViewPing"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="-"
+                android:textColor="@color/color_black"
+                android:textSize="16sp"
+                tools:text="1ms" />
         </LinearLayout>
+
+        <View
+            style="@style/VerticalBorder"
+            android:gravity="center" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Location"
+                android:textColor="@color/grey600" />
+
+            <TextView
+                android:id="@+id/locationTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="-"
+                android:textColor="@color/color_black"
+                android:textSize="16sp"
+                tools:text="1ms" />
+        </LinearLayout>
+
+        <View
+            style="@style/VerticalBorder"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Provider"
+                android:textColor="@color/grey600" />
+
+            <TextView
+                android:id="@+id/providerTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="-"
+                android:textColor="@color/color_black"
+                android:textSize="16sp"
+                tools:text="1ms" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/graphLl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/buttonLl"
+        app:layout_constraintTop_toBottomOf="@id/infoLl">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -64,9 +133,8 @@
                 android:layout_height="wrap_content"
                 android:text="DOWNLOAD"
                 android:textAlignment="center"
-                android:textColor="@color/color_black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textColor="@color/grey600"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/downloadTextView"
@@ -74,7 +142,8 @@
                 android:layout_height="wrap_content"
                 android:text="0 Mbps"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textColor="@color/green500"
+                android:textSize="24sp" />
 
             <com.jjoe64.graphview.GraphView
                 android:id="@+id/graphViewDownload"
@@ -84,8 +153,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -95,9 +166,7 @@
                 android:layout_height="wrap_content"
                 android:text="UPLOAD"
                 android:textAlignment="center"
-                android:textColor="@color/color_black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textColor="@color/grey600" />
 
             <TextView
                 android:id="@+id/uploadTextView"
@@ -105,7 +174,8 @@
                 android:layout_height="wrap_content"
                 android:text="0 Mbps"
                 android:textAlignment="center"
-                android:textSize="20sp" />
+                android:textColor="@color/blue500"
+                android:textSize="24sp" />
 
             <com.jjoe64.graphview.GraphView
                 android:id="@+id/graphViewUpload"
@@ -113,61 +183,6 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/infoLl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@id/meterCl"
-        app:layout_constraintTop_toBottomOf="@id/graphLl">
-
-        <TextView
-            android:id="@+id/serverNameTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:lines="2"
-            android:textAlignment="center"
-            android:textColor="@color/color_black"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            tools:text="CSL @ Hong Kong" />
-
-        <TextView
-            android:id="@+id/serverDistanceTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="@color/color_black"
-            android:textSize="20sp"
-            tools:text="[Distance: 4.85 km]" />
-
-    </LinearLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/meterCl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#2d3a4a"
-        app:layout_constraintBottom_toTopOf="@id/buttonLl"
-        app:layout_constraintTop_toBottomOf="@id/infoLl">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/speed_test_bg" />
-
-        <ImageView
-            android:id="@+id/barImageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/speed_test_bar" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/buttonLl"

@@ -50,16 +50,19 @@ class WifiFragment : BaseFragment() {
     private val wifiStateChangedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val extraWifiState = intent.getIntExtra(
-                    WifiManager.EXTRA_WIFI_STATE,
-                    WifiManager.WIFI_STATE_UNKNOWN)
+                WifiManager.EXTRA_WIFI_STATE,
+                WifiManager.WIFI_STATE_UNKNOWN
+            )
             when (extraWifiState) {
                 WifiManager.WIFI_STATE_DISABLED -> openFunctionDialog()
             }
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_view_pager_conatiner, container, false)
     }
 
@@ -69,8 +72,9 @@ class WifiFragment : BaseFragment() {
         activity?.let { activity ->
             wifiManager = activity.applicationContext.getSystemService(Context.WIFI_SERVICE)
                     as WifiManager
-            connectivityManager = activity.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE)
-                    as ConnectivityManager
+            connectivityManager =
+                activity.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE)
+                        as ConnectivityManager
 
             tabTitles = resources.getStringArray(R.array.test_wifi_tab_title)
             // Note that we are passing childFragmentManager, not FragmentManager
@@ -85,7 +89,13 @@ class WifiFragment : BaseFragment() {
                 tab?.customView = adapter.getTabView(i)
             }
             viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                }
+
                 override fun onPageSelected(position: Int) {
                     activity.supportActionBar?.title = (tabTitles[position])
                 }
@@ -117,39 +127,46 @@ class WifiFragment : BaseFragment() {
     private fun onStartScanning() {
         isNetworkAvailable = checkNetworkAvailable()
 
-        context?.registerReceiver(wifiStateChangedReceiver, IntentFilter(
-                WifiManager.WIFI_STATE_CHANGED_ACTION))
+        context?.registerReceiver(
+            wifiStateChangedReceiver, IntentFilter(
+                WifiManager.WIFI_STATE_CHANGED_ACTION
+            )
+        )
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val networkRequestBuilder = NetworkRequest.Builder()
             networkRequestBuilder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
             connectivityManager?.registerNetworkCallback(
-                    networkRequestBuilder.build(),
-                    object : ConnectivityManager.NetworkCallback() {
-                        override fun onAvailable(network: Network) {
-                            Logger.d("onAvailable: $network")
-                            isNetworkAvailable = true
-                        }
-
-                        override fun onLost(network: Network) {
-                            Logger.d("onLost: $network")
-                            isNetworkAvailable = false
-                        }
+                networkRequestBuilder.build(),
+                object : ConnectivityManager.NetworkCallback() {
+                    override fun onAvailable(network: Network) {
+                        Logger.d("onAvailable: $network")
+                        isNetworkAvailable = true
                     }
+
+                    override fun onLost(network: Network) {
+                        Logger.d("onLost: $network")
+                        isNetworkAvailable = false
+                    }
+                }
             )
 
             isScanning = true
         } else {
-            Toast.makeText(context, getString(R.string.ui_not_support_android_version, "5.0"), Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                context,
+                getString(R.string.ui_not_support_android_version, "5.0"),
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
     private fun checkNetworkAvailable(): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val nw = connectivityManager?.activeNetwork
-                    ?: return false
+                ?: return false
             val actNw = connectivityManager?.getNetworkCapabilities(nw)
-                    ?: return false
+                ?: return false
             return actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
         } else {
             return checkNetworkAvailableBelowApiM()
@@ -159,7 +176,7 @@ class WifiFragment : BaseFragment() {
     @Suppress("DEPRECATION")
     private fun checkNetworkAvailableBelowApiM(): Boolean {
         val nwInfo = connectivityManager?.activeNetworkInfo
-                ?: return false
+            ?: return false
         return nwInfo.isConnected
     }
 
@@ -172,7 +189,11 @@ class WifiFragment : BaseFragment() {
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {
@@ -184,13 +205,13 @@ class WifiFragment : BaseFragment() {
     fun openFunctionDialog() {
         context?.let {
             MaterialDialog(it)
-                    .title(R.string.ui_caution)
-                    .message(R.string.wifi_enable_message)
-                    .positiveButton(R.string.wifi_enable_posbtn) {
-                        UtilHelper.startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
-                    }
-                    .negativeButton(R.string.ui_cancel)
-                    .show()
+                .title(R.string.ui_caution)
+                .message(R.string.wifi_enable_message)
+                .positiveButton(R.string.wifi_enable_posbtn) {
+                    UtilHelper.startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
+                }
+                .negativeButton(R.string.ui_cancel)
+                .show()
         }
     }
 }

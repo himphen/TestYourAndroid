@@ -16,8 +16,10 @@ import java.util.ArrayList
 
 class AppChooseFragment : BaseFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_main_info, container, false)
     }
 
@@ -38,17 +40,28 @@ class AppChooseFragment : BaseFragment() {
         }
         val list: MutableList<AppChooseItem> = ArrayList()
         val stringArray = resources.getStringArray(R.array.app_choose_string_array)
-        val intArray = intArrayOf(AppListFragment.ARG_APP_TYPE_USER, AppListFragment.ARG_APP_TYPE_SYSTEM, AppListFragment.ARG_APP_TYPE_ALL)
+        val intArray = intArrayOf(
+            AppListFragment.ARG_APP_TYPE_USER,
+            AppListFragment.ARG_APP_TYPE_SYSTEM,
+            AppListFragment.ARG_APP_TYPE_ALL
+        )
         for (i in stringArray.indices) {
-            list.add(AppChooseItem(stringArray[i], countArray[i].toString() + " " + getString(R.string.app_package), intArray[i]))
+            list.add(
+                AppChooseItem(
+                    stringArray[i],
+                    countArray[i].toString() + " " + getString(R.string.app_package),
+                    intArray[i]
+                )
+            )
         }
-        val mListener: AppChooseAdapter.ItemClickListener = object : AppChooseAdapter.ItemClickListener {
-            override fun onItemDetailClick(appChooseItem: AppChooseItem) {
-                val intent = Intent(context, AppListActivity::class.java)
-                intent.putExtra(AppListFragment.ARG_APP_TYPE, appChooseItem.appType)
-                startActivity(intent)
+        val mListener: AppChooseAdapter.ItemClickListener =
+            object : AppChooseAdapter.ItemClickListener {
+                override fun onItemDetailClick(appChooseItem: AppChooseItem) {
+                    val intent = Intent(context, AppListActivity::class.java)
+                    intent.putExtra(AppListFragment.ARG_APP_TYPE, appChooseItem.appType)
+                    startActivity(intent)
+                }
             }
-        }
         rvlist.adapter = AppChooseAdapter(list, mListener)
     }
 }

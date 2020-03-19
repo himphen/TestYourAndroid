@@ -29,17 +29,21 @@ class ToolSpeedTestActivity : BaseFragmentActivity() {
                 val shortcutIntent = Intent()
                 shortcutIntent.setAction("SHORTCUT_LAUNCH").data = Uri.parse("LAUNCH_SPEED_TEST")
                 val shortcut = ShortcutInfoCompat.Builder(this, "speed_test")
-                        .setShortLabel(getString(R.string.title_activity_speed_test))
-                        .setLongLabel(getString(R.string.title_activity_speed_test))
-                        .setIcon(IconCompat.createWithResource(this, R.drawable.ic_icon_speed_test))
-                        .setIntent(shortcutIntent)
-                        .build()
-                val pinnedShortcutCallbackIntent = ShortcutManagerCompat.createShortcutResultIntent(this, shortcut)
-                val successCallback = PendingIntent.getBroadcast(this, 0,
-                        pinnedShortcutCallbackIntent, 0)
+                    .setShortLabel(getString(R.string.title_activity_speed_test))
+                    .setLongLabel(getString(R.string.title_activity_speed_test))
+                    .setIcon(IconCompat.createWithResource(this, R.drawable.ic_icon_speed_test))
+                    .setIntent(shortcutIntent)
+                    .build()
+                val pinnedShortcutCallbackIntent =
+                    ShortcutManagerCompat.createShortcutResultIntent(this, shortcut)
+                val successCallback = PendingIntent.getBroadcast(
+                    this, 0,
+                    pinnedShortcutCallbackIntent, 0
+                )
                 ShortcutManagerCompat.requestPinShortcut(
-                        this, shortcut,
-                        successCallback.intentSender)
+                    this, shortcut,
+                    successCallback.intentSender
+                )
                 return true
             }
         }

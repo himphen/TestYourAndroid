@@ -23,8 +23,10 @@ import kotlinx.android.synthetic.main.fragment_hardware_flashlight.*
 class ToolFlashlightFragment : BaseFragment() {
     private var mCamera: Camera? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_hardware_flashlight, container, false)
     }
 
@@ -54,7 +56,8 @@ class ToolFlashlightFragment : BaseFragment() {
                 try {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         if (isPermissionsGranted(PERMISSION_NAME)) {
-                            val cameraManager = context?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+                            val cameraManager =
+                                context?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
                             try {
                                 // Usually front camera is at 0 position.
                                 cameraManager.setTorchMode(cameraManager.cameraIdList[0], true)
@@ -90,9 +93,11 @@ class ToolFlashlightFragment : BaseFragment() {
     private fun closeFlash() {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                val cameraManager = context?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+                val cameraManager =
+                    context?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
 
-                val cameraId = cameraManager.cameraIdList[0] // Usually front camera is at 0 position.
+                val cameraId =
+                    cameraManager.cameraIdList[0] // Usually front camera is at 0 position.
                 cameraManager.setTorchMode(cameraId, false)
             } else {
                 mCamera?.let { mCamera ->
@@ -109,7 +114,11 @@ class ToolFlashlightFragment : BaseFragment() {
         turnSwitch?.isChecked = false
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {

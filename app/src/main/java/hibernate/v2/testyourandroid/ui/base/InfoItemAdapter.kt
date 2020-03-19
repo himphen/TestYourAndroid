@@ -12,7 +12,7 @@ import hibernate.v2.testyourandroid.model.InfoItem
  * Created by himphen on 25/5/16.
  */
 class InfoItemAdapter(
-        private val list: List<InfoItem>
+    private val list: List<InfoItem>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -25,9 +25,17 @@ class InfoItemAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (type) {
-            TYPE_SIMPLE -> ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_info, parent, false))
-            TYPE_SINGLE_LINE -> SingleLineItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_info_single_line, parent, false))
-            else -> ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_info_minimized, parent, false))
+            TYPE_SIMPLE -> ItemViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.list_item_info, parent, false)
+            )
+            TYPE_SINGLE_LINE -> SingleLineItemViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.list_item_info_single_line, parent, false)
+            )
+            else -> ItemViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.list_item_info_minimized, parent, false)
+            )
         }
     }
 

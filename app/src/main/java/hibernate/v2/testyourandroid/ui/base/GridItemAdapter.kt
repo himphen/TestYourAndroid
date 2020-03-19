@@ -17,8 +17,8 @@ import hibernate.v2.testyourandroid.model.GridItem
  * Created by himphen on 24/5/16.
  */
 class GridItemAdapter(
-        private val list: List<GridItem>,
-        private val itemClickListener: ItemClickListener
+    private val list: List<GridItem>,
+    private val itemClickListener: ItemClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface ItemClickListener {
@@ -26,18 +26,22 @@ class GridItemAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.grid_item_test, parent, false))
+        return ItemViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.grid_item_test, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
         holder as ItemViewHolder
         Glide.with(holder.mainIv.context)
-                .load(item.mainImageId)
-                .apply(RequestOptions()
-                        .fitCenter()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL))
-                .into(holder.mainIv)
+            .load(item.mainImageId)
+            .apply(
+                RequestOptions()
+                    .fitCenter()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+            )
+            .into(holder.mainIv)
 
         holder.mainTv.text = item.mainText
         holder.rootView.tag = item

@@ -31,8 +31,10 @@ class InfoGSMFragment : BaseFragment() {
     private var telephonyManager: TelephonyManager? = null
     private lateinit var simStateArray: Array<String>
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
@@ -53,7 +55,8 @@ class InfoGSMFragment : BaseFragment() {
 
     private fun init() {
         context?.let { context ->
-            telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
+            telephonyManager =
+                context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
             val list: MutableList<InfoItem> = ArrayList()
             val stringArray = resources.getStringArray(R.array.info_gsm_string_array)
             simStateArray = resources.getStringArray(R.array.info_sim_status_string_array)
@@ -69,7 +72,11 @@ class InfoGSMFragment : BaseFragment() {
     @SuppressLint("HardwareIds")
     private fun getData(j: Int): String {
         context?.let {
-            if (ActivityCompat.checkSelfPermission(it, PERMISSION_NAME[0]) == PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(
+                    it,
+                    PERMISSION_NAME[0]
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 telephonyManager?.let { telephonyManager ->
                     return try {
                         when (j) {
@@ -79,13 +86,17 @@ class InfoGSMFragment : BaseFragment() {
                             3 -> simStateArray[telephonyManager.simState]
                             4 -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                 if (telephonyManager.phoneCount > 1) {
-                                    "Sim Card 1: " + telephonyManager.getImei(0) + "\nSim Card 2: " + telephonyManager.getImei(1)
+                                    "Sim Card 1: " + telephonyManager.getImei(0) + "\nSim Card 2: " + telephonyManager.getImei(
+                                        1
+                                    )
                                 } else {
                                     telephonyManager.imei
                                 }
                             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                 if (telephonyManager.phoneCount > 1) {
-                                    "Sim Card 1: " + telephonyManager.getDeviceId(0) + "\nSim Card 2: " + telephonyManager.getDeviceId(1)
+                                    "Sim Card 1: " + telephonyManager.getDeviceId(0) + "\nSim Card 2: " + telephonyManager.getDeviceId(
+                                        1
+                                    )
                                 } else {
                                     telephonyManager.getDeviceId(0)
                                 }
@@ -112,7 +123,11 @@ class InfoGSMFragment : BaseFragment() {
         return "N/A"
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {

@@ -16,11 +16,13 @@ class GetSpeedTestHostsHandler : Thread() {
 
     private val ns: String? = null
 
-    data class Server(val id: Int, val uploadAddress: String,
-                      val lat: Double, val lon: Double,
-                      val name: String, val country: String,
-                      val cc: String, val sponsor: String,
-                      val host: String)
+    data class Server(
+        val id: Int, val uploadAddress: String,
+        val lat: Double, val lon: Double,
+        val name: String, val country: String,
+        val cc: String, val sponsor: String,
+        val host: String
+    )
 
     data class Client(val lat: String, val lon: String)
 

@@ -51,8 +51,10 @@ class HardwareLocationFragment : BaseFragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_hardware_location, container, false)
     }
 
@@ -88,7 +90,10 @@ class HardwareLocationFragment : BaseFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_settings -> startSettingsActivity(context, Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            R.id.action_settings -> startSettingsActivity(
+                context,
+                Settings.ACTION_LOCATION_SOURCE_SETTINGS
+            )
         }
         return super.onOptionsItemSelected(item)
     }
@@ -105,8 +110,10 @@ class HardwareLocationFragment : BaseFragment() {
             val status = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context)
             if (status != ConnectionResult.SUCCESS) {
                 if (GoogleApiAvailability.getInstance().isUserResolvableError(status)) {
-                    GoogleApiAvailability.getInstance().getErrorDialog(activity, status,
-                            1972).show()
+                    GoogleApiAvailability.getInstance().getErrorDialog(
+                        activity, status,
+                        1972
+                    ).show()
                 }
 
                 return
@@ -126,8 +133,17 @@ class HardwareLocationFragment : BaseFragment() {
                         mLocationRequest.interval = 1000 // Update location every second
                         mLocationRequest.priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
                         mGoogleMap.isMyLocationEnabled = true
-                        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_LAT_LNG, 15f))
-                        mFusedLocationClient?.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper())
+                        mGoogleMap.moveCamera(
+                            CameraUpdateFactory.newLatLngZoom(
+                                DEFAULT_LAT_LNG,
+                                15f
+                            )
+                        )
+                        mFusedLocationClient?.requestLocationUpdates(
+                            mLocationRequest,
+                            mLocationCallback,
+                            Looper.myLooper()
+                        )
                     }
                 }
             })
@@ -143,13 +159,13 @@ class HardwareLocationFragment : BaseFragment() {
     private fun openFunctionDialog() {
         context?.let {
             MaterialDialog(it)
-                    .title(R.string.ui_caution)
-                    .message(R.string.gps_enable_message)
-                    .positiveButton(R.string.gps_enable_posbtn) {
-                        startSettingsActivity(context, Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                    }
-                    .negativeButton(R.string.ui_cancel)
-                    .show()
+                .title(R.string.ui_caution)
+                .message(R.string.gps_enable_message)
+                .positiveButton(R.string.gps_enable_posbtn) {
+                    startSettingsActivity(context, Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                }
+                .negativeButton(R.string.ui_cancel)
+                .show()
         }
     }
 
@@ -168,11 +184,14 @@ class HardwareLocationFragment : BaseFragment() {
                             list[i].contentText = getData(i)
                         }
                         adapter.notifyDataSetChanged()
-                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                        mGoogleMap.animateCamera(
+                            CameraUpdateFactory.newLatLngZoom(
                                 LatLng(
-                                        lastKnowLocation.latitude,
-                                        lastKnowLocation.longitude
-                                ), 15f))
+                                    lastKnowLocation.latitude,
+                                    lastKnowLocation.longitude
+                                ), 15f
+                            )
+                        )
                     }
                 }
             }
@@ -197,7 +216,11 @@ class HardwareLocationFragment : BaseFragment() {
         return "N/A"
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {
@@ -208,6 +231,9 @@ class HardwareLocationFragment : BaseFragment() {
 
     companion object {
         private val DEFAULT_LAT_LNG = LatLng(22.3185392, 114.1707091)
-        val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+        val PERMISSION_NAME = arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
     }
 }

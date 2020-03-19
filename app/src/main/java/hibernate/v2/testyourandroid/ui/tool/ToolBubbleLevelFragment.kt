@@ -26,8 +26,10 @@ class ToolBubbleLevelFragment : BaseFragment(), SensorEventListener {
     private val r = FloatArray(9)
     private val values = FloatArray(3)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_tool_bubble_level, container, false)
     }
 
@@ -44,10 +46,14 @@ class ToolBubbleLevelFragment : BaseFragment(), SensorEventListener {
     override fun onResume() {
         super.onResume()
         if (mSensor != null && secondSensor != null) {
-            mSensorManager?.registerListener(this, mSensor,
-                    SensorManager.SENSOR_DELAY_UI)
-            mSensorManager?.registerListener(this, secondSensor,
-                    SensorManager.SENSOR_DELAY_UI)
+            mSensorManager?.registerListener(
+                this, mSensor,
+                SensorManager.SENSOR_DELAY_UI
+            )
+            mSensorManager?.registerListener(
+                this, secondSensor,
+                SensorManager.SENSOR_DELAY_UI
+            )
         }
     }
 

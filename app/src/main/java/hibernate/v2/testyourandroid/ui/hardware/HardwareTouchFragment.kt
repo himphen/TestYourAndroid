@@ -16,8 +16,10 @@ import hibernate.v2.testyourandroid.ui.view.TestMultiTouchView
  */
 class HardwareTouchFragment : BaseFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return TestMultiTouchView(context)
     }
 

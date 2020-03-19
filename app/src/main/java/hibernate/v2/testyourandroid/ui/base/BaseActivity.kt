@@ -1,6 +1,6 @@
 package hibernate.v2.testyourandroid.ui.base
 
-import android.os.Bundle
+import android.content.Context
 import android.os.Handler
 import android.view.MenuItem
 import androidx.annotation.StringRes
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.AdView
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper
-import hibernate.v2.testyourandroid.helper.UtilHelper.detectLanguage
+import hibernate.v2.testyourandroid.helper.UtilHelper.updateLanguage
 import kotlinx.android.synthetic.main.activity_container_adview.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -22,9 +22,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private var adView: AdView? = null
 
-    public override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        detectLanguage(this)
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(updateLanguage(newBase))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -38,9 +37,9 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected fun initActionBar(
-            toolbar: Toolbar,
-            titleString: String? = null, subtitleString: String? = null,
-            @StringRes titleId: Int? = null, @StringRes subtitleId: Int? = null
+        toolbar: Toolbar,
+        titleString: String? = null, subtitleString: String? = null,
+        @StringRes titleId: Int? = null, @StringRes subtitleId: Int? = null
     ) {
         setSupportActionBar(toolbar)
         supportActionBar?.let { ab ->
@@ -77,8 +76,8 @@ abstract class BaseActivity : AppCompatActivity() {
             }, UtilHelper.DELAY_AD_LAYOUT)
 
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .commit()
+                .replace(R.id.container, fragment)
+                .commit()
         }
     }
 }

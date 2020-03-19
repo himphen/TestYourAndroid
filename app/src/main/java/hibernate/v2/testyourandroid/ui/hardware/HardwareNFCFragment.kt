@@ -30,8 +30,10 @@ class HardwareNFCFragment : BaseFragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_hardware_nfc, container, false)
     }
 
@@ -54,7 +56,12 @@ class HardwareNFCFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        nfcAdapter?.enableForegroundDispatch(activity, mPendingIntent, mIntentFilters, mNFCTechLists)
+        nfcAdapter?.enableForegroundDispatch(
+            activity,
+            mPendingIntent,
+            mIntentFilters,
+            mNFCTechLists
+        )
     }
 
     private fun init() {
@@ -64,11 +71,16 @@ class HardwareNFCFragment : BaseFragment() {
                 openFunctionDialog()
             }
             // create an intent with tag data and deliver to this activity
-            mPendingIntent = PendingIntent.getActivity(context, 0, Intent(context,
-                    javaClass).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0)
+            mPendingIntent = PendingIntent.getActivity(
+                context, 0, Intent(
+                    context,
+                    javaClass
+                ).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0
+            )
             // set an intent filter for all MIME data
             val ndefIntent = IntentFilter(
-                    NfcAdapter.ACTION_NDEF_DISCOVERED)
+                NfcAdapter.ACTION_NDEF_DISCOVERED
+            )
             try {
                 ndefIntent.addDataType("*/*")
                 mIntentFilters = arrayOf(ndefIntent)
@@ -84,14 +96,14 @@ class HardwareNFCFragment : BaseFragment() {
     private fun openFunctionDialog() {
         context?.let {
             MaterialDialog(it)
-                    .title(R.string.ui_caution)
-                    .message(R.string.nfc_enable_message)
-                    .cancelable(false)
-                    .positiveButton(R.string.nfc_enable_posbtn) {
-                        startSettingsActivity(context, Settings.ACTION_NFC_SETTINGS)
-                    }
-                    .negativeButton(R.string.ui_cancel)
-                    .show()
+                .title(R.string.ui_caution)
+                .message(R.string.nfc_enable_message)
+                .cancelable(false)
+                .positiveButton(R.string.nfc_enable_posbtn) {
+                    startSettingsActivity(context, Settings.ACTION_NFC_SETTINGS)
+                }
+                .negativeButton(R.string.ui_cancel)
+                .show()
         }
     }
 }

@@ -15,9 +15,18 @@ class TestMultiTouchView(context: Context?) : View(context) {
     private lateinit var mActivePointers: SparseArray<PointF>
     private lateinit var mPaint: Paint
 
-    private val colors = intArrayOf(Color.parseColor("#3F51B5"), Color.parseColor("#4CAF50"), Color.parseColor("#9C27B0"),
-            Color.parseColor("#FF9800"), Color.parseColor("#CDDC39"), Color.parseColor("#03A9F4"), Color.parseColor("#B71C1C"), Color.parseColor("#263238"),
-            Color.parseColor("#607D8B"), Color.parseColor("#FFEB3B"))
+    private val colors = intArrayOf(
+        Color.parseColor("#3F51B5"),
+        Color.parseColor("#4CAF50"),
+        Color.parseColor("#9C27B0"),
+        Color.parseColor("#FF9800"),
+        Color.parseColor("#CDDC39"),
+        Color.parseColor("#03A9F4"),
+        Color.parseColor("#B71C1C"),
+        Color.parseColor("#263238"),
+        Color.parseColor("#607D8B"),
+        Color.parseColor("#FFEB3B")
+    )
 
     private fun initView() {
         mActivePointers = SparseArray()

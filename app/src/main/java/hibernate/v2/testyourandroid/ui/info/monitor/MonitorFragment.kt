@@ -16,8 +16,10 @@ import kotlinx.android.synthetic.main.fragment_app_info.*
 class MonitorFragment : BaseFragment() {
     private lateinit var tabTitles: Array<String>
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_view_pager_conatiner, container, false)
     }
 
@@ -37,7 +39,13 @@ class MonitorFragment : BaseFragment() {
                 tab?.customView = adapter.getTabView(i)
             }
             viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                }
+
                 override fun onPageSelected(position: Int) {
                     activity.supportActionBar?.title = (tabTitles[position])
                 }

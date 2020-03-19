@@ -22,8 +22,10 @@ import java.util.HashMap
 class AppInfoPermissionFragment : BaseFragment() {
 
     private val map = HashMap<String, ArrayList<AppPermissionItem>>()
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
@@ -39,7 +41,8 @@ class AppInfoPermissionFragment : BaseFragment() {
                 val list: MutableList<InfoItem> = ArrayList()
                 try {
                     val packageManager = context.packageManager
-                    val packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS)
+                    val packageInfo =
+                        packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS)
                     /* Get Permissions */
                     val requestedPermissions = packageInfo.requestedPermissions
                     val noGroupLabel = "Ungrouped Permissions"
@@ -48,16 +51,21 @@ class AppInfoPermissionFragment : BaseFragment() {
                             var permissionGroupLabel = noGroupLabel
                             var permissionLabel: String? = ""
                             try {
-                                val permissionInfo = packageManager.getPermissionInfo(requestedPermission, 0)
+                                val permissionInfo =
+                                    packageManager.getPermissionInfo(requestedPermission, 0)
                                 try {
-                                    val permissionGroupInfo = packageManager.getPermissionGroupInfo(permissionInfo.group
-                                            ?: "", 0)
-                                    permissionGroupLabel = permissionGroupInfo.loadLabel(packageManager).toString()
+                                    val permissionGroupInfo = packageManager.getPermissionGroupInfo(
+                                        permissionInfo.group
+                                            ?: "", 0
+                                    )
+                                    permissionGroupLabel =
+                                        permissionGroupInfo.loadLabel(packageManager).toString()
                                 } catch (ignored: PackageManager.NameNotFoundException) {
                                 } catch (ignored: NullPointerException) {
                                 }
                                 try {
-                                    permissionLabel = permissionInfo.loadLabel(packageManager).toString()
+                                    permissionLabel =
+                                        permissionInfo.loadLabel(packageManager).toString()
                                 } catch (ignored: NullPointerException) {
                                 }
                             } catch (e: Exception) {
@@ -81,12 +89,20 @@ class AppInfoPermissionFragment : BaseFragment() {
                         val permissionGroupLabel = key as String
                         val value = map[permissionGroupLabel]
                         value?.let {
-                            value.sortWith(Comparator { item1, item2 -> item1.permissionLabel.compareTo(item2.permissionLabel) })
+                            value.sortWith(Comparator { item1, item2 ->
+                                item1.permissionLabel.compareTo(
+                                    item2.permissionLabel
+                                )
+                            })
                             val permissionLabel = StringBuilder()
                             for (s in value) {
                                 permissionLabel.append(s.permissionLabel).append("\n")
                             }
-                            list.add(InfoItem(permissionGroupLabel, permissionLabel.toString().trim { it <= ' ' }))
+                            list.add(
+                                InfoItem(
+                                    permissionGroupLabel,
+                                    permissionLabel.toString().trim { it <= ' ' })
+                            )
                         }
                     }
                 } catch (e: Exception) {

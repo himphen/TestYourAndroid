@@ -22,8 +22,10 @@ class ToolQRScannerFragment : BaseFragment() {
 
     private lateinit var mCodeScanner: CodeScanner
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_tool_qr_scanner, container, false)
     }
 
@@ -42,8 +44,8 @@ class ToolQRScannerFragment : BaseFragment() {
                         val manager = it.supportFragmentManager
                         val transaction = manager.beginTransaction()
                         val fragment = newInstance(
-                                result.text,
-                                result.barcodeFormat.name
+                            result.text,
+                            result.barcodeFormat.name
                         )
                         transaction.replace(R.id.container, fragment)
                         transaction.addToBackStack(null)
@@ -73,7 +75,11 @@ class ToolQRScannerFragment : BaseFragment() {
         super.onPause()
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {

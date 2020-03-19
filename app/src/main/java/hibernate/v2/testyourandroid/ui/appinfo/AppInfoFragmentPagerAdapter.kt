@@ -10,12 +10,13 @@ import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.model.AppItem
 
 class AppInfoFragmentPagerAdapter(
-        private val context: Context,
-        fm: FragmentManager,
-        private val appItem: AppItem
+    private val context: Context,
+    fm: FragmentManager,
+    private val appItem: AppItem
 ) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-    private val tabTitles: Array<String> = context.resources.getStringArray(R.array.app_info_tab_title)
+    private val tabTitles: Array<String> =
+        context.resources.getStringArray(R.array.app_info_tab_title)
 
     /**
      * Returns the number of pages

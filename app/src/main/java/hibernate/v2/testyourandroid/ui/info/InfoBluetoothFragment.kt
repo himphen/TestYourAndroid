@@ -40,12 +40,14 @@ class InfoBluetoothFragment : BaseFragment() {
         override fun onReceive(context: Context, intent: Intent) {
             val action = intent.action
             if (BluetoothDevice.ACTION_FOUND == action) {
-                val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
+                val device =
+                    intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
                 device?.let {
-                    val rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE).toInt()
+                    val rssi =
+                        intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE).toInt()
                     val extendedBluetoothDevice = ExtendedBluetoothDevice(
-                            name = if (device.name == null) device.address else device.name,
-                            rssi = rssi
+                        name = if (device.name == null) device.address else device.name,
+                        rssi = rssi
                     )
                     updateScannedList(extendedBluetoothDevice)
                 }
@@ -58,8 +60,10 @@ class InfoBluetoothFragment : BaseFragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
@@ -91,7 +95,10 @@ class InfoBluetoothFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_reload -> reload(true)
-            R.id.action_settings -> startSettingsActivity(context, Settings.ACTION_BLUETOOTH_SETTINGS)
+            R.id.action_settings -> startSettingsActivity(
+                context,
+                Settings.ACTION_BLUETOOTH_SETTINGS
+            )
         }
         return super.onOptionsItemSelected(item)
     }
@@ -109,8 +116,11 @@ class InfoBluetoothFragment : BaseFragment() {
                 return
             }
 
-            context?.registerReceiver(bluetoothChangedReceiver, IntentFilter(
-                    BluetoothDevice.ACTION_FOUND))
+            context?.registerReceiver(
+                bluetoothChangedReceiver, IntentFilter(
+                    BluetoothDevice.ACTION_FOUND
+                )
+            )
             bluetoothAdapter.startDiscovery()
             for (i in stringArray.indices) {
                 list.add(InfoItem(stringArray[i], getData(i)))
@@ -143,13 +153,13 @@ class InfoBluetoothFragment : BaseFragment() {
     private fun openBluetoothDialog() {
         context?.let {
             MaterialDialog(it)
-                    .title(R.string.ui_caution)
-                    .message(R.string.bluetooth_enable_message)
-                    .positiveButton(R.string.bluetooth_enable_posbtn) {
-                        startSettingsActivity(context, Settings.ACTION_BLUETOOTH_SETTINGS)
-                    }
-                    .negativeButton(R.string.ui_cancel)
-                    .show()
+                .title(R.string.ui_caution)
+                .message(R.string.bluetooth_enable_message)
+                .positiveButton(R.string.bluetooth_enable_posbtn) {
+                    startSettingsActivity(context, Settings.ACTION_BLUETOOTH_SETTINGS)
+                }
+                .negativeButton(R.string.ui_cancel)
+                .show()
         }
     }
 
@@ -166,7 +176,12 @@ class InfoBluetoothFragment : BaseFragment() {
                                 text.append(result.name).append("\n")
                             }
                         }
-                        text = StringBuilder(if (text.length > 1) text.substring(0, text.length - 1) else text.toString())
+                        text = StringBuilder(
+                            if (text.length > 1) text.substring(
+                                0,
+                                text.length - 1
+                            ) else text.toString()
+                        )
                     } catch (ignored: Exception) {
                     }
                     text.toString()
@@ -180,12 +195,22 @@ class InfoBluetoothFragment : BaseFragment() {
 
     private fun updateScannedList(device: ExtendedBluetoothDevice) {
         scannedList.add(device)
-        scannedList.sortWith(Comparator { lhs, rhs -> lhs.name.compareTo(rhs.name, ignoreCase = true) })
+        scannedList.sortWith(Comparator { lhs, rhs ->
+            lhs.name.compareTo(
+                rhs.name,
+                ignoreCase = true
+            )
+        })
         var text = StringBuilder()
         for (item in scannedList) {
             text.append(getScanResultText(item))
         }
-        text = StringBuilder(if (text.length > 2) text.substring(0, text.length - 2) else text.toString())
+        text = StringBuilder(
+            if (text.length > 2) text.substring(
+                0,
+                text.length - 2
+            ) else text.toString()
+        )
         list[0].contentText = text.toString()
         adapter?.notifyDataSetChanged()
     }
@@ -194,7 +219,11 @@ class InfoBluetoothFragment : BaseFragment() {
         return device.name + "\n" + device.getRssi() + "\n\n"
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {

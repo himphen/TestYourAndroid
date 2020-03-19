@@ -14,8 +14,10 @@ import kotlinx.android.synthetic.main.fragment_app_info.*
 
 class AppInfoFragment : BaseFragment() {
     private var appItem: AppItem? = null
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_app_info, container, false)
     }
 

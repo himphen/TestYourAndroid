@@ -26,8 +26,10 @@ class HardwareSpeakerFragment : BaseFragment() {
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var vibratorService: Vibrator
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_speaker, container, false)
     }
 
@@ -40,13 +42,17 @@ class HardwareSpeakerFragment : BaseFragment() {
         context?.let { context ->
             vibratorService = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
             val array = resources.getStringArray(R.array.vibrate_string_array)
-            val adapter = ArrayAdapter(context,
-                    android.R.layout.simple_spinner_item, array)
+            val adapter = ArrayAdapter(
+                context,
+                android.R.layout.simple_spinner_item, array
+            )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             vibrateSpinner.adapter = adapter
             vibrateSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(adapterView: AdapterView<*>?, view: View,
-                                            position: Int, id: Long) {
+                override fun onItemSelected(
+                    adapterView: AdapterView<*>?, view: View,
+                    position: Int, id: Long
+                ) {
                     vibrateType = position
                     stopVibrate()
                 }
@@ -61,7 +67,12 @@ class HardwareSpeakerFragment : BaseFragment() {
         when (vibrateType) {
             0 -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibratorService.vibrate(VibrationEffect.createOneShot(30000, VibrationEffect.DEFAULT_AMPLITUDE))
+                    vibratorService.vibrate(
+                        VibrationEffect.createOneShot(
+                            30000,
+                            VibrationEffect.DEFAULT_AMPLITUDE
+                        )
+                    )
                 } else {
                     @Suppress("DEPRECATION")
                     vibratorService.vibrate(30000)
@@ -71,8 +82,11 @@ class HardwareSpeakerFragment : BaseFragment() {
             }
             1 -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibratorService.vibrate(VibrationEffect.createWaveform(
-                            longArrayOf(100, 200, 100), 0))
+                    vibratorService.vibrate(
+                        VibrationEffect.createWaveform(
+                            longArrayOf(100, 200, 100), 0
+                        )
+                    )
                 } else {
                     @Suppress("DEPRECATION")
                     vibratorService.vibrate(longArrayOf(100, 200, 100), 0)

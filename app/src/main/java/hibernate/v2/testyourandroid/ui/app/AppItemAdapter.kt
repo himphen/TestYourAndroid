@@ -18,8 +18,8 @@ import hibernate.v2.testyourandroid.model.AppItem
  * Created by himphen on 25/5/16.
  */
 class AppItemAdapter(
-        private val list: List<AppItem>,
-        private val itemClickListener: ItemClickListener
+    private val list: List<AppItem>,
+    private val itemClickListener: ItemClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface ItemClickListener {
@@ -27,7 +27,9 @@ class AppItemAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_info_app, parent, false))
+        return ItemViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item_info_app, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -36,11 +38,13 @@ class AppItemAdapter(
         holder.titleTv.text = item.appName
         holder.contentTv.text = item.packageName
         Glide.with(holder.iconIv.context)
-                .load(item.icon)
-                .apply(RequestOptions()
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL))
-                .into(holder.iconIv)
+            .load(item.icon)
+            .apply(
+                RequestOptions()
+                    .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+            )
+            .into(holder.iconIv)
         holder.systemAppIndicator.visibility = if (item.isSystemApp) View.VISIBLE else View.GONE
         holder.rootView.tag = item
         holder.rootView.setOnClickListener { view -> itemClickListener.onItemDetailClick(view.tag as AppItem) }

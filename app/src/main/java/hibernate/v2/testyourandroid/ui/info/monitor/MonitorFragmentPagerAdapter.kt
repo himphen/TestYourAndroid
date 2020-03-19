@@ -9,11 +9,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import hibernate.v2.testyourandroid.R
 
 class MonitorFragmentPagerAdapter(
-        private val context: Context,
-        fm: FragmentManager
+    private val context: Context,
+    fm: FragmentManager
 ) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-    private val tabTitles: Array<String> = context.resources.getStringArray(R.array.test_monitor_tab_title)
+    private val tabTitles: Array<String> =
+        context.resources.getStringArray(R.array.test_monitor_tab_title)
 
     /**
      * Returns the number of pages

@@ -22,8 +22,10 @@ class HardwareBiometricFragment : BaseFragment() {
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_hardware_biometric, container, false)
     }
 
@@ -32,70 +34,73 @@ class HardwareBiometricFragment : BaseFragment() {
 
         executor = ContextCompat.getMainExecutor(context)
         biometricPrompt = BiometricPrompt(this, executor,
-                object : BiometricPrompt.AuthenticationCallback() {
-                    override fun onAuthenticationError(errorCode: Int,
-                                                       errString: CharSequence) {
-                        super.onAuthenticationError(errorCode, errString)
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(
+                    errorCode: Int,
+                    errString: CharSequence
+                ) {
+                    super.onAuthenticationError(errorCode, errString)
 
-                        when (errorCode) {
-                            BiometricConstants.ERROR_CANCELED -> {
-                                helpText.text = getString(R.string.generic_error_user_canceled)
-                            }
-                            BiometricConstants.ERROR_HW_NOT_PRESENT -> {
-                                helpText.text = getString(R.string.default_error_msg)
-                            }
-                            BiometricConstants.ERROR_HW_UNAVAILABLE -> {
-                                helpText.text = getString(R.string.default_error_msg)
-                            }
-                            BiometricConstants.ERROR_LOCKOUT -> {
-                                helpText.text = getString(R.string.fingerprint_error_lockout)
-                            }
-                            BiometricConstants.ERROR_LOCKOUT_PERMANENT -> {
-                                helpText.text = getString(R.string.fingerprint_error_lockout)
-                            }
-                            BiometricConstants.ERROR_NEGATIVE_BUTTON -> {
-                                helpText.text = getString(R.string.generic_error_user_canceled)
-                            }
-                            BiometricConstants.ERROR_NO_BIOMETRICS -> {
-                                helpText.text = getString(R.string.default_error_msg)
-                            }
-                            BiometricConstants.ERROR_NO_DEVICE_CREDENTIAL -> {
-                                helpText.text = getString(R.string.default_error_msg)
-                            }
-                            BiometricConstants.ERROR_NO_SPACE -> {
-                                helpText.text = getString(R.string.default_error_msg)
-                            }
-                            BiometricConstants.ERROR_TIMEOUT -> {
-                                helpText.text = getString(R.string.default_error_msg)
-                            }
-                            BiometricConstants.ERROR_UNABLE_TO_PROCESS -> {
-                                helpText.text = getString(R.string.default_error_msg)
-                            }
-                            BiometricConstants.ERROR_USER_CANCELED -> {
-                                helpText.text = getString(R.string.generic_error_user_canceled)
-                            }
-                            BiometricConstants.ERROR_VENDOR -> {
-                                helpText.text = getString(R.string.default_error_msg)
-                            }
+                    when (errorCode) {
+                        BiometricConstants.ERROR_CANCELED -> {
+                            helpText.text = getString(R.string.generic_error_user_canceled)
+                        }
+                        BiometricConstants.ERROR_HW_NOT_PRESENT -> {
+                            helpText.text = getString(R.string.default_error_msg)
+                        }
+                        BiometricConstants.ERROR_HW_UNAVAILABLE -> {
+                            helpText.text = getString(R.string.default_error_msg)
+                        }
+                        BiometricConstants.ERROR_LOCKOUT -> {
+                            helpText.text = getString(R.string.fingerprint_error_lockout)
+                        }
+                        BiometricConstants.ERROR_LOCKOUT_PERMANENT -> {
+                            helpText.text = getString(R.string.fingerprint_error_lockout)
+                        }
+                        BiometricConstants.ERROR_NEGATIVE_BUTTON -> {
+                            helpText.text = getString(R.string.generic_error_user_canceled)
+                        }
+                        BiometricConstants.ERROR_NO_BIOMETRICS -> {
+                            helpText.text = getString(R.string.default_error_msg)
+                        }
+                        BiometricConstants.ERROR_NO_DEVICE_CREDENTIAL -> {
+                            helpText.text = getString(R.string.default_error_msg)
+                        }
+                        BiometricConstants.ERROR_NO_SPACE -> {
+                            helpText.text = getString(R.string.default_error_msg)
+                        }
+                        BiometricConstants.ERROR_TIMEOUT -> {
+                            helpText.text = getString(R.string.default_error_msg)
+                        }
+                        BiometricConstants.ERROR_UNABLE_TO_PROCESS -> {
+                            helpText.text = getString(R.string.default_error_msg)
+                        }
+                        BiometricConstants.ERROR_USER_CANCELED -> {
+                            helpText.text = getString(R.string.generic_error_user_canceled)
+                        }
+                        BiometricConstants.ERROR_VENDOR -> {
+                            helpText.text = getString(R.string.default_error_msg)
                         }
                     }
+                }
 
-                    override fun onAuthenticationSucceeded(
-                            result: BiometricPrompt.AuthenticationResult) {
-                        super.onAuthenticationSucceeded(result)
-                        helpText.text = getString(R.string.ui_fingerprint_succeeded)
-                    }
+                override fun onAuthenticationSucceeded(
+                    result: BiometricPrompt.AuthenticationResult
+                ) {
+                    super.onAuthenticationSucceeded(result)
+                    helpText.text = getString(R.string.ui_fingerprint_succeeded)
+                }
 
-                    override fun onAuthenticationFailed() {
-                        super.onAuthenticationFailed()
-                        helpText.text = getString(R.string.ui_fingerprint_fail)
-                    }
-                })
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    helpText.text = getString(R.string.ui_fingerprint_fail)
+                }
+            })
 
         promptInfo = BiometricPrompt.PromptInfo.Builder()
-                .setTitle(getString(R.string.fingerprint_dialog_touch_sensor))
-                .setNegativeButtonText(getString(R.string.ui_cancel))
-                .build()
+            .setTitle(getString(R.string.fingerprint_dialog_touch_sensor))
+            .setNegativeButtonText(getString(R.string.ui_cancel))
+            .build()
 
         imageView1.setOnClickListener {
             biometricPrompt.authenticate(promptInfo)

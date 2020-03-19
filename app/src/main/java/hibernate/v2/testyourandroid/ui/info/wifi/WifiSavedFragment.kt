@@ -38,8 +38,10 @@ class WifiSavedFragment : BaseFragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
@@ -80,11 +82,18 @@ class WifiSavedFragment : BaseFragment() {
         (parentFragment as WifiFragment?)?.wifiManager?.let { wifiManager ->
             try { // List saved networks
                 val wifiConfigurations = wifiManager.configuredNetworks
-                sort(wifiConfigurations) { lhs, rhs -> lhs.SSID.compareTo(rhs.SSID, ignoreCase = true) }
+                sort(wifiConfigurations) { lhs, rhs ->
+                    lhs.SSID.compareTo(
+                        rhs.SSID,
+                        ignoreCase = true
+                    )
+                }
                 for (wifiConfiguration in wifiConfigurations) {
-                    list.add(InfoItem(
+                    list.add(
+                        InfoItem(
                             wifiConfiguration.SSID.replace("\"".toRegex(), "")
-                    ))
+                        )
+                    )
                 }
             } catch (e: Exception) {
             }

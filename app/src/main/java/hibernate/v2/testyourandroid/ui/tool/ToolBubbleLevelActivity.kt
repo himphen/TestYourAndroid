@@ -29,17 +29,21 @@ class ToolBubbleLevelActivity : BaseFragmentActivity() {
                 val shortcutIntent = Intent()
                 shortcutIntent.setAction("SHORTCUT_LAUNCH").data = Uri.parse("LAUNCH_BUBBLE_LEVEL")
                 val shortcut = ShortcutInfoCompat.Builder(this, "qr_scanner")
-                        .setShortLabel(getString(R.string.title_activity_bubble_level))
-                        .setLongLabel(getString(R.string.title_activity_bubble_level))
-                        .setIcon(IconCompat.createWithResource(this, R.drawable.ic_icon_bubble_level))
-                        .setIntent(shortcutIntent)
-                        .build()
-                val pinnedShortcutCallbackIntent = ShortcutManagerCompat.createShortcutResultIntent(this, shortcut)
-                val successCallback = PendingIntent.getBroadcast(this, 0,
-                        pinnedShortcutCallbackIntent, 0)
+                    .setShortLabel(getString(R.string.title_activity_bubble_level))
+                    .setLongLabel(getString(R.string.title_activity_bubble_level))
+                    .setIcon(IconCompat.createWithResource(this, R.drawable.ic_icon_bubble_level))
+                    .setIntent(shortcutIntent)
+                    .build()
+                val pinnedShortcutCallbackIntent =
+                    ShortcutManagerCompat.createShortcutResultIntent(this, shortcut)
+                val successCallback = PendingIntent.getBroadcast(
+                    this, 0,
+                    pinnedShortcutCallbackIntent, 0
+                )
                 ShortcutManagerCompat.requestPinShortcut(
-                        this, shortcut,
-                        successCallback.intentSender)
+                    this, shortcut,
+                    successCallback.intentSender
+                )
                 return true
             }
         }

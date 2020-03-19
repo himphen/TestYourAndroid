@@ -24,8 +24,10 @@ class HardwareMicrophoneFragment : BaseFragment() {
     private var mIsRecording = false
     private var mIsPlaying = false
     private lateinit var mFile: File
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_hardware_microphone, container, false)
     }
 
@@ -134,7 +136,11 @@ class HardwareMicrophoneFragment : BaseFragment() {
         recordBtn.setText(R.string.mic_start_recording)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {

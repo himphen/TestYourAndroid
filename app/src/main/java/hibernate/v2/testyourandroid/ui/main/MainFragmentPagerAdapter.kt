@@ -9,8 +9,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import hibernate.v2.testyourandroid.R
 
 class MainFragmentPagerAdapter(
-        private val context: Context,
-        fm: FragmentManager
+    private val context: Context,
+    fm: FragmentManager
 ) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val tabTitles: Array<String> = context.resources.getStringArray(R.array.main_tab_title)

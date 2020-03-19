@@ -6,7 +6,8 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragmentActivity
 
 class AppListActivity : BaseFragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val appType = intent.getIntExtra(AppListFragment.ARG_APP_TYPE, AppListFragment.ARG_APP_TYPE_USER)
+        val appType =
+            intent.getIntExtra(AppListFragment.ARG_APP_TYPE, AppListFragment.ARG_APP_TYPE_USER)
 
         fragment = AppListFragment.newInstance(appType)
         titleId = when (appType) {

@@ -30,17 +30,21 @@ class ToolQRScannerActivity : BaseFragmentActivity() {
                 val shortcutIntent = Intent()
                 shortcutIntent.setAction("SHORTCUT_LAUNCH").data = Uri.parse("LAUNCH_QR_SCANNER")
                 val shortcut = ShortcutInfoCompat.Builder(this, "qr_scanner")
-                        .setShortLabel(getString(R.string.title_activity_qr_scanner))
-                        .setLongLabel(getString(R.string.title_activity_qr_scanner))
-                        .setIcon(IconCompat.createWithResource(this, R.drawable.ic_icon_qrcode))
-                        .setIntent(shortcutIntent)
-                        .build()
-                val pinnedShortcutCallbackIntent = ShortcutManagerCompat.createShortcutResultIntent(this, shortcut)
-                val successCallback = PendingIntent.getBroadcast(this, 0,
-                        pinnedShortcutCallbackIntent, 0)
+                    .setShortLabel(getString(R.string.title_activity_qr_scanner))
+                    .setLongLabel(getString(R.string.title_activity_qr_scanner))
+                    .setIcon(IconCompat.createWithResource(this, R.drawable.ic_icon_qrcode))
+                    .setIntent(shortcutIntent)
+                    .build()
+                val pinnedShortcutCallbackIntent =
+                    ShortcutManagerCompat.createShortcutResultIntent(this, shortcut)
+                val successCallback = PendingIntent.getBroadcast(
+                    this, 0,
+                    pinnedShortcutCallbackIntent, 0
+                )
                 ShortcutManagerCompat.requestPinShortcut(
-                        this, shortcut,
-                        successCallback.intentSender)
+                    this, shortcut,
+                    successCallback.intentSender
+                )
                 return true
             }
         }

@@ -7,14 +7,12 @@ import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
 import android.net.wifi.WifiInfo
 import android.os.Build
 import android.provider.Settings
 import android.view.View
-import android.view.ViewConfiguration
 import android.webkit.URLUtil
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -31,7 +29,6 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.material.snackbar.Snackbar
 import hibernate.v2.testyourandroid.BuildConfig
-import hibernate.v2.testyourandroid.Environment
 import hibernate.v2.testyourandroid.R
 import java.io.BufferedReader
 import java.io.IOException
@@ -51,7 +48,11 @@ object UtilHelper {
 
     const val DELAY_AD_LAYOUT = 100L
 
-    fun initAdView(context: Context?, adLayout: RelativeLayout, isPreserveSpace: Boolean = false): AdView? {
+    fun initAdView(
+        context: Context?,
+        adLayout: RelativeLayout,
+        isPreserveSpace: Boolean = false
+    ): AdView? {
         if (context == null) return null
 
         if (isPreserveSpace) {
@@ -74,44 +75,27 @@ object UtilHelper {
         return null
     }
 
-    fun forceShowMenu(context: Context?) {
-        try {
-            val config = ViewConfiguration.get(context)
-            val menuKeyField = ViewConfiguration::class.java
-                    .getDeclaredField("sHasPermanentMenuKey")
-            menuKeyField.isAccessible = true
-            menuKeyField.setBoolean(config, false)
-        } catch (ignored: Exception) {
-        }
-    }
-
-    @Suppress("DEPRECATION")
-    fun detectLanguage(context: Context) {
+    fun updateLanguage(context: Context): Context {
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        var language = preferences.getString(PREF_LANGUAGE, "") ?: ""
-        var languageCountry = preferences.getString(PREF_LANGUAGE_COUNTRY, "") ?: ""
-        if (language == "") {
-            val locale: Locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Resources.getSystem().configuration.locales[0]
+        val language = preferences.getString(PREF_LANGUAGE, "") ?: ""
+        val languageCountry = preferences.getString(PREF_LANGUAGE_COUNTRY, "") ?: ""
+        if (language.isNotEmpty()) {
+            val config = context.resources.configuration
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                config.setLocale(Locale(language, languageCountry))
             } else {
-                Resources.getSystem().configuration.locale
+                @Suppress("DEPRECATION")
+                config.locale = Locale(language, languageCountry)
             }
-            language = locale.language
-            languageCountry = locale.country
+
+            return context.createConfigurationContext(config)
         }
-        val res = context.resources
-        val conf = res.configuration
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            conf.setLocale(Locale(language, languageCountry))
-        } else {
-            conf.locale = Locale(language, languageCountry)
-        }
-        val dm = res.displayMetrics
-        res.updateConfiguration(conf, dm)
+
+        return context
     }
 
     fun logException(e: Exception) {
-        if (Environment.CONFIG.isDebug) {
+        if (BuildConfig.DEBUG) {
             e.printStackTrace()
         } else {
             Crashlytics.logException(e)
@@ -121,7 +105,11 @@ object UtilHelper {
     fun isPermissionsGranted(context: Context?, permissions: Array<String>): Boolean {
         context?.let {
             for (permission in permissions) {
-                if (ContextCompat.checkSelfPermission(it, permission) == PackageManager.PERMISSION_DENIED) {
+                if (ContextCompat.checkSelfPermission(
+                        it,
+                        permission
+                    ) == PackageManager.PERMISSION_DENIED
+                ) {
                     return false
                 }
             }
@@ -165,49 +153,49 @@ object UtilHelper {
     fun openErrorPermissionDialog(context: Context?) {
         context?.let {
             MaterialDialog(it)
-                    .title(R.string.ui_caution)
-                    .customView(R.layout.dialog_permission)
-                    .cancelable(false)
-                    .positiveButton(R.string.ui_okay) { dialog ->
-                        scanForActivity(dialog.context)?.let { activity ->
-                            try {
-                                val intent = Intent()
-                                intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                                intent.addCategory(Intent.CATEGORY_DEFAULT)
-                                intent.data = Uri.parse("package:" + activity.packageName)
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-                                intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
-                                activity.startActivity(intent)
-                                activity.finish()
-                            } catch (e: Exception) {
-                                val intent = Intent()
-                                intent.action = Settings.ACTION_APPLICATION_SETTINGS
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-                                intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
-                                activity.startActivity(intent)
-                                activity.finish()
-                            }
+                .title(R.string.ui_caution)
+                .customView(R.layout.dialog_permission)
+                .cancelable(false)
+                .positiveButton(R.string.ui_okay) { dialog ->
+                    scanForActivity(dialog.context)?.let { activity ->
+                        try {
+                            val intent = Intent()
+                            intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                            intent.addCategory(Intent.CATEGORY_DEFAULT)
+                            intent.data = Uri.parse("package:" + activity.packageName)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+                            activity.startActivity(intent)
+                            activity.finish()
+                        } catch (e: Exception) {
+                            val intent = Intent()
+                            intent.action = Settings.ACTION_APPLICATION_SETTINGS
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+                            activity.startActivity(intent)
+                            activity.finish()
                         }
                     }
-                    .negativeButton(R.string.ui_cancel) { dialog ->
-                        scanForActivity(dialog.context)?.finish()
-                    }
-                    .show()
+                }
+                .negativeButton(R.string.ui_cancel) { dialog ->
+                    scanForActivity(dialog.context)?.finish()
+                }
+                .show()
         }
     }
 
     fun errorNoFeatureDialog(context: Context?, isFinish: Boolean = true) {
         context?.let {
             MaterialDialog(it)
-                    .title(R.string.ui_error)
-                    .message(R.string.dialog_feature_na_message)
-                    .cancelable(false)
-                    .positiveButton(R.string.ui_okay) { dialog ->
-                        if (isFinish) scanForActivity(dialog.context)?.finish()
-                    }
-                    .show()
+                .title(R.string.ui_error)
+                .message(R.string.dialog_feature_na_message)
+                .cancelable(false)
+                .positiveButton(R.string.ui_okay) { dialog ->
+                    if (isFinish) scanForActivity(dialog.context)?.finish()
+                }
+                .show()
         }
     }
 
@@ -312,7 +300,11 @@ object UtilHelper {
         return "https://$urlString"
     }
 
-    fun snackbar(view: View?, string: String? = null, @StringRes stringRid: Int? = null): Snackbar? {
+    fun snackbar(
+        view: View?,
+        string: String? = null,
+        @StringRes stringRid: Int? = null
+    ): Snackbar? {
         val snackbar: Snackbar
         view?.let {
             snackbar = when {
@@ -323,9 +315,12 @@ object UtilHelper {
 
             val sbView = snackbar.view
             sbView.setBackgroundResource(R.color.primary_dark)
-            sbView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).setTextColor(Color.WHITE)
-            sbView.findViewById<TextView>(com.google.android.material.R.id.snackbar_action).setTextColor(
-                    ContextCompat.getColor(snackbar.context, R.color.gold))
+            sbView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
+                .setTextColor(Color.WHITE)
+            sbView.findViewById<TextView>(com.google.android.material.R.id.snackbar_action)
+                .setTextColor(
+                    ContextCompat.getColor(snackbar.context, R.color.gold)
+                )
 
             return snackbar
         }
@@ -335,7 +330,8 @@ object UtilHelper {
 
     @SuppressLint("HardwareIds")
     fun getAdMobDeviceID(context: Context): String {
-        val androidId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+        val androidId =
+            Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
         return androidId.md5().toUpperCase(Locale.getDefault())
     }
 
@@ -350,10 +346,15 @@ object UtilHelper {
         }
         return try {
             NetworkInterface.getNetworkInterfaces()
-                    .toList()
-                    .find { networkInterface -> networkInterface.name.equals("wlan0", ignoreCase = true) }
-                    ?.hardwareAddress
-                    ?.joinToString(separator = ":") { byte -> "%02X".format(byte) }
+                .toList()
+                .find { networkInterface ->
+                    networkInterface.name.equals(
+                        "wlan0",
+                        ignoreCase = true
+                    )
+                }
+                ?.hardwareAddress
+                ?.joinToString(separator = ":") { byte -> "%02X".format(byte) }
         } catch (ex: Exception) {
             null
         }

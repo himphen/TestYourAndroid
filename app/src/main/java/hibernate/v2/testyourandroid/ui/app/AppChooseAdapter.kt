@@ -13,8 +13,8 @@ import hibernate.v2.testyourandroid.model.AppChooseItem
  * Created by himphen on 25/5/16.
  */
 class AppChooseAdapter(
-        private val list: List<AppChooseItem>,
-        private val itemClickListener: ItemClickListener
+    private val list: List<AppChooseItem>,
+    private val itemClickListener: ItemClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface ItemClickListener {
@@ -22,7 +22,9 @@ class AppChooseAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_info, parent, false))
+        return ItemViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item_info, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

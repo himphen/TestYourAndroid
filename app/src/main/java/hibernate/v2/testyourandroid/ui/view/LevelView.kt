@@ -41,22 +41,29 @@ class LevelView : View {
         init(attrs, 0)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle) {
+    constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(
+        context,
+        attrs,
+        defStyle
+    ) {
         init(attrs, defStyle)
     }
 
     private fun init(attrs: AttributeSet?, defStyle: Int) { // Load attributes
         val a = context.obtainStyledAttributes(
-                attrs, R.styleable.LevelView, defStyle, 0)
+            attrs, R.styleable.LevelView, defStyle, 0
+        )
         mBubbleRuleColor = a.getColor(R.styleable.LevelView_bubbleRuleColor, mBubbleRuleColor)
         mBubbleColor = a.getColor(R.styleable.LevelView_bubbleColor, mBubbleColor)
         mLimitColor = a.getColor(R.styleable.LevelView_limitColor, mLimitColor)
         mHorizontalColor = a.getColor(R.styleable.LevelView_horizontalColor, mHorizontalColor)
         mLimitRadius = a.getDimension(R.styleable.LevelView_limitRadius, mLimitRadius)
         mBubbleRadius = a.getDimension(R.styleable.LevelView_bubbleRadius, mBubbleRadius)
-        mLimitCircleWidth = a.getDimension(R.styleable.LevelView_limitCircleWidth, mLimitCircleWidth)
+        mLimitCircleWidth =
+            a.getDimension(R.styleable.LevelView_limitCircleWidth, mLimitCircleWidth)
         mBubbleRuleWidth = a.getDimension(R.styleable.LevelView_bubbleRuleWidth, mBubbleRuleWidth)
-        mBubbleRuleRadius = a.getDimension(R.styleable.LevelView_bubbleRuleRadius, mBubbleRuleRadius)
+        mBubbleRuleRadius =
+            a.getDimension(R.styleable.LevelView_bubbleRuleRadius, mBubbleRuleRadius)
         a.recycle()
         mBubblePaint = Paint()
         mBubblePaint.color = mBubbleColor
@@ -164,7 +171,10 @@ class LevelView : View {
      */
     private fun onCirclePoint(bubblePnt: PointF?, limitRadius: Double): PointF? {
         bubblePnt?.let {
-            var azimuth = atan2((bubblePnt.y - centerPnt.y).toDouble(), (bubblePnt.x - centerPnt.x).toDouble())
+            var azimuth = atan2(
+                (bubblePnt.y - centerPnt.y).toDouble(),
+                (bubblePnt.x - centerPnt.x).toDouble()
+            )
             azimuth = if (azimuth < 0) 2 * Math.PI + azimuth else azimuth
             val x1 = centerPnt.x + limitRadius * cos(azimuth)
             val y1 = centerPnt.y + limitRadius * sin(azimuth)

@@ -23,8 +23,10 @@ import java.util.Date
 class AppInfoPackageFragment : BaseFragment() {
 
     private var packageInfo: PackageInfo? = null
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 

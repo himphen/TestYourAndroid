@@ -7,9 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.jjoe64.graphview.GridLabelRenderer
@@ -28,7 +25,6 @@ import java.text.DecimalFormat
  */
 class ToolSpeedTestFragment : BaseFragment() {
 
-    private var seriesPing = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
     private var seriesDownload = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
     private var seriesUpload = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
 
@@ -38,8 +34,10 @@ class ToolSpeedTestFragment : BaseFragment() {
 
     private var shouldStopNow = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_tool_speed_test, container, false)
     }
 
@@ -48,22 +46,8 @@ class ToolSpeedTestFragment : BaseFragment() {
 
         context?.let {
             loadingDialog = MaterialDialog(it)
-                    .message(text = "Selecting best server based on ping...")
-                    .cancelable(false)
-
-            // Init Ping graphic
-            graphViewPing.gridLabelRenderer.isHorizontalLabelsVisible = false
-            graphViewPing.gridLabelRenderer.isVerticalLabelsVisible = false
-            graphViewPing.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-            graphViewPing.gridLabelRenderer.gridColor = Color.GRAY
-            seriesPing.thickness = 3
-            seriesPing.color = ContextCompat.getColor(it, R.color.grey800)
-            seriesPing.isDrawBackground = true
-            seriesPing.backgroundColor = ContextCompat.getColor(it, R.color.grey800)
-            graphViewPing.addSeries(seriesPing)
-            graphViewPing.viewport.isXAxisBoundsManual = true
-            graphViewPing.viewport.setMinX(0.0)
-            graphViewPing.viewport.setMaxX(5.0)
+                .message(text = "Selecting best server based on ping...")
+                .cancelable(false)
 
             // Init Download graphic
             graphViewDownload.gridLabelRenderer.isHorizontalLabelsVisible = false
@@ -71,9 +55,9 @@ class ToolSpeedTestFragment : BaseFragment() {
             graphViewDownload.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
             graphViewDownload.gridLabelRenderer.gridColor = Color.GRAY
             seriesDownload.thickness = 3
-            seriesDownload.color = ContextCompat.getColor(it, R.color.grey800)
+            seriesDownload.color = ContextCompat.getColor(it, R.color.green500)
             seriesDownload.isDrawBackground = true
-            seriesDownload.backgroundColor = ContextCompat.getColor(it, R.color.grey800)
+            seriesDownload.backgroundColor = ContextCompat.getColor(it, R.color.green500a)
             graphViewDownload.addSeries(seriesDownload)
             graphViewDownload.viewport.isXAxisBoundsManual = true
             graphViewDownload.viewport.setMinX(0.0)
@@ -85,9 +69,9 @@ class ToolSpeedTestFragment : BaseFragment() {
             graphViewUpload.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
             graphViewUpload.gridLabelRenderer.gridColor = Color.GRAY
             seriesUpload.thickness = 3
-            seriesUpload.color = ContextCompat.getColor(it, R.color.grey800)
+            seriesUpload.color = ContextCompat.getColor(it, R.color.blue500)
             seriesUpload.isDrawBackground = true
-            seriesUpload.backgroundColor = ContextCompat.getColor(it, R.color.grey800)
+            seriesUpload.backgroundColor = ContextCompat.getColor(it, R.color.blue500a)
             graphViewUpload.addSeries(seriesUpload)
             graphViewUpload.viewport.isXAxisBoundsManual = true
             graphViewUpload.viewport.setMinX(0.0)
@@ -97,8 +81,9 @@ class ToolSpeedTestFragment : BaseFragment() {
         startButton.setOnClickListener {
             startButton.isEnabled = false
 
-            serverNameTv.text = ""
-            serverDistanceTv.text = ""
+            locationTv.text = "-"
+            providerTv.text = "-"
+            latencyTv.text = "-"
             initThread()
             thread?.start()
         }
@@ -145,7 +130,6 @@ class ToolSpeedTestFragment : BaseFragment() {
 
                 activity?.runOnUiThread {
                     loadingDialog?.dismiss()
-                    seriesPing.resetData(arrayOf(DataPoint(0.0, 0.0)))
                     seriesDownload.resetData(arrayOf(DataPoint(0.0, 0.0)))
                     seriesUpload.resetData(arrayOf(DataPoint(0.0, 0.0)))
                 }
@@ -159,7 +143,8 @@ class ToolSpeedTestFragment : BaseFragment() {
                 // Find closest server
                 var tmp = 19349458.0
                 var dist = 0.0
-                var findServer: GetSpeedTestHostsHandler.Server = getSpeedTestHostsHandler.serverList[0]
+                var findServer: GetSpeedTestHostsHandler.Server =
+                    getSpeedTestHostsHandler.serverList[0]
 
                 val source = Location("Source")
                 source.latitude = getSpeedTestHostsHandler.selfLat
@@ -185,13 +170,16 @@ class ToolSpeedTestFragment : BaseFragment() {
                 val uploadAddress = findServer.uploadAddress
                 val distance = dist
                 activity?.runOnUiThread {
-                    serverNameTv.text = String.format("%s @ %s", findServer.sponsor, findServer.name)
-                    serverDistanceTv.text = String.format("[Distance: %s km]", DecimalFormat("#.##").format(distance / 1000))
+                    locationTv.text = findServer.name
+                    providerTv.text = String.format(
+                        "[%s km] %s",
+                        DecimalFormat("#.##").format(distance / 1000),
+                        findServer.sponsor
+                    )
                 }
 
                 // Reset value, graphics
                 activity?.runOnUiThread {
-                    pingTextView?.text = "0 ms"
                     downloadTextView?.text = "0 Mbps"
                     uploadTextView?.text = "0 Mbps"
                 }
@@ -203,17 +191,19 @@ class ToolSpeedTestFragment : BaseFragment() {
                 var uploadTestStarted = false
                 var uploadTestFinished = false
 
-                var position: Double
-                var lastPositionRotation = 0.0
-                var lastXPositionPing = 0.0
                 var lastXPositionDownload = 0.0
                 var lastXPositionUpload = 0.0
 
-                //Init Test
-                val pingTest = PingTest(findServer.host.replace(":8080", ""), 5)
-                val downloadTest = HttpDownloadTest(uploadAddress.replace(uploadAddress.split("/").toTypedArray()[uploadAddress.split("/").toTypedArray().size - 1], ""))
+                // Init Test
+                val pingTest = PingTest(findServer.host.replace(":8080", ""), 1)
+                val downloadTest = HttpDownloadTest(
+                    uploadAddress.replace(
+                        uploadAddress.split("/").toTypedArray()[uploadAddress.split("/")
+                            .toTypedArray().size - 1], ""
+                    )
+                )
                 val uploadTest = HttpUploadTest(uploadAddress)
-                //Tests
+                // Tests
                 while (!shouldStopNow) {
                     if (!pingTestStarted) {
                         pingTest.start()
@@ -221,14 +211,19 @@ class ToolSpeedTestFragment : BaseFragment() {
                     }
                     if (pingTestFinished && !downloadTestStarted) {
                         if (pingTest.avgRtt != 0.0) {
-                            activity?.runOnUiThread { pingTextView?.text = "${dec.format(pingTest.avgRtt)} ms" }
+                            activity?.runOnUiThread {
+                                latencyTv?.text = "${dec.format(pingTest.avgRtt)} ms"
+                            }
                         }
                         downloadTest.start()
                         downloadTestStarted = true
                     }
                     if (downloadTestFinished && !uploadTestStarted) {
                         if (downloadTest.finalDownloadRate != 0.0) {
-                            activity?.runOnUiThread { downloadTextView?.text = "${dec.format(downloadTest.finalDownloadRate.roundTo(2))} Mbps" }
+                            activity?.runOnUiThread {
+                                downloadTextView?.text =
+                                    "${dec.format(downloadTest.finalDownloadRate.roundTo(2))} Mbps"
+                            }
                         }
                         uploadTest.start()
                         uploadTestStarted = true
@@ -237,60 +232,56 @@ class ToolSpeedTestFragment : BaseFragment() {
                     // Ping Test
                     if (pingTestStarted && !pingTestFinished) {
                         activity?.runOnUiThread {
-                            val pingRate = pingTest.instantRtt
-                            pingTextView?.text = "${dec.format(pingRate)} ms"
-                            seriesPing.appendData(DataPoint(lastXPositionPing, pingRate), false, 10000)
-
-                            if (graphViewPing.viewport.getMaxX(true) > 5.0) {
-                                graphViewPing.viewport.setMaxX(graphViewPing.viewport.getMaxX(true) + 1)
-                            }
-
-                            lastXPositionPing++
+                            latencyTv?.text = "${dec.format(pingTest.instantRtt)} ms"
                         }
                     }
 
                     //Download Test
-                    if (downloadTestStarted && !downloadTestFinished) { //Calc position
+                    if (downloadTestStarted && !downloadTestFinished) {
                         val downloadRate: Double = downloadTest.instantDownloadRate
-                        position = getPositionByRate(downloadRate)
                         activity?.runOnUiThread {
-                            val rotate = RotateAnimation(lastPositionRotation.toFloat(), position.toFloat(), Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
-                            rotate.interpolator = LinearInterpolator()
-                            rotate.duration = 100
-                            barImageView.startAnimation(rotate)
                             downloadTextView.text = "${dec.format(downloadRate)} Mbps"
                         }
-                        lastPositionRotation = position
                         //Update chart
                         activity?.runOnUiThread {
-                            seriesDownload.appendData(DataPoint(lastXPositionDownload, downloadRate), false, 10000)
+                            seriesDownload.appendData(
+                                DataPoint(
+                                    lastXPositionDownload,
+                                    downloadRate
+                                ), false, 10000
+                            )
 
                             if (graphViewDownload.viewport.getMaxX(true) > 10.0) {
-                                graphViewDownload.viewport.setMaxX(graphViewDownload.viewport.getMaxX(true) + 1)
+                                graphViewDownload.viewport.setMaxX(
+                                    graphViewDownload.viewport.getMaxX(
+                                        true
+                                    ) + 1
+                                )
                             }
                             lastXPositionDownload++
                         }
 
                     }
-                    //Upload Test
+                    // Upload Test
                     if (downloadTestFinished && !uploadTestFinished) {
-                        // Calc position
                         val uploadRate: Double = uploadTest.instantUploadRate
-                        position = getPositionByRate(uploadRate)
                         activity?.runOnUiThread {
-                            val rotate = RotateAnimation(lastPositionRotation.toFloat(), position.toFloat(), Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
-                            rotate.interpolator = LinearInterpolator()
-                            rotate.duration = 100
-                            barImageView.startAnimation(rotate)
                             uploadTextView.text = "${dec.format(uploadRate)} Mbps"
                         }
-                        lastPositionRotation = position
                         // Update chart
                         activity?.runOnUiThread {
-                            seriesUpload.appendData(DataPoint(lastXPositionUpload, uploadRate), false, 10000)
+                            seriesUpload.appendData(
+                                DataPoint(lastXPositionUpload, uploadRate),
+                                false,
+                                10000
+                            )
 
                             if (graphViewUpload.viewport.getMaxX(true) > 10.0) {
-                                graphViewUpload.viewport.setMaxX(graphViewUpload.viewport.getMaxX(true) + 1)
+                                graphViewUpload.viewport.setMaxX(
+                                    graphViewUpload.viewport.getMaxX(
+                                        true
+                                    ) + 1
+                                )
                             }
 
                             lastXPositionUpload++
@@ -299,7 +290,10 @@ class ToolSpeedTestFragment : BaseFragment() {
                     //Test finished
                     if (pingTestFinished && downloadTestFinished && uploadTest.isFinished) {
                         if (uploadTest.getRoundedFinalUploadRate() != 0.0) { //Success
-                            activity?.runOnUiThread { uploadTextView?.text = "${dec.format(uploadTest.getRoundedFinalUploadRate())} Mbps" }
+                            activity?.runOnUiThread {
+                                uploadTextView?.text =
+                                    "${dec.format(uploadTest.getRoundedFinalUploadRate())} Mbps"
+                            }
                         }
                         break
                     }
@@ -341,19 +335,6 @@ class ToolSpeedTestFragment : BaseFragment() {
         shouldStopNow = true
     }
 
-
-    fun getPositionByRate(rate: Double): Double {
-        return when {
-            rate <= 1 -> (rate * 30)
-            rate <= 10 -> ((rate * 6) + 30)
-            rate <= 30 -> (((rate - 10) * 3) + 90)
-            rate <= 50 -> (((rate - 30) * 1.5) + 150)
-            rate <= 100 -> (((rate - 50) * 1.2) + 180)
-            rate > 100 -> 240.0
-            else -> 0.0
-        }
-    }
-
     override fun onPause() {
         super.onPause()
         stopThread()
@@ -362,11 +343,11 @@ class ToolSpeedTestFragment : BaseFragment() {
     private fun showErrorDialog(content: String) {
         context?.let {
             MaterialDialog(it)
-                    .title(R.string.ui_error)
-                    .message(text = content)
-                    .positiveButton(R.string.ui_okay)
-                    .cancelable(false)
-                    .show()
+                .title(R.string.ui_error)
+                .message(text = content)
+                .positiveButton(R.string.ui_okay)
+                .cancelable(false)
+                .show()
         }
     }
 

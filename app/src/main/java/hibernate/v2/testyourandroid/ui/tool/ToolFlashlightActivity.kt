@@ -45,17 +45,21 @@ class ToolFlashlightActivity : BaseFragmentActivity() {
                 val shortcutIntent = Intent()
                 shortcutIntent.setAction("SHORTCUT_LAUNCH").data = Uri.parse("LAUNCH_FLASHLIGHT")
                 val shortcut = ShortcutInfoCompat.Builder(this, "flashlight")
-                        .setShortLabel(getString(R.string.title_activity_flashlight))
-                        .setLongLabel(getString(R.string.title_activity_flashlight))
-                        .setIcon(IconCompat.createWithResource(this, R.drawable.ic_icon_flashlight))
-                        .setIntent(shortcutIntent)
-                        .build()
-                val pinnedShortcutCallbackIntent = ShortcutManagerCompat.createShortcutResultIntent(this, shortcut)
-                val successCallback = PendingIntent.getBroadcast(this, 0,
-                        pinnedShortcutCallbackIntent, 0)
+                    .setShortLabel(getString(R.string.title_activity_flashlight))
+                    .setLongLabel(getString(R.string.title_activity_flashlight))
+                    .setIcon(IconCompat.createWithResource(this, R.drawable.ic_icon_flashlight))
+                    .setIntent(shortcutIntent)
+                    .build()
+                val pinnedShortcutCallbackIntent =
+                    ShortcutManagerCompat.createShortcutResultIntent(this, shortcut)
+                val successCallback = PendingIntent.getBroadcast(
+                    this, 0,
+                    pinnedShortcutCallbackIntent, 0
+                )
                 ShortcutManagerCompat.requestPinShortcut(
-                        this, shortcut,
-                        successCallback.intentSender)
+                    this, shortcut,
+                    successCallback.intentSender
+                )
                 return true
             }
         }

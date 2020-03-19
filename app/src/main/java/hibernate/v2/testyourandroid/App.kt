@@ -61,8 +61,8 @@ class App : MultiDexApplication() {
             testDevices.add(UtilHelper.getAdMobDeviceID(this))
 
             val requestConfiguration = RequestConfiguration.Builder()
-                    .setTestDeviceIds(testDevices)
-                    .build()
+                .setTestDeviceIds(testDevices)
+                .build()
             MobileAds.setRequestConfiguration(requestConfiguration)
         }
     }

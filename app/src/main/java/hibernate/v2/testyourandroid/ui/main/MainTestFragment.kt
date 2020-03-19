@@ -57,108 +57,147 @@ class MainTestFragment : BaseFragment() {
 
     private lateinit var sectionAdapter: SectionedRecyclerViewAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_main_gridview, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         AppUpdater(context)
-                .showEvery(4)
-                .setDisplay(Display.NOTIFICATION)
-                .start()
+            .showEvery(4)
+            .setDisplay(Display.NOTIFICATION)
+            .start()
         sectionAdapter = SectionedRecyclerViewAdapter()
 
         val toolsBadgeArray = arrayOf(
-                GridItem.Badge.NONE, GridItem.Badge.NONE,
-                GridItem.Badge.NONE, GridItem.Badge.NONE,
-                GridItem.Badge.NEW
+            GridItem.Badge.NONE, GridItem.Badge.NONE,
+            GridItem.Badge.NONE, GridItem.Badge.NONE,
+            GridItem.Badge.NEW
         )
         val hardwareBadgeArray = arrayOf(
-                GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
-                GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
-                GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NEW
+            GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
+            GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
+            GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NEW
         )
         val sensorBadgeArray = arrayOf(
-                GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
-                GridItem.Badge.NONE, GridItem.Badge.NONE,
-                GridItem.Badge.NONE, GridItem.Badge.NONE,
-                GridItem.Badge.NONE, GridItem.Badge.NONE
+            GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
+            GridItem.Badge.NONE, GridItem.Badge.NONE,
+            GridItem.Badge.NONE, GridItem.Badge.NONE,
+            GridItem.Badge.NONE, GridItem.Badge.NONE
         )
         val infoBadgeArray = arrayOf(
-                GridItem.Badge.NONE, GridItem.Badge.NEW, GridItem.Badge.NONE,
-                GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
-                GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
-                GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE
+            GridItem.Badge.NONE, GridItem.Badge.NEW, GridItem.Badge.NONE,
+            GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
+            GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE,
+            GridItem.Badge.NONE, GridItem.Badge.NONE, GridItem.Badge.NONE
         )
         val toolsClassArray = arrayOf<Class<*>>(
-                ToolQRScannerActivity::class.java, ToolFlashlightActivity::class.java,
-                ToolBubbleLevelActivity::class.java, ToolSoundMeterActivity::class.java,
-                ToolSpeedTestActivity::class.java
+            ToolQRScannerActivity::class.java, ToolFlashlightActivity::class.java,
+            ToolBubbleLevelActivity::class.java, ToolSoundMeterActivity::class.java,
+            ToolSpeedTestActivity::class.java
         )
         val hardwareClassArray = arrayOf<Class<*>>(
-                HardwareScreenActivity::class.java, DrawingActivity::class.java, HardwareTouchActivity::class.java,
-                HardwareCameraActivity::class.java, HardwareSpeakerActivity::class.java, HardwareMicrophoneActivity::class.java,
-                HardwareNFCActivity::class.java, HardwareLocationActivity::class.java, HardwareBiometricActivity::class.java
+            HardwareScreenActivity::class.java,
+            DrawingActivity::class.java,
+            HardwareTouchActivity::class.java,
+            HardwareCameraActivity::class.java,
+            HardwareSpeakerActivity::class.java,
+            HardwareMicrophoneActivity::class.java,
+            HardwareNFCActivity::class.java,
+            HardwareLocationActivity::class.java,
+            HardwareBiometricActivity::class.java
         )
         val sensorClassArray = arrayOf<Class<*>>(
-                SensorStepActivity::class.java, SensorTemperatureActivity::class.java, SensorCompassActivity::class.java,
-                SensorLightActivity::class.java, SensorAccelerometerActivity::class.java,
-                SensorProximityActivity::class.java, SensorPressureActivity::class.java,
-                SensorGravityActivity::class.java, SensorHumidityActivity::class.java
+            SensorStepActivity::class.java,
+            SensorTemperatureActivity::class.java,
+            SensorCompassActivity::class.java,
+            SensorLightActivity::class.java,
+            SensorAccelerometerActivity::class.java,
+            SensorProximityActivity::class.java,
+            SensorPressureActivity::class.java,
+            SensorGravityActivity::class.java,
+            SensorHumidityActivity::class.java
         )
         val infoClassArray = arrayOf<Class<*>>(
-                MonitorActivity::class.java, WifiActivity::class.java, InfoBluetoothActivity::class.java,
-                InfoCPUActivity::class.java, InfoHardwareActivity::class.java, InfoAndroidVersionActivity::class.java,
-                InfoBatteryActivity::class.java, InfoCameraActivity::class.java,
-                InfoGSMActivity::class.java, AppChooseActivity::class.java
+            MonitorActivity::class.java,
+            WifiActivity::class.java,
+            InfoBluetoothActivity::class.java,
+            InfoCPUActivity::class.java,
+            InfoHardwareActivity::class.java,
+            InfoAndroidVersionActivity::class.java,
+            InfoBatteryActivity::class.java,
+            InfoCameraActivity::class.java,
+            InfoGSMActivity::class.java,
+            AppChooseActivity::class.java
         )
         val otherStringArray = arrayOf(
-                "rate", "language", "donate", "app_brain"
+            "rate", "language", "donate", "app_brain"
         )
 
-        sectionAdapter.addSection(MainTestSection(getString(R.string.main_title_tools), addList(
-                resources.getStringArray(R.array.tools_string_array),
-                resources.obtainTypedArray(R.array.main_tools_image),
-                toolsClassArray,
-                toolsBadgeArray
-        )))
-        sectionAdapter.addSection(MainTestSection(getString(R.string.main_title_information), addList(
-                resources.getStringArray(R.array.info_string_array),
-                resources.obtainTypedArray(R.array.main_info_image),
-                infoClassArray,
-                infoBadgeArray
-        )))
-        sectionAdapter.addSection(MainTestSection(getString(R.string.main_title_hardware), addList(
-                resources.getStringArray(R.array.hardware_string_array),
-                resources.obtainTypedArray(R.array.main_hardware_image),
-                hardwareClassArray,
-                hardwareBadgeArray
-        )))
-        sectionAdapter.addSection(MainTestSection(getString(R.string.main_title_sensor), addList(
-                resources.getStringArray(R.array.sensor_string_array),
-                resources.obtainTypedArray(R.array.main_sensor_image),
-                sensorClassArray,
-                sensorBadgeArray
-        )))
-        sectionAdapter.addSection(MainTestSection(getString(R.string.main_title_other), addList(
-                resources.getStringArray(R.array.other_string_array),
-                otherImageArray(),
-                otherStringArray
-        )))
+        sectionAdapter.addSection(
+            MainTestSection(
+                getString(R.string.main_title_tools), addList(
+                    resources.getStringArray(R.array.tools_string_array),
+                    resources.obtainTypedArray(R.array.main_tools_image),
+                    toolsClassArray,
+                    toolsBadgeArray
+                )
+            )
+        )
+        sectionAdapter.addSection(
+            MainTestSection(
+                getString(R.string.main_title_information), addList(
+                    resources.getStringArray(R.array.info_string_array),
+                    resources.obtainTypedArray(R.array.main_info_image),
+                    infoClassArray,
+                    infoBadgeArray
+                )
+            )
+        )
+        sectionAdapter.addSection(
+            MainTestSection(
+                getString(R.string.main_title_hardware), addList(
+                    resources.getStringArray(R.array.hardware_string_array),
+                    resources.obtainTypedArray(R.array.main_hardware_image),
+                    hardwareClassArray,
+                    hardwareBadgeArray
+                )
+            )
+        )
+        sectionAdapter.addSection(
+            MainTestSection(
+                getString(R.string.main_title_sensor), addList(
+                    resources.getStringArray(R.array.sensor_string_array),
+                    resources.obtainTypedArray(R.array.main_sensor_image),
+                    sensorClassArray,
+                    sensorBadgeArray
+                )
+            )
+        )
+        sectionAdapter.addSection(
+            MainTestSection(
+                getString(R.string.main_title_other), addList(
+                    resources.getStringArray(R.array.other_string_array),
+                    otherImageArray(),
+                    otherStringArray
+                )
+            )
+        )
 
         val columnCount = if (DeviceUtils.isTablet() && ScreenUtils.isLandscape()) 4 else 3
         val gridLayoutManager = GridLayoutManager(activity, columnCount)
         gridLayoutManager.spanSizeLookup =
-                object : SpanSizeLookup() {
-                    override fun getSpanSize(position: Int): Int {
-                        return when (sectionAdapter.getSectionItemViewType(position)) {
-                            SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER -> columnCount
-                            else -> 1
-                        }
+            object : SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return when (sectionAdapter.getSectionItemViewType(position)) {
+                        SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER -> columnCount
+                        else -> 1
                     }
                 }
+            }
         gridRv.setHasFixedSize(true)
         gridRv.layoutManager = gridLayoutManager
         gridRv.adapter = sectionAdapter
@@ -174,19 +213,30 @@ class MainTestFragment : BaseFragment() {
     }
 
     private fun addList(
-            stringArray: Array<String>,
-            imageArray: TypedArray,
-            classArray: Array<Class<*>>,
-            badgeArray: Array<GridItem.Badge>
+        stringArray: Array<String>,
+        imageArray: TypedArray,
+        classArray: Array<Class<*>>,
+        badgeArray: Array<GridItem.Badge>
     ): List<GridItem> {
         val list: MutableList<GridItem> = ArrayList()
         for (i in stringArray.indices) {
-            list.add(GridItem(stringArray[i], imageArray.getResourceId(i, 0), classArray[i], badgeArray[i]))
+            list.add(
+                GridItem(
+                    stringArray[i],
+                    imageArray.getResourceId(i, 0),
+                    classArray[i],
+                    badgeArray[i]
+                )
+            )
         }
         return list
     }
 
-    private fun addList(stringArray: Array<String>, imageArray: TypedArray, string2Array: Array<String>): List<GridItem> {
+    private fun addList(
+        stringArray: Array<String>,
+        imageArray: TypedArray,
+        string2Array: Array<String>
+    ): List<GridItem> {
         val list: MutableList<GridItem> = ArrayList()
         for (i in stringArray.indices) {
             list.add(GridItem(stringArray[i], imageArray.getResourceId(i, 0), string2Array[i]))

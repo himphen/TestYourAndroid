@@ -23,12 +23,15 @@ import java.util.ArrayList
 
 class AppInfoActionFragment : BaseFragment() {
     private val imageArray = arrayOf(
-            R.drawable.app_open, R.drawable.app_uninstall,
-            R.drawable.app_settings, R.drawable.app_play_store)
+        R.drawable.app_open, R.drawable.app_uninstall,
+        R.drawable.app_settings, R.drawable.app_play_store
+    )
     private val typeArray = arrayOf("open", "uninstall", "settings", "play_store")
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
@@ -56,65 +59,76 @@ class AppInfoActionFragment : BaseFragment() {
             if (DeviceUtils.isTablet() && ScreenUtils.isLandscape()) {
                 columnCount = 4
             }
-            val mListener: GridItemAdapter.ItemClickListener = object : GridItemAdapter.ItemClickListener {
-                override fun onItemDetailClick(gridItem: GridItem) {
-                    var intent: Intent?
-                    when (gridItem.actionType) {
-                        "uninstall" -> try {
-                            intent = Intent(Intent.ACTION_DELETE, Uri.fromParts("package", appItem.packageName, null))
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                        } catch (e: Exception) {
-                            intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                        }
-                        "settings" -> try {
-                            intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            val mListener: GridItemAdapter.ItemClickListener =
+                object : GridItemAdapter.ItemClickListener {
+                    override fun onItemDetailClick(gridItem: GridItem) {
+                        var intent: Intent?
+                        when (gridItem.actionType) {
+                            "uninstall" -> try {
+                                intent = Intent(
+                                    Intent.ACTION_DELETE,
                                     Uri.fromParts("package", appItem.packageName, null)
-                            )
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                        } catch (e: Exception) {
-                            try {
-                                val componentName = ComponentName(
-                                        "com.android.settings",
-                                        "com.android.settings.applications.InstalledAppDetails")
-                                intent = Intent()
-                                intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
-                                intent.data = Uri.fromParts("package", appItem.packageName, null)
-                                intent.component = componentName
+                                )
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)
-                            } catch (e1: Exception) {
-                                startActivity(Intent(Settings.ACTION_SETTINGS))
-                            }
-                        }
-                        "play_store" -> {
-                            intent = Intent(Intent.ACTION_VIEW)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            try {
-                                intent.data = Uri.parse("market://details?id=" + appItem.packageName)
-                                startActivity(intent)
-                            } catch (e: ActivityNotFoundException) {
-                                intent.data = Uri.parse("https://play.google.com/store/apps/details?id=" + appItem.packageName)
+                            } catch (e: Exception) {
+                                intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)
                             }
-                        }
-                        "open" -> {
-                            appItem.packageName?.let { packageName ->
-                                intent = context?.packageManager?.getLaunchIntentForPackage(packageName)
-                                intent?.let { intent ->
+                            "settings" -> try {
+                                intent = Intent(
+                                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                    Uri.fromParts("package", appItem.packageName, null)
+                                )
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
+                            } catch (e: Exception) {
+                                try {
+                                    val componentName = ComponentName(
+                                        "com.android.settings",
+                                        "com.android.settings.applications.InstalledAppDetails"
+                                    )
+                                    intent = Intent()
+                                    intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
+                                    intent.data =
+                                        Uri.fromParts("package", appItem.packageName, null)
+                                    intent.component = componentName
                                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                                     startActivity(intent)
-                                } ?: run {
-                                    notAppFound(activity, false)
+                                } catch (e1: Exception) {
+                                    startActivity(Intent(Settings.ACTION_SETTINGS))
+                                }
+                            }
+                            "play_store" -> {
+                                intent = Intent(Intent.ACTION_VIEW)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                try {
+                                    intent.data =
+                                        Uri.parse("market://details?id=" + appItem.packageName)
+                                    startActivity(intent)
+                                } catch (e: ActivityNotFoundException) {
+                                    intent.data =
+                                        Uri.parse("https://play.google.com/store/apps/details?id=" + appItem.packageName)
+                                    startActivity(intent)
+                                }
+                            }
+                            "open" -> {
+                                appItem.packageName?.let { packageName ->
+                                    intent = context?.packageManager?.getLaunchIntentForPackage(
+                                        packageName
+                                    )
+                                    intent?.let { intent ->
+                                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                        startActivity(intent)
+                                    } ?: run {
+                                        notAppFound(activity, false)
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
             rvlist.setHasFixedSize(true)
             rvlist.layoutManager = GridLayoutManager(context, columnCount)
             rvlist.adapter = GridItemAdapter(list, mListener)

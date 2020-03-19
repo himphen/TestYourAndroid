@@ -23,12 +23,14 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.SectionParameters
 
 
 class MainTestSection constructor(
-        private val title: String,
-        private val gridItemList: List<GridItem>
-) : Section(SectionParameters.builder()
+    private val title: String,
+    private val gridItemList: List<GridItem>
+) : Section(
+    SectionParameters.builder()
         .itemResourceId(R.layout.item_main_icon)
         .headerResourceId(R.layout.item_main_header)
-        .build()) {
+        .build()
+) {
     override fun getContentItemsTotal(): Int {
         return gridItemList.size
     }
@@ -41,30 +43,32 @@ class MainTestSection constructor(
         val item = gridItemList[position]
         holder as ItemViewHolder
         Glide.with(holder.mainIv.context)
-                .load(item.mainImageId)
-                .apply(RequestOptions()
-                        .fitCenter()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL))
-                .into(holder.mainIv)
+            .load(item.mainImageId)
+            .apply(
+                RequestOptions()
+                    .fitCenter()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+            )
+            .into(holder.mainIv)
         holder.mainTv.text = item.mainText
 
         when (item.badge) {
             GridItem.Badge.NEW -> {
                 val drawable = BadgeDrawable.Builder()
-                        .type(BadgeDrawable.TYPE_ONLY_ONE_TEXT)
-                        .badgeColor(ContextCompat.getColor(holder.mainIv.context, R.color.green500))
-                        .text1("NEW")
-                        .build()
+                    .type(BadgeDrawable.TYPE_ONLY_ONE_TEXT)
+                    .badgeColor(ContextCompat.getColor(holder.mainIv.context, R.color.green500))
+                    .text1("NEW")
+                    .build()
 
                 holder.badgeTv.text = SpannableString(drawable.toSpannable())
                 holder.badgeTv.visibility = View.VISIBLE
             }
             GridItem.Badge.BETA -> {
                 val drawable = BadgeDrawable.Builder()
-                        .type(BadgeDrawable.TYPE_ONLY_ONE_TEXT)
-                        .badgeColor(ContextCompat.getColor(holder.mainIv.context, R.color.gold))
-                        .text1("BETA")
-                        .build()
+                    .type(BadgeDrawable.TYPE_ONLY_ONE_TEXT)
+                    .badgeColor(ContextCompat.getColor(holder.mainIv.context, R.color.gold))
+                    .text1("BETA")
+                    .build()
 
                 holder.badgeTv.text = SpannableString(drawable.toSpannable())
                 holder.badgeTv.visibility = View.VISIBLE
@@ -87,10 +91,12 @@ class MainTestSection constructor(
                     "rate" -> {
                         val intent = Intent(Intent.ACTION_VIEW)
                         try {
-                            intent.data = Uri.parse("market://details?id=hibernate.v2.testyourandroid")
+                            intent.data =
+                                Uri.parse("market://details?id=hibernate.v2.testyourandroid")
                             v.context.startActivity(intent)
                         } catch (e: ActivityNotFoundException) {
-                            intent.data = Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid")
+                            intent.data =
+                                Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid")
                             v.context.startActivity(intent)
                         }
                     }

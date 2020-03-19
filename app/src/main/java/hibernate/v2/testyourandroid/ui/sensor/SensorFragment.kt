@@ -63,8 +63,10 @@ class SensorFragment : BaseFragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_sensor, container, false)
     }
 
@@ -84,11 +86,15 @@ class SensorFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
         if (mSensor != null && sensorEventListener != null) {
-            mSensorManager.registerListener(sensorEventListener, mSensor,
-                    SensorManager.SENSOR_DELAY_UI)
+            mSensorManager.registerListener(
+                sensorEventListener, mSensor,
+                SensorManager.SENSOR_DELAY_UI
+            )
             if (secondSensor != null) {
-                mSensorManager.registerListener(sensorEventListener, secondSensor,
-                        SensorManager.SENSOR_DELAY_UI)
+                mSensorManager.registerListener(
+                    sensorEventListener, secondSensor,
+                    SensorManager.SENSOR_DELAY_UI
+                )
             }
         }
     }
@@ -169,15 +175,42 @@ class SensorFragment : BaseFragment() {
             for (i in stringArray.indices) {
                 val infoItem: InfoItem = try {
                     when (sensorType) {
-                        Sensor.TYPE_ACCELEROMETER -> InfoItem(stringArray[i], getAccelerometerSensorData(i, stringArray.size, reading, mSensor!!))
-                        Sensor.TYPE_GRAVITY -> InfoItem(stringArray[i], getGravitySensorData(i, stringArray.size, reading, mSensor!!))
-                        Sensor.TYPE_LIGHT -> InfoItem(stringArray[i], getLightSensorData(i, stringArray.size, reading, mSensor!!))
-                        Sensor.TYPE_PRESSURE -> InfoItem(stringArray[i], getPressureSensorData(i, stringArray.size, reading, mSensor!!))
-                        Sensor.TYPE_PROXIMITY -> InfoItem(stringArray[i], getProximitySensorData(i, stringArray.size, reading, mSensor!!))
-                        Sensor.TYPE_MAGNETIC_FIELD -> InfoItem(stringArray[i], getMagneticSensorData(i, stringArray.size, reading, mSensor!!))
-                        Sensor.TYPE_STEP_COUNTER -> InfoItem(stringArray[i], getStepCounterSensorData(i, stringArray.size, reading, mSensor!!))
-                        Sensor.TYPE_AMBIENT_TEMPERATURE -> InfoItem(stringArray[i], getTemperatureCounterSensorData(i, stringArray.size, reading, mSensor!!))
-                        Sensor.TYPE_RELATIVE_HUMIDITY -> InfoItem(stringArray[i], getHumiditySensorData(i, stringArray.size, reading, mSensor!!))
+                        Sensor.TYPE_ACCELEROMETER -> InfoItem(
+                            stringArray[i],
+                            getAccelerometerSensorData(i, stringArray.size, reading, mSensor!!)
+                        )
+                        Sensor.TYPE_GRAVITY -> InfoItem(
+                            stringArray[i],
+                            getGravitySensorData(i, stringArray.size, reading, mSensor!!)
+                        )
+                        Sensor.TYPE_LIGHT -> InfoItem(
+                            stringArray[i],
+                            getLightSensorData(i, stringArray.size, reading, mSensor!!)
+                        )
+                        Sensor.TYPE_PRESSURE -> InfoItem(
+                            stringArray[i],
+                            getPressureSensorData(i, stringArray.size, reading, mSensor!!)
+                        )
+                        Sensor.TYPE_PROXIMITY -> InfoItem(
+                            stringArray[i],
+                            getProximitySensorData(i, stringArray.size, reading, mSensor!!)
+                        )
+                        Sensor.TYPE_MAGNETIC_FIELD -> InfoItem(
+                            stringArray[i],
+                            getMagneticSensorData(i, stringArray.size, reading, mSensor!!)
+                        )
+                        Sensor.TYPE_STEP_COUNTER -> InfoItem(
+                            stringArray[i],
+                            getStepCounterSensorData(i, stringArray.size, reading, mSensor!!)
+                        )
+                        Sensor.TYPE_AMBIENT_TEMPERATURE -> InfoItem(
+                            stringArray[i],
+                            getTemperatureCounterSensorData(i, stringArray.size, reading, mSensor!!)
+                        )
+                        Sensor.TYPE_RELATIVE_HUMIDITY -> InfoItem(
+                            stringArray[i],
+                            getHumiditySensorData(i, stringArray.size, reading, mSensor!!)
+                        )
                         else -> InfoItem(stringArray[i], getString(R.string.ui_not_support))
                     }
                 } catch (e: Exception) {
@@ -207,12 +240,18 @@ class SensorFragment : BaseFragment() {
                     + String.format("%1.4f", event.values[1]) + " m/s²\nZ: "
                     + String.format("%1.4f", event.values[2]) + " m/s²")
             lastXValue += 1.0
-            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()),
-                    true, 100)
-            series2.appendData(DataPoint(lastXValue, event.values[1].toDouble()),
-                    true, 100)
-            series3.appendData(DataPoint(lastXValue, event.values[2].toDouble()),
-                    true, 100)
+            series.appendData(
+                DataPoint(lastXValue, event.values[0].toDouble()),
+                true, 100
+            )
+            series2.appendData(
+                DataPoint(lastXValue, event.values[1].toDouble()),
+                true, 100
+            )
+            series3.appendData(
+                DataPoint(lastXValue, event.values[2].toDouble()),
+                true, 100
+            )
             graphView.viewport.scrollToEnd()
             list[0].contentText = reading
             adapter?.notifyDataSetChanged()
@@ -271,7 +310,8 @@ class SensorFragment : BaseFragment() {
         override fun onSensorChanged(event: SensorEvent) {
             val valueC = event.values[0].toDouble()
             val valueF = valueC * 1.8 + 32
-            reading = String.format("%1.2f", valueC) + " °C\n" + String.format("%1.2f", valueF) + " °F"
+            reading =
+                String.format("%1.2f", valueC) + " °C\n" + String.format("%1.2f", valueF) + " °F"
             series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
             graphView.viewport.scrollToEnd()
             lastXValue += 1.0
@@ -322,8 +362,10 @@ class SensorFragment : BaseFragment() {
             } else if (event.sensor.type == Sensor.TYPE_AMBIENT_TEMPERATURE) {
                 if (mLastKnownRelativeHumidity != 0f) {
                     mLastKnownTemperature = event.values[0]
-                    mLastKnownAbsoluteHumidity = calculateAbsoluteHumidity(mLastKnownTemperature, mLastKnownRelativeHumidity)
-                    mLastKnownDewPoint = calculateDewPoint(mLastKnownTemperature, mLastKnownRelativeHumidity)
+                    mLastKnownAbsoluteHumidity =
+                        calculateAbsoluteHumidity(mLastKnownTemperature, mLastKnownRelativeHumidity)
+                    mLastKnownDewPoint =
+                        calculateDewPoint(mLastKnownTemperature, mLastKnownRelativeHumidity)
                 }
             }
             reading = getString(R.string.ui_relative_humidity) + mLastKnownRelativeHumidity + "%"
@@ -349,7 +391,8 @@ class SensorFragment : BaseFragment() {
         val Ta = 216.7f
         val A = 6.112f
         val K = 273.15f
-        Dv = (Ta * (relativeHumidity / 100) * A * exp(m * temperature / (Tn + temperature).toDouble()) / (K + temperature)).toFloat()
+        Dv =
+            (Ta * (relativeHumidity / 100) * A * exp(m * temperature / (Tn + temperature).toDouble()) / (K + temperature)).toFloat()
         return Dv
     }
 
@@ -364,7 +407,10 @@ class SensorFragment : BaseFragment() {
         val Td: Float
         val m = 17.62f
         val Tn = 243.12f
-        Td = (Tn * ((ln(relativeHumidity / 100.toDouble()) + m * temperature / (Tn + temperature)) / (m - (ln(relativeHumidity / 100.toDouble()) + m * temperature / (Tn + temperature))))).toFloat()
+        Td =
+            (Tn * ((ln(relativeHumidity / 100.toDouble()) + m * temperature / (Tn + temperature)) / (m - (ln(
+                relativeHumidity / 100.toDouble()
+            ) + m * temperature / (Tn + temperature))))).toFloat()
         return Td
     }
 

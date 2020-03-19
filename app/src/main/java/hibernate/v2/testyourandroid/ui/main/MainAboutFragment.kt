@@ -21,20 +21,25 @@ import kotlinx.android.synthetic.main.fragment_main_about.*
 
 class MainAboutFragment : BaseFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_main_about, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        versionTv.text = String.format("%s %s", getString(R.string.ui_version), AppUtils.getAppVersionName())
+        versionTv.text =
+            String.format("%s %s", getString(R.string.ui_version), AppUtils.getAppVersionName())
         context?.let { context ->
             Glide.with(context)
-                    .load(R.drawable.android_resources)
-                    .apply(RequestOptions()
-                            .diskCacheStrategy(DiskCacheStrategy.ALL))
-                    .into(logoIv)
+                .load(R.drawable.android_resources)
+                .apply(
+                    RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                )
+                .into(logoIv)
         }
 
         moreButton.setOnClickListener {
@@ -48,7 +53,8 @@ class MainAboutFragment : BaseFragment() {
         }
 
         shareButton.setOnClickListener {
-            val text = getString(R.string.share_message) + "\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid"
+            val text =
+                getString(R.string.share_message) + "\n\nhttps://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid"
             val intent = Intent(Intent.ACTION_SEND)
             intent.putExtra(Intent.EXTRA_TEXT, text)
             intent.type = "text/plain"
@@ -70,10 +76,10 @@ class MainAboutFragment : BaseFragment() {
         }
         creditButton.setOnClickListener {
             LicensesDialog.Builder(context)
-                    .setNotices(R.raw.notices)
-                    .setThemeResourceId(R.style.AppTheme_Dialog_License)
-                    .build()
-                    .show()
+                .setNotices(R.raw.notices)
+                .setThemeResourceId(R.style.AppTheme_Dialog_License)
+                .build()
+                .show()
         }
     }
 }

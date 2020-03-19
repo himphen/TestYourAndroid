@@ -73,7 +73,12 @@ object SensorHelper {
         return arrayData[j]
     }
 
-    fun getProximitySensorData(j: Int, size: Int, @Suppress("UNUSED_PARAMETER") reading: String?, sensor: Sensor): String? {
+    fun getProximitySensorData(
+        j: Int,
+        size: Int,
+        @Suppress("UNUSED_PARAMETER") reading: String?,
+        sensor: Sensor
+    ): String? {
         val arrayData = arrayOfNulls<String>(size)
         var i = 0
         arrayData[i] = ""
@@ -136,7 +141,12 @@ object SensorHelper {
         return arrayData[j]
     }
 
-    fun getTemperatureCounterSensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
+    fun getTemperatureCounterSensorData(
+        j: Int,
+        size: Int,
+        reading: String?,
+        sensor: Sensor
+    ): String? {
         val arrayData = arrayOfNulls<String>(size)
         var i = 0
         arrayData[i] = reading

@@ -7,7 +7,7 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="border_margin">24dp</dimen>
-    <dimen name="border_horizontal_margin">8dp</dimen>
+    <dimen name="border_horizontal_margin">12dp</dimen>
 
     <dimen name="home_text_size">14sp</dimen>
     <dimen name="input_margin">8dp</dimen>

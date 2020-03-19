@@ -43,8 +43,10 @@ class MonitorMemoryFragment : BaseFragment() {
     }
     private var isSupported = false
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_monitor_memory, container, false)
     }
 
@@ -91,7 +93,8 @@ class MonitorMemoryFragment : BaseFragment() {
     private val ramMemory: Unit
         get() {
             context?.let { context ->
-                val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+                val activityManager =
+                    context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                 val memoryInfo = ActivityManager.MemoryInfo()
                 activityManager.getMemoryInfo(memoryInfo)
                 totalValue = memoryInfo.totalMem

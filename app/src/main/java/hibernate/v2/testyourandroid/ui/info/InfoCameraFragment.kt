@@ -32,8 +32,10 @@ class InfoCameraFragment : BaseFragment() {
     private var cameraId = 0
     private var mParameters: Camera.Parameters? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
@@ -70,19 +72,19 @@ class InfoCameraFragment : BaseFragment() {
         } else {
             context?.let {
                 MaterialDialog(it)
-                        .title(R.string.dialog_camera_title)
-                        .listItemsSingleChoice(
-                                items = arrayListOf("Camera 1", "Camera 2"),
-                                waitForPositiveButton = false
-                        ) { dialog, index, _ ->
-                            initCamera(index)
-                            dialog.dismiss()
-                        }
-                        .cancelable(false)
-                        .negativeButton(R.string.ui_cancel) { dialog ->
-                            UtilHelper.scanForActivity(dialog.context)?.finish()
-                        }
-                        .show()
+                    .title(R.string.dialog_camera_title)
+                    .listItemsSingleChoice(
+                        items = arrayListOf("Camera 1", "Camera 2"),
+                        waitForPositiveButton = false
+                    ) { dialog, index, _ ->
+                        initCamera(index)
+                        dialog.dismiss()
+                    }
+                    .cancelable(false)
+                    .negativeButton(R.string.ui_cancel) { dialog ->
+                        UtilHelper.scanForActivity(dialog.context)?.finish()
+                    }
+                    .show()
             }
         }
     }
@@ -135,7 +137,8 @@ class InfoCameraFragment : BaseFragment() {
 
     private fun sizeListToString(list: List<Camera.Size>): String {
         val tempList = StringBuilder()
-        for (element in list) tempList.append(element.width).append(" X ").append(element.height).append("\n")
+        for (element in list) tempList.append(element.width).append(" X ").append(element.height)
+            .append("\n")
         return tempList.substring(0, tempList.length - 1)
     }
 
@@ -144,7 +147,8 @@ class InfoCameraFragment : BaseFragment() {
             when (j) {
                 0, 1 -> {
                     val displayMetrics = DisplayMetrics()
-                    val windowManager = context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+                    val windowManager =
+                        context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager
                     windowManager.defaultDisplay.getMetrics(displayMetrics)
                     val screenWidth = displayMetrics.widthPixels
                     val screenHeight = displayMetrics.heightPixels
@@ -185,7 +189,11 @@ class InfoCameraFragment : BaseFragment() {
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {
