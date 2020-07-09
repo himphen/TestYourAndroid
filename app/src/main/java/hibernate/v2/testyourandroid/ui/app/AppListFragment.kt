@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -90,7 +91,10 @@ class AppListFragment : BaseFragment() {
                             PackageInfoCompat.getLongVersionCode(packageInfo).toString()
                         appItem.versionName = packageInfo.versionName
                         appItem.firstInstallTime = packageInfo.firstInstallTime
-                        appItem.icon = packageInfo.applicationInfo.loadIcon(packageManager)
+                        try {
+                            appItem.icon = packageInfo.applicationInfo.loadIcon(packageManager)
+                        } catch (e: Resources.NotFoundException) {
+                        }
                         appItem.isSystemApp =
                             packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
                         appList.add(appItem)

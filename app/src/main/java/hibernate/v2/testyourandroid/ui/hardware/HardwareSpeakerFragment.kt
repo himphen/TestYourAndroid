@@ -140,7 +140,7 @@ class HardwareSpeakerFragment : BaseFragment() {
 
     private fun stopPlayer() {
         if (isRinging) {
-            ringButton.setText(R.string.ring_button)
+            ringButton?.setText(R.string.ring_button)
             isRinging = false
             mediaPlayer?.let { mediaPlayer ->
                 mediaPlayer.stop()

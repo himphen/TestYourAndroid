@@ -4,14 +4,13 @@ import android.content.Context
 import androidx.multidex.MultiDexApplication
 import com.appbrain.AppBrain
 import com.blankj.utilcode.util.Utils
-import com.crashlytics.android.Crashlytics
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import hibernate.v2.testyourandroid.helper.UtilHelper
-import io.fabric.sdk.android.Fabric
 import java.util.ArrayList
 
 /**
@@ -77,8 +76,9 @@ class App : MultiDexApplication() {
         }
 
         if (isGooglePlay || BuildConfig.DEBUG) {
-            Fabric.with(this, Crashlytics())
-            Crashlytics.setBool("isGooglePlay", isGooglePlay)
+            val crashlytics = FirebaseCrashlytics.getInstance()
+            crashlytics.setCrashlyticsCollectionEnabled(true)
+            crashlytics.setCustomKey("isGooglePlay", isGooglePlay)
         }
     }
 }

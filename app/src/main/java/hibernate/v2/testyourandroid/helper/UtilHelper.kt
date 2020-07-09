@@ -23,11 +23,11 @@ import androidx.preference.PreferenceManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.blankj.utilcode.util.SizeUtils
-import com.crashlytics.android.Crashlytics
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
 import java.io.BufferedReader
@@ -51,7 +51,9 @@ object UtilHelper {
     fun initAdView(
         context: Context?,
         adLayout: RelativeLayout,
-        isPreserveSpace: Boolean = false
+        isPreserveSpace: Boolean = false,
+        adUnitId: String = BuildConfig.ADMOB_BANNER_ID,
+        adUnitSize: AdSize = AdSize.BANNER
     ): AdView? {
         if (context == null) return null
 
@@ -63,14 +65,14 @@ object UtilHelper {
         try {
             if (!defaultPreferences.getBoolean(PREF_IAP, false)) {
                 val adView = AdView(context)
-                adView.adUnitId = BuildConfig.ADMOB_BANNER_ID
-                adView.adSize = AdSize.BANNER
+                adView.adUnitId = adUnitId
+                adView.adSize = adUnitSize
                 adLayout.addView(adView)
                 adView.loadAd(AdRequest.Builder().build())
                 return adView
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            logException(e)
         }
         return null
     }
@@ -98,7 +100,7 @@ object UtilHelper {
         if (BuildConfig.DEBUG) {
             e.printStackTrace()
         } else {
-            Crashlytics.logException(e)
+            FirebaseCrashlytics.getInstance().recordException(e)
         }
     }
 

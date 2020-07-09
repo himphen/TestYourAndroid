@@ -26,13 +26,15 @@ class MainFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adView = UtilHelper.initAdView(context, adLayout)
-        val adapter = MainFragmentPagerAdapter(context!!, childFragmentManager)
-        viewPager.adapter = adapter
-        viewPager.offscreenPageLimit = 2
-        tabLayout.setupWithViewPager(viewPager)
-        // Iterate over all tabs and set the custom view
-        for (i in 0 until tabLayout.tabCount) {
-            tabLayout.getTabAt(i)?.customView = adapter.getTabView(i)
+        context?.let { context ->
+            val adapter = MainFragmentPagerAdapter(context, childFragmentManager)
+            viewPager.adapter = adapter
+            viewPager.offscreenPageLimit = 2
+            tabLayout.setupWithViewPager(viewPager)
+            // Iterate over all tabs and set the custom view
+            for (i in 0 until tabLayout.tabCount) {
+                tabLayout.getTabAt(i)?.customView = adapter.getTabView(i)
+            }
         }
     }
 

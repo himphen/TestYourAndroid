@@ -13,6 +13,12 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.divyanshu.draw.activity.DrawingActivity
 import com.github.javiersantos.appupdater.AppUpdater
 import com.github.javiersantos.appupdater.enums.Display
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.model.GridItem
 import hibernate.v2.testyourandroid.ui.app.AppChooseActivity
@@ -157,6 +163,7 @@ class MainTestFragment : BaseFragment() {
                 )
             )
         )
+        addAdSection()
         sectionAdapter.addSection(
             MainTestSection(
                 getString(R.string.main_title_hardware), addList(
@@ -167,6 +174,7 @@ class MainTestFragment : BaseFragment() {
                 )
             )
         )
+        addAdSection()
         sectionAdapter.addSection(
             MainTestSection(
                 getString(R.string.main_title_sensor), addList(
@@ -177,6 +185,7 @@ class MainTestFragment : BaseFragment() {
                 )
             )
         )
+        addAdSection()
         sectionAdapter.addSection(
             MainTestSection(
                 getString(R.string.main_title_other), addList(
@@ -192,6 +201,10 @@ class MainTestFragment : BaseFragment() {
         gridLayoutManager.spanSizeLookup =
             object : SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
+                    if (sectionAdapter.getSectionForPosition(position) is MainAdSection) {
+                        return columnCount
+                    }
+
                     return when (sectionAdapter.getSectionItemViewType(position)) {
                         SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER -> columnCount
                         else -> 1
@@ -201,6 +214,26 @@ class MainTestFragment : BaseFragment() {
         gridRv.setHasFixedSize(true)
         gridRv.layoutManager = gridLayoutManager
         gridRv.adapter = sectionAdapter
+    }
+
+    private fun addAdSection() {
+        context?.let { context ->
+            val adView = AdView(context)
+            adView.adUnitId = BuildConfig.ADMOB_HOME_AD_ID
+            adView.adSize = AdSize.MEDIUM_RECTANGLE
+
+            adView.adListener = object : AdListener() {
+                override fun onAdFailedToLoad(errorCode: Int) {
+                    FirebaseCrashlytics.getInstance()
+                        .log("Home Ad onAdFailedToLoad errorCode: $errorCode")
+                }
+            }
+            adView.loadAd(AdRequest.Builder().build())
+
+            val section = MainAdSection(adView)
+            section.setHasHeader(false)
+            sectionAdapter.addSection(section)
+        }
     }
 
     @SuppressLint("Recycle")
