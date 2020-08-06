@@ -1,6 +1,7 @@
 package hibernate.v2.testyourandroid.ui.info.wifi
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -76,6 +77,7 @@ class WifiSavedFragment : BaseFragment() {
         }
     }
 
+    @SuppressLint("MissingPermission")
     @Suppress("DEPRECATION")
     private fun getSavedListBelowApiQ() {
         list.clear()

@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.net.TrafficStats
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,7 @@ class MonitorNetworkFragment : BaseFragment() {
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var series2 = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
-    private val mHandler = Handler()
+    private val mHandler = Handler(Looper.getMainLooper())
     private var differenceRx: Long = 0
     private var differenceTx: Long = 0
     private var lastTotalRx: Long = 0
@@ -30,12 +31,12 @@ class MonitorNetworkFragment : BaseFragment() {
         override fun run() {
             networkUsage
             try {
-                val Tx = formatSpeedSize(differenceTx, false).toDouble()
-                val Rx = formatSpeedSize(differenceRx, false).toDouble()
+                val tx = formatSpeedSize(differenceTx, false).toDouble()
+                val rx = formatSpeedSize(differenceRx, false).toDouble()
                 upSpeedText.text = formatSpeedSize(differenceTx, true)
                 downSpeedText.text = formatSpeedSize(differenceRx, true)
-                series.appendData(DataPoint(lastXValue, Rx), true, 36)
-                series2.appendData(DataPoint(lastXValue, Tx), true, 36)
+                series.appendData(DataPoint(lastXValue, rx), true, 36)
+                series2.appendData(DataPoint(lastXValue, tx), true, 36)
                 graphView.viewport.scrollToEnd()
                 lastXValue += 1.0
             } catch (e: Exception) {

@@ -374,48 +374,32 @@ class SensorFragment : BaseFragment() {
         }
     }
 
-    /* Meaning of the constants
-     Dv: Absolute humidity in grams/meter3
-     m: Mass constant
-     Tn: Temperature constant
-     Ta: Temperature constant
-     Rh: Actual relative humidity in percent (%) from phone’s sensor
-     Tc: Current temperature in degrees C from phone’ sensor
-     A: Pressure constant in hP
-     K: Temperature constant for converting to kelvin
-     */
     fun calculateAbsoluteHumidity(temperature: Float, relativeHumidity: Float): Float {
-        val Dv: Float
-        val m = 17.62f
-        val Tn = 243.12f
-        val Ta = 216.7f
-        val A = 6.112f
-        val K = 273.15f
-        Dv =
-            (Ta * (relativeHumidity / 100) * A * exp(m * temperature / (Tn + temperature).toDouble()) / (K + temperature)).toFloat()
-        return Dv
+        return (Ta * (relativeHumidity / 100) * A * exp(MASS * temperature / (TN + temperature)) / (K + temperature))
     }
 
-    /* Meaning of the constants
-    Td: Dew point temperature in degrees Celsius
-    m: Mass constant
-    Tn: Temperature constant
-    Rh: Actual relative humidity in percent (%) from phone’s sensor
-    Tc: Current temperature in degrees C from phone’ sensor
-    */
     fun calculateDewPoint(temperature: Float, relativeHumidity: Float): Float {
-        val Td: Float
-        val m = 17.62f
-        val Tn = 243.12f
-        Td =
-            (Tn * ((ln(relativeHumidity / 100.toDouble()) + m * temperature / (Tn + temperature)) / (m - (ln(
-                relativeHumidity / 100.toDouble()
-            ) + m * temperature / (Tn + temperature))))).toFloat()
-        return Td
+        return (TN * ((ln(relativeHumidity / 100) + MASS * temperature / (TN + temperature))
+                / (MASS - (ln(relativeHumidity / 100) + MASS * temperature / (TN + temperature)))))
     }
 
     companion object {
         const val ARG_SENSOR_TYPE = "sensorType"
+
+        /*
+         Meaning of the constants
+         M: Mass constant
+         TN: Temperature constant
+         TA: Temperature constant
+         A: Pressure constant in hP
+         K: Temperature constant for converting to kelvin
+         */
+        const val TN = 243.12f
+        const val MASS = 17.62f
+        const val K = 273.15f
+        const val A = 6.112f
+        const val Ta = 216.7f
+
         fun newInstance(sensorType: Int): SensorFragment {
             val fragment = SensorFragment()
             val args = Bundle()

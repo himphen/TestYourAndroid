@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="hibernate.v2.testyourandroid">
 
-
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"

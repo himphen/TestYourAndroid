@@ -2,6 +2,7 @@ package hibernate.v2.testyourandroid.ui.base
 
 import android.content.Context
 import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -71,7 +72,7 @@ abstract class BaseActivity : AppCompatActivity() {
             setContentView(R.layout.activity_container_adview)
             initActionBar(toolbar, titleString = titleString, titleId = titleId)
 
-            Handler().postDelayed({
+            Handler(Looper.getMainLooper()).postDelayed({
                 adView = UtilHelper.initAdView(this, adLayout, isAdViewPreserveSpace)
             }, UtilHelper.DELAY_AD_LAYOUT)
 

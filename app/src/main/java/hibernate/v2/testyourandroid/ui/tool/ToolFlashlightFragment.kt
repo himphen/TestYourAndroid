@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_hardware_flashlight.*
 @Suppress("DEPRECATION")
 class ToolFlashlightFragment : BaseFragment() {
     private var mCamera: Camera? = null
+    private var isFlashlightOn = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,24 +52,26 @@ class ToolFlashlightFragment : BaseFragment() {
     }
 
     private fun openFlash() {
+        if (isFlashlightOn) return
+
         context?.packageManager?.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)?.let {
             if (it) {
                 try {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         if (isPermissionsGranted(PERMISSION_NAME)) {
-                            val cameraManager =
-                                context?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
                             try {
+                                val cameraManager =
+                                    context?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
                                 // Usually front camera is at 0 position.
                                 cameraManager.setTorchMode(cameraManager.cameraIdList[0], true)
-
+                                isFlashlightOn = true
                                 return
                             } catch (e: Exception) {
                             }
                         } else {
                             requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE)
                             turnSwitch.isChecked = false
-
+                            isFlashlightOn = false
                             return
                         }
                     } else {
@@ -88,9 +91,12 @@ class ToolFlashlightFragment : BaseFragment() {
 
         errorNoFeatureDialog(context)
         turnSwitch.isChecked = false
+        isFlashlightOn = false
     }
 
     private fun closeFlash() {
+        if (!isFlashlightOn) return
+
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val cameraManager =
@@ -112,6 +118,7 @@ class ToolFlashlightFragment : BaseFragment() {
         } catch (ignored: Exception) {
         }
         turnSwitch?.isChecked = false
+        isFlashlightOn = false
     }
 
     override fun onRequestPermissionsResult(

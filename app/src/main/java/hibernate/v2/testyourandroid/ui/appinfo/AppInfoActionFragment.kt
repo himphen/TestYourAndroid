@@ -22,11 +22,18 @@ import kotlinx.android.synthetic.main.fragment_info_listview.*
 import java.util.ArrayList
 
 class AppInfoActionFragment : BaseFragment() {
-    private val imageArray = arrayOf(
-        R.drawable.app_open, R.drawable.app_uninstall,
-        R.drawable.app_settings, R.drawable.app_play_store
+    private val imageArray = arrayListOf(
+        R.drawable.app_open,
+        R.drawable.app_uninstall,
+        R.drawable.app_settings,
+        R.drawable.app_play_store
     )
-    private val typeArray = arrayOf("open", "uninstall", "settings", "play_store")
+    private val actionArray = arrayListOf(
+        GridItem.Action.APP_INFO_OPEN,
+        GridItem.Action.APP_INFO_UNINSTALL,
+        GridItem.Action.APP_INFO_SETTINGS,
+        GridItem.Action.APP_INFO_PLAY_STORE
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,10 +50,15 @@ class AppInfoActionFragment : BaseFragment() {
     private fun init() {
         arguments?.getParcelable<AppItem>("APP")?.let { appItem ->
             val stringArray = resources.getStringArray(R.array.app_action_string_array)
-            val imageList = arrayListOf(*imageArray)
             val list: MutableList<GridItem> = ArrayList()
-            for (i in imageList.indices) {
-                list.add(GridItem(stringArray[i], imageList[i], typeArray[i]))
+            for (i in imageArray.indices) {
+                list.add(
+                    GridItem(
+                        text = stringArray[i],
+                        image = imageArray[i],
+                        action = actionArray[i]
+                    )
+                )
             }
             val spanCount = 1
             var columnCount = 3
@@ -63,8 +75,8 @@ class AppInfoActionFragment : BaseFragment() {
                 object : GridItemAdapter.ItemClickListener {
                     override fun onItemDetailClick(gridItem: GridItem) {
                         var intent: Intent?
-                        when (gridItem.actionType) {
-                            "uninstall" -> try {
+                        when (gridItem.action) {
+                            GridItem.Action.APP_INFO_UNINSTALL -> try {
                                 intent = Intent(
                                     Intent.ACTION_DELETE,
                                     Uri.fromParts("package", appItem.packageName, null)
@@ -76,7 +88,7 @@ class AppInfoActionFragment : BaseFragment() {
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)
                             }
-                            "settings" -> try {
+                            GridItem.Action.APP_INFO_SETTINGS -> try {
                                 intent = Intent(
                                     Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                                     Uri.fromParts("package", appItem.packageName, null)
@@ -100,7 +112,7 @@ class AppInfoActionFragment : BaseFragment() {
                                     startActivity(Intent(Settings.ACTION_SETTINGS))
                                 }
                             }
-                            "play_store" -> {
+                            GridItem.Action.APP_INFO_PLAY_STORE -> {
                                 intent = Intent(Intent.ACTION_VIEW)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                                 try {
@@ -113,7 +125,7 @@ class AppInfoActionFragment : BaseFragment() {
                                     startActivity(intent)
                                 }
                             }
-                            "open" -> {
+                            GridItem.Action.APP_INFO_OPEN -> {
                                 appItem.packageName?.let { packageName ->
                                     intent = context?.packageManager?.getLaunchIntentForPackage(
                                         packageName
@@ -125,6 +137,8 @@ class AppInfoActionFragment : BaseFragment() {
                                         notAppFound(activity, false)
                                     }
                                 }
+                            }
+                            else -> {
                             }
                         }
                     }

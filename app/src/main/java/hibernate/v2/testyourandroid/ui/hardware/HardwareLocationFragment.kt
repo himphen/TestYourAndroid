@@ -1,6 +1,7 @@
 package hibernate.v2.testyourandroid.ui.hardware
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
 import android.location.LocationManager
@@ -123,6 +124,7 @@ class HardwareLocationFragment : BaseFragment() {
 
             val fragment = SupportMapFragment.newInstance()
             fragment.getMapAsync(object : OnMapReadyCallback {
+                @SuppressLint("MissingPermission")
                 override fun onMapReady(googleMap: GoogleMap) {
                     if (!isPermissionsGranted(PERMISSION_NAME)) return
 
@@ -170,6 +172,7 @@ class HardwareLocationFragment : BaseFragment() {
     }
 
     private var mLocationCallback: LocationCallback = object : LocationCallback() {
+        @SuppressLint("MissingPermission")
         override fun onLocationResult(locationResult: LocationResult) {
             if (!isPermissionsGranted(PERMISSION_NAME)) return
 

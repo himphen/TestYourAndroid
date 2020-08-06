@@ -1,6 +1,6 @@
 package hibernate.v2.testyourandroid
 
-import android.content.Context
+import android.os.Build
 import androidx.multidex.MultiDexApplication
 import com.appbrain.AppBrain
 import com.blankj.utilcode.util.Utils
@@ -18,13 +18,8 @@ import java.util.ArrayList
  */
 class App : MultiDexApplication() {
 
-    companion object {
-        lateinit var context: Context
-    }
-
     override fun onCreate() {
         super.onCreate()
-        context = applicationContext
 
         // init logger
         Logger.addLogAdapter(object : AndroidLogAdapter() {
@@ -68,11 +63,20 @@ class App : MultiDexApplication() {
 
     private fun initCrashlytics() {
         var isGooglePlay = false
-        packageManager.getInstallerPackageName(packageName)?.let { installerPackageName ->
-            val allowedPackageNames = ArrayList<String>()
-            allowedPackageNames.add("com.android.vending")
-            allowedPackageNames.add("com.google.android.feedback")
-            isGooglePlay = allowedPackageNames.contains(installerPackageName)
+
+        val allowedPackageNames = ArrayList<String>()
+        allowedPackageNames.add("com.android.vending")
+        allowedPackageNames.add("com.google.android.feedback")
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            packageManager.getInstallSourceInfo(packageName).initiatingPackageName?.let { initiatingPackageName ->
+                isGooglePlay = allowedPackageNames.contains(initiatingPackageName)
+            }
+        } else {
+            @Suppress("DEPRECATION")
+            packageManager.getInstallerPackageName(packageName)?.let { installerPackageName ->
+                isGooglePlay = allowedPackageNames.contains(installerPackageName)
+            }
         }
 
         if (isGooglePlay || BuildConfig.DEBUG) {

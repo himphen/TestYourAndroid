@@ -40,6 +40,8 @@ import hibernate.v2.testyourandroid.ui.info.InfoGSMActivity
 import hibernate.v2.testyourandroid.ui.info.InfoHardwareActivity
 import hibernate.v2.testyourandroid.ui.info.monitor.MonitorActivity
 import hibernate.v2.testyourandroid.ui.info.wifi.WifiActivity
+import hibernate.v2.testyourandroid.ui.main.item.MainTestAdItem
+import hibernate.v2.testyourandroid.ui.main.item.MainTestTitleItem
 import hibernate.v2.testyourandroid.ui.sensor.SensorAccelerometerActivity
 import hibernate.v2.testyourandroid.ui.sensor.SensorCompassActivity
 import hibernate.v2.testyourandroid.ui.sensor.SensorGravityActivity
@@ -54,14 +56,14 @@ import hibernate.v2.testyourandroid.ui.tool.ToolFlashlightActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolQRScannerActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolSoundMeterActivity
 import hibernate.v2.testyourandroid.ui.tool.speedtest.ToolSpeedTestActivity
-import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_main_gridview.*
-import java.util.ArrayList
 import java.util.Random
 
 class MainTestFragment : BaseFragment() {
 
-    private lateinit var sectionAdapter: SectionedRecyclerViewAdapter
+    private lateinit var adapter: MainTestAdapter
+    private var list = mutableListOf<Any>()
+    private var adCount = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,8 +78,29 @@ class MainTestFragment : BaseFragment() {
             .showEvery(4)
             .setDisplay(Display.NOTIFICATION)
             .start()
-        sectionAdapter = SectionedRecyclerViewAdapter()
 
+        addTestSectionItem()
+        loadBannerAd(0)
+
+        val columnCount = if (DeviceUtils.isTablet() && ScreenUtils.isLandscape()) 4 else 3
+        val gridLayoutManager = GridLayoutManager(activity, columnCount)
+        gridLayoutManager.spanSizeLookup =
+            object : SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return when (list[position]) {
+                        is MainTestAdItem,
+                        is MainTestTitleItem -> columnCount
+                        else -> 1
+                    }
+                }
+            }
+        gridRv.setHasFixedSize(true)
+        gridRv.layoutManager = gridLayoutManager
+        adapter = MainTestAdapter(list)
+        gridRv.adapter = adapter
+    }
+
+    private fun addTestSectionItem() {
         val toolsBadgeArray = arrayOf(
             GridItem.Badge.NONE, GridItem.Badge.NONE,
             GridItem.Badge.NONE, GridItem.Badge.NONE,
@@ -139,101 +162,70 @@ class MainTestFragment : BaseFragment() {
             InfoGSMActivity::class.java,
             AppChooseActivity::class.java
         )
-        val otherStringArray = arrayOf(
-            "rate", "language", "donate", "app_brain"
+        val actionArray = arrayOf(
+            GridItem.Action.HOME_RATE,
+            GridItem.Action.HOME_LANGUAGE,
+            GridItem.Action.HOME_DONATE,
+            GridItem.Action.HOME_APP_BRAIN
         )
 
-        sectionAdapter.addSection(
-            MainTestSection(
-                getString(R.string.main_title_tools), addList(
-                    resources.getStringArray(R.array.tools_string_array),
-                    resources.obtainTypedArray(R.array.main_tools_image),
-                    toolsClassArray,
-                    toolsBadgeArray
-                )
-            )
+        addIconItem(
+            getString(R.string.main_title_tools),
+            resources.getStringArray(R.array.tools_string_array),
+            resources.obtainTypedArray(R.array.main_tools_image),
+            toolsClassArray,
+            toolsBadgeArray
         )
-        sectionAdapter.addSection(
-            MainTestSection(
-                getString(R.string.main_title_information), addList(
-                    resources.getStringArray(R.array.info_string_array),
-                    resources.obtainTypedArray(R.array.main_info_image),
-                    infoClassArray,
-                    infoBadgeArray
-                )
-            )
+        addIconItem(
+            getString(R.string.main_title_information),
+            resources.getStringArray(R.array.info_string_array),
+            resources.obtainTypedArray(R.array.main_info_image),
+            infoClassArray,
+            infoBadgeArray
         )
-        addAdSection()
-        sectionAdapter.addSection(
-            MainTestSection(
-                getString(R.string.main_title_hardware), addList(
-                    resources.getStringArray(R.array.hardware_string_array),
-                    resources.obtainTypedArray(R.array.main_hardware_image),
-                    hardwareClassArray,
-                    hardwareBadgeArray
-                )
-            )
+        addIconItem(
+            getString(R.string.main_title_hardware),
+            resources.getStringArray(R.array.hardware_string_array),
+            resources.obtainTypedArray(R.array.main_hardware_image),
+            hardwareClassArray,
+            hardwareBadgeArray
         )
-        addAdSection()
-        sectionAdapter.addSection(
-            MainTestSection(
-                getString(R.string.main_title_sensor), addList(
-                    resources.getStringArray(R.array.sensor_string_array),
-                    resources.obtainTypedArray(R.array.main_sensor_image),
-                    sensorClassArray,
-                    sensorBadgeArray
-                )
-            )
+        addIconItem(
+            getString(R.string.main_title_sensor),
+            resources.getStringArray(R.array.sensor_string_array),
+            resources.obtainTypedArray(R.array.main_sensor_image),
+            sensorClassArray,
+            sensorBadgeArray
         )
-        addAdSection()
-        sectionAdapter.addSection(
-            MainTestSection(
-                getString(R.string.main_title_other), addList(
-                    resources.getStringArray(R.array.other_string_array),
-                    otherImageArray(),
-                    otherStringArray
-                )
-            )
+        addOtherIconItem(
+            getString(R.string.main_title_other),
+            resources.getStringArray(R.array.other_string_array),
+            otherImageArray(),
+            actionArray
         )
-
-        val columnCount = if (DeviceUtils.isTablet() && ScreenUtils.isLandscape()) 4 else 3
-        val gridLayoutManager = GridLayoutManager(activity, columnCount)
-        gridLayoutManager.spanSizeLookup =
-            object : SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int {
-                    if (sectionAdapter.getSectionForPosition(position) is MainAdSection) {
-                        return columnCount
-                    }
-
-                    return when (sectionAdapter.getSectionItemViewType(position)) {
-                        SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER -> columnCount
-                        else -> 1
-                    }
-                }
-            }
-        gridRv.setHasFixedSize(true)
-        gridRv.layoutManager = gridLayoutManager
-        gridRv.adapter = sectionAdapter
     }
 
-    private fun addAdSection() {
-        context?.let { context ->
-            val adView = AdView(context)
-            adView.adUnitId = BuildConfig.ADMOB_HOME_AD_ID
-            adView.adSize = AdSize.MEDIUM_RECTANGLE
+    private fun loadBannerAd(index: Int) {
+        if (index >= list.size) return
 
-            adView.adListener = object : AdListener() {
-                override fun onAdFailedToLoad(errorCode: Int) {
-                    FirebaseCrashlytics.getInstance()
-                        .log("Home Ad onAdFailedToLoad errorCode: $errorCode")
-                }
-            }
-            adView.loadAd(AdRequest.Builder().build())
-
-            val section = MainAdSection(adView)
-            section.setHasHeader(false)
-            sectionAdapter.addSection(section)
+        val item = list[index]
+        if (item !is MainTestAdItem) {
+            loadBannerAd(index + 1)
+            return
         }
+
+        item.adView.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                loadBannerAd(index + 1)
+            }
+
+            override fun onAdFailedToLoad(errorCode: Int) {
+                FirebaseCrashlytics.getInstance()
+                    .log("Home Adview onAdFailedToLoad errorCode: $errorCode")
+                loadBannerAd(index + 1)
+            }
+        }
+        item.adView.loadAd(AdRequest.Builder().build())
     }
 
     @SuppressLint("Recycle")
@@ -245,41 +237,85 @@ class MainTestFragment : BaseFragment() {
         }
     }
 
-    private fun addList(
+    private fun addIconItem(
+        title: String,
         stringArray: Array<String>,
         imageArray: TypedArray,
         classArray: Array<Class<*>>,
         badgeArray: Array<GridItem.Badge>
-    ): List<GridItem> {
-        val list: MutableList<GridItem> = ArrayList()
+    ) {
+        list.add(MainTestTitleItem(title))
         for (i in stringArray.indices) {
             list.add(
                 GridItem(
-                    stringArray[i],
-                    imageArray.getResourceId(i, 0),
-                    classArray[i],
-                    badgeArray[i]
+                    text = stringArray[i],
+                    image = imageArray.getResourceId(i, 0),
+                    intentClass = classArray[i],
+                    badge = badgeArray[i]
                 )
             )
         }
-        return list
+        addAdItem()
     }
 
-    private fun addList(
+    private fun addOtherIconItem(
+        title: String,
         stringArray: Array<String>,
         imageArray: TypedArray,
-        string2Array: Array<String>
-    ): List<GridItem> {
-        val list: MutableList<GridItem> = ArrayList()
+        actionArray: Array<GridItem.Action>
+    ) {
+        list.add(MainTestTitleItem(title))
         for (i in stringArray.indices) {
-            list.add(GridItem(stringArray[i], imageArray.getResourceId(i, 0), string2Array[i]))
+            list.add(
+                GridItem(
+                    text = stringArray[i],
+                    image = imageArray.getResourceId(i, 0),
+                    action = actionArray[i]
+                )
+            )
         }
-        return list
+    }
+
+    private fun addAdItem() {
+        context?.let { context ->
+            if (adCount++ < ITEMS_PER_AD) return
+            val adView = AdView(context)
+            adView.adUnitId = BuildConfig.ADMOB_HOME_AD_ID
+            adView.adSize = AdSize.MEDIUM_RECTANGLE
+            list.add(
+                MainTestAdItem(
+                    adView
+                )
+            )
+            adCount = 0
+        }
     }
 
     companion object {
+        const val ITEMS_PER_AD = 1
         fun newInstance(): MainTestFragment {
             return MainTestFragment()
         }
+    }
+
+    override fun onResume() {
+        for (item in list) {
+            if (item is MainTestAdItem) item.adView.resume()
+        }
+        super.onResume()
+    }
+
+    override fun onPause() {
+        for (item in list) {
+            if (item is MainTestAdItem) item.adView.pause()
+        }
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        for (item in list) {
+            if (item is MainTestAdItem) item.adView.destroy()
+        }
+        super.onDestroy()
     }
 }

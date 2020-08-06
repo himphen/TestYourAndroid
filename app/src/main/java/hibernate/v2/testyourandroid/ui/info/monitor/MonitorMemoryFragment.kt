@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,7 @@ class MonitorMemoryFragment : BaseFragment() {
     private var availableValue: Long = 0
     private var usedValue: Long = 0
     private var totalValue: Long = 0
-    private val mHandler = Handler()
+    private val mHandler = Handler(Looper.getMainLooper())
     private val timer: Runnable = object : Runnable {
         override fun run() {
             ramMemory

@@ -3,6 +3,7 @@ package hibernate.v2.testyourandroid.ui.info.monitor
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,7 @@ import java.util.regex.Pattern
 class MonitorCPUFragment : BaseFragment() {
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
-    private val mHandler = Handler()
+    private val mHandler = Handler(Looper.getMainLooper())
     private val timer: Runnable = object : Runnable {
         override fun run() {
             speedText.text = "${getCPU(CPU_CURRENT)} MHz"

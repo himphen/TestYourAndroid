@@ -35,7 +35,7 @@ class GridItemAdapter(
         val item = list[position]
         holder as ItemViewHolder
         Glide.with(holder.mainIv.context)
-            .load(item.mainImageId)
+            .load(item.image)
             .apply(
                 RequestOptions()
                     .fitCenter()
@@ -43,7 +43,7 @@ class GridItemAdapter(
             )
             .into(holder.mainIv)
 
-        holder.mainTv.text = item.mainText
+        holder.mainTv.text = item.text
         holder.rootView.tag = item
         holder.rootView.setOnClickListener { v -> itemClickListener.onItemDetailClick(v.tag as GridItem) }
     }

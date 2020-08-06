@@ -60,9 +60,7 @@ class InfoCameraFragment : BaseFragment() {
 
     override fun onPause() {
         super.onPause()
-        if (mCamera != null) {
-            mCamera!!.release()
-        }
+        mCamera?.release()
     }
 
     private fun openChooseCameraDialog() {
@@ -104,8 +102,7 @@ class InfoCameraFragment : BaseFragment() {
         for (i in stringArray.indices) {
             list.add(InfoItem(stringArray[i], getData(i)))
         }
-        val adapter = InfoItemAdapter(list)
-        rvlist!!.adapter = adapter
+        rvlist?.adapter = InfoItemAdapter(list)
     }
 
     private fun integerListToString(list: List<Int>?): String {

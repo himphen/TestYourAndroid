@@ -29,10 +29,11 @@ import java.util.Locale
 class AppListFragment : BaseFragment() {
     private val appList = ArrayList<AppItem>()
     private var appType = ARG_APP_TYPE_USER
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            appType = arguments!!.getInt(ARG_APP_TYPE, ARG_APP_TYPE_USER)
+        arguments?.let { arguments ->
+            appType = arguments.getInt(ARG_APP_TYPE, ARG_APP_TYPE_USER)
         }
     }
 

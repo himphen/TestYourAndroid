@@ -65,16 +65,16 @@ class HardwareCameraFragment : BaseFragment() {
                 }
             }
         }
-        if (isCameraFacingBack) {
-            cameraView?.facing = Facing.BACK
-        } else {
-            cameraView?.facing = Facing.FRONT
+        try {
+            cameraView?.facing = if (isCameraFacingBack) Facing.BACK else Facing.FRONT
+            cameraView?.mode = Mode.PICTURE
+            cameraView?.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS)
+            cameraView?.mapGesture(Gesture.SCROLL_HORIZONTAL, GestureAction.ZOOM)
+            cameraView?.setPictureSize(SizeSelectors.aspectRatio(AspectRatio.of(4, 3), 0f))
+            cameraView?.open()
+        } catch (e: Exception) {
+            errorNoFeatureDialog(context)
         }
-        cameraView?.mode = Mode.PICTURE
-        cameraView?.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS)
-        cameraView?.mapGesture(Gesture.SCROLL_HORIZONTAL, GestureAction.ZOOM)
-        cameraView?.setPictureSize(SizeSelectors.aspectRatio(AspectRatio.of(4, 3), 0f))
-        cameraView?.open()
     }
 
     override fun onResume() {

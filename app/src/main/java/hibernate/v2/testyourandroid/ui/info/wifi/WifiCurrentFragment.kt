@@ -9,6 +9,7 @@ import android.net.wifi.WifiInfo.LINK_SPEED_UNITS
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -48,7 +49,7 @@ class WifiCurrentFragment : BaseFragment() {
     private lateinit var adapter: InfoItemAdapter
     private var list: MutableList<InfoItem> = ArrayList()
 
-    private val handler = Handler()
+    private val handler = Handler(Looper.getMainLooper())
     private val getWifiStrengthRunnable = object : Runnable {
         override fun run() {
             if ((parentFragment as WifiFragment?)?.isScanning != true) return

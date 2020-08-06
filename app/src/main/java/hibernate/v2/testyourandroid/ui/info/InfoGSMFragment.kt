@@ -3,16 +3,15 @@ package hibernate.v2.testyourandroid.ui.info
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.telephony.TelephonyManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.helper.UtilHelper
 import hibernate.v2.testyourandroid.helper.UtilHelper.openErrorPermissionDialog
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
@@ -69,58 +68,87 @@ class InfoGSMFragment : BaseFragment() {
     }
 
     @Suppress("DEPRECATION")
-    @SuppressLint("HardwareIds")
+    @SuppressLint("HardwareIds", "MissingPermission")
     private fun getData(j: Int): String {
-        context?.let {
-            if (ActivityCompat.checkSelfPermission(
-                    it,
-                    PERMISSION_NAME[0]
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                telephonyManager?.let { telephonyManager ->
-                    return try {
-                        when (j) {
-                            0 -> telephonyManager.simCountryIso
-                            1 -> telephonyManager.simOperator
-                            2 -> telephonyManager.simOperatorName
-                            3 -> simStateArray[telephonyManager.simState]
-                            4 -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                if (telephonyManager.phoneCount > 1) {
-                                    "Sim Card 1: " + telephonyManager.getImei(0) + "\nSim Card 2: " + telephonyManager.getImei(
-                                        1
-                                    )
-                                } else {
-                                    telephonyManager.imei
-                                }
-                            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                if (telephonyManager.phoneCount > 1) {
-                                    "Sim Card 1: " + telephonyManager.getDeviceId(0) + "\nSim Card 2: " + telephonyManager.getDeviceId(
-                                        1
-                                    )
-                                } else {
-                                    telephonyManager.getDeviceId(0)
-                                }
-                            } else {
-                                telephonyManager.deviceId
-                            }
-                            5 -> telephonyManager.deviceSoftwareVersion
-                            6 -> telephonyManager.line1Number
-                            7 -> telephonyManager.networkCountryIso
-                            8 -> telephonyManager.networkOperator
-                            9 -> telephonyManager.networkOperatorName
-                            10 -> telephonyManager.isNetworkRoaming.toString()
-                            11 -> telephonyManager.simSerialNumber
-                            12 -> telephonyManager.subscriberId
-                            else -> "N/A"
-                        }
-                    } catch (e: Exception) {
-                        "N/A"
+        if (UtilHelper.isPermissionsGranted(context, PERMISSION_NAME)) {
+            telephonyManager?.let { telephonyManager ->
+                return try {
+                    when (j) {
+                        0 -> telephonyManager.simCountryIso
+                        1 -> telephonyManager.simOperator
+                        2 -> telephonyManager.simOperatorName
+                        3 -> simStateArray[telephonyManager.simState]
+                        4 -> getImei(telephonyManager)
+                        5 -> telephonyManager.deviceSoftwareVersion ?: "N/A"
+                        6 -> telephonyManager.line1Number
+                        7 -> telephonyManager.networkCountryIso
+                        8 -> telephonyManager.networkOperator
+                        9 -> telephonyManager.networkOperatorName
+                        10 -> telephonyManager.isNetworkRoaming.toString()
+                        11 -> getSimSerialNumber(telephonyManager)
+                        12 -> getSubscriberId(telephonyManager)
+                        else -> "N/A"
                     }
+                } catch (e: Exception) {
+                    "N/A"
                 }
             }
         }
 
         return "N/A"
+    }
+
+    @SuppressLint("MissingPermission", "HardwareIds")
+    fun getSubscriberId(telephonyManager: TelephonyManager): String {
+        return when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+                getString(R.string.ui_not_support)
+            }
+            else -> {
+                telephonyManager.subscriberId
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission", "HardwareIds")
+    fun getSimSerialNumber(telephonyManager: TelephonyManager): String {
+        return when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+                getString(R.string.ui_not_support)
+            }
+            else -> {
+                telephonyManager.simSerialNumber
+            }
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    @SuppressLint("MissingPermission", "HardwareIds")
+    fun getImei(telephonyManager: TelephonyManager): String {
+        return when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+                getString(R.string.ui_not_support)
+            }
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
+                if (telephonyManager.phoneCount > 1) {
+                    "Sim Card 1: " + telephonyManager.getImei(0) +
+                            "\nSim Card 2: " + telephonyManager.getImei(1)
+                } else {
+                    telephonyManager.imei
+                }
+            }
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
+                if (telephonyManager.phoneCount > 1) {
+                    "Sim Card 1: " + telephonyManager.getDeviceId(0) +
+                            "\nSim Card 2: " + telephonyManager.getDeviceId(1)
+                } else {
+                    telephonyManager.getDeviceId(0)
+                }
+            }
+            else -> {
+                telephonyManager.deviceId
+            }
+        }
     }
 
     override fun onRequestPermissionsResult(

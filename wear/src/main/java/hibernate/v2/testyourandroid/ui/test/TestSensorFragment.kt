@@ -39,7 +39,7 @@ class TestSensorFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? { // Inflate the layout for this fragment
+                              savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
@@ -67,7 +67,7 @@ class TestSensorFragment : BaseFragment() {
     private fun init() {
         list = ArrayList()
         val stringArray = resources.getStringArray(R.array.test_sensor_string_array)
-        sensorManager = context!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         try {
             sensor = sensorManager.getDefaultSensor(sensorType)
             if (sensor == null) {
@@ -112,7 +112,7 @@ class TestSensorFragment : BaseFragment() {
 
     private val accelerometerListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
-        @SuppressLint("DefaultLocale")
+
         override fun onSensorChanged(event: SensorEvent) {
             reading = ("X: " + String.format("%1.4f", event.values[0]) + " m/s²\nY: "
                     + String.format("%1.4f", event.values[1]) + " m/s²\nZ: "
