@@ -6,22 +6,20 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.model.InfoHeader
 import hibernate.v2.testyourandroid.model.InfoItem
-import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import kotlinx.android.synthetic.main.fragment_info_listview.*
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoBatteryFragment : BaseFragment() {
+class InfoBatteryFragment : BaseFragment(R.layout.fragment_info_listview) {
     private lateinit var list: ArrayList<InfoItem>
     private lateinit var adapter: InfoItemAdapter
 
@@ -55,10 +53,6 @@ class InfoBatteryFragment : BaseFragment() {
 
     private lateinit var chargeString: Array<String>
     private lateinit var healthString: Array<String>
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
-    }
 
     override fun onPause() {
         super.onPause()

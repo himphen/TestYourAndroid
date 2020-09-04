@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.jjoe64.graphview.GridLabelRenderer
@@ -23,7 +21,7 @@ import java.text.DecimalFormat
 /**
  * Created by himphen on 21/5/16.
  */
-class ToolSpeedTestFragment : BaseFragment() {
+class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
 
     private var seriesDownload = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
     private var seriesUpload = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
@@ -33,13 +31,6 @@ class ToolSpeedTestFragment : BaseFragment() {
     private var tempBlackList: HashSet<String> = HashSet()
 
     private var shouldStopNow = false
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_tool_speed_test, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -2,9 +2,7 @@ package hibernate.v2.testyourandroid.ui.appinfo
 
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.StringUtils
 import hibernate.v2.testyourandroid.R
@@ -19,15 +17,9 @@ import java.util.ArrayList
 import java.util.Comparator
 import java.util.HashMap
 
-class AppInfoPermissionFragment : BaseFragment() {
+class AppInfoPermissionFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     private val map = HashMap<String, ArrayList<AppPermissionItem>>()
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

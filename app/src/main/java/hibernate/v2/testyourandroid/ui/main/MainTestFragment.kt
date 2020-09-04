@@ -3,9 +3,7 @@ package hibernate.v2.testyourandroid.ui.main
 import android.annotation.SuppressLint
 import android.content.res.TypedArray
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.blankj.utilcode.util.DeviceUtils
@@ -59,18 +57,11 @@ import hibernate.v2.testyourandroid.ui.tool.speedtest.ToolSpeedTestActivity
 import kotlinx.android.synthetic.main.fragment_main_gridview.*
 import java.util.Random
 
-class MainTestFragment : BaseFragment() {
+class MainTestFragment : BaseFragment(R.layout.fragment_main_gridview) {
 
     private lateinit var adapter: MainTestAdapter
     private var list = mutableListOf<Any>()
     private var adCount = 0
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main_gridview, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

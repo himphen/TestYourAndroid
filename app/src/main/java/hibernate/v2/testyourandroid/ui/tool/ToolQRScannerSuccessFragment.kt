@@ -3,9 +3,7 @@ package hibernate.v2.testyourandroid.ui.tool
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import com.blankj.utilcode.util.RegexUtils
 import hibernate.v2.testyourandroid.R
@@ -15,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_tool_qr_scanner_success.*
 /**
  * Created by himphen on 21/5/16.
  */
-class ToolQRScannerSuccessFragment : BaseFragment() {
+class ToolQRScannerSuccessFragment : BaseFragment(R.layout.fragment_tool_qr_scanner_success) {
 
     companion object {
         fun newInstance(content: String, barcodeFormatName: String): ToolQRScannerSuccessFragment {
@@ -26,13 +24,6 @@ class ToolQRScannerSuccessFragment : BaseFragment() {
             fragment.arguments = args
             return fragment
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_tool_qr_scanner_success, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

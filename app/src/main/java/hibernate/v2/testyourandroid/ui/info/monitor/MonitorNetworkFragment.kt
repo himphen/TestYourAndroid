@@ -5,9 +5,7 @@ import android.net.TrafficStats
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
@@ -17,7 +15,7 @@ import hibernate.v2.testyourandroid.helper.UtilHelper.formatSpeedSize
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_monitor_network.*
 
-class MonitorNetworkFragment : BaseFragment() {
+class MonitorNetworkFragment : BaseFragment(R.layout.fragment_monitor_network) {
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var series2 = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
@@ -47,12 +45,6 @@ class MonitorNetworkFragment : BaseFragment() {
         }
     }
     private var isSupported = false
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_monitor_network, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

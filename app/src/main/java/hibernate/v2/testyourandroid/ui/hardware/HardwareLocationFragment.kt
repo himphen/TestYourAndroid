@@ -8,10 +8,8 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.gms.common.ConnectionResult
@@ -38,7 +36,7 @@ import java.util.ArrayList
 /**
  * Created by himphen on 21/5/16.
  */
-class HardwareLocationFragment : BaseFragment() {
+class HardwareLocationFragment : BaseFragment(R.layout.fragment_hardware_location) {
     private var locationManager: LocationManager? = null
 
     private lateinit var adapter: InfoItemAdapter
@@ -50,13 +48,6 @@ class HardwareLocationFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_hardware_location, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

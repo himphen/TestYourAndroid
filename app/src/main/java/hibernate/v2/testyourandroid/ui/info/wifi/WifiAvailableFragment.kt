@@ -12,10 +12,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
@@ -30,7 +28,7 @@ import java.util.Collections.sort
 /**
  * Created by himphen on 21/5/16.
  */
-class WifiAvailableFragment : BaseFragment() {
+class WifiAvailableFragment : BaseFragment(R.layout.fragment_info_listview) {
     companion object {
         const val SCAN_WIFI_INTERVAL = 60000L
         val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -69,13 +67,6 @@ class WifiAvailableFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

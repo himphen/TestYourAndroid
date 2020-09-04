@@ -6,9 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.ScreenUtils
@@ -21,7 +19,7 @@ import hibernate.v2.testyourandroid.ui.base.GridItemAdapter
 import kotlinx.android.synthetic.main.fragment_info_listview.*
 import java.util.ArrayList
 
-class AppInfoActionFragment : BaseFragment() {
+class AppInfoActionFragment : BaseFragment(R.layout.fragment_info_listview) {
     private val imageArray = arrayListOf(
         R.drawable.app_open,
         R.drawable.app_uninstall,
@@ -34,13 +32,6 @@ class AppInfoActionFragment : BaseFragment() {
         GridItem.Action.APP_INFO_SETTINGS,
         GridItem.Action.APP_INFO_PLAY_STORE
     )
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

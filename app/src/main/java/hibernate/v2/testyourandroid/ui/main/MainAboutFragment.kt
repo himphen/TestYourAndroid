@@ -5,9 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.blankj.utilcode.util.AppUtils
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -19,14 +17,7 @@ import hibernate.v2.testyourandroid.helper.UtilHelper
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main_about.*
 
-class MainAboutFragment : BaseFragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main_about, container, false)
-    }
+class MainAboutFragment : BaseFragment(R.layout.fragment_main_about) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

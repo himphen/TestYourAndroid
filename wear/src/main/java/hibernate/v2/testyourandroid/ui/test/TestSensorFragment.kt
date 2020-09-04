@@ -7,24 +7,22 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.SensorHelper
 import hibernate.v2.testyourandroid.model.InfoHeader
 import hibernate.v2.testyourandroid.model.InfoItem
-import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import kotlinx.android.synthetic.main.fragment_info_listview.*
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
-class TestSensorFragment : BaseFragment() {
+class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
     private lateinit var sensorManager: SensorManager
     private var sensor: Sensor? = null
     private var sensorEventListener: SensorEventListener? = null
@@ -36,11 +34,6 @@ class TestSensorFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sensorType = arguments?.getInt(ARG_SENSOR_TYPE, 0) ?: 0
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

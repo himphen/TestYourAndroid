@@ -7,9 +7,7 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.os.AsyncTask
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
@@ -26,7 +24,7 @@ import java.util.Locale
 /**
  * Created by himphen on 21/5/16.
  */
-class AppListFragment : BaseFragment() {
+class AppListFragment : BaseFragment(R.layout.fragment_info_listview_scrollbar) {
     private val appList = ArrayList<AppItem>()
     private var appType = ARG_APP_TYPE_USER
 
@@ -35,13 +33,6 @@ class AppListFragment : BaseFragment() {
         arguments?.let { arguments ->
             appType = arguments.getInt(ARG_APP_TYPE, ARG_APP_TYPE_USER)
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_info_listview_scrollbar, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

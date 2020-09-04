@@ -1,9 +1,13 @@
 package hibernate.v2.testyourandroid.ui.base
 
+import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import hibernate.v2.testyourandroid.helper.UtilHelper
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment {
+
+    constructor() : super()
+    constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
     protected fun isPermissionsGranted(permissions: Array<String>): Boolean {
         return UtilHelper.isPermissionsGranted(context, permissions)

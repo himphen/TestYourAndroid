@@ -5,10 +5,8 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper.startSettingsActivity
@@ -22,7 +20,7 @@ import java.util.Collections.sort
 /**
  * Created by himphen on 21/5/16.
  */
-class WifiSavedFragment : BaseFragment() {
+class WifiSavedFragment : BaseFragment(R.layout.fragment_info_listview) {
     companion object {
         val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
 
@@ -37,13 +35,6 @@ class WifiSavedFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

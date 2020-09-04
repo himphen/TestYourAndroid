@@ -6,9 +6,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
@@ -17,7 +15,8 @@ import kotlinx.android.synthetic.main.fragment_tool_bubble_level.*
 /**
  * Created by himphen on 21/5/16.
  */
-class ToolBubbleLevelFragment : BaseFragment(), SensorEventListener {
+class ToolBubbleLevelFragment : BaseFragment(R.layout.fragment_tool_bubble_level),
+    SensorEventListener {
     private var mSensorManager: SensorManager? = null
     private var mSensor: Sensor? = null
     private var secondSensor: Sensor? = null
@@ -25,13 +24,6 @@ class ToolBubbleLevelFragment : BaseFragment(), SensorEventListener {
     private var magValues = FloatArray(3)
     private val r = FloatArray(9)
     private val values = FloatArray(3)
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_tool_bubble_level, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

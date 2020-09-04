@@ -4,9 +4,7 @@ import android.Manifest
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import hibernate.v2.testyourandroid.R
@@ -18,16 +16,9 @@ import kotlinx.android.synthetic.main.fragment_tool_qr_scanner.*
 /**
  * Created by himphen on 21/5/16.
  */
-class ToolQRScannerFragment : BaseFragment() {
+class ToolQRScannerFragment : BaseFragment(R.layout.fragment_tool_qr_scanner) {
 
     private lateinit var mCodeScanner: CodeScanner
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_tool_qr_scanner, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

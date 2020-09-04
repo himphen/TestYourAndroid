@@ -6,9 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -19,19 +17,12 @@ import kotlinx.android.synthetic.main.fragment_speaker.*
 /**
  * Created by himphen on 21/5/16.
  */
-class HardwareSpeakerFragment : BaseFragment() {
+class HardwareSpeakerFragment : BaseFragment(R.layout.fragment_speaker) {
     private var vibrateType = 0
     private var isRinging = false
     private var isVibrating = false
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var vibratorService: Vibrator
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_speaker, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

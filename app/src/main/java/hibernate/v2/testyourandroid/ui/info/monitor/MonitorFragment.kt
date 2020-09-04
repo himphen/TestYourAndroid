@@ -1,9 +1,7 @@
 package hibernate.v2.testyourandroid.ui.info.monitor
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
@@ -13,15 +11,8 @@ import kotlinx.android.synthetic.main.fragment_app_info.*
 /**
  * Created by himphen on 21/5/16.
  */
-class MonitorFragment : BaseFragment() {
+class MonitorFragment : BaseFragment(R.layout.fragment_view_pager_conatiner) {
     private lateinit var tabTitles: Array<String>
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_view_pager_conatiner, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -5,9 +5,7 @@ import android.content.Context
 import android.hardware.Camera
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
@@ -26,18 +24,11 @@ import java.util.ArrayList
  * Created by himphen on 21/5/16.
  */
 @Suppress("DEPRECATION")
-class InfoCameraFragment : BaseFragment() {
+class InfoCameraFragment : BaseFragment(R.layout.fragment_info_listview) {
     private var mCamera: Camera? = null
 
     private var cameraId = 0
     private var mParameters: Camera.Parameters? = null
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

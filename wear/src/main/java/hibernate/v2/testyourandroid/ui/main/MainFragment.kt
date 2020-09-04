@@ -2,12 +2,11 @@ package hibernate.v2.testyourandroid.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.model.MainItem
+import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.info.InfoAndroidVersionActivity
 import hibernate.v2.testyourandroid.ui.info.InfoBatteryActivity
 import hibernate.v2.testyourandroid.ui.info.InfoCPUActivity
@@ -16,14 +15,13 @@ import hibernate.v2.testyourandroid.ui.test.TestColorActivity
 import hibernate.v2.testyourandroid.ui.test.TestSensorAccelerometerActivity
 import hibernate.v2.testyourandroid.ui.test.TestSensorGravityActivity
 import hibernate.v2.testyourandroid.ui.test.TestSensorLightActivity
-import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
-class MainFragment : BaseFragment() {
+class MainFragment : BaseFragment(R.layout.fragment_main) {
 
     private val imageArray = intArrayOf(
             R.drawable.ic_test_screen, R.drawable.ic_test_chip,
@@ -36,11 +34,6 @@ class MainFragment : BaseFragment() {
             InfoCPUActivity::class.java, InfoHardwareActivity::class.java,
             InfoAndroidVersionActivity::class.java, InfoBatteryActivity::class.java
     )
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

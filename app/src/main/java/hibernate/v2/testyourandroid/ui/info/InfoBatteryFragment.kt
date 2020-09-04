@@ -6,9 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.roundTo
@@ -21,7 +19,7 @@ import java.util.ArrayList
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoBatteryFragment : BaseFragment() {
+class InfoBatteryFragment : BaseFragment(R.layout.fragment_info_listview) {
     private var list: ArrayList<InfoItem> = ArrayList()
     private lateinit var adapter: InfoItemAdapter
     private var health = 0
@@ -53,13 +51,6 @@ class InfoBatteryFragment : BaseFragment() {
     }
     private lateinit var chargeString: Array<String>
     private lateinit var healthString: Array<String>
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -4,9 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper
@@ -19,16 +17,9 @@ import java.util.ArrayList
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoHardwareFragment : BaseFragment() {
+class InfoHardwareFragment : BaseFragment(R.layout.fragment_info_listview) {
     companion object {
         val PERMISSION_NAME = arrayOf(Manifest.permission.READ_PHONE_STATE)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

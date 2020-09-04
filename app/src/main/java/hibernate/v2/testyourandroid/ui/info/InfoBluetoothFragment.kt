@@ -9,10 +9,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
@@ -30,7 +28,7 @@ import java.util.ArrayList
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoBluetoothFragment : BaseFragment() {
+class InfoBluetoothFragment : BaseFragment(R.layout.fragment_info_listview) {
     private val scannedList: MutableList<ExtendedBluetoothDevice> = ArrayList()
     private var list: MutableList<InfoItem> = ArrayList()
     private var adapter: InfoItemAdapter? = null
@@ -58,13 +56,6 @@ class InfoBluetoothFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

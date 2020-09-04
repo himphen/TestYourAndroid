@@ -7,9 +7,7 @@ import android.hardware.Camera
 import android.hardware.camera2.CameraManager
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.helper.UtilHelper.openErrorPermissionDialog
@@ -20,16 +18,9 @@ import kotlinx.android.synthetic.main.fragment_hardware_flashlight.*
  * Created by himphen on 21/5/16.
  */
 @Suppress("DEPRECATION")
-class ToolFlashlightFragment : BaseFragment() {
+class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashlight) {
     private var mCamera: Camera? = null
     private var isFlashlightOn = false
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_hardware_flashlight, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

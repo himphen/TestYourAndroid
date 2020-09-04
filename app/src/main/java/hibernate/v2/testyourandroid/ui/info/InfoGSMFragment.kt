@@ -6,9 +6,7 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.telephony.TelephonyManager
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper
@@ -22,20 +20,13 @@ import java.util.ArrayList
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoGSMFragment : BaseFragment() {
+class InfoGSMFragment : BaseFragment(R.layout.fragment_info_listview) {
     companion object {
         val PERMISSION_NAME = arrayOf(Manifest.permission.READ_PHONE_STATE)
     }
 
     private var telephonyManager: TelephonyManager? = null
     private lateinit var simStateArray: Array<String>
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

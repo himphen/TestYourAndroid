@@ -13,9 +13,7 @@ import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.afollestad.materialdialogs.MaterialDialog
@@ -29,7 +27,7 @@ import kotlinx.android.synthetic.main.fragment_app_info.*
 /**
  * Created by himphen on 21/5/16.
  */
-class WifiFragment : BaseFragment() {
+class WifiFragment : BaseFragment(R.layout.fragment_view_pager_conatiner) {
     companion object {
         val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
 
@@ -57,13 +55,6 @@ class WifiFragment : BaseFragment() {
                 WifiManager.WIFI_STATE_DISABLED -> openFunctionDialog()
             }
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_view_pager_conatiner, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

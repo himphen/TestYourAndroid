@@ -4,9 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
@@ -22,7 +20,7 @@ import java.io.IOException
 import java.util.ArrayList
 import java.util.regex.Pattern
 
-class MonitorCPUFragment : BaseFragment() {
+class MonitorCPUFragment : BaseFragment(R.layout.fragment_monitor_cpu) {
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
     private val mHandler = Handler(Looper.getMainLooper())
@@ -34,13 +32,6 @@ class MonitorCPUFragment : BaseFragment() {
             lastXValue += 1.0
             mHandler.postDelayed(this, UPDATE_CHART_INTERVAL)
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_monitor_cpu, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

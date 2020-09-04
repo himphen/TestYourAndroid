@@ -6,9 +6,7 @@ import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
@@ -26,7 +24,7 @@ import kotlin.math.log10
 /**
  * Created by himphen on 21/5/16.
  */
-class ToolSoundMeterFragment : BaseFragment() {
+class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) {
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
     private var mindB: Int? = null
@@ -34,12 +32,6 @@ class ToolSoundMeterFragment : BaseFragment() {
     private val avgdB = ArrayList<Int>()
     private var mIsRecording = false
     private var mAudioRecord: AudioRecord? = null
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_tool_sound_meter, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

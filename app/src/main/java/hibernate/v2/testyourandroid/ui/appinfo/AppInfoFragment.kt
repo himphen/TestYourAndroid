@@ -2,9 +2,6 @@ package hibernate.v2.testyourandroid.ui.appinfo
 
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper.notAppFound
@@ -12,14 +9,8 @@ import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_app_info.*
 
-class AppInfoFragment : BaseFragment() {
+class AppInfoFragment : BaseFragment(R.layout.fragment_app_info) {
     private var appItem: AppItem? = null
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_app_info, container, false)
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

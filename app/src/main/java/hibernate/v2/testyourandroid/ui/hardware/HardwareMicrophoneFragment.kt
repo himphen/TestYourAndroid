@@ -4,9 +4,7 @@ import android.Manifest
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper.openErrorPermissionDialog
@@ -18,18 +16,12 @@ import java.io.IOException
 /**
  * Created by himphen on 21/5/16.
  */
-class HardwareMicrophoneFragment : BaseFragment() {
+class HardwareMicrophoneFragment : BaseFragment(R.layout.fragment_hardware_microphone) {
     private var mMediaRecorder: MediaRecorder? = null
     private var mMediaPlayer: MediaPlayer? = null
     private var mIsRecording = false
     private var mIsPlaying = false
     private lateinit var mFile: File
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_hardware_microphone, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,10 +1,6 @@
 package hibernate.v2.testyourandroid.ui.hardware
 
 import android.hardware.Camera
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.otaliastudios.cameraview.CameraLogger
@@ -24,14 +20,7 @@ import kotlinx.android.synthetic.main.fragment_hardware_camera.*
  * Created by himphen on 21/5/16.
  */
 @Suppress("DEPRECATION")
-class HardwareCameraFragment : BaseFragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_hardware_camera, container, false)
-    }
+class HardwareCameraFragment : BaseFragment(R.layout.fragment_hardware_camera) {
 
     private fun openChooseCameraDialog() {
         val numberOfCamera = Camera.getNumberOfCameras()

@@ -8,9 +8,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
@@ -41,7 +39,7 @@ import kotlin.math.ln
  * Created by himphen on 21/5/16.
  */
 @SuppressLint("DefaultLocale")
-class SensorFragment : BaseFragment() {
+class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
     private lateinit var mSensorManager: SensorManager
     private var mSensor: Sensor? = null
     private var secondSensor: Sensor? = null
@@ -61,13 +59,6 @@ class SensorFragment : BaseFragment() {
         arguments?.let {
             sensorType = it.getInt(ARG_SENSOR_TYPE, 0)
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_sensor, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

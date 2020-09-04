@@ -5,9 +5,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper.notAppFound
@@ -20,15 +18,9 @@ import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Date
 
-class AppInfoPackageFragment : BaseFragment() {
+class AppInfoPackageFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     private var packageInfo: PackageInfo? = null
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_info_listview, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

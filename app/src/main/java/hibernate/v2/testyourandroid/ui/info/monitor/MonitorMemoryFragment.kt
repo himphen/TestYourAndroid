@@ -6,9 +6,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
@@ -18,7 +16,7 @@ import hibernate.v2.testyourandroid.helper.UtilHelper.formatBitSize
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_monitor_memory.*
 
-class MonitorMemoryFragment : BaseFragment() {
+class MonitorMemoryFragment : BaseFragment(R.layout.fragment_monitor_memory) {
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
     private var availableValue: Long = 0
@@ -43,13 +41,6 @@ class MonitorMemoryFragment : BaseFragment() {
         }
     }
     private var isSupported = false
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_monitor_memory, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

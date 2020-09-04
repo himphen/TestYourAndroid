@@ -11,10 +11,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,7 +31,7 @@ import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import kotlinx.android.synthetic.main.fragment_sensor.*
 import java.util.ArrayList
 
-class WifiCurrentFragment : BaseFragment() {
+class WifiCurrentFragment : BaseFragment(R.layout.fragment_tool_wifi_strength) {
     companion object {
         const val UPDATE_CHART_INTERVAL = 2000L
         val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -90,13 +88,6 @@ class WifiCurrentFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_tool_wifi_strength, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

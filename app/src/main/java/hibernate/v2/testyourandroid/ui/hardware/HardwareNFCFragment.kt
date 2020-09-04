@@ -7,10 +7,8 @@ import android.nfc.NfcAdapter
 import android.nfc.tech.NfcF
 import android.os.Bundle
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.helper.UtilHelper.errorNoFeatureDialog
@@ -20,7 +18,7 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 /**
  * Created by himphen on 21/5/16.
  */
-class HardwareNFCFragment : BaseFragment() {
+class HardwareNFCFragment : BaseFragment(R.layout.fragment_hardware_nfc) {
     private var nfcAdapter: NfcAdapter? = null
     private var mPendingIntent: PendingIntent? = null
     private lateinit var mIntentFilters: Array<IntentFilter>
@@ -28,13 +26,6 @@ class HardwareNFCFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_hardware_nfc, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
