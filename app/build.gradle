@@ -11,8 +11,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 199523
-        versionName "Fishballs 953"
+        versionCode 199524
+        versionName "Fishballs 954"
         multiDexEnabled true
         flavorDimensions "default"
     }
@@ -76,7 +76,7 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.biometric:biometric:1.0.1'
-    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.1"
     implementation "androidx.core:core-ktx:1.3.1"
     implementation "androidx.preference:preference-ktx:1.1.1"
 
@@ -85,7 +85,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-wearable:17.0.0'
-    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.google.firebase:firebase-core:17.5.0'
     implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
     implementation 'com.google.firebase:firebase-analytics-ktx:17.5.0'
@@ -108,7 +108,7 @@ dependencies {
     implementation 'com.appbrain:appbrain-sdk:+'
 
     // https://github.com/natario1/CameraView
-    implementation 'com.otaliastudios:cameraview:2.6.3'
+    implementation 'com.otaliastudios:cameraview:2.6.4'
 
     // https://github.com/divyanshub024/AndroidDraw
     implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
