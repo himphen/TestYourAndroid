@@ -9,6 +9,7 @@ import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
 import hibernate.v2.testyourandroid.model.AppChooseItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.util.ext.isSystemPackage
 import kotlinx.android.synthetic.main.fragment_main_info.*
 import java.util.ArrayList
 
@@ -20,9 +21,9 @@ class AppChooseFragment : BaseFragment(R.layout.fragment_main_info) {
         // User, System, All
         val countArray = intArrayOf(0, 0, 0)
         val packageManager = context?.packageManager
-        val packs = getInstalledPackages(packageManager, 0)
-        for (packageInfo in packs) {
-            if (packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0) {
+        val packages = getInstalledPackages(packageManager, 0)
+        for (packageInfo in packages) {
+            if (!packageInfo.isSystemPackage()) {
                 countArray[0]++
             } else {
                 countArray[1]++
@@ -45,14 +46,12 @@ class AppChooseFragment : BaseFragment(R.layout.fragment_main_info) {
                 )
             )
         }
-        val mListener: AppChooseAdapter.ItemClickListener =
-            object : AppChooseAdapter.ItemClickListener {
-                override fun onItemDetailClick(appChooseItem: AppChooseItem) {
-                    val intent = Intent(context, AppListActivity::class.java)
-                    intent.putExtra(AppListFragment.ARG_APP_TYPE, appChooseItem.appType)
-                    startActivity(intent)
-                }
+        rvlist.adapter = AppChooseAdapter(list, object : AppChooseAdapter.ItemClickListener {
+            override fun onItemDetailClick(appChooseItem: AppChooseItem) {
+                val intent = Intent(context, AppListActivity::class.java)
+                intent.putExtra(AppListFragment.ARG_APP_TYPE, appChooseItem.appType)
+                startActivity(intent)
             }
-        rvlist.adapter = AppChooseAdapter(list, mListener)
+        })
     }
 }

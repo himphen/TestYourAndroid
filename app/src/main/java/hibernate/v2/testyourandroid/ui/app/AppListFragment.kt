@@ -1,24 +1,28 @@
 package hibernate.v2.testyourandroid.ui.app
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.res.Resources
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
+import com.orhanobut.logger.Logger
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.ui.appinfo.AppInfoActivity
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
+import hibernate.v2.testyourandroid.util.ext.isSystemPackage
 import kotlinx.android.synthetic.main.fragment_info_listview_scrollbar.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.ArrayList
-import java.util.Comparator
 import java.util.Locale
 
 /**
@@ -27,6 +31,8 @@ import java.util.Locale
 class AppListFragment : BaseFragment(R.layout.fragment_info_listview_scrollbar) {
     private val appList = ArrayList<AppItem>()
     private var appType = ARG_APP_TYPE_USER
+
+    private val scope = CoroutineScope(Dispatchers.Default)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,74 +52,79 @@ class AppListFragment : BaseFragment(R.layout.fragment_info_listview_scrollbar) 
         loadAppList()
     }
 
-    @SuppressLint("StaticFieldLeak")
     private fun loadAppList() {
-        object : AsyncTask<Void, Void, Void?>() {
-            private var dialog: MaterialDialog? = null
-            override fun onPreExecute() {
-                super.onPreExecute()
-                context?.let {
-                    // TODO
-                    dialog = MaterialDialog(it)
-                        .message(R.string.ui_loading)
-                        .cancelable(false)
-                    dialog?.show()
-                }
-            }
-
-            override fun doInBackground(vararg voids: Void?): Void? {
-                context?.packageManager?.let { packageManager ->
-                    val packs = getInstalledPackages(packageManager, PackageManager.GET_PERMISSIONS)
-                    for (packageInfo in packs) {
-                        if (appType == ARG_APP_TYPE_USER) {
-                            if (packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0) {
-                                continue
-                            }
-                        } else if (appType == ARG_APP_TYPE_SYSTEM) {
-                            if (packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0) {
-                                continue
-                            }
-                        }
-                        val appItem = AppItem()
-                        appItem.appName =
-                            packageInfo.applicationInfo.loadLabel(packageManager).toString()
-                        appItem.sourceDir = packageInfo.applicationInfo.dataDir
-                        appItem.packageName = packageInfo.packageName
-                        appItem.versionCode =
-                            PackageInfoCompat.getLongVersionCode(packageInfo).toString()
-                        appItem.versionName = packageInfo.versionName
-                        appItem.firstInstallTime = packageInfo.firstInstallTime
-                        try {
-                            appItem.icon = packageInfo.applicationInfo.loadIcon(packageManager)
-                        } catch (e: Resources.NotFoundException) {
-                        }
-                        appItem.isSystemApp =
-                            packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
-                        appList.add(appItem)
+        scope.launch {
+            context?.let { context ->
+                try {
+                    var dialog: MaterialDialog? = null
+                    withContext(Dispatchers.Main) {
+                        dialog = MaterialDialog(context)
+                            .message(R.string.ui_loading)
+                            .cancelable(false)
+                        dialog?.show()
                     }
-                    appList.sortWith(Comparator { item1, item2 ->
-                        item1.appName!!.toLowerCase(Locale.getDefault())
-                            .compareTo(item2.appName!!.toLowerCase(Locale.getDefault()))
-                    })
-                }
-                return null
-            }
+                    context.packageManager?.let { packageManager ->
+                        val packs =
+                            getInstalledPackages(packageManager, PackageManager.GET_PERMISSIONS)
 
-            override fun onPostExecute(void: Void?) {
-                super.onPostExecute(void)
-                dialog?.dismiss()
-                rvlist?.adapter =
-                    AppItemAdapter(appList, object : AppItemAdapter.ItemClickListener {
-                        override fun onItemDetailClick(appItem: AppItem) {
-                            val intent = Intent(context, AppInfoActivity::class.java)
-                            val bundle = Bundle()
-                            bundle.putParcelable("APP", appItem)
-                            intent.putExtras(bundle)
-                            startActivity(intent)
+                        for (packageInfo in packs) {
+                            if (appType == ARG_APP_TYPE_USER) {
+                                if (packageInfo.isSystemPackage()) {
+                                    continue
+                                }
+                            } else if (appType == ARG_APP_TYPE_SYSTEM) {
+                                if (!packageInfo.isSystemPackage()) {
+                                    continue
+                                }
+                            }
+                            val appItem = AppItem()
+                            appItem.appName =
+                                packageInfo.applicationInfo.loadLabel(packageManager).toString()
+                            appItem.sourceDir = packageInfo.applicationInfo.dataDir
+                            appItem.packageName = packageInfo.packageName
+                            appItem.versionCode =
+                                PackageInfoCompat.getLongVersionCode(packageInfo).toString()
+                            appItem.versionName = packageInfo.versionName
+                            appItem.firstInstallTime = packageInfo.firstInstallTime
+                            try {
+                                appItem.icon = packageInfo.applicationInfo.loadIcon(packageManager)
+                            } catch (e: Resources.NotFoundException) {
+                            }
+                            appItem.isSystemApp =
+                                packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
+                            appList.add(appItem)
                         }
-                    })
+                        appList.sortWith { item1, item2 ->
+                            item1.appName!!.toLowerCase(Locale.getDefault())
+                                .compareTo(item2.appName!!.toLowerCase(Locale.getDefault()))
+                        }
+                    }
+
+                    Logger.d(appList.size)
+
+                    withContext(Dispatchers.Main) {
+                        dialog?.dismiss()
+                        rvlist?.adapter =
+                            AppItemAdapter(appList, object : AppItemAdapter.ItemClickListener {
+                                override fun onItemDetailClick(appItem: AppItem) {
+                                    val intent = Intent(context, AppInfoActivity::class.java)
+                                    val bundle = Bundle()
+                                    bundle.putParcelable("APP", appItem)
+                                    intent.putExtras(bundle)
+                                    startActivity(intent)
+                                }
+                            })
+                    }
+                } catch (e: Exception) {
+                    Logger.d("onCancelled")
+                }
             }
-        }.execute()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        scope.coroutineContext.cancel()
     }
 
     companion object {
