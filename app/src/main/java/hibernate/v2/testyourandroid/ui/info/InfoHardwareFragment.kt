@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
+import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
@@ -82,7 +82,7 @@ class InfoHardwareFragment : BaseFragment(R.layout.fragment_info_listview) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {
-                UtilHelper.openErrorPermissionDialog(context)
+                Utils.openErrorPermissionDialog(context)
             }
         }
     }

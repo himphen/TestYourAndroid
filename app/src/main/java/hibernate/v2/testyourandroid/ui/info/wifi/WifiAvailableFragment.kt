@@ -17,7 +17,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.startSettingsActivity
+import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter

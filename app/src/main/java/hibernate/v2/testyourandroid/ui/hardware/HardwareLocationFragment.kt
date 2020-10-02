@@ -25,8 +25,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.openErrorPermissionDialog
-import hibernate.v2.testyourandroid.helper.UtilHelper.startSettingsActivity
+import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
+import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter

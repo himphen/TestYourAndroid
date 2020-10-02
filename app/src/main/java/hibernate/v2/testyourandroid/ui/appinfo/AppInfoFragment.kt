@@ -4,7 +4,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.notAppFound
+import hibernate.v2.testyourandroid.util.Utils.notAppFound
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_app_info.*

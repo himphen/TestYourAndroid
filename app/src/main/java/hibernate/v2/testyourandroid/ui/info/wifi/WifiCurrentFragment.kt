@@ -22,9 +22,9 @@ import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.getMacAddress
-import hibernate.v2.testyourandroid.helper.UtilHelper.ipAddressIntToString
-import hibernate.v2.testyourandroid.helper.UtilHelper.startSettingsActivity
+import hibernate.v2.testyourandroid.util.Utils.getMacAddress
+import hibernate.v2.testyourandroid.util.Utils.ipAddressIntToString
+import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter

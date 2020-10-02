@@ -19,7 +19,7 @@ import androidx.viewpager.widget.ViewPager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.orhanobut.logger.Logger
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
+import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_app_info.*
@@ -188,7 +188,7 @@ class WifiFragment : BaseFragment(R.layout.fragment_view_pager_conatiner) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {
-                UtilHelper.openErrorPermissionDialog(context)
+                Utils.openErrorPermissionDialog(context)
             }
         }
     }
@@ -199,7 +199,7 @@ class WifiFragment : BaseFragment(R.layout.fragment_view_pager_conatiner) {
                 .title(R.string.ui_caution)
                 .message(R.string.wifi_enable_message)
                 .positiveButton(R.string.wifi_enable_posbtn) {
-                    UtilHelper.startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
+                    Utils.startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
                 }
                 .negativeButton(R.string.ui_cancel)
                 .show()

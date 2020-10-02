@@ -676,6 +676,7 @@
     <string name="memory_used">Used</string>
     <string name="ui_version">Version</string>
     <string name="feedback">Give me Feedback</string>
+    <string name="about_restore_purchase_btn" translatable="false">Restore purchase</string>
     <string name="about_credit_btn">Open source licenses</string>
     <string name="feedback_title">Test Your Android App: Report and Feedback</string>
     <string name="more">Developer\'s app</string>

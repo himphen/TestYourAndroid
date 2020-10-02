@@ -13,9 +13,9 @@ import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
-import hibernate.v2.testyourandroid.helper.UtilHelper.logException
-import hibernate.v2.testyourandroid.helper.format
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.Utils.logException
+import hibernate.v2.testyourandroid.util.ext.format
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_tool_sound_meter.*
 import java.util.ArrayList
@@ -59,7 +59,7 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
                 AudioFormat.CHANNEL_IN_DEFAULT, AudioFormat.ENCODING_PCM_16BIT
             )
             if (BUFFER_SIZE < 0) {
-                UtilHelper.errorNoFeatureDialog(context)
+                Utils.errorNoFeatureDialog(context)
                 return
             }
             val buffer = ShortArray(BUFFER_SIZE)
@@ -168,7 +168,7 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {
-                UtilHelper.openErrorPermissionDialog(context)
+                Utils.openErrorPermissionDialog(context)
             }
         }
     }

@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid
+package hibernate.v2.testyourandroid.core
 
 import android.os.Build
 import androidx.multidex.MultiDexApplication
@@ -10,7 +10,8 @@ import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
-import hibernate.v2.testyourandroid.helper.UtilHelper
+import hibernate.v2.testyourandroid.BuildConfig
+import hibernate.v2.testyourandroid.util.Utils.getAdMobDeviceID
 import java.util.ArrayList
 
 /**
@@ -52,7 +53,7 @@ class App : MultiDexApplication() {
         if (BuildConfig.DEBUG) {
             val testDevices = ArrayList<String>()
             testDevices.add(AdRequest.DEVICE_ID_EMULATOR)
-            testDevices.add(UtilHelper.getAdMobDeviceID(this))
+            testDevices.add(getAdMobDeviceID(this))
 
             val requestConfiguration = RequestConfiguration.Builder()
                 .setTestDeviceIds(testDevices)

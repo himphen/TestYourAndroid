@@ -11,7 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.SensorHelper
+import hibernate.v2.testyourandroid.util.SensorHelper
 import hibernate.v2.testyourandroid.model.InfoHeader
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment

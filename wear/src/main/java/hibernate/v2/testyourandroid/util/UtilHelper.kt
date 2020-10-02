@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid.helper
+package hibernate.v2.testyourandroid.util
 
 import java.text.DecimalFormat
 

@@ -12,7 +12,7 @@ import androidx.core.content.pm.PackageInfoCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.getInstalledPackages
+import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.ui.appinfo.AppInfoActivity
 import hibernate.v2.testyourandroid.ui.base.BaseFragment

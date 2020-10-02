@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.notAppFound
+import hibernate.v2.testyourandroid.util.Utils.notAppFound
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment

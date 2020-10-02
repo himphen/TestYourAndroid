@@ -1,6 +1,6 @@
 package hibernate.v2.testyourandroid.ui.tool.speedtest
 
-import hibernate.v2.testyourandroid.helper.roundTo
+import hibernate.v2.testyourandroid.util.ext.roundTo
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.ArrayList

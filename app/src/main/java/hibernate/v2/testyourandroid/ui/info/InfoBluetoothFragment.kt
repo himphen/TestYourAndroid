@@ -15,9 +15,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.errorNoFeatureDialog
-import hibernate.v2.testyourandroid.helper.UtilHelper.openErrorPermissionDialog
-import hibernate.v2.testyourandroid.helper.UtilHelper.startSettingsActivity
+import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
+import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
+import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
 import hibernate.v2.testyourandroid.model.ExtendedBluetoothDevice
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment

@@ -7,7 +7,7 @@ import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
+import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_hardware_biometric.*
 import java.util.concurrent.Executor
@@ -67,7 +67,7 @@ class HardwareBiometricFragment : BaseFragment(R.layout.fragment_hardware_biomet
 
             val biometricManager = BiometricManager.from(context)
             if (biometricManager.canAuthenticate() != BiometricManager.BIOMETRIC_SUCCESS) {
-                UtilHelper.errorNoFeatureDialog(context)
+                Utils.errorNoFeatureDialog(context)
 
                 return
             }

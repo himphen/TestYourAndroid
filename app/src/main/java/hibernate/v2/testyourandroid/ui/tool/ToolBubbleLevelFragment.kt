@@ -8,7 +8,7 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.View
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.errorNoFeatureDialog
+import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_tool_bubble_level.*
 

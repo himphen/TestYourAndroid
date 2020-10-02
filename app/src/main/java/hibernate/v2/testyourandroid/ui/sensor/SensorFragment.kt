@@ -16,17 +16,17 @@ import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.SensorHelper.getAccelerometerSensorData
-import hibernate.v2.testyourandroid.helper.SensorHelper.getGravitySensorData
-import hibernate.v2.testyourandroid.helper.SensorHelper.getHumiditySensorData
-import hibernate.v2.testyourandroid.helper.SensorHelper.getLightSensorData
-import hibernate.v2.testyourandroid.helper.SensorHelper.getMagneticSensorData
-import hibernate.v2.testyourandroid.helper.SensorHelper.getPressureSensorData
-import hibernate.v2.testyourandroid.helper.SensorHelper.getProximitySensorData
-import hibernate.v2.testyourandroid.helper.SensorHelper.getStepCounterSensorData
-import hibernate.v2.testyourandroid.helper.SensorHelper.getTemperatureCounterSensorData
-import hibernate.v2.testyourandroid.helper.UtilHelper
-import hibernate.v2.testyourandroid.helper.UtilHelper.logException
+import hibernate.v2.testyourandroid.util.SensorUtils.getAccelerometerSensorData
+import hibernate.v2.testyourandroid.util.SensorUtils.getGravitySensorData
+import hibernate.v2.testyourandroid.util.SensorUtils.getHumiditySensorData
+import hibernate.v2.testyourandroid.util.SensorUtils.getLightSensorData
+import hibernate.v2.testyourandroid.util.SensorUtils.getMagneticSensorData
+import hibernate.v2.testyourandroid.util.SensorUtils.getPressureSensorData
+import hibernate.v2.testyourandroid.util.SensorUtils.getProximitySensorData
+import hibernate.v2.testyourandroid.util.SensorUtils.getStepCounterSensorData
+import hibernate.v2.testyourandroid.util.SensorUtils.getTemperatureCounterSensorData
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.Utils.logException
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
@@ -105,12 +105,12 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
                 }
 
                 if (mSensor == null && secondSensor == null) {
-                    UtilHelper.errorNoFeatureDialog(context)
+                    Utils.errorNoFeatureDialog(context)
                     return
                 }
             } catch (e: Exception) {
                 logException(e)
-                UtilHelper.errorNoFeatureDialog(context)
+                Utils.errorNoFeatureDialog(context)
                 return
             }
             var isGraph2 = false

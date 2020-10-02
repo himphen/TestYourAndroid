@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.google.android.gms.ads.AdView
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
+import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_view_pager_conatiner.*
 
@@ -16,7 +16,7 @@ class MainFragment : BaseFragment(R.layout.fragment_view_pager_conatiner) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adView = UtilHelper.initAdView(context, adLayout)
+        adView = Utils.initAdView(context, adLayout)
         context?.let { context ->
             val adapter = MainFragmentPagerAdapter(context, childFragmentManager)
             viewPager.adapter = adapter

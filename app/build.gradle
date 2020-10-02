@@ -5,14 +5,14 @@ apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 199524
-        versionName "Fishballs 954"
+        versionCode 199554
+        versionName "Fishballs 955"
         multiDexEnabled true
         flavorDimensions "default"
     }
@@ -77,17 +77,17 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.biometric:biometric:1.0.1'
     implementation "androidx.constraintlayout:constraintlayout:2.0.1"
-    implementation "androidx.core:core-ktx:1.3.1"
+    implementation "androidx.core:core-ktx:1.3.2"
     implementation "androidx.preference:preference-ktx:1.1.1"
 
     // Google Play Services
-    implementation 'com.google.android.gms:play-services-ads:19.3.0'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-ads:19.4.0'
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-wearable:17.0.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.google.firebase:firebase-core:17.5.0'
-    implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
     implementation 'com.google.firebase:firebase-analytics-ktx:17.5.0'
 
     // https://github.com/afollestad/material-dialogs

@@ -8,7 +8,7 @@ import android.view.View
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
+import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.tool.ToolQRScannerSuccessFragment.Companion.newInstance
 import kotlinx.android.synthetic.main.fragment_tool_qr_scanner.*
@@ -26,7 +26,7 @@ class ToolQRScannerFragment : BaseFragment(R.layout.fragment_tool_qr_scanner) {
             mCodeScanner = CodeScanner(context, scannerView)
             mCodeScanner.setErrorCallback {
                 Handler(Looper.getMainLooper()).post {
-                    UtilHelper.errorNoFeatureDialog(context)
+                    Utils.errorNoFeatureDialog(context)
                 }
             }
             mCodeScanner.decodeCallback = DecodeCallback { result ->
@@ -57,7 +57,7 @@ class ToolQRScannerFragment : BaseFragment(R.layout.fragment_tool_qr_scanner) {
                 mCodeScanner.startPreview()
             }
         } catch (e: Exception) {
-            UtilHelper.errorNoFeatureDialog(context)
+            Utils.errorNoFeatureDialog(context)
         }
     }
 
@@ -74,7 +74,7 @@ class ToolQRScannerFragment : BaseFragment(R.layout.fragment_tool_qr_scanner) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (!hasAllPermissionsGranted(grantResults)) {
-                UtilHelper.openErrorPermissionDialog(context)
+                Utils.openErrorPermissionDialog(context)
             }
         }
     }

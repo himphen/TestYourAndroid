@@ -10,8 +10,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.AdView
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
-import hibernate.v2.testyourandroid.helper.UtilHelper.updateLanguage
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.Utils.updateLanguage
 import kotlinx.android.synthetic.main.activity_container_adview.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -73,8 +73,8 @@ abstract class BaseActivity : AppCompatActivity() {
             initActionBar(toolbar, titleString = titleString, titleId = titleId)
 
             Handler(Looper.getMainLooper()).postDelayed({
-                adView = UtilHelper.initAdView(this, adLayout, isAdViewPreserveSpace)
-            }, UtilHelper.DELAY_AD_LAYOUT)
+                adView = Utils.initAdView(this, adLayout, isAdViewPreserveSpace)
+            }, Utils.DELAY_AD_LAYOUT)
 
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)

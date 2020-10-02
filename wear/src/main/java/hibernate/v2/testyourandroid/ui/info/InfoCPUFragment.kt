@@ -11,7 +11,7 @@ import android.os.storage.StorageManager
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.formatBitSize
+import hibernate.v2.testyourandroid.util.UtilHelper.formatBitSize
 import hibernate.v2.testyourandroid.model.InfoHeader
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment

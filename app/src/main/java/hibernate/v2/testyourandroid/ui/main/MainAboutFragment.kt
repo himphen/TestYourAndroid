@@ -13,8 +13,8 @@ import com.bumptech.glide.request.RequestOptions
 import de.psdev.licensesdialog.LicensesDialog
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.util.Utils
 import kotlinx.android.synthetic.main.fragment_main_about.*
 
 class MainAboutFragment : BaseFragment(R.layout.fragment_main_about) {
@@ -39,7 +39,7 @@ class MainAboutFragment : BaseFragment(R.layout.fragment_main_about) {
                 val intent = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {
-                UtilHelper.notAppFound(activity)
+                Utils.notAppFound(activity)
             }
         }
 
@@ -50,6 +50,12 @@ class MainAboutFragment : BaseFragment(R.layout.fragment_main_about) {
             intent.putExtra(Intent.EXTRA_TEXT, text)
             intent.type = "text/plain"
             startActivity(Intent.createChooser(intent, getString(R.string.share_button)))
+        }
+
+        restorePurchaseButton.setOnClickListener {
+            if ((activity as? MainActivity)?.checkPurchaseHistory() != true) {
+                Utils.snackbar(view, stringRid = R.string.ui_na)?.show()
+            }
         }
 
         feedbackButton.setOnClickListener {

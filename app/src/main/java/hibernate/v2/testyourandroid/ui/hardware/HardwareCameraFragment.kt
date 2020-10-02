@@ -11,8 +11,8 @@ import com.otaliastudios.cameraview.gesture.GestureAction
 import com.otaliastudios.cameraview.size.AspectRatio
 import com.otaliastudios.cameraview.size.SizeSelectors
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
-import hibernate.v2.testyourandroid.helper.UtilHelper.errorNoFeatureDialog
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_hardware_camera.*
 
@@ -39,7 +39,7 @@ class HardwareCameraFragment : BaseFragment(R.layout.fragment_hardware_camera) {
                     }
                     .cancelable(false)
                     .negativeButton(R.string.ui_cancel) { dialog ->
-                        UtilHelper.scanForActivity(dialog.context)?.finish()
+                        Utils.scanForActivity(dialog.context)?.finish()
                     }
                     .show()
             }

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.ScreenUtils
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.notAppFound
+import hibernate.v2.testyourandroid.util.Utils.notAppFound
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.model.GridItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment

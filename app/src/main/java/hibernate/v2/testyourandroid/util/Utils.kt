@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid.helper
+package hibernate.v2.testyourandroid.util
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -30,17 +30,16 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.util.ext.md5
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.math.BigInteger
 import java.net.NetworkInterface
-import java.security.MessageDigest
 import java.text.DecimalFormat
 import java.util.ArrayList
 import java.util.Locale
 
-object UtilHelper {
+object Utils {
     const val PREF_IAP = "iap"
     const val PREF_LANGUAGE = "PREF_LANGUAGE"
     const val PREF_LANGUAGE_COUNTRY = "PREF_LANGUAGE_COUNTRY"
@@ -57,13 +56,12 @@ object UtilHelper {
     ): AdView? {
         if (context == null) return null
 
-        if (isPreserveSpace) {
-            adLayout.layoutParams.height = SizeUtils.dp2px(50f)
-        }
-        val defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-
         try {
+            val defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context)
             if (!defaultPreferences.getBoolean(PREF_IAP, false)) {
+                if (isPreserveSpace) {
+                    adLayout.layoutParams.height = SizeUtils.dp2px(50f)
+                }
                 val adView = AdView(context)
                 adView.adUnitId = adUnitId
                 adView.adSize = adUnitSize
@@ -360,16 +358,5 @@ object UtilHelper {
         } catch (ex: Exception) {
             null
         }
-    }
-}
-
-fun Double.format(digits: Int) = "%.${digits}f".format(this)
-
-fun String.md5(): String {
-    return try {
-        val md = MessageDigest.getInstance("MD5")
-        BigInteger(1, md.digest(toByteArray())).toString(16).padStart(32, '0')
-    } catch (e: Exception) {
-        ""
     }
 }

@@ -1,7 +1,7 @@
 package hibernate.v2.testyourandroid.ui.tool.speedtest
 
 import com.orhanobut.logger.Logger
-import hibernate.v2.testyourandroid.helper.roundTo
+import hibernate.v2.testyourandroid.util.ext.roundTo
 import java.io.DataOutputStream
 import java.io.IOException
 import java.math.BigDecimal

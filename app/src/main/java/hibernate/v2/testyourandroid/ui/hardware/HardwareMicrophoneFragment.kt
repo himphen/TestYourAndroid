@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.openErrorPermissionDialog
+import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_hardware_microphone.*
 import java.io.File

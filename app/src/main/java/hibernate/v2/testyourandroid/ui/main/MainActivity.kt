@@ -15,15 +15,18 @@ import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.anjlab.android.iab.v3.BillingProcessor
 import com.anjlab.android.iab.v3.BillingProcessor.IBillingHandler
+import com.anjlab.android.iab.v3.Constants
 import com.anjlab.android.iab.v3.TransactionDetails
 import com.blankj.utilcode.util.AppUtils
 import com.stepstone.apprating.AppRatingDialog
 import com.stepstone.apprating.listener.RatingDialogListener
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
-import hibernate.v2.testyourandroid.helper.UtilHelper.iapProductIdList
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.Utils.iapProductIdList
+import hibernate.v2.testyourandroid.util.Utils.snackbar
+import kotlinx.android.synthetic.main.activity_container.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.ArrayList
 
@@ -39,7 +42,7 @@ class MainActivity : BaseActivity(), RatingDialogListener {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_container)
-        preferences = getSharedPreferences(UtilHelper.PREF, 0)
+        preferences = getSharedPreferences(Utils.PREF, 0)
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         setSupportActionBar(toolbar)
         initActionBar(toolbar, titleId = R.string.app_name)
@@ -48,20 +51,14 @@ class MainActivity : BaseActivity(), RatingDialogListener {
         billingProcessor = BillingProcessor(this, BuildConfig.GOOGLE_IAP_KEY,
             object : IBillingHandler {
                 override fun onProductPurchased(productId: String, details: TransactionDetails?) {
-                    if (iapProductIdList().contains(productId)) {
-                        defaultPreferences.edit().putBoolean(UtilHelper.PREF_IAP, true).apply()
-                        MaterialDialog(this@MainActivity)
-                            .title(R.string.iab_complete_title)
-                            .customView(R.layout.dialog_donate)
-                            .positiveButton(R.string.ui_okay)
-                            .show()
-                    }
+                    onProductPurchased(productId)
                 }
 
                 override fun onPurchaseHistoryRestored() {}
                 override fun onBillingError(errorCode: Int, error: Throwable?) {}
                 override fun onBillingInitialized() {}
             })
+        billingProcessor.initialize()
 
         supportFragmentManager
             .beginTransaction()
@@ -119,12 +116,12 @@ class MainActivity : BaseActivity(), RatingDialogListener {
     }
 
     private fun countRate() {
-        var countRate = preferences.getInt(UtilHelper.PREF_COUNT_RATE, 0)
+        var countRate = preferences.getInt(Utils.PREF_COUNT_RATE, 0)
         if (countRate == 5) {
             openDialogRate()
         }
         countRate++
-        preferences.edit().putInt(UtilHelper.PREF_COUNT_RATE, countRate).apply()
+        preferences.edit().putInt(Utils.PREF_COUNT_RATE, countRate).apply()
     }
 
     fun openDialogLanguage() {
@@ -140,9 +137,9 @@ class MainActivity : BaseActivity(), RatingDialogListener {
                 val languageLocaleCountryCodeArray =
                     resources.getStringArray(R.array.language_locale_country_code)
                 editor
-                    .putString(UtilHelper.PREF_LANGUAGE, languageLocaleCodeArray[index])
+                    .putString(Utils.PREF_LANGUAGE, languageLocaleCodeArray[index])
                     .putString(
-                        UtilHelper.PREF_LANGUAGE_COUNTRY,
+                        Utils.PREF_LANGUAGE_COUNTRY,
                         languageLocaleCountryCodeArray[index]
                     )
                     .apply()
@@ -161,17 +158,21 @@ class MainActivity : BaseActivity(), RatingDialogListener {
     }
 
     private fun openDialogIAP() {
-        MaterialDialog(this)
-            .title(R.string.title_activity_test_ad_remover)
-            .listItemsSingleChoice(
-                items = productNameArray.toCollection(ArrayList()),
-                waitForPositiveButton = false
-            ) { dialog, index, _ ->
-                billingProcessor.purchase(this, iapProductIdList()[index])
-                dialog.dismiss()
-            }
-            .negativeButton(R.string.ui_cancel)
-            .show()
+        if (!defaultPreferences.getBoolean(Utils.PREF_IAP, false)) {
+            if (checkPurchaseHistory()) return
+
+            MaterialDialog(this)
+                .title(R.string.title_activity_test_ad_remover)
+                .listItemsSingleChoice(
+                    items = productNameArray.toCollection(ArrayList()),
+                    waitForPositiveButton = false
+                ) { dialog, index, _ ->
+                    billingProcessor.purchase(this, iapProductIdList()[index])
+                    dialog.dismiss()
+                }
+                .negativeButton(R.string.ui_cancel)
+                .show()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -181,15 +182,15 @@ class MainActivity : BaseActivity(), RatingDialogListener {
     }
 
     override fun onNegativeButtonClicked() {
-        preferences.edit().putInt(UtilHelper.PREF_COUNT_RATE, 1000).apply()
+        preferences.edit().putInt(Utils.PREF_COUNT_RATE, 1000).apply()
     }
 
     override fun onNeutralButtonClicked() {
-        preferences.edit().putInt(UtilHelper.PREF_COUNT_RATE, 0).apply()
+        preferences.edit().putInt(Utils.PREF_COUNT_RATE, 0).apply()
     }
 
     override fun onPositiveButtonClicked(rate: Int, comment: String) {
-        preferences.edit().putInt(UtilHelper.PREF_COUNT_RATE, 1000).apply()
+        preferences.edit().putInt(Utils.PREF_COUNT_RATE, 1000).apply()
         if (rate >= 4) {
             val intent = Intent(Intent.ACTION_VIEW)
             try {
@@ -213,5 +214,33 @@ class MainActivity : BaseActivity(), RatingDialogListener {
             intent.putExtra(Intent.EXTRA_TEXT, text)
             startActivity(intent)
         }
+    }
+
+    private fun onProductPurchased(productId: String): Boolean {
+        if (iapProductIdList().contains(productId)) {
+            defaultPreferences.edit().putBoolean(Utils.PREF_IAP, true).apply()
+            MaterialDialog(this@MainActivity)
+                .title(R.string.iab_complete_title)
+                .customView(R.layout.dialog_donate)
+                .positiveButton(R.string.ui_okay)
+                .show()
+
+            return true
+        }
+
+        return false
+    }
+
+    fun checkPurchaseHistory(): Boolean {
+        val historyList =
+            billingProcessor.getPurchaseHistory(Constants.PRODUCT_TYPE_MANAGED, Bundle())
+        if (historyList.isNotEmpty()) {
+            defaultPreferences.edit().putBoolean(Utils.PREF_IAP, true).apply()
+            snackbar(container, stringRid = R.string.iab_complete_message)?.show()
+
+            return true
+        }
+
+        return false
     }
 }

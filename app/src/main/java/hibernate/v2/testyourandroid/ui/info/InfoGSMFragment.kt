@@ -9,8 +9,8 @@ import android.telephony.TelephonyManager
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
-import hibernate.v2.testyourandroid.helper.UtilHelper.openErrorPermissionDialog
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
@@ -61,7 +61,7 @@ class InfoGSMFragment : BaseFragment(R.layout.fragment_info_listview) {
     @Suppress("DEPRECATION")
     @SuppressLint("HardwareIds", "MissingPermission")
     private fun getData(j: Int): String {
-        if (UtilHelper.isPermissionsGranted(context, PERMISSION_NAME)) {
+        if (Utils.isPermissionsGranted(context, PERMISSION_NAME)) {
             telephonyManager?.let { telephonyManager ->
                 return try {
                     when (j) {

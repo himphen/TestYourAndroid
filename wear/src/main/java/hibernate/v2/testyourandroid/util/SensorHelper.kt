@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid.helper
+package hibernate.v2.testyourandroid.util
 
 import android.hardware.Sensor
 
@@ -73,12 +73,7 @@ object SensorHelper {
         return arrayData[j]
     }
 
-    fun getProximitySensorData(
-        j: Int,
-        size: Int,
-        @Suppress("UNUSED_PARAMETER") reading: String?,
-        sensor: Sensor
-    ): String? {
+    fun getProximitySensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
         val arrayData = arrayOfNulls<String>(size)
         var i = 0
         arrayData[i] = ""
@@ -91,7 +86,7 @@ object SensorHelper {
         i++
         arrayData[i] = sensor.maximumRange.toString() + " cm"
         i++
-        arrayData[i] = sensor.minDelay.toString() + " μs"
+        arrayData[i] = sensor.minDelay.toString() + " cm"
         i++
         arrayData[i] = "" + sensor.resolution + " cm"
         i++
@@ -115,74 +110,6 @@ object SensorHelper {
         arrayData[i] = sensor.minDelay.toString() + " μT"
         i++
         arrayData[i] = "" + sensor.resolution + " μT"
-        i++
-        arrayData[i] = sensor.power.toString() + " mA"
-        return arrayData[j]
-    }
-
-    fun getStepCounterSensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
-        val arrayData = arrayOfNulls<String>(size)
-        var i = 0
-        arrayData[i] = reading
-        i++
-        arrayData[i] = sensor.name
-        i++
-        arrayData[i] = sensor.vendor
-        i++
-        arrayData[i] = sensor.version.toString()
-        i++
-        arrayData[i] = sensor.maximumRange.toString()
-        i++
-        arrayData[i] = sensor.minDelay.toString() + " s"
-        i++
-        arrayData[i] = "" + sensor.resolution
-        i++
-        arrayData[i] = sensor.power.toString() + " mA"
-        return arrayData[j]
-    }
-
-    fun getTemperatureCounterSensorData(
-        j: Int,
-        size: Int,
-        reading: String?,
-        sensor: Sensor
-    ): String? {
-        val arrayData = arrayOfNulls<String>(size)
-        var i = 0
-        arrayData[i] = reading
-        i++
-        arrayData[i] = sensor.name
-        i++
-        arrayData[i] = sensor.vendor
-        i++
-        arrayData[i] = sensor.version.toString()
-        i++
-        arrayData[i] = sensor.maximumRange.toString()
-        i++
-        arrayData[i] = sensor.minDelay.toString() + " s"
-        i++
-        arrayData[i] = "" + sensor.resolution
-        i++
-        arrayData[i] = sensor.power.toString() + " mA"
-        return arrayData[j]
-    }
-
-    fun getHumiditySensorData(j: Int, size: Int, reading: String?, sensor: Sensor): String? {
-        val arrayData = arrayOfNulls<String>(size)
-        var i = 0
-        arrayData[i] = reading
-        i++
-        arrayData[i] = sensor.name
-        i++
-        arrayData[i] = sensor.vendor
-        i++
-        arrayData[i] = sensor.version.toString()
-        i++
-        arrayData[i] = sensor.maximumRange.toString()
-        i++
-        arrayData[i] = sensor.minDelay.toString() + " s"
-        i++
-        arrayData[i] = "" + sensor.resolution
         i++
         arrayData[i] = sensor.power.toString() + " mA"
         return arrayData[j]

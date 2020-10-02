@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper
-import hibernate.v2.testyourandroid.helper.UtilHelper.errorNoFeatureDialog
-import hibernate.v2.testyourandroid.helper.UtilHelper.openErrorPermissionDialog
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
+import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
@@ -71,7 +71,7 @@ class InfoCameraFragment : BaseFragment(R.layout.fragment_info_listview) {
                     }
                     .cancelable(false)
                     .negativeButton(R.string.ui_cancel) { dialog ->
-                        UtilHelper.scanForActivity(dialog.context)?.finish()
+                        Utils.scanForActivity(dialog.context)?.finish()
                     }
                     .show()
             }

@@ -2,7 +2,7 @@ package hibernate.v2.testyourandroid.ui.appinfo
 
 import android.os.Bundle
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.UtilHelper.notAppFound
+import hibernate.v2.testyourandroid.util.Utils.notAppFound
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragmentActivity
 import kotlinx.android.synthetic.main.toolbar.*

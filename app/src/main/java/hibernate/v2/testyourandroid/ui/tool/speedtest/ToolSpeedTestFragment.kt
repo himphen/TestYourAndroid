@@ -11,7 +11,7 @@ import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.helper.roundTo
+import hibernate.v2.testyourandroid.util.ext.roundTo
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.view.GetSpeedTestHostsHandler
 import kotlinx.android.synthetic.main.fragment_tool_speed_test.*
