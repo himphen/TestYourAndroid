@@ -186,12 +186,12 @@ class InfoBluetoothFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     private fun updateScannedList(device: ExtendedBluetoothDevice) {
         scannedList.add(device)
-        scannedList.sortWith(Comparator { lhs, rhs ->
+        scannedList.sortWith { lhs, rhs ->
             lhs.name.compareTo(
                 rhs.name,
                 ignoreCase = true
             )
-        })
+        }
         var text = StringBuilder()
         for (item in scannedList) {
             text.append(getScanResultText(item))

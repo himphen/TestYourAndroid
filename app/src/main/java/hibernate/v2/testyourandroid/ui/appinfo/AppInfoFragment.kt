@@ -15,7 +15,7 @@ class AppInfoFragment : BaseFragment(R.layout.fragment_app_info) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        appItem = arguments?.getParcelable("APP")
+        appItem = arguments?.getParcelable(ARG_APP)
         appItem?.let { appItem ->
             context?.let {
                 // Note that we are passing childFragmentManager, not FragmentManager
@@ -52,10 +52,12 @@ class AppInfoFragment : BaseFragment(R.layout.fragment_app_info) {
     }
 
     companion object {
+        const val ARG_APP = "APP"
+
         fun newInstance(appItem: AppItem?): AppInfoFragment {
             val fragment = AppInfoFragment()
             val args = Bundle()
-            args.putParcelable("APP", appItem)
+            args.putParcelable(ARG_APP, appItem)
             fragment.arguments = args
             return fragment
         }

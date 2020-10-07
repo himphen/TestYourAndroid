@@ -6,15 +6,15 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.pm.PackageInfoCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
-import com.orhanobut.logger.Logger
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.ui.appinfo.AppInfoActivity
+import hibernate.v2.testyourandroid.ui.appinfo.AppInfoFragment.Companion.ARG_APP
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
+import hibernate.v2.testyourandroid.util.Utils.snackbar
 import hibernate.v2.testyourandroid.util.ext.isSystemPackage
 import kotlinx.android.synthetic.main.fragment_info_listview_scrollbar.*
 import kotlinx.coroutines.CoroutineScope
@@ -55,8 +55,8 @@ class AppListFragment : BaseFragment(R.layout.fragment_info_listview_scrollbar) 
     private fun loadAppList() {
         scope.launch {
             context?.let { context ->
+                var dialog: MaterialDialog? = null
                 try {
-                    var dialog: MaterialDialog? = null
                     withContext(Dispatchers.Main) {
                         dialog = MaterialDialog(context)
                             .message(R.string.ui_loading)
@@ -77,30 +77,23 @@ class AppListFragment : BaseFragment(R.layout.fragment_info_listview_scrollbar) 
                                     continue
                                 }
                             }
-                            val appItem = AppItem()
-                            appItem.appName =
-                                packageInfo.applicationInfo.loadLabel(packageManager).toString()
-                            appItem.sourceDir = packageInfo.applicationInfo.dataDir
-                            appItem.packageName = packageInfo.packageName
-                            appItem.versionCode =
-                                PackageInfoCompat.getLongVersionCode(packageInfo).toString()
-                            appItem.versionName = packageInfo.versionName
-                            appItem.firstInstallTime = packageInfo.firstInstallTime
+                            val appItem = AppItem(
+                                appName = packageInfo.applicationInfo.loadLabel(packageManager)
+                                    .toString(),
+                                packageName = packageInfo.packageName,
+                                isSystemApp = (packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+                            )
                             try {
                                 appItem.icon = packageInfo.applicationInfo.loadIcon(packageManager)
                             } catch (e: Resources.NotFoundException) {
                             }
-                            appItem.isSystemApp =
-                                packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
                             appList.add(appItem)
                         }
                         appList.sortWith { item1, item2 ->
-                            item1.appName!!.toLowerCase(Locale.getDefault())
-                                .compareTo(item2.appName!!.toLowerCase(Locale.getDefault()))
+                            item1.appName.toLowerCase(Locale.getDefault())
+                                .compareTo(item2.appName.toLowerCase(Locale.getDefault()))
                         }
                     }
-
-                    Logger.d(appList.size)
 
                     withContext(Dispatchers.Main) {
                         dialog?.dismiss()
@@ -109,21 +102,22 @@ class AppListFragment : BaseFragment(R.layout.fragment_info_listview_scrollbar) 
                                 override fun onItemDetailClick(appItem: AppItem) {
                                     val intent = Intent(context, AppInfoActivity::class.java)
                                     val bundle = Bundle()
-                                    bundle.putParcelable("APP", appItem)
+                                    bundle.putParcelable(ARG_APP, appItem)
                                     intent.putExtras(bundle)
                                     startActivity(intent)
                                 }
                             })
                     }
                 } catch (e: Exception) {
-                    Logger.d("onCancelled")
+                    dialog?.dismiss()
+                    snackbar(view, stringRid = R.string.ui_error)?.show()
                 }
             }
         }
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroy() {
+        super.onDestroy()
         scope.coroutineContext.cancel()
     }
 

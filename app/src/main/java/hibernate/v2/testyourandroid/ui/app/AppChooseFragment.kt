@@ -1,14 +1,13 @@
 package hibernate.v2.testyourandroid.ui.app
 
 import android.content.Intent
-import android.content.pm.ApplicationInfo
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
 import hibernate.v2.testyourandroid.model.AppChooseItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
 import hibernate.v2.testyourandroid.util.ext.isSystemPackage
 import kotlinx.android.synthetic.main.fragment_main_info.*
 import java.util.ArrayList

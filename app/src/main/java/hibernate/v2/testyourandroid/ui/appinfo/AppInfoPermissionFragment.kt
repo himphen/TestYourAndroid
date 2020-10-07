@@ -6,12 +6,13 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.StringUtils
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.notAppFound
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.model.AppPermissionItem
 import hibernate.v2.testyourandroid.model.InfoItem
+import hibernate.v2.testyourandroid.ui.appinfo.AppInfoFragment.Companion.ARG_APP
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
+import hibernate.v2.testyourandroid.util.Utils.notAppFound
 import kotlinx.android.synthetic.main.fragment_info_listview.*
 import java.util.ArrayList
 import java.util.Comparator
@@ -28,7 +29,7 @@ class AppInfoPermissionFragment : BaseFragment(R.layout.fragment_info_listview) 
     }
 
     private fun init() {
-        arguments?.getParcelable<AppItem>("APP")?.packageName?.let { packageName ->
+        arguments?.getParcelable<AppItem>(ARG_APP)?.packageName?.let { packageName ->
             context?.let { context ->
                 val list: MutableList<InfoItem> = ArrayList()
                 try {
@@ -41,35 +42,29 @@ class AppInfoPermissionFragment : BaseFragment(R.layout.fragment_info_listview) 
                     if (requestedPermissions != null) {
                         for (requestedPermission in requestedPermissions) {
                             var permissionGroupLabel = noGroupLabel
-                            var permissionLabel: String? = ""
+                            var permissionLabel: String
                             try {
                                 val permissionInfo =
                                     packageManager.getPermissionInfo(requestedPermission, 0)
+
                                 try {
                                     val permissionGroupInfo = packageManager.getPermissionGroupInfo(
-                                        permissionInfo.group
-                                            ?: "", 0
+                                        permissionInfo.group ?: "", 0
                                     )
                                     permissionGroupLabel =
                                         permissionGroupInfo.loadLabel(packageManager).toString()
                                 } catch (ignored: PackageManager.NameNotFoundException) {
                                 } catch (ignored: NullPointerException) {
                                 }
-                                try {
-                                    permissionLabel =
-                                        permissionInfo.loadLabel(packageManager).toString()
-                                } catch (ignored: NullPointerException) {
-                                }
+                                permissionLabel =
+                                    permissionInfo.loadLabel(packageManager).toString()
                             } catch (e: Exception) {
                                 permissionLabel = requestedPermission
                             }
                             permissionLabel = StringUtils.upperFirstLetter(permissionLabel)
-                            val appPermissionItem = AppPermissionItem(permissionLabel)
-                            if (!map.containsKey(permissionGroupLabel)) {
-                                map[permissionGroupLabel] = ArrayList()
-                            }
-                            val arrayList = map[permissionGroupLabel]
-                            arrayList!!.add(appPermissionItem)
+                            val arrayList: ArrayList<AppPermissionItem> =
+                                map[permissionGroupLabel] ?: arrayListOf()
+                            arrayList.add(AppPermissionItem(permissionLabel))
                             map[permissionGroupLabel] = arrayList
                         }
                     }
@@ -111,7 +106,7 @@ class AppInfoPermissionFragment : BaseFragment(R.layout.fragment_info_listview) 
         fun newInstance(appItem: AppItem?): AppInfoPermissionFragment {
             val fragment = AppInfoPermissionFragment()
             val args = Bundle()
-            args.putParcelable("APP", appItem)
+            args.putParcelable(ARG_APP, appItem)
             fragment.arguments = args
             return fragment
         }

@@ -14,6 +14,7 @@ import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.util.Utils.notAppFound
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.model.GridItem
+import hibernate.v2.testyourandroid.ui.appinfo.AppInfoFragment.Companion.ARG_APP
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.GridItemAdapter
 import kotlinx.android.synthetic.main.fragment_info_listview.*
@@ -39,7 +40,7 @@ class AppInfoActionFragment : BaseFragment(R.layout.fragment_info_listview) {
     }
 
     private fun init() {
-        arguments?.getParcelable<AppItem>("APP")?.let { appItem ->
+        arguments?.getParcelable<AppItem>(ARG_APP)?.let { appItem ->
             val stringArray = resources.getStringArray(R.array.app_action_string_array)
             val list: MutableList<GridItem> = ArrayList()
             for (i in imageArray.indices) {
@@ -117,16 +118,14 @@ class AppInfoActionFragment : BaseFragment(R.layout.fragment_info_listview) {
                                 }
                             }
                             GridItem.Action.APP_INFO_OPEN -> {
-                                appItem.packageName?.let { packageName ->
-                                    intent = context?.packageManager?.getLaunchIntentForPackage(
-                                        packageName
-                                    )
-                                    intent?.let { intent ->
-                                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                        startActivity(intent)
-                                    } ?: run {
-                                        notAppFound(activity, false)
-                                    }
+                                intent = context?.packageManager?.getLaunchIntentForPackage(
+                                    appItem.packageName
+                                )
+                                intent?.let {
+                                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                    startActivity(intent)
+                                } ?: run {
+                                    notAppFound(activity, false)
                                 }
                             }
                             else -> {
@@ -146,7 +145,7 @@ class AppInfoActionFragment : BaseFragment(R.layout.fragment_info_listview) {
         fun newInstance(appItem: AppItem?): AppInfoActionFragment {
             val fragment = AppInfoActionFragment()
             val args = Bundle()
-            args.putParcelable("APP", appItem)
+            args.putParcelable(ARG_APP, appItem)
             fragment.arguments = args
             return fragment
         }

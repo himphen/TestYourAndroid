@@ -1,7 +1,9 @@
 package hibernate.v2.testyourandroid.core
 
+import android.app.Application
+import android.content.Context
 import android.os.Build
-import androidx.multidex.MultiDexApplication
+import androidx.multidex.MultiDex
 import com.appbrain.AppBrain
 import com.blankj.utilcode.util.Utils
 import com.google.android.gms.ads.AdRequest
@@ -17,7 +19,12 @@ import java.util.ArrayList
 /**
  * Created by himphen on 24/5/16.
  */
-class App : MultiDexApplication() {
+class App : Application() {
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
 
     override fun onCreate() {
         super.onCreate()
