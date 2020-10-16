@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,52 +12,45 @@ import androidx.preference.PreferenceManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
-import com.anjlab.android.iab.v3.BillingProcessor
-import com.anjlab.android.iab.v3.BillingProcessor.IBillingHandler
-import com.anjlab.android.iab.v3.Constants
-import com.anjlab.android.iab.v3.TransactionDetails
-import com.blankj.utilcode.util.AppUtils
+import com.android.billingclient.api.AcknowledgePurchaseParams
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingFlowParams
+import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.Purchase
+import com.android.billingclient.api.SkuDetails
+import com.android.billingclient.api.SkuDetailsParams
+import com.orhanobut.logger.Logger
 import com.stepstone.apprating.AppRatingDialog
 import com.stepstone.apprating.listener.RatingDialogListener
-import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.iapProductIdList
-import hibernate.v2.testyourandroid.util.Utils.snackbar
-import kotlinx.android.synthetic.main.activity_container.*
+import hibernate.v2.testyourandroid.util.Utils.iapProductIdListAll
 import kotlinx.android.synthetic.main.toolbar.*
-import java.util.ArrayList
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 
 class MainActivity : BaseActivity(), RatingDialogListener {
-    private lateinit var preferences: SharedPreferences
     private lateinit var defaultPreferences: SharedPreferences
-    private lateinit var billingProcessor: BillingProcessor
 
-    private val productNameArray =
-        arrayOf("Buy Me A Orange Juice", "Buy Me A Coffee", "Buy Me A Big Mac")
+    private lateinit var billingClient: BillingClient
+
+    private var skuDetailsList: List<SkuDetails>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_container)
-        preferences = getSharedPreferences(Utils.PREF, 0)
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        setSupportActionBar(toolbar)
+
         initActionBar(toolbar, titleId = R.string.app_name)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setHomeButtonEnabled(false)
-        billingProcessor = BillingProcessor(this, BuildConfig.GOOGLE_IAP_KEY,
-            object : IBillingHandler {
-                override fun onProductPurchased(productId: String, details: TransactionDetails?) {
-                    onProductPurchased(productId)
-                }
 
-                override fun onPurchaseHistoryRestored() {}
-                override fun onBillingError(errorCode: Int, error: Throwable?) {}
-                override fun onBillingInitialized() {}
-            })
-        billingProcessor.initialize()
+        setupBillingClient()
 
         supportFragmentManager
             .beginTransaction()
@@ -66,11 +58,6 @@ class MainActivity : BaseActivity(), RatingDialogListener {
             .commit()
 
         countRate()
-    }
-
-    override fun onDestroy() {
-        billingProcessor.release()
-        super.onDestroy()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -81,18 +68,9 @@ class MainActivity : BaseActivity(), RatingDialogListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_language -> openDialogLanguage()
-            R.id.action_iap -> checkPayment()
+            R.id.action_iap -> openDialogIAP()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    fun checkPayment() {
-        val isAvailable = BillingProcessor.isIabServiceAvailable(this)
-        if (isAvailable) {
-            openDialogIAP()
-        } else {
-            Toast.makeText(this, R.string.ui_error, Toast.LENGTH_LONG).show()
-        }
     }
 
     private fun openDialogRate() {
@@ -116,12 +94,12 @@ class MainActivity : BaseActivity(), RatingDialogListener {
     }
 
     private fun countRate() {
-        var countRate = preferences.getInt(Utils.PREF_COUNT_RATE, 0)
+        var countRate = defaultPreferences.getInt(Utils.PREF_COUNT_RATE, 0)
         if (countRate == 5) {
             openDialogRate()
         }
         countRate++
-        preferences.edit().putInt(Utils.PREF_COUNT_RATE, countRate).apply()
+        defaultPreferences.edit().putInt(Utils.PREF_COUNT_RATE, countRate).apply()
     }
 
     fun openDialogLanguage() {
@@ -157,90 +135,135 @@ class MainActivity : BaseActivity(), RatingDialogListener {
             .show()
     }
 
-    private fun openDialogIAP() {
-        if (!defaultPreferences.getBoolean(Utils.PREF_IAP, false)) {
-            if (checkPurchaseHistory()) return
+    fun openDialogIAP() {
+        skuDetailsList?.let { skuDetailsList ->
+            if (skuDetailsList.isNullOrEmpty()) {
+                Toast.makeText(this, R.string.ui_error, Toast.LENGTH_LONG).show()
+                return
+            }
+
+            val skuTitleList = skuDetailsList.map { skuDetails ->
+                val p: Pattern = Pattern.compile("(?> \\(.+?\\))$", Pattern.CASE_INSENSITIVE)
+                val m: Matcher = p.matcher(skuDetails.title)
+                val titleWithoutAppName: String = m.replaceAll("")
+
+                "${skuDetails.price} - $titleWithoutAppName"
+            }
 
             MaterialDialog(this)
                 .title(R.string.title_activity_test_ad_remover)
                 .listItemsSingleChoice(
-                    items = productNameArray.toCollection(ArrayList()),
+                    items = skuTitleList,
                     waitForPositiveButton = false
                 ) { dialog, index, _ ->
-                    billingProcessor.purchase(this, iapProductIdList()[index])
+                    val billingFlowParams = BillingFlowParams
+                        .newBuilder()
+                        .setSkuDetails(skuDetailsList[index])
+                        .build()
+                    billingClient.launchBillingFlow(this, billingFlowParams)
+
                     dialog.dismiss()
                 }
                 .negativeButton(R.string.ui_cancel)
                 .show()
+        } ?: run {
+            Toast.makeText(this@MainActivity, R.string.ui_error, Toast.LENGTH_LONG).show()
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (!billingProcessor.handleActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data)
+    private fun setupBillingClient() {
+        billingClient = BillingClient.newBuilder(this)
+            .setListener { billingResult, purchases ->
+                Logger.d(billingResult.responseCode)
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
+                    for (purchase in purchases) {
+                        onHandlePurchase(purchase)
+                    }
+                } else if (billingResult.responseCode == BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED) {
+                    onPurchased()
+                } else {
+                    Toast.makeText(this@MainActivity, R.string.ui_error, Toast.LENGTH_LONG).show()
+                }
+            }
+            .enablePendingPurchases()
+            .build()
+        billingClient.startConnection(object : BillingClientStateListener {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    // The BillingClient is ready. You can query purchases here.
+                    val params = SkuDetailsParams
+                        .newBuilder()
+                        .setSkusList(iapProductIdList())
+                        .setType(BillingClient.SkuType.INAPP)
+                        .build()
+                    billingClient.querySkuDetailsAsync(params) { billingResult2, skuDetailsList ->
+                        if (billingResult2.responseCode == BillingClient.BillingResponseCode.OK) {
+                            this@MainActivity.skuDetailsList = skuDetailsList
+                        }
+                    }
+                }
+            }
+
+            override fun onBillingServiceDisconnected() {
+                // Try to restart the connection on the next request to
+                // Google Play by calling the startConnection() method.
+            }
+        })
+    }
+
+    private fun onHandlePurchase(purchase: Purchase) {
+        Logger.d(purchase.purchaseState)
+
+        if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
+            if (!purchase.isAcknowledged) {
+                val acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder()
+                    .setPurchaseToken(purchase.purchaseToken)
+
+                billingClient.acknowledgePurchase(acknowledgePurchaseParams.build()) {
+                    onPurchased()
+                }
+            } else {
+                onPurchased()
+            }
         }
     }
 
+    private fun onPurchased() {
+        defaultPreferences.edit().putBoolean(Utils.PREF_IAP, true).apply()
+        MaterialDialog(this)
+            .customView(R.layout.dialog_donate)
+            .positiveButton(R.string.ui_okay)
+            .show()
+    }
+
+    fun checkPurchaseHistory() {
+        iapProductIdListAll().forEach {
+            billingClient.queryPurchaseHistoryAsync(it) { _, _ ->
+                defaultPreferences.edit().putBoolean(Utils.PREF_IAP, true).apply()
+                onPurchased()
+            }
+        }
+    }
+
+    // RatingDialogListener
     override fun onNegativeButtonClicked() {
-        preferences.edit().putInt(Utils.PREF_COUNT_RATE, 1000).apply()
+        defaultPreferences.edit().putInt(Utils.PREF_COUNT_RATE, 1000).apply()
     }
 
     override fun onNeutralButtonClicked() {
-        preferences.edit().putInt(Utils.PREF_COUNT_RATE, 0).apply()
+        defaultPreferences.edit().putInt(Utils.PREF_COUNT_RATE, 0).apply()
     }
 
     override fun onPositiveButtonClicked(rate: Int, comment: String) {
-        preferences.edit().putInt(Utils.PREF_COUNT_RATE, 1000).apply()
+        defaultPreferences.edit().putInt(Utils.PREF_COUNT_RATE, 1000).apply()
         if (rate >= 4) {
             val intent = Intent(Intent.ACTION_VIEW)
             try {
-                intent.data = Uri.parse("market://details?id=hibernate.v2.testyourandroid")
-                startActivity(intent)
-            } catch (e: ActivityNotFoundException) {
                 intent.data =
                     Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid")
                 startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
             }
-        } else {
-            val intent = Intent(Intent.ACTION_SEND)
-            var text = "Android Version: " + Build.VERSION.RELEASE + "\n"
-            text += "SDK Level: " + Build.VERSION.SDK_INT + "\n"
-            text += "Version: " + AppUtils.getAppVersionName() + "\n"
-            text += "Brand: " + Build.BRAND + "\n"
-            text += "Model: " + Build.MODEL + "\n\n\n"
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(BuildConfig.CONTACT_EMAIL))
-            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_title))
-            intent.putExtra(Intent.EXTRA_TEXT, text)
-            startActivity(intent)
         }
-    }
-
-    private fun onProductPurchased(productId: String): Boolean {
-        if (iapProductIdList().contains(productId)) {
-            defaultPreferences.edit().putBoolean(Utils.PREF_IAP, true).apply()
-            MaterialDialog(this@MainActivity)
-                .title(R.string.iab_complete_title)
-                .customView(R.layout.dialog_donate)
-                .positiveButton(R.string.ui_okay)
-                .show()
-
-            return true
-        }
-
-        return false
-    }
-
-    fun checkPurchaseHistory(): Boolean {
-        val historyList =
-            billingProcessor.getPurchaseHistory(Constants.PRODUCT_TYPE_MANAGED, Bundle())
-        if (historyList.isNotEmpty()) {
-            defaultPreferences.edit().putBoolean(Utils.PREF_IAP, true).apply()
-            snackbar(container, stringRid = R.string.iab_complete_message)?.show()
-
-            return true
-        }
-
-        return false
     }
 }

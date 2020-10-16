@@ -144,7 +144,6 @@ object Utils {
         }
     }
 
-    const val PREF = "PREF_OPTION"
     private const val IAP_PID = "iap1984"
     private const val IAP_PID_10 = "adfree_orange"
     private const val IAP_PID_20 = "adfree_coffee"

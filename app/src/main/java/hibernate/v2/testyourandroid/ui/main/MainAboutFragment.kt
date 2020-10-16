@@ -53,9 +53,7 @@ class MainAboutFragment : BaseFragment(R.layout.fragment_main_about) {
         }
 
         restorePurchaseButton.setOnClickListener {
-            if ((activity as? MainActivity)?.checkPurchaseHistory() != true) {
-                Utils.snackbar(view, stringRid = R.string.ui_na)?.show()
-            }
+            (activity as? MainActivity)?.checkPurchaseHistory()
         }
 
         feedbackButton.setOnClickListener {

@@ -113,7 +113,7 @@ class MainTestAdapter(private val list: List<Any>) :
                         v.context.startActivity(intent)
                     } ?: run {
                         when (gridItem.action) {
-                            GridItem.Action.HOME_DONATE -> (v.context as MainActivity).checkPayment()
+                            GridItem.Action.HOME_DONATE -> (v.context as MainActivity).openDialogIAP()
                             GridItem.Action.HOME_LANGUAGE -> (v.context as MainActivity).openDialogLanguage()
                             GridItem.Action.HOME_RATE -> {
                                 val intent = Intent(Intent.ACTION_VIEW)

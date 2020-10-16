@@ -11,8 +11,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 199612
-        versionName "Fishballs 961"
+        versionCode 199620
+        versionName "Fishballs 962a"
         multiDexEnabled true
         flavorDimensions "default"
     }
@@ -80,6 +80,9 @@ dependencies {
     implementation "androidx.core:core-ktx:1.3.2"
     implementation "androidx.preference:preference-ktx:1.1.1"
 
+    // https://developer.android.com/google/play/billing/billing_library_overview
+    implementation 'com.android.billingclient:billing-ktx:3.0.1'
+
     // Google Play Services
     implementation 'com.google.android.gms:play-services-ads:19.4.0'
     implementation 'com.google.android.gms:play-services-location:17.1.0'
@@ -99,9 +102,6 @@ dependencies {
 
     // https://github.com/PSDev/LicensesDialog
     implementation 'de.psdev.licensesdialog:licensesdialog:2.1.0'
-
-    // Simple IAB
-    implementation 'com.anjlab.android.iab.v3:library:1.1.0'
 
     // AppBrain SDK
     //noinspection GradleDynamicVersion
