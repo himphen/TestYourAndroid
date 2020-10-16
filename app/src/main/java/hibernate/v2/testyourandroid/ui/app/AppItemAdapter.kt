@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -56,8 +56,7 @@ class AppItemAdapter(
         var titleTv: TextView = view.findViewById(R.id.text1)
         var contentTv: TextView = view.findViewById(R.id.text2)
         var iconIv: ImageView = view.findViewById(R.id.icon)
-        var rootView: LinearLayout = view.findViewById(R.id.root_view)
+        var rootView: ConstraintLayout = view.findViewById(R.id.root_view)
         var systemAppIndicator: FrameLayout = view.findViewById(R.id.systemAppIndicator)
     }
-
 }

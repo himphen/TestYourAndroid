@@ -132,6 +132,9 @@ dependencies {
 
     // https://github.com/nekocode/Badge
     implementation "com.github.nekocode:Badge:2.1"
+
+    // https://github.com/skydoves/AndroidVeil
+    implementation "com.github.skydoves:androidveil:1.0.9"
 }
 
 apply plugin: 'com.google.gms.google-services'
