@@ -13,12 +13,14 @@
         android:id="@+id/recordBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/MainButton"
         android:text="@string/mic_start_recording" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/playBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/GreenButton"
         android:text="@string/mic_start_playing" />
 
 </LinearLayout>

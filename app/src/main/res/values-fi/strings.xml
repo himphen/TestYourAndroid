@@ -242,10 +242,10 @@
     <string name="memory_total">Kaikki yhteensä</string>
     <string name="memory_used">käytetty</string>
     <string name="ui_version">Versio</string>
-    <string name="feedback">Anna palautetta</string>
-    <string name="about_credit_btn">Avoimen lähdekoodin lisenssit</string>
+    <string name="pref_feedback">Anna palautetta</string>
+    <string name="pref_credit">Avoimen lähdekoodin lisenssit</string>
     <string name="feedback_title">Android-testaustyökalu: Raportti ja palaute</string>
-    <string name="more">Lisää sovelluksia kehittäjältä</string>
+    <string name="pref_more_app">Lisää sovelluksia kehittäjältä</string>
     <string name="rate_title">Pidätkö sovelluksesta?</string>
     <string name="rate_message">Kerro meille, mitä mieltä olet</string>
     <string name="rate_navbtn">Ei kiitos</string>

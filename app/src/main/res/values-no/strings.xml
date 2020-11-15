@@ -242,10 +242,10 @@
     <string name="memory_total">Total</string>
     <string name="memory_used">brukes</string>
     <string name="ui_version">Versjon</string>
-    <string name="feedback">Gi meg tilbakemelding</string>
-    <string name="about_credit_btn">Open source-lisenser</string>
+    <string name="pref_feedback">Gi meg tilbakemelding</string>
+    <string name="pref_credit">Open source-lisenser</string>
     <string name="feedback_title">Android Testing Tool: Rapport og tilbakemelding</string>
-    <string name="more">Flere programmer fra utvikler</string>
+    <string name="pref_more_app">Flere programmer fra utvikler</string>
     <string name="rate_title">Liker du appen?</string>
     <string name="rate_message">Gi oss beskjed om hva du synes</string>
     <string name="rate_navbtn">Nei takk</string>

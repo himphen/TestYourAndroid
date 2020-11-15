@@ -242,10 +242,10 @@
     <string name="memory_total">Total</string>
     <string name="memory_used">S\'utilitza</string>
     <string name="ui_version">Versió</string>
-    <string name="feedback">Doneu-me comentaris</string>
-    <string name="about_credit_btn">Llicències de codi obert</string>
+    <string name="pref_feedback">Doneu-me comentaris</string>
+    <string name="pref_credit">Llicències de codi obert</string>
     <string name="feedback_title">Eina d\'assaig d\'Android: informe i comentaris</string>
-    <string name="more">Més aplicacions del desenvolupador</string>
+    <string name="pref_more_app">Més aplicacions del desenvolupador</string>
     <string name="rate_title">T\'ha agradat l\'aplicació?</string>
     <string name="rate_message">Feu-nos saber què us sembla</string>
     <string name="rate_navbtn">No gràcies</string>

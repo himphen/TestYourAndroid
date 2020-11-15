@@ -46,9 +46,9 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
             graphViewDownload.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
             graphViewDownload.gridLabelRenderer.gridColor = Color.GRAY
             seriesDownload.thickness = 3
-            seriesDownload.color = ContextCompat.getColor(it, R.color.green500)
+            seriesDownload.color = ContextCompat.getColor(it, R.color.lineColor4)
             seriesDownload.isDrawBackground = true
-            seriesDownload.backgroundColor = ContextCompat.getColor(it, R.color.green500a)
+            seriesDownload.backgroundColor = ContextCompat.getColor(it, R.color.lineColor4A)
             graphViewDownload.addSeries(seriesDownload)
             graphViewDownload.viewport.isXAxisBoundsManual = true
             graphViewDownload.viewport.setMinX(0.0)
@@ -60,9 +60,9 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
             graphViewUpload.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
             graphViewUpload.gridLabelRenderer.gridColor = Color.GRAY
             seriesUpload.thickness = 3
-            seriesUpload.color = ContextCompat.getColor(it, R.color.blue500)
+            seriesUpload.color = ContextCompat.getColor(it, R.color.lineColor3)
             seriesUpload.isDrawBackground = true
-            seriesUpload.backgroundColor = ContextCompat.getColor(it, R.color.blue500a)
+            seriesUpload.backgroundColor = ContextCompat.getColor(it, R.color.lineColor3A)
             graphViewUpload.addSeries(seriesUpload)
             graphViewUpload.viewport.isXAxisBoundsManual = true
             graphViewUpload.viewport.setMinX(0.0)

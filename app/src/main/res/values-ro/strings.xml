@@ -242,10 +242,10 @@
     <string name="memory_total">Total</string>
     <string name="memory_used">Folosit</string>
     <string name="ui_version">Versiune</string>
-    <string name="feedback">Dă-mi Feedback</string>
-    <string name="about_credit_btn">Licentele open source</string>
+    <string name="pref_feedback">Dă-mi Feedback</string>
+    <string name="pref_credit">Licentele open source</string>
     <string name="feedback_title">Instrumentul de testare Android: Raport și feedback</string>
-    <string name="more">Mai multe aplicații de la dezvoltator</string>
+    <string name="pref_more_app">Mai multe aplicații de la dezvoltator</string>
     <string name="rate_title">Ți-a plăcut aplicația?</string>
     <string name="rate_message">Spuneți-ne ce credeți</string>
     <string name="rate_navbtn">Nu multumesc</string>

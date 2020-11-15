@@ -7,6 +7,7 @@ import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.graphics.Color
 import android.net.Uri
 import android.net.wifi.WifiInfo
@@ -18,6 +19,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.afollestad.materialdialogs.MaterialDialog
@@ -44,6 +46,14 @@ object Utils {
     const val PREF_LANGUAGE = "PREF_LANGUAGE"
     const val PREF_LANGUAGE_COUNTRY = "PREF_LANGUAGE_COUNTRY"
     const val PREF_COUNT_RATE = "PREF_COUNT_RATE"
+    const val PREF_THEME = "PREF_THEME"
+    const val PREF_METRIC = "PREF_METRIC"
+
+    enum class PrefTheme(val value: String) {
+        THEME_AUTO("auto"),
+        THEME_LIGHT("light"),
+        THEME_DARK("dark")
+    }
 
     const val DELAY_AD_LAYOUT = 100L
 
@@ -318,7 +328,7 @@ object Utils {
                 .setTextColor(Color.WHITE)
             sbView.findViewById<TextView>(com.google.android.material.R.id.snackbar_action)
                 .setTextColor(
-                    ContextCompat.getColor(snackbar.context, R.color.gold)
+                    ContextCompat.getColor(snackbar.context, R.color.lineColor2)
                 )
 
             return snackbar
@@ -356,6 +366,23 @@ object Utils {
                 ?.joinToString(separator = ":") { byte -> "%02X".format(byte) }
         } catch (ex: Exception) {
             null
+        }
+    }
+
+    fun updateTheme(value: String?) {
+        val mode = when (value) {
+            PrefTheme.THEME_LIGHT.value -> AppCompatDelegate.MODE_NIGHT_NO
+            PrefTheme.THEME_DARK.value -> AppCompatDelegate.MODE_NIGHT_YES
+            else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+        }
+
+        AppCompatDelegate.setDefaultNightMode(mode)
+    }
+
+    fun isDarkMode(context: Context?): Boolean {
+        return when (context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> true
+            else -> false
         }
     }
 }

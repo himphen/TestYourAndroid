@@ -242,10 +242,10 @@
     <string name="memory_total">Kopā</string>
     <string name="memory_used">Izmantots</string>
     <string name="ui_version">Versija</string>
-    <string name="feedback">Dodiet man atsauksmes</string>
-    <string name="about_credit_btn">Atvērtā koda licences</string>
+    <string name="pref_feedback">Dodiet man atsauksmes</string>
+    <string name="pref_credit">Atvērtā koda licences</string>
     <string name="feedback_title">Android testēšanas rīks: pārskats un atsauksmes</string>
-    <string name="more">Vairāk lietotņu no izstrādātāja</string>
+    <string name="pref_more_app">Vairāk lietotņu no izstrādātāja</string>
     <string name="rate_title">Vai jums patika lietotne?</string>
     <string name="rate_message">Informējiet mūs par to, ko jūs domājat</string>
     <string name="rate_navbtn">Nē paldies</string>

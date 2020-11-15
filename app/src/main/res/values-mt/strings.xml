@@ -242,10 +242,10 @@
     <string name="memory_total">Totali</string>
     <string name="memory_used">Użat</string>
     <string name="ui_version">Verżjoni</string>
-    <string name="feedback">Agħtini Rispons</string>
-    <string name="about_credit_btn">Liċenzji tas-sors miftuħ</string>
+    <string name="pref_feedback">Agħtini Rispons</string>
+    <string name="pref_credit">Liċenzji tas-sors miftuħ</string>
     <string name="feedback_title">Għodda għall-Ittestjar tal-Android: Rapport u Feedback</string>
-    <string name="more">Aktar Apps mill-iżviluppatur</string>
+    <string name="pref_more_app">Aktar Apps mill-iżviluppatur</string>
     <string name="rate_title">Ridt l-app?</string>
     <string name="rate_message">Għidilna x\'taħseb</string>
     <string name="rate_navbtn">Le grazzi</string>

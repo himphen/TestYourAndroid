@@ -3,6 +3,7 @@ package hibernate.v2.testyourandroid.ui.main
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
@@ -60,6 +61,19 @@ class MainActivity : BaseActivity(), RatingDialogListener {
         countRate()
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        when (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                Logger.d("// Night mode is not active, we're using the light theme")
+            }
+            Configuration.UI_MODE_NIGHT_YES -> {
+                Logger.d("// Night mode is active, we're using dark theme")
+            }
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
         return true
@@ -83,9 +97,9 @@ class MainActivity : BaseActivity(), RatingDialogListener {
             .setTitle(R.string.rate_title)
             .setDescription(R.string.rate_message)
             .setCommentInputEnabled(false)
-            .setStarColor(R.color.gold)
+            .setStarColor(R.color.lineColor2)
             .setTitleTextColor(R.color.white)
-            .setDescriptionTextColor(R.color.grey200)
+            .setDescriptionTextColor(R.color.ratingText)
             .setWindowAnimation(R.style.RatingDialogFadeAnimation)
             .setCancelable(false)
             .setCanceledOnTouchOutside(false)

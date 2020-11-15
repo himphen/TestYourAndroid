@@ -242,10 +242,10 @@
     <string name="memory_total">Jami</string>
     <string name="memory_used">Ishlatilgan</string>
     <string name="ui_version">Versiya</string>
-    <string name="feedback">Menga javob bering</string>
-    <string name="about_credit_btn">On manba litsenziyalari</string>
+    <string name="pref_feedback">Menga javob bering</string>
+    <string name="pref_credit">On manba litsenziyalari</string>
     <string name="feedback_title">Android sinov vositasi: hisobot va hisobot</string>
-    <string name="more">Developer\'dan ko\'proq ilovalar</string>
+    <string name="pref_more_app">Developer\'dan ko\'proq ilovalar</string>
     <string name="rate_title">Sizga ilovani yoqdimi?</string>
     <string name="rate_message">Nima deb o\'ylaysiz, bizga xabar bering</string>
     <string name="rate_navbtn">Yo\'q, rahmat</string>

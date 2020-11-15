@@ -242,10 +242,10 @@
     <string name="memory_total">合計</string>
     <string name="memory_used">中古</string>
     <string name="ui_version">バージョン</string>
-    <string name="feedback">フィードバックをください</string>
-    <string name="about_credit_btn">オープンソースライセンス</string>
+    <string name="pref_feedback">フィードバックをください</string>
+    <string name="pref_credit">オープンソースライセンス</string>
     <string name="feedback_title">Androidテストツール：レポートとフィードバック</string>
-    <string name="more">開発者のその他のアプリ</string>
+    <string name="pref_more_app">開発者のその他のアプリ</string>
     <string name="rate_title">あなたはアプリが好きでしたか？</string>
     <string name="rate_message">あなたの考えをお聞かせください</string>
     <string name="rate_navbtn">結構です</string>

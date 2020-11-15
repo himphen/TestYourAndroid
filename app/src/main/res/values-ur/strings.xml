@@ -242,10 +242,10 @@
     <string name="memory_total">کل</string>
     <string name="memory_used">استعمال کیا جاتا ہے</string>
     <string name="ui_version">ورژن</string>
-    <string name="feedback">میری رائے دیں</string>
-    <string name="about_credit_btn">اوپن سورس لائسنس</string>
+    <string name="pref_feedback">میری رائے دیں</string>
+    <string name="pref_credit">اوپن سورس لائسنس</string>
     <string name="feedback_title">لوڈ، اتارنا Android ٹیسٹنگ کا آلہ: رپورٹ اور تاثرات</string>
-    <string name="more">ڈویلپر سے مزید اطلاقات</string>
+    <string name="pref_more_app">ڈویلپر سے مزید اطلاقات</string>
     <string name="rate_title">کیا آپ اپلی کیشن پسند کرتے ہیں؟</string>
     <string name="rate_message">ہمیں بتائیں کہ آپ کیا سوچتے ہیں</string>
     <string name="rate_navbtn">نہیں شکریہ</string>

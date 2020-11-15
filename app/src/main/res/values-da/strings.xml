@@ -242,10 +242,10 @@
     <string name="memory_total">i alt</string>
     <string name="memory_used">Brugt</string>
     <string name="ui_version">Version</string>
-    <string name="feedback">Giv mig feedback</string>
-    <string name="about_credit_btn">Open source licenser</string>
+    <string name="pref_feedback">Giv mig feedback</string>
+    <string name="pref_credit">Open source licenser</string>
     <string name="feedback_title">Android Testing Tool: Rapport og feedback</string>
-    <string name="more">Flere programmer fra udvikleren</string>
+    <string name="pref_more_app">Flere programmer fra udvikleren</string>
     <string name="rate_title">Kan du lide appen?</string>
     <string name="rate_message">Lad os vide, hvad du synes</string>
     <string name="rate_navbtn">Nej tak</string>

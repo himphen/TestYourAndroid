@@ -242,10 +242,10 @@
     <string name="memory_total">Całkowity</string>
     <string name="memory_used">Używany</string>
     <string name="ui_version">Wersja</string>
-    <string name="feedback">Przekaż opinię</string>
-    <string name="about_credit_btn">Licencje open source</string>
+    <string name="pref_feedback">Przekaż opinię</string>
+    <string name="pref_credit">Licencje open source</string>
     <string name="feedback_title">Narzędzie do testowania Androida: raport i opinie</string>
-    <string name="more">Więcej aplikacji od programisty</string>
+    <string name="pref_more_app">Więcej aplikacji od programisty</string>
     <string name="rate_title">Czy podoba Ci się ta aplikacja?</string>
     <string name="rate_message">Pozwól nam wiedzieć co myślisz</string>
     <string name="rate_navbtn">Nie, dziękuję</string>

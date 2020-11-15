@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
@@ -36,28 +37,30 @@ class MonitorCPUFragment : BaseFragment(R.layout.fragment_monitor_cpu) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        speedText.text = "${getCPU(CPU_CURRENT)} MHz"
-        coreText.text = numCores.toString()
-        minText.text = "${getCPU(CPU_MIN)} MHz"
-        maxText.text = "${getCPU(CPU_MAX)} MHz"
-        series.thickness = ConvertUtils.dp2px(3f)
-        series.color = Color.parseColor("#33B5E5")
-        series.isDrawBackground = true
-        series.backgroundColor = Color.parseColor("#AA33B5E5")
-        graphView.addSeries(series)
-        graphView.gridLabelRenderer.gridColor = Color.GRAY
-        graphView.gridLabelRenderer.isHighlightZeroLines = false
-        graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-        graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
-        graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-        graphView.viewport.isYAxisBoundsManual = true
-        graphView.viewport.setMinY(0.0)
-        graphView.viewport.setMaxY(getCPU(CPU_MAX).toDouble())
-        graphView.viewport.isXAxisBoundsManual = true
-        graphView.viewport.setMinX(0.0)
-        graphView.viewport.setMaxX(36.0)
-        graphView.viewport.isScrollable = false
-        graphView.viewport.isScalable = false
+        context?.let { context ->
+            speedText.text = "${getCPU(CPU_CURRENT)} MHz"
+            coreText.text = numCores.toString()
+            minText.text = "${getCPU(CPU_MIN)} MHz"
+            maxText.text = "${getCPU(CPU_MAX)} MHz"
+            series.thickness = ConvertUtils.dp2px(4f)
+            series.color = ContextCompat.getColor(context, R.color.lineColor1)
+            series.isDrawBackground = true
+            series.backgroundColor = ContextCompat.getColor(context, R.color.lineColor1A)
+            graphView.addSeries(series)
+            graphView.gridLabelRenderer.gridColor = Color.GRAY
+            graphView.gridLabelRenderer.isHighlightZeroLines = false
+            graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
+            graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+            graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
+            graphView.viewport.isYAxisBoundsManual = true
+            graphView.viewport.setMinY(0.0)
+            graphView.viewport.setMaxY(getCPU(CPU_MAX).toDouble())
+            graphView.viewport.isXAxisBoundsManual = true
+            graphView.viewport.setMinX(0.0)
+            graphView.viewport.setMaxX(36.0)
+            graphView.viewport.isScrollable = false
+            graphView.viewport.isScalable = false
+        }
     }
 
     override fun onResume() {

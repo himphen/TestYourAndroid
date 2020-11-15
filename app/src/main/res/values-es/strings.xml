@@ -282,10 +282,10 @@
     <string name="memory_total">Total</string>
     <string name="memory_used">Utilizado</string>
     <string name="ui_version">Versión</string>
-    <string name="feedback">Feedback</string>
-    <string name="about_credit_btn">Licencias de código abierto</string>
+    <string name="pref_feedback">Feedback</string>
+    <string name="pref_credit">Licencias de código abierto</string>
     <string name="feedback_title">Probar la aplicación Android: informe y comentarios</string>
-    <string name="more">Los desarrolladores de aplicaciones</string>
+    <string name="pref_more_app">Los desarrolladores de aplicaciones</string>
     <string name="rate_title">Envíe su opinión al desarrollador</string>
     <string name="rate_message">Califica esta aplicación en Google Play para apoyar desarrollador. Por favor, póngase en contacto con el desarrollador si tiene alguna pregunta.</string>
     <string name="rate_navbtn">No, gracias</string>

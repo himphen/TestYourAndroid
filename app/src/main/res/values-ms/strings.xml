@@ -242,10 +242,10 @@
     <string name="memory_total">Jumlah</string>
     <string name="memory_used">Digunakan</string>
     <string name="ui_version">Versi</string>
-    <string name="feedback">Berikan saya maklum balas</string>
-    <string name="about_credit_btn">Lesen sumber terbuka</string>
+    <string name="pref_feedback">Berikan saya maklum balas</string>
+    <string name="pref_credit">Lesen sumber terbuka</string>
     <string name="feedback_title">Alat Ujian Android: Laporan dan Maklum Balas</string>
-    <string name="more">Lebih banyak Apps dari pemaju</string>
+    <string name="pref_more_app">Lebih banyak Apps dari pemaju</string>
     <string name="rate_title">Adakah anda suka aplikasinya?</string>
     <string name="rate_message">Marilah kita tahu apa yang anda fikirkan</string>
     <string name="rate_navbtn">Tidak, Terima kasih</string>

@@ -15,10 +15,10 @@
         android:layout_weight="2"
         app:bubbleColor="@color/primary"
         app:bubbleRadius="24dp"
-        app:bubbleRuleColor="@color/green500"
+        app:bubbleRuleColor="@color/lineColor4"
         app:bubbleRuleRadius="26dp"
         app:bubbleRuleWidth="1dp"
-        app:horizontalColor="@color/green500"
+        app:horizontalColor="@color/lineColor4"
         app:limitCircleWidth="6dp"
         app:limitColor="@color/primary"
         app:limitRadius="120dp" />
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="13°"
-                    android:textColor="@color/grey900"
+                    android:textColor="@color/primaryText"
                     android:textSize="32sp"
                     tools:ignore="HardcodedText" />
 
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="@string/bubble_level_vertical"
-                    android:textColor="@color/grey600"
+                    android:textColor="@color/hintText"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="13°"
-                    android:textColor="@color/grey900"
+                    android:textColor="@color/primaryText"
                     android:textSize="32sp"
                     tools:ignore="HardcodedText" />
 
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="@string/bubble_level_horizontal"
-                    android:textColor="@color/grey600"
+                    android:textColor="@color/hintText"
                     android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>

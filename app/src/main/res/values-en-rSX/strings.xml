@@ -242,10 +242,10 @@
     <string name="memory_total">Total</string>
     <string name="memory_used">Used</string>
     <string name="ui_version">Version</string>
-    <string name="feedback">Give me Feedback</string>
-    <string name="about_credit_btn">Open source licenses</string>
+    <string name="pref_feedback">Give me Feedback</string>
+    <string name="pref_credit">Open source licenses</string>
     <string name="feedback_title">Android Testing Tool: Report and Feedback</string>
-    <string name="more">More Apps from developer</string>
+    <string name="pref_more_app">More Apps from developer</string>
     <string name="rate_title">Did you like the app?</string>
     <string name="rate_message">Let us know what you think</string>
     <string name="rate_navbtn">No, thanks</string>

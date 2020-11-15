@@ -298,10 +298,10 @@
     <string name="memory_total">कुल</string>
     <string name="memory_used">प्रयुक्त</string>
     <string name="ui_version">संस्करण</string>
-    <string name="feedback">मुझे प्रतिक्रिया दें</string>
-    <string name="about_credit_btn">ओपन सोर्स लाइसेंस</string>
+    <string name="pref_feedback">मुझे प्रतिक्रिया दें</string>
+    <string name="pref_credit">ओपन सोर्स लाइसेंस</string>
     <string name="feedback_title">अपने एंड्रॉइड ऐप का परीक्षण करें: रिपोर्ट और फीडबैक</string>
-    <string name="more">डेवलपर का ऐप</string>
+    <string name="pref_more_app">डेवलपर का ऐप</string>
     <string name="rate_title">डेवलपर को कुछ फ़ीडबैक दें</string>
     <string name="rate_message">डेवलपर का समर्थन करने के लिए Google Play में इस ऐप को रेट करें। यदि आपके कोई प्रश्न हैं तो डेवलपर से संपर्क करें।</string>
     <string name="rate_navbtn">नहीं, धन्यवाद</string>

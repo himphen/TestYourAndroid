@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:textColor="@color/grey600"
+            android:textColor="@color/primaryText"
             android:textSize="@dimen/home_text_size" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

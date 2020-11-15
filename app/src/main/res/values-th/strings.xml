@@ -242,10 +242,10 @@
     <string name="memory_total">ทั้งหมด</string>
     <string name="memory_used">มือสอง</string>
     <string name="ui_version">รุ่น</string>
-    <string name="feedback">ให้ข้อเสนอแนะ</string>
-    <string name="about_credit_btn">โอเพ่นซอร์ส</string>
+    <string name="pref_feedback">ให้ข้อเสนอแนะ</string>
+    <string name="pref_credit">โอเพ่นซอร์ส</string>
     <string name="feedback_title">เครื่องมือทดสอบ Android: รายงานและคำติชม</string>
-    <string name="more">แอปของนักพัฒนาซอฟต์แวร์</string>
+    <string name="pref_more_app">แอปของนักพัฒนาซอฟต์แวร์</string>
     <string name="rate_title">ให้ข้อเสนอแนะแก่นักพัฒนาซอฟต์แวร์</string>
     <string name="rate_message">ให้คะแนนแอปนี้ใน Google Play เพื่อสนับสนุนผู้พัฒนา ติดต่อนักพัฒนาซอฟต์แวร์หากมีคำถามใด ๆ</string>
     <string name="rate_navbtn">ไม่เป็นไรขอบคุณ</string>

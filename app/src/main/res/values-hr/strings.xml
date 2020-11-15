@@ -242,10 +242,10 @@
     <string name="memory_total">ukupno</string>
     <string name="memory_used">koristi</string>
     <string name="ui_version">Verzija</string>
-    <string name="feedback">Dajte mi povratne informacije</string>
-    <string name="about_credit_btn">Licence otvorenog koda</string>
+    <string name="pref_feedback">Dajte mi povratne informacije</string>
+    <string name="pref_credit">Licence otvorenog koda</string>
     <string name="feedback_title">Alat za testiranje Androida: Izvješće i povratne informacije</string>
-    <string name="more">Više aplikacija razvojnog programera</string>
+    <string name="pref_more_app">Više aplikacija razvojnog programera</string>
     <string name="rate_title">Jeste li vam se sviđali?</string>
     <string name="rate_message">Recite nam što mislite</string>
     <string name="rate_navbtn">Ne hvala</string>

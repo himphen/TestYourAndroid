@@ -242,10 +242,10 @@
     <string name="memory_total">Teljes</string>
     <string name="memory_used">Használt</string>
     <string name="ui_version">Változat</string>
-    <string name="feedback">Adjon nekem visszajelzést</string>
-    <string name="about_credit_btn">Nyílt forráskódú licencek</string>
+    <string name="pref_feedback">Adjon nekem visszajelzést</string>
+    <string name="pref_credit">Nyílt forráskódú licencek</string>
     <string name="feedback_title">Android tesztelő eszköz: jelentés és visszajelzés</string>
-    <string name="more">További fejlesztői alkalmazások</string>
+    <string name="pref_more_app">További fejlesztői alkalmazások</string>
     <string name="rate_title">Tetszett az alkalmazás?</string>
     <string name="rate_message">Tudassa velünk, mit gondol</string>
     <string name="rate_navbtn">Nem köszönöm</string>

@@ -179,9 +179,9 @@
     <string name="nfc_setting">NFC 設定</string>
     <string name="nfc_tutor_message">請將任何 NFC 標籤放在機背，成功掃瞄時有聲響，並彈出對話框顯示 NFC 內容（如有）。</string>
     <string name="ui_version">版本</string>
-    <string name="feedback">回報問題</string>
+    <string name="pref_feedback">回報問題</string>
     <string name="feedback_title">Android 測試工具 App 回報問題及意見</string>
-    <string name="more">開發人員更多程式</string>
+    <string name="pref_more_app">開發人員更多程式</string>
     <string name="cpu_speed">速度</string>
     <string name="cpu_core">核心數目</string>
     <string name="cpu_min">最小速度</string>
@@ -255,7 +255,7 @@
     <string name="app_package_string_7">Data Directory</string>
     <string name="app_package_string_9">Min SDK Version</string>
     <string name="app_package_string_8">APK Directory</string>
-    <string name="about_credit_btn">開源庫</string>
+    <string name="pref_credit">開源庫</string>
     <string name="title_activity_step">計步器</string>
     <string name="title_activity_temperature">溫度感應器</string>
     <string name="title_activity_bluetooth">藍牙</string>

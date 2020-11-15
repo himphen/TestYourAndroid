@@ -149,7 +149,9 @@ class InfoBluetoothFragment : BaseFragment(R.layout.fragment_info_listview) {
                 .positiveButton(R.string.bluetooth_enable_posbtn) {
                     startSettingsActivity(context, Settings.ACTION_BLUETOOTH_SETTINGS)
                 }
-                .negativeButton(R.string.ui_cancel)
+                .negativeButton(R.string.ui_cancel) {
+                    activity?.finish()
+                }
                 .show()
         }
     }

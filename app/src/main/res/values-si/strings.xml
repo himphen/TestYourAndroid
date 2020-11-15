@@ -242,10 +242,10 @@
     <string name="memory_total">මුළු</string>
     <string name="memory_used">පාවිච්චි කරන ලදි</string>
     <string name="ui_version">පිටපත</string>
-    <string name="feedback">මට ප්රතිචාරයක් දෙන්න</string>
-    <string name="about_credit_btn">විවෘත කේත අවසරය</string>
+    <string name="pref_feedback">මට ප්රතිචාරයක් දෙන්න</string>
+    <string name="pref_credit">විවෘත කේත අවසරය</string>
     <string name="feedback_title">ඇන්ඩ්රොයිඩ් පරීක්ෂා කිරීමේ මෙවලම: වාර්තාව සහ ප්රතිචාර</string>
-    <string name="more">සංවර්ධකයෙකුගෙන් තවත් යෙදුම්</string>
+    <string name="pref_more_app">සංවර්ධකයෙකුගෙන් තවත් යෙදුම්</string>
     <string name="rate_title">ඔබ ඇප් එක කැමතිද?</string>
     <string name="rate_message">ඔබ සිතන දේ අපව දන්වා සිටින්න</string>
     <string name="rate_navbtn">නැ ස්තුතියි</string>

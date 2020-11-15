@@ -24,12 +24,14 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
-import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
+import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
 import kotlinx.android.synthetic.main.fragment_hardware_location.*
 import java.util.ArrayList
 
@@ -121,6 +123,14 @@ class HardwareLocationFragment : BaseFragment(R.layout.fragment_hardware_locatio
 
                     mGoogleMap = googleMap
                     mGoogleMap?.let { mGoogleMap ->
+                        if (Utils.isDarkMode(context)) {
+                            val style = MapStyleOptions.loadRawResourceStyle(
+                                context,
+                                R.raw.google_map_dark_mode
+                            )
+                            mGoogleMap.setMapStyle(style)
+                        }
+
                         val mLocationRequest = LocationRequest.create()
                         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
                         mLocationRequest.interval = 1000 // Update location every second

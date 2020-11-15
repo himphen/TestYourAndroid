@@ -71,9 +71,9 @@ class WifiCurrentFragment : BaseFragment(R.layout.fragment_tool_wifi_strength) {
             series.appendData(DataPoint(lastXValue, yValue), true, 36)
             context?.let { context ->
                 series.color = when {
-                    yValue > -60 -> ContextCompat.getColor(context, R.color.green500)
-                    yValue > -80 -> ContextCompat.getColor(context, R.color.gold)
-                    else -> ContextCompat.getColor(context, R.color.pink500)
+                    yValue > -60 -> ContextCompat.getColor(context, R.color.lineColor4)
+                    yValue > -80 -> ContextCompat.getColor(context, R.color.lineColor2)
+                    else -> ContextCompat.getColor(context, R.color.lineColor1)
                 }
             }
             graphView.viewport.scrollToEnd()
@@ -104,7 +104,7 @@ class WifiCurrentFragment : BaseFragment(R.layout.fragment_tool_wifi_strength) {
             rvlist.adapter = adapter
             rvlist.layoutManager = LinearLayoutManager(context)
 
-            series.color = ContextCompat.getColor(context, R.color.blue500)
+            series.color = ContextCompat.getColor(context, R.color.lineColor3)
             series.thickness = ConvertUtils.dp2px(4f)
             graphView.addSeries(series)
             graphView.gridLabelRenderer.gridColor = Color.GRAY

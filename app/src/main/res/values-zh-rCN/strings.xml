@@ -197,9 +197,9 @@
     <string name="nfc_enable_posbtn">前往 NFC 设定</string>
     <string name="nfc_setting">NFC 设定</string>
     <string name="ui_version">版本</string>
-    <string name="feedback">回报问题</string>
+    <string name="pref_feedback">回报问题</string>
     <string name="feedback_title">Android 测试工具 App 回报问题及意见</string>
-    <string name="more">开发人员更多程式</string>
+    <string name="pref_more_app">开发人员更多程式</string>
     <string name="cpu_speed">速度</string>
     <string name="cpu_core">核心数目</string>
     <string name="cpu_min">最小速度</string>
@@ -276,7 +276,7 @@
     <string name="app_package_string_6">Update Time</string>
     <string name="app_package_string_9">Min SDK Version</string>
     <string name="app_package_string_8">APK Directory</string>
-    <string name="about_credit_btn">Open source licenses</string>
+    <string name="pref_credit">Open source licenses</string>
     <string name="title_activity_step">计步器</string>
     <string name="title_activity_temperature">温度感应器</string>
     <string name="title_activity_bluetooth">蓝牙</string>

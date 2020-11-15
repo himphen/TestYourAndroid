@@ -242,10 +242,10 @@
     <string name="memory_total">Totaal</string>
     <string name="memory_used">Gebruikt</string>
     <string name="ui_version">Versie</string>
-    <string name="feedback">Geef me feedback</string>
-    <string name="about_credit_btn">Open source licenties</string>
+    <string name="pref_feedback">Geef me feedback</string>
+    <string name="pref_credit">Open source licenties</string>
     <string name="feedback_title">Android-testtool: rapport en feedback</string>
-    <string name="more">Meer apps van ontwikkelaar</string>
+    <string name="pref_more_app">Meer apps van ontwikkelaar</string>
     <string name="rate_title">Vond je de app leuk?</string>
     <string name="rate_message">Laat ons weten wat je denkt</string>
     <string name="rate_navbtn">Nee bedankt</string>

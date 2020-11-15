@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">@color/md_grey_900</color>
+    <color name="primary_dark">@color/md_grey_900</color>
+    <color name="accent">@color/md_blue_A400</color>
+
+    <color name="background">@color/md_grey_900</color>
+    <color name="border">@color/md_grey_800</color>
+    <color name="primaryText">@color/md_grey_100</color>
+    <color name="secondaryText">@color/md_grey_200</color>
+    <color name="hintText">@color/md_grey_400</color>
+
+    <color name="lineColor1">@color/md_pink_900</color>
+    <color name="lineColor1A">@color/md_pink_800</color>
+    <color name="lineColor2">@color/md_yellow_900</color>
+    <color name="lineColor2A">@color/md_yellow_800</color>
+    <color name="lineColor3">@color/md_blue_900</color>
+    <color name="lineColor3A">@color/md_blue_800</color>
+    <color name="lineColor4">@color/md_green_900</color>
+    <color name="lineColor4A">@color/md_green_800</color>
+
+    <color name="mainButton">@color/md_blue_900</color>
+    <color name="greenButton">@color/md_green_900</color>
+</resources>

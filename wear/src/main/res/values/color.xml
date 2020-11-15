@@ -5,8 +5,8 @@
     <color name="accent">#2979FF</color>
 
     <!-- Greyscales -->
-    <color name="grey600">#757575</color>
-    <color name="grey800">#2D2D2D</color>
+    <color name="hintText">#757575</color>
+    <color name="secondaryText">#2D2D2D</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 </resources>

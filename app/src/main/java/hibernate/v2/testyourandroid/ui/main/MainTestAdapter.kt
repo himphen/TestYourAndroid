@@ -81,7 +81,7 @@ class MainTestAdapter(private val list: List<Any>) :
                             .badgeColor(
                                 ContextCompat.getColor(
                                     holder.mainIv.context,
-                                    R.color.green500
+                                    R.color.lineColor4
                                 )
                             )
                             .text1("NEW")
@@ -93,7 +93,7 @@ class MainTestAdapter(private val list: List<Any>) :
                     GridItem.Badge.BETA -> {
                         val drawable = BadgeDrawable.Builder()
                             .type(BadgeDrawable.TYPE_ONLY_ONE_TEXT)
-                            .badgeColor(ContextCompat.getColor(holder.mainIv.context, R.color.gold))
+                            .badgeColor(ContextCompat.getColor(holder.mainIv.context, R.color.lineColor2))
                             .text1("BETA")
                             .build()
 

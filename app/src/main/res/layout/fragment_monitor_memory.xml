@@ -32,7 +32,7 @@
                 android:id="@+id/view1"
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
-                android:background="#FF8800" />
+                android:background="@color/lineColor3" />
 
             <LinearLayout
                 android:layout_width="match_parent"

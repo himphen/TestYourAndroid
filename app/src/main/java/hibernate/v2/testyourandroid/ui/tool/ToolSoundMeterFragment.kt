@@ -65,9 +65,9 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
             val buffer = ShortArray(BUFFER_SIZE)
             try {
                 series.thickness = ConvertUtils.dp2px(3f)
-                series.color = ContextCompat.getColor(context, R.color.green500)
+                series.color = ContextCompat.getColor(context, R.color.lineColor4)
                 series.isDrawBackground = true
-                series.backgroundColor = ContextCompat.getColor(context, R.color.green500a)
+                series.backgroundColor = ContextCompat.getColor(context, R.color.lineColor4A)
                 graphView.addSeries(series)
                 graphView.viewport.isYAxisBoundsManual = true
                 graphView.viewport.setMinY(0.0)
@@ -124,15 +124,15 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
                                 series.appendData(DataPoint(lastXValue, db.toDouble()), true, 100)
                                 graphView.viewport.scrollToEnd()
                                 series.color = when {
-                                    db > 100 -> ContextCompat.getColor(context, R.color.pink500)
-                                    db > 80 -> ContextCompat.getColor(context, R.color.gold)
-                                    else -> ContextCompat.getColor(context, R.color.green500)
+                                    db > 100 -> ContextCompat.getColor(context, R.color.lineColor1)
+                                    db > 80 -> ContextCompat.getColor(context, R.color.lineColor2)
+                                    else -> ContextCompat.getColor(context, R.color.lineColor4)
                                 }
                                 series.isDrawBackground = true
                                 series.backgroundColor = when {
-                                    db > 100 -> ContextCompat.getColor(context, R.color.pink500a)
-                                    db > 80 -> ContextCompat.getColor(context, R.color.gold_a)
-                                    else -> ContextCompat.getColor(context, R.color.green500a)
+                                    db > 100 -> ContextCompat.getColor(context, R.color.lineColor1A)
+                                    db > 80 -> ContextCompat.getColor(context, R.color.lineColor2A)
+                                    else -> ContextCompat.getColor(context, R.color.lineColor4A)
                                 }
                                 meterCurrentTv.postDelayed(this, 500)
                             }

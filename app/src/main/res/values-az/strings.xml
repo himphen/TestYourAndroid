@@ -242,10 +242,10 @@
     <string name="memory_total">Ümumi</string>
     <string name="memory_used">İstifadə olunmuşdur</string>
     <string name="ui_version">Versiya</string>
-    <string name="feedback">Mənə Əlaqə verin</string>
-    <string name="about_credit_btn">Açıq mənbə lisenziyaları</string>
+    <string name="pref_feedback">Mənə Əlaqə verin</string>
+    <string name="pref_credit">Açıq mənbə lisenziyaları</string>
     <string name="feedback_title">Android Test Vasitəsi: Hesabat və Əlaqə</string>
-    <string name="more">Developer istifadəçilər tərəfindən yaradılıb</string>
+    <string name="pref_more_app">Developer istifadəçilər tərəfindən yaradılıb</string>
     <string name="rate_title">Proqramı sevirdinizmi?</string>
     <string name="rate_message">Nə düşündüyünüzü bizə bildirin</string>
     <string name="rate_navbtn">Xeyr, təşəkkürlər</string>

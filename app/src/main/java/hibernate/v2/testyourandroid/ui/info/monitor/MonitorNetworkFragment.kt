@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
@@ -54,27 +55,29 @@ class MonitorNetworkFragment : BaseFragment(R.layout.fragment_monitor_network) {
             upSpeedText.setText(R.string.ui_not_support)
             downSpeedText.setText(R.string.ui_not_support)
         } else {
-            isSupported = true
-            series.thickness = ConvertUtils.dp2px(3f)
-            series.color = Color.parseColor("#AA66CC")
-            series.isDrawBackground = true
-            series.backgroundColor = Color.parseColor("#AAAA66CC")
-            series2.thickness = ConvertUtils.dp2px(3f)
-            series2.color = Color.parseColor("#99CC00")
-            series2.isDrawBackground = true
-            series2.backgroundColor = Color.parseColor("#AA99CC00")
-            graphView.addSeries(series)
-            graphView.addSeries(series2)
-            graphView.gridLabelRenderer.gridColor = Color.GRAY
-            graphView.gridLabelRenderer.isHighlightZeroLines = false
-            graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-            graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
-            graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-            graphView.viewport.isXAxisBoundsManual = true
-            graphView.viewport.setMinX(0.0)
-            graphView.viewport.setMaxX(36.0)
-            graphView.viewport.isScrollable = false
-            graphView.viewport.isScalable = false
+            context?.let { context->
+                isSupported = true
+                series.thickness = ConvertUtils.dp2px(4f)
+                series.color = ContextCompat.getColor(context, R.color.lineColor4)
+                series.isDrawBackground = true
+                series.color = ContextCompat.getColor(context, R.color.lineColor4A)
+                series2.thickness = ConvertUtils.dp2px(4f)
+                series2.color = ContextCompat.getColor(context, R.color.lineColor2)
+                series2.isDrawBackground = true
+                series2.color = ContextCompat.getColor(context, R.color.lineColor2A)
+                graphView.addSeries(series)
+                graphView.addSeries(series2)
+                graphView.gridLabelRenderer.gridColor = Color.GRAY
+                graphView.gridLabelRenderer.isHighlightZeroLines = false
+                graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
+                graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+                graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
+                graphView.viewport.isXAxisBoundsManual = true
+                graphView.viewport.setMinX(0.0)
+                graphView.viewport.setMaxX(36.0)
+                graphView.viewport.isScrollable = false
+                graphView.viewport.isScalable = false
+            }
         }
     }
 

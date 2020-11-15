@@ -242,10 +242,10 @@
     <string name="memory_total">Total</string>
     <string name="memory_used">të përdorura</string>
     <string name="ui_version">Version</string>
-    <string name="feedback">Më jep përgjigje</string>
-    <string name="about_credit_btn">Licencat me burim të hapur</string>
+    <string name="pref_feedback">Më jep përgjigje</string>
+    <string name="pref_credit">Licencat me burim të hapur</string>
     <string name="feedback_title">Mjet i testimit Android: Raporti dhe Feedback</string>
-    <string name="more">Më shumë aplikacione nga zhvilluesi</string>
+    <string name="pref_more_app">Më shumë aplikacione nga zhvilluesi</string>
     <string name="rate_title">A e pëlqeu aplikacionin?</string>
     <string name="rate_message">Na tregoni se çfarë mendoni</string>
     <string name="rate_navbtn">Jo faleminderit</string>

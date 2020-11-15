@@ -242,10 +242,10 @@
     <string name="memory_total">Celkový</string>
     <string name="memory_used">Použitý</string>
     <string name="ui_version">Verze</string>
-    <string name="feedback">Dejte mi zpětnou vazbu</string>
-    <string name="about_credit_btn">Licence s otevřeným zdrojovým kódem</string>
+    <string name="pref_feedback">Dejte mi zpětnou vazbu</string>
+    <string name="pref_credit">Licence s otevřeným zdrojovým kódem</string>
     <string name="feedback_title">Android Testovací nástroj: Zpráva a zpětná vazba</string>
-    <string name="more">Další aplikace od vývojáře</string>
+    <string name="pref_more_app">Další aplikace od vývojáře</string>
     <string name="rate_title">Líbilo se vám aplikace?</string>
     <string name="rate_message">Dejte nám vědět, co si myslíte</string>
     <string name="rate_navbtn">Ne, díky</string>

@@ -150,17 +150,17 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
                 Sensor.TYPE_AMBIENT_TEMPERATURE -> sensorEventListener = temperatureListener
                 Sensor.TYPE_RELATIVE_HUMIDITY -> sensorEventListener = humidityListener
             }
-            series.color = ContextCompat.getColor(context, R.color.blue500)
+            series.color = ContextCompat.getColor(context, R.color.lineColor3)
             series.thickness = ConvertUtils.dp2px(4f)
             graphView.addSeries(series)
             if (isGraph2) {
-                series2.color = ContextCompat.getColor(context, R.color.pink500)
-                series2.thickness = 3
+                series2.color = ContextCompat.getColor(context, R.color.lineColor1)
+                series2.thickness = ConvertUtils.dp2px(4f)
                 graphView.addSeries(series2)
             }
             if (isGraph3) {
-                series2.color = ContextCompat.getColor(context, R.color.green500)
-                series2.thickness = 3
+                series3.color = ContextCompat.getColor(context, R.color.lineColor4)
+                series3.thickness = ConvertUtils.dp2px(4f)
                 graphView.addSeries(series3)
             }
             for (i in stringArray.indices) {

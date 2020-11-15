@@ -242,10 +242,10 @@
     <string name="memory_total">합계</string>
     <string name="memory_used">익숙한</string>
     <string name="ui_version">번역</string>
-    <string name="feedback">의견 보내기</string>
-    <string name="about_credit_btn">오픈 소스 라이선스</string>
+    <string name="pref_feedback">의견 보내기</string>
+    <string name="pref_credit">오픈 소스 라이선스</string>
     <string name="feedback_title">Android 테스팅 도구 : 보고서 및 의견</string>
-    <string name="more">개발자의 더 많은 앱</string>
+    <string name="pref_more_app">개발자의 더 많은 앱</string>
     <string name="rate_title">그 앱이 좋았 니?</string>
     <string name="rate_message">당신이 생각하는 것을 저희에게 알려주십시오.</string>
     <string name="rate_navbtn">괜찮습니다</string>

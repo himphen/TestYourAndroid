@@ -24,14 +24,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:text="21"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryText"
                 android:textSize="56sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="dB"
-                android:textColor="@color/black"
+                android:textColor="@color/primaryText"
                 android:textSize="24sp"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MIN"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryText"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -69,14 +69,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
                         android:text="0"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryText"
                         android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="dB"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryText"
                         android:textSize="14sp"
                         tools:ignore="HardcodedText" />
                 </LinearLayout>
@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="AVG"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryText"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -108,14 +108,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
                         android:text="0"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryText"
                         android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="dB"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryText"
                         android:textSize="14sp"
                         tools:ignore="HardcodedText" />
                 </LinearLayout>
@@ -133,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MAX"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primaryText"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -147,14 +147,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
                         android:text="0"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryText"
                         android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="dB"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primaryText"
                         android:textSize="14sp"
                         tools:ignore="HardcodedText" />
                 </LinearLayout>

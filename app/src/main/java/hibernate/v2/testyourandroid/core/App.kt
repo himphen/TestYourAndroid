@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Build
 import androidx.multidex.MultiDex
+import androidx.preference.PreferenceManager
 import com.appbrain.AppBrain
 import com.blankj.utilcode.util.Utils
 import com.google.android.gms.ads.AdRequest
@@ -37,6 +38,14 @@ class App : Application() {
         })
 
         Utils.init(this)
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        hibernate.v2.testyourandroid.util.Utils.updateTheme(
+            sharedPreferences.getString(
+                hibernate.v2.testyourandroid.util.Utils.PREF_THEME,
+                ""
+            )
+        )
 
         // init AppBrain
         initAppBrain()

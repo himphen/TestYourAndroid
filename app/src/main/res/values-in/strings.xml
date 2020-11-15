@@ -298,10 +298,10 @@
     <string name="memory_total">Total</string>
     <string name="memory_used">Dipakai</string>
     <string name="ui_version">Versi</string>
-    <string name="feedback">Beri saya umpan balik</string>
-    <string name="about_credit_btn">Lisensi Open source</string>
+    <string name="pref_feedback">Beri saya umpan balik</string>
+    <string name="pref_credit">Lisensi Open source</string>
     <string name="feedback_title">Aplikasi Tes Android Anda: Laporan dan Masukan</string>
-    <string name="more">Pengembang Aplikasi</string>
+    <string name="pref_more_app">Pengembang Aplikasi</string>
     <string name="rate_title">Apakah Anda menyukai aplikasi ini?</string>
     <string name="rate_message">Beri tahu kami pendapat Anda</string>
     <string name="rate_navbtn">Tdak, terima kasih</string>

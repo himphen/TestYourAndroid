@@ -242,10 +242,10 @@
     <string name="memory_total">Всего</string>
     <string name="memory_used">Используемый</string>
     <string name="ui_version">Версия</string>
-    <string name="feedback">Отправить мне отзыв</string>
-    <string name="about_credit_btn">Лицензии с открытым кодом</string>
+    <string name="pref_feedback">Отправить мне отзыв</string>
+    <string name="pref_credit">Лицензии с открытым кодом</string>
     <string name="feedback_title">Инструмент тестирования Android: отчет и отзывы</string>
-    <string name="more">Другие приложения от разработчика</string>
+    <string name="pref_more_app">Другие приложения от разработчика</string>
     <string name="rate_title">Вам понравилось приложение?</string>
     <string name="rate_message">Поделитесь с нами вашими мыслями</string>
     <string name="rate_navbtn">Нет, спасибо</string>

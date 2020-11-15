@@ -201,7 +201,9 @@ class WifiFragment : BaseFragment(R.layout.fragment_view_pager_conatiner) {
                 .positiveButton(R.string.wifi_enable_posbtn) {
                     Utils.startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
                 }
-                .negativeButton(R.string.ui_cancel)
+                .negativeButton(R.string.ui_cancel) {
+                    activity?.finish()
+                }
                 .show()
         }
     }

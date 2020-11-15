@@ -242,10 +242,10 @@
     <string name="memory_total">totale</string>
     <string name="memory_used">gebruik</string>
     <string name="ui_version">weergawe</string>
-    <string name="feedback">Gee my terugvoer</string>
-    <string name="about_credit_btn">Oop bron lisensies</string>
+    <string name="pref_feedback">Gee my terugvoer</string>
+    <string name="pref_credit">Oop bron lisensies</string>
     <string name="feedback_title">Android Toets Tool: Verslag en terugvoer</string>
-    <string name="more">Meer programme van ontwikkelaar</string>
+    <string name="pref_more_app">Meer programme van ontwikkelaar</string>
     <string name="rate_title">Het jy die program gese?</string>
     <string name="rate_message">Laat ons weet wat u dink</string>
     <string name="rate_navbtn">Nee dankie</string>

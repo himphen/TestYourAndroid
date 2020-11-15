@@ -675,11 +675,11 @@
     <string name="memory_total">Total</string>
     <string name="memory_used">Used</string>
     <string name="ui_version">Version</string>
-    <string name="feedback">Give me Feedback</string>
-    <string name="about_restore_purchase_btn" translatable="false">Restore purchase</string>
-    <string name="about_credit_btn">Open source licenses</string>
+    <string name="pref_feedback">Give me Feedback</string>
+    <string name="pref_restore_purchase" translatable="false">Restore purchase</string>
+    <string name="pref_credit">Open source licenses</string>
     <string name="feedback_title">Test Your Android App: Report and Feedback</string>
-    <string name="more">Developer\'s app</string>
+    <string name="pref_more_app">Developer\'s app</string>
     <string name="rate_title">Did you like the app?</string>
     <string name="rate_message">Let us know what you think</string>
     <string name="rate_navbtn">No, thanks</string>
@@ -711,5 +711,15 @@
     <string name="app_not_found">No application found.</string>
     <string name="bubble_level_vertical">Plumb</string>
     <string name="bubble_level_horizontal">Level</string>
+
+    <!--  -->
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_auto">System Default</string>
+    <string-array name="theme_array" translatable="false">
+        <item>@string/theme_light</item>
+        <item>@string/theme_dark</item>
+        <item>@string/theme_auto</item>
+    </string-array>
 
 </resources>

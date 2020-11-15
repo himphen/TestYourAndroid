@@ -242,10 +242,10 @@
     <string name="memory_total">Genel Toplam</string>
     <string name="memory_used">Kullanılmış</string>
     <string name="ui_version">versiyon</string>
-    <string name="feedback">Geri bildirim ver</string>
-    <string name="about_credit_btn">Açık kaynak lisansları</string>
+    <string name="pref_feedback">Geri bildirim ver</string>
+    <string name="pref_credit">Açık kaynak lisansları</string>
     <string name="feedback_title">Android Test Aracı: Rapor ve Geri Bildirim</string>
-    <string name="more">Geliştiriciden daha çok uygulama</string>
+    <string name="pref_more_app">Geliştiriciden daha çok uygulama</string>
     <string name="rate_title">Uygulamayı beğendin mi?</string>
     <string name="rate_message">Haydi ne düşündüğünü söyle</string>
     <string name="rate_navbtn">Hayır teşekkürler</string>

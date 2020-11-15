@@ -242,10 +242,10 @@
     <string name="memory_total">Kabuuang</string>
     <string name="memory_used">Ginamit</string>
     <string name="ui_version">Bersyon</string>
-    <string name="feedback">Bigyan mo ako ng Feedback</string>
-    <string name="about_credit_btn">Mga lisensya ng open source</string>
+    <string name="pref_feedback">Bigyan mo ako ng Feedback</string>
+    <string name="pref_credit">Mga lisensya ng open source</string>
     <string name="feedback_title">Android Testing Tool: Ulat at Feedback</string>
-    <string name="more">Higit pang mga Apps mula sa developer</string>
+    <string name="pref_more_app">Higit pang mga Apps mula sa developer</string>
     <string name="rate_title">Ibig mo ba ang app?</string>
     <string name="rate_message">Ipaalam sa amin kung ano ang iyong iniisip</string>
     <string name="rate_navbtn">Salamat nalang</string>

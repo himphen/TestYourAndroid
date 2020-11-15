@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <Preference
+        android:icon="@drawable/baseline_invert_colors_24"
+        android:key="pref_theme_mode"
+        tools:summary="Dark Mode"
+        android:title="Theme" />
+
+<!--    <SwitchPreference-->
+<!--        android:icon="@drawable/baseline_spellcheck_24"-->
+<!--        android:key="pref_metric_units"-->
+<!--        android:defaultValue="true"-->
+<!--        android:title="Use Metric Units" />-->
+
+    <PreferenceCategory android:title="@string/main_tab_title_2">
+        <Preference
+            android:icon="@drawable/baseline_get_app_24"
+            android:key="pref_more_app"
+            android:title="@string/pref_more_app" />
+
+        <Preference
+            android:icon="@drawable/baseline_share_24"
+            android:key="pref_share"
+            android:title="@string/ui_share" />
+
+        <Preference
+            android:icon="@drawable/baseline_settings_backup_restore_24"
+            android:key="pref_restore_purchase"
+            android:title="@string/pref_restore_purchase" />
+
+        <Preference
+            android:icon="@drawable/baseline_feedback_24"
+            android:key="pref_feedback"
+            android:title="@string/pref_feedback" />
+
+        <Preference
+            android:icon="@drawable/baseline_menu_open_24"
+            android:key="pref_credit"
+            android:title="@string/pref_credit" />
+
+        <Preference
+            android:icon="@drawable/baseline_info_24"
+            android:key="pref_version"
+            android:title="@string/ui_version" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

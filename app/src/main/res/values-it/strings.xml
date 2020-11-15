@@ -298,10 +298,10 @@
     <string name="memory_total">Totale</string>
     <string name="memory_used">Usato</string>
     <string name="ui_version">Versione</string>
-    <string name="feedback">Dammi una valutazione</string>
-    <string name="about_credit_btn">Licenze open source</string>
+    <string name="pref_feedback">Dammi una valutazione</string>
+    <string name="pref_credit">Licenze open source</string>
     <string name="feedback_title">Testare la vostra applicazione Android: Segnalare e DARE una valutazione</string>
-    <string name="more">Svilupattore\'s applicazione</string>
+    <string name="pref_more_app">Svilupattore\'s applicazione</string>
     <string name="rate_title">Ti è piaciuta l\'app?</string>
     <string name="rate_message">Fateci sapere cosa ne pensate</string>
     <string name="rate_navbtn">No, grazie</string>

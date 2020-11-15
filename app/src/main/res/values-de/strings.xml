@@ -242,10 +242,10 @@
     <string name="memory_total">Gesamt</string>
     <string name="memory_used">Gebraucht</string>
     <string name="ui_version">Ausführung</string>
-    <string name="feedback">Gib mir Feedback</string>
-    <string name="about_credit_btn">Open Source Lizenzen</string>
+    <string name="pref_feedback">Gib mir Feedback</string>
+    <string name="pref_credit">Open Source Lizenzen</string>
     <string name="feedback_title">Testen Sie Ihre Android-App: Bericht und Feedback</string>
-    <string name="more">App des Entwicklers</string>
+    <string name="pref_more_app">App des Entwicklers</string>
     <string name="rate_title">Geben Sie dem Entwickler ein Feedback</string>
     <string name="rate_message">Bewerten Sie diese App in Google Play, um den Entwickler zu unterstützen. Wenden Sie sich an den Entwickler, wenn Sie Fragen haben.</string>
     <string name="rate_navbtn">Nein Danke</string>
