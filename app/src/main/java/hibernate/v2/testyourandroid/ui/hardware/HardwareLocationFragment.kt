@@ -44,7 +44,6 @@ class HardwareLocationFragment : BaseFragment(R.layout.fragment_hardware_locatio
     private lateinit var adapter: InfoItemAdapter
     private val list: MutableList<InfoItem> = ArrayList()
     private var mGoogleMap: GoogleMap? = null
-    private var lastKnowLocation: Location? = null
     private var mFusedLocationClient: FusedLocationProviderClient? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -179,41 +178,37 @@ class HardwareLocationFragment : BaseFragment(R.layout.fragment_hardware_locatio
 
             val locationList = locationResult.locations
             if (locationList.size > 0) { //The last location in the list is the newest
-                lastKnowLocation = locationList.last()
+                val lastKnowLocation = locationList.last()
 
                 mGoogleMap?.let { mGoogleMap ->
                     mGoogleMap.isMyLocationEnabled = true
-                    lastKnowLocation?.let { lastKnowLocation ->
-                        for (i in list.indices) {
-                            list[i].contentText = getData(i)
-                        }
-                        adapter.notifyDataSetChanged()
-                        mGoogleMap.animateCamera(
-                            CameraUpdateFactory.newLatLngZoom(
-                                LatLng(
-                                    lastKnowLocation.latitude,
-                                    lastKnowLocation.longitude
-                                ), 15f
-                            )
-                        )
+                    for (i in list.indices) {
+                        list[i].contentText = getData(i, lastKnowLocation)
                     }
+                    adapter.notifyDataSetChanged()
+                    mGoogleMap.animateCamera(
+                        CameraUpdateFactory.newLatLngZoom(
+                            LatLng(
+                                lastKnowLocation.latitude,
+                                lastKnowLocation.longitude
+                            ), 15f
+                        )
+                    )
                 }
             }
         }
     }
 
-    private fun getData(j: Int): String {
+    private fun getData(j: Int, lastKnowLocation: Location): String {
         try {
-            lastKnowLocation?.let { lastKnowLocation ->
-                return when (j) {
-                    0 -> lastKnowLocation.latitude.toString()
-                    1 -> lastKnowLocation.longitude.toString()
-                    2 -> lastKnowLocation.speed.toString() + " m/s"
-                    3 -> lastKnowLocation.altitude.toString() + " m"
-                    4 -> lastKnowLocation.bearing.toString()
-                    5 -> lastKnowLocation.accuracy.toString()
-                    else -> "N/A"
-                }
+            return when (j) {
+                0 -> lastKnowLocation.latitude.toString()
+                1 -> lastKnowLocation.longitude.toString()
+                2 -> lastKnowLocation.speed.toString() + " m/s"
+                3 -> lastKnowLocation.altitude.toString() + " m"
+                4 -> lastKnowLocation.bearing.toString()
+                5 -> lastKnowLocation.accuracy.toString()
+                else -> "N/A"
             }
         } catch (e: Exception) {
         }

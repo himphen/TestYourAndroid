@@ -54,6 +54,7 @@ import hibernate.v2.testyourandroid.ui.tool.ToolFlashlightActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolQRScannerActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolSoundMeterActivity
 import hibernate.v2.testyourandroid.ui.tool.speedtest.ToolSpeedTestActivity
+import hibernate.v2.testyourandroid.util.Utils.isAdHidden
 import kotlinx.android.synthetic.main.fragment_main_gridview.*
 import java.util.Random
 
@@ -71,7 +72,9 @@ class MainTestFragment : BaseFragment(R.layout.fragment_main_gridview) {
             .start()
 
         addTestSectionItem()
-        loadBannerAd(0)
+        if (!isAdHidden(context)) {
+            loadBannerAd(0)
+        }
 
         val columnCount = if (DeviceUtils.isTablet() && ScreenUtils.isLandscape()) 4 else 3
         val gridLayoutManager = GridLayoutManager(activity, columnCount)
@@ -269,16 +272,18 @@ class MainTestFragment : BaseFragment(R.layout.fragment_main_gridview) {
 
     private fun addAdItem() {
         context?.let { context ->
-            if (adCount++ < ITEMS_PER_AD) return
-            val adView = AdView(context)
-            adView.adUnitId = BuildConfig.ADMOB_HOME_AD_ID
-            adView.adSize = AdSize.MEDIUM_RECTANGLE
-            list.add(
-                MainTestAdItem(
-                    adView
+            if (!isAdHidden(context)) {
+                if (adCount++ < ITEMS_PER_AD) return
+                val adView = AdView(context)
+                adView.adUnitId = BuildConfig.ADMOB_HOME_AD_ID
+                adView.adSize = AdSize.MEDIUM_RECTANGLE
+                list.add(
+                    MainTestAdItem(
+                        adView
+                    )
                 )
-            )
-            adCount = 0
+                adCount = 0
+            }
         }
     }
 

@@ -57,6 +57,13 @@ object Utils {
 
     const val DELAY_AD_LAYOUT = 100L
 
+    fun isAdHidden(context: Context?): Boolean {
+        if (context == null) return false
+
+        val defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        return defaultPreferences.getBoolean(PREF_IAP, false)
+    }
+
     fun initAdView(
         context: Context?,
         adLayout: RelativeLayout,
@@ -67,8 +74,7 @@ object Utils {
         if (context == null) return null
 
         try {
-            val defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-            if (!defaultPreferences.getBoolean(PREF_IAP, false)) {
+            if (!isAdHidden(context)) {
                 if (isPreserveSpace) {
                     adLayout.layoutParams.height = SizeUtils.dp2px(50f)
                 }
