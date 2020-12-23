@@ -22,16 +22,20 @@ import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.getMacAddress
-import hibernate.v2.testyourandroid.util.Utils.ipAddressIntToString
-import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.databinding.FragmentToolWifiStrengthBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import kotlinx.android.synthetic.main.fragment_sensor.*
+import hibernate.v2.testyourandroid.util.Utils.getMacAddress
+import hibernate.v2.testyourandroid.util.Utils.ipAddressIntToString
+import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 class WifiCurrentFragment : BaseFragment(R.layout.fragment_tool_wifi_strength) {
+
+    private val binding by viewBinding(FragmentToolWifiStrengthBinding::bind)
+
     companion object {
         const val UPDATE_CHART_INTERVAL = 2000L
         val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -76,7 +80,7 @@ class WifiCurrentFragment : BaseFragment(R.layout.fragment_tool_wifi_strength) {
                     else -> ContextCompat.getColor(context, R.color.lineColor1)
                 }
             }
-            graphView.viewport.scrollToEnd()
+            binding.graphView.viewport.scrollToEnd()
             lastXValue += 1.0
 
             if ((parentFragment as WifiFragment?)?.isScanning == true) {
@@ -101,26 +105,26 @@ class WifiCurrentFragment : BaseFragment(R.layout.fragment_tool_wifi_strength) {
 
             adapter = InfoItemAdapter(list)
             adapter.type = InfoItemAdapter.TYPE_MINIMIZED
-            rvlist.adapter = adapter
-            rvlist.layoutManager = LinearLayoutManager(context)
+            binding.rvlist.adapter = adapter
+            binding.rvlist.layoutManager = LinearLayoutManager(context)
 
             series.color = ContextCompat.getColor(context, R.color.lineColor3)
             series.thickness = ConvertUtils.dp2px(4f)
-            graphView.addSeries(series)
-            graphView.gridLabelRenderer.gridColor = Color.GRAY
-            graphView.gridLabelRenderer.isHighlightZeroLines = false
-            graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-            graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
-            graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-            graphView.viewport.isXAxisBoundsManual = true
-            graphView.viewport.setMinX(0.0)
-            graphView.viewport.setMaxX(36.0)
-            graphView.viewport.isYAxisBoundsManual = true
-            graphView.viewport.setMinY(-100.0)
-            graphView.viewport.setMaxY(-40.0)
-            graphView.viewport.isScrollable = false
-            graphView.viewport.isScalable = false
-            graphView.gridLabelRenderer.labelFormatter = object : DefaultLabelFormatter() {
+            binding.graphView.addSeries(series)
+            binding.graphView.gridLabelRenderer.gridColor = Color.GRAY
+            binding.graphView.gridLabelRenderer.isHighlightZeroLines = false
+            binding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
+            binding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+            binding.graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
+            binding.graphView.viewport.isXAxisBoundsManual = true
+            binding.graphView.viewport.setMinX(0.0)
+            binding.graphView.viewport.setMaxX(36.0)
+            binding.graphView.viewport.isYAxisBoundsManual = true
+            binding.graphView.viewport.setMinY(-100.0)
+            binding.graphView.viewport.setMaxY(-40.0)
+            binding.graphView.viewport.isScrollable = false
+            binding.graphView.viewport.isScalable = false
+            binding.graphView.gridLabelRenderer.labelFormatter = object : DefaultLabelFormatter() {
                 override fun formatLabel(value: Double, isValueX: Boolean): String {
                     return if (isValueX) {
                         super.formatLabel(value, isValueX)

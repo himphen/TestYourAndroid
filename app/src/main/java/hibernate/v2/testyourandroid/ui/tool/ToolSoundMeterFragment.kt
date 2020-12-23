@@ -13,11 +13,12 @@ import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentToolSoundMeterBinding
+import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.logException
 import hibernate.v2.testyourandroid.util.ext.format
-import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_tool_sound_meter.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 import kotlin.math.log10
 
@@ -25,6 +26,9 @@ import kotlin.math.log10
  * Created by himphen on 21/5/16.
  */
 class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) {
+
+    private val binding by viewBinding(FragmentToolSoundMeterBinding::bind)
+
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
     private var mindB: Int? = null
@@ -36,7 +40,7 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE)
+            requestMultiplePermissions.launch(PERMISSION_NAME)
         }
     }
 
@@ -68,20 +72,21 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
                 series.color = ContextCompat.getColor(context, R.color.lineColor4)
                 series.isDrawBackground = true
                 series.backgroundColor = ContextCompat.getColor(context, R.color.lineColor4A)
-                graphView.addSeries(series)
-                graphView.viewport.isYAxisBoundsManual = true
-                graphView.viewport.setMinY(0.0)
-                graphView.viewport.setMaxY(120.0)
-                graphView.viewport.isXAxisBoundsManual = true
-                graphView.viewport.setMinX(0.0)
-                graphView.viewport.setMaxX(36.0)
-                graphView.viewport.isScrollable = false
-                graphView.viewport.isScalable = false
-                graphView.gridLabelRenderer.gridColor = Color.GRAY
-                graphView.gridLabelRenderer.isHighlightZeroLines = false
-                graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-                graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
-                graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
+                binding.graphView.addSeries(series)
+                binding.graphView.viewport.isYAxisBoundsManual = true
+                binding.graphView.viewport.setMinY(0.0)
+                binding.graphView.viewport.setMaxY(120.0)
+                binding.graphView.viewport.isXAxisBoundsManual = true
+                binding.graphView.viewport.setMinX(0.0)
+                binding.graphView.viewport.setMaxX(36.0)
+                binding.graphView.viewport.isScrollable = false
+                binding.graphView.viewport.isScalable = false
+                binding.graphView.gridLabelRenderer.gridColor = Color.GRAY
+                binding.graphView.gridLabelRenderer.isHighlightZeroLines = false
+                binding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
+                binding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+                binding.graphView.gridLabelRenderer.gridStyle =
+                    GridLabelRenderer.GridStyle.HORIZONTAL
                 mAudioRecord = AudioRecord(
                     MediaRecorder.AudioSource.MIC,
                     SAMPLE_RATE_IN_HZ,
@@ -96,7 +101,7 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
                 mAudioRecord?.let {
                     it.startRecording()
                     mIsRecording = true
-                    meterCurrentTv.post(object : Runnable {
+                    binding.meterCurrentTv.post(object : Runnable {
                         override fun run() {
                             if (mIsRecording) {
                                 val r = it.read(buffer, 0, BUFFER_SIZE)
@@ -111,18 +116,18 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
                                 }
                                 if (maxdB == null || db > maxdB!!) {
                                     maxdB = db
-                                    meterMaxTv.text = maxdB.toString()
+                                    binding.meterMaxTv.text = maxdB.toString()
                                 }
                                 if (mindB == null || db < mindB!!) {
                                     mindB = db
-                                    meterMinTv.text = mindB.toString()
+                                    binding.meterMinTv.text = mindB.toString()
                                 }
                                 avgdB.add(db)
-                                meterAvgTv.text = avgdB.average().format(0)
-                                meterCurrentTv.text = db.toString()
+                                binding.meterAvgTv.text = avgdB.average().format(0)
+                                binding.meterCurrentTv.text = db.toString()
                                 lastXValue += 0.5
                                 series.appendData(DataPoint(lastXValue, db.toDouble()), true, 100)
-                                graphView.viewport.scrollToEnd()
+                                binding.graphView.viewport.scrollToEnd()
                                 series.color = when {
                                     db > 100 -> ContextCompat.getColor(context, R.color.lineColor1)
                                     db > 80 -> ContextCompat.getColor(context, R.color.lineColor2)
@@ -134,7 +139,7 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
                                     db > 80 -> ContextCompat.getColor(context, R.color.lineColor2A)
                                     else -> ContextCompat.getColor(context, R.color.lineColor4A)
                                 }
-                                meterCurrentTv.postDelayed(this, 500)
+                                binding.meterCurrentTv.postDelayed(this, 500)
                             }
                         }
                     })
@@ -157,19 +162,6 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
             }
             it.release()
             mAudioRecord = null
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (!hasAllPermissionsGranted(grantResults)) {
-                Utils.openErrorPermissionDialog(context)
-            }
         }
     }
 

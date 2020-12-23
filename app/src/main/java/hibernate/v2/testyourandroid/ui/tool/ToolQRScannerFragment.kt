@@ -8,22 +8,25 @@ import android.view.View
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.databinding.FragmentToolQrScannerBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.tool.ToolQRScannerSuccessFragment.Companion.newInstance
-import kotlinx.android.synthetic.main.fragment_tool_qr_scanner.*
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.viewBinding
 
 /**
  * Created by himphen on 21/5/16.
  */
 class ToolQRScannerFragment : BaseFragment(R.layout.fragment_tool_qr_scanner) {
 
+    private val binding by viewBinding(FragmentToolQrScannerBinding::bind)
+
     private lateinit var mCodeScanner: CodeScanner
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.let { context ->
-            mCodeScanner = CodeScanner(context, scannerView)
+            mCodeScanner = CodeScanner(context, binding.scannerView)
             mCodeScanner.setErrorCallback {
                 Handler(Looper.getMainLooper()).post {
                     Utils.errorNoFeatureDialog(context)
@@ -45,7 +48,7 @@ class ToolQRScannerFragment : BaseFragment(R.layout.fragment_tool_qr_scanner) {
                 }
             }
             if (!isPermissionsGranted(PERMISSION_NAME)) {
-                requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE)
+                requestMultiplePermissions.launch(PERMISSION_NAME)
             }
         }
     }
@@ -64,19 +67,6 @@ class ToolQRScannerFragment : BaseFragment(R.layout.fragment_tool_qr_scanner) {
     override fun onPause() {
         mCodeScanner.releaseResources()
         super.onPause()
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (!hasAllPermissionsGranted(grantResults)) {
-                Utils.openErrorPermissionDialog(context)
-            }
-        }
     }
 
     companion object {

@@ -15,26 +15,28 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
-import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
-import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.ExtendedBluetoothDevice
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
+import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
 class InfoBluetoothFragment : BaseFragment(R.layout.fragment_info_listview) {
+
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
     private val scannedList: MutableList<ExtendedBluetoothDevice> = ArrayList()
     private var list: MutableList<InfoItem> = ArrayList()
     private var adapter: InfoItemAdapter? = null
     private var isFirstLoading = true
     private var bluetoothAdapter: BluetoothAdapter? = null
-    private val bluetoothChangedReceiver: BroadcastReceiver? = object : BroadcastReceiver() {
+    private val bluetoothChangedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             val action = intent.action
             if (BluetoothDevice.ACTION_FOUND == action) {
@@ -60,9 +62,9 @@ class InfoBluetoothFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
         if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE)
+            requestMultiplePermissions.launch(PERMISSION_NAME)
         }
     }
 
@@ -117,7 +119,7 @@ class InfoBluetoothFragment : BaseFragment(R.layout.fragment_info_listview) {
                 list.add(InfoItem(stringArray[i], getData(i)))
             }
             adapter = InfoItemAdapter(list)
-            rvlist.adapter = adapter
+            binding.rvlist.adapter = adapter
             if (isToast) {
                 Toast.makeText(context, R.string.wifi_reload_done, Toast.LENGTH_SHORT).show()
             }
@@ -134,7 +136,7 @@ class InfoBluetoothFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     private fun unregisterReceiver() {
         try {
-            bluetoothChangedReceiver?.let { bluetoothChangedReceiver ->
+            bluetoothChangedReceiver.let { bluetoothChangedReceiver ->
                 context?.unregisterReceiver(bluetoothChangedReceiver)
             }
         } catch (ignored: IllegalArgumentException) {
@@ -210,19 +212,6 @@ class InfoBluetoothFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     private fun getScanResultText(device: ExtendedBluetoothDevice): String {
         return device.name + "\n" + device.getRssi() + "\n\n"
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (!hasAllPermissionsGranted(grantResults)) {
-                openErrorPermissionDialog(context)
-            }
-        }
     }
 
     companion object {

@@ -5,18 +5,21 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentMainInfoBinding
 import hibernate.v2.testyourandroid.model.AppChooseItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
 import hibernate.v2.testyourandroid.util.ext.isSystemPackage
-import kotlinx.android.synthetic.main.fragment_main_info.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 class AppChooseFragment : BaseFragment(R.layout.fragment_main_info) {
 
+    private val binding by viewBinding(FragmentMainInfoBinding::bind)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
         // User, System, All
         val countArray = intArrayOf(0, 0, 0)
         val packageManager = context?.packageManager
@@ -45,12 +48,13 @@ class AppChooseFragment : BaseFragment(R.layout.fragment_main_info) {
                 )
             )
         }
-        rvlist.adapter = AppChooseAdapter(list, object : AppChooseAdapter.ItemClickListener {
-            override fun onItemDetailClick(appChooseItem: AppChooseItem) {
-                val intent = Intent(context, AppListActivity::class.java)
-                intent.putExtra(AppListFragment.ARG_APP_TYPE, appChooseItem.appType)
-                startActivity(intent)
-            }
-        })
+        binding.rvlist.adapter =
+            AppChooseAdapter(list, object : AppChooseAdapter.ItemClickListener {
+                override fun onItemDetailClick(appChooseItem: AppChooseItem) {
+                    val intent = Intent(context, AppListActivity::class.java)
+                    intent.putExtra(AppListFragment.ARG_APP_TYPE, appChooseItem.appType)
+                    startActivity(intent)
+                }
+            })
     }
 }

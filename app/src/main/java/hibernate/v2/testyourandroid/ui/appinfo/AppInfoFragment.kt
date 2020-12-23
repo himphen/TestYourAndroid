@@ -2,39 +2,33 @@ package hibernate.v2.testyourandroid.ui.appinfo
 
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
+import com.google.android.material.tabs.TabLayoutMediator
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.notAppFound
+import hibernate.v2.testyourandroid.databinding.FragmentAppInfoBinding
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_app_info.*
+import hibernate.v2.testyourandroid.util.Utils.notAppFound
+import hibernate.v2.testyourandroid.util.viewBinding
 
 class AppInfoFragment : BaseFragment(R.layout.fragment_app_info) {
+
+    private val binding by viewBinding(FragmentAppInfoBinding::bind)
     private var appItem: AppItem? = null
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         appItem = arguments?.getParcelable(ARG_APP)
         appItem?.let { appItem ->
-            context?.let {
-                // Note that we are passing childFragmentManager, not FragmentManager
-                val adapter = AppInfoFragmentPagerAdapter(it, childFragmentManager, appItem)
-                viewPager.adapter = adapter
-                viewPager.currentItem = 0
-                viewPager.offscreenPageLimit = 2
-                tabLayout.setupWithViewPager(viewPager)
-                // Iterate over all tabs and set the custom view
-                for (i in 0 until tabLayout.tabCount) {
-                    val tab = tabLayout.getTabAt(i)
-                    if (tab != null) {
-                        tab.customView = adapter.getTabView(i)
-                    }
-                }
-            }
-        } ?: run {
-            Toast.makeText(context, R.string.app_not_found, Toast.LENGTH_LONG).show()
-            activity?.finish()
+            // Note that we are passing childFragmentManager, not FragmentManager
+            val adapter = AppInfoFragmentPagerAdapter(this, appItem)
+            binding.viewPager.adapter = adapter
+            binding.viewPager.currentItem = 0
+            binding.viewPager.offscreenPageLimit = 2
+            TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+                tab.customView = adapter.getTabView(position)
+            }.attach()
         }
     }
 

@@ -11,11 +11,12 @@ import android.os.storage.StorageManager
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.formatBitSize
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.Utils.formatBitSize
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileFilter
@@ -30,11 +31,12 @@ import java.util.regex.Pattern
  */
 class InfoCPUFragment : BaseFragment(R.layout.fragment_info_listview) {
 
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
     private lateinit var memoryArray: Array<String>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
         init()
     }
 
@@ -45,7 +47,7 @@ class InfoCPUFragment : BaseFragment(R.layout.fragment_info_listview) {
         for (i in stringArray.indices) {
             list.add(InfoItem(stringArray[i], getData(i)))
         }
-        rvlist.adapter = InfoItemAdapter(list)
+        binding.rvlist.adapter = InfoItemAdapter(list)
     }
 
     private fun getData(j: Int): String {

@@ -11,8 +11,9 @@ import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentMonitorCpuBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_monitor_cpu.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileFilter
@@ -22,14 +23,16 @@ import java.util.ArrayList
 import java.util.regex.Pattern
 
 class MonitorCPUFragment : BaseFragment(R.layout.fragment_monitor_cpu) {
+
+    private val binding by viewBinding(FragmentMonitorCpuBinding::bind)
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
     private val mHandler = Handler(Looper.getMainLooper())
     private val timer: Runnable = object : Runnable {
         override fun run() {
-            speedText.text = "${getCPU(CPU_CURRENT)} MHz"
+            binding.speedText.text = "${getCPU(CPU_CURRENT)} MHz"
             series.appendData(DataPoint(lastXValue, getCPU(CPU_CURRENT).toDouble()), true, 36)
-            graphView.viewport.scrollToEnd()
+            binding.graphView.viewport.scrollToEnd()
             lastXValue += 1.0
             mHandler.postDelayed(this, UPDATE_CHART_INTERVAL)
         }
@@ -38,28 +41,28 @@ class MonitorCPUFragment : BaseFragment(R.layout.fragment_monitor_cpu) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.let { context ->
-            speedText.text = "${getCPU(CPU_CURRENT)} MHz"
-            coreText.text = numCores.toString()
-            minText.text = "${getCPU(CPU_MIN)} MHz"
-            maxText.text = "${getCPU(CPU_MAX)} MHz"
+            binding.speedText.text = "${getCPU(CPU_CURRENT)} MHz"
+            binding.coreText.text = numCores.toString()
+            binding.minText.text = "${getCPU(CPU_MIN)} MHz"
+            binding.maxText.text = "${getCPU(CPU_MAX)} MHz"
             series.thickness = ConvertUtils.dp2px(4f)
             series.color = ContextCompat.getColor(context, R.color.lineColor1)
             series.isDrawBackground = true
             series.backgroundColor = ContextCompat.getColor(context, R.color.lineColor1A)
-            graphView.addSeries(series)
-            graphView.gridLabelRenderer.gridColor = Color.GRAY
-            graphView.gridLabelRenderer.isHighlightZeroLines = false
-            graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-            graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
-            graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-            graphView.viewport.isYAxisBoundsManual = true
-            graphView.viewport.setMinY(0.0)
-            graphView.viewport.setMaxY(getCPU(CPU_MAX).toDouble())
-            graphView.viewport.isXAxisBoundsManual = true
-            graphView.viewport.setMinX(0.0)
-            graphView.viewport.setMaxX(36.0)
-            graphView.viewport.isScrollable = false
-            graphView.viewport.isScalable = false
+            binding.graphView.addSeries(series)
+            binding.graphView.gridLabelRenderer.gridColor = Color.GRAY
+            binding.graphView.gridLabelRenderer.isHighlightZeroLines = false
+            binding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
+            binding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+            binding.graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
+            binding.graphView.viewport.isYAxisBoundsManual = true
+            binding.graphView.viewport.setMinY(0.0)
+            binding.graphView.viewport.setMaxY(getCPU(CPU_MAX).toDouble())
+            binding.graphView.viewport.isXAxisBoundsManual = true
+            binding.graphView.viewport.setMinX(0.0)
+            binding.graphView.viewport.setMaxX(36.0)
+            binding.graphView.viewport.isScrollable = false
+            binding.graphView.viewport.isScalable = false
         }
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentMainBinding
 import hibernate.v2.testyourandroid.model.MainItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.info.InfoAndroidVersionActivity
@@ -15,7 +16,7 @@ import hibernate.v2.testyourandroid.ui.test.TestColorActivity
 import hibernate.v2.testyourandroid.ui.test.TestSensorAccelerometerActivity
 import hibernate.v2.testyourandroid.ui.test.TestSensorGravityActivity
 import hibernate.v2.testyourandroid.ui.test.TestSensorLightActivity
-import kotlinx.android.synthetic.main.fragment_main.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 /**
@@ -23,21 +24,23 @@ import java.util.ArrayList
  */
 class MainFragment : BaseFragment(R.layout.fragment_main) {
 
+    private val binding by viewBinding(FragmentMainBinding::bind)
+
     private val imageArray = intArrayOf(
-            R.drawable.ic_test_screen, R.drawable.ic_test_chip,
-            R.drawable.ic_test_chip, R.drawable.ic_test_chip,
-            R.drawable.ic_info, R.drawable.ic_info, R.drawable.ic_info, R.drawable.ic_info
+        R.drawable.ic_test_screen, R.drawable.ic_test_chip,
+        R.drawable.ic_test_chip, R.drawable.ic_test_chip,
+        R.drawable.ic_info, R.drawable.ic_info, R.drawable.ic_info, R.drawable.ic_info
     )
     private val classArray = arrayOf<Class<*>>(
-            TestColorActivity::class.java, TestSensorLightActivity::class.java,
-            TestSensorAccelerometerActivity::class.java, TestSensorGravityActivity::class.java,
-            InfoCPUActivity::class.java, InfoHardwareActivity::class.java,
-            InfoAndroidVersionActivity::class.java, InfoBatteryActivity::class.java
+        TestColorActivity::class.java, TestSensorLightActivity::class.java,
+        TestSensorAccelerometerActivity::class.java, TestSensorGravityActivity::class.java,
+        InfoCPUActivity::class.java, InfoHardwareActivity::class.java,
+        InfoAndroidVersionActivity::class.java, InfoBatteryActivity::class.java
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
         val stringArray = resources.getStringArray(R.array.main_test_string_array)
         val items: MutableList<MainItem> = ArrayList()
         for (i in stringArray.indices) {
@@ -50,6 +53,6 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
             }
 
         })
-        recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
     }
 }

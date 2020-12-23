@@ -12,11 +12,14 @@ import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.formatSpeedSize
+import hibernate.v2.testyourandroid.databinding.FragmentMonitorNetworkBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_monitor_network.*
+import hibernate.v2.testyourandroid.util.Utils.formatSpeedSize
+import hibernate.v2.testyourandroid.util.viewBinding
 
 class MonitorNetworkFragment : BaseFragment(R.layout.fragment_monitor_network) {
+
+    private val binding by viewBinding(FragmentMonitorNetworkBinding::bind)
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var series2 = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
@@ -32,15 +35,15 @@ class MonitorNetworkFragment : BaseFragment(R.layout.fragment_monitor_network) {
             try {
                 val tx = formatSpeedSize(differenceTx, false).toDouble()
                 val rx = formatSpeedSize(differenceRx, false).toDouble()
-                upSpeedText.text = formatSpeedSize(differenceTx, true)
-                downSpeedText.text = formatSpeedSize(differenceRx, true)
+                binding.upSpeedText.text = formatSpeedSize(differenceTx, true)
+                binding.downSpeedText.text = formatSpeedSize(differenceRx, true)
                 series.appendData(DataPoint(lastXValue, rx), true, 36)
                 series2.appendData(DataPoint(lastXValue, tx), true, 36)
-                graphView.viewport.scrollToEnd()
+                binding.graphView.viewport.scrollToEnd()
                 lastXValue += 1.0
             } catch (e: Exception) {
-                upSpeedText.setText(R.string.ui_not_support)
-                downSpeedText.setText(R.string.ui_not_support)
+                binding.upSpeedText.setText(R.string.ui_not_support)
+                binding.downSpeedText.setText(R.string.ui_not_support)
             }
             mHandler.postDelayed(this, UPDATE_CHART_INTERVAL)
         }
@@ -52,10 +55,10 @@ class MonitorNetworkFragment : BaseFragment(R.layout.fragment_monitor_network) {
         lastTotalRx = TrafficStats.getTotalRxBytes()
         lastTotalTx = TrafficStats.getTotalTxBytes()
         if (lastTotalRx == TrafficStats.UNSUPPORTED.toLong() || lastTotalTx == TrafficStats.UNSUPPORTED.toLong()) {
-            upSpeedText.setText(R.string.ui_not_support)
-            downSpeedText.setText(R.string.ui_not_support)
+            binding.upSpeedText.setText(R.string.ui_not_support)
+            binding.downSpeedText.setText(R.string.ui_not_support)
         } else {
-            context?.let { context->
+            context?.let { context ->
                 isSupported = true
                 series.thickness = ConvertUtils.dp2px(4f)
                 series.color = ContextCompat.getColor(context, R.color.lineColor4)
@@ -65,18 +68,19 @@ class MonitorNetworkFragment : BaseFragment(R.layout.fragment_monitor_network) {
                 series2.color = ContextCompat.getColor(context, R.color.lineColor2)
                 series2.isDrawBackground = true
                 series2.color = ContextCompat.getColor(context, R.color.lineColor2A)
-                graphView.addSeries(series)
-                graphView.addSeries(series2)
-                graphView.gridLabelRenderer.gridColor = Color.GRAY
-                graphView.gridLabelRenderer.isHighlightZeroLines = false
-                graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-                graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
-                graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-                graphView.viewport.isXAxisBoundsManual = true
-                graphView.viewport.setMinX(0.0)
-                graphView.viewport.setMaxX(36.0)
-                graphView.viewport.isScrollable = false
-                graphView.viewport.isScalable = false
+                binding.graphView.addSeries(series)
+                binding.graphView.addSeries(series2)
+                binding.graphView.gridLabelRenderer.gridColor = Color.GRAY
+                binding.graphView.gridLabelRenderer.isHighlightZeroLines = false
+                binding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
+                binding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+                binding.graphView.gridLabelRenderer.gridStyle =
+                    GridLabelRenderer.GridStyle.HORIZONTAL
+                binding.graphView.viewport.isXAxisBoundsManual = true
+                binding.graphView.viewport.setMinX(0.0)
+                binding.graphView.viewport.setMaxX(36.0)
+                binding.graphView.viewport.isScrollable = false
+                binding.graphView.viewport.isScalable = false
             }
         }
     }

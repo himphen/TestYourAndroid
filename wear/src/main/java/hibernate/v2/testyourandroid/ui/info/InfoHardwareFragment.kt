@@ -10,17 +10,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoHeader
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
 class InfoHardwareFragment : BaseFragment(R.layout.fragment_info_listview) {
+
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
     private var level = 0
     private var charge = 0
     private var health = 0
@@ -46,7 +49,7 @@ class InfoHardwareFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
         init()
     }
 
@@ -73,7 +76,7 @@ class InfoHardwareFragment : BaseFragment(R.layout.fragment_info_listview) {
         }
         adapter = InfoItemAdapter(list)
         adapter.header = InfoHeader(activity?.title.toString())
-        rvlist.adapter = adapter
+        binding.rvlist.adapter = adapter
     }
 
     private fun getData(j: Int): String {

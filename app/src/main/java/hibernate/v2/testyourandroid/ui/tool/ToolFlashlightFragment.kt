@@ -9,22 +9,25 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
-import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
+import hibernate.v2.testyourandroid.databinding.FragmentHardwareFlashlightBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_hardware_flashlight.*
+import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
+import hibernate.v2.testyourandroid.util.viewBinding
 
 /**
  * Created by himphen on 21/5/16.
  */
 @Suppress("DEPRECATION")
 class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashlight) {
+
+    private val binding by viewBinding(FragmentHardwareFlashlightBinding::bind)
+
     private var mCamera: Camera? = null
     private var isFlashlightOn = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        turnSwitch.setOnCheckedChangeListener { _, isChecked ->
+        binding.turnSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 openFlash()
             } else {
@@ -33,7 +36,7 @@ class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashligh
         }
 
         if (arguments?.getBoolean(ARG_AUTO_OPEN, false) == true) {
-            turnSwitch.toggle()
+            binding.turnSwitch.toggle()
         }
     }
 
@@ -60,8 +63,8 @@ class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashligh
                             } catch (e: Exception) {
                             }
                         } else {
-                            requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE)
-                            turnSwitch.isChecked = false
+                            requestMultiplePermissions.launch(PERMISSION_NAME)
+                            binding.turnSwitch.isChecked = false
                             isFlashlightOn = false
                             return
                         }
@@ -81,7 +84,7 @@ class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashligh
         }
 
         errorNoFeatureDialog(context)
-        turnSwitch.isChecked = false
+        binding.turnSwitch.isChecked = false
         isFlashlightOn = false
     }
 
@@ -108,21 +111,8 @@ class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashligh
             }
         } catch (ignored: Exception) {
         }
-        turnSwitch?.isChecked = false
+        binding.turnSwitch.isChecked = false
         isFlashlightOn = false
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (!hasAllPermissionsGranted(grantResults)) {
-                openErrorPermissionDialog(context)
-            }
-        }
     }
 
     companion object {

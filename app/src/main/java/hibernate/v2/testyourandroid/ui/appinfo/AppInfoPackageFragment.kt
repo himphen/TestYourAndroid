@@ -7,25 +7,27 @@ import android.view.View
 import androidx.core.content.pm.PackageInfoCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.notAppFound
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.appinfo.AppInfoFragment.Companion.ARG_APP
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
+import hibernate.v2.testyourandroid.util.Utils.notAppFound
 import hibernate.v2.testyourandroid.util.ext.isSystemPackage
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Date
 
 class AppInfoPackageFragment : BaseFragment(R.layout.fragment_info_listview) {
 
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
     private lateinit var packageInfo: PackageInfo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
         init()
     }
 
@@ -38,7 +40,7 @@ class AppInfoPackageFragment : BaseFragment(R.layout.fragment_info_listview) {
                 for (i in stringArray.indices) {
                     list.add(InfoItem(stringArray[i], getData(i)))
                 }
-                rvlist.adapter = InfoItemAdapter(list)
+                binding.rvlist.adapter = InfoItemAdapter(list)
             } catch (e: Exception) {
                 notAppFound(activity)
             }

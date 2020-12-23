@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils
-import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
-import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 /**
@@ -25,6 +25,8 @@ import java.util.ArrayList
  */
 @Suppress("DEPRECATION")
 class InfoCameraFragment : BaseFragment(R.layout.fragment_info_listview) {
+
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
     private var mCamera: Camera? = null
 
     private var cameraId = 0
@@ -32,9 +34,9 @@ class InfoCameraFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
         if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE)
+            requestMultiplePermissions.launch(PERMISSION_NAME)
         }
     }
 
@@ -93,7 +95,7 @@ class InfoCameraFragment : BaseFragment(R.layout.fragment_info_listview) {
         for (i in stringArray.indices) {
             list.add(InfoItem(stringArray[i], getData(i)))
         }
-        rvlist?.adapter = InfoItemAdapter(list)
+        binding.rvlist.adapter = InfoItemAdapter(list)
     }
 
     private fun integerListToString(list: List<Int>?): String {
@@ -174,19 +176,6 @@ class InfoCameraFragment : BaseFragment(R.layout.fragment_info_listview) {
             }
         } catch (e: Exception) {
             "N/A"
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (!hasAllPermissionsGranted(grantResults)) {
-                openErrorPermissionDialog(context)
-            }
         }
     }
 

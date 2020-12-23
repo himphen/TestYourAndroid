@@ -13,11 +13,14 @@ import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.formatBitSize
+import hibernate.v2.testyourandroid.databinding.FragmentMonitorMemoryBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_monitor_memory.*
+import hibernate.v2.testyourandroid.util.Utils.formatBitSize
+import hibernate.v2.testyourandroid.util.viewBinding
 
 class MonitorMemoryFragment : BaseFragment(R.layout.fragment_monitor_memory) {
+
+    private val binding by viewBinding(FragmentMonitorMemoryBinding::bind)
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
     private var availableValue: Long = 0
@@ -29,14 +32,14 @@ class MonitorMemoryFragment : BaseFragment(R.layout.fragment_monitor_memory) {
             ramMemory
             try {
                 val v = formatBitSize(usedValue, false).toDouble()
-                usedText.text = formatBitSize(usedValue, true)
-                avaText.text = formatBitSize(availableValue, true)
+                binding.usedText.text = formatBitSize(usedValue, true)
+                binding.avaText.text = formatBitSize(availableValue, true)
                 series.appendData(DataPoint(lastXValue, v), true, 36)
-                graphView.viewport.scrollToEnd()
+                binding.graphView.viewport.scrollToEnd()
                 lastXValue += 1.0
             } catch (e: Exception) {
-                avaText.setText(R.string.ui_not_support)
-                usedText.setText(R.string.ui_not_support)
+                binding.avaText.setText(R.string.ui_not_support)
+                binding.usedText.setText(R.string.ui_not_support)
             }
             mHandler.postDelayed(this, UPDATE_CHART_INTERVAL)
         }
@@ -46,31 +49,31 @@ class MonitorMemoryFragment : BaseFragment(R.layout.fragment_monitor_memory) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ramMemory
-        context?.let { context->
-            avaText.text = formatBitSize(availableValue, true)
-            totalText.text = formatBitSize(totalValue, true)
+        context?.let { context ->
+            binding.avaText.text = formatBitSize(availableValue, true)
+            binding.totalText.text = formatBitSize(totalValue, true)
             series.thickness = ConvertUtils.dp2px(4f)
             series.color = ContextCompat.getColor(context, R.color.lineColor3)
             series.isDrawBackground = true
             series.backgroundColor = ContextCompat.getColor(context, R.color.lineColor3A)
-            graphView.gridLabelRenderer.gridColor = Color.GRAY
-            graphView.gridLabelRenderer.isHighlightZeroLines = false
-            graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-            graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
-            graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-            graphView.addSeries(series)
+            binding.graphView.gridLabelRenderer.gridColor = Color.GRAY
+            binding.graphView.gridLabelRenderer.isHighlightZeroLines = false
+            binding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
+            binding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+            binding.graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
+            binding.graphView.addSeries(series)
             try {
                 isSupported = true
-                graphView.viewport.isYAxisBoundsManual = true
-                graphView.viewport.setMinY(0.0)
-                graphView.viewport.setMaxY(formatBitSize(totalValue, false).toDouble())
-                graphView.viewport.isXAxisBoundsManual = true
-                graphView.viewport.setMinX(0.0)
-                graphView.viewport.setMaxX(36.0)
-                graphView.viewport.isScrollable = false
-                graphView.viewport.isScalable = false
+                binding.graphView.viewport.isYAxisBoundsManual = true
+                binding.graphView.viewport.setMinY(0.0)
+                binding.graphView.viewport.setMaxY(formatBitSize(totalValue, false).toDouble())
+                binding.graphView.viewport.isXAxisBoundsManual = true
+                binding.graphView.viewport.setMinX(0.0)
+                binding.graphView.viewport.setMaxX(36.0)
+                binding.graphView.viewport.isScrollable = false
+                binding.graphView.viewport.isScalable = false
             } catch (e: NumberFormatException) {
-                usedText.setText(R.string.ui_na)
+                binding.usedText.setText(R.string.ui_na)
             }
         }
     }

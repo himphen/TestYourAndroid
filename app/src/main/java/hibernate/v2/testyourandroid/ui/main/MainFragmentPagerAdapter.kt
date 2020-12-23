@@ -1,29 +1,26 @@
 package hibernate.v2.testyourandroid.ui.main
 
-import android.content.Context
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import hibernate.v2.testyourandroid.R
 
 class MainFragmentPagerAdapter(
-    private val context: Context,
-    fm: FragmentManager
-) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    private val fragment: Fragment
+) : FragmentStateAdapter(fragment) {
 
-    private val tabTitles: Array<String> = context.resources.getStringArray(R.array.main_tab_title)
+    private val tabTitles: Array<String> = fragment.resources.getStringArray(R.array.main_tab_title)
 
     /**
      * Returns the number of pages
      */
-    override fun getCount(): Int = 2
+    override fun getItemCount(): Int = 2
 
     /**
      * This method will be invoked when a page is requested to create
      */
-    override fun getItem(position: Int): Fragment {
+    override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> MainTestFragment.newInstance()
             else -> MainSettingsFragment()
@@ -31,9 +28,8 @@ class MainFragmentPagerAdapter(
     }
 
     fun getTabView(position: Int): View {
-        val v = View.inflate(context, R.layout.custom_tab, null)
-        val tv = v.findViewById<TextView>(R.id.tabTitleTv)
-        tv.text = tabTitles[position]
+        val v = View.inflate(fragment.context, R.layout.custom_tab, null)
+        v.findViewById<TextView>(R.id.tabTitleTv).text = tabTitles[position]
         return v
     }
 

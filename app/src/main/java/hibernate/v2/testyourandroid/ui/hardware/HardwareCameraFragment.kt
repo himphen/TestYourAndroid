@@ -11,16 +11,19 @@ import com.otaliastudios.cameraview.gesture.GestureAction
 import com.otaliastudios.cameraview.size.AspectRatio
 import com.otaliastudios.cameraview.size.SizeSelectors
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentHardwareCameraBinding
+import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
-import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_hardware_camera.*
+import hibernate.v2.testyourandroid.util.viewBinding
 
 /**
  * Created by himphen on 21/5/16.
  */
 @Suppress("DEPRECATION")
 class HardwareCameraFragment : BaseFragment(R.layout.fragment_hardware_camera) {
+
+    private val binding by viewBinding(FragmentHardwareCameraBinding::bind)
 
     private fun openChooseCameraDialog() {
         val numberOfCamera = Camera.getNumberOfCameras()
@@ -55,12 +58,12 @@ class HardwareCameraFragment : BaseFragment(R.layout.fragment_hardware_camera) {
             }
         }
         try {
-            cameraView?.facing = if (isCameraFacingBack) Facing.BACK else Facing.FRONT
-            cameraView?.mode = Mode.PICTURE
-            cameraView?.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS)
-            cameraView?.mapGesture(Gesture.SCROLL_HORIZONTAL, GestureAction.ZOOM)
-            cameraView?.setPictureSize(SizeSelectors.aspectRatio(AspectRatio.of(4, 3), 0f))
-            cameraView?.open()
+            binding.cameraView.facing = if (isCameraFacingBack) Facing.BACK else Facing.FRONT
+            binding.cameraView.mode = Mode.PICTURE
+            binding.cameraView.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS)
+            binding.cameraView.mapGesture(Gesture.SCROLL_HORIZONTAL, GestureAction.ZOOM)
+            binding.cameraView.setPictureSize(SizeSelectors.aspectRatio(AspectRatio.of(4, 3), 0f))
+            binding.cameraView.open()
         } catch (e: Exception) {
             errorNoFeatureDialog(context)
         }
@@ -73,11 +76,11 @@ class HardwareCameraFragment : BaseFragment(R.layout.fragment_hardware_camera) {
 
     override fun onPause() {
         super.onPause()
-        cameraView?.close()
+        binding.cameraView.close()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        cameraView?.destroy()
+        binding.cameraView.destroy()
     }
 }

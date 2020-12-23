@@ -9,11 +9,12 @@ import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 import java.util.Collections.sort
 
@@ -29,6 +30,7 @@ class WifiSavedFragment : BaseFragment(R.layout.fragment_info_listview) {
         }
     }
 
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
     private lateinit var adapter: InfoItemAdapter
     private var list: MutableList<InfoItem> = ArrayList()
 
@@ -42,8 +44,8 @@ class WifiSavedFragment : BaseFragment(R.layout.fragment_info_listview) {
 
         adapter = InfoItemAdapter(list)
         adapter.type = InfoItemAdapter.TYPE_SINGLE_LINE
-        rvlist.adapter = adapter
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.adapter = adapter
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

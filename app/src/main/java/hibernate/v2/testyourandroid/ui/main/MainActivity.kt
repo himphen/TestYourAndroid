@@ -25,18 +25,20 @@ import com.orhanobut.logger.Logger
 import com.stepstone.apprating.AppRatingDialog
 import com.stepstone.apprating.listener.RatingDialogListener
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.ActivityContainerBinding
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.iapProductIdList
 import hibernate.v2.testyourandroid.util.Utils.iapProductIdListAll
-import kotlinx.android.synthetic.main.toolbar.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-
 class MainActivity : BaseActivity(), RatingDialogListener {
-    private lateinit var defaultPreferences: SharedPreferences
 
+    private val binding by viewBinding(ActivityContainerBinding::inflate)
+
+    private lateinit var defaultPreferences: SharedPreferences
     private lateinit var billingClient: BillingClient
 
     private var skuDetailsList: List<SkuDetails>? = null
@@ -44,10 +46,10 @@ class MainActivity : BaseActivity(), RatingDialogListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)
-        setContentView(R.layout.activity_container)
+        setContentView(binding.root)
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
-        initActionBar(toolbar, titleId = R.string.app_name)
+        initActionBar(binding.toolbar.root, titleId = R.string.app_name)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         supportActionBar?.setHomeButtonEnabled(false)
 

@@ -11,16 +11,20 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.ScreenUtils
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.notAppFound
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.model.GridItem
 import hibernate.v2.testyourandroid.ui.appinfo.AppInfoFragment.Companion.ARG_APP
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.GridItemAdapter
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.Utils.notAppFound
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 class AppInfoActionFragment : BaseFragment(R.layout.fragment_info_listview) {
+
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+
     private val imageArray = arrayListOf(
         R.drawable.app_open,
         R.drawable.app_uninstall,
@@ -133,9 +137,9 @@ class AppInfoActionFragment : BaseFragment(R.layout.fragment_info_listview) {
                         }
                     }
                 }
-            rvlist.setHasFixedSize(true)
-            rvlist.layoutManager = GridLayoutManager(context, columnCount)
-            rvlist.adapter = GridItemAdapter(list, mListener)
+            binding.rvlist.setHasFixedSize(true)
+            binding.rvlist.layoutManager = GridLayoutManager(context, columnCount)
+            binding.rvlist.adapter = GridItemAdapter(list, mListener)
         } ?: run {
             notAppFound(activity)
         }

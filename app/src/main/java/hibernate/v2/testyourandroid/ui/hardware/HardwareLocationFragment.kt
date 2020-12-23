@@ -26,19 +26,21 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentHardwareLocationBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils
-import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
-import kotlinx.android.synthetic.main.fragment_hardware_location.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
 class HardwareLocationFragment : BaseFragment(R.layout.fragment_hardware_location) {
+
+    private val binding by viewBinding(FragmentHardwareLocationBinding::bind)
     private var locationManager: LocationManager? = null
 
     private lateinit var adapter: InfoItemAdapter
@@ -58,14 +60,14 @@ class HardwareLocationFragment : BaseFragment(R.layout.fragment_hardware_locatio
             list.add(InfoItem(string, getString(R.string.gps_scanning)))
         }
         adapter = InfoItemAdapter(list)
-        rvlist.adapter = adapter
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.adapter = adapter
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
 
         locationManager = context?.applicationContext?.getSystemService(Context.LOCATION_SERVICE)
                 as LocationManager?
 
         if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE)
+            requestMultiplePermissions.launch(PERMISSION_NAME)
         }
     }
 
@@ -213,19 +215,6 @@ class HardwareLocationFragment : BaseFragment(R.layout.fragment_hardware_locatio
         } catch (e: Exception) {
         }
         return "N/A"
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (!hasAllPermissionsGranted(grantResults)) {
-                openErrorPermissionDialog(context)
-            }
-        }
     }
 
     companion object {

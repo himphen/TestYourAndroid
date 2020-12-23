@@ -11,18 +11,21 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.SensorHelper
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoHeader
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.SensorHelper
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
 class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
+
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
     private lateinit var sensorManager: SensorManager
     private var sensor: Sensor? = null
     private var sensorEventListener: SensorEventListener? = null
@@ -38,7 +41,7 @@ class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
         init()
     }
 
@@ -52,8 +55,10 @@ class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
     override fun onResume() {
         super.onResume()
         if (sensor != null && sensorEventListener != null) {
-            sensorManager.registerListener(sensorEventListener, sensor,
-                    SensorManager.SENSOR_DELAY_NORMAL)
+            sensorManager.registerListener(
+                sensorEventListener, sensor,
+                SensorManager.SENSOR_DELAY_NORMAL
+            )
         }
     }
 
@@ -64,7 +69,8 @@ class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
         try {
             sensor = sensorManager.getDefaultSensor(sensorType)
             if (sensor == null) {
-                Toast.makeText(context, R.string.dialog_feature_na_message, Toast.LENGTH_LONG).show()
+                Toast.makeText(context, R.string.dialog_feature_na_message, Toast.LENGTH_LONG)
+                    .show()
                 activity?.finish()
                 return
             }
@@ -74,7 +80,8 @@ class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
             return
         }
         when (sensorType) {
-            Sensor.TYPE_ACCELEROMETER, Sensor.TYPE_GRAVITY -> sensorEventListener = accelerometerListener
+            Sensor.TYPE_ACCELEROMETER, Sensor.TYPE_GRAVITY -> sensorEventListener =
+                accelerometerListener
             Sensor.TYPE_LIGHT -> sensorEventListener = lightListener
             Sensor.TYPE_PRESSURE -> sensorEventListener = pressureListener
             Sensor.TYPE_PROXIMITY -> sensorEventListener = proximityListener
@@ -85,11 +92,31 @@ class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
         for (i in stringArray.indices) {
             infoItem = try {
                 when (sensorType) {
-                    Sensor.TYPE_ACCELEROMETER -> InfoItem(stringArray[i], SensorHelper.getAccelerometerSensorData(i, stringArray.size, reading, sensor!!))
-                    Sensor.TYPE_GRAVITY -> InfoItem(stringArray[i], SensorHelper.getGravitySensorData(i, stringArray.size, reading, sensor!!))
-                    Sensor.TYPE_LIGHT -> InfoItem(stringArray[i], SensorHelper.getLightSensorData(i, stringArray.size, reading, sensor!!))
-                    Sensor.TYPE_PRESSURE -> InfoItem(stringArray[i], SensorHelper.getPressureSensorData(i, stringArray.size, reading, sensor!!))
-                    Sensor.TYPE_PROXIMITY -> InfoItem(stringArray[i], SensorHelper.getProximitySensorData(i, stringArray.size, reading, sensor!!))
+                    Sensor.TYPE_ACCELEROMETER -> InfoItem(
+                        stringArray[i],
+                        SensorHelper.getAccelerometerSensorData(
+                            i,
+                            stringArray.size,
+                            reading,
+                            sensor!!
+                        )
+                    )
+                    Sensor.TYPE_GRAVITY -> InfoItem(
+                        stringArray[i],
+                        SensorHelper.getGravitySensorData(i, stringArray.size, reading, sensor!!)
+                    )
+                    Sensor.TYPE_LIGHT -> InfoItem(
+                        stringArray[i],
+                        SensorHelper.getLightSensorData(i, stringArray.size, reading, sensor!!)
+                    )
+                    Sensor.TYPE_PRESSURE -> InfoItem(
+                        stringArray[i],
+                        SensorHelper.getPressureSensorData(i, stringArray.size, reading, sensor!!)
+                    )
+                    Sensor.TYPE_PROXIMITY -> InfoItem(
+                        stringArray[i],
+                        SensorHelper.getProximitySensorData(i, stringArray.size, reading, sensor!!)
+                    )
                     else -> InfoItem(stringArray[i], getString(R.string.ui_not_support))
                 }
             } catch (e: Exception) {
@@ -100,7 +127,7 @@ class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
         }
         adapter = InfoItemAdapter(list)
         adapter.header = InfoHeader(activity?.title.toString())
-        rvlist.adapter = adapter
+        binding.rvlist.adapter = adapter
     }
 
     private val accelerometerListener: SensorEventListener = object : SensorEventListener {
@@ -132,6 +159,7 @@ class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
     }
     private val proximityListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
+
         @SuppressLint("DefaultLocale")
         override fun onSensorChanged(event: SensorEvent) {
             reading = String.format("%1.2f", event.values[0]) + " cm"

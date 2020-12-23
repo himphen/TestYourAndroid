@@ -2,8 +2,8 @@ package hibernate.v2.testyourandroid.model
 
 import android.graphics.drawable.Drawable
 import android.os.Parcelable
-import kotlinx.android.parcel.IgnoredOnParcel
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by himphen on 24/5/16.

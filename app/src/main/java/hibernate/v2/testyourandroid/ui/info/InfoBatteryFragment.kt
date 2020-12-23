@@ -9,17 +9,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.ext.roundTo
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
 class InfoBatteryFragment : BaseFragment(R.layout.fragment_info_listview) {
+
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
     private var list: ArrayList<InfoItem> = ArrayList()
     private lateinit var adapter: InfoItemAdapter
     private var health = 0
@@ -54,7 +57,7 @@ class InfoBatteryFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
         init()
     }
 
@@ -83,7 +86,7 @@ class InfoBatteryFragment : BaseFragment(R.layout.fragment_info_listview) {
             list.add(InfoItem(stringArray[i], getData(i)))
         }
         adapter = InfoItemAdapter(list)
-        rvlist.adapter = adapter
+        binding.rvlist.adapter = adapter
     }
 
     private fun getData(j: Int): String {

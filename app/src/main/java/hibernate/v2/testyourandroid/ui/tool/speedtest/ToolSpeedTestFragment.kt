@@ -11,17 +11,19 @@ import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.ext.roundTo
+import hibernate.v2.testyourandroid.databinding.FragmentToolSpeedTestBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.view.GetSpeedTestHostsHandler
-import kotlinx.android.synthetic.main.fragment_tool_speed_test.*
+import hibernate.v2.testyourandroid.util.ext.roundTo
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.text.DecimalFormat
-
 
 /**
  * Created by himphen on 21/5/16.
  */
 class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
+
+    private val binding by viewBinding(FragmentToolSpeedTestBinding::bind)
 
     private var seriesDownload = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
     private var seriesUpload = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
@@ -41,40 +43,42 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                 .cancelable(false)
 
             // Init Download graphic
-            graphViewDownload.gridLabelRenderer.isHorizontalLabelsVisible = false
-            graphViewDownload.gridLabelRenderer.isVerticalLabelsVisible = false
-            graphViewDownload.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-            graphViewDownload.gridLabelRenderer.gridColor = Color.GRAY
+            binding.graphViewDownload.gridLabelRenderer.isHorizontalLabelsVisible = false
+            binding.graphViewDownload.gridLabelRenderer.isVerticalLabelsVisible = false
+            binding.graphViewDownload.gridLabelRenderer.gridStyle =
+                GridLabelRenderer.GridStyle.HORIZONTAL
+            binding.graphViewDownload.gridLabelRenderer.gridColor = Color.GRAY
             seriesDownload.thickness = 3
             seriesDownload.color = ContextCompat.getColor(it, R.color.lineColor4)
             seriesDownload.isDrawBackground = true
             seriesDownload.backgroundColor = ContextCompat.getColor(it, R.color.lineColor4A)
-            graphViewDownload.addSeries(seriesDownload)
-            graphViewDownload.viewport.isXAxisBoundsManual = true
-            graphViewDownload.viewport.setMinX(0.0)
-            graphViewDownload.viewport.setMaxX(10.0)
+            binding.graphViewDownload.addSeries(seriesDownload)
+            binding.graphViewDownload.viewport.isXAxisBoundsManual = true
+            binding.graphViewDownload.viewport.setMinX(0.0)
+            binding.graphViewDownload.viewport.setMaxX(10.0)
 
             // Init Upload graphic
-            graphViewUpload.gridLabelRenderer.isHorizontalLabelsVisible = false
-            graphViewUpload.gridLabelRenderer.isVerticalLabelsVisible = false
-            graphViewUpload.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-            graphViewUpload.gridLabelRenderer.gridColor = Color.GRAY
+            binding.graphViewUpload.gridLabelRenderer.isHorizontalLabelsVisible = false
+            binding.graphViewUpload.gridLabelRenderer.isVerticalLabelsVisible = false
+            binding.graphViewUpload.gridLabelRenderer.gridStyle =
+                GridLabelRenderer.GridStyle.HORIZONTAL
+            binding.graphViewUpload.gridLabelRenderer.gridColor = Color.GRAY
             seriesUpload.thickness = 3
             seriesUpload.color = ContextCompat.getColor(it, R.color.lineColor3)
             seriesUpload.isDrawBackground = true
             seriesUpload.backgroundColor = ContextCompat.getColor(it, R.color.lineColor3A)
-            graphViewUpload.addSeries(seriesUpload)
-            graphViewUpload.viewport.isXAxisBoundsManual = true
-            graphViewUpload.viewport.setMinX(0.0)
-            graphViewUpload.viewport.setMaxX(10.0)
+            binding.graphViewUpload.addSeries(seriesUpload)
+            binding.graphViewUpload.viewport.isXAxisBoundsManual = true
+            binding.graphViewUpload.viewport.setMinX(0.0)
+            binding.graphViewUpload.viewport.setMaxX(10.0)
         }
 
-        startButton.setOnClickListener {
-            startButton.isEnabled = false
+        binding.startButton.setOnClickListener {
+            binding.startButton.isEnabled = false
 
-            locationTv.text = "-"
-            providerTv.text = "-"
-            latencyTv.text = "-"
+            binding.locationTv.text = "-"
+            binding.providerTv.text = "-"
+            binding.latencyTv.text = "-"
             initThread()
             thread?.start()
         }
@@ -102,7 +106,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                         Thread.sleep(100)
                     } catch (e: InterruptedException) {
                         activity?.runOnUiThread {
-                            startButton?.isEnabled = true
+                            binding.startButton.isEnabled = true
                             loadingDialog?.dismiss()
                         }
                         getSpeedTestHostsHandler.interrupt()
@@ -111,7 +115,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                     if (timeCount <= 0) {
                         activity?.runOnUiThread {
                             showErrorDialog("No Connection...")
-                            startButton?.isEnabled = true
+                            binding.startButton.isEnabled = true
                             loadingDialog?.dismiss()
                         }
                         getSpeedTestHostsHandler.interrupt()
@@ -126,7 +130,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                 }
 
                 if (getSpeedTestHostsHandler.serverList.isEmpty()) {
-                    startButton?.isEnabled = true
+                    binding.startButton.isEnabled = true
                     showErrorDialog("No Connection...")
                     return
                 }
@@ -161,8 +165,8 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                 val uploadAddress = findServer.uploadAddress
                 val distance = dist
                 activity?.runOnUiThread {
-                    locationTv.text = findServer.name
-                    providerTv.text = String.format(
+                    binding.locationTv.text = findServer.name
+                    binding.providerTv.text = String.format(
                         "[%s km] %s",
                         DecimalFormat("#.##").format(distance / 1000),
                         findServer.sponsor
@@ -171,8 +175,8 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
 
                 // Reset value, graphics
                 activity?.runOnUiThread {
-                    downloadTextView?.text = "0 Mbps"
-                    uploadTextView?.text = "0 Mbps"
+                    binding.downloadTextView.text = "0 Mbps"
+                    binding.uploadTextView.text = "0 Mbps"
                 }
 
                 var pingTestStarted = false
@@ -203,7 +207,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                     if (pingTestFinished && !downloadTestStarted) {
                         if (pingTest.avgRtt != 0.0) {
                             activity?.runOnUiThread {
-                                latencyTv?.text = "${dec.format(pingTest.avgRtt)} ms"
+                                binding.latencyTv.text = "${dec.format(pingTest.avgRtt)} ms"
                             }
                         }
                         downloadTest.start()
@@ -212,7 +216,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                     if (downloadTestFinished && !uploadTestStarted) {
                         if (downloadTest.finalDownloadRate != 0.0) {
                             activity?.runOnUiThread {
-                                downloadTextView?.text =
+                                binding.downloadTextView.text =
                                     "${dec.format(downloadTest.finalDownloadRate.roundTo(2))} Mbps"
                             }
                         }
@@ -223,7 +227,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                     // Ping Test
                     if (pingTestStarted && !pingTestFinished) {
                         activity?.runOnUiThread {
-                            latencyTv?.text = "${dec.format(pingTest.instantRtt)} ms"
+                            binding.latencyTv.text = "${dec.format(pingTest.instantRtt)} ms"
                         }
                     }
 
@@ -231,7 +235,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                     if (downloadTestStarted && !downloadTestFinished) {
                         val downloadRate: Double = downloadTest.instantDownloadRate
                         activity?.runOnUiThread {
-                            downloadTextView.text = "${dec.format(downloadRate)} Mbps"
+                            binding.downloadTextView.text = "${dec.format(downloadRate)} Mbps"
                         }
                         //Update chart
                         activity?.runOnUiThread {
@@ -242,9 +246,9 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                                 ), false, 10000
                             )
 
-                            if (graphViewDownload.viewport.getMaxX(true) > 10.0) {
-                                graphViewDownload.viewport.setMaxX(
-                                    graphViewDownload.viewport.getMaxX(
+                            if (binding.graphViewDownload.viewport.getMaxX(true) > 10.0) {
+                                binding.graphViewDownload.viewport.setMaxX(
+                                    binding.graphViewDownload.viewport.getMaxX(
                                         true
                                     ) + 1
                                 )
@@ -257,7 +261,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                     if (downloadTestFinished && !uploadTestFinished) {
                         val uploadRate: Double = uploadTest.instantUploadRate
                         activity?.runOnUiThread {
-                            uploadTextView.text = "${dec.format(uploadRate)} Mbps"
+                            binding.uploadTextView.text = "${dec.format(uploadRate)} Mbps"
                         }
                         // Update chart
                         activity?.runOnUiThread {
@@ -267,9 +271,9 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                                 10000
                             )
 
-                            if (graphViewUpload.viewport.getMaxX(true) > 10.0) {
-                                graphViewUpload.viewport.setMaxX(
-                                    graphViewUpload.viewport.getMaxX(
+                            if (binding.graphViewUpload.viewport.getMaxX(true) > 10.0) {
+                                binding.graphViewUpload.viewport.setMaxX(
+                                    binding.graphViewUpload.viewport.getMaxX(
                                         true
                                     ) + 1
                                 )
@@ -282,7 +286,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                     if (pingTestFinished && downloadTestFinished && uploadTest.isFinished) {
                         if (uploadTest.getRoundedFinalUploadRate() != 0.0) { //Success
                             activity?.runOnUiThread {
-                                uploadTextView?.text =
+                                binding.uploadTextView.text =
                                     "${dec.format(uploadTest.getRoundedFinalUploadRate())} Mbps"
                             }
                         }
@@ -315,7 +319,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                     pingTest.shouldStopNow = true
                     downloadTest.shouldStopNow = true
                     HttpUploadTest.shouldStopNow = true
-                    startButton?.isEnabled = true
+                    binding.startButton.isEnabled = true
                 }
                 return
             }

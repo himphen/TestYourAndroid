@@ -7,8 +7,9 @@ import android.view.View
 import android.widget.Toast
 import com.blankj.utilcode.util.RegexUtils
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentToolQrScannerSuccessBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_tool_qr_scanner_success.*
+import hibernate.v2.testyourandroid.util.viewBinding
 
 /**
  * Created by himphen on 21/5/16.
@@ -26,6 +27,8 @@ class ToolQRScannerSuccessFragment : BaseFragment(R.layout.fragment_tool_qr_scan
         }
     }
 
+    private val binding by viewBinding(FragmentToolQrScannerSuccessBinding::bind)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -33,7 +36,7 @@ class ToolQRScannerSuccessFragment : BaseFragment(R.layout.fragment_tool_qr_scan
             val content = arguments.getString("content")
             val barcodeFormatName = arguments.getString("barcodeFormatName")
 
-            shareButton.setOnClickListener {
+            binding.shareButton.setOnClickListener {
                 val intent = Intent()
                 intent.action = Intent.ACTION_SEND
                 intent.putExtra(Intent.EXTRA_TEXT, content)
@@ -41,7 +44,7 @@ class ToolQRScannerSuccessFragment : BaseFragment(R.layout.fragment_tool_qr_scan
                 startActivity(Intent.createChooser(intent, resources.getText(R.string.ui_share)))
             }
 
-            urlButton.setOnClickListener {
+            binding.urlButton.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.data = Uri.parse(content)
 
@@ -52,11 +55,11 @@ class ToolQRScannerSuccessFragment : BaseFragment(R.layout.fragment_tool_qr_scan
                 }
             }
 
-            contentTv.text = content
-            formatTv.text = barcodeFormatName
+            binding.contentTv.text = content
+            binding.formatTv.text = barcodeFormatName
 
             if (RegexUtils.isURL(content)) {
-                urlButton.visibility = View.VISIBLE
+                binding.urlButton.visibility = View.VISIBLE
             }
         }
     }

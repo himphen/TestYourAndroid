@@ -7,9 +7,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.openErrorPermissionDialog
+import hibernate.v2.testyourandroid.databinding.FragmentHardwareMicrophoneBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_hardware_microphone.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.io.File
 import java.io.IOException
 
@@ -17,6 +17,8 @@ import java.io.IOException
  * Created by himphen on 21/5/16.
  */
 class HardwareMicrophoneFragment : BaseFragment(R.layout.fragment_hardware_microphone) {
+
+    private val binding by viewBinding(FragmentHardwareMicrophoneBinding::bind)
     private var mMediaRecorder: MediaRecorder? = null
     private var mMediaPlayer: MediaPlayer? = null
     private var mIsRecording = false
@@ -25,16 +27,16 @@ class HardwareMicrophoneFragment : BaseFragment(R.layout.fragment_hardware_micro
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        playBtn.isEnabled = false
+        binding.playBtn.isEnabled = false
         mFile = File(context?.filesDir, "TestYourAndroidMicTest.m4a")
-        recordBtn.setOnClickListener {
+        binding.recordBtn.setOnClickListener {
             if (mIsRecording) {
                 stopRecording()
             } else {
                 startRecording()
             }
         }
-        playBtn.setOnClickListener {
+        binding.playBtn.setOnClickListener {
             if (mIsPlaying) {
                 stopPlaying()
             } else {
@@ -42,7 +44,7 @@ class HardwareMicrophoneFragment : BaseFragment(R.layout.fragment_hardware_micro
             }
         }
         if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE)
+            requestMultiplePermissions.launch(PERMISSION_NAME)
         }
     }
 
@@ -61,8 +63,8 @@ class HardwareMicrophoneFragment : BaseFragment(R.layout.fragment_hardware_micro
                     mMediaPlayer.setOnCompletionListener { stopPlaying() }
                     mMediaPlayer.prepare()
                     mMediaPlayer.start()
-                    playBtn.setText(R.string.mic_stop)
-                    recordBtn.isEnabled = false
+                    binding.playBtn.setText(R.string.mic_stop)
+                    binding.recordBtn.isEnabled = false
                     mIsPlaying = true
                 } ?: run {
                     Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show()
@@ -85,8 +87,8 @@ class HardwareMicrophoneFragment : BaseFragment(R.layout.fragment_hardware_micro
                 mMediaRecorder.setOutputFile(mFile.absolutePath)
                 mMediaRecorder.prepare()
                 mMediaRecorder.start()
-                recordBtn.setText(R.string.mic_stop)
-                playBtn.isEnabled = false
+                binding.recordBtn.setText(R.string.mic_stop)
+                binding.playBtn.isEnabled = false
                 mIsRecording = true
             } ?: run {
                 Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show()
@@ -107,9 +109,9 @@ class HardwareMicrophoneFragment : BaseFragment(R.layout.fragment_hardware_micro
             }
             mMediaPlayer.release()
         }
-        playBtn.isEnabled = true
-        recordBtn.isEnabled = true
-        playBtn.setText(R.string.mic_start_playing)
+        binding.playBtn.isEnabled = true
+        binding.recordBtn.isEnabled = true
+        binding.playBtn.setText(R.string.mic_start_playing)
     }
 
     private fun stopRecording() {
@@ -123,22 +125,9 @@ class HardwareMicrophoneFragment : BaseFragment(R.layout.fragment_hardware_micro
             }
             mMediaRecorder.release()
         }
-        playBtn.isEnabled = true
-        recordBtn.isEnabled = true
-        recordBtn.setText(R.string.mic_start_recording)
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (!hasAllPermissionsGranted(grantResults)) {
-                openErrorPermissionDialog(context)
-            }
-        }
+        binding.playBtn.isEnabled = true
+        binding.recordBtn.isEnabled = true
+        binding.recordBtn.setText(R.string.mic_start_recording)
     }
 
     companion object {

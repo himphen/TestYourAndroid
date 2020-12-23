@@ -6,6 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.StringUtils
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.model.AppPermissionItem
 import hibernate.v2.testyourandroid.model.InfoItem
@@ -13,18 +14,19 @@ import hibernate.v2.testyourandroid.ui.appinfo.AppInfoFragment.Companion.ARG_APP
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils.notAppFound
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 import java.util.Comparator
 import java.util.HashMap
 
 class AppInfoPermissionFragment : BaseFragment(R.layout.fragment_info_listview) {
 
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
     private val map = HashMap<String, ArrayList<AppPermissionItem>>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
         init()
     }
 
@@ -95,7 +97,7 @@ class AppInfoPermissionFragment : BaseFragment(R.layout.fragment_info_listview) 
                 } catch (e: Exception) {
                     list.add(InfoItem("Fail to fetch the permissions", "Error: -1034"))
                 }
-                rvlist.adapter = InfoItemAdapter(list)
+                binding.rvlist.adapter = InfoItemAdapter(list)
             }
         } ?: run {
             notAppFound(activity)

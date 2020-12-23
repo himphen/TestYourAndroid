@@ -7,24 +7,27 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
 class InfoHardwareFragment : BaseFragment(R.layout.fragment_info_listview) {
+
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+
     companion object {
         val PERMISSION_NAME = arrayOf(Manifest.permission.READ_PHONE_STATE)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
     }
 
     override fun onResume() {
@@ -41,7 +44,7 @@ class InfoHardwareFragment : BaseFragment(R.layout.fragment_info_listview) {
             list.add(InfoItem(stringArray[i], getData(i)))
         }
         val adapter = InfoItemAdapter(list)
-        rvlist.adapter = adapter
+        binding.rvlist.adapter = adapter
     }
 
     @Suppress("DEPRECATION")
@@ -71,19 +74,6 @@ class InfoHardwareFragment : BaseFragment(R.layout.fragment_info_listview) {
             }
         } catch (e: Exception) {
             "N/A"
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (!hasAllPermissionsGranted(grantResults)) {
-                Utils.openErrorPermissionDialog(context)
-            }
         }
     }
 }

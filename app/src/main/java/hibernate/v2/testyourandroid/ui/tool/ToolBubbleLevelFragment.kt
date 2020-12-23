@@ -8,15 +8,19 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.View
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
+import hibernate.v2.testyourandroid.databinding.FragmentToolBubbleLevelBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_tool_bubble_level.*
+import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
+import hibernate.v2.testyourandroid.util.viewBinding
 
 /**
  * Created by himphen on 21/5/16.
  */
 class ToolBubbleLevelFragment : BaseFragment(R.layout.fragment_tool_bubble_level),
     SensorEventListener {
+
+    private val binding by viewBinding(FragmentToolBubbleLevelBinding::bind)
+
     private var mSensorManager: SensorManager? = null
     private var mSensor: Sensor? = null
     private var secondSensor: Sensor? = null
@@ -80,9 +84,11 @@ class ToolBubbleLevelFragment : BaseFragment(R.layout.fragment_tool_bubble_level
      * @param pitchAngle float
      */
     private fun onAngleChanged(rollAngle: Float, pitchAngle: Float) {
-        levelView!!.setAngle(rollAngle.toDouble(), pitchAngle.toDouble())
-        horizontalTv!!.text = String.format("%s°", Math.toDegrees(rollAngle.toDouble()).toInt())
-        verticalTv!!.text = String.format("%s°", Math.toDegrees(pitchAngle.toDouble()).toInt())
+        binding.levelView.setAngle(rollAngle.toDouble(), pitchAngle.toDouble())
+        binding.horizontalTv.text =
+            String.format("%s°", Math.toDegrees(rollAngle.toDouble()).toInt())
+        binding.verticalTv.text =
+            String.format("%s°", Math.toDegrees(pitchAngle.toDouble()).toInt())
     }
 
     companion object {

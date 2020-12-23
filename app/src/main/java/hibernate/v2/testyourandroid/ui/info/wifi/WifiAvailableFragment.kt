@@ -17,11 +17,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 import java.util.Collections.sort
 
@@ -29,6 +30,9 @@ import java.util.Collections.sort
  * Created by himphen on 21/5/16.
  */
 class WifiAvailableFragment : BaseFragment(R.layout.fragment_info_listview) {
+
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+
     companion object {
         const val SCAN_WIFI_INTERVAL = 60000L
         val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -73,8 +77,8 @@ class WifiAvailableFragment : BaseFragment(R.layout.fragment_info_listview) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = InfoItemAdapter(list)
-        rvlist.adapter = adapter
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.adapter = adapter
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

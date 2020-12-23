@@ -18,6 +18,7 @@ import com.google.android.gms.ads.AdView
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentMainGridviewBinding
 import hibernate.v2.testyourandroid.model.GridItem
 import hibernate.v2.testyourandroid.ui.app.AppChooseActivity
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
@@ -55,10 +56,12 @@ import hibernate.v2.testyourandroid.ui.tool.ToolQRScannerActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolSoundMeterActivity
 import hibernate.v2.testyourandroid.ui.tool.speedtest.ToolSpeedTestActivity
 import hibernate.v2.testyourandroid.util.Utils.isAdHidden
-import kotlinx.android.synthetic.main.fragment_main_gridview.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.Random
 
 class MainTestFragment : BaseFragment(R.layout.fragment_main_gridview) {
+
+    private val binding by viewBinding(FragmentMainGridviewBinding::bind)
 
     private lateinit var adapter: MainTestAdapter
     private var list = mutableListOf<Any>()
@@ -88,10 +91,10 @@ class MainTestFragment : BaseFragment(R.layout.fragment_main_gridview) {
                     }
                 }
             }
-        gridRv.setHasFixedSize(true)
-        gridRv.layoutManager = gridLayoutManager
+        binding.gridRv.setHasFixedSize(true)
+        binding.gridRv.layoutManager = gridLayoutManager
         adapter = MainTestAdapter(list)
-        gridRv.adapter = adapter
+        binding.gridRv.adapter = adapter
     }
 
     private fun addTestSectionItem() {

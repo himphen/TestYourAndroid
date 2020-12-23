@@ -9,17 +9,21 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoHeader
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
 class InfoBatteryFragment : BaseFragment(R.layout.fragment_info_listview) {
+
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+
     private lateinit var list: ArrayList<InfoItem>
     private lateinit var adapter: InfoItemAdapter
 
@@ -36,8 +40,10 @@ class InfoBatteryFragment : BaseFragment(R.layout.fragment_info_listview) {
         override fun onReceive(arg0: Context, intent: Intent) {
             scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, 0)
             technology = intent.extras?.getString(BatteryManager.EXTRA_TECHNOLOGY) ?: ""
-            val temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE,
-                    0)
+            val temperature = intent.getIntExtra(
+                BatteryManager.EXTRA_TEMPERATURE,
+                0
+            )
             voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)
             level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
             charge = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0)
@@ -64,13 +70,16 @@ class InfoBatteryFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     override fun onResume() {
         super.onResume()
-        context?.registerReceiver(mBatInfoReceiver, IntentFilter(
-                Intent.ACTION_BATTERY_CHANGED))
+        context?.registerReceiver(
+            mBatInfoReceiver, IntentFilter(
+                Intent.ACTION_BATTERY_CHANGED
+            )
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
         init()
     }
 
@@ -84,7 +93,7 @@ class InfoBatteryFragment : BaseFragment(R.layout.fragment_info_listview) {
         }
         adapter = InfoItemAdapter(list)
         adapter.header = InfoHeader(activity?.title.toString())
-        rvlist.adapter = adapter
+        binding.rvlist.adapter = adapter
     }
 
     private fun getData(j: Int): String {

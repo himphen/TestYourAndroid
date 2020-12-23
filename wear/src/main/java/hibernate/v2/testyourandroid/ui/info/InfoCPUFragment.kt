@@ -11,12 +11,13 @@ import android.os.storage.StorageManager
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.UtilHelper.formatBitSize
+import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoHeader
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import kotlinx.android.synthetic.main.fragment_info_listview.*
+import hibernate.v2.testyourandroid.util.UtilHelper.formatBitSize
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileFilter
@@ -31,11 +32,13 @@ import java.util.regex.Pattern
  */
 class InfoCPUFragment : BaseFragment(R.layout.fragment_info_listview) {
 
+    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+
     private lateinit var memoryArray: Array<String>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvlist.layoutManager = LinearLayoutManager(context)
+        binding.rvlist.layoutManager = LinearLayoutManager(context)
         init()
     }
 
@@ -48,7 +51,7 @@ class InfoCPUFragment : BaseFragment(R.layout.fragment_info_listview) {
         }
         val adapter = InfoItemAdapter(list)
         adapter.header = InfoHeader(activity?.title.toString())
-        rvlist.adapter = adapter
+        binding.rvlist.adapter = adapter
     }
 
     private fun getData(j: Int): String {
@@ -155,7 +158,8 @@ class InfoCPUFragment : BaseFragment(R.layout.fragment_info_listview) {
     private val ramMemory: String
         get() {
             context?.let { context ->
-                val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+                val activityManager =
+                    context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                 val memoryInfo = ActivityManager.MemoryInfo()
                 activityManager.getMemoryInfo(memoryInfo)
                 val totalMem = memoryInfo.totalMem
@@ -184,13 +188,15 @@ class InfoCPUFragment : BaseFragment(R.layout.fragment_info_listview) {
         get() {
             val sdCardInfo = LongArray(2)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val storageManager = context?.getSystemService(Context.STORAGE_SERVICE) as StorageManager
-                val storageStatsManager = context?.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
+                val storageManager =
+                    context?.getSystemService(Context.STORAGE_SERVICE) as StorageManager
+                val storageStatsManager =
+                    context?.getSystemService(Context.STORAGE_STATS_SERVICE) as StorageStatsManager
                 val storageVolumes = storageManager.storageVolumes
 
                 for (storageVolume in storageVolumes) {
                     val uuid = storageVolume.uuid?.let { UUID.fromString(it) }
-                            ?: StorageManager.UUID_DEFAULT
+                        ?: StorageManager.UUID_DEFAULT
                     storageStatsManager.getFreeBytes(uuid)
                     storageStatsManager.getTotalBytes(uuid)
 

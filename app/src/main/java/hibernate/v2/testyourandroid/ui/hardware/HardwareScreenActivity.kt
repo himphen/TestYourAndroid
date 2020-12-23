@@ -6,10 +6,13 @@ import android.os.CountDownTimer
 import android.view.WindowManager
 import com.afollestad.materialdialogs.MaterialDialog
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.ActivityColorBinding
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_color.*
+import hibernate.v2.testyourandroid.util.viewBinding
 
 class HardwareScreenActivity : BaseActivity() {
+
+    private val binding by viewBinding(ActivityColorBinding::inflate)
     private var testMode = false
     private var i = 0
     private val timer: CountDownTimer = object : CountDownTimer(1200000, 100) {
@@ -32,7 +35,7 @@ class HardwareScreenActivity : BaseActivity() {
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
         )
 
-        colorView.setOnClickListener {
+        binding.colorView.setOnClickListener {
             if (!testMode) {
                 i++
                 changeColor(i)
@@ -47,18 +50,18 @@ class HardwareScreenActivity : BaseActivity() {
 
     private fun changeColor(j: Int) {
         when (j) {
-            0 -> colorView.setBackgroundColor(Color.RED)
-            1 -> colorView.setBackgroundColor(Color.GREEN)
-            2 -> colorView.setBackgroundColor(Color.BLUE)
-            3 -> colorView.setBackgroundColor(Color.CYAN)
-            4 -> colorView.setBackgroundColor(Color.MAGENTA)
-            5 -> colorView.setBackgroundColor(Color.YELLOW)
-            6 -> colorView.setBackgroundColor(Color.BLACK)
-            7 -> colorView.setBackgroundColor(Color.WHITE)
-            8 -> colorView.setBackgroundColor(Color.GRAY)
-            9 -> colorView.setBackgroundColor(Color.DKGRAY)
+            0 -> binding.colorView.setBackgroundColor(Color.RED)
+            1 -> binding.colorView.setBackgroundColor(Color.GREEN)
+            2 -> binding.colorView.setBackgroundColor(Color.BLUE)
+            3 -> binding.colorView.setBackgroundColor(Color.CYAN)
+            4 -> binding.colorView.setBackgroundColor(Color.MAGENTA)
+            5 -> binding.colorView.setBackgroundColor(Color.YELLOW)
+            6 -> binding.colorView.setBackgroundColor(Color.BLACK)
+            7 -> binding.colorView.setBackgroundColor(Color.WHITE)
+            8 -> binding.colorView.setBackgroundColor(Color.GRAY)
+            9 -> binding.colorView.setBackgroundColor(Color.DKGRAY)
             10 -> {
-                colorView.setBackgroundColor(Color.LTGRAY)
+                binding.colorView.setBackgroundColor(Color.LTGRAY)
                 i = -1
             }
         }

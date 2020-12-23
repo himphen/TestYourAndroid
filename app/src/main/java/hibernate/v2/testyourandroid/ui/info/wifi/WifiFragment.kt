@@ -15,14 +15,16 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.tabs.TabLayoutMediator
 import com.orhanobut.logger.Logger
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.databinding.FragmentViewPagerConatinerBinding
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_app_info.*
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.viewBinding
 
 /**
  * Created by himphen on 21/5/16.
@@ -31,11 +33,10 @@ class WifiFragment : BaseFragment(R.layout.fragment_view_pager_conatiner) {
     companion object {
         val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
 
-        fun newInstant(): WifiFragment {
-            return WifiFragment()
-        }
+        fun newInstant(): WifiFragment = WifiFragment()
     }
 
+    private val binding by viewBinding(FragmentViewPagerConatinerBinding::bind)
     private lateinit var adapter: WifiFragmentPagerAdapter
     private lateinit var tabTitles: Array<String>
 
@@ -69,33 +70,23 @@ class WifiFragment : BaseFragment(R.layout.fragment_view_pager_conatiner) {
 
             tabTitles = resources.getStringArray(R.array.test_wifi_tab_title)
             // Note that we are passing childFragmentManager, not FragmentManager
-            adapter = WifiFragmentPagerAdapter(activity, childFragmentManager)
+            adapter = WifiFragmentPagerAdapter(this)
             (activity as BaseActivity).supportActionBar?.title = tabTitles[0]
-            viewPager.adapter = adapter
-            viewPager.offscreenPageLimit = 2
-            tabLayout.setupWithViewPager(viewPager)
-            // Iterate over all tabs and set the custom view
-            for (i in 0 until tabLayout.tabCount) {
-                val tab = tabLayout.getTabAt(i)
-                tab?.customView = adapter.getTabView(i)
-            }
-            viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                override fun onPageScrolled(
-                    position: Int,
-                    positionOffset: Float,
-                    positionOffsetPixels: Int
-                ) {
-                }
-
+            binding.viewPager.adapter = adapter
+            binding.viewPager.offscreenPageLimit = 2
+            binding.viewPager.registerOnPageChangeCallback(object :
+                ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     activity.supportActionBar?.title = (tabTitles[position])
                 }
-
-                override fun onPageScrollStateChanged(state: Int) {}
             })
 
+            TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+                tab.customView = adapter.getTabView(position)
+            }.attach()
+
             if (!isPermissionsGranted(PERMISSION_NAME)) {
-                requestPermissions(PERMISSION_NAME, PERMISSION_REQUEST_CODE)
+                requestMultiplePermissions.launch(PERMISSION_NAME)
             }
         }
     }
@@ -177,19 +168,6 @@ class WifiFragment : BaseFragment(R.layout.fragment_view_pager_conatiner) {
         try {
             context?.unregisterReceiver(wifiStateChangedReceiver)
         } catch (ignored: IllegalArgumentException) {
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (!hasAllPermissionsGranted(grantResults)) {
-                Utils.openErrorPermissionDialog(context)
-            }
         }
     }
 

@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
+import com.afollestad.materialdialogs.customview.getCustomView
 import com.blankj.utilcode.util.SizeUtils
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -135,15 +136,6 @@ object Utils {
         }
     }
 
-    fun hasAllPermissionsGranted(grantResults: IntArray): Boolean {
-        for (grantResult in grantResults) {
-            if (grantResult == PackageManager.PERMISSION_DENIED) {
-                return false
-            }
-        }
-        return true
-    }
-
     fun scanForActivity(context: Context?): Activity? {
         return when (context) {
             is Activity -> context
@@ -165,10 +157,10 @@ object Utils {
     private const val IAP_PID_20 = "adfree_coffee"
     private const val IAP_PID_40 = "adfree_bigmac"
 
-    fun openErrorPermissionDialog(context: Context?) {
+    @SuppressLint("SetTextI18n")
+    fun openErrorPermissionDialog(context: Context?, permissions: MutableList<String>) {
         context?.let {
-            MaterialDialog(it)
-                .title(R.string.ui_caution)
+            val dialog = MaterialDialog(it)
                 .customView(R.layout.dialog_permission)
                 .cancelable(false)
                 .positiveButton(R.string.ui_okay) { dialog ->
@@ -197,7 +189,12 @@ object Utils {
                 .negativeButton(R.string.ui_cancel) { dialog ->
                     scanForActivity(dialog.context)?.finish()
                 }
-                .show()
+
+            val customView = dialog.getCustomView()
+            customView.findViewById<TextView>(R.id.messageTv).text =
+                customView.findViewById<TextView>(R.id.messageTv).text.toString() +
+                        "\n\n" + permissions.joinToString("\n")
+            dialog.show()
         }
     }
 

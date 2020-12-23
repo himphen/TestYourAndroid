@@ -13,14 +13,14 @@
         android:layout_height="0dp"
         android:layout_margin="50dp"
         android:layout_weight="2"
-        app:bubbleColor="@color/primary"
+        app:bubbleColor="@color/md_blue_400"
         app:bubbleRadius="24dp"
-        app:bubbleRuleColor="@color/lineColor4"
+        app:bubbleRuleColor="@color/md_green_400"
         app:bubbleRuleRadius="26dp"
         app:bubbleRuleWidth="1dp"
-        app:horizontalColor="@color/lineColor4"
+        app:horizontalColor="@color/md_green_400"
         app:limitCircleWidth="6dp"
-        app:limitColor="@color/primary"
+        app:limitColor="@color/md_blue_400"
         app:limitRadius="120dp" />
 
     <LinearLayout

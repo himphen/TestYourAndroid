@@ -7,15 +7,18 @@ import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import hibernate.v2.testyourandroid.R
-import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.databinding.FragmentHardwareBiometricBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_hardware_biometric.*
+import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.concurrent.Executor
 
 /**
  * Created by himphen on 21/5/16.
  */
 class HardwareBiometricFragment : BaseFragment(R.layout.fragment_hardware_biometric) {
+
+    private val binding by viewBinding(FragmentHardwareBiometricBinding::bind)
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
@@ -31,7 +34,7 @@ class HardwareBiometricFragment : BaseFragment(R.layout.fragment_hardware_biomet
                         errorCode: Int,
                         errString: CharSequence
                     ) {
-                        helpText?.text = when (errorCode) {
+                        binding.helpText.text = when (errorCode) {
                             BiometricConstants.ERROR_CANCELED -> getString(R.string.generic_error_user_canceled)
                             BiometricConstants.ERROR_HW_NOT_PRESENT -> getString(R.string.default_error_msg)
                             BiometricConstants.ERROR_HW_UNAVAILABLE -> getString(R.string.default_error_msg)
@@ -52,11 +55,11 @@ class HardwareBiometricFragment : BaseFragment(R.layout.fragment_hardware_biomet
                     override fun onAuthenticationSucceeded(
                         result: BiometricPrompt.AuthenticationResult
                     ) {
-                        helpText?.text = getString(R.string.ui_fingerprint_succeeded)
+                        binding.helpText.text = getString(R.string.ui_fingerprint_succeeded)
                     }
 
                     override fun onAuthenticationFailed() {
-                        helpText?.text = getString(R.string.ui_fingerprint_fail)
+                        binding.helpText.text = getString(R.string.ui_fingerprint_fail)
                     }
                 })
 
@@ -74,7 +77,7 @@ class HardwareBiometricFragment : BaseFragment(R.layout.fragment_hardware_biomet
 
             biometricPrompt.authenticate(promptInfo)
 
-            imageView1.setOnClickListener {
+            binding.imageView1.setOnClickListener {
                 biometricPrompt.authenticate(promptInfo)
             }
         }
