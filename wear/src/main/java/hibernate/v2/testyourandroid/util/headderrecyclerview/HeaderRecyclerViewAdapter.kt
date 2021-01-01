@@ -17,7 +17,9 @@ import android.view.ViewGroup
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ /**
+ */
+
+/**
  * RecyclerView.Adapter extension created to add header capability support and a generic List of
  * items really useful most of the cases. You should extend from this class and override
  * onCreateViewHolder to create your ViewHolder instances and onBindViewHolder methods to draw your
@@ -44,7 +46,7 @@ abstract class HeaderRecyclerViewAdapter<VH : RecyclerView.ViewHolder, H, T, F> 
      * @return footer data
      */
     var footer: F? = null
-    private var showFooter = true
+    private var showFooter = false
 
     /**
      * Invokes onCreateHeaderViewHolder, onCreateItemViewHolder or onCreateFooterViewHolder methods
@@ -76,7 +78,6 @@ abstract class HeaderRecyclerViewAdapter<VH : RecyclerView.ViewHolder, H, T, F> 
      * If you don't need footer feature, you can bypass overriding this method.
      */
     protected open fun onCreateFooterViewHolder(parent: ViewGroup, viewType: Int): VH? {
-
         return null
     }
 
@@ -95,13 +96,13 @@ abstract class HeaderRecyclerViewAdapter<VH : RecyclerView.ViewHolder, H, T, F> 
     /**
      * If you don't need header feature, you can bypass overriding this method.
      */
-    protected open fun onBindHeaderViewHolder(holder: VH?, position: Int) {}
+    protected open fun onBindHeaderViewHolder(holder: VH, position: Int) {}
     protected abstract fun onBindItemViewHolder(holder: VH, position: Int)
 
     /**
      * If you don't need footer feature, you can bypass overriding this method.
      */
-    protected open fun onBindFooterViewHolder(holder: VH?, position: Int) {}
+    protected open fun onBindFooterViewHolder(holder: VH, position: Int) {}
 
     /**
      * Invokes onHeaderViewRecycled, onItemViewRecycled or onFooterViewRecycled methods based
@@ -164,11 +165,11 @@ abstract class HeaderRecyclerViewAdapter<VH : RecyclerView.ViewHolder, H, T, F> 
      * @return item data in the specified postion
      */
     fun getItem(position: Int): T {
-        var position = position
+        var i = position
         if (hasHeader() && hasItems()) {
-            --position
+            --i
         }
-        return items[position]
+        return items[i]
     }
 
     /**
@@ -232,7 +233,7 @@ abstract class HeaderRecyclerViewAdapter<VH : RecyclerView.ViewHolder, H, T, F> 
     /**
      * Returns true if the header configured is not null.
      */
-    private fun hasHeader(): Boolean {
+    protected fun hasHeader(): Boolean {
         return header != null
     }
 

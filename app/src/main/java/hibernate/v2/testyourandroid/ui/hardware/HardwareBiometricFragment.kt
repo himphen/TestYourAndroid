@@ -35,19 +35,19 @@ class HardwareBiometricFragment : BaseFragment(R.layout.fragment_hardware_biomet
                         errString: CharSequence
                     ) {
                         binding.helpText.text = when (errorCode) {
-                            BiometricConstants.ERROR_CANCELED -> getString(R.string.generic_error_user_canceled)
-                            BiometricConstants.ERROR_HW_NOT_PRESENT -> getString(R.string.default_error_msg)
-                            BiometricConstants.ERROR_HW_UNAVAILABLE -> getString(R.string.default_error_msg)
-                            BiometricConstants.ERROR_LOCKOUT -> getString(R.string.fingerprint_error_lockout)
-                            BiometricConstants.ERROR_LOCKOUT_PERMANENT -> getString(R.string.fingerprint_error_lockout)
-                            BiometricConstants.ERROR_NEGATIVE_BUTTON -> getString(R.string.generic_error_user_canceled)
-                            BiometricConstants.ERROR_NO_BIOMETRICS -> getString(R.string.default_error_msg)
-                            BiometricConstants.ERROR_NO_DEVICE_CREDENTIAL -> getString(R.string.default_error_msg)
-                            BiometricConstants.ERROR_NO_SPACE -> getString(R.string.default_error_msg)
-                            BiometricConstants.ERROR_TIMEOUT -> getString(R.string.default_error_msg)
-                            BiometricConstants.ERROR_UNABLE_TO_PROCESS -> getString(R.string.default_error_msg)
-                            BiometricConstants.ERROR_USER_CANCELED -> getString(R.string.generic_error_user_canceled)
-                            BiometricConstants.ERROR_VENDOR -> getString(R.string.default_error_msg)
+                            BiometricConstants.ERROR_CANCELED -> context.getString(R.string.generic_error_user_canceled)
+                            BiometricConstants.ERROR_HW_NOT_PRESENT -> context.getString(R.string.default_error_msg)
+                            BiometricConstants.ERROR_HW_UNAVAILABLE -> context.getString(R.string.default_error_msg)
+                            BiometricConstants.ERROR_LOCKOUT -> context.getString(R.string.fingerprint_error_lockout)
+                            BiometricConstants.ERROR_LOCKOUT_PERMANENT -> context.getString(R.string.fingerprint_error_lockout)
+                            BiometricConstants.ERROR_NEGATIVE_BUTTON -> context.getString(R.string.generic_error_user_canceled)
+                            BiometricConstants.ERROR_NO_BIOMETRICS -> context.getString(R.string.default_error_msg)
+                            BiometricConstants.ERROR_NO_DEVICE_CREDENTIAL -> context.getString(R.string.default_error_msg)
+                            BiometricConstants.ERROR_NO_SPACE -> context.getString(R.string.default_error_msg)
+                            BiometricConstants.ERROR_TIMEOUT -> context.getString(R.string.default_error_msg)
+                            BiometricConstants.ERROR_UNABLE_TO_PROCESS -> context.getString(R.string.default_error_msg)
+                            BiometricConstants.ERROR_USER_CANCELED -> context.getString(R.string.generic_error_user_canceled)
+                            BiometricConstants.ERROR_VENDOR -> context.getString(R.string.default_error_msg)
                             else -> getString(R.string.default_error_msg)
                         }
                     }

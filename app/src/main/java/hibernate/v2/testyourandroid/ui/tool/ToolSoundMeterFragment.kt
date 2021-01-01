@@ -15,7 +15,7 @@ import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentToolSoundMeterBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.util.Utils.logException
 import hibernate.v2.testyourandroid.util.ext.format
 import hibernate.v2.testyourandroid.util.viewBinding
@@ -63,7 +63,7 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
                 AudioFormat.CHANNEL_IN_DEFAULT, AudioFormat.ENCODING_PCM_16BIT
             )
             if (BUFFER_SIZE < 0) {
-                Utils.errorNoFeatureDialog(context)
+                errorNoFeatureDialog(context)
                 return
             }
             val buffer = ShortArray(BUFFER_SIZE)
@@ -146,7 +146,7 @@ class ToolSoundMeterFragment : BaseFragment(R.layout.fragment_tool_sound_meter) 
                 }
             } catch (e: Exception) {
                 logException(e)
-                //			C.errorNoFeatureDialog(getContext());
+                errorNoFeatureDialog(context)
             }
         }
     }

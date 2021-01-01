@@ -12,10 +12,10 @@ android {
 
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
-        minSdkVersion 23
+        minSdkVersion 25
         targetSdkVersion 30
-        versionCode 2310102
-        versionName "Pineapple Buns 10.1.0"
+        versionCode 2510202
+        versionName "Pineapple Buns 10.2.0"
         multiDexEnabled true
     }
 

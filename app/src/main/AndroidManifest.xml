@@ -257,6 +257,10 @@
             android:name="firebase_crashlytics_collection_enabled"
             android:value="false" />
 
+        <meta-data
+            android:name="appbrain.job_id"
+            android:value="1205629301" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

@@ -1,8 +1,11 @@
 package hibernate.v2.testyourandroid.ui.hardware
 
 import android.hardware.Camera
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.listItemsSingleChoice
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import com.otaliastudios.cameraview.CameraLogger
 import com.otaliastudios.cameraview.controls.Facing
 import com.otaliastudios.cameraview.controls.Mode
@@ -13,7 +16,6 @@ import com.otaliastudios.cameraview.size.SizeSelectors
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentHardwareCameraBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.util.viewBinding
 
@@ -25,31 +27,8 @@ class HardwareCameraFragment : BaseFragment(R.layout.fragment_hardware_camera) {
 
     private val binding by viewBinding(FragmentHardwareCameraBinding::bind)
 
-    private fun openChooseCameraDialog() {
-        val numberOfCamera = Camera.getNumberOfCameras()
-        if (numberOfCamera == 1) {
-            initCamera(true)
-        } else {
-            context?.let {
-                MaterialDialog(it)
-                    .title(R.string.dialog_camera_title)
-                    .listItemsSingleChoice(
-                        items = arrayListOf("Camera 1", "Camera 2"),
-                        waitForPositiveButton = false
-                    ) { dialog, index, _ ->
-                        initCamera(index == 0)
-                        dialog.dismiss()
-                    }
-                    .cancelable(false)
-                    .negativeButton(R.string.ui_cancel) { dialog ->
-                        Utils.scanForActivity(dialog.context)?.finish()
-                    }
-                    .show()
-            }
-        }
-    }
-
-    private fun initCamera(isCameraFacingBack: Boolean) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         CameraLogger.registerLogger { level, _, _, throwable ->
             if (level == CameraLogger.LEVEL_ERROR) {
                 if (throwable != null) {
@@ -57,30 +36,34 @@ class HardwareCameraFragment : BaseFragment(R.layout.fragment_hardware_camera) {
                 }
             }
         }
-        try {
-            binding.cameraView.facing = if (isCameraFacingBack) Facing.BACK else Facing.FRONT
-            binding.cameraView.mode = Mode.PICTURE
-            binding.cameraView.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS)
-            binding.cameraView.mapGesture(Gesture.SCROLL_HORIZONTAL, GestureAction.ZOOM)
-            binding.cameraView.setPictureSize(SizeSelectors.aspectRatio(AspectRatio.of(4, 3), 0f))
-            binding.cameraView.open()
-        } catch (e: Exception) {
-            errorNoFeatureDialog(context)
+
+        binding.cameraView.setLifecycleOwner(viewLifecycleOwner)
+
+        binding.cameraView.facing = Facing.BACK
+        binding.cameraView.mode = Mode.PICTURE
+        binding.cameraView.mapGesture(Gesture.TAP, GestureAction.AUTO_FOCUS)
+        binding.cameraView.mapGesture(Gesture.SCROLL_HORIZONTAL, GestureAction.ZOOM)
+        binding.cameraView.setPictureSize(SizeSelectors.aspectRatio(AspectRatio.of(4, 3), 0f))
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        val numberOfCamera = Camera.getNumberOfCameras()
+
+        if (numberOfCamera > 1) {
+            inflater.inflate(R.menu.test_camera, menu)
         }
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onResume() {
-        super.onResume()
-        openChooseCameraDialog()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        binding.cameraView.close()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding.cameraView.destroy()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_flip_camera -> binding.cameraView.toggleFacing()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
