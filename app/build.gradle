@@ -15,8 +15,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 1910202
-        versionName "Pineapple Buns 10.2.0"
+        versionCode 1910302
+        versionName "Pineapple Buns 10.3.0"
         multiDexEnabled true
         flavorDimensions "default"
         wearAppUnbundled true
@@ -144,6 +144,9 @@ dependencies {
 
     // https://github.com/skydoves/AndroidVeil
     implementation "com.github.skydoves:androidveil:1.0.9"
+
+    // https://github.com/michaelbull/kotlin-retry
+    implementation("com.michael-bull.kotlin-retry:kotlin-retry:1.0.5")
 }
 
 apply plugin: 'com.google.gms.google-services'

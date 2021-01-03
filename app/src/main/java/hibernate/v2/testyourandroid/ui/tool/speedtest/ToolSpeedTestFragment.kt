@@ -6,7 +6,12 @@ import android.location.Location
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.afollestad.materialdialogs.MaterialDialog
+import com.github.michaelbull.retry.policy.constantDelay
+import com.github.michaelbull.retry.policy.limitAttempts
+import com.github.michaelbull.retry.policy.plus
+import com.github.michaelbull.retry.retry
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
@@ -14,25 +19,90 @@ import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentToolSpeedTestBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.view.GetSpeedTestHostsHandler
+import hibernate.v2.testyourandroid.ui.view.Server
 import hibernate.v2.testyourandroid.util.ext.roundTo
 import hibernate.v2.testyourandroid.util.viewBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.net.HttpURLConnection
+import java.net.URL
 import java.text.DecimalFormat
 
 /**
  * Created by himphen on 21/5/16.
  */
+@SuppressLint("SetTextI18n")
 class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
+
+    private val viewModel = ToolSpeedTestViewModel()
 
     private val binding by viewBinding(FragmentToolSpeedTestBinding::bind)
 
     private var seriesDownload = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
     private var seriesUpload = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
 
-    private var thread: Thread? = null
     private var loadingDialog: MaterialDialog? = null
-    private var tempBlackList: HashSet<String> = HashSet()
 
-    private var shouldStopNow = false
+    private var lastXPositionDownload = 0.0
+    private var lastXPositionUpload = 0.0
+
+    private var job: Job? = null
+    val dec = DecimalFormat("#.##")
+
+    init {
+        lifecycleScope.launchWhenCreated {
+            viewModel.pingInstantRtt.observe(this@ToolSpeedTestFragment, {
+                binding.latencyTv.text = "${dec.format(it)} ms"
+            })
+            viewModel.pingAvgRtt.observe(this@ToolSpeedTestFragment, {
+                binding.latencyTv.text = "${dec.format(it)} ms"
+            })
+            viewModel.instantDownloadRate.observe(this@ToolSpeedTestFragment, {
+                binding.downloadTextView.text = "${dec.format(it.roundTo(2))} Mbps"
+
+                seriesDownload.appendData(
+                    DataPoint(lastXPositionDownload, it),
+                    false, 10000
+                )
+
+                if (binding.graphViewDownload.viewport.getMaxX(true) > 10.0) {
+                    binding.graphViewDownload.viewport.setMaxX(
+                        binding.graphViewDownload.viewport.getMaxX(
+                            true
+                        ) + 1
+                    )
+                }
+                lastXPositionDownload++
+            })
+            viewModel.instantUploadRate.observe(this@ToolSpeedTestFragment, {
+                binding.uploadTextView.text = "${dec.format(it)} Mbps"
+
+                seriesUpload.appendData(
+                    DataPoint(lastXPositionUpload, it),
+                    false, 10000
+                )
+
+                if (binding.graphViewUpload.viewport.getMaxX(true) > 10.0) {
+                    binding.graphViewUpload.viewport.setMaxX(
+                        binding.graphViewUpload.viewport.getMaxX(
+                            true
+                        ) + 1
+                    )
+                }
+                lastXPositionUpload++
+            })
+            viewModel.finalDownloadRate.observe(this@ToolSpeedTestFragment, {
+                binding.downloadTextView.text = "${dec.format(it.roundTo(2))} Mbps"
+            })
+            viewModel.finalUploadRate.observe(this@ToolSpeedTestFragment, {
+                binding.uploadTextView.text = "${dec.format(it.roundTo(2))} Mbps"
+            })
+
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,254 +150,121 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
             binding.providerTv.text = "-"
             binding.latencyTv.text = "-"
             initThread()
-            thread?.start()
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initThread() {
-        thread = Thread(object : Runnable {
-            val dec = DecimalFormat("#.##")
-
-            @SuppressLint("SetTextI18n")
-            override fun run() {
-                shouldStopNow = false
-                HttpUploadTest.shouldStopNow = false
-                val getSpeedTestHostsHandler = GetSpeedTestHostsHandler()
-                getSpeedTestHostsHandler.start()
-
-                activity?.runOnUiThread {
-                    loadingDialog?.show()
-                }
-
-                var timeCount = 60
-                while (!getSpeedTestHostsHandler.isFinished) {
-                    timeCount--
-                    try {
-                        Thread.sleep(100)
-                    } catch (e: InterruptedException) {
-                        activity?.runOnUiThread {
-                            binding.startButton.isEnabled = true
-                            loadingDialog?.dismiss()
-                        }
-                        getSpeedTestHostsHandler.interrupt()
-                        return
-                    }
-                    if (timeCount <= 0) {
-                        activity?.runOnUiThread {
-                            showErrorDialog("No Connection...")
-                            binding.startButton.isEnabled = true
-                            loadingDialog?.dismiss()
-                        }
-                        getSpeedTestHostsHandler.interrupt()
-                        return
-                    }
-                }
-
-                activity?.runOnUiThread {
-                    loadingDialog?.dismiss()
-                    seriesDownload.resetData(arrayOf(DataPoint(0.0, 0.0)))
-                    seriesUpload.resetData(arrayOf(DataPoint(0.0, 0.0)))
-                }
-
-                if (getSpeedTestHostsHandler.serverList.isEmpty()) {
-                    binding.startButton.isEnabled = true
-                    showErrorDialog("No Connection...")
-                    return
-                }
-
-                // Find closest server
-                var tmp = 19349458.0
-                var dist = 0.0
-                var findServer: GetSpeedTestHostsHandler.Server =
-                    getSpeedTestHostsHandler.serverList[0]
-
-                val source = Location("Source")
-                source.latitude = getSpeedTestHostsHandler.selfLat
-                source.longitude = getSpeedTestHostsHandler.selfLon
-
-                for (server in getSpeedTestHostsHandler.serverList) {
-                    if (tempBlackList.contains(server.sponsor)) {
-                        continue
-                    }
-
-                    val dest = Location("Dest")
-                    dest.latitude = server.lat
-                    dest.longitude = server.lon
-
-                    val distance: Double = source.distanceTo(dest).toDouble()
-                    if (tmp > distance) {
-                        tmp = distance
-                        dist = distance
-                        findServer = server
-                    }
-                }
-
-                val uploadAddress = findServer.uploadAddress
-                val distance = dist
-                activity?.runOnUiThread {
-                    binding.locationTv.text = findServer.name
-                    binding.providerTv.text = String.format(
-                        "[%s km] %s",
-                        DecimalFormat("#.##").format(distance / 1000),
-                        findServer.sponsor
-                    )
-                }
-
-                // Reset value, graphics
-                activity?.runOnUiThread {
-                    binding.downloadTextView.text = "0 Mbps"
-                    binding.uploadTextView.text = "0 Mbps"
-                }
-
-                var pingTestStarted = false
-                var pingTestFinished = false
-                var downloadTestStarted = false
-                var downloadTestFinished = false
-                var uploadTestStarted = false
-                var uploadTestFinished = false
-
-                var lastXPositionDownload = 0.0
-                var lastXPositionUpload = 0.0
-
-                // Init Test
-                val pingTest = PingTest(findServer.host.replace(":8080", ""), 1)
-                val downloadTest = HttpDownloadTest(
-                    uploadAddress.replace(
-                        uploadAddress.split("/").toTypedArray()[uploadAddress.split("/")
-                            .toTypedArray().size - 1], ""
-                    )
-                )
-                val uploadTest = HttpUploadTest(uploadAddress)
-                // Tests
-                while (!shouldStopNow) {
-                    if (!pingTestStarted) {
-                        pingTest.start()
-                        pingTestStarted = true
-                    }
-                    if (pingTestFinished && !downloadTestStarted) {
-                        if (pingTest.avgRtt != 0.0) {
-                            activity?.runOnUiThread {
-                                binding.latencyTv.text = "${dec.format(pingTest.avgRtt)} ms"
-                            }
-                        }
-                        downloadTest.start()
-                        downloadTestStarted = true
-                    }
-                    if (downloadTestFinished && !uploadTestStarted) {
-                        if (downloadTest.finalDownloadRate != 0.0) {
-                            activity?.runOnUiThread {
-                                binding.downloadTextView.text =
-                                    "${dec.format(downloadTest.finalDownloadRate.roundTo(2))} Mbps"
-                            }
-                        }
-                        uploadTest.start()
-                        uploadTestStarted = true
-                    }
-
-                    // Ping Test
-                    if (pingTestStarted && !pingTestFinished) {
-                        activity?.runOnUiThread {
-                            binding.latencyTv.text = "${dec.format(pingTest.instantRtt)} ms"
-                        }
-                    }
-
-                    //Download Test
-                    if (downloadTestStarted && !downloadTestFinished) {
-                        val downloadRate: Double = downloadTest.instantDownloadRate
-                        activity?.runOnUiThread {
-                            binding.downloadTextView.text = "${dec.format(downloadRate)} Mbps"
-                        }
-                        //Update chart
-                        activity?.runOnUiThread {
-                            seriesDownload.appendData(
-                                DataPoint(
-                                    lastXPositionDownload,
-                                    downloadRate
-                                ), false, 10000
-                            )
-
-                            if (binding.graphViewDownload.viewport.getMaxX(true) > 10.0) {
-                                binding.graphViewDownload.viewport.setMaxX(
-                                    binding.graphViewDownload.viewport.getMaxX(
-                                        true
-                                    ) + 1
-                                )
-                            }
-                            lastXPositionDownload++
-                        }
-
-                    }
-                    // Upload Test
-                    if (downloadTestFinished && !uploadTestFinished) {
-                        val uploadRate: Double = uploadTest.instantUploadRate
-                        activity?.runOnUiThread {
-                            binding.uploadTextView.text = "${dec.format(uploadRate)} Mbps"
-                        }
-                        // Update chart
-                        activity?.runOnUiThread {
-                            seriesUpload.appendData(
-                                DataPoint(lastXPositionUpload, uploadRate),
-                                false,
-                                10000
-                            )
-
-                            if (binding.graphViewUpload.viewport.getMaxX(true) > 10.0) {
-                                binding.graphViewUpload.viewport.setMaxX(
-                                    binding.graphViewUpload.viewport.getMaxX(
-                                        true
-                                    ) + 1
-                                )
-                            }
-
-                            lastXPositionUpload++
-                        }
-                    }
-                    //Test finished
-                    if (pingTestFinished && downloadTestFinished && uploadTest.isFinished) {
-                        if (uploadTest.getRoundedFinalUploadRate() != 0.0) { //Success
-                            activity?.runOnUiThread {
-                                binding.uploadTextView.text =
-                                    "${dec.format(uploadTest.getRoundedFinalUploadRate())} Mbps"
-                            }
-                        }
-                        break
-                    }
-                    if (pingTest.isFinished) {
-                        pingTestFinished = true
-                    }
-                    if (downloadTest.isFinished) {
-                        downloadTestFinished = true
-                    }
-                    if (uploadTest.isFinished) {
-                        uploadTestFinished = true
-                    }
-                    if (pingTestStarted && !pingTestFinished) {
-                        try {
-                            Thread.sleep(300)
-                        } catch (e: InterruptedException) {
-                        }
-                    } else {
-                        try {
-                            Thread.sleep(100)
-                        } catch (e: InterruptedException) {
-                        }
-                    }
-                }
-
-                // Button re-activated at the end of thread
-                activity?.runOnUiThread {
-                    pingTest.shouldStopNow = true
-                    downloadTest.shouldStopNow = true
-                    HttpUploadTest.shouldStopNow = true
-                    binding.startButton.isEnabled = true
-                }
-                return
+        job = GlobalScope.launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+                loadingDialog?.show()
             }
-        })
+
+            var selfLat: Double? = null
+            var selfLon: Double? = null
+            val serverList = arrayListOf<Server>()
+
+            retry(limitAttempts(10) + constantDelay(delayMillis = 500L)) {
+                // Get latitude, longitude
+                val url = URL("https://www.speedtest.net/speedtest-config.php")
+                val urlConnection = url.openConnection() as HttpURLConnection
+                val code = urlConnection.responseCode
+                if (code == 200) {
+                    GetSpeedTestHostsHandler.parseClient(urlConnection.inputStream)?.let {
+                        selfLat = it.lat.toDouble()
+                        selfLon = it.lon.toDouble()
+                    }
+                }
+            }
+
+            if (selfLat == null || selfLon == null) {
+                withContext(Dispatchers.Main) {
+                    binding.startButton.isEnabled = true
+                    loadingDialog?.dismiss()
+                    showErrorDialog("No Connection...")
+                }
+
+                return@launch
+            }
+
+            retry(limitAttempts(10) + constantDelay(delayMillis = 500L)) {
+                // Best server
+                val url = URL("https://www.speedtest.net/speedtest-servers-static.php")
+                val urlConnection = url.openConnection() as HttpURLConnection
+                val code = urlConnection.responseCode
+                if (code == 200) {
+                    val list: List<Server> =
+                        GetSpeedTestHostsHandler.parseServer(urlConnection.inputStream)
+                    for (value: Server in list) {
+                        serverList.add(value)
+                    }
+                }
+            }
+
+            withContext(Dispatchers.Main) {
+                loadingDialog?.dismiss()
+                seriesDownload.resetData(arrayOf(DataPoint(0.0, 0.0)))
+                seriesUpload.resetData(arrayOf(DataPoint(0.0, 0.0)))
+            }
+
+            // Find closest server
+            var tmp = 19349458.0
+            var dist = 0.0
+            var findServer = serverList[0]
+
+            val source = Location("Source")
+            source.latitude = selfLat!!
+            source.longitude = selfLon!!
+
+            for (server in serverList) {
+                val dest = Location("Dest")
+                dest.latitude = server.lat
+                dest.longitude = server.lon
+
+                val distance: Double = source.distanceTo(dest).toDouble()
+                if (tmp > distance) {
+                    tmp = distance
+                    dist = distance
+                    findServer = server
+                }
+            }
+
+            val pingAddress = findServer.host.replace(":8080", "")
+            val uploadAddress = findServer.uploadAddress
+            val downloadAddress = uploadAddress.replace(
+                uploadAddress.split("/").toTypedArray()[uploadAddress.split("/")
+                    .toTypedArray().size - 1], ""
+            )
+            val distance = dist
+            withContext(Dispatchers.Main) {
+                binding.locationTv.text = findServer.name
+                binding.providerTv.text = String.format(
+                    "[%s km] %s",
+                    DecimalFormat("#.##").format(distance / 1000),
+                    findServer.sponsor
+                )
+            }
+
+            // Reset value, graphics
+            withContext(Dispatchers.Main) {
+                binding.downloadTextView.text = "0 Mbps"
+                binding.uploadTextView.text = "0 Mbps"
+            }
+
+            // Init Test
+            viewModel.testPing(pingAddress, 1)
+            viewModel.testDownload(downloadAddress)
+            viewModel.testUpload(uploadAddress)
+
+            // Button re-activated at the end of thread
+            withContext(Dispatchers.Main) {
+                binding.startButton.isEnabled = true
+            }
+        }
     }
 
     private fun stopThread() {
-        shouldStopNow = true
+        job?.cancel()
     }
 
     override fun onPause() {
@@ -346,14 +283,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
         }
     }
 
-
     companion object {
-        fun newInstance(): ToolSpeedTestFragment {
-            val fragment = ToolSpeedTestFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance(): ToolSpeedTestFragment = ToolSpeedTestFragment()
     }
-
 }

@@ -40,9 +40,9 @@ class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashligh
         }
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         closeFlash()
-        super.onDestroy()
+        super.onDestroyView()
     }
 
     private fun openFlash() {

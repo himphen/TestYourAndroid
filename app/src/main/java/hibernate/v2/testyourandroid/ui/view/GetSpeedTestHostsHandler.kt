@@ -5,26 +5,10 @@ import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
 import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
 
-class GetSpeedTestHostsHandler : Thread() {
-    var serverList = arrayListOf<Server>()
-    var selfLat = 0.0
-    var selfLon = 0.0
-    var isFinished = false
+object GetSpeedTestHostsHandler {
 
     private val ns: String? = null
-
-    data class Server(
-        val id: Int, val uploadAddress: String,
-        val lat: Double, val lon: Double,
-        val name: String, val country: String,
-        val cc: String, val sponsor: String,
-        val host: String
-    )
-
-    data class Client(val lat: String, val lon: String)
 
     @Throws(XmlPullParserException::class, IOException::class)
     fun parseClient(inputStream: InputStream): Client? {
@@ -89,39 +73,14 @@ class GetSpeedTestHostsHandler : Thread() {
             return entries
         }
     }
-
-    override fun run() {
-        // Get latitude, longitude
-        try {
-            val url = URL("https://www.speedtest.net/speedtest-config.php")
-            val urlConnection = url.openConnection() as HttpURLConnection
-            val code = urlConnection.responseCode
-            if (code == 200) {
-                parseClient(urlConnection.inputStream)?.let {
-                    selfLat = it.lat.toDouble()
-                    selfLon = it.lon.toDouble()
-                }
-            }
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-            return
-        }
-
-        // Best server
-        try {
-            val url = URL("https://www.speedtest.net/speedtest-servers-static.php")
-            val urlConnection = url.openConnection() as HttpURLConnection
-            val code = urlConnection.responseCode
-            if (code == 200) {
-                val list: List<Server> = parseServer(urlConnection.inputStream)
-                for (value: Server in list) {
-                    serverList.add(value)
-                }
-            }
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-            return
-        }
-        isFinished = true
-    }
 }
+
+data class Server(
+    val id: Int, val uploadAddress: String,
+    val lat: Double, val lon: Double,
+    val name: String, val country: String,
+    val cc: String, val sponsor: String,
+    val host: String
+)
+
+data class Client(val lat: String, val lon: String)
