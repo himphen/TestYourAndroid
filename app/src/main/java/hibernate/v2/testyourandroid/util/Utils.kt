@@ -194,20 +194,24 @@ object Utils {
             customView.findViewById<TextView>(R.id.messageTv).text =
                 customView.findViewById<TextView>(R.id.messageTv).text.toString() +
                         "\n\n" + permissions.joinToString("\n")
-            dialog.show()
+
+            if (scanForActivity(dialog.context)?.isFinishing == false)
+                dialog.show()
         }
     }
 
     fun errorNoFeatureDialog(context: Context?, isFinish: Boolean = true) {
         context?.let {
-            MaterialDialog(it)
+            val dialog = MaterialDialog(it)
                 .title(R.string.ui_error)
                 .message(R.string.dialog_feature_na_message)
                 .cancelable(false)
                 .positiveButton(R.string.ui_okay) { dialog ->
                     if (isFinish) scanForActivity(dialog.context)?.finish()
                 }
-                .show()
+
+            if (scanForActivity(dialog.context)?.isFinishing == false)
+                dialog.show()
         }
     }
 

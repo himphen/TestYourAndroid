@@ -32,7 +32,7 @@ class HardwareCameraFragment : BaseFragment(R.layout.fragment_hardware_camera) {
         CameraLogger.registerLogger { level, _, _, throwable ->
             if (level == CameraLogger.LEVEL_ERROR) {
                 if (throwable != null) {
-                    errorNoFeatureDialog(context)
+                    errorNoFeatureDialog(activity)
                 }
             }
         }

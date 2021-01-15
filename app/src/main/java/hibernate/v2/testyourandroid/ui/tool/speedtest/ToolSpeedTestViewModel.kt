@@ -29,15 +29,18 @@ class ToolSpeedTestViewModel : ViewModel() {
         val pr = ps.start()
         val bufferedReader = BufferedReader(InputStreamReader(pr.inputStream))
         bufferedReader.forEachLine { line ->
-            if (line.contains("icmp_seq")) {
-                pingInstantRtt.postValue(
-                    line.split(" ").toTypedArray()[line.split(" ")
-                        .toTypedArray().size - 2].replace("time=", "").toDouble()
-                )
-            }
-            if (line.startsWith("rtt ")) {
-                pingAvgRtt.postValue(line.split("/").toTypedArray()[4].toDouble())
-                return@forEachLine
+            try {
+                if (line.contains("icmp_seq")) {
+                    pingInstantRtt.postValue(
+                        line.split(" ").toTypedArray()[line.split(" ")
+                            .toTypedArray().size - 2].replace("time=", "").toDouble()
+                    )
+                }
+                if (line.startsWith("rtt ")) {
+                    pingAvgRtt.postValue(line.split("/").toTypedArray()[4].toDouble())
+                    return@forEachLine
+                }
+            } catch (e: NumberFormatException) {
             }
         }
         pr.waitFor()

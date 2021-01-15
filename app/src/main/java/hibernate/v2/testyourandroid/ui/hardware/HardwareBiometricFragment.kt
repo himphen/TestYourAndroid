@@ -83,6 +83,11 @@ class HardwareBiometricFragment : BaseFragment(R.layout.fragment_hardware_biomet
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        biometricPrompt.cancelAuthentication()
+    }
+
     companion object {
         fun newInstance(): HardwareBiometricFragment {
             return HardwareBiometricFragment()

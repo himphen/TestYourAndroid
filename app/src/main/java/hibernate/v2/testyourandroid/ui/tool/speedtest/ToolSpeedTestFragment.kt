@@ -29,6 +29,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.HttpURLConnection
 import java.net.URL
+import java.net.UnknownHostException
 import java.text.DecimalFormat
 
 /**
@@ -149,12 +150,12 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
             binding.locationTv.text = "-"
             binding.providerTv.text = "-"
             binding.latencyTv.text = "-"
-            initThread()
+            initJob()
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun initThread() {
+    private fun initJob() {
         job = GlobalScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
                 loadingDialog?.show()
@@ -165,15 +166,18 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
             val serverList = arrayListOf<Server>()
 
             retry(limitAttempts(10) + constantDelay(delayMillis = 500L)) {
-                // Get latitude, longitude
-                val url = URL("https://www.speedtest.net/speedtest-config.php")
-                val urlConnection = url.openConnection() as HttpURLConnection
-                val code = urlConnection.responseCode
-                if (code == 200) {
-                    GetSpeedTestHostsHandler.parseClient(urlConnection.inputStream)?.let {
-                        selfLat = it.lat.toDouble()
-                        selfLon = it.lon.toDouble()
+                try {
+                    // Get latitude, longitude
+                    val url = URL("https://www.speedtest.net/speedtest-config.php")
+                    val urlConnection = url.openConnection() as HttpURLConnection
+                    val code = urlConnection.responseCode
+                    if (code == 200) {
+                        GetSpeedTestHostsHandler.parseClient(urlConnection.inputStream)?.let {
+                            selfLat = it.lat.toDouble()
+                            selfLon = it.lon.toDouble()
+                        }
                     }
+                } catch (e: UnknownHostException) {
                 }
             }
 
@@ -188,16 +192,19 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
             }
 
             retry(limitAttempts(10) + constantDelay(delayMillis = 500L)) {
-                // Best server
-                val url = URL("https://www.speedtest.net/speedtest-servers-static.php")
-                val urlConnection = url.openConnection() as HttpURLConnection
-                val code = urlConnection.responseCode
-                if (code == 200) {
-                    val list: List<Server> =
-                        GetSpeedTestHostsHandler.parseServer(urlConnection.inputStream)
-                    for (value: Server in list) {
-                        serverList.add(value)
+                try {
+                    // Best server
+                    val url = URL("https://www.speedtest.net/speedtest-servers-static.php")
+                    val urlConnection = url.openConnection() as HttpURLConnection
+                    val code = urlConnection.responseCode
+                    if (code == 200) {
+                        val list: List<Server> =
+                            GetSpeedTestHostsHandler.parseServer(urlConnection.inputStream)
+                        for (value: Server in list) {
+                            serverList.add(value)
+                        }
                     }
+                } catch (e: UnknownHostException) {
                 }
             }
 
@@ -263,13 +270,9 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
         }
     }
 
-    private fun stopThread() {
-        job?.cancel()
-    }
-
     override fun onPause() {
         super.onPause()
-        stopThread()
+        job?.cancel()
     }
 
     private fun showErrorDialog(content: String) {
