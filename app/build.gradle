@@ -15,8 +15,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 1910312
-        versionName "Pineapple Buns 10.3.1"
+        versionCode 1910322
+        versionName "Pineapple Buns 10.3.2"
         multiDexEnabled true
         flavorDimensions "default"
         wearAppUnbundled true
@@ -98,9 +98,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.1.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation 'com.google.firebase:firebase-core:18.0.0'
+    implementation 'com.google.firebase:firebase-core:18.0.1'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:17.3.0'
-    implementation 'com.google.firebase:firebase-analytics-ktx:18.0.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:18.0.1'
 
     // https://github.com/afollestad/material-dialogs
     implementation 'com.afollestad.material-dialogs:core:3.1.1'

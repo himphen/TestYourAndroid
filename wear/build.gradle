@@ -11,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "hibernate.v2.testyourandroid"
+        applicationId "hibernate.v2.testyourwear"
         minSdkVersion 25
         targetSdkVersion 30
         versionCode 2510312

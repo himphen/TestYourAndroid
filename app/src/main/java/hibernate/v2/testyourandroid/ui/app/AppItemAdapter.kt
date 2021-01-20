@@ -3,15 +3,11 @@ package hibernate.v2.testyourandroid.ui.app
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.ListItemInfoAppBinding
 import hibernate.v2.testyourandroid.model.AppItem
 
 /**
@@ -28,35 +24,36 @@ class AppItemAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ItemViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.list_item_info_app, parent, false)
+            ListItemInfoAppBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(rawHolder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
-        holder as ItemViewHolder
-        holder.titleTv.text = item.appName
-        holder.contentTv.text = item.packageName
-        Glide.with(holder.iconIv.context)
+        val itemBinding = (rawHolder as ItemViewHolder).viewBinding
+
+        itemBinding.titleTv.text = item.appName
+        itemBinding.contentTv.text = item.packageName
+        Glide.with(itemBinding.iconIv.context)
             .load(item.icon)
             .apply(
                 RequestOptions()
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
             )
-            .into(holder.iconIv)
-        holder.systemAppIndicator.visibility = if (item.isSystemApp) View.VISIBLE else View.GONE
-        holder.rootView.tag = item
-        holder.rootView.setOnClickListener { view -> itemClickListener.onItemDetailClick(view.tag as AppItem) }
+            .into(itemBinding.iconIv)
+        itemBinding.systemAppIndicator.visibility =
+            if (item.isSystemApp) View.VISIBLE else View.GONE
+        itemBinding.rootView.tag = item
+        itemBinding.rootView.setOnClickListener { view -> itemClickListener.onItemDetailClick(view.tag as AppItem) }
     }
 
     override fun getItemCount(): Int = list.size
 
-    internal class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var titleTv: TextView = view.findViewById(R.id.text1)
-        var contentTv: TextView = view.findViewById(R.id.text2)
-        var iconIv: ImageView = view.findViewById(R.id.icon)
-        var rootView: ConstraintLayout = view.findViewById(R.id.root_view)
-        var systemAppIndicator: FrameLayout = view.findViewById(R.id.systemAppIndicator)
-    }
+    internal class ItemViewHolder(val viewBinding: ListItemInfoAppBinding) :
+        RecyclerView.ViewHolder(viewBinding.root)
 }

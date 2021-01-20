@@ -1,11 +1,11 @@
 package hibernate.v2.testyourandroid.ui.base
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.ListItemInfoBinding
+import hibernate.v2.testyourandroid.databinding.ListItemInfoMinimizedBinding
+import hibernate.v2.testyourandroid.databinding.ListItemInfoSingleLineBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 
 /**
@@ -26,15 +26,25 @@ class InfoItemAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (type) {
             TYPE_SIMPLE -> ItemViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.list_item_info, parent, false)
+                ListItemInfoBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
             )
             TYPE_SINGLE_LINE -> SingleLineItemViewHolder(
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.list_item_info_single_line, parent, false)
+                ListItemInfoSingleLineBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
             )
-            else -> ItemViewHolder(
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.list_item_info_minimized, parent, false)
+            else -> MinimizedLineItemViewHolder(
+                ListItemInfoMinimizedBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
             )
         }
     }
@@ -42,22 +52,23 @@ class InfoItemAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
         if (holder is ItemViewHolder) {
-            holder.titleTv.text = item.titleText
-            holder.contentTv.text = item.contentText
+            val itemBinding = holder.viewBinding
+            itemBinding.titleTv.text = item.titleText
+            itemBinding.contentTv.text = item.contentText
         } else if (holder is SingleLineItemViewHolder) {
-            holder.titleTv.text = item.titleText
+            val itemBinding = holder.viewBinding
+            itemBinding.titleTv.text = item.titleText
         }
     }
 
     override fun getItemCount(): Int = list.size
 
-    internal class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var titleTv: TextView = view.findViewById(R.id.text1)
-        var contentTv: TextView = view.findViewById(R.id.text2)
-    }
+    internal class ItemViewHolder(val viewBinding: ListItemInfoBinding) :
+        RecyclerView.ViewHolder(viewBinding.root)
 
-    internal class SingleLineItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var titleTv: TextView = view.findViewById(R.id.text1)
-    }
+    internal class SingleLineItemViewHolder(val viewBinding: ListItemInfoSingleLineBinding) :
+        RecyclerView.ViewHolder(viewBinding.root)
 
+    internal class MinimizedLineItemViewHolder(val viewBinding: ListItemInfoMinimizedBinding) :
+        RecyclerView.ViewHolder(viewBinding.root)
 }

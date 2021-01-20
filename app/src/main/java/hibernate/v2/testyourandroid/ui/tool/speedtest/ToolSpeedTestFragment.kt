@@ -156,7 +156,7 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
 
     @SuppressLint("SetTextI18n")
     private fun initJob() {
-        job = GlobalScope.launch(Dispatchers.IO) {
+        job = lifecycleScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
                 loadingDialog?.show()
             }
@@ -165,8 +165,8 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
             var selfLon: Double? = null
             val serverList = arrayListOf<Server>()
 
-            retry(limitAttempts(10) + constantDelay(delayMillis = 500L)) {
-                try {
+            try {
+                retry(limitAttempts(10) + constantDelay(delayMillis = 500L)) {
                     // Get latitude, longitude
                     val url = URL("https://www.speedtest.net/speedtest-config.php")
                     val urlConnection = url.openConnection() as HttpURLConnection
@@ -177,8 +177,8 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                             selfLon = it.lon.toDouble()
                         }
                     }
-                } catch (e: UnknownHostException) {
                 }
+            } catch (e: Exception) {
             }
 
             if (selfLat == null || selfLon == null) {
@@ -191,8 +191,8 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                 return@launch
             }
 
-            retry(limitAttempts(10) + constantDelay(delayMillis = 500L)) {
-                try {
+            try {
+                retry(limitAttempts(10) + constantDelay(delayMillis = 500L)) {
                     // Best server
                     val url = URL("https://www.speedtest.net/speedtest-servers-static.php")
                     val urlConnection = url.openConnection() as HttpURLConnection
@@ -204,8 +204,8 @@ class ToolSpeedTestFragment : BaseFragment(R.layout.fragment_tool_speed_test) {
                             serverList.add(value)
                         }
                     }
-                } catch (e: UnknownHostException) {
                 }
+            } catch (e: Exception) {
             }
 
             withContext(Dispatchers.Main) {

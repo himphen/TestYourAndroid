@@ -16,7 +16,7 @@
         tools:ignore="UselessParent">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text1"
+            android:id="@+id/titleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
@@ -25,7 +25,7 @@
             tools:text="Android" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text2"
+            android:id="@+id/contentTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"

@@ -1,4 +1,4 @@
-package hibernate.v2.testyourandroid.util
+package hibernate.v2.testyourwear.util
 
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +20,15 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
     init {
         fragment.lifecycle.addObserver(object : DefaultLifecycleObserver {
             override fun onCreate(owner: LifecycleOwner) {
+
+                fragment.viewLifecycleOwnerLiveData.observe(fragment, { viewLifecycleOwner ->
+                    viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
+                        override fun onDestroy(owner: LifecycleOwner) {
+                            binding = null
+                        }
+                    })
+                })
+
                 fragment.viewLifecycleOwnerLiveData.observe(fragment, { viewLifecycleOwner ->
                     viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
                         override fun onDestroy(owner: LifecycleOwner) {

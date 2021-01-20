@@ -2,7 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="hibernate.v2.testyourandroid">
+    package="hibernate.v2.testyourwear">
 
     <uses-feature android:name="android.hardware.type.watch"/>
 
