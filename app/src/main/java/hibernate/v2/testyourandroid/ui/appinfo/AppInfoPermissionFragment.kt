@@ -2,10 +2,10 @@ package hibernate.v2.testyourandroid.ui.appinfo
 
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.ViewGroup
 import com.blankj.utilcode.util.StringUtils
-import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.model.AppPermissionItem
@@ -14,23 +14,24 @@ import hibernate.v2.testyourandroid.ui.appinfo.AppInfoFragment.Companion.ARG_APP
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils.notAppFound
-import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 import java.util.Comparator
 import java.util.HashMap
 
-class AppInfoPermissionFragment : BaseFragment(R.layout.fragment_info_listview) {
+class AppInfoPermissionFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
-    private val map = HashMap<String, ArrayList<AppPermissionItem>>()
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
-        init()
-    }
 
-    private fun init() {
+        val map = HashMap<String, ArrayList<AppPermissionItem>>()
+
         arguments?.getParcelable<AppItem>(ARG_APP)?.packageName?.let { packageName ->
             context?.let { context ->
                 val list: MutableList<InfoItem> = ArrayList()
@@ -97,7 +98,7 @@ class AppInfoPermissionFragment : BaseFragment(R.layout.fragment_info_listview) 
                 } catch (e: Exception) {
                     list.add(InfoItem("Fail to fetch the permissions", "Error: -1034"))
                 }
-                binding.rvlist.adapter = InfoItemAdapter(list)
+                viewBinding!!.rvlist.adapter = InfoItemAdapter(list)
             }
         } ?: run {
             notAppFound(activity)
@@ -106,11 +107,9 @@ class AppInfoPermissionFragment : BaseFragment(R.layout.fragment_info_listview) 
 
     companion object {
         fun newInstance(appItem: AppItem?): AppInfoPermissionFragment {
-            val fragment = AppInfoPermissionFragment()
-            val args = Bundle()
-            args.putParcelable(ARG_APP, appItem)
-            fragment.arguments = args
-            return fragment
+            return AppInfoPermissionFragment().apply {
+                arguments = Bundle().apply { putParcelable(ARG_APP, appItem) }
+            }
         }
     }
 }

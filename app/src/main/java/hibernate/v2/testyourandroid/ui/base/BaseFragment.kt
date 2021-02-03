@@ -1,17 +1,28 @@
 package hibernate.v2.testyourandroid.ui.base
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 import hibernate.v2.testyourandroid.util.Utils
 
-abstract class BaseFragment : Fragment {
-
-    constructor() : super()
-    constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
+abstract class BaseFragment<T : ViewBinding?> : Fragment() {
+    var viewBinding: T? = null
 
     protected fun isPermissionsGranted(permissions: Array<String>): Boolean {
         return Utils.isPermissionsGranted(context, permissions)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        viewBinding = getViewBinding(inflater, container, savedInstanceState)
+        return viewBinding?.root
     }
 
     protected val requestMultiplePermissions =
@@ -35,4 +46,10 @@ abstract class BaseFragment : Fragment {
                 Utils.openErrorPermissionDialog(context, mutableList)
             }
         }
+
+    abstract fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): T?
 }

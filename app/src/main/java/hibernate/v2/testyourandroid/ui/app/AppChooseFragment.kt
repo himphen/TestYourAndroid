@@ -2,24 +2,28 @@ package hibernate.v2.testyourandroid.ui.app
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.ViewGroup
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentMainInfoBinding
 import hibernate.v2.testyourandroid.model.AppChooseItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
 import hibernate.v2.testyourandroid.util.ext.isSystemPackage
-import hibernate.v2.testyourandroid.util.viewBinding
-import java.util.ArrayList
 
-class AppChooseFragment : BaseFragment(R.layout.fragment_main_info) {
+class AppChooseFragment : BaseFragment<FragmentMainInfoBinding>() {
 
-    private val binding by viewBinding(FragmentMainInfoBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentMainInfoBinding =
+        FragmentMainInfoBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
+
         // User, System, All
         val countArray = intArrayOf(0, 0, 0)
         val packageManager = context?.packageManager
@@ -32,23 +36,22 @@ class AppChooseFragment : BaseFragment(R.layout.fragment_main_info) {
             }
             countArray[2]++
         }
-        val list: MutableList<AppChooseItem> = ArrayList()
         val stringArray = resources.getStringArray(R.array.app_choose_string_array)
         val intArray = intArrayOf(
             AppListFragment.ARG_APP_TYPE_USER,
             AppListFragment.ARG_APP_TYPE_SYSTEM,
             AppListFragment.ARG_APP_TYPE_ALL
         )
-        for (i in stringArray.indices) {
-            list.add(
-                AppChooseItem(
-                    stringArray[i],
-                    countArray[i].toString() + " " + getString(R.string.app_package),
-                    intArray[i]
-                )
+
+        val list = stringArray.mapIndexed { index, s ->
+            AppChooseItem(
+                s,
+                countArray[index].toString() + " " + getString(R.string.app_package),
+                intArray[index]
             )
         }
-        binding.rvlist.adapter =
+
+        viewBinding!!.rvlist.adapter =
             AppChooseAdapter(list, object : AppChooseAdapter.ItemClickListener {
                 override fun onItemDetailClick(appChooseItem: AppChooseItem) {
                     val intent = Intent(context, AppListActivity::class.java)

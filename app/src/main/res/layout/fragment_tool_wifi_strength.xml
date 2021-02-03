@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     android:orientation="vertical">
 
@@ -22,6 +23,7 @@
         android:layout_weight="3"
         android:clipToPadding="false"
         android:paddingTop="12dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:paddingBottom="12dp"
         android:scrollbars="vertical" />
 

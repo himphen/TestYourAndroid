@@ -5,23 +5,30 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.ViewGroup
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
-import hibernate.v2.testyourandroid.util.viewBinding
-import java.util.ArrayList
 import java.util.Collections.sort
 
 /**
  * Created by himphen on 21/5/16.
  */
-class WifiSavedFragment : BaseFragment(R.layout.fragment_info_listview) {
+class WifiSavedFragment : BaseFragment<FragmentInfoListviewBinding>() {
+
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
+
     companion object {
         val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
 
@@ -30,9 +37,8 @@ class WifiSavedFragment : BaseFragment(R.layout.fragment_info_listview) {
         }
     }
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
     private lateinit var adapter: InfoItemAdapter
-    private var list: MutableList<InfoItem> = ArrayList()
+    private val list = arrayListOf<InfoItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +50,7 @@ class WifiSavedFragment : BaseFragment(R.layout.fragment_info_listview) {
 
         adapter = InfoItemAdapter(list)
         adapter.type = InfoItemAdapter.TYPE_SINGLE_LINE
-        binding.rvlist.adapter = adapter
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
+        viewBinding!!.rvlist.adapter = adapter
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -2,7 +2,9 @@ package hibernate.v2.testyourwear.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourwear.R
 import hibernate.v2.testyourwear.databinding.FragmentMainBinding
@@ -16,15 +18,19 @@ import hibernate.v2.testyourwear.ui.test.TestColorActivity
 import hibernate.v2.testyourwear.ui.test.TestSensorAccelerometerActivity
 import hibernate.v2.testyourwear.ui.test.TestSensorGravityActivity
 import hibernate.v2.testyourwear.ui.test.TestSensorLightActivity
-import hibernate.v2.testyourwear.util.viewBinding
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
-class MainFragment : BaseFragment(R.layout.fragment_main) {
+class MainFragment : BaseFragment<FragmentMainBinding>() {
 
-    private val binding by viewBinding(FragmentMainBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentMainBinding =
+        FragmentMainBinding.inflate(inflater, container, false)
 
     private val imageArray = intArrayOf(
         R.drawable.ic_test_screen, R.drawable.ic_test_chip,
@@ -40,7 +46,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        viewBinding!!.recyclerView.layoutManager = LinearLayoutManager(context)
         val stringArray = resources.getStringArray(R.array.main_test_string_array)
         val items: MutableList<MainItem> = ArrayList()
         for (i in stringArray.indices) {
@@ -53,6 +59,6 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
             }
 
         })
-        binding.recyclerView.adapter = adapter
+        viewBinding!!.recyclerView.adapter = adapter
     }
 }

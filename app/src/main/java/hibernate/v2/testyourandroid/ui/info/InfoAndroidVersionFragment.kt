@@ -2,38 +2,36 @@ package hibernate.v2.testyourandroid.ui.info
 
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.ViewGroup
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import hibernate.v2.testyourandroid.util.viewBinding
-import java.util.ArrayList
 import java.util.TimeZone
 
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoAndroidVersionFragment : BaseFragment(R.layout.fragment_info_listview) {
+class InfoAndroidVersionFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
-        init()
-    }
+        val adapter = InfoItemAdapter()
+        viewBinding!!.rvlist.adapter = adapter
 
-    private fun init() {
-        val list: MutableList<InfoItem> = ArrayList()
         val stringArray = resources.getStringArray(R.array.info_android_version_string_array)
-        for (i in stringArray.indices) {
-            list.add(InfoItem(stringArray[i], getData(i)))
-        }
-        val adapter = InfoItemAdapter(list)
-        binding.rvlist.adapter = adapter
+        val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
+        adapter.setData(list)
     }
 
     private fun getData(j: Int): String? {

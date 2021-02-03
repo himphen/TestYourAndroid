@@ -9,10 +9,11 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
@@ -22,17 +23,22 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
-import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoBluetoothFragment : BaseFragment(R.layout.fragment_info_listview) {
+class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
+
     private val scannedList: MutableList<ExtendedBluetoothDevice> = ArrayList()
-    private var list: MutableList<InfoItem> = ArrayList()
+    private lateinit var list: List<InfoItem>
     private var adapter: InfoItemAdapter? = null
     private var isFirstLoading = true
     private var bluetoothAdapter: BluetoothAdapter? = null
@@ -62,7 +68,7 @@ class InfoBluetoothFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
+
         if (!isPermissionsGranted(PERMISSION_NAME)) {
             requestMultiplePermissions.launch(PERMISSION_NAME)
         }
@@ -115,11 +121,9 @@ class InfoBluetoothFragment : BaseFragment(R.layout.fragment_info_listview) {
                 )
             )
             bluetoothAdapter.startDiscovery()
-            for (i in stringArray.indices) {
-                list.add(InfoItem(stringArray[i], getData(i)))
-            }
+            list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
             adapter = InfoItemAdapter(list)
-            binding.rvlist.adapter = adapter
+            viewBinding?.rvlist?.adapter = adapter
             if (isToast) {
                 Toast.makeText(context, R.string.wifi_reload_done, Toast.LENGTH_SHORT).show()
             }

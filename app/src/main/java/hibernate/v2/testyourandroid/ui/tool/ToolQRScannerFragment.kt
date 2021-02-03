@@ -4,7 +4,9 @@ import android.Manifest
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import hibernate.v2.testyourandroid.R
@@ -12,21 +14,25 @@ import hibernate.v2.testyourandroid.databinding.FragmentToolQrScannerBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.tool.ToolQRScannerSuccessFragment.Companion.newInstance
 import hibernate.v2.testyourandroid.util.Utils
-import hibernate.v2.testyourandroid.util.viewBinding
 
 /**
  * Created by himphen on 21/5/16.
  */
-class ToolQRScannerFragment : BaseFragment(R.layout.fragment_tool_qr_scanner) {
+class ToolQRScannerFragment : BaseFragment<FragmentToolQrScannerBinding>() {
 
-    private val binding by viewBinding(FragmentToolQrScannerBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentToolQrScannerBinding =
+        FragmentToolQrScannerBinding.inflate(inflater, container, false)
 
     private lateinit var mCodeScanner: CodeScanner
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.let { context ->
-            mCodeScanner = CodeScanner(context, binding.scannerView)
+            mCodeScanner = CodeScanner(context, viewBinding!!.scannerView)
             mCodeScanner.setErrorCallback {
                 Handler(Looper.getMainLooper()).post {
                     Utils.errorNoFeatureDialog(context)

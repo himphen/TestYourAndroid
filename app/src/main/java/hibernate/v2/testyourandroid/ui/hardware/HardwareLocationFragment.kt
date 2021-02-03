@@ -8,8 +8,10 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.gms.common.ConnectionResult
@@ -32,15 +34,20 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
-import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
-class HardwareLocationFragment : BaseFragment(R.layout.fragment_hardware_location) {
+class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>() {
 
-    private val binding by viewBinding(FragmentHardwareLocationBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentHardwareLocationBinding =
+        FragmentHardwareLocationBinding.inflate(inflater, container, false)
+
     private var locationManager: LocationManager? = null
 
     private lateinit var adapter: InfoItemAdapter
@@ -60,8 +67,8 @@ class HardwareLocationFragment : BaseFragment(R.layout.fragment_hardware_locatio
             list.add(InfoItem(string, getString(R.string.gps_scanning)))
         }
         adapter = InfoItemAdapter(list)
-        binding.rvlist.adapter = adapter
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
+        viewBinding?.rvlist?.adapter = adapter
+        viewBinding?.rvlist?.layoutManager = LinearLayoutManager(context)
 
         locationManager = context?.applicationContext?.getSystemService(Context.LOCATION_SERVICE)
                 as LocationManager?

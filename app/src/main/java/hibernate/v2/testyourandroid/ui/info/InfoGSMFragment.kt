@@ -6,34 +6,42 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.telephony.TelephonyManager
+import android.view.LayoutInflater
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.ViewGroup
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils
-import hibernate.v2.testyourandroid.util.viewBinding
-import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoGSMFragment : BaseFragment(R.layout.fragment_info_listview) {
+class InfoGSMFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
 
     companion object {
         val PERMISSION_NAME = arrayOf(Manifest.permission.READ_PHONE_STATE)
     }
 
     private var telephonyManager: TelephonyManager? = null
+    val adapter = InfoItemAdapter()
     private lateinit var simStateArray: Array<String>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
+
+        viewBinding!!.rvlist.adapter = adapter
+        simStateArray = resources.getStringArray(R.array.info_sim_status_string_array)
+
         if (!isPermissionsGranted(PERMISSION_NAME)) {
             requestMultiplePermissions.launch(PERMISSION_NAME)
         }
@@ -42,22 +50,17 @@ class InfoGSMFragment : BaseFragment(R.layout.fragment_info_listview) {
     override fun onResume() {
         super.onResume()
         if (isPermissionsGranted(PERMISSION_NAME)) {
-            init()
+            updateList()
         }
     }
 
-    private fun init() {
+    private fun updateList() {
         context?.let { context ->
             telephonyManager =
                 context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
-            val list: MutableList<InfoItem> = ArrayList()
             val stringArray = resources.getStringArray(R.array.info_gsm_string_array)
-            simStateArray = resources.getStringArray(R.array.info_sim_status_string_array)
-            for (i in stringArray.indices) {
-                list.add(InfoItem(stringArray[i], getData(i)))
-            }
-            val adapter = InfoItemAdapter(list)
-            binding.rvlist.adapter = adapter
+            val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
+            adapter.setData(list)
         }
     }
 

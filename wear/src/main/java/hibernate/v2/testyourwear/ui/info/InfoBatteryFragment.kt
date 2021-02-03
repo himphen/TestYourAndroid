@@ -6,25 +6,29 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.ViewGroup
 import hibernate.v2.testyourwear.R
 import hibernate.v2.testyourwear.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourwear.model.InfoHeader
 import hibernate.v2.testyourwear.model.InfoItem
 import hibernate.v2.testyourwear.ui.base.BaseFragment
 import hibernate.v2.testyourwear.ui.base.InfoItemAdapter
-import hibernate.v2.testyourwear.util.viewBinding
-import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoBatteryFragment : BaseFragment(R.layout.fragment_info_listview) {
+class InfoBatteryFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
 
-    private lateinit var list: ArrayList<InfoItem>
+    private lateinit var list: List<InfoItem>
     private lateinit var adapter: InfoItemAdapter
 
     private var health = 0
@@ -79,21 +83,14 @@ class InfoBatteryFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
-        init()
-    }
 
-    private fun init() {
-        list = ArrayList()
         val stringArray = resources.getStringArray(R.array.info_battery_string_array)
         chargeString = resources.getStringArray(R.array.info_battery_charge_string_array)
         healthString = resources.getStringArray(R.array.info_battery_health_string_array)
-        for (i in stringArray.indices) {
-            list.add(InfoItem(stringArray[i], getData(i)))
-        }
+        list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
         adapter = InfoItemAdapter(list)
         adapter.header = InfoHeader(activity?.title.toString())
-        binding.rvlist.adapter = adapter
+        viewBinding!!.rvlist.adapter = adapter
     }
 
     private fun getData(j: Int): String {

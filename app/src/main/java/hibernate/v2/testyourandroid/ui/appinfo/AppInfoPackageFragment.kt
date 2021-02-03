@@ -3,9 +3,10 @@ package hibernate.v2.testyourandroid.ui.appinfo
 import android.content.pm.PackageInfo
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.pm.PackageInfoCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.AppItem
@@ -15,32 +16,31 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils.notAppFound
 import hibernate.v2.testyourandroid.util.ext.isSystemPackage
-import hibernate.v2.testyourandroid.util.viewBinding
 import java.text.SimpleDateFormat
-import java.util.ArrayList
 import java.util.Date
 
-class AppInfoPackageFragment : BaseFragment(R.layout.fragment_info_listview) {
+class AppInfoPackageFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
+
     private lateinit var packageInfo: PackageInfo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
-        init()
-    }
 
-    private fun init() {
         arguments?.getParcelable<AppItem>(ARG_APP)?.let { appItem ->
             try {
-                packageInfo = context?.packageManager?.getPackageInfo(appItem.packageName, 0) ?: throw Exception()
-                val list: ArrayList<InfoItem> = ArrayList()
+                packageInfo = context?.packageManager?.getPackageInfo(appItem.packageName, 0)
+                    ?: throw Exception()
+
                 val stringArray = resources.getStringArray(R.array.app_package_string_array)
-                for (i in stringArray.indices) {
-                    list.add(InfoItem(stringArray[i], getData(i)))
-                }
-                binding.rvlist.adapter = InfoItemAdapter(list)
+                val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
+                viewBinding!!.rvlist.adapter = InfoItemAdapter(list)
             } catch (e: Exception) {
                 notAppFound(activity)
             }

@@ -7,9 +7,10 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourwear.R
 import hibernate.v2.testyourwear.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourwear.model.InfoHeader
@@ -17,22 +18,26 @@ import hibernate.v2.testyourwear.model.InfoItem
 import hibernate.v2.testyourwear.ui.base.BaseFragment
 import hibernate.v2.testyourwear.ui.base.InfoItemAdapter
 import hibernate.v2.testyourwear.util.SensorHelper
-import hibernate.v2.testyourwear.util.viewBinding
-import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
-class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
+class TestSensorFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
+
     private lateinit var sensorManager: SensorManager
     private var sensor: Sensor? = null
     private var sensorEventListener: SensorEventListener? = null
     private var sensorType = 0
     private var reading = ""
     private lateinit var adapter: InfoItemAdapter
-    private var list: MutableList<InfoItem> = ArrayList()
+    private lateinit var list: List<InfoItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +46,6 @@ class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
         init()
     }
 
@@ -63,7 +67,6 @@ class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
     }
 
     private fun init() {
-        list = ArrayList()
         val stringArray = resources.getStringArray(R.array.test_sensor_string_array)
         sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         try {
@@ -88,9 +91,9 @@ class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
             else -> {
             }
         }
-        var infoItem: InfoItem
-        for (i in stringArray.indices) {
-            infoItem = try {
+
+        list = stringArray.mapIndexed { i, s ->
+            try {
                 when (sensorType) {
                     Sensor.TYPE_ACCELEROMETER -> InfoItem(
                         stringArray[i],
@@ -120,14 +123,13 @@ class TestSensorFragment : BaseFragment(R.layout.fragment_info_listview) {
                     else -> InfoItem(stringArray[i], getString(R.string.ui_not_support))
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
                 InfoItem(stringArray[i], getString(R.string.ui_not_support))
             }
-            list.add(infoItem)
         }
+
         adapter = InfoItemAdapter(list)
         adapter.header = InfoHeader(activity?.title.toString())
-        binding.rvlist.adapter = adapter
+        viewBinding!!.rvlist.adapter = adapter
     }
 
     private val accelerometerListener: SensorEventListener = object : SensorEventListener {

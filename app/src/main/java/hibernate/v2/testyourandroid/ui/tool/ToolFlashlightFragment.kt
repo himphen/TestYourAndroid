@@ -7,27 +7,32 @@ import android.hardware.Camera
 import android.hardware.camera2.CameraManager
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import hibernate.v2.testyourandroid.R
+import android.view.ViewGroup
 import hibernate.v2.testyourandroid.databinding.FragmentHardwareFlashlightBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
-import hibernate.v2.testyourandroid.util.viewBinding
 
 /**
  * Created by himphen on 21/5/16.
  */
 @Suppress("DEPRECATION")
-class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashlight) {
+class ToolFlashlightFragment : BaseFragment<FragmentHardwareFlashlightBinding>() {
 
-    private val binding by viewBinding(FragmentHardwareFlashlightBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentHardwareFlashlightBinding =
+        FragmentHardwareFlashlightBinding.inflate(inflater, container, false)
 
     private var mCamera: Camera? = null
     private var isFlashlightOn = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.turnSwitch.setOnCheckedChangeListener { _, isChecked ->
+        viewBinding!!.turnSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 openFlash()
             } else {
@@ -36,7 +41,7 @@ class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashligh
         }
 
         if (arguments?.getBoolean(ARG_AUTO_OPEN, false) == true) {
-            binding.turnSwitch.toggle()
+            viewBinding!!.turnSwitch.toggle()
         }
     }
 
@@ -64,7 +69,7 @@ class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashligh
                             }
                         } else {
                             requestMultiplePermissions.launch(PERMISSION_NAME)
-                            binding.turnSwitch.isChecked = false
+                            viewBinding?.turnSwitch?.isChecked = false
                             isFlashlightOn = false
                             return
                         }
@@ -84,7 +89,7 @@ class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashligh
         }
 
         errorNoFeatureDialog(context)
-        binding.turnSwitch.isChecked = false
+        viewBinding?.turnSwitch?.isChecked = false
         isFlashlightOn = false
     }
 
@@ -111,7 +116,7 @@ class ToolFlashlightFragment : BaseFragment(R.layout.fragment_hardware_flashligh
             }
         } catch (ignored: Exception) {
         }
-        binding.turnSwitch.isChecked = false
+        viewBinding?.turnSwitch?.isChecked = false
         isFlashlightOn = false
     }
 

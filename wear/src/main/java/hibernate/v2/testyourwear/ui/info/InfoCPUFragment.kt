@@ -8,8 +8,9 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.StatFs
 import android.os.storage.StorageManager
+import android.view.LayoutInflater
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.ViewGroup
 import hibernate.v2.testyourwear.R
 import hibernate.v2.testyourwear.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourwear.model.InfoHeader
@@ -17,7 +18,6 @@ import hibernate.v2.testyourwear.model.InfoItem
 import hibernate.v2.testyourwear.ui.base.BaseFragment
 import hibernate.v2.testyourwear.ui.base.InfoItemAdapter
 import hibernate.v2.testyourwear.util.UtilHelper.formatBitSize
-import hibernate.v2.testyourwear.util.viewBinding
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileFilter
@@ -30,28 +30,26 @@ import java.util.regex.Pattern
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoCPUFragment : BaseFragment(R.layout.fragment_info_listview) {
+class InfoCPUFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
 
     private lateinit var memoryArray: Array<String>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
-        init()
-    }
 
-    private fun init() {
-        val list: MutableList<InfoItem> = ArrayList()
         val stringArray = resources.getStringArray(R.array.info_cpu_string_array)
         memoryArray = resources.getStringArray(R.array.memory_string_array)
-        for (i in stringArray.indices) {
-            list.add(InfoItem(stringArray[i], getData(i)))
-        }
+        val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
         val adapter = InfoItemAdapter(list)
         adapter.header = InfoHeader(activity?.title.toString())
-        binding.rvlist.adapter = adapter
+        viewBinding!!.rvlist.adapter = adapter
     }
 
     private fun getData(j: Int): String {

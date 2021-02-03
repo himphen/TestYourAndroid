@@ -22,7 +22,7 @@ class MainFragmentPagerAdapter(
      */
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> MainTestFragment.newInstance()
+            0 -> MainTestFragment()
             else -> MainSettingsFragment()
         }
     }

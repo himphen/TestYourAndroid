@@ -3,7 +3,9 @@ package hibernate.v2.testyourandroid.ui.main
 import android.annotation.SuppressLint
 import android.content.res.TypedArray
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.blankj.utilcode.util.DeviceUtils
@@ -56,12 +58,16 @@ import hibernate.v2.testyourandroid.ui.tool.ToolQRScannerActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolSoundMeterActivity
 import hibernate.v2.testyourandroid.ui.tool.speedtest.ToolSpeedTestActivity
 import hibernate.v2.testyourandroid.util.Utils.isAdHidden
-import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.Random
 
-class MainTestFragment : BaseFragment(R.layout.fragment_main_gridview) {
+class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
 
-    private val binding by viewBinding(FragmentMainGridviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentMainGridviewBinding =
+        FragmentMainGridviewBinding.inflate(inflater, container, false)
 
     private lateinit var adapter: MainTestAdapter
     private var list = mutableListOf<Any>()
@@ -91,10 +97,10 @@ class MainTestFragment : BaseFragment(R.layout.fragment_main_gridview) {
                     }
                 }
             }
-        binding.gridRv.setHasFixedSize(true)
-        binding.gridRv.layoutManager = gridLayoutManager
+        viewBinding!!.gridRv.setHasFixedSize(true)
+        viewBinding!!.gridRv.layoutManager = gridLayoutManager
         adapter = MainTestAdapter(list)
-        binding.gridRv.adapter = adapter
+        viewBinding!!.gridRv.adapter = adapter
     }
 
     private fun addTestSectionItem() {
@@ -292,9 +298,6 @@ class MainTestFragment : BaseFragment(R.layout.fragment_main_gridview) {
 
     companion object {
         const val ITEMS_PER_AD = 1
-        fun newInstance(): MainTestFragment {
-            return MainTestFragment()
-        }
     }
 
     override fun onResume() {

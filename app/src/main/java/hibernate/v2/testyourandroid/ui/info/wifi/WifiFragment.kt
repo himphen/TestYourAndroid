@@ -13,8 +13,11 @@ import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.material.tabs.TabLayoutMediator
@@ -24,21 +27,26 @@ import hibernate.v2.testyourandroid.databinding.FragmentViewPagerConatinerBindin
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils
-import hibernate.v2.testyourandroid.util.viewBinding
 
 /**
  * Created by himphen on 21/5/16.
  */
-class WifiFragment : BaseFragment(R.layout.fragment_view_pager_conatiner) {
+class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
+
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentViewPagerConatinerBinding =
+        FragmentViewPagerConatinerBinding.inflate(inflater, container, false)
+
     companion object {
         val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
 
         fun newInstant(): WifiFragment = WifiFragment()
     }
 
-    private val binding by viewBinding(FragmentViewPagerConatinerBinding::bind)
     private lateinit var adapter: WifiFragmentPagerAdapter
-    private lateinit var tabTitles: Array<String>
 
     var wifiManager: WifiManager? = null
     private var connectivityManager: ConnectivityManager? = null
@@ -68,20 +76,20 @@ class WifiFragment : BaseFragment(R.layout.fragment_view_pager_conatiner) {
                 activity.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE)
                         as ConnectivityManager
 
-            tabTitles = resources.getStringArray(R.array.test_wifi_tab_title)
+            val tabTitles = resources.getStringArray(R.array.test_wifi_tab_title)
             // Note that we are passing childFragmentManager, not FragmentManager
             adapter = WifiFragmentPagerAdapter(this)
-            (activity as BaseActivity).supportActionBar?.title = tabTitles[0]
-            binding.viewPager.adapter = adapter
-            binding.viewPager.offscreenPageLimit = 2
-            binding.viewPager.registerOnPageChangeCallback(object :
+            (activity as BaseActivity<out ViewBinding>).supportActionBar?.title = tabTitles[0]
+            viewBinding!!.viewPager.adapter = adapter
+            viewBinding!!.viewPager.offscreenPageLimit = 2
+            viewBinding!!.viewPager.registerOnPageChangeCallback(object :
                 ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     activity.supportActionBar?.title = (tabTitles[position])
                 }
             })
 
-            TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            TabLayoutMediator(viewBinding!!.tabLayout, viewBinding!!.viewPager) { tab, position ->
                 tab.customView = adapter.getTabView(position)
             }.attach()
 

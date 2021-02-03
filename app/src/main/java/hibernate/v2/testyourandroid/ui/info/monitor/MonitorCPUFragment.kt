@@ -4,7 +4,9 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
@@ -13,7 +15,6 @@ import com.jjoe64.graphview.series.LineGraphSeries
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentMonitorCpuBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import hibernate.v2.testyourandroid.util.viewBinding
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileFilter
@@ -22,17 +23,23 @@ import java.io.IOException
 import java.util.ArrayList
 import java.util.regex.Pattern
 
-class MonitorCPUFragment : BaseFragment(R.layout.fragment_monitor_cpu) {
+class MonitorCPUFragment : BaseFragment<FragmentMonitorCpuBinding>() {
 
-    private val binding by viewBinding(FragmentMonitorCpuBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentMonitorCpuBinding =
+        FragmentMonitorCpuBinding.inflate(inflater, container, false)
+
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
     private val mHandler = Handler(Looper.getMainLooper())
     private val timer: Runnable = object : Runnable {
         override fun run() {
-            binding.speedText.text = "${getCPU(CPU_CURRENT)} MHz"
+            viewBinding?.speedText?.text = "${getCPU(CPU_CURRENT)} MHz"
             series.appendData(DataPoint(lastXValue, getCPU(CPU_CURRENT).toDouble()), true, 36)
-            binding.graphView.viewport.scrollToEnd()
+            viewBinding?.graphView?.viewport?.scrollToEnd()
             lastXValue += 1.0
             mHandler.postDelayed(this, UPDATE_CHART_INTERVAL)
         }
@@ -40,29 +47,33 @@ class MonitorCPUFragment : BaseFragment(R.layout.fragment_monitor_cpu) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        context?.let { context ->
-            binding.speedText.text = "${getCPU(CPU_CURRENT)} MHz"
-            binding.coreText.text = numCores.toString()
-            binding.minText.text = "${getCPU(CPU_MIN)} MHz"
-            binding.maxText.text = "${getCPU(CPU_MAX)} MHz"
-            series.thickness = ConvertUtils.dp2px(4f)
-            series.color = ContextCompat.getColor(context, R.color.lineColor1)
-            series.isDrawBackground = true
-            series.backgroundColor = ContextCompat.getColor(context, R.color.lineColor1A)
-            binding.graphView.addSeries(series)
-            binding.graphView.gridLabelRenderer.gridColor = Color.GRAY
-            binding.graphView.gridLabelRenderer.isHighlightZeroLines = false
-            binding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-            binding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
-            binding.graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-            binding.graphView.viewport.isYAxisBoundsManual = true
-            binding.graphView.viewport.setMinY(0.0)
-            binding.graphView.viewport.setMaxY(getCPU(CPU_MAX).toDouble())
-            binding.graphView.viewport.isXAxisBoundsManual = true
-            binding.graphView.viewport.setMinX(0.0)
-            binding.graphView.viewport.setMaxX(36.0)
-            binding.graphView.viewport.isScrollable = false
-            binding.graphView.viewport.isScalable = false
+
+        viewBinding?.let { viewBinding ->
+            context?.let { context ->
+                viewBinding.speedText.text = "${getCPU(CPU_CURRENT)} MHz"
+                viewBinding.coreText.text = numCores.toString()
+                viewBinding.minText.text = "${getCPU(CPU_MIN)} MHz"
+                viewBinding.maxText.text = "${getCPU(CPU_MAX)} MHz"
+                series.thickness = ConvertUtils.dp2px(4f)
+                series.color = ContextCompat.getColor(context, R.color.lineColor1)
+                series.isDrawBackground = true
+                series.backgroundColor = ContextCompat.getColor(context, R.color.lineColor1A)
+                viewBinding.graphView.addSeries(series)
+                viewBinding.graphView.gridLabelRenderer.gridColor = Color.GRAY
+                viewBinding.graphView.gridLabelRenderer.isHighlightZeroLines = false
+                viewBinding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
+                viewBinding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+                viewBinding.graphView.gridLabelRenderer.gridStyle =
+                    GridLabelRenderer.GridStyle.HORIZONTAL
+                viewBinding.graphView.viewport.isYAxisBoundsManual = true
+                viewBinding.graphView.viewport.setMinY(0.0)
+                viewBinding.graphView.viewport.setMaxY(getCPU(CPU_MAX).toDouble())
+                viewBinding.graphView.viewport.isXAxisBoundsManual = true
+                viewBinding.graphView.viewport.setMinX(0.0)
+                viewBinding.graphView.viewport.setMaxX(36.0)
+                viewBinding.graphView.viewport.isScrollable = false
+                viewBinding.graphView.viewport.isScalable = false
+            }
         }
     }
 

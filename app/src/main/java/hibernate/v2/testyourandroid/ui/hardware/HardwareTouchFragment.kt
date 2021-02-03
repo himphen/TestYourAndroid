@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.viewbinding.ViewBinding
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.view.TestMultiTouchView
@@ -14,7 +15,13 @@ import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 /**
  * Created by himphen on 21/5/16.
  */
-class HardwareTouchFragment : BaseFragment() {
+class HardwareTouchFragment : BaseFragment<ViewBinding>() {
+
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): ViewBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

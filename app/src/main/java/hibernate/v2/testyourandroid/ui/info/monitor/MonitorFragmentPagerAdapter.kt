@@ -1,10 +1,11 @@
 package hibernate.v2.testyourandroid.ui.info.monitor
 
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.CustomTabBinding
 
 class MonitorFragmentPagerAdapter(
     private val fragment: Fragment
@@ -25,9 +26,9 @@ class MonitorFragmentPagerAdapter(
     }
 
     fun getTabView(position: Int): View {
-        val v = View.inflate(fragment.context, R.layout.custom_tab, null)
-        v.findViewById<TextView>(R.id.tabTitleTv).text = tabTitles[position]
-        return v
+        val viewBinding = CustomTabBinding.inflate(LayoutInflater.from(fragment.context))
+        viewBinding.tabTitleTv.text = tabTitles[position]
+        return viewBinding.root
     }
 
 }

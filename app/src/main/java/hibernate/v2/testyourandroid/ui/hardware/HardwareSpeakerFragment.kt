@@ -6,21 +6,28 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentSpeakerBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
-import hibernate.v2.testyourandroid.util.viewBinding
 
 /**
  * Created by himphen on 21/5/16.
  */
-class HardwareSpeakerFragment : BaseFragment(R.layout.fragment_speaker) {
+class HardwareSpeakerFragment : BaseFragment<FragmentSpeakerBinding>() {
 
-    private val binding by viewBinding(FragmentSpeakerBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentSpeakerBinding =
+        FragmentSpeakerBinding.inflate(inflater, container, false)
+
     private var vibrateType = 0
     private var isRinging = false
     private var isVibrating = false
@@ -41,8 +48,8 @@ class HardwareSpeakerFragment : BaseFragment(R.layout.fragment_speaker) {
                 android.R.layout.simple_spinner_item, array
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.vibrateSpinner.adapter = adapter
-            binding.vibrateSpinner.onItemSelectedListener =
+            viewBinding?.vibrateSpinner?.adapter = adapter
+            viewBinding?.vibrateSpinner?.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
                         adapterView: AdapterView<*>?, view: View,
@@ -72,7 +79,7 @@ class HardwareSpeakerFragment : BaseFragment(R.layout.fragment_speaker) {
                     @Suppress("DEPRECATION")
                     vibratorService.vibrate(30000)
                 }
-                binding.vibrateButton.setText(R.string.vibrate_stop_button)
+                viewBinding?.vibrateButton?.setText(R.string.vibrate_stop_button)
                 isVibrating = true
             }
             1 -> {
@@ -86,21 +93,21 @@ class HardwareSpeakerFragment : BaseFragment(R.layout.fragment_speaker) {
                     @Suppress("DEPRECATION")
                     vibratorService.vibrate(longArrayOf(100, 200, 100), 0)
                 }
-                binding.vibrateButton.setText(R.string.vibrate_stop_button)
+                viewBinding?.vibrateButton?.setText(R.string.vibrate_stop_button)
                 isVibrating = true
             }
         }
     }
 
     private fun setListener() {
-        binding.ringButton.setOnClickListener {
+        viewBinding?.ringButton?.setOnClickListener {
             if (isRinging) {
                 stopPlayer()
             } else {
                 startPlayer()
             }
         }
-        binding.vibrateButton.setOnClickListener {
+        viewBinding?.vibrateButton?.setOnClickListener {
             if (isVibrating) {
                 stopVibrate()
             } else {
@@ -126,7 +133,7 @@ class HardwareSpeakerFragment : BaseFragment(R.layout.fragment_speaker) {
                 mediaPlayer.setOnCompletionListener { stopPlayer() }
                 mediaPlayer.start()
                 isRinging = true
-                binding.ringButton.setText(R.string.ring_stop_button)
+                viewBinding?.ringButton?.setText(R.string.ring_stop_button)
             }
         } catch (e: Exception) {
             Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
@@ -135,7 +142,7 @@ class HardwareSpeakerFragment : BaseFragment(R.layout.fragment_speaker) {
 
     private fun stopPlayer() {
         if (isRinging) {
-            binding.ringButton.setText(R.string.ring_button)
+            viewBinding?.ringButton?.setText(R.string.ring_button)
             isRinging = false
             mediaPlayer?.let { mediaPlayer ->
                 mediaPlayer.stop()
@@ -146,7 +153,7 @@ class HardwareSpeakerFragment : BaseFragment(R.layout.fragment_speaker) {
 
     private fun stopVibrate() {
         vibratorService.cancel()
-        binding.vibrateButton.setText(R.string.vibrate_button)
+        viewBinding?.vibrateButton?.setText(R.string.vibrate_button)
         isVibrating = false
     }
 }

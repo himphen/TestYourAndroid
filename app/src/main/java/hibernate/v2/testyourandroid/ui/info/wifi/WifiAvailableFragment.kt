@@ -12,26 +12,30 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
-import hibernate.v2.testyourandroid.util.viewBinding
-import java.util.ArrayList
 import java.util.Collections.sort
 
 /**
  * Created by himphen on 21/5/16.
  */
-class WifiAvailableFragment : BaseFragment(R.layout.fragment_info_listview) {
+class WifiAvailableFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
 
     companion object {
         const val SCAN_WIFI_INTERVAL = 60000L
@@ -43,7 +47,7 @@ class WifiAvailableFragment : BaseFragment(R.layout.fragment_info_listview) {
     }
 
     private lateinit var adapter: InfoItemAdapter
-    private var list: MutableList<InfoItem> = ArrayList()
+    private var list: MutableList<InfoItem> = mutableListOf()
 
     private val wifiScanReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -77,8 +81,8 @@ class WifiAvailableFragment : BaseFragment(R.layout.fragment_info_listview) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = InfoItemAdapter(list)
-        binding.rvlist.adapter = adapter
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
+        viewBinding!!.rvlist.adapter = adapter
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

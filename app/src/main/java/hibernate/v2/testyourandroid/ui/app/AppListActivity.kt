@@ -2,9 +2,11 @@ package hibernate.v2.testyourandroid.ui.app
 
 import android.os.Bundle
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.ActivityContainerAdviewBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragmentActivity
 
-class AppListActivity : BaseFragmentActivity() {
+class AppListActivity : BaseFragmentActivity<ActivityContainerAdviewBinding>() {
+    override fun getActivityViewBinding() = ActivityContainerAdviewBinding.inflate(layoutInflater)
     override fun onCreate(savedInstanceState: Bundle?) {
         val appType =
             intent.getIntExtra(AppListFragment.ARG_APP_TYPE, AppListFragment.ARG_APP_TYPE_USER)

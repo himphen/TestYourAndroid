@@ -6,7 +6,9 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.ScreenUtils
@@ -18,12 +20,16 @@ import hibernate.v2.testyourandroid.ui.appinfo.AppInfoFragment.Companion.ARG_APP
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.GridItemAdapter
 import hibernate.v2.testyourandroid.util.Utils.notAppFound
-import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 
-class AppInfoActionFragment : BaseFragment(R.layout.fragment_info_listview) {
+class AppInfoActionFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
 
     private val imageArray = arrayListOf(
         R.drawable.app_open,
@@ -40,10 +46,7 @@ class AppInfoActionFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
-    }
 
-    private fun init() {
         arguments?.getParcelable<AppItem>(ARG_APP)?.let { appItem ->
             val stringArray = resources.getStringArray(R.array.app_action_string_array)
             val list: MutableList<GridItem> = ArrayList()
@@ -137,9 +140,9 @@ class AppInfoActionFragment : BaseFragment(R.layout.fragment_info_listview) {
                         }
                     }
                 }
-            binding.rvlist.setHasFixedSize(true)
-            binding.rvlist.layoutManager = GridLayoutManager(context, columnCount)
-            binding.rvlist.adapter = GridItemAdapter(list, mListener)
+            viewBinding!!.rvlist.setHasFixedSize(true)
+            viewBinding!!.rvlist.layoutManager = GridLayoutManager(context, columnCount)
+            viewBinding!!.rvlist.adapter = GridItemAdapter(list, mListener)
         } ?: run {
             notAppFound(activity)
         }

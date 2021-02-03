@@ -11,11 +11,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.DefaultLabelFormatter
 import com.jjoe64.graphview.GridLabelRenderer
@@ -29,12 +30,15 @@ import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils.getMacAddress
 import hibernate.v2.testyourandroid.util.Utils.ipAddressIntToString
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
-import hibernate.v2.testyourandroid.util.viewBinding
-import java.util.ArrayList
 
-class WifiCurrentFragment : BaseFragment(R.layout.fragment_tool_wifi_strength) {
+class WifiCurrentFragment : BaseFragment<FragmentToolWifiStrengthBinding>() {
 
-    private val binding by viewBinding(FragmentToolWifiStrengthBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentToolWifiStrengthBinding =
+        FragmentToolWifiStrengthBinding.inflate(inflater, container, false)
 
     companion object {
         const val UPDATE_CHART_INTERVAL = 2000L
@@ -49,7 +53,7 @@ class WifiCurrentFragment : BaseFragment(R.layout.fragment_tool_wifi_strength) {
     private var lastXValue = 0.0
 
     private lateinit var adapter: InfoItemAdapter
-    private var list: MutableList<InfoItem> = ArrayList()
+    private val list: MutableList<InfoItem> = mutableListOf()
 
     private val handler = Handler(Looper.getMainLooper())
     private val getWifiStrengthRunnable = object : Runnable {
@@ -80,7 +84,7 @@ class WifiCurrentFragment : BaseFragment(R.layout.fragment_tool_wifi_strength) {
                     else -> ContextCompat.getColor(context, R.color.lineColor1)
                 }
             }
-            binding.graphView.viewport.scrollToEnd()
+            viewBinding?.graphView?.viewport?.scrollToEnd()
             lastXValue += 1.0
 
             if ((parentFragment as WifiFragment?)?.isScanning == true) {
@@ -96,42 +100,44 @@ class WifiCurrentFragment : BaseFragment(R.layout.fragment_tool_wifi_strength) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewBinding?.let { viewBinding ->
+            context?.let { context ->
+                val stringArray = resources.getStringArray(R.array.test_wifi_strength_string_array)
 
-        context?.let { context ->
-            val stringArray = resources.getStringArray(R.array.test_wifi_strength_string_array)
-            for (string in stringArray) {
-                list.add(InfoItem(string, ""))
-            }
+                list.addAll(stringArray.map { s -> InfoItem(s, "") })
 
-            adapter = InfoItemAdapter(list)
-            adapter.type = InfoItemAdapter.TYPE_MINIMIZED
-            binding.rvlist.adapter = adapter
-            binding.rvlist.layoutManager = LinearLayoutManager(context)
+                adapter = InfoItemAdapter(list)
+                adapter.type = InfoItemAdapter.TYPE_MINIMIZED
+                viewBinding.rvlist.adapter = adapter
 
-            series.color = ContextCompat.getColor(context, R.color.lineColor3)
-            series.thickness = ConvertUtils.dp2px(4f)
-            binding.graphView.addSeries(series)
-            binding.graphView.gridLabelRenderer.gridColor = Color.GRAY
-            binding.graphView.gridLabelRenderer.isHighlightZeroLines = false
-            binding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-            binding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
-            binding.graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-            binding.graphView.viewport.isXAxisBoundsManual = true
-            binding.graphView.viewport.setMinX(0.0)
-            binding.graphView.viewport.setMaxX(36.0)
-            binding.graphView.viewport.isYAxisBoundsManual = true
-            binding.graphView.viewport.setMinY(-100.0)
-            binding.graphView.viewport.setMaxY(-40.0)
-            binding.graphView.viewport.isScrollable = false
-            binding.graphView.viewport.isScalable = false
-            binding.graphView.gridLabelRenderer.labelFormatter = object : DefaultLabelFormatter() {
-                override fun formatLabel(value: Double, isValueX: Boolean): String {
-                    return if (isValueX) {
-                        super.formatLabel(value, isValueX)
-                    } else {
-                        super.formatLabel(value, isValueX) + "dBm"
+
+                series.color = ContextCompat.getColor(context, R.color.lineColor3)
+                series.thickness = ConvertUtils.dp2px(4f)
+                viewBinding.graphView.addSeries(series)
+                viewBinding.graphView.gridLabelRenderer.gridColor = Color.GRAY
+                viewBinding.graphView.gridLabelRenderer.isHighlightZeroLines = false
+                viewBinding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
+                viewBinding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+                viewBinding.graphView.gridLabelRenderer.gridStyle =
+                    GridLabelRenderer.GridStyle.HORIZONTAL
+                viewBinding.graphView.viewport.isXAxisBoundsManual = true
+                viewBinding.graphView.viewport.setMinX(0.0)
+                viewBinding.graphView.viewport.setMaxX(36.0)
+                viewBinding.graphView.viewport.isYAxisBoundsManual = true
+                viewBinding.graphView.viewport.setMinY(-100.0)
+                viewBinding.graphView.viewport.setMaxY(-40.0)
+                viewBinding.graphView.viewport.isScrollable = false
+                viewBinding.graphView.viewport.isScalable = false
+                viewBinding.graphView.gridLabelRenderer.labelFormatter =
+                    object : DefaultLabelFormatter() {
+                        override fun formatLabel(value: Double, isValueX: Boolean): String {
+                            return if (isValueX) {
+                                super.formatLabel(value, isValueX)
+                            } else {
+                                super.formatLabel(value, isValueX) + "dBm"
+                            }
+                        }
                     }
-                }
             }
         }
     }

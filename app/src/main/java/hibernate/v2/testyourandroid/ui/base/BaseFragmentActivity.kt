@@ -6,13 +6,14 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import hibernate.v2.testyourandroid.R
 
 /**
  * Created by himphen on 21/5/16.
  */
-abstract class BaseFragmentActivity : BaseActivity() {
+abstract class BaseFragmentActivity<T : ViewBinding> : BaseActivity<T>() {
     open var fragment: Fragment? = null
     open var titleId: Int? = null
     open var titleString: String? = null

@@ -5,9 +5,10 @@ import android.content.Context
 import android.hardware.Camera
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import hibernate.v2.testyourandroid.R
@@ -17,16 +18,20 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
-import hibernate.v2.testyourandroid.util.viewBinding
-import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
 @Suppress("DEPRECATION")
-class InfoCameraFragment : BaseFragment(R.layout.fragment_info_listview) {
+class InfoCameraFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
+
     private var mCamera: Camera? = null
 
     private var cameraId = 0
@@ -34,7 +39,7 @@ class InfoCameraFragment : BaseFragment(R.layout.fragment_info_listview) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
+
         if (!isPermissionsGranted(PERMISSION_NAME)) {
             requestMultiplePermissions.launch(PERMISSION_NAME)
         }
@@ -90,12 +95,10 @@ class InfoCameraFragment : BaseFragment(R.layout.fragment_info_listview) {
             errorNoFeatureDialog(context)
             return
         }
-        val list: MutableList<InfoItem> = ArrayList()
+
         val stringArray = resources.getStringArray(R.array.info_camera_string_array)
-        for (i in stringArray.indices) {
-            list.add(InfoItem(stringArray[i], getData(i)))
-        }
-        binding.rvlist.adapter = InfoItemAdapter(list)
+        val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
+        viewBinding?.rvlist?.adapter = InfoItemAdapter(list)
     }
 
     private fun integerListToString(list: List<Int>?): String {

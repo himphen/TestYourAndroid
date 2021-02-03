@@ -2,39 +2,39 @@ package hibernate.v2.testyourwear.ui.info
 
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.ViewGroup
 import hibernate.v2.testyourwear.R
 import hibernate.v2.testyourwear.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourwear.model.InfoHeader
 import hibernate.v2.testyourwear.model.InfoItem
 import hibernate.v2.testyourwear.ui.base.BaseFragment
 import hibernate.v2.testyourwear.ui.base.InfoItemAdapter
-import hibernate.v2.testyourwear.util.viewBinding
-import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoAndroidVersionFragment : BaseFragment(R.layout.fragment_info_listview) {
+class InfoAndroidVersionFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewBinding =
+        FragmentInfoListviewBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(activity)
         init()
     }
 
     private fun init() {
-        val list: MutableList<InfoItem> = ArrayList()
         val stringArray = resources.getStringArray(R.array.info_android_version_string_array)
-        for (i in stringArray.indices) {
-            list.add(InfoItem(stringArray[i], getData(i)))
-        }
+        val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
         val adapter = InfoItemAdapter(list)
         adapter.header = InfoHeader(activity?.title.toString())
-        binding.rvlist.adapter = adapter
+        viewBinding!!.rvlist.adapter = adapter
     }
 
     private fun getData(j: Int): String {

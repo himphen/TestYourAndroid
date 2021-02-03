@@ -11,9 +11,7 @@ import hibernate.v2.testyourandroid.model.InfoItem
 /**
  * Created by himphen on 25/5/16.
  */
-class InfoItemAdapter(
-    private val list: List<InfoItem>
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class InfoItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     companion object {
         const val TYPE_SIMPLE = 1
@@ -22,6 +20,13 @@ class InfoItemAdapter(
     }
 
     var type = TYPE_SIMPLE
+    private var list = listOf<InfoItem>()
+
+    constructor() : super()
+    constructor(list: List<InfoItem>) : super() {
+        this.list = list
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (type) {
@@ -51,17 +56,30 @@ class InfoItemAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
-        if (holder is ItemViewHolder) {
-            val itemBinding = holder.viewBinding
-            itemBinding.titleTv.text = item.titleText
-            itemBinding.contentTv.text = item.contentText
-        } else if (holder is SingleLineItemViewHolder) {
-            val itemBinding = holder.viewBinding
-            itemBinding.titleTv.text = item.titleText
+        when (holder) {
+            is ItemViewHolder -> {
+                val itemBinding = holder.viewBinding
+                itemBinding.titleTv.text = item.titleText
+                itemBinding.contentTv.text = item.contentText
+            }
+            is SingleLineItemViewHolder -> {
+                val itemBinding = holder.viewBinding
+                itemBinding.titleTv.text = item.titleText
+            }
+            is MinimizedLineItemViewHolder -> {
+                val itemBinding = holder.viewBinding
+                itemBinding.titleTv.text = item.titleText
+                itemBinding.contentTv.text = item.contentText
+            }
         }
     }
 
     override fun getItemCount(): Int = list.size
+
+    fun setData(list: List<InfoItem>) {
+        this.list = list
+        notifyDataSetChanged()
+    }
 
     internal class ItemViewHolder(val viewBinding: ListItemInfoBinding) :
         RecyclerView.ViewHolder(viewBinding.root)

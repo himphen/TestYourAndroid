@@ -7,10 +7,13 @@ import android.nfc.NfcAdapter
 import android.nfc.tech.NfcF
 import android.os.Bundle
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.FragmentHardwareNfcBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
@@ -18,7 +21,15 @@ import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
 /**
  * Created by himphen on 21/5/16.
  */
-class HardwareNFCFragment : BaseFragment(R.layout.fragment_hardware_nfc) {
+class HardwareNFCFragment : BaseFragment<FragmentHardwareNfcBinding>() {
+
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentHardwareNfcBinding =
+        FragmentHardwareNfcBinding.inflate(inflater, container, false)
+
     private var nfcAdapter: NfcAdapter? = null
     private var mPendingIntent: PendingIntent? = null
     private lateinit var mIntentFilters: Array<IntentFilter>

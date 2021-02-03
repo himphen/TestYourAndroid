@@ -67,12 +67,12 @@ object Utils {
 
     fun initAdView(
         context: Context?,
-        adLayout: RelativeLayout,
+        adLayout: RelativeLayout?,
         isPreserveSpace: Boolean = false,
         adUnitId: String = BuildConfig.ADMOB_BANNER_ID,
         adUnitSize: AdSize = AdSize.BANNER
     ): AdView? {
-        if (context == null) return null
+        if (context == null || adLayout == null) return null
 
         try {
             if (!isAdHidden(context)) {

@@ -9,9 +9,11 @@ import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.databinding.ActivityContainerAdviewBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragmentActivity
 
-class ToolFlashlightActivity : BaseFragmentActivity() {
+class ToolFlashlightActivity : BaseFragmentActivity<ActivityContainerAdviewBinding>() {
+    override fun getActivityViewBinding() = ActivityContainerAdviewBinding.inflate(layoutInflater)
     override var titleId: Int? = R.string.title_activity_flashlight
     override var pinShortcut = true
 

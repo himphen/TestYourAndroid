@@ -5,7 +5,9 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewShimmerBinding
@@ -16,7 +18,6 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
 import hibernate.v2.testyourandroid.util.Utils.snackbar
 import hibernate.v2.testyourandroid.util.ext.isSystemPackage
-import hibernate.v2.testyourandroid.util.viewBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -28,9 +29,14 @@ import java.util.Locale
 /**
  * Created by himphen on 21/5/16.
  */
-class AppListFragment : BaseFragment(R.layout.fragment_info_listview_shimmer) {
+class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
 
-    private val binding by viewBinding(FragmentInfoListviewShimmerBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentInfoListviewShimmerBinding =
+        FragmentInfoListviewShimmerBinding.inflate(inflater, container, false)
 
     private lateinit var adapter: AppItemAdapter
     private val appList = ArrayList<AppItem>()
@@ -61,13 +67,13 @@ class AppListFragment : BaseFragment(R.layout.fragment_info_listview_shimmer) {
                 startActivity(intent)
             }
         })
-        binding.rvlist.setAdapter(adapter)
-        binding.rvlist.setLayoutManager(LinearLayoutManager(context))
-        binding.rvlist.setVeilLayout(R.layout.list_item_info_app, 5)
+        viewBinding!!.rvlist.setAdapter(adapter)
+        viewBinding!!.rvlist.setLayoutManager(LinearLayoutManager(context))
+        viewBinding!!.rvlist.setVeilLayout(R.layout.list_item_info_app, 5)
     }
 
     private fun initAppList() {
-        binding.rvlist.veil()
+        viewBinding!!.rvlist.veil()
         appList.clear()
 
         scope.launch {
@@ -108,7 +114,7 @@ class AppListFragment : BaseFragment(R.layout.fragment_info_listview_shimmer) {
                 snackbar(view, stringRid = R.string.ui_error)?.show()
             } finally {
                 withContext(Dispatchers.Main) {
-                    binding.rvlist.unVeil()
+                    viewBinding?.rvlist?.unVeil()
                     adapter.notifyDataSetChanged()
                 }
             }

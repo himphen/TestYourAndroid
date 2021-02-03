@@ -8,9 +8,10 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
@@ -31,7 +32,6 @@ import hibernate.v2.testyourandroid.util.SensorUtils.getStepCounterSensorData
 import hibernate.v2.testyourandroid.util.SensorUtils.getTemperatureCounterSensorData
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.logException
-import hibernate.v2.testyourandroid.util.viewBinding
 import java.util.ArrayList
 import kotlin.math.exp
 import kotlin.math.ln
@@ -40,9 +40,14 @@ import kotlin.math.ln
  * Created by himphen on 21/5/16.
  */
 @SuppressLint("DefaultLocale")
-class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
+class SensorFragment : BaseFragment<FragmentSensorBinding>() {
 
-    private val binding by viewBinding(FragmentSensorBinding::bind)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentSensorBinding =
+        FragmentSensorBinding.inflate(inflater, container, false)
 
     private lateinit var mSensorManager: SensorManager
     private var mSensor: Sensor? = null
@@ -56,7 +61,7 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
     private var series3 = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
     private var adapter: InfoItemAdapter? = null
-    private var list: MutableList<InfoItem> = ArrayList()
+    private lateinit var list: MutableList<InfoItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +72,6 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvlist.layoutManager = LinearLayoutManager(context)
         init()
     }
 
@@ -95,136 +99,145 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
     }
 
     private fun init() {
-        context?.let { context ->
-            list = ArrayList()
-            val stringArray = resources.getStringArray(R.array.test_sensor_string_array)
-            mSensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-            try {
-                mSensor = mSensorManager.getDefaultSensor(sensorType)
-                if (sensorType == Sensor.TYPE_MAGNETIC_FIELD) {
-                    secondSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-                }
-                if (sensorType == Sensor.TYPE_RELATIVE_HUMIDITY) {
-                    secondSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
-                }
+        viewBinding?.let { viewBinding ->
+            context?.let { context ->
+                list = ArrayList()
+                val stringArray = resources.getStringArray(R.array.test_sensor_string_array)
+                mSensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+                try {
+                    mSensor = mSensorManager.getDefaultSensor(sensorType)
+                    if (sensorType == Sensor.TYPE_MAGNETIC_FIELD) {
+                        secondSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+                    }
+                    if (sensorType == Sensor.TYPE_RELATIVE_HUMIDITY) {
+                        secondSensor =
+                            mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
+                    }
 
-                if (mSensor == null && secondSensor == null) {
+                    if (mSensor == null && secondSensor == null) {
+                        Utils.errorNoFeatureDialog(context)
+                        return
+                    }
+                } catch (e: Exception) {
+                    logException(e)
                     Utils.errorNoFeatureDialog(context)
                     return
                 }
-            } catch (e: Exception) {
-                logException(e)
-                Utils.errorNoFeatureDialog(context)
-                return
-            }
-            var isGraph2 = false
-            var isGraph3 = false
-            when (sensorType) {
-                Sensor.TYPE_ACCELEROMETER, Sensor.TYPE_GRAVITY -> {
-                    sensorEventListener = accelerometerListener
-                    run {
-                        isGraph3 = true
-                        isGraph2 = isGraph3
+                var isGraph2 = false
+                var isGraph3 = false
+                when (sensorType) {
+                    Sensor.TYPE_ACCELEROMETER, Sensor.TYPE_GRAVITY -> {
+                        sensorEventListener = accelerometerListener
+                        run {
+                            isGraph3 = true
+                            isGraph2 = isGraph3
+                        }
                     }
-                }
-                Sensor.TYPE_LIGHT -> sensorEventListener = lightListener
-                Sensor.TYPE_PRESSURE -> {
-                    sensorEventListener = pressureListener
-                    mSensor?.maximumRange?.toDouble()?.let {
-                        binding.graphView.viewport.isYAxisBoundsManual = true
-                        binding.graphView.viewport.setMinY(0.0)
-                        binding.graphView.viewport.setMaxY(it)
+                    Sensor.TYPE_LIGHT -> sensorEventListener = lightListener
+                    Sensor.TYPE_PRESSURE -> {
+                        sensorEventListener = pressureListener
+                        mSensor?.maximumRange?.toDouble()?.let {
+                            viewBinding.graphView.viewport.isYAxisBoundsManual = true
+                            viewBinding.graphView.viewport.setMinY(0.0)
+                            viewBinding.graphView.viewport.setMaxY(it)
+                        }
                     }
-                }
-                Sensor.TYPE_PROXIMITY -> {
-                    sensorEventListener = proximityListener
-                    mSensor?.maximumRange?.toDouble()?.let {
-                        binding.graphView.viewport.isYAxisBoundsManual = true
-                        binding.graphView.viewport.setMinY(0.0)
-                        binding.graphView.viewport.setMaxY(it)
+                    Sensor.TYPE_PROXIMITY -> {
+                        sensorEventListener = proximityListener
+                        mSensor?.maximumRange?.toDouble()?.let {
+                            viewBinding.graphView.viewport.isYAxisBoundsManual = true
+                            viewBinding.graphView.viewport.setMinY(0.0)
+                            viewBinding.graphView.viewport.setMaxY(it)
+                        }
                     }
-                }
-                Sensor.TYPE_MAGNETIC_FIELD -> {
-                    sensorEventListener = compassListener
-                    binding.graphView.viewport.isYAxisBoundsManual = true
-                    binding.graphView.viewport.setMinY(0.0)
-                    binding.graphView.viewport.setMaxY(360.0)
-                }
-                Sensor.TYPE_STEP_COUNTER -> sensorEventListener = stepListener
-                Sensor.TYPE_AMBIENT_TEMPERATURE -> sensorEventListener = temperatureListener
-                Sensor.TYPE_RELATIVE_HUMIDITY -> sensorEventListener = humidityListener
-            }
-            series.color = ContextCompat.getColor(context, R.color.lineColor3)
-            series.thickness = ConvertUtils.dp2px(4f)
-            binding.graphView.addSeries(series)
-            if (isGraph2) {
-                series2.color = ContextCompat.getColor(context, R.color.lineColor1)
-                series2.thickness = ConvertUtils.dp2px(4f)
-                binding.graphView.addSeries(series2)
-            }
-            if (isGraph3) {
-                series3.color = ContextCompat.getColor(context, R.color.lineColor4)
-                series3.thickness = ConvertUtils.dp2px(4f)
-                binding.graphView.addSeries(series3)
-            }
-            for (i in stringArray.indices) {
-                val infoItem: InfoItem = try {
-                    when (sensorType) {
-                        Sensor.TYPE_ACCELEROMETER -> InfoItem(
-                            stringArray[i],
-                            getAccelerometerSensorData(i, stringArray.size, reading, mSensor!!)
-                        )
-                        Sensor.TYPE_GRAVITY -> InfoItem(
-                            stringArray[i],
-                            getGravitySensorData(i, stringArray.size, reading, mSensor!!)
-                        )
-                        Sensor.TYPE_LIGHT -> InfoItem(
-                            stringArray[i],
-                            getLightSensorData(i, stringArray.size, reading, mSensor!!)
-                        )
-                        Sensor.TYPE_PRESSURE -> InfoItem(
-                            stringArray[i],
-                            getPressureSensorData(i, stringArray.size, reading, mSensor!!)
-                        )
-                        Sensor.TYPE_PROXIMITY -> InfoItem(
-                            stringArray[i],
-                            getProximitySensorData(i, stringArray.size, reading, mSensor!!)
-                        )
-                        Sensor.TYPE_MAGNETIC_FIELD -> InfoItem(
-                            stringArray[i],
-                            getMagneticSensorData(i, stringArray.size, reading, mSensor!!)
-                        )
-                        Sensor.TYPE_STEP_COUNTER -> InfoItem(
-                            stringArray[i],
-                            getStepCounterSensorData(i, stringArray.size, reading, mSensor!!)
-                        )
-                        Sensor.TYPE_AMBIENT_TEMPERATURE -> InfoItem(
-                            stringArray[i],
-                            getTemperatureCounterSensorData(i, stringArray.size, reading, mSensor!!)
-                        )
-                        Sensor.TYPE_RELATIVE_HUMIDITY -> InfoItem(
-                            stringArray[i],
-                            getHumiditySensorData(i, stringArray.size, reading, mSensor!!)
-                        )
-                        else -> InfoItem(stringArray[i], getString(R.string.ui_not_support))
+                    Sensor.TYPE_MAGNETIC_FIELD -> {
+                        sensorEventListener = compassListener
+                        viewBinding.graphView.viewport.isYAxisBoundsManual = true
+                        viewBinding.graphView.viewport.setMinY(0.0)
+                        viewBinding.graphView.viewport.setMaxY(360.0)
                     }
-                } catch (e: Exception) {
-                    InfoItem(stringArray[i], getString(R.string.ui_not_support))
+                    Sensor.TYPE_STEP_COUNTER -> sensorEventListener = stepListener
+                    Sensor.TYPE_AMBIENT_TEMPERATURE -> sensorEventListener = temperatureListener
+                    Sensor.TYPE_RELATIVE_HUMIDITY -> sensorEventListener = humidityListener
                 }
-                list.add(infoItem)
+                series.color = ContextCompat.getColor(context, R.color.lineColor3)
+                series.thickness = ConvertUtils.dp2px(4f)
+                viewBinding.graphView.addSeries(series)
+                if (isGraph2) {
+                    series2.color = ContextCompat.getColor(context, R.color.lineColor1)
+                    series2.thickness = ConvertUtils.dp2px(4f)
+                    viewBinding.graphView.addSeries(series2)
+                }
+                if (isGraph3) {
+                    series3.color = ContextCompat.getColor(context, R.color.lineColor4)
+                    series3.thickness = ConvertUtils.dp2px(4f)
+                    viewBinding.graphView.addSeries(series3)
+                }
+                for (i in stringArray.indices) {
+                    val infoItem: InfoItem = try {
+                        when (sensorType) {
+                            Sensor.TYPE_ACCELEROMETER -> InfoItem(
+                                stringArray[i],
+                                getAccelerometerSensorData(i, stringArray.size, reading, mSensor!!)
+                            )
+                            Sensor.TYPE_GRAVITY -> InfoItem(
+                                stringArray[i],
+                                getGravitySensorData(i, stringArray.size, reading, mSensor!!)
+                            )
+                            Sensor.TYPE_LIGHT -> InfoItem(
+                                stringArray[i],
+                                getLightSensorData(i, stringArray.size, reading, mSensor!!)
+                            )
+                            Sensor.TYPE_PRESSURE -> InfoItem(
+                                stringArray[i],
+                                getPressureSensorData(i, stringArray.size, reading, mSensor!!)
+                            )
+                            Sensor.TYPE_PROXIMITY -> InfoItem(
+                                stringArray[i],
+                                getProximitySensorData(i, stringArray.size, reading, mSensor!!)
+                            )
+                            Sensor.TYPE_MAGNETIC_FIELD -> InfoItem(
+                                stringArray[i],
+                                getMagneticSensorData(i, stringArray.size, reading, mSensor!!)
+                            )
+                            Sensor.TYPE_STEP_COUNTER -> InfoItem(
+                                stringArray[i],
+                                getStepCounterSensorData(i, stringArray.size, reading, mSensor!!)
+                            )
+                            Sensor.TYPE_AMBIENT_TEMPERATURE -> InfoItem(
+                                stringArray[i],
+                                getTemperatureCounterSensorData(
+                                    i,
+                                    stringArray.size,
+                                    reading,
+                                    mSensor!!
+                                )
+                            )
+                            Sensor.TYPE_RELATIVE_HUMIDITY -> InfoItem(
+                                stringArray[i],
+                                getHumiditySensorData(i, stringArray.size, reading, mSensor!!)
+                            )
+                            else -> InfoItem(stringArray[i], getString(R.string.ui_not_support))
+                        }
+                    } catch (e: Exception) {
+                        InfoItem(stringArray[i], getString(R.string.ui_not_support))
+                    }
+                    list.add(infoItem)
+                }
+                adapter = InfoItemAdapter(list)
+                viewBinding.rvlist.adapter = adapter
+                viewBinding.graphView.gridLabelRenderer.gridColor = Color.GRAY
+                viewBinding.graphView.gridLabelRenderer.isHighlightZeroLines = false
+                viewBinding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
+                viewBinding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+                viewBinding.graphView.gridLabelRenderer.gridStyle =
+                    GridLabelRenderer.GridStyle.HORIZONTAL
+                viewBinding.graphView.viewport.isXAxisBoundsManual = true
+                viewBinding.graphView.viewport.setMinX(0.0)
+                viewBinding.graphView.viewport.setMaxX(36.0)
+                viewBinding.graphView.viewport.isScrollable = false
+                viewBinding.graphView.viewport.isScalable = false
             }
-            adapter = InfoItemAdapter(list)
-            binding.rvlist.adapter = adapter
-            binding.graphView.gridLabelRenderer.gridColor = Color.GRAY
-            binding.graphView.gridLabelRenderer.isHighlightZeroLines = false
-            binding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-            binding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
-            binding.graphView.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.HORIZONTAL
-            binding.graphView.viewport.isXAxisBoundsManual = true
-            binding.graphView.viewport.setMinX(0.0)
-            binding.graphView.viewport.setMaxX(36.0)
-            binding.graphView.viewport.isScrollable = false
-            binding.graphView.viewport.isScalable = false
         }
     }
 
@@ -247,7 +260,7 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
                 DataPoint(lastXValue, event.values[2].toDouble()),
                 true, 100
             )
-            binding.graphView.viewport.scrollToEnd()
+            viewBinding?.graphView?.viewport?.scrollToEnd()
             list[0].contentText = reading
             adapter?.notifyDataSetChanged()
         }
@@ -257,7 +270,7 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
         override fun onSensorChanged(event: SensorEvent) {
             reading = event.values[0].toString() + " lux"
             series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
-            binding.graphView.viewport.scrollToEnd()
+            viewBinding?.graphView?.viewport?.scrollToEnd()
             lastXValue += 1.0
             list[0].contentText = reading
             adapter?.notifyDataSetChanged()
@@ -268,7 +281,7 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
         override fun onSensorChanged(event: SensorEvent) {
             reading = event.values[0].toString() + " hPa"
             series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
-            binding.graphView.viewport.scrollToEnd()
+            viewBinding?.graphView?.viewport?.scrollToEnd()
             lastXValue += 1.0
             list[0].contentText = reading
             adapter?.notifyDataSetChanged()
@@ -281,7 +294,7 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
             lastXValue += 1.0
             list[0].contentText = reading
             series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
-            binding.graphView.viewport.scrollToEnd()
+            viewBinding?.graphView?.viewport?.scrollToEnd()
             adapter?.notifyDataSetChanged()
         }
     }
@@ -296,7 +309,7 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
             lastXValue += 1.0
             list[0].contentText = reading
             series.appendData(DataPoint(lastXValue, value.toDouble()), true, 36)
-            binding.graphView.viewport.scrollToEnd()
+            viewBinding?.graphView?.viewport?.scrollToEnd()
             adapter?.notifyDataSetChanged()
         }
     }
@@ -308,7 +321,7 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
             reading =
                 String.format("%1.2f", valueC) + " °C\n" + String.format("%1.2f", valueF) + " °F"
             series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
-            binding.graphView.viewport.scrollToEnd()
+            viewBinding?.graphView?.viewport?.scrollToEnd()
             lastXValue += 1.0
             list[0].contentText = reading
             adapter?.notifyDataSetChanged()
@@ -331,7 +344,7 @@ class SensorFragment : BaseFragment(R.layout.fragment_sensor) {
             }
             lastXValue += 1.0
             series.appendData(DataPoint(lastXValue, values[0].toDouble()), true, 36)
-            binding.graphView.viewport.scrollToEnd()
+            viewBinding?.graphView?.viewport?.scrollToEnd()
             if (values[0] >= 315 || values[0] < 45) {
                 reading = "N " + values[0] + "°"
             } else if (values[0] >= 45 && values[0] < 135) {
