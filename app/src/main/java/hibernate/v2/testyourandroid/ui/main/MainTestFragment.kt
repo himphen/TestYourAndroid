@@ -81,7 +81,7 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
             .start()
 
         addTestSectionItem()
-        if (!isAdHidden(context)) {
+        if (!isAdHidden()) {
             loadBannerAd(0)
         }
 
@@ -281,7 +281,7 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
 
     private fun addAdItem() {
         context?.let { context ->
-            if (!isAdHidden(context)) {
+            if (!isAdHidden()) {
                 if (adCount++ < ITEMS_PER_AD) return
                 val adView = AdView(context)
                 adView.adUnitId = BuildConfig.ADMOB_HOME_AD_ID

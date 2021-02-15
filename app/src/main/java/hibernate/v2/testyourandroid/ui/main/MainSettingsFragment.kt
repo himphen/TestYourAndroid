@@ -2,41 +2,38 @@ package hibernate.v2.testyourandroid.ui.main
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import androidx.preference.PreferenceManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.blankj.utilcode.util.AppUtils
 import de.psdev.licensesdialog.LicensesDialog
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.core.SharedPreferencesManager
 import hibernate.v2.testyourandroid.util.Utils
-import hibernate.v2.testyourandroid.util.Utils.PREF_THEME
+import org.koin.android.ext.android.inject
 
 class MainSettingsFragment : PreferenceFragmentCompat() {
 
-    private lateinit var sharedPreferences: SharedPreferences
+    private val sharedPreferencesManager: SharedPreferencesManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         addPreferencesFromResource(R.xml.pref_settings)
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         findPreference<Preference>("pref_theme_mode")?.let { preference ->
-            preference.summary = getThemeText(sharedPreferences.getString(PREF_THEME, ""))
+            preference.summary = getThemeText(sharedPreferencesManager.theme)
             preference.setOnPreferenceClickListener {
-                val initialSelection = when (sharedPreferences.getString(PREF_THEME, "")) {
+                val initialSelection = when (sharedPreferencesManager.theme) {
                     Utils.PrefTheme.THEME_LIGHT.value -> 0
                     Utils.PrefTheme.THEME_DARK.value -> 1
                     else -> 2
@@ -54,7 +51,7 @@ class MainSettingsFragment : PreferenceFragmentCompat() {
                             else -> Utils.PrefTheme.THEME_AUTO
                         }
 
-                        sharedPreferences.edit().putString(PREF_THEME, target.value).apply()
+                        sharedPreferencesManager.theme = target.value
                         preference.summary = getThemeText(target.value)
 
                         Utils.updateTheme(target.value)

@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.os.Build
 import androidx.multidex.MultiDex
-import androidx.preference.PreferenceManager
 import com.appbrain.AppBrain
 import com.blankj.utilcode.util.Utils
 import com.google.android.gms.ads.AdRequest
@@ -16,6 +15,12 @@ import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.util.Utils.getAdMobDeviceID
+import hibernate.v2.testyourandroid.util.Utils.updateTheme
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
+import org.koin.dsl.module
 import java.util.ArrayList
 
 /**
@@ -40,19 +45,17 @@ class App : Application() {
 
         Utils.init(this)
 
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        hibernate.v2.testyourandroid.util.Utils.updateTheme(
-            sharedPreferences.getString(
-                hibernate.v2.testyourandroid.util.Utils.PREF_THEME,
-                ""
-            )
-        )
+        val sharedPreferencesManager = SharedPreferencesManager(this@App)
+        updateTheme(sharedPreferencesManager.theme)
 
         // init AppBrain
         initAppBrain()
 
         // init AdMob
         initAdMob()
+
+        // dependency injection
+        initKoin()
 
         // init Crashlytics
         initCrashlytics()
@@ -101,5 +104,20 @@ class App : Application() {
             Firebase.crashlytics.setCrashlyticsCollectionEnabled(true)
             Firebase.crashlytics.setCustomKey("isGooglePlay", isGooglePlay)
         }
+    }
+
+    private fun initKoin() {
+        startKoin {
+            // https://github.com/InsertKoinIO/koin/issues/871#issuecomment-675231528
+            androidLogger(Level.ERROR)
+            androidContext(this@App)
+            modules(appModule)
+        }
+    }
+
+    // dependency injection
+    private val appModule = module {
+        // singleton service
+        single { SharedPreferencesManager(this@App) }
     }
 }

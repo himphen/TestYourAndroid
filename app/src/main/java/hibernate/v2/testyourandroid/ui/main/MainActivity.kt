@@ -2,14 +2,13 @@ package hibernate.v2.testyourandroid.ui.main
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.preference.PreferenceManager
+import androidx.lifecycle.lifecycleScope
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
@@ -21,29 +20,44 @@ import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.SkuDetails
 import com.android.billingclient.api.SkuDetailsParams
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.orhanobut.logger.Logger
 import com.stepstone.apprating.AppRatingDialog
 import com.stepstone.apprating.listener.RatingDialogListener
+import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.core.SharedPreferencesManager
 import hibernate.v2.testyourandroid.databinding.ActivityContainerBinding
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
-import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.iapProductIdList
 import hibernate.v2.testyourandroid.util.Utils.iapProductIdListAll
+import org.koin.android.ext.android.inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListener {
 
-    private lateinit var defaultPreferences: SharedPreferences
+    private val sharedPreferencesManager: SharedPreferencesManager by inject()
     private lateinit var billingClient: BillingClient
 
     private var skuDetailsList: List<SkuDetails>? = null
+    private var mInterstitialAd: InterstitialAd? = null
+
+    private var countInterstitialAd = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         initActionBar(viewBinding.toolbar.root, titleId = R.string.app_name)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -55,6 +69,8 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
             .beginTransaction()
             .replace(R.id.container, MainFragment())
             .commit()
+
+        initInterstitialAd()
 
         countRate()
     }
@@ -85,6 +101,12 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        countInterstitialAd()
+    }
+
     private fun openDialogRate() {
         AppRatingDialog.Builder()
             .setPositiveButtonText(R.string.rate_posbtn)
@@ -106,12 +128,45 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
     }
 
     private fun countRate() {
-        var countRate = defaultPreferences.getInt(Utils.PREF_COUNT_RATE, 0)
+        var countRate = sharedPreferencesManager.countRate
         if (countRate == 5) {
             openDialogRate()
         }
         countRate++
-        defaultPreferences.edit().putInt(Utils.PREF_COUNT_RATE, countRate).apply()
+        sharedPreferencesManager.countRate = countRate
+    }
+
+    private fun initInterstitialAd() {
+        InterstitialAd.load(
+            this,
+            BuildConfig.ADMOB_FULL_SCREEN_ID,
+            AdRequest.Builder().build(),
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    mInterstitialAd = null
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    mInterstitialAd = interstitialAd
+                    mInterstitialAd?.fullScreenContentCallback =
+                        object : FullScreenContentCallback() {
+                            override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                                Logger.d("Ad failed to show." + adError?.message)
+                            }
+
+                            override fun onAdShowedFullScreenContent() {
+                                initInterstitialAd()
+                            }
+                        }
+                }
+            }
+        )
+    }
+
+    private fun countInterstitialAd() {
+        if (++countInterstitialAd == 3 || countInterstitialAd == 7) {
+            mInterstitialAd?.show(this)
+        }
     }
 
     fun openDialogLanguage() {
@@ -122,17 +177,11 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
                 waitForPositiveButton = false
             ) { dialog, index, _ ->
                 dialog.dismiss()
-                val editor = defaultPreferences.edit()
                 val languageLocaleCodeArray = resources.getStringArray(R.array.language_locale_code)
                 val languageLocaleCountryCodeArray =
                     resources.getStringArray(R.array.language_locale_country_code)
-                editor
-                    .putString(Utils.PREF_LANGUAGE, languageLocaleCodeArray[index])
-                    .putString(
-                        Utils.PREF_LANGUAGE_COUNTRY,
-                        languageLocaleCountryCodeArray[index]
-                    )
-                    .apply()
+                sharedPreferencesManager.language = languageLocaleCodeArray[index]
+                sharedPreferencesManager.languageCountry = languageLocaleCountryCodeArray[index]
 
                 val intent = packageManager.getLaunchIntentForPackage(packageName)
                 intent?.let {
@@ -186,15 +235,20 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
     private fun setupBillingClient() {
         billingClient = BillingClient.newBuilder(this)
             .setListener { billingResult, purchases ->
-                Logger.d(billingResult.responseCode)
-                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
-                    for (purchase in purchases) {
-                        onHandlePurchase(purchase)
+                lifecycleScope.launch {
+                    Logger.d(billingResult.responseCode)
+                    if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
+                        for (purchase in purchases) {
+                            onHandlePurchase(purchase)
+                        }
+                    } else if (billingResult.responseCode == BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED) {
+                        onPurchased()
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@MainActivity, R.string.ui_error, Toast.LENGTH_LONG)
+                                .show()
+                        }
                     }
-                } else if (billingResult.responseCode == BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED) {
-                    onPurchased()
-                } else {
-                    Toast.makeText(this@MainActivity, R.string.ui_error, Toast.LENGTH_LONG).show()
                 }
             }
             .enablePendingPurchases()
@@ -208,10 +262,9 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
                         .setSkusList(iapProductIdList())
                         .setType(BillingClient.SkuType.INAPP)
                         .build()
-                    billingClient.querySkuDetailsAsync(params) { billingResult2, skuDetailsList ->
-                        if (billingResult2.responseCode == BillingClient.BillingResponseCode.OK) {
-                            this@MainActivity.skuDetailsList = skuDetailsList
-                        }
+
+                    lifecycleScope.launch {
+                        skuDetailsList = querySkuDetails(params)
                     }
                 }
             }
@@ -223,56 +276,66 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
         })
     }
 
-    private fun onHandlePurchase(purchase: Purchase) {
+    private suspend fun onHandlePurchase(purchase: Purchase) {
         Logger.d(purchase.purchaseState)
 
         if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-            if (!purchase.isAcknowledged) {
-                val acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder()
-                    .setPurchaseToken(purchase.purchaseToken)
+            if (purchase.isAcknowledged) {
+                onPurchased()
+            } else {
+                val acknowledgePurchaseParams =
+                    AcknowledgePurchaseParams
+                        .newBuilder()
+                        .setPurchaseToken(purchase.purchaseToken)
+                        .build()
 
-                billingClient.acknowledgePurchase(acknowledgePurchaseParams.build()) {
+                if (acknowledgePurchase(acknowledgePurchaseParams)) {
                     onPurchased()
                 }
-            } else {
-                onPurchased()
             }
         }
     }
 
-    private fun onPurchased() {
-        defaultPreferences.edit().putBoolean(Utils.PREF_IAP, true).apply()
-        MaterialDialog(this)
-            .customView(R.layout.dialog_donate)
-            .positiveButton(R.string.ui_okay)
-            .show()
+    private suspend fun onPurchased() {
+        sharedPreferencesManager.iap = true
+        if (isFinishing) return
+
+        withContext(Dispatchers.Main) {
+            MaterialDialog(this@MainActivity)
+                .customView(R.layout.dialog_donate)
+                .positiveButton(R.string.ui_okay)
+                .show()
+        }
     }
 
     fun checkPurchaseHistory() {
-        iapProductIdListAll().forEach {
-            billingClient.queryPurchaseHistoryAsync(it) { _, _ ->
-                defaultPreferences.edit().putBoolean(Utils.PREF_IAP, true).apply()
-                onPurchased()
+        lifecycleScope.launch {
+            iapProductIdListAll().forEach {
+                if (queryPurchaseHistory(it)) {
+                    onPurchased()
+                    return@forEach
+                }
             }
         }
     }
 
     // RatingDialogListener
     override fun onNegativeButtonClicked() {
-        defaultPreferences.edit().putInt(Utils.PREF_COUNT_RATE, 1000).apply()
+        sharedPreferencesManager.countRate = 1000
     }
 
     override fun onNeutralButtonClicked() {
-        defaultPreferences.edit().putInt(Utils.PREF_COUNT_RATE, 0).apply()
+        sharedPreferencesManager.countRate = 0
     }
 
     override fun onPositiveButtonClicked(rate: Int, comment: String) {
-        defaultPreferences.edit().putInt(Utils.PREF_COUNT_RATE, 1000).apply()
+        sharedPreferencesManager.countRate = 1000
         if (rate >= 4) {
-            val intent = Intent(Intent.ACTION_VIEW)
             try {
-                intent.data =
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
                     Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid")
+                )
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {
             }
@@ -281,4 +344,40 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
 
     override fun getActivityViewBinding(): ActivityContainerBinding =
         ActivityContainerBinding.inflate(layoutInflater)
+
+    private suspend fun querySkuDetails(params: SkuDetailsParams): List<SkuDetails>? {
+        return suspendCoroutine { continuation ->
+            billingClient.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    continuation.resume(skuDetailsList)
+                } else {
+                    continuation.resume(null)
+                }
+            }
+        }
+    }
+
+    private suspend fun queryPurchaseHistory(iapId: String): Boolean {
+        return suspendCoroutine { continuation ->
+            billingClient.queryPurchaseHistoryAsync(iapId) { billingResult, _ ->
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    continuation.resume(true)
+                } else {
+                    continuation.resume(false)
+                }
+            }
+        }
+    }
+
+    private suspend fun acknowledgePurchase(params: AcknowledgePurchaseParams): Boolean {
+        return suspendCoroutine { continuation ->
+            billingClient.acknowledgePurchase(params) { billingResult ->
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    continuation.resume(true)
+                } else {
+                    continuation.resume(false)
+                }
+            }
+        }
+    }
 }

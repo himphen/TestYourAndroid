@@ -24,27 +24,30 @@ class ToolSpeedTestViewModel : ViewModel() {
         serverIpAddress: String,
         pingTryCount: Int
     ) {
-        val ps = ProcessBuilder("ping", "-c $pingTryCount", serverIpAddress)
-        ps.redirectErrorStream(true)
-        val pr = ps.start()
-        val bufferedReader = BufferedReader(InputStreamReader(pr.inputStream))
-        bufferedReader.forEachLine { line ->
-            try {
-                if (line.contains("icmp_seq")) {
-                    pingInstantRtt.postValue(
-                        line.split(" ").toTypedArray()[line.split(" ")
-                            .toTypedArray().size - 2].replace("time=", "").toDouble()
-                    )
+        try {
+            val ps = ProcessBuilder("ping", "-c $pingTryCount", serverIpAddress)
+            ps.redirectErrorStream(true)
+            val pr = ps.start()
+            val bufferedReader = BufferedReader(InputStreamReader(pr.inputStream))
+            bufferedReader.forEachLine { line ->
+                try {
+                    if (line.contains("icmp_seq")) {
+                        pingInstantRtt.postValue(
+                            line.split(" ").toTypedArray()[line.split(" ")
+                                .toTypedArray().size - 2].replace("time=", "").toDouble()
+                        )
+                    }
+                    if (line.startsWith("rtt ")) {
+                        pingAvgRtt.postValue(line.split("/").toTypedArray()[4].toDouble())
+                        return@forEachLine
+                    }
+                } catch (e: NumberFormatException) {
                 }
-                if (line.startsWith("rtt ")) {
-                    pingAvgRtt.postValue(line.split("/").toTypedArray()[4].toDouble())
-                    return@forEachLine
-                }
-            } catch (e: NumberFormatException) {
             }
+            pr.waitFor()
+            bufferedReader.close()
+        } catch (e: IOException) {
         }
-        pr.waitFor()
-        bufferedReader.close()
     }
 
     var finalDownloadRate = MutableLiveData<Double>()

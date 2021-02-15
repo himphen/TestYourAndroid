@@ -10,10 +10,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.afollestad.materialdialogs.MaterialDialog
-import com.github.michaelbull.retry.policy.constantDelay
-import com.github.michaelbull.retry.policy.limitAttempts
-import com.github.michaelbull.retry.policy.plus
-import com.github.michaelbull.retry.retry
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
@@ -23,6 +19,7 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.view.GetSpeedTestHostsHandler
 import hibernate.v2.testyourandroid.ui.view.Server
 import hibernate.v2.testyourandroid.util.ext.roundTo
+import hibernate.v2.testyourandroid.util.retry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -176,7 +173,7 @@ class ToolSpeedTestFragment : BaseFragment<FragmentToolSpeedTestBinding>() {
             val serverList = arrayListOf<Server>()
 
             try {
-                retry(limitAttempts(10) + constantDelay(delayMillis = 500L)) {
+                retry(10) {
                     // Get latitude, longitude
                     val url = URL("https://www.speedtest.net/speedtest-config.php")
                     val urlConnection = url.openConnection() as HttpURLConnection
@@ -202,7 +199,7 @@ class ToolSpeedTestFragment : BaseFragment<FragmentToolSpeedTestBinding>() {
             }
 
             try {
-                retry(limitAttempts(10) + constantDelay(delayMillis = 500L)) {
+                retry(10) {
                     // Best server
                     val url = URL("https://www.speedtest.net/speedtest-servers-static.php")
                     val urlConnection = url.openConnection() as HttpURLConnection
@@ -216,6 +213,16 @@ class ToolSpeedTestFragment : BaseFragment<FragmentToolSpeedTestBinding>() {
                     }
                 }
             } catch (e: Exception) {
+            }
+
+            if (serverList.isEmpty()) {
+                withContext(Dispatchers.Main) {
+                    viewBinding?.startButton?.isEnabled = true
+                    loadingDialog?.dismiss()
+                    showErrorDialog("No Connection...")
+                }
+
+                return@launch
             }
 
             withContext(Dispatchers.Main) {
@@ -280,8 +287,8 @@ class ToolSpeedTestFragment : BaseFragment<FragmentToolSpeedTestBinding>() {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroyView() {
+        super.onDestroyView()
         job?.cancel()
     }
 

@@ -21,7 +21,6 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
-import androidx.preference.PreferenceManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
@@ -31,9 +30,14 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.orhanobut.logger.Logger
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
+import hibernate.v2.testyourandroid.core.SharedPreferencesManager
 import hibernate.v2.testyourandroid.util.ext.md5
+import org.koin.core.component.KoinApiExtension
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -42,13 +46,10 @@ import java.text.DecimalFormat
 import java.util.ArrayList
 import java.util.Locale
 
-object Utils {
-    const val PREF_IAP = "iap"
-    const val PREF_LANGUAGE = "PREF_LANGUAGE"
-    const val PREF_LANGUAGE_COUNTRY = "PREF_LANGUAGE_COUNTRY"
-    const val PREF_COUNT_RATE = "PREF_COUNT_RATE"
-    const val PREF_THEME = "PREF_THEME"
-    const val PREF_METRIC = "PREF_METRIC"
+@OptIn(KoinApiExtension::class)
+object Utils : KoinComponent {
+
+    private val sharedPreferencesManager: SharedPreferencesManager by inject()
 
     enum class PrefTheme(val value: String) {
         THEME_AUTO("auto"),
@@ -58,11 +59,8 @@ object Utils {
 
     const val DELAY_AD_LAYOUT = 100L
 
-    fun isAdHidden(context: Context?): Boolean {
-        if (context == null) return false
-
-        val defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        return defaultPreferences.getBoolean(PREF_IAP, false)
+    fun isAdHidden(): Boolean {
+        return sharedPreferencesManager.iap
     }
 
     fun initAdView(
@@ -75,7 +73,7 @@ object Utils {
         if (context == null || adLayout == null) return null
 
         try {
-            if (!isAdHidden(context)) {
+            if (!isAdHidden()) {
                 if (isPreserveSpace) {
                     adLayout.layoutParams.height = SizeUtils.dp2px(50f)
                 }
@@ -93,9 +91,8 @@ object Utils {
     }
 
     fun updateLanguage(context: Context): Context {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val language = preferences.getString(PREF_LANGUAGE, "") ?: ""
-        val languageCountry = preferences.getString(PREF_LANGUAGE_COUNTRY, "") ?: ""
+        val language = sharedPreferencesManager.language
+        val languageCountry = sharedPreferencesManager.languageCountry
         if (language.isNotEmpty()) {
             val config = context.resources.configuration
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -392,4 +389,17 @@ object Utils {
             else -> false
         }
     }
+}
+
+fun <T> retry(numOfRetries: Int, block: () -> T): T {
+    var throwable: Throwable? = null
+    (1..numOfRetries).forEach { attempt ->
+        try {
+            return block()
+        } catch (e: Throwable) {
+            throwable = e
+            Logger.d("Failed attempt $attempt / $numOfRetries")
+        }
+    }
+    throw throwable!!
 }
