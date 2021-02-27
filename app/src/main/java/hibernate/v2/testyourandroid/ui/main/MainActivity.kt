@@ -34,6 +34,7 @@ import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.core.SharedPreferencesManager
 import hibernate.v2.testyourandroid.databinding.ActivityContainerBinding
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
+import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.iapProductIdList
 import hibernate.v2.testyourandroid.util.Utils.iapProductIdListAll
 import org.koin.android.ext.android.inject
@@ -137,6 +138,9 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
     }
 
     private fun initInterstitialAd() {
+        if (Utils.isAdHidden()) {
+            return
+        }
         InterstitialAd.load(
             this,
             BuildConfig.ADMOB_FULL_SCREEN_ID,
@@ -164,6 +168,10 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
     }
 
     private fun countInterstitialAd() {
+        if (Utils.isAdHidden()) {
+            return
+        }
+
         if (++countInterstitialAd == 3 || countInterstitialAd == 7) {
             mInterstitialAd?.show(this)
         }

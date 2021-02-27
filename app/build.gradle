@@ -15,8 +15,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 1910342
-        versionName "Pineapple Buns 10.3.4"
+        versionCode 1910352
+        versionName "Pineapple Buns 10.3.5"
         multiDexEnabled true
         flavorDimensions "default"
         wearAppUnbundled true
@@ -103,7 +103,7 @@ dependencies {
 
     // Google Play Services
     implementation 'com.google.android.gms:play-services-ads:19.7.0'
-    implementation 'com.google.android.gms:play-services-location:17.1.0'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'com.google.firebase:firebase-core:18.0.2'
