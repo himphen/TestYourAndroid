@@ -95,42 +95,42 @@
 
     <string-array name="language_locale_country_code" translatable="false">
         <item />
+        <item>ZA</item>
+        <item>AZ</item>
+        <item>ID</item>
+        <item>MY</item>
+        <item>BA</item>
+        <item>ES</item>
+        <item>CZ</item>
+        <item>DK</item>
+        <item>DE</item>
         <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
+        <item>ES</item>
+        <item>FI</item>
+        <item>HR</item>
+        <item>IT</item>
+        <item>LV</item>
+        <item>LT</item>
+        <item>MT</item>
+        <item>NL</item>
+        <item>NO</item>
+        <item>UZ</item>
+        <item>PL</item>
+        <item>PT</item>
+        <item>RU</item>
+        <item>RO</item>
+        <item>AL</item>
+        <item>FI</item>
+        <item>SE</item>
+        <item>PH</item>
+        <item>IN</item>
+        <item>TH</item>
+        <item>LK</item>
+        <item>KR</item>
+        <item>TW</item>
         <item>HK</item>
         <item>CN</item>
-        <item />
+        <item>JP</item>
     </string-array>
 
     <string name="title_activity_screen">Monitor Color</string>
@@ -331,7 +331,7 @@
     <string name="app_package_string_2">Package Name</string>
     <string name="app_package_string_3">Version Code</string>
     <string name="app_package_string_4">Version</string>
-    <string name="app_package_string_5">Installed Time</string>
+    <string name="app_package_string_5">Install Time</string>
     <string name="app_package_string_6">Update Time</string>
     <string name="app_package_string_7">Data Directory</string>
     <string name="app_package_string_8">APK Directory</string>
