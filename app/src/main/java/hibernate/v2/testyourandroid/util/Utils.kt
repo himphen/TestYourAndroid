@@ -103,9 +103,17 @@ object Utils : KoinComponent {
             }
 
             return context.createConfigurationContext(config)
-        }
+        } else {
+            val config = context.resources.configuration
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                config.setLocale(Locale.getDefault())
+            } else {
+                @Suppress("DEPRECATION")
+                config.locale = Locale.getDefault()
+            }
 
-        return context
+            return context.createConfigurationContext(config)
+        }
     }
 
     fun logException(e: Exception) {
