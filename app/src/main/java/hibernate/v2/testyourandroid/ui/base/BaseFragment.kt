@@ -8,6 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import hibernate.v2.testyourandroid.util.Utils
+import java.util.Locale
 
 abstract class BaseFragment<T : ViewBinding?> : Fragment() {
     var viewBinding: T? = null
@@ -36,7 +37,7 @@ abstract class BaseFragment<T : ViewBinding?> : Fragment() {
                     context?.packageManager?.let { packageManager ->
                         mutableList.add(
                             "- " + packageManager.getPermissionInfo(entry.key, 0)
-                                ?.loadLabel(packageManager).toString().capitalize()
+                                ?.loadLabel(packageManager).toString().capitalize(Locale.getDefault())
                         )
                     }
                 }

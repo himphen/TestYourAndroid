@@ -15,8 +15,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 1910352
-        versionName "Pineapple Buns 10.3.5"
+        versionCode 1910400
+        versionName "Pineapple Buns 10.4.0a"
         multiDexEnabled true
         flavorDimensions "default"
         wearAppUnbundled true
@@ -74,6 +74,8 @@ android {
 }
 
 dependencies {
+    implementation project(':draw-library')
+
     // Jetbrains
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
@@ -126,9 +128,6 @@ dependencies {
 
     // https://github.com/natario1/CameraView
     implementation 'com.otaliastudios:cameraview:2.6.4'
-
-    // https://github.com/divyanshub024/AndroidDraw
-    implementation 'com.github.divyanshub024:AndroidDraw:v0.1'
 
     // https://github.com/Blankj/AndroidUtilCode
     implementation 'com.blankj:utilcode:1.29.0'

@@ -19,11 +19,11 @@
         <item name="md_color_button_text">@color/primaryText</item>
     </style>
 
-    <style name="AppTheme.FullScreen">
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
+    <style name="AppTheme.FullScreen" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
     <style name="AppTheme.Launcher" parent="AppTheme">

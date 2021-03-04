@@ -1,1 +1,2 @@
+include ':draw-library'
 include ':app', ':wear'

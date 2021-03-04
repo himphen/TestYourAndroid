@@ -4,6 +4,7 @@
     <string name="ui_okay">Okay</string>
     <string name="ui_cancel">Cancel</string>
     <string name="ui_error">Error</string>
+    <string name="ui_success" translatable="false">Success</string>
     <string name="ui_na">Not Applicable</string>
     <string name="ui_caution">Caution</string>
     <string name="ui_not_support">Not supported</string>
@@ -712,10 +713,12 @@
     <string name="bubble_level_vertical">Plumb</string>
     <string name="bubble_level_horizontal">Level</string>
 
+    <string name="dialog_drawing_cancel_message" translatable="false">Changes you made may not be saved. Are you sure to leave?</string>
+
     <!--  -->
-    <string name="theme_light">Light</string>
-    <string name="theme_dark">Dark</string>
-    <string name="theme_auto">System Default</string>
+    <string name="theme_light" translatable="false">Light</string>
+    <string name="theme_dark" translatable="false">Dark</string>
+    <string name="theme_auto" translatable="false">System Default</string>
     <string-array name="theme_array" translatable="false">
         <item>@string/theme_light</item>
         <item>@string/theme_dark</item>

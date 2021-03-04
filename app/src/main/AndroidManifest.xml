@@ -67,7 +67,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
     <application
@@ -241,7 +242,20 @@
             android:name=".ui.tool.speedtest.ToolSpeedTestActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_sound_meter" />
-        <activity android:name=".ui.hardware.HardwareBiometricActivity" />
+        <activity
+            android:name=".ui.hardware.HardwareBiometricActivity"
+            android:configChanges="orientation|screenSize|locale|layoutDirection"
+            android:label="@string/title_activity_biometric" />
+        <activity
+            android:name=".ui.hardware.HardwareDrawActivity"
+            android:theme="@style/AppTheme.FullScreen"
+            android:configChanges="orientation|screenSize|locale|layoutDirection"
+            android:label="@string/title_activity_drawing" />
+        <activity
+            android:name=".ui.hardware.DefectivePixelsActivity"
+            android:theme="@style/AppTheme.FullScreen"
+            android:configChanges="orientation|screenSize|locale|layoutDirection"
+            android:label="@string/title_activity_screen" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

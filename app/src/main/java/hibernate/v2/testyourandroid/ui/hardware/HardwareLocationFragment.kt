@@ -101,7 +101,7 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
     }
 
     private fun onStartScanning() {
-        context?.let { context ->
+        activity?.let { activity ->
             val providers = locationManager?.getProviders(true)
 
             if (providers == null || providers.size == 0) {
@@ -109,19 +109,19 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
                 return
             }
 
-            val status = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context)
+            val status = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(activity)
             if (status != ConnectionResult.SUCCESS) {
                 if (GoogleApiAvailability.getInstance().isUserResolvableError(status)) {
                     GoogleApiAvailability.getInstance().getErrorDialog(
                         activity, status,
                         1972
-                    ).show()
+                    )?.show()
                 }
 
                 return
             }
 
-            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
 
             val fragment = SupportMapFragment.newInstance()
             fragment.getMapAsync(object : OnMapReadyCallback {
@@ -131,9 +131,9 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
 
                     mGoogleMap = googleMap
                     mGoogleMap?.let { mGoogleMap ->
-                        if (Utils.isDarkMode(context)) {
+                        if (Utils.isDarkMode(activity)) {
                             val style = MapStyleOptions.loadRawResourceStyle(
-                                context,
+                                activity,
                                 R.raw.google_map_dark_mode
                             )
                             mGoogleMap.setMapStyle(style)
@@ -153,7 +153,7 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
                         mFusedLocationClient?.requestLocationUpdates(
                             mLocationRequest,
                             mLocationCallback,
-                            Looper.myLooper()
+                            Looper.getMainLooper()
                         )
                     }
                 }

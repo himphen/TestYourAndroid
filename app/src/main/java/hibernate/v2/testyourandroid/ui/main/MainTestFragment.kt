@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.ScreenUtils
-import com.divyanshu.draw.activity.DrawingActivity
 import com.github.javiersantos.appupdater.AppUpdater
 import com.github.javiersantos.appupdater.enums.Display
 import com.google.android.gms.ads.AdListener
@@ -26,6 +25,7 @@ import hibernate.v2.testyourandroid.ui.app.AppChooseActivity
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.hardware.HardwareBiometricActivity
 import hibernate.v2.testyourandroid.ui.hardware.HardwareCameraActivity
+import hibernate.v2.testyourandroid.ui.hardware.HardwareDrawActivity
 import hibernate.v2.testyourandroid.ui.hardware.HardwareLocationActivity
 import hibernate.v2.testyourandroid.ui.hardware.HardwareMicrophoneActivity
 import hibernate.v2.testyourandroid.ui.hardware.HardwareNFCActivity
@@ -133,7 +133,7 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
         )
         val hardwareClassArray = arrayOf<Class<*>>(
             HardwareScreenActivity::class.java,
-            DrawingActivity::class.java,
+            HardwareDrawActivity::class.java,
             HardwareTouchActivity::class.java,
             HardwareCameraActivity::class.java,
             HardwareSpeakerActivity::class.java,
