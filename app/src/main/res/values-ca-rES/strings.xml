@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Eina d\'assaig d\'Android</string>
     <string name="ui_okay">Bé</string>
     <string name="ui_cancel">Cancel · lar</string>
@@ -15,6 +15,10 @@
     <string name="title_activity_light">Sensor de llum</string>
     <string name="title_activity_humidity">Sensor d\'humitat</string>
     <string name="title_activity_camera">Càmera</string>
+    <string name="title_activity_qr_scanner">Escàner de codi QR</string>
+    <string name="title_activity_bubble_level">Nivell de bombolles</string>
+    <string name="title_activity_sound_meter">Mesurador de so</string>
+    <string name="title_activity_speed_test">Speed Test</string>
     <string name="title_activity_flashlight">Llanterna</string>
     <string name="title_activity_biometric">Empremta digital</string>
     <string name="title_activity_drawing">Pantalla tàctil</string>
@@ -22,6 +26,7 @@
     <string name="title_activity_speaker">Altaveu i vibració</string>
     <string name="title_activity_microphone">Micròfon</string>
     <string name="title_activity_wifi">Wi-Fi</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">Bluetooth</string>
     <string name="title_activity_accelerometer">Acceleròmetre</string>
     <string name="title_activity_step">Podòmetre</string>
@@ -42,11 +47,13 @@
     <string name="title_activity_test_ad_remover">Donar</string>
     <string name="title_activity_app_brain">Més aplicacions</string>
     <string name="title_activity_rate_us">Puntua\'ns!</string>
+    <string name="title_activity_language">Llenguatge</string>
     <string name="title_activity_app_choose">Aplicacions instal·lades</string>
     <string name="title_activity_app_user">Aplicacions instal·lades per l\'usuari</string>
     <string name="title_activity_app_system">Aplicacions del sistema</string>
     <string name="title_activity_app_all">Totes les aplicacions</string>
     <string name="app_package">Paquet d\'aplicacions</string>
+    <string name="main_title_tools">Eines d\'utilitat</string>
     <string name="main_title_hardware">Proves de maquinari</string>
     <string name="main_title_sensor">Prova de sensors</string>
     <string name="main_title_information">Informació del dispositiu</string>
@@ -270,12 +277,9 @@
     <string name="ui_fingerprint_help">Ajuda d\'autenticació</string>
     <string name="ui_fingerprint_succeeded">Succeït.</string>
     <string name="app_not_found">No s\'ha trobat cap aplicació.</string>
-    <string name="title_activity_language">Llenguatge</string>
-    <string name="title_activity_qr_scanner">Escàner de codi QR</string>
-    <string name="main_title_tools">Eines d\'utilitat</string>
     <string name="bubble_level_vertical">Ploma</string>
     <string name="bubble_level_horizontal">Nivell</string>
-    <string name="title_activity_bubble_level">Nivell de bombolles</string>
-    <string name="title_activity_sound_meter">Mesurador de so</string>
-    <string name="title_activity_speed_test">Speed Test</string>
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>

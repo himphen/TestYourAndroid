@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">अपने एंड्रॉइड का परीक्षण करें</string>
     <string name="ui_okay">ठीक है</string>
     <string name="ui_cancel">रद्द करें</string>
@@ -11,11 +11,14 @@
     <string name="dialog_feature_na_message">आपके एंड्रॉइड डिवाइस में यह सुविधा नहीं है या अन्य ऐप्स द्वारा इसका उपयोग किया जा सकता है।</string>
     <string name="dialog_permission_denied_message">अनुमति देने के बिना, यह शायद काम नहीं करेगा।\n\nकृपया इस सुविधा तक पहुंचने के लिए अपने Android को अनुमति दें।</string>
     <string name="dialog_permission_denied_posbtn">सेटिंग »</string>
-
     <string name="title_activity_screen">रंग मॉनीटर करें</string>
     <string name="title_activity_light">लाइट सेंसर</string>
     <string name="title_activity_humidity">आर्द्रता सेंसर</string>
     <string name="title_activity_camera">कैमरा</string>
+    <string name="title_activity_qr_scanner">QR कोड स्कैनर</string>
+    <string name="title_activity_bubble_level">बबल लेवल</string>
+    <string name="title_activity_sound_meter">ध्वनि मीटर</string>
+    <string name="title_activity_speed_test">Speed Test</string>
     <string name="title_activity_flashlight">फ्लैशलाइट</string>
     <string name="title_activity_biometric">फ़िंगरप्रिंट</string>
     <string name="title_activity_drawing">टच स्क्रीन</string>
@@ -23,6 +26,7 @@
     <string name="title_activity_speaker">अध्यक्ष और कंपन</string>
     <string name="title_activity_microphone">माइक्रोफ़ोन</string>
     <string name="title_activity_wifi">वाई-फ़ाई</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">ब्लूटूथ</string>
     <string name="title_activity_accelerometer">एक्सेलेरोमीटर</string>
     <string name="title_activity_step">पैडोमीटर</string>
@@ -43,33 +47,25 @@
     <string name="title_activity_test_ad_remover">दान करें</string>
     <string name="title_activity_app_brain">अधिक ऐप</string>
     <string name="title_activity_rate_us">हमें रेट करें!</string>
-
+    <string name="title_activity_language">भाषा</string>
     <string name="title_activity_app_choose">इंस्टॉल किए गए ऐप्स</string>
     <string name="title_activity_app_user">उपयोगकर्ता इंस्टॉल किए गए ऐप्स</string>
     <string name="title_activity_app_system">सिस्टम ऐप्स</string>
     <string name="title_activity_app_all">सभी ऐप्स</string>
     <string name="app_package">एप्लिकेशन पैकेज</string>
-
+    <string name="main_title_tools">उपयोगिता उपकरण</string>
     <string name="main_title_hardware">हार्डवेयर परीक्षण</string>
     <string name="main_title_sensor">सेंसर परीक्षण</string>
     <string name="main_title_information">डिवाइस जानकारी</string>
     <string name="main_title_other">अन्य</string>
-
-    <!--  -->
     <string name="main_tab_title_1">डिवाइस टेस्ट</string>
     <string name="main_tab_title_2">के बारे में</string>
-
-    <!--  -->
     <string name="app_info_tab_title_1">क्रियाएँ</string>
     <string name="app_info_tab_title_2">पैकेज</string>
     <string name="app_info_tab_title_3">अनुमतियां</string>
-
-    <!--  -->
     <string name="test_monitor_tab_title_1">CPU</string>
     <string name="test_monitor_tab_title_2">नेटवर्क</string>
     <string name="test_monitor_tab_title_3">मेमोरी</string>
-
-    <!--  -->
     <string name="color_title">कृपया</string>
     <string name="color_message">सामान्य मोड:\nअगले रंग को बदलने के लिए दबाएं\n\nफ़िक्सिंग मोड:\nरंग को तेजी से बदलना</string>
     <string name="color_normal_btn">सामान्य मोड</string>
@@ -79,24 +75,16 @@
         \n\nचार्ज करने में इसे करने की सिफारिश की जाती है। यह मोड स्वचालित रूप से 20 मिनट के बाद बंद हो जाएगा।
         \n\nदोषपूर्ण पिक्सेल को ठीक करने के लिए यह फिक्सिंग मोड की गारंटी नहीं है। यदि आपको कोई समस्या है तो कृपया निर्माता से संपर्क करें।
         \n\nआप मुख्य स्क्रीन पर बैक कुंजी दबा सकते हैं।</string>
-
-    <!--  -->
     <string name="vibrate_button">परीक्षण कंपन</string>
     <string name="vibrate_stop_button">कंपन रोकें</string>
     <string name="vibrate_string_1">लंबी कंपन</string>
     <string name="vibrate_string_2">लघु कंपन</string>
-
-    <!--  -->
     <string name="ring_button">संगीत चलाएं</string>
     <string name="ring_stop_button">संगीत बंद करें</string>
     <string name="adjust_volume">वॉल्यूम समायोजित करें</string>
     <string name="vibrate_type">कंपन मोड</string>
-
-    <!--  -->
     <string name="nfc_tutor_message">डिवाइस के पीछे किसी भी एनएफसी टैग को रखें, और जब सफल हो तो आपको बीप लगता है।</string>
     <string name="touch_message">एकाधिक अंगुलियों के साथ स्क्रीन को स्पर्श करें।</string>
-
-    <!--  -->
     <string name="info_hardware_string_1">ब्रांड</string>
     <string name="info_hardware_string_2">डिवाइस</string>
     <string name="info_hardware_string_3">मॉडल</string>
@@ -109,8 +97,6 @@
     <string name="info_hardware_string_10">उपयोगकर्ता</string>
     <string name="info_hardware_string_11">होस्ट</string>
     <string name="info_hardware_string_12">बोर्ड</string>
-
-    <!--  -->
     <string name="app_package_string_1">पैकेज</string>
     <string name="app_package_string_2">पैकेज का नाम</string>
     <string name="app_package_string_3">संस्करण कोड</string>
@@ -121,21 +107,15 @@
     <string name="app_package_string_8">एपीके निर्देशिका</string>
     <string name="app_package_string_9">न्यूनतम। एसडीके संस्करण</string>
     <string name="app_package_string_10">लक्ष्य एसडीके संस्करण</string>
-
-    <!--  -->
     <string name="app_action_string_1">ऐप लॉन्च करें</string>
     <string name="app_action_string_2">अनइंस्टॉल करें</string>
     <string name="app_action_string_3">नियंत्रण कक्ष</string>
     <string name="app_action_string_4">Play Store</string>
-
-    <!--  -->
     <string name="info_battery_charge_string_1">डिसचार्जिंग</string>
     <string name="info_battery_charge_string_2">एसी चार्जिंग</string>
     <string name="info_battery_charge_string_3">यूएसबी चार्जिंग</string>
     <string name="info_battery_charge_string_4">अज्ञात</string>
     <string name="info_battery_charge_string_5">वायरलेस चार्जिंग</string>
-
-    <!--  -->
     <string name="info_battery_health_string_1">अज्ञात</string>
     <string name="info_battery_health_string_2">अज्ञात</string>
     <string name="info_battery_health_string_3">अच्छा</string>
@@ -144,8 +124,6 @@
     <string name="info_battery_health_string_6">सावधानी: ओवर-वोल्टेज</string>
     <string name="info_battery_health_string_7">अज्ञात</string>
     <string name="info_battery_health_string_8">सावधानी: बहुत ठंडा</string>
-
-    <!--  -->
     <string name="test_wifi_current_string_ssid">एसएसआईडी</string>
     <string name="test_wifi_current_string_bssid">बीएसएसआईडी</string>
     <string name="test_wifi_current_string_network_id">नेटवर्क आईडी</string>
@@ -158,17 +136,11 @@
     <string name="test_wifi_current_string_dns">DNS 1</string>
     <string name="test_wifi_current_string_dns_2">DNS 2</string>
     <string name="test_wifi_current_string_server_address">सर्वर पता</string>
-
-    <!--  -->
     <string name="test_wifi_string_1">वर्तमान वाई-फाई</string>
     <string name="test_wifi_string_2">उपलब्ध वाई-फाई</string>
     <string name="test_wifi_string_3">सहेजा गया वाई-फ़ाई SSID</string>
-
-    <!--  -->
     <string name="test_bluetooth_string_1">उपलब्ध उपकरण</string>
     <string name="test_bluetooth_string_2">जोड़ा डिवाइस</string>
-
-    <!--  -->
     <string name="info_cpu_string_1">न्यूनतम Feq।</string>
     <string name="info_cpu_string_2">अधिकतम Feq।</string>
     <string name="info_cpu_string_3">सीपीयू कोर संख्या</string>
@@ -176,14 +148,10 @@
     <string name="info_cpu_string_5">बाहरी मेमोरी</string>
     <string name="info_cpu_string_6">RAM मेमोरी</string>
     <string name="info_cpu_string_7">विस्तार स्मृति</string>
-
-    <!--  -->
     <string name="memory_string_1">कुल:\u0020</string>
     <string name="memory_string_2">उपलब्ध:\u0020</string>
     <string name="memory_string_3">प्रयुक्त:\u0020</string>
     <string name="memory_string_4">थ्रेसहोल्ड:\u0020</string>
-
-    <!--  -->
     <string name="info_android_version_string_1">एंड्रॉइड संस्करण</string>
     <string name="info_android_version_string_2">कोडनाम</string>
     <string name="info_android_version_string_3">संगत</string>
@@ -203,8 +171,6 @@
     <string name="info_android_version_string_17">वीएम विनिर्देश नाम</string>
     <string name="info_android_version_string_18">वीएम का स्थान</string>
     <string name="info_android_version_string_19">टाइमज़ोन</string>
-
-    <!--  -->
     <string name="info_camera_string_1">स्क्रीन चौड़ाई</string>
     <string name="info_camera_string_2">स्क्रीन ऊंचाई</string>
     <string name="info_camera_string_3">छवि संकल्प</string>
@@ -215,8 +181,6 @@
     <string name="info_camera_string_8">व्हाइट बैलेंस</string>
     <string name="info_camera_string_9">दृश्य मोड</string>
     <string name="info_camera_string_10">चित्र प्रारूप</string>
-
-    <!--  -->
     <string name="info_battery_string_1">बैटरी स्तर</string>
     <string name="info_battery_string_2">अधिकतम बैटरी स्तर</string>
     <string name="info_battery_string_3">बैटरी स्वास्थ्य</string>
@@ -224,8 +188,6 @@
     <string name="info_battery_string_5">बैटरी तकनीक</string>
     <string name="info_battery_string_6">बैटरी तापमान</string>
     <string name="info_battery_string_7">बैटरी वोल्टेज</string>
-
-    <!--  -->
     <string name="test_sensor_string_1">पढ़ना</string>
     <string name="test_sensor_string_2">नाम</string>
     <string name="test_sensor_string_3">विक्रेता</string>
@@ -234,16 +196,12 @@
     <string name="test_sensor_string_6">न्यूनतम। देरी</string>
     <string name="test_sensor_string_7">संकल्प</string>
     <string name="test_sensor_string_8">पावर</string>
-
-    <!--  -->
     <string name="test_gps_string_1">अक्षांश</string>
     <string name="test_gps_string_2">देशांतर</string>
     <string name="test_gps_string_3">गति</string>
     <string name="test_gps_string_4">ऊंचाई</string>
     <string name="test_gps_string_5">असर</string>
     <string name="test_gps_string_6">शुद्धता</string>
-
-    <!--  -->
     <string name="info_gsm_string_1">सिम कार्ड देश</string>
     <string name="info_gsm_string_2">सिम कार्ड ऑपरेटर कोड</string>
     <string name="info_gsm_string_3">सिम कार्ड ऑपरेटर का नाम</string>
@@ -257,15 +215,12 @@
     <string name="info_gsm_string_11">नेटवर्क रोमिंग</string>
     <string name="info_gsm_string_12">सिम सीरियल नंबर</string>
     <string name="info_gsm_string_13">सब्सक्राइबर आईडी</string>
-
-    <!--  -->
     <string name="info_sim_status_string_1">अज्ञात</string>
     <string name="info_sim_status_string_2">कोई सिम कार्ड नहीं</string>
     <string name="info_sim_status_string_3">लॉक: उपयोगकर्ता के सिम पिन को अनलॉक करने की आवश्यकता है</string>
     <string name="info_sim_status_string_4">लॉक: उपयोगकर्ता के सिम PUK को अनलॉक करने की आवश्यकता है</string>
     <string name="info_sim_status_string_5">लॉक किया गया: अनलॉक करने के लिए नेटवर्क पिन की आवश्यकता है</string>
     <string name="info_sim_status_string_6">तैयार</string>
-
     <string name="wifi_setting">सेटिंग</string>
     <string name="wifi_reload">ताज़ा करें</string>
     <string name="wifi_reload_done">सफलतापूर्वक पुनः लोड करें</string>
@@ -312,13 +267,9 @@
     <string name="mic_start_recording">रिकॉर्डिंग प्रारंभ करें</string>
     <string name="mic_start_playing">खेलना प्रारंभ करें</string>
     <string name="mic_stop">रोकें</string>
-
-    <!-- -->
-
     <string name="ui_relative_humidity">सापेक्ष आर्द्रता:\u0020</string>
     <string name="ui_absolute_humidity">पूर्ण आर्द्रता:\u0020</string>
     <string name="ui_dew_point">ओस बिंदु:\u0020</string>
-
     <string name="dialog_camera_title">कृपया कैमरा चुनें</string>
     <string name="iab_complete_title">धन्यवाद</string>
     <string name="iab_complete_message">कृपया परिवर्तन लागू करने के लिए ऐप को पुनरारंभ करें।</string>
@@ -329,15 +280,10 @@
     <string name="ui_fingerprint_fail">पहचाना नहीं गया।</string>
     <string name="ui_fingerprint_help">प्रमाणीकरण सहायता</string>
     <string name="ui_fingerprint_succeeded">सफल हुआ।</string>
-
     <string name="app_not_found">कोई एप्लिकेशन नहीं मिला।</string>
-    <string name="title_activity_language">भाषा</string>
-    <string name="title_activity_qr_scanner">QR कोड स्कैनर</string>
-    <string name="main_title_tools">उपयोगिता उपकरण</string>
     <string name="bubble_level_vertical">साहुल</string>
     <string name="bubble_level_horizontal">स्तर</string>
-    <string name="title_activity_bubble_level">बबल लेवल</string>
-    <string name="title_activity_sound_meter">ध्वनि मीटर</string>
-    <string name="title_activity_speed_test">Speed Test</string>
-
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>

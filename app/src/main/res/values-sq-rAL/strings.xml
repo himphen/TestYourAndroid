@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Mjet i testimit Android</string>
     <string name="ui_okay">Mirë</string>
     <string name="ui_cancel">anuloj</string>
@@ -15,6 +15,10 @@
     <string name="title_activity_light">Sensor i dritës</string>
     <string name="title_activity_humidity">Sensor lagështie</string>
     <string name="title_activity_camera">aparat fotografik</string>
+    <string name="title_activity_qr_scanner">QR Kodi Skaner</string>
+    <string name="title_activity_bubble_level">Niveli i flluskës</string>
+    <string name="title_activity_sound_meter">Meter i zërit</string>
+    <string name="title_activity_speed_test">Speed Test</string>
     <string name="title_activity_flashlight">dritë sinjalizimi</string>
     <string name="title_activity_biometric">gjurmë gishtash</string>
     <string name="title_activity_drawing">Ekran me prekje</string>
@@ -22,6 +26,7 @@
     <string name="title_activity_speaker">Folës dhe dridhje</string>
     <string name="title_activity_microphone">mikrofon</string>
     <string name="title_activity_wifi">Wi-Fi</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">Bluetooth</string>
     <string name="title_activity_accelerometer">Accelerometer</string>
     <string name="title_activity_step">hapamatës</string>
@@ -42,11 +47,13 @@
     <string name="title_activity_test_ad_remover">dhuroj</string>
     <string name="title_activity_app_brain">Më shumë aplikacione</string>
     <string name="title_activity_rate_us">Na vleresoni!</string>
+    <string name="title_activity_language">Gjuhe</string>
     <string name="title_activity_app_choose">Aplikacionet e instaluara</string>
     <string name="title_activity_app_user">Aplikacionet e instaluara nga përdoruesi</string>
     <string name="title_activity_app_system">Aplikacionet e sistemit</string>
     <string name="title_activity_app_all">Të gjitha aplikacionet</string>
     <string name="app_package">Paketa e Aplikimit</string>
+    <string name="main_title_tools">Veglat e veglave</string>
     <string name="main_title_hardware">Testimi i pajisjeve</string>
     <string name="main_title_sensor">Testimi i sensorit</string>
     <string name="main_title_information">Informacion mbi pajisjen</string>
@@ -270,12 +277,9 @@
     <string name="ui_fingerprint_help">Ndihma e autentifikimit</string>
     <string name="ui_fingerprint_succeeded">Sukses.</string>
     <string name="app_not_found">Asnjë aplikacion nuk u gjet.</string>
-    <string name="title_activity_language">Gjuhe</string>
-    <string name="title_activity_qr_scanner">QR Kodi Skaner</string>
-    <string name="main_title_tools">Veglat e veglave</string>
     <string name="bubble_level_vertical">pingul</string>
     <string name="bubble_level_horizontal">nivel</string>
-    <string name="title_activity_bubble_level">Niveli i flluskës</string>
-    <string name="title_activity_sound_meter">Meter i zërit</string>
-    <string name="title_activity_speed_test">Speed Test</string>
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>

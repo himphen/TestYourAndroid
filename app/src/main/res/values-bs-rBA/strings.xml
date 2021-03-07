@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Android alat za testiranje</string>
     <string name="ui_okay">U redu</string>
     <string name="ui_cancel">Otkaži</string>
@@ -15,6 +15,10 @@
     <string name="title_activity_light">Senzor svetlosti</string>
     <string name="title_activity_humidity">Senzor vlažnosti</string>
     <string name="title_activity_camera">Kamera</string>
+    <string name="title_activity_qr_scanner">QR Code Scanner</string>
+    <string name="title_activity_bubble_level">Bubble Level</string>
+    <string name="title_activity_sound_meter">Sound Meter</string>
+    <string name="title_activity_speed_test">Speed Test</string>
     <string name="title_activity_flashlight">Svetiljka</string>
     <string name="title_activity_biometric">Otisak prsta</string>
     <string name="title_activity_drawing">Ekran na dodir</string>
@@ -22,6 +26,7 @@
     <string name="title_activity_speaker">Zvučnik i vibracija</string>
     <string name="title_activity_microphone">Mikrofon</string>
     <string name="title_activity_wifi">Wi-Fi</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">bluetooth</string>
     <string name="title_activity_accelerometer">Akcelerometar</string>
     <string name="title_activity_step">Pedometar</string>
@@ -42,11 +47,13 @@
     <string name="title_activity_test_ad_remover">Donirati</string>
     <string name="title_activity_app_brain">Više App</string>
     <string name="title_activity_rate_us">Ocjeni nas!</string>
+    <string name="title_activity_language">Jezik</string>
     <string name="title_activity_app_choose">Instalirane aplikacije</string>
     <string name="title_activity_app_user">Korisnički instalirane aplikacije</string>
     <string name="title_activity_app_system">Sistemske aplikacije</string>
     <string name="title_activity_app_all">Sve aplikacije</string>
     <string name="app_package">Aplikacijski paket</string>
+    <string name="main_title_tools">Tools</string>
     <string name="main_title_hardware">Testiranje hardvera</string>
     <string name="main_title_sensor">Testiranje senzora</string>
     <string name="main_title_information">Informacije o uređaju</string>
@@ -270,12 +277,9 @@
     <string name="ui_fingerprint_help">Pomoć za autentikaciju</string>
     <string name="ui_fingerprint_succeeded">Uspio.</string>
     <string name="app_not_found">Nije pronađena aplikacija.</string>
-    <string name="title_activity_language">Jezik</string>
-    <string name="title_activity_qr_scanner">QR Code Scanner</string>
-    <string name="main_title_tools">Tools</string>
     <string name="bubble_level_vertical">Plumb</string>
     <string name="bubble_level_horizontal">Level</string>
-    <string name="title_activity_bubble_level">Bubble Level</string>
-    <string name="title_activity_sound_meter">Sound Meter</string>
-    <string name="title_activity_speed_test">Speed Test</string>
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>

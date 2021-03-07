@@ -30,7 +30,6 @@
         <item>Hrvatski</item>
         <item>Italiano</item>
         <item>Latviešu</item>
-        <item>Lietùviškai</item>
         <item>Malti</item>
         <item>Nederlands</item>
         <item>Norsk</item>
@@ -41,7 +40,6 @@
         <item>Română</item>
         <item>Shqip</item>
         <item>Suomi</item>
-        <item>Svenska</item>
         <item>Tagalog</item>
         <item>हिन्दी</item>
         <item>ภาษาไทย</item>
@@ -70,7 +68,6 @@
         <item>hr</item>
         <item>it</item>
         <item>lv</item>
-        <item>lt</item>
         <item>mt</item>
         <item>nl</item>
         <item>no</item>
@@ -81,7 +78,6 @@
         <item>ro</item>
         <item>sq</item>
         <item>fi</item>
-        <item>sv</item>
         <item>tl</item>
         <item>hi</item>
         <item>th</item>
@@ -238,7 +234,6 @@
     <string name="main_title_information">Device Information</string>
     <string name="main_title_other">Other</string>
 
-    <!--  -->
     <string name="main_tab_title_1">Device Test</string>
     <string name="main_tab_title_2">About</string>
     <string-array name="main_tab_title" translatable="false">
@@ -246,7 +241,6 @@
         <item>@string/main_tab_title_2</item>
     </string-array>
 
-    <!--  -->
     <string name="app_info_tab_title_1">Actions</string>
     <string name="app_info_tab_title_2">Package</string>
     <string name="app_info_tab_title_3">Permissions</string>
@@ -256,7 +250,6 @@
         <item>@string/app_info_tab_title_3</item>
     </string-array>
 
-    <!--  -->
     <string name="test_monitor_tab_title_1">CPU</string>
     <string name="test_monitor_tab_title_2">Network</string>
     <string name="test_monitor_tab_title_3">Memory</string>
@@ -266,7 +259,6 @@
         <item>@string/test_monitor_tab_title_3</item>
     </string-array>
 
-    <!--  -->
     <string name="color_title">Please choose</string>
     <string name="color_message">Normal mode:\nPress to change next color\n\nFixing mode:\nChanging color rapidly</string>
     <string name="color_normal_btn">Normal mode</string>
@@ -277,7 +269,6 @@
         \n\nThis fixing mode is not guaranteed to fix the defective pixels. Please contact manufacturer if you have any problem.
         \n\nYou may press the BACK key to the main screen.</string>
 
-    <!--  -->
     <string name="vibrate_button">Test Vibration</string>
     <string name="vibrate_stop_button">Stop Vibration</string>
     <string name="vibrate_string_1">Long Vibration</string>
@@ -287,17 +278,14 @@
         <item>@string/vibrate_string_2</item>
     </string-array>
 
-    <!--  -->
     <string name="ring_button">Play Music</string>
     <string name="ring_stop_button">Stop Music</string>
     <string name="adjust_volume">Adjust the Volume</string>
     <string name="vibrate_type">Vibration Mode</string>
 
-    <!--  -->
     <string name="nfc_tutor_message">Place any NFC tag behind the device, and you will get beep sounds when it is successful.</string>
     <string name="touch_message">Touch the screen with multiple fingers.</string>
 
-    <!--  -->
     <string name="info_hardware_string_1">Brand</string>
     <string name="info_hardware_string_2">Device</string>
     <string name="info_hardware_string_3">Model</string>
@@ -325,8 +313,6 @@
         <item>@string/info_hardware_string_12</item>
     </string-array>
 
-
-    <!--  -->
     <string name="app_package_string_1">Package</string>
     <string name="app_package_string_2">Package Name</string>
     <string name="app_package_string_3">Version Code</string>
@@ -350,8 +336,6 @@
         <item>@string/app_package_string_10</item>
     </string-array>
 
-
-    <!--  -->
     <string name="app_action_string_1">Launch App</string>
     <string name="app_action_string_2">Uninstall</string>
     <string name="app_action_string_3">Control Panel</string>
@@ -363,7 +347,6 @@
         <item>@string/app_action_string_4</item>
     </string-array>
 
-    <!--  -->
     <string name="info_battery_charge_string_1">Discharging</string>
     <string name="info_battery_charge_string_2">AC Charging</string>
     <string name="info_battery_charge_string_3">USB Charging</string>
@@ -377,7 +360,6 @@
         <item>@string/info_battery_charge_string_5</item>
     </string-array>
 
-    <!--  -->
     <string name="info_battery_health_string_1">Unknown</string>
     <string name="info_battery_health_string_2">Unknown</string>
     <string name="info_battery_health_string_3">Good</string>
@@ -397,7 +379,6 @@
         <item>@string/info_battery_health_string_8</item>
     </string-array>
 
-    <!--  -->
     <string name="test_wifi_current_string_ssid">SSID</string>
     <string name="test_wifi_current_string_bssid">BSSID</string>
     <string name="test_wifi_current_string_network_id">Network ID</string>
@@ -432,7 +413,6 @@
         <item>@string/test_wifi_current_string_server_address</item>
     </string-array>
 
-    <!--  -->
     <string name="test_wifi_string_1">Current</string>
     <string name="test_wifi_string_2">Available</string>
     <string name="test_wifi_string_3">Saved SSID</string>
@@ -442,7 +422,6 @@
         <item>@string/test_wifi_string_3</item>
     </string-array>
 
-    <!--  -->
     <string name="test_bluetooth_string_1">Available Devices</string>
     <string name="test_bluetooth_string_2">Paired Devices</string>
     <string-array name="test_bluetooth_string_array" translatable="false">
@@ -450,7 +429,6 @@
         <item>@string/test_bluetooth_string_2</item>
     </string-array>
 
-    <!--  -->
     <string name="info_cpu_string_1">Min Feq.</string>
     <string name="info_cpu_string_2">Max Feq.</string>
     <string name="info_cpu_string_3">CPU Core no.</string>
@@ -474,7 +452,6 @@
         <item>@string/info_cpu_string_10</item>
     </string-array>
 
-    <!--  -->
     <string name="info_open_gl_string_1" translatable="false">OpenGL ES 2.0</string>
     <string name="info_open_gl_string_2" translatable="false">OpenGL ES 3.0</string>
     <string name="info_open_gl_string_3" translatable="false">OpenGL ES 3.1</string>
@@ -504,7 +481,6 @@
         <item>@string/info_open_gl_string_13</item>
     </string-array>
 
-    <!--  -->
     <string name="memory_string_1">Total:\u0020</string>
     <string name="memory_string_2">Available:\u0020</string>
     <string name="memory_string_3">Used:\u0020</string>
@@ -516,7 +492,6 @@
         <item>@string/memory_string_4</item>
     </string-array>
 
-    <!--  -->
     <string name="info_android_version_string_1">Android Version</string>
     <string name="info_android_version_string_2">Codename</string>
     <string name="info_android_version_string_3">INCREMENTAL</string>
@@ -558,7 +533,6 @@
         <item>@string/info_android_version_string_19</item>
     </string-array>
 
-    <!--  -->
     <string name="info_camera_string_1">Screen Width</string>
     <string name="info_camera_string_2">Screen Height</string>
     <string name="info_camera_string_3">Image Resolution</string>
@@ -582,7 +556,6 @@
         <item>@string/info_camera_string_10</item>
     </string-array>
 
-    <!--  -->
     <string name="info_battery_string_1">Battery Level</string>
     <string name="info_battery_string_2">Max Battery Level</string>
     <string name="info_battery_string_3">Battery Health</string>
@@ -600,7 +573,6 @@
         <item>@string/info_battery_string_7</item>
     </string-array>
 
-    <!--  -->
     <string name="test_sensor_string_1">Reading</string>
     <string name="test_sensor_string_2">Name</string>
     <string name="test_sensor_string_3">Vendor</string>
@@ -620,7 +592,6 @@
         <item>@string/test_sensor_string_8</item>
     </string-array>
 
-    <!--  -->
     <string name="test_gps_string_1">Latitude</string>
     <string name="test_gps_string_2">Longitude</string>
     <string name="test_gps_string_3">Speed</string>
@@ -636,7 +607,6 @@
         <item>@string/test_gps_string_6</item>
     </string-array>
 
-    <!--  -->
     <string name="info_gsm_string_1">SIM Card Country</string>
     <string name="info_gsm_string_2">SIM Card Operator Code</string>
     <string name="info_gsm_string_3">SIM Card Operator Name</string>
@@ -666,7 +636,6 @@
         <item>@string/info_gsm_string_13</item>
     </string-array>
 
-    <!--  -->
     <string name="info_sim_status_string_1">Unknown</string>
     <string name="info_sim_status_string_2">No SIM card</string>
     <string name="info_sim_status_string_3">Locked: requires the SIM PIN to unlock</string>
@@ -730,8 +699,6 @@
     <string name="mic_start_playing">Start playing</string>
     <string name="mic_stop">Stop</string>
 
-    <!--  -->
-
     <string name="ui_relative_humidity">Relative Humidity:\u0020</string>
     <string name="ui_absolute_humidity">Absolute Humidity:\u0020</string>
     <string name="ui_dew_point">Dew Point:\u0020</string>
@@ -753,18 +720,14 @@
 
     <string name="dialog_drawing_cancel_message" translatable="false">Changes you made may not be saved. Are you sure to leave?</string>
 
-    <!--  -->
-    <string name="theme_light" translatable="false">Light</string>
-    <string name="theme_dark" translatable="false">Dark</string>
-    <string name="theme_auto" translatable="false">System Default</string>
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
     <string-array name="theme_array" translatable="false">
         <item>@string/theme_light</item>
         <item>@string/theme_dark</item>
         <item>@string/theme_auto</item>
     </string-array>
-
-    <string name="compass_dial" translatable="false">Compass Dial</string>
-    <string name="compass_hands" translatable="false">Compass Hands</string>
 
     <string name="compass_north" translatable="false">N</string>
     <string name="compass_east" translatable="false">E</string>

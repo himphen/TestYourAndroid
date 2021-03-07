@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">لوڈ، اتارنا Android ٹیسٹنگ کا آلہ</string>
     <string name="ui_okay">ٹھیک ہے</string>
     <string name="ui_cancel">منسوخ کریں</string>
@@ -15,6 +15,10 @@
     <string name="title_activity_light">روشنی سینسر</string>
     <string name="title_activity_humidity">نمی سینسر</string>
     <string name="title_activity_camera">کیمرے</string>
+    <string name="title_activity_qr_scanner">QR کوڈ سکینر</string>
+    <string name="title_activity_bubble_level">بلبلا سطح</string>
+    <string name="title_activity_sound_meter">صوتی میٹر</string>
+    <string name="title_activity_speed_test">سپیڈ ٹیسٹ</string>
     <string name="title_activity_flashlight">ٹارچ</string>
     <string name="title_activity_biometric">فنگر پرنٹ</string>
     <string name="title_activity_drawing">ٹچ اسکرین</string>
@@ -22,6 +26,7 @@
     <string name="title_activity_speaker">اسپیکر اور کمپن</string>
     <string name="title_activity_microphone">مائیکروفون</string>
     <string name="title_activity_wifi">وائی ​​فائی</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">بلوٹوتھ</string>
     <string name="title_activity_accelerometer">Accelerometer</string>
     <string name="title_activity_step">پیڈومیٹر</string>
@@ -42,11 +47,13 @@
     <string name="title_activity_test_ad_remover">عطیہ</string>
     <string name="title_activity_app_brain">اور ایپ</string>
     <string name="title_activity_rate_us">ہمیں شرح کرو!</string>
+    <string name="title_activity_language">زبان</string>
     <string name="title_activity_app_choose">انسٹال کردہ ایپس</string>
     <string name="title_activity_app_user">صارف انسٹال شدہ ایپس</string>
     <string name="title_activity_app_system">سسٹم ایپس</string>
     <string name="title_activity_app_all">تمام اطلاقات</string>
     <string name="app_package">درخواست پیکیج</string>
+    <string name="main_title_tools">اوزار</string>
     <string name="main_title_hardware">ہارڈ ویئر ٹیسٹنگ</string>
     <string name="main_title_sensor">سینسر ٹیسٹنگ</string>
     <string name="main_title_information">ڈیوائس کی معلومات</string>
@@ -270,12 +277,9 @@
     <string name="ui_fingerprint_help">توثیقی مدد</string>
     <string name="ui_fingerprint_succeeded">کامیابی ہوئی.</string>
     <string name="app_not_found">کوئی درخواست نہیں ملی.</string>
-    <string name="title_activity_language">زبان</string>
-    <string name="title_activity_qr_scanner">QR کوڈ سکینر</string>
-    <string name="main_title_tools">اوزار</string>
     <string name="bubble_level_vertical">پلمب</string>
     <string name="bubble_level_horizontal">سطح</string>
-    <string name="title_activity_bubble_level">بلبلا سطح</string>
-    <string name="title_activity_sound_meter">صوتی میٹر</string>
-    <string name="title_activity_speed_test">سپیڈ ٹیسٹ</string>
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Android Testing Tool</string>
     <string name="ui_okay">okay</string>
     <string name="ui_cancel">Afbestille</string>
@@ -15,6 +15,10 @@
     <string name="title_activity_light">Lyssensor</string>
     <string name="title_activity_humidity">Fugtighedssensor</string>
     <string name="title_activity_camera">Kamera</string>
+    <string name="title_activity_qr_scanner">QR kode scanner</string>
+    <string name="title_activity_bubble_level">Boble niveau</string>
+    <string name="title_activity_sound_meter">Lydmåler</string>
+    <string name="title_activity_speed_test">Speed Test</string>
     <string name="title_activity_flashlight">Lommelygte</string>
     <string name="title_activity_biometric">Fingeraftryk</string>
     <string name="title_activity_drawing">Touch Screen</string>
@@ -22,6 +26,7 @@
     <string name="title_activity_speaker">Højttaler og vibrere</string>
     <string name="title_activity_microphone">Mikrofon</string>
     <string name="title_activity_wifi">Trådløst internet</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">Bluetooth</string>
     <string name="title_activity_accelerometer">Accelerometer</string>
     <string name="title_activity_step">Skridttæller</string>
@@ -42,11 +47,13 @@
     <string name="title_activity_test_ad_remover">Doner</string>
     <string name="title_activity_app_brain">Mere App</string>
     <string name="title_activity_rate_us">Bedøm os!</string>
+    <string name="title_activity_language">Sprog</string>
     <string name="title_activity_app_choose">Installerede Apps</string>
     <string name="title_activity_app_user">Bruger installerede apps</string>
     <string name="title_activity_app_system">System Apps</string>
     <string name="title_activity_app_all">Alle apps</string>
     <string name="app_package">Applikationspakke</string>
+    <string name="main_title_tools">Værktøj til værktøj</string>
     <string name="main_title_hardware">Hardware Testing</string>
     <string name="main_title_sensor">Sensortestning</string>
     <string name="main_title_information">Enhedsoplysninger</string>
@@ -270,12 +277,9 @@
     <string name="ui_fingerprint_help">Autentificering Hjælp</string>
     <string name="ui_fingerprint_succeeded">Lykkedes.</string>
     <string name="app_not_found">Ingen ansøgning fundet.</string>
-    <string name="title_activity_language">Sprog</string>
-    <string name="title_activity_qr_scanner">QR kode scanner</string>
-    <string name="main_title_tools">Værktøj til værktøj</string>
     <string name="bubble_level_vertical">Plumb</string>
     <string name="bubble_level_horizontal">Niveau</string>
-    <string name="title_activity_bubble_level">Boble niveau</string>
-    <string name="title_activity_sound_meter">Lydmåler</string>
-    <string name="title_activity_speed_test">Speed Test</string>
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>

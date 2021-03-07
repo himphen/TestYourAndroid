@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Testen Sie Ihr Android</string>
     <string name="ui_okay">okay</string>
     <string name="ui_cancel">Stornieren</string>
@@ -15,6 +15,10 @@
     <string name="title_activity_light">Lichtsensor</string>
     <string name="title_activity_humidity">Feuchtigkeitssensor</string>
     <string name="title_activity_camera">Kamera</string>
+    <string name="title_activity_qr_scanner">QR Code Scanner</string>
+    <string name="title_activity_bubble_level">Wasserwaage</string>
+    <string name="title_activity_sound_meter">Schallmesser</string>
+    <string name="title_activity_speed_test">Speed Test</string>
     <string name="title_activity_flashlight">Taschenlampe</string>
     <string name="title_activity_biometric">Fingerabdruck</string>
     <string name="title_activity_drawing">Berührungsempfindlicher Bildschirm</string>
@@ -22,6 +26,7 @@
     <string name="title_activity_speaker">Lautsprecher und vibrieren</string>
     <string name="title_activity_microphone">Mikrofon</string>
     <string name="title_activity_wifi">W-lan</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">Bluetooth</string>
     <string name="title_activity_accelerometer">Beschleunigungsmesser</string>
     <string name="title_activity_step">Schrittzähler</string>
@@ -42,11 +47,13 @@
     <string name="title_activity_test_ad_remover">Spenden</string>
     <string name="title_activity_app_brain">Mehr App</string>
     <string name="title_activity_rate_us">Bewerten Sie uns!</string>
+    <string name="title_activity_language">Sprache</string>
     <string name="title_activity_app_choose">Installierte Apps</string>
     <string name="title_activity_app_user">Vom Benutzer installierte Apps</string>
     <string name="title_activity_app_system">System Apps</string>
     <string name="title_activity_app_all">Alle Apps</string>
     <string name="app_package">Anwendungspaket</string>
+    <string name="main_title_tools">Hilfsprogramme</string>
     <string name="main_title_hardware">Hardware-Test</string>
     <string name="main_title_sensor">Sensortest</string>
     <string name="main_title_information">Geräteinformation</string>
@@ -270,12 +277,9 @@
     <string name="ui_fingerprint_help">Hilfe zur Authentifizierung</string>
     <string name="ui_fingerprint_succeeded">Erfolgreich</string>
     <string name="app_not_found">Keine Anwendung gefunden</string>
-    <string name="title_activity_language">Sprache</string>
-    <string name="title_activity_qr_scanner">QR Code Scanner</string>
-    <string name="main_title_tools">Hilfsprogramme</string>
     <string name="bubble_level_vertical">Lot</string>
     <string name="bubble_level_horizontal">Niveau</string>
-    <string name="title_activity_bubble_level">Wasserwaage</string>
-    <string name="title_activity_sound_meter">Schallmesser</string>
-    <string name="title_activity_speed_test">Speed Test</string>
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>

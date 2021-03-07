@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Tes Android Anda</string>
     <string name="ui_okay">Ok</string>
     <string name="ui_cancel">Batalkan</string>
@@ -11,11 +11,14 @@
     <string name="dialog_feature_na_message">Perangkat Android Anda tidak memiliki fitur ini atau bisa sedang digunakan oleh aplikasi lain.</string>
     <string name="dialog_permission_denied_message">Tanpa memberikan izin, kami tidak dapat melakukan hal ini.\n\n Harap beri izin Android untuk mengakses fitur ini.</string>
     <string name="dialog_permission_denied_posbtn">Pengaturan »</string>
-
     <string name="title_activity_screen">Warna Monitor</string>
     <string name="title_activity_light">Sensor Cahaya</string>
     <string name="title_activity_humidity">Sensor Kelembaban</string>
     <string name="title_activity_camera">Kamera</string>
+    <string name="title_activity_qr_scanner">Pemindai Kode QR</string>
+    <string name="title_activity_bubble_level">Tingkat gelembung</string>
+    <string name="title_activity_sound_meter">Pengukur Suara</string>
+    <string name="title_activity_speed_test">Speed Test</string>
     <string name="title_activity_flashlight">Senter</string>
     <string name="title_activity_biometric">Sidik Jari</string>
     <string name="title_activity_drawing">Layar Sentuh</string>
@@ -23,6 +26,7 @@
     <string name="title_activity_speaker">Pengeras Suara dan Getaran </string>
     <string name="title_activity_microphone">Mikrofon</string>
     <string name="title_activity_wifi">Wi-Fi</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">Bluetooth</string>
     <string name="title_activity_accelerometer">Pengukur kecepatan</string>
     <string name="title_activity_step">Penghitung</string>
@@ -43,33 +47,25 @@
     <string name="title_activity_test_ad_remover">Donasi</string>
     <string name="title_activity_app_brain">Aplikasi Lain</string>
     <string name="title_activity_rate_us">Beri kami Rating!</string>
-
+    <string name="title_activity_language">Bahasa</string>
     <string name="title_activity_app_choose">Aplikasi Terpasang</string>
     <string name="title_activity_app_user">Aplikasi Terpasang oleh Pengguna</string>
     <string name="title_activity_app_system">Aplikasi Sistem</string>
     <string name="title_activity_app_all">Semua Aplikasi</string>
     <string name="app_package">Paket Aplikasi</string>
-
+    <string name="main_title_tools">Alat</string>
     <string name="main_title_hardware">Tes Perangkat Keras </string>
     <string name="main_title_sensor">Tes Sensor</string>
     <string name="main_title_information">Informas Perangkat</string>
     <string name="main_title_other">Lainnya</string>
-
-    <!--  -->
     <string name="main_tab_title_1">Tes Perangkat</string>
     <string name="main_tab_title_2">Tentang</string>
-
-    <!--  -->
     <string name="app_info_tab_title_1">Tindakan</string>
     <string name="app_info_tab_title_2">Paket</string>
     <string name="app_info_tab_title_3">Ijin</string>
-
-    <!--  -->
     <string name="test_monitor_tab_title_1">CPU</string>
     <string name="test_monitor_tab_title_2">Jaringan</string>
     <string name="test_monitor_tab_title_3">Memory</string>
-
-    <!--  -->
     <string name="color_title">Mohon Pilih</string>
     <string name="color_message">Mode Normal mode:\nTekan untuk mengganti warna berikut\n\nMode Perbaikan:\nMengganti warna dengan cepat</string>
     <string name="color_normal_btn">Mode Normal</string>
@@ -79,24 +75,16 @@
          \n\nDisarankan untuk melakukannya saat Anda mengisi baterai. Mode ini akan ditutup setelah 20 menit secara otomatis.
          \n\n Mode pengaturan ini tidak dijamin untuk memperbaiki piksel yang rusak. Silakan hubungi produsen jika Anda memiliki masalah.
          \n\nAnda dapat menekan tombol KEMBALI ke layar utama.</string>
-
-    <!--  -->
     <string name="vibrate_button">Tes Getaran</string>
     <string name="vibrate_stop_button">Stop Getaran</string>
     <string name="vibrate_string_1">Getaran Panjang</string>
     <string name="vibrate_string_2">Getaran Singkat</string>
-
-    <!--  -->
     <string name="ring_button">Mainkan Musi</string>
     <string name="ring_stop_button">Stop Musik</string>
     <string name="adjust_volume">Atur Volume </string>
     <string name="vibrate_type">Mode Getaran</string>
-
-    <!--  -->
     <string name="nfc_tutor_message">Letakkan semua tag NFC di belakang perangkat, dan Anda akan mendapatkan bunyi bip ketika berhasil</string>
     <string name="touch_message">Sentuh layar dengan beberapa jari.</string>
-
-    <!--  -->
     <string name="info_hardware_string_1">Merek</string>
     <string name="info_hardware_string_2">Perangkat</string>
     <string name="info_hardware_string_3">Model</string>
@@ -109,8 +97,6 @@
     <string name="info_hardware_string_10">Pengguna</string>
     <string name="info_hardware_string_11">Host</string>
     <string name="info_hardware_string_12">Papan</string>
-
-    <!--  -->
     <string name="app_package_string_1">Paket</string>
     <string name="app_package_string_2">Nama Paket</string>
     <string name="app_package_string_3">Kode Versi</string>
@@ -121,21 +107,15 @@
     <string name="app_package_string_8">Directori APL</string>
     <string name="app_package_string_9">Min. SDK Versi</string>
     <string name="app_package_string_10">Target SDK Versi</string>
-
-    <!--  -->
     <string name="app_action_string_1">Luncurkan Aplikasi</string>
     <string name="app_action_string_2">Uninstall</string>
     <string name="app_action_string_3">Panel Kontrol</string>
     <string name="app_action_string_4">Play Store</string>
-
-    <!--  -->
     <string name="info_battery_charge_string_1">Tidak sedang charging</string>
     <string name="info_battery_charge_string_2">AC Charging</string>
     <string name="info_battery_charge_string_3">USB Charging</string>
     <string name="info_battery_charge_string_4">Tidak Diketahui</string>
     <string name="info_battery_charge_string_5">Charging Nirkabel</string>
-
-    <!--  -->
     <string name="info_battery_health_string_1">Tidak Diketahui</string>
     <string name="info_battery_health_string_2">Tidak Diketahui</string>
     <string name="info_battery_health_string_3">Baik</string>
@@ -144,8 +124,6 @@
     <string name="info_battery_health_string_6">Hati hati: Voltase terlalu tinggi</string>
     <string name="info_battery_health_string_7">Tidak Diketahui</string>
     <string name="info_battery_health_string_8">Hati hati: Terlalu Dingin</string>
-
-    <!--  -->
     <string name="test_wifi_current_string_ssid">SSID</string>
     <string name="test_wifi_current_string_bssid">BSSID</string>
     <string name="test_wifi_current_string_network_id">ID Jaringan</string>
@@ -158,17 +136,11 @@
     <string name="test_wifi_current_string_dns">DNS 1</string>
     <string name="test_wifi_current_string_dns_2">DNS 2</string>
     <string name="test_wifi_current_string_server_address">Alamat server</string>
-
-    <!--  -->
     <string name="test_wifi_string_1">Wi-Fi Sekarang</string>
     <string name="test_wifi_string_2">Wi-Fi Tersedia</string>
     <string name="test_wifi_string_3">Wi-Fi SSID Tersimpan</string>
-
-    <!--  -->
     <string name="test_bluetooth_string_1">Perangkat Tersedia</string>
     <string name="test_bluetooth_string_2">Perangkat Berpasangan</string>
-
-    <!--  -->
     <string name="info_cpu_string_1">Min Feq.</string>
     <string name="info_cpu_string_2">Max Feq.</string>
     <string name="info_cpu_string_3">CPU Core no.</string>
@@ -176,14 +148,10 @@
     <string name="info_cpu_string_5">External Memory</string>
     <string name="info_cpu_string_6">RAM Memory</string>
     <string name="info_cpu_string_7">Detail Memory</string>
-
-    <!--  -->
     <string name="memory_string_1">Total:\u0020</string>
     <string name="memory_string_2">Tersedia:\u0020</string>
     <string name="memory_string_3">Bekas:\u0020</string>
     <string name="memory_string_4">Ambang:\u0020</string>
-
-    <!--  -->
     <string name="info_android_version_string_1">Android Versi</string>
     <string name="info_android_version_string_2">Kodenama</string>
     <string name="info_android_version_string_3">INCREMENTAL</string>
@@ -203,8 +171,6 @@
     <string name="info_android_version_string_17">VM spesifikasi nama</string>
     <string name="info_android_version_string_18">Lokasi VM</string>
     <string name="info_android_version_string_19">Zona Waktu</string>
-
-    <!--  -->
     <string name="info_camera_string_1">Lebar Layar</string>
     <string name="info_camera_string_2">Tinggi Layar</string>
     <string name="info_camera_string_3">Resolusi Gambar</string>
@@ -215,8 +181,6 @@
     <string name="info_camera_string_8">Keseimbangan Putih</string>
     <string name="info_camera_string_9">Mode Layar</string>
     <string name="info_camera_string_10">Format Gambar</string>
-
-    <!--  -->
     <string name="info_battery_string_1">Baterai Level</string>
     <string name="info_battery_string_2">Max baterai Level</string>
     <string name="info_battery_string_3">kesehatan baterai</string>
@@ -224,8 +188,6 @@
     <string name="info_battery_string_5">baterai teknology</string>
     <string name="info_battery_string_6">baterai suhu</string>
     <string name="info_battery_string_7">baterai voltage</string>
-
-    <!--  -->
     <string name="test_sensor_string_1">Membaca</string>
     <string name="test_sensor_string_2">Nama</string>
     <string name="test_sensor_string_3">Vendor</string>
@@ -234,16 +196,12 @@
     <string name="test_sensor_string_6">Min. Tunda</string>
     <string name="test_sensor_string_7">Resolusi</string>
     <string name="test_sensor_string_8">Tenaga</string>
-
-    <!--  -->
     <string name="test_gps_string_1">Lintang</string>
     <string name="test_gps_string_2">Garis bujur</string>
     <string name="test_gps_string_3">Kecepatan</string>
     <string name="test_gps_string_4">Ketinggian</string>
     <string name="test_gps_string_5">Bearing</string>
     <string name="test_gps_string_6">Akurasi</string>
-
-    <!--  -->
     <string name="info_gsm_string_1">Negara SIM Card</string>
     <string name="info_gsm_string_2">SIM Card Operator Kode</string>
     <string name="info_gsm_string_3">SIM Card Operator Nama</string>
@@ -257,15 +215,12 @@
     <string name="info_gsm_string_11">Roaming Roaming</string>
     <string name="info_gsm_string_12">SIM Nomor Seri</string>
     <string name="info_gsm_string_13">ID Anggota</string>
-
-    <!--  -->
     <string name="info_sim_status_string_1">Tidak diketahui</string>
     <string name="info_sim_status_string_2">No SIM card</string>
     <string name="info_sim_status_string_3">Terkunci: membutuhkan PIN SIM pengguna untuk membuka kunci</string>
     <string name="info_sim_status_string_4">Terkunci: membutuhkan PUK SIM pengguna untuk membuka kunci</string>
     <string name="info_sim_status_string_5">Terkunci: membutuhkan PIN jaringan untuk membuka kunci</string>
     <string name="info_sim_status_string_6">Siap</string>
-
     <string name="wifi_setting">Pengaturan</string>
     <string name="wifi_reload">Menyegarkan</string>
     <string name="wifi_reload_done">Reload Berhasil</string>
@@ -312,13 +267,9 @@
     <string name="mic_start_recording">Mulai merekam</string>
     <string name="mic_start_playing">Mulai bermain</string>
     <string name="mic_stop">Stop</string>
-
-    <!--  -->
-
     <string name="ui_relative_humidity">Kelembaban relatif:\u0020</string>
     <string name="ui_absolute_humidity">Kelembaban Absoluty:\u0020</string>
     <string name="ui_dew_point">Dew Point:\u0020</string>
-
     <string name="dialog_camera_title">Silakan pilih kamera</string>
     <string name="iab_complete_title">Terima kasih</string>
     <string name="iab_complete_message">Silakan restart aplikasi untuk menerapkan perubahan.</string>
@@ -329,15 +280,10 @@
     <string name="ui_fingerprint_fail">Tidak dikenal.</string>
     <string name="ui_fingerprint_help">Bantuan aplikasi</string>
     <string name="ui_fingerprint_succeeded">Sukses.</string>
-
     <string name="app_not_found">Tidak ada aplikasi.</string>
-    <string name="title_activity_language">Bahasa</string>
-    <string name="title_activity_qr_scanner">Pemindai Kode QR</string>
-    <string name="main_title_tools">Alat</string>
     <string name="bubble_level_vertical">Tegak lurus</string>
     <string name="bubble_level_horizontal">Tingkat</string>
-    <string name="title_activity_bubble_level">Tingkat gelembung</string>
-    <string name="title_activity_sound_meter">Pengukur Suara</string>
-    <string name="title_activity_speed_test">Speed Test</string>
-
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>

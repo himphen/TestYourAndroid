@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Android Test Aracı</string>
     <string name="ui_okay">Tamam</string>
     <string name="ui_cancel">İptal etmek</string>
@@ -15,6 +15,10 @@
     <string name="title_activity_light">Işık sensörü</string>
     <string name="title_activity_humidity">Nem sensörü</string>
     <string name="title_activity_camera">Kamera</string>
+    <string name="title_activity_qr_scanner">QR Kod Tarayıcı</string>
+    <string name="title_activity_bubble_level">Kabarcık Seviyesi</string>
+    <string name="title_activity_sound_meter">Ses ölçer</string>
+    <string name="title_activity_speed_test">Hız Testi</string>
     <string name="title_activity_flashlight">El feneri</string>
     <string name="title_activity_biometric">Parmak izi</string>
     <string name="title_activity_drawing">Dokunmatik ekran</string>
@@ -22,6 +26,7 @@
     <string name="title_activity_speaker">Hoparlör ve Titreşim</string>
     <string name="title_activity_microphone">Mikrofon</string>
     <string name="title_activity_wifi">Kablosuz internet</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">Bluetooth</string>
     <string name="title_activity_accelerometer">İvme ölçer</string>
     <string name="title_activity_step">Pedometre</string>
@@ -42,11 +47,13 @@
     <string name="title_activity_test_ad_remover">bağışlamak</string>
     <string name="title_activity_app_brain">Daha fazla uygulama</string>
     <string name="title_activity_rate_us">Bizi değerlendirin!</string>
+    <string name="title_activity_language">Dil</string>
     <string name="title_activity_app_choose">Yüklü Uygulamalar</string>
     <string name="title_activity_app_user">Kullanıcı Tarafından Yüklenen Uygulamalar</string>
     <string name="title_activity_app_system">Sistem Uygulamaları</string>
     <string name="title_activity_app_all">Tüm Uygulamalar</string>
     <string name="app_package">Uygulama paketi</string>
+    <string name="main_title_tools">Araçlar</string>
     <string name="main_title_hardware">Donanım testi</string>
     <string name="main_title_sensor">Sensör testi</string>
     <string name="main_title_information">Cihaz bilgisi</string>
@@ -270,12 +277,9 @@
     <string name="ui_fingerprint_help">Kimlik Doğrulama Yardımı</string>
     <string name="ui_fingerprint_succeeded">Başarılı.</string>
     <string name="app_not_found">Uygulama bulunamadı.</string>
-    <string name="title_activity_language">Dil</string>
-    <string name="title_activity_qr_scanner">QR Kod Tarayıcı</string>
-    <string name="main_title_tools">Araçlar</string>
     <string name="bubble_level_vertical">çekül</string>
     <string name="bubble_level_horizontal">seviye</string>
-    <string name="title_activity_bubble_level">Kabarcık Seviyesi</string>
-    <string name="title_activity_sound_meter">Ses ölçer</string>
-    <string name="title_activity_speed_test">Hız Testi</string>
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>

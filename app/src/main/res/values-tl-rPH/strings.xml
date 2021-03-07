@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Android Testing Tool</string>
     <string name="ui_okay">Sige</string>
     <string name="ui_cancel">Kanselahin</string>
@@ -15,6 +15,10 @@
     <string name="title_activity_light">Banayad na Sensor</string>
     <string name="title_activity_humidity">Humidity Sensor</string>
     <string name="title_activity_camera">Camera</string>
+    <string name="title_activity_qr_scanner">QR-kodskanner</string>
+    <string name="title_activity_bubble_level">Bubbel nivå</string>
+    <string name="title_activity_sound_meter">Ljudmätare</string>
+    <string name="title_activity_speed_test">Hastighetstest</string>
     <string name="title_activity_flashlight">Flashlight</string>
     <string name="title_activity_biometric">Fingerprint</string>
     <string name="title_activity_drawing">Touch Screen</string>
@@ -22,6 +26,7 @@
     <string name="title_activity_speaker">Tagapagsalita at Mag-vibrate</string>
     <string name="title_activity_microphone">Mikropono</string>
     <string name="title_activity_wifi">Wi-Fi</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">Bluetooth</string>
     <string name="title_activity_accelerometer">Accelerometer</string>
     <string name="title_activity_step">Pedometer</string>
@@ -42,11 +47,13 @@
     <string name="title_activity_test_ad_remover">Mag-donate</string>
     <string name="title_activity_app_brain">Higit pang App</string>
     <string name="title_activity_rate_us">I-rate sa amin!</string>
+    <string name="title_activity_language">Wika</string>
     <string name="title_activity_app_choose">Mga naka-install na Apps</string>
     <string name="title_activity_app_user">Mga Naka-install na Apps ng User</string>
     <string name="title_activity_app_system">System Apps</string>
     <string name="title_activity_app_all">Lahat ng Apps</string>
     <string name="app_package">Package ng Application</string>
+    <string name="main_title_tools">Verktyg</string>
     <string name="main_title_hardware">Pagsubok ng Hardware</string>
     <string name="main_title_sensor">Pagsubok ng Sensor</string>
     <string name="main_title_information">Impormasyon tungkol sa device</string>
@@ -270,12 +277,9 @@
     <string name="ui_fingerprint_help">Tulong sa Pagpapatotoo</string>
     <string name="ui_fingerprint_succeeded">Nagtagumpay.</string>
     <string name="app_not_found">Walang nakitang application.</string>
-    <string name="title_activity_language">Wika</string>
-    <string name="title_activity_qr_scanner">QR-kodskanner</string>
-    <string name="main_title_tools">Verktyg</string>
     <string name="bubble_level_vertical">Lod</string>
     <string name="bubble_level_horizontal">Nivå</string>
-    <string name="title_activity_bubble_level">Bubbel nivå</string>
-    <string name="title_activity_sound_meter">Ljudmätare</string>
-    <string name="title_activity_speed_test">Hastighetstest</string>
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">เครื่องมือทดสอบ Android</string>
     <string name="ui_okay">ถูก</string>
     <string name="ui_cancel">ยกเลิก</string>
@@ -15,6 +15,10 @@
     <string name="title_activity_light">เซนเซอร์ตรวจจับแสง</string>
     <string name="title_activity_humidity">เซนเซอร์วัดความชื้น</string>
     <string name="title_activity_camera">กล้อง</string>
+    <string name="title_activity_qr_scanner">เครื่องสแกนรหัส QR</string>
+    <string name="title_activity_bubble_level">ระดับฟอง</string>
+    <string name="title_activity_sound_meter">เครื่องวัดเสียง</string>
+    <string name="title_activity_speed_test">ทดสอบความเร็ว</string>
     <string name="title_activity_flashlight">ไฟฉาย</string>
     <string name="title_activity_biometric">ลายนิ้วมือ</string>
     <string name="title_activity_drawing">หน้าจอสัมผัส</string>
@@ -22,6 +26,7 @@
     <string name="title_activity_speaker">ลำโพงและสั่น</string>
     <string name="title_activity_microphone">ไมโครโฟน</string>
     <string name="title_activity_wifi">Wi-Fi</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">บลูทู ธ</string>
     <string name="title_activity_accelerometer">accelerometer</string>
     <string name="title_activity_step">pedometer</string>
@@ -42,11 +47,13 @@
     <string name="title_activity_test_ad_remover">บริจาค</string>
     <string name="title_activity_app_brain">แอปเพิ่มเติม</string>
     <string name="title_activity_rate_us">ให้คะแนนเรา!</string>
+    <string name="title_activity_language">ภาษา</string>
     <string name="title_activity_app_choose">แอปที่ติดตั้งแล้ว</string>
     <string name="title_activity_app_user">แอปที่ติดตั้งโดยผู้ใช้</string>
     <string name="title_activity_app_system">แอประบบ</string>
     <string name="title_activity_app_all">แอปทั้งหมด</string>
     <string name="app_package">แพคเกจการสมัคร</string>
+    <string name="main_title_tools">เครื่องมือ</string>
     <string name="main_title_hardware">การทดสอบฮาร์ดแวร์</string>
     <string name="main_title_sensor">การทดสอบเซนเซอร์</string>
     <string name="main_title_information">ข้อมูลอุปกรณ์</string>
@@ -270,12 +277,9 @@
     <string name="ui_fingerprint_help">วิธีการตรวจสอบความถูกต้อง</string>
     <string name="ui_fingerprint_succeeded">ที่ประสบความสำเร็จ.</string>
     <string name="app_not_found">ไม่พบแอปพลิเคชัน</string>
-    <string name="title_activity_language">ภาษา</string>
-    <string name="title_activity_qr_scanner">เครื่องสแกนรหัส QR</string>
-    <string name="main_title_tools">เครื่องมือ</string>
     <string name="bubble_level_vertical">ลูกดิ่ง</string>
     <string name="bubble_level_horizontal">ชั้น</string>
-    <string name="title_activity_bubble_level">ระดับฟอง</string>
-    <string name="title_activity_sound_meter">เครื่องวัดเสียง</string>
-    <string name="title_activity_speed_test">ทดสอบความเร็ว</string>
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>

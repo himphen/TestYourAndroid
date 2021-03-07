@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- By Google Translate -->
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Alat Ujian Android</string>
     <string name="ui_okay">baik</string>
     <string name="ui_cancel">Batalkan</string>
@@ -15,6 +15,10 @@
     <string name="title_activity_light">Sensor Cahaya</string>
     <string name="title_activity_humidity">Sensor kelembapan</string>
     <string name="title_activity_camera">Kamera</string>
+    <string name="title_activity_qr_scanner">Pengimbas Kod QR</string>
+    <string name="title_activity_bubble_level">Tahap Bubble</string>
+    <string name="title_activity_sound_meter">Meter Bunyi</string>
+    <string name="title_activity_speed_test">Ujian Kelajuan</string>
     <string name="title_activity_flashlight">Lampu suluh</string>
     <string name="title_activity_biometric">Cap jari</string>
     <string name="title_activity_drawing">Skrin sentuh</string>
@@ -22,6 +26,7 @@
     <string name="title_activity_speaker">Speaker dan Getaran</string>
     <string name="title_activity_microphone">Mikrofon</string>
     <string name="title_activity_wifi">Wi-Fi</string>
+    <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">Bluetooth</string>
     <string name="title_activity_accelerometer">Akselerometer</string>
     <string name="title_activity_step">Alat pengukur langkah</string>
@@ -42,11 +47,13 @@
     <string name="title_activity_test_ad_remover">Menderma</string>
     <string name="title_activity_app_brain">Lebih banyak App</string>
     <string name="title_activity_rate_us">Beri kami!</string>
+    <string name="title_activity_language">Bahasa</string>
     <string name="title_activity_app_choose">Aplikasi yang dipasang</string>
     <string name="title_activity_app_user">Aplikasi yang Dipasang Pengguna</string>
     <string name="title_activity_app_system">Sistem Aplikasi</string>
     <string name="title_activity_app_all">Semua Aplikasi</string>
     <string name="app_package">Pakej Permohonan</string>
+    <string name="main_title_tools">Alat Utiliti</string>
     <string name="main_title_hardware">Ujian Perkakasan</string>
     <string name="main_title_sensor">Ujian Sensor</string>
     <string name="main_title_information">Maklumat Peranti</string>
@@ -270,12 +277,9 @@
     <string name="ui_fingerprint_help">Bantuan Pengesahan</string>
     <string name="ui_fingerprint_succeeded">Berjaya.</string>
     <string name="app_not_found">Tiada permohonan dijumpai.</string>
-    <string name="title_activity_language">Bahasa</string>
-    <string name="title_activity_qr_scanner">Pengimbas Kod QR</string>
-    <string name="main_title_tools">Alat Utiliti</string>
     <string name="bubble_level_vertical">Terbakar</string>
     <string name="bubble_level_horizontal">Tahap</string>
-    <string name="title_activity_bubble_level">Tahap Bubble</string>
-    <string name="title_activity_sound_meter">Meter Bunyi</string>
-    <string name="title_activity_speed_test">Ujian Kelajuan</string>
+    <string name="theme_light">Light Theme</string>
+    <string name="theme_dark">Dark Theme</string>
+    <string name="theme_auto">System Default</string>
 </resources>
