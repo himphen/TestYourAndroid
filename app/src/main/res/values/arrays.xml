@@ -37,6 +37,7 @@
         <item>@drawable/ic_icon_wifi</item>
         <item>@drawable/ic_icon_bluetooth</item>
         <item>@drawable/ic_icon_cpu</item>
+        <item>@drawable/ic_icon_cpu</item>
         <item>@drawable/ic_icon_device</item>
         <item>@drawable/ic_icon_android</item>
         <item>@drawable/ic_icon_battery</item>

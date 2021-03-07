@@ -120,10 +120,11 @@ object Utils : KoinComponent {
         }
     }
 
-    fun logException(e: Exception) {
+    fun logException(e: Exception, sendToFirebase: Boolean = true) {
         if (BuildConfig.DEBUG) {
             e.printStackTrace()
         } else {
+            if (sendToFirebase)
             FirebaseCrashlytics.getInstance().recordException(e)
         }
     }

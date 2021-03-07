@@ -7,12 +7,6 @@
         tools:summary="Dark Mode"
         android:title="Theme" />
 
-<!--    <SwitchPreference-->
-<!--        android:icon="@drawable/baseline_spellcheck_24"-->
-<!--        android:key="pref_metric_units"-->
-<!--        android:defaultValue="true"-->
-<!--        android:title="Use Metric Units" />-->
-
     <PreferenceCategory android:title="@string/main_tab_title_2">
         <Preference
             android:icon="@drawable/baseline_get_app_24"
@@ -38,6 +32,11 @@
             android:icon="@drawable/baseline_menu_open_24"
             android:key="pref_credit"
             android:title="@string/pref_credit" />
+
+        <Preference
+            android:icon="@drawable/baseline_translate_24"
+            android:key="pref_improve_translation"
+            android:title="Help improve translation!" />
 
         <Preference
             android:icon="@drawable/baseline_info_24"

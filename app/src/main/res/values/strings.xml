@@ -162,6 +162,7 @@
     <string name="title_activity_compass">Compass</string>
     <string name="title_activity_device">Hardware</string>
     <string name="title_activity_cpu">CPU/Memory</string>
+    <string name="title_activity_open_gl" translatable="false">OpenGL</string>
     <string name="title_activity_android_version">Android Version</string>
     <string name="title_activity_application">Installed Apps</string>
     <string name="title_activity_battery">Battery</string>
@@ -211,6 +212,7 @@
         <item>@string/title_activity_wifi</item>
         <item>@string/title_activity_bluetooth</item>
         <item>@string/title_activity_cpu</item>
+        <item>@string/title_activity_open_gl</item>
         <item>@string/title_activity_device</item>
         <item>@string/title_activity_android_version</item>
         <item>@string/title_activity_battery</item>
@@ -456,6 +458,9 @@
     <string name="info_cpu_string_5">External Memory</string>
     <string name="info_cpu_string_6">RAM Memory</string>
     <string name="info_cpu_string_7">Detail Memory</string>
+    <string name="info_cpu_string_8" translatable="false">OpenGL ES 2.0</string>
+    <string name="info_cpu_string_9" translatable="false">OpenGL ES 3.0</string>
+    <string name="info_cpu_string_10" translatable="false">OpenGL ES 3.1</string>
     <string-array name="info_cpu_string_array" translatable="false">
         <item>@string/info_cpu_string_1</item>
         <item>@string/info_cpu_string_2</item>
@@ -464,6 +469,39 @@
         <item>@string/info_cpu_string_5</item>
         <item>@string/info_cpu_string_6</item>
         <item>@string/info_cpu_string_7</item>
+        <item>@string/info_cpu_string_8</item>
+        <item>@string/info_cpu_string_9</item>
+        <item>@string/info_cpu_string_10</item>
+    </string-array>
+
+    <!--  -->
+    <string name="info_open_gl_string_1" translatable="false">OpenGL ES 2.0</string>
+    <string name="info_open_gl_string_2" translatable="false">OpenGL ES 3.0</string>
+    <string name="info_open_gl_string_3" translatable="false">OpenGL ES 3.1</string>
+    <string name="info_open_gl_string_4" translatable="false">Renderer</string>
+    <string name="info_open_gl_string_5" translatable="false">Vendor</string>
+    <string name="info_open_gl_string_6" translatable="false">Version</string>
+    <string name="info_open_gl_string_7" translatable="false">Subpixel Bits</string>
+    <string name="info_open_gl_string_8" translatable="false">Color Buffer Bit</string>
+    <string name="info_open_gl_string_9" translatable="false">Depth Bits</string>
+    <string name="info_open_gl_string_10" translatable="false">Max. Texture Units</string>
+    <string name="info_open_gl_string_11" translatable="false">Max. Texture Size</string>
+    <string name="info_open_gl_string_12" translatable="false">Max. Texture Stack Depth</string>
+    <string name="info_open_gl_string_13" translatable="false">Extensions</string>
+    <string-array name="info_open_gl_string_array" translatable="false">
+        <item>@string/info_open_gl_string_1</item>
+        <item>@string/info_open_gl_string_2</item>
+        <item>@string/info_open_gl_string_3</item>
+        <item>@string/info_open_gl_string_4</item>
+        <item>@string/info_open_gl_string_5</item>
+        <item>@string/info_open_gl_string_6</item>
+        <item>@string/info_open_gl_string_7</item>
+        <item>@string/info_open_gl_string_8</item>
+        <item>@string/info_open_gl_string_9</item>
+        <item>@string/info_open_gl_string_10</item>
+        <item>@string/info_open_gl_string_11</item>
+        <item>@string/info_open_gl_string_12</item>
+        <item>@string/info_open_gl_string_13</item>
     </string-array>
 
     <!--  -->
@@ -724,5 +762,17 @@
         <item>@string/theme_dark</item>
         <item>@string/theme_auto</item>
     </string-array>
+
+    <string name="compass_dial" translatable="false">Compass Dial</string>
+    <string name="compass_hands" translatable="false">Compass Hands</string>
+
+    <string name="compass_north" translatable="false">N</string>
+    <string name="compass_east" translatable="false">E</string>
+    <string name="compass_south" translatable="false">S</string>
+    <string name="compass_west" translatable="false">W</string>
+    <string name="compass_northeast" translatable="false">NE</string>
+    <string name="compass_northwest" translatable="false">NW</string>
+    <string name="compass_southeast" translatable="false">SE</string>
+    <string name="compass_southwest" translatable="false">SW</string>
 
 </resources>

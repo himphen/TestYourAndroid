@@ -143,6 +143,10 @@
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_cpu" />
         <activity
+            android:name=".ui.info.InfoOpenGLActivity"
+            android:configChanges="orientation|screenSize|locale|layoutDirection"
+            android:label="@string/title_activity_open_gl" />
+        <activity
             android:name=".ui.info.InfoAndroidVersionActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_android_version" />

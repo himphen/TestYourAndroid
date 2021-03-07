@@ -29,10 +29,11 @@ class ToolBubbleLevelFragment : BaseFragment<FragmentToolBubbleLevelBinding>(),
     private var mSensorManager: SensorManager? = null
     private var mSensor: Sensor? = null
     private var secondSensor: Sensor? = null
-    private var accValues = FloatArray(3)
-    private var magValues = FloatArray(3)
+    private var mGravity = FloatArray(3)
+    private var mGeomagnetic = FloatArray(3)
     private val r = FloatArray(9)
-    private val values = FloatArray(3)
+    private val i = FloatArray(9)
+    private val orientations = FloatArray(3)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,11 +50,11 @@ class ToolBubbleLevelFragment : BaseFragment<FragmentToolBubbleLevelBinding>(),
         if (mSensor != null && secondSensor != null) {
             mSensorManager?.registerListener(
                 this, mSensor,
-                SensorManager.SENSOR_DELAY_UI
+                SensorManager.SENSOR_DELAY_FASTEST
             )
             mSensorManager?.registerListener(
                 this, secondSensor,
-                SensorManager.SENSOR_DELAY_UI
+                SensorManager.SENSOR_DELAY_FASTEST
             )
         }
     }
@@ -73,15 +74,36 @@ class ToolBubbleLevelFragment : BaseFragment<FragmentToolBubbleLevelBinding>(),
 
     override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
     override fun onSensorChanged(event: SensorEvent) {
-        when (event.sensor.type) {
-            Sensor.TYPE_ACCELEROMETER -> accValues = event.values.clone()
-            Sensor.TYPE_MAGNETIC_FIELD -> magValues = event.values.clone()
+        val alpha = 0.97f
+        if (event.sensor.type == Sensor.TYPE_MAGNETIC_FIELD) {
+            mGeomagnetic[0] =
+                alpha * mGeomagnetic[0] + (1 - alpha) * event.values[0]
+            mGeomagnetic[1] =
+                alpha * mGeomagnetic[1] + (1 - alpha) * event.values[1]
+            mGeomagnetic[2] =
+                alpha * mGeomagnetic[2] + (1 - alpha) * event.values[2]
         }
-        SensorManager.getRotationMatrix(r, null, accValues, magValues)
-        SensorManager.getOrientation(r, values)
-        val pitchAngle = values[1]
-        val rollAngle = -values[2]
-        onAngleChanged(rollAngle, pitchAngle)
+        if (event.sensor.type == Sensor.TYPE_ACCELEROMETER) {
+            mGravity[0] =
+                alpha * mGravity[0] + (1 - alpha) * event.values[0]
+            mGravity[1] =
+                alpha * mGravity[1] + (1 - alpha) * event.values[1]
+            mGravity[2] =
+                alpha * mGravity[2] + (1 - alpha) * event.values[2]
+        }
+        val success = SensorManager.getRotationMatrix(
+            r,
+            i,
+            mGravity,
+            mGeomagnetic
+        )
+
+        if (success) {
+            SensorManager.getOrientation(r, orientations)
+            val pitchAngle = orientations[1]
+            val rollAngle = -orientations[2]
+            onAngleChanged(rollAngle, pitchAngle)
+        }
     }
 
     /**

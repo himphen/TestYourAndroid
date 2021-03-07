@@ -65,15 +65,21 @@ class MainSettingsFragment : PreferenceFragmentCompat() {
             }
         }
 
-//        findPreference<Preference>("pref_metric_units")?.apply {
-//            setOnPreferenceChangeListener { preference, newValue ->
-//                true
-//            }
-//        }
-
         findPreference<Preference>("pref_more_app")?.setOnPreferenceClickListener {
             try {
                 val uri = Uri.parse("market://search?q=pub:\"Hibernate\"")
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                Utils.notAppFound(activity)
+            }
+
+            true
+        }
+
+        findPreference<Preference>("pref_improve_translation")?.setOnPreferenceClickListener {
+            try {
+                val uri = Uri.parse(BuildConfig.CROWDIN_URL)
                 val intent = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {

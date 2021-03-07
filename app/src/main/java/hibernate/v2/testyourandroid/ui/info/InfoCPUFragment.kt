@@ -3,6 +3,7 @@ package hibernate.v2.testyourandroid.ui.info
 import android.app.ActivityManager
 import android.app.usage.StorageStatsManager
 import android.content.Context
+import android.content.pm.ConfigurationInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -17,6 +18,7 @@ import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils.formatBitSize
+import hibernate.v2.testyourandroid.util.Utils.logException
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileFilter
@@ -75,7 +77,7 @@ class InfoCPUFragment : BaseFragment<FragmentInfoListviewBinding>() {
                 else -> "N/A"
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            logException(e, false)
             "N/A"
         }
     }
@@ -130,12 +132,8 @@ class InfoCPUFragment : BaseFragment<FragmentInfoListviewBinding>() {
             }
         }
         return sd.toString()
-    }// Default to return 1 core// Get directory containing CPU info
-    // Filter to only list the devices we care about
-    // Return the number of cores (virtual CPU devices)
-// Check if filename is "cpu", followed by a single digit number
+    }
 
-    // Private Class to display only CPU devices in the directory listing
     private val numCores: Int
         get() { // Private Class to display only CPU devices in the directory listing
             class CpuFilter : FileFilter {
@@ -212,7 +210,6 @@ class InfoCPUFragment : BaseFragment<FragmentInfoListviewBinding>() {
             }
             return sdCardInfo
         }
-
 
     companion object {
         private const val CPU_MIN = 0

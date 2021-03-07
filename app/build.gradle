@@ -20,6 +20,7 @@ android {
         multiDexEnabled true
         flavorDimensions "default"
         wearAppUnbundled true
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -39,6 +40,7 @@ android {
             resValue "string", "GOOGLE_API_KEY", properties.getProperty("key.google_api_key")
             buildConfigField "String", "GOOGLE_IAP_KEY", properties.getProperty("key.google_iap_key")
             buildConfigField "String", "CONTACT_EMAIL", properties.getProperty("key.contact_email")
+            buildConfigField "String", "CROWDIN_URL", properties.getProperty("key.crowdin_url")
         }
         release {
             debuggable false
@@ -54,6 +56,7 @@ android {
             resValue "string", "GOOGLE_API_KEY", properties.getProperty("key.google_api_key")
             buildConfigField "String", "GOOGLE_IAP_KEY", properties.getProperty("key.google_iap_key")
             buildConfigField "String", "CONTACT_EMAIL", properties.getProperty("key.contact_email")
+            buildConfigField "String", "CROWDIN_URL", properties.getProperty("key.crowdin_url")
         }
     }
 
