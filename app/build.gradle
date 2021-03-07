@@ -15,8 +15,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 1910400
-        versionName "Pineapple Buns 10.4.0a"
+        versionCode 1910412
+        versionName "Pineapple Buns 10.4.1"
         multiDexEnabled true
         flavorDimensions "default"
         wearAppUnbundled true
