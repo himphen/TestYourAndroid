@@ -4,17 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import hibernate.v2.testyourandroid.util.Utils
-import java.util.Locale
 
 abstract class BaseFragment<T : ViewBinding?> : Fragment() {
+    open val permissions: Array<String>? = null
     var viewBinding: T? = null
+    var permissionLifecycleObserver: PermissionLifecycleObserver? = null
 
-    protected fun isPermissionsGranted(permissions: Array<String>): Boolean {
-        return Utils.isPermissionsGranted(context, permissions)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        permissions?.isNotEmpty()?.let {
+            permissionLifecycleObserver = PermissionLifecycleObserver(
+                context, requireActivity().activityResultRegistry
+            )
+            lifecycle.addObserver(permissionLifecycleObserver!!)
+        }
+
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -25,28 +31,6 @@ abstract class BaseFragment<T : ViewBinding?> : Fragment() {
         viewBinding = getViewBinding(inflater, container, savedInstanceState)
         return viewBinding?.root
     }
-
-    protected val requestMultiplePermissions =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions: Map<String, Boolean> ->
-            var grantedAll = true
-            val mutableList = mutableListOf<String>()
-
-            permissions.entries.forEach { entry ->
-                if (!entry.value) {
-                    grantedAll = false
-                    context?.packageManager?.let { packageManager ->
-                        mutableList.add(
-                            "- " + packageManager.getPermissionInfo(entry.key, 0)
-                                ?.loadLabel(packageManager).toString().capitalize(Locale.getDefault())
-                        )
-                    }
-                }
-            }
-
-            if (!grantedAll) {
-                Utils.openErrorPermissionDialog(context, mutableList)
-            }
-        }
 
     abstract fun getViewBinding(
         inflater: LayoutInflater,

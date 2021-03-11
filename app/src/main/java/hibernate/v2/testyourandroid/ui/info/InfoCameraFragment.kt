@@ -18,6 +18,7 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
+import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 
 /**
  * Created by himphen on 21/5/16.
@@ -25,12 +26,13 @@ import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 @Suppress("DEPRECATION")
 class InfoCameraFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
+    override val permissions = arrayOf(Manifest.permission.CAMERA)
+
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentInfoListviewBinding =
-        FragmentInfoListviewBinding.inflate(inflater, container, false)
+    ) = FragmentInfoListviewBinding.inflate(inflater, container, false)
 
     private var mCamera: Camera? = null
 
@@ -40,14 +42,14 @@ class InfoCameraFragment : BaseFragment<FragmentInfoListviewBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestMultiplePermissions.launch(PERMISSION_NAME)
+        if (!isPermissionsGranted(permissions)) {
+            permissionLifecycleObserver?.requestPermissions(permissions)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        if (isPermissionsGranted(PERMISSION_NAME)) {
+        if (isPermissionsGranted(permissions)) {
             if (mCamera == null) {
                 openChooseCameraDialog()
             } else {
@@ -180,9 +182,5 @@ class InfoCameraFragment : BaseFragment<FragmentInfoListviewBinding>() {
         } catch (e: Exception) {
             "N/A"
         }
-    }
-
-    companion object {
-        val PERMISSION_NAME = arrayOf(Manifest.permission.CAMERA)
     }
 }

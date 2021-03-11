@@ -34,12 +34,18 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
 class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>() {
+
+    override val permissions = arrayOf(
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    )
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -73,14 +79,14 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
         locationManager = context?.applicationContext?.getSystemService(Context.LOCATION_SERVICE)
                 as LocationManager?
 
-        if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestMultiplePermissions.launch(PERMISSION_NAME)
+        if (!isPermissionsGranted(permissions)) {
+            permissionLifecycleObserver?.requestPermissions(permissions)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        if (isPermissionsGranted(PERMISSION_NAME)) {
+        if (isPermissionsGranted(permissions)) {
             onStartScanning()
         }
     }
@@ -127,7 +133,7 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
             fragment.getMapAsync(object : OnMapReadyCallback {
                 @SuppressLint("MissingPermission")
                 override fun onMapReady(googleMap: GoogleMap) {
-                    if (!isPermissionsGranted(PERMISSION_NAME)) return
+                    if (!isPermissionsGranted(permissions)) return
 
                     mGoogleMap = googleMap
                     mGoogleMap?.let { mGoogleMap ->
@@ -183,7 +189,7 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
     private var mLocationCallback: LocationCallback = object : LocationCallback() {
         @SuppressLint("MissingPermission")
         override fun onLocationResult(locationResult: LocationResult) {
-            if (!isPermissionsGranted(PERMISSION_NAME)) return
+            if (!isPermissionsGranted(permissions)) return
 
             val locationList = locationResult.locations
             if (locationList.size > 0) { //The last location in the list is the newest
@@ -226,9 +232,5 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
 
     companion object {
         private val DEFAULT_LAT_LNG = LatLng(22.3185392, 114.1707091)
-        val PERMISSION_NAME = arrayOf(
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        )
     }
 }

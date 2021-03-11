@@ -13,12 +13,15 @@ import android.view.ViewGroup
 import hibernate.v2.testyourandroid.databinding.FragmentHardwareFlashlightBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
+import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 
 /**
  * Created by himphen on 21/5/16.
  */
 @Suppress("DEPRECATION")
 class ToolFlashlightFragment : BaseFragment<FragmentHardwareFlashlightBinding>() {
+
+    override val permissions = arrayOf(Manifest.permission.CAMERA)
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -57,7 +60,7 @@ class ToolFlashlightFragment : BaseFragment<FragmentHardwareFlashlightBinding>()
             if (it) {
                 try {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (isPermissionsGranted(PERMISSION_NAME)) {
+                        if (isPermissionsGranted(permissions)) {
                             try {
                                 val cameraManager =
                                     context?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
@@ -68,7 +71,7 @@ class ToolFlashlightFragment : BaseFragment<FragmentHardwareFlashlightBinding>()
                             } catch (e: Exception) {
                             }
                         } else {
-                            requestMultiplePermissions.launch(PERMISSION_NAME)
+                            permissionLifecycleObserver?.requestPermissions(permissions)
                             viewBinding?.turnSwitch?.isChecked = false
                             isFlashlightOn = false
                             return
@@ -121,15 +124,12 @@ class ToolFlashlightFragment : BaseFragment<FragmentHardwareFlashlightBinding>()
     }
 
     companion object {
-        val PERMISSION_NAME = arrayOf(Manifest.permission.CAMERA)
-
         private const val ARG_AUTO_OPEN = "auto_open"
-        fun newInstance(autoOpen: Boolean): ToolFlashlightFragment {
-            val fragment = ToolFlashlightFragment()
-            val args = Bundle()
-            args.putBoolean(ARG_AUTO_OPEN, autoOpen)
-            fragment.arguments = args
-            return fragment
-        }
+        fun newInstance(autoOpen: Boolean) =
+            ToolFlashlightFragment().apply {
+                arguments = Bundle().apply {
+                    putBoolean(ARG_AUTO_OPEN, autoOpen)
+                }
+            }
     }
 }

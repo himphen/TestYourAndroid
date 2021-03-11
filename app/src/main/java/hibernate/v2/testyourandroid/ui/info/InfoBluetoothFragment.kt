@@ -21,14 +21,18 @@ import hibernate.v2.testyourandroid.model.ExtendedBluetoothDevice
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
+import hibernate.v2.testyourandroid.ui.base.PermissionLifecycleObserver
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
  */
 class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
+
+    override val permissions = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -64,13 +68,17 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
+        permissionLifecycleObserver = PermissionLifecycleObserver(
+            context, requireActivity().activityResultRegistry
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestMultiplePermissions.launch(PERMISSION_NAME)
+        if (!isPermissionsGranted(permissions)) {
+            permissionLifecycleObserver?.requestPermissions(permissions)
         }
     }
 
@@ -81,7 +89,7 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
     override fun onResume() {
         super.onResume()
-        if (isPermissionsGranted(PERMISSION_NAME)) {
+        if (isPermissionsGranted(permissions)) {
             if (isFirstLoading) {
                 reload(false)
                 isFirstLoading = false
@@ -216,9 +224,5 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
     private fun getScanResultText(device: ExtendedBluetoothDevice): String {
         return device.name + "\n" + device.getRssi() + "\n\n"
-    }
-
-    companion object {
-        val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
     }
 }

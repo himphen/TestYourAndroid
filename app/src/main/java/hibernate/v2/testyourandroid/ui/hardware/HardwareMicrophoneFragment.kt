@@ -11,6 +11,7 @@ import android.widget.Toast
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentHardwareMicrophoneBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 import java.io.File
 import java.io.IOException
 
@@ -23,8 +24,7 @@ class HardwareMicrophoneFragment : BaseFragment<FragmentHardwareMicrophoneBindin
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentHardwareMicrophoneBinding =
-        FragmentHardwareMicrophoneBinding.inflate(inflater, container, false)
+    ) = FragmentHardwareMicrophoneBinding.inflate(inflater, container, false)
 
     private var mMediaRecorder: MediaRecorder? = null
     private var mMediaPlayer: MediaPlayer? = null
@@ -50,8 +50,8 @@ class HardwareMicrophoneFragment : BaseFragment<FragmentHardwareMicrophoneBindin
                 startPlaying()
             }
         }
-        if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestMultiplePermissions.launch(PERMISSION_NAME)
+        if (!isPermissionsGranted(permissions)) {
+            permissionLifecycleObserver?.requestPermissions(permissions)
         }
     }
 
@@ -137,7 +137,5 @@ class HardwareMicrophoneFragment : BaseFragment<FragmentHardwareMicrophoneBindin
         viewBinding?.recordBtn?.setText(R.string.mic_start_recording)
     }
 
-    companion object {
-        val PERMISSION_NAME = arrayOf(Manifest.permission.RECORD_AUDIO)
-    }
+    override val permissions = arrayOf(Manifest.permission.RECORD_AUDIO)
 }

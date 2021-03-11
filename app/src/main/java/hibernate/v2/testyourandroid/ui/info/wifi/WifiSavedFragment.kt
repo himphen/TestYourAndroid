@@ -30,8 +30,6 @@ class WifiSavedFragment : BaseFragment<FragmentInfoListviewBinding>() {
         FragmentInfoListviewBinding.inflate(inflater, container, false)
 
     companion object {
-        val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
-
         fun newInstance(): WifiSavedFragment {
             return WifiSavedFragment()
         }

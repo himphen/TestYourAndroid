@@ -12,11 +12,14 @@ import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
+import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 
 /**
  * Created by himphen on 21/5/16.
  */
 class InfoHardwareFragment : BaseFragment<FragmentInfoListviewBinding>() {
+
+    override val permissions = arrayOf(Manifest.permission.READ_PHONE_STATE)
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -25,24 +28,20 @@ class InfoHardwareFragment : BaseFragment<FragmentInfoListviewBinding>() {
     ): FragmentInfoListviewBinding =
         FragmentInfoListviewBinding.inflate(inflater, container, false)
 
-    companion object {
-        val PERMISSION_NAME = arrayOf(Manifest.permission.READ_PHONE_STATE)
-    }
-
     val adapter = InfoItemAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding!!.rvlist.adapter = adapter
 
-        if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestMultiplePermissions.launch(PERMISSION_NAME)
+        if (!isPermissionsGranted(permissions)) {
+            permissionLifecycleObserver?.requestPermissions(permissions)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        if (isPermissionsGranted(PERMISSION_NAME)) {
+        if (isPermissionsGranted(permissions)) {
             init()
         }
     }

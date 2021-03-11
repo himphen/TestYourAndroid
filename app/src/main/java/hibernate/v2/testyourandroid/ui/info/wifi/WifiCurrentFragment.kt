@@ -37,16 +37,12 @@ class WifiCurrentFragment : BaseFragment<FragmentToolWifiStrengthBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentToolWifiStrengthBinding =
-        FragmentToolWifiStrengthBinding.inflate(inflater, container, false)
+    ) = FragmentToolWifiStrengthBinding.inflate(inflater, container, false)
 
     companion object {
         const val UPDATE_CHART_INTERVAL = 2000L
-        val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
 
-        fun newInstance(): WifiCurrentFragment {
-            return WifiCurrentFragment()
-        }
+        fun newInstance() = WifiCurrentFragment()
     }
 
     private var series = LineGraphSeries(arrayOf<DataPoint>())

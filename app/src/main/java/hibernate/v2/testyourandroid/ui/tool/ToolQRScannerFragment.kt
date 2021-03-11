@@ -14,11 +14,14 @@ import hibernate.v2.testyourandroid.databinding.FragmentToolQrScannerBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.tool.ToolQRScannerSuccessFragment.Companion.newInstance
 import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 
 /**
  * Created by himphen on 21/5/16.
  */
 class ToolQRScannerFragment : BaseFragment<FragmentToolQrScannerBinding>() {
+
+    override val permissions = arrayOf(Manifest.permission.CAMERA)
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -53,8 +56,8 @@ class ToolQRScannerFragment : BaseFragment<FragmentToolQrScannerBinding>() {
                     }
                 }
             }
-            if (!isPermissionsGranted(PERMISSION_NAME)) {
-                requestMultiplePermissions.launch(PERMISSION_NAME)
+            if (!isPermissionsGranted(permissions)) {
+                permissionLifecycleObserver?.requestPermissions(permissions)
             }
         }
     }
@@ -62,7 +65,7 @@ class ToolQRScannerFragment : BaseFragment<FragmentToolQrScannerBinding>() {
     override fun onResume() {
         super.onResume()
         try {
-            if (isPermissionsGranted(PERMISSION_NAME)) {
+            if (isPermissionsGranted(permissions)) {
                 mCodeScanner.startPreview()
             }
         } catch (e: Exception) {
@@ -76,10 +79,6 @@ class ToolQRScannerFragment : BaseFragment<FragmentToolQrScannerBinding>() {
     }
 
     companion object {
-        private val PERMISSION_NAME = arrayOf(Manifest.permission.CAMERA)
-
-        fun newInstance(): ToolQRScannerFragment {
-            return ToolQRScannerFragment()
-        }
+        fun newInstance() = ToolQRScannerFragment()
     }
 }

@@ -20,6 +20,7 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.util.Utils.logException
 import hibernate.v2.testyourandroid.util.ext.format
+import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 import java.util.ArrayList
 import kotlin.math.log10
 
@@ -27,6 +28,8 @@ import kotlin.math.log10
  * Created by himphen on 21/5/16.
  */
 class ToolSoundMeterFragment : BaseFragment<FragmentToolSoundMeterBinding>() {
+
+    override val permissions = arrayOf(Manifest.permission.RECORD_AUDIO)
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -45,8 +48,8 @@ class ToolSoundMeterFragment : BaseFragment<FragmentToolSoundMeterBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestMultiplePermissions.launch(PERMISSION_NAME)
+        if (!isPermissionsGranted(permissions)) {
+            permissionLifecycleObserver?.requestPermissions(permissions)
         }
     }
 
@@ -57,7 +60,7 @@ class ToolSoundMeterFragment : BaseFragment<FragmentToolSoundMeterBinding>() {
 
     override fun onResume() {
         super.onResume()
-        if (isPermissionsGranted(PERMISSION_NAME)) {
+        if (isPermissionsGranted(permissions)) {
             startRecording()
         }
     }
@@ -173,14 +176,7 @@ class ToolSoundMeterFragment : BaseFragment<FragmentToolSoundMeterBinding>() {
 
     companion object {
         const val SAMPLE_RATE_IN_HZ = 44100
-        fun newInstance(): ToolSoundMeterFragment {
-            val fragment = ToolSoundMeterFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
-
-        val PERMISSION_NAME = arrayOf(Manifest.permission.RECORD_AUDIO)
+        fun newInstance() = ToolSoundMeterFragment()
         var BUFFER_SIZE = 0
     }
 }

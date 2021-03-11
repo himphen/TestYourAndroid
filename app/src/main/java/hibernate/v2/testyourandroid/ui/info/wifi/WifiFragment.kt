@@ -27,11 +27,14 @@ import hibernate.v2.testyourandroid.databinding.FragmentViewPagerConatinerBindin
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 
 /**
  * Created by himphen on 21/5/16.
  */
 class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
+
+    override val permissions = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -41,9 +44,7 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
         FragmentViewPagerConatinerBinding.inflate(inflater, container, false)
 
     companion object {
-        val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
-
-        fun newInstant(): WifiFragment = WifiFragment()
+        fun newInstant() = WifiFragment()
     }
 
     private lateinit var adapter: WifiFragmentPagerAdapter
@@ -93,8 +94,8 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
                 tab.customView = adapter.getTabView(position)
             }.attach()
 
-            if (!isPermissionsGranted(PERMISSION_NAME)) {
-                requestMultiplePermissions.launch(PERMISSION_NAME)
+            if (!isPermissionsGranted(permissions)) {
+                permissionLifecycleObserver?.requestPermissions(permissions)
             }
         }
     }
@@ -107,7 +108,7 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
     override fun onResume() {
         super.onResume()
 
-        if (isPermissionsGranted(PERMISSION_NAME)) {
+        if (isPermissionsGranted(permissions)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 onStartScanning()
             }

@@ -14,7 +14,7 @@ import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import hibernate.v2.testyourandroid.util.Utils
+import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 
 /**
  * Created by himphen on 21/5/16.
@@ -25,12 +25,9 @@ class InfoGSMFragment : BaseFragment<FragmentInfoListviewBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentInfoListviewBinding =
-        FragmentInfoListviewBinding.inflate(inflater, container, false)
+    ) = FragmentInfoListviewBinding.inflate(inflater, container, false)
 
-    companion object {
-        val PERMISSION_NAME = arrayOf(Manifest.permission.READ_PHONE_STATE)
-    }
+    override val permissions = arrayOf(Manifest.permission.READ_PHONE_STATE)
 
     private var telephonyManager: TelephonyManager? = null
     val adapter = InfoItemAdapter()
@@ -42,14 +39,14 @@ class InfoGSMFragment : BaseFragment<FragmentInfoListviewBinding>() {
         viewBinding!!.rvlist.adapter = adapter
         simStateArray = resources.getStringArray(R.array.info_sim_status_string_array)
 
-        if (!isPermissionsGranted(PERMISSION_NAME)) {
-            requestMultiplePermissions.launch(PERMISSION_NAME)
+        if (!isPermissionsGranted(permissions)) {
+            permissionLifecycleObserver?.requestPermissions(permissions)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        if (isPermissionsGranted(PERMISSION_NAME)) {
+        if (isPermissionsGranted(permissions)) {
             updateList()
         }
     }
@@ -67,7 +64,7 @@ class InfoGSMFragment : BaseFragment<FragmentInfoListviewBinding>() {
     @Suppress("DEPRECATION")
     @SuppressLint("HardwareIds", "MissingPermission")
     private fun getData(j: Int): String {
-        if (Utils.isPermissionsGranted(context, PERMISSION_NAME)) {
+        if (activity.isPermissionsGranted(permissions)) {
             telephonyManager?.let { telephonyManager ->
                 return try {
                     when (j) {

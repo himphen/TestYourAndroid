@@ -1,6 +1,5 @@
 package hibernate.v2.testyourandroid.ui.info.wifi
 
-import android.Manifest
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -39,11 +38,7 @@ class WifiAvailableFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
     companion object {
         const val SCAN_WIFI_INTERVAL = 60000L
-        val PERMISSION_NAME = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
-
-        fun newInstance(): WifiAvailableFragment {
-            return WifiAvailableFragment()
-        }
+        fun newInstance() = WifiAvailableFragment()
     }
 
     private lateinit var adapter: InfoItemAdapter

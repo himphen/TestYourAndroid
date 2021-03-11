@@ -129,23 +129,6 @@ object Utils : KoinComponent {
         }
     }
 
-    fun isPermissionsGranted(context: Context?, permissions: Array<String>): Boolean {
-        context?.let {
-            for (permission in permissions) {
-                if (ContextCompat.checkSelfPermission(
-                        it,
-                        permission
-                    ) == PackageManager.PERMISSION_DENIED
-                ) {
-                    return false
-                }
-            }
-            return true
-        } ?: run {
-            return false
-        }
-    }
-
     fun scanForActivity(context: Context?): Activity? {
         return when (context) {
             is Activity -> context
