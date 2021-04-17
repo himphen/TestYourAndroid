@@ -157,9 +157,23 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
         var isGraph2 = false
         var isGraph3 = false
         when (sensorType) {
-            Sensor.TYPE_ACCELEROMETER, Sensor.TYPE_GRAVITY -> {
+            Sensor.TYPE_ACCELEROMETER -> {
+                mSensor?.maximumRange?.toDouble()?.let {
+                    isGraph3 = true
+                    isGraph2 = true
+                    viewBinding.graphView.viewport.isYAxisBoundsManual = true
+                    viewBinding.graphView.viewport.setMinY(-it)
+                    viewBinding.graphView.viewport.setMaxY(it)
+                }
+            }
+            Sensor.TYPE_GRAVITY -> {
                 isGraph3 = true
-                isGraph2 = isGraph3
+                isGraph2 = true
+                mSensor?.maximumRange?.toDouble()?.let {
+                    viewBinding.graphView.viewport.isYAxisBoundsManual = true
+                    viewBinding.graphView.viewport.setMinY(-it)
+                    viewBinding.graphView.viewport.setMaxY(it)
+                }
             }
             Sensor.TYPE_PRESSURE -> {
                 mSensor?.maximumRange?.toDouble()?.let {

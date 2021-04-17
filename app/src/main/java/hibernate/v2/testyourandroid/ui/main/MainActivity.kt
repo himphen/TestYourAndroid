@@ -1,9 +1,7 @@
 package hibernate.v2.testyourandroid.ui.main
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -27,8 +25,6 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.orhanobut.logger.Logger
-import com.stepstone.apprating.AppRatingDialog
-import com.stepstone.apprating.listener.RatingDialogListener
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.core.SharedPreferencesManager
@@ -37,16 +33,16 @@ import hibernate.v2.testyourandroid.ui.base.BaseActivity
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.iapProductIdList
 import hibernate.v2.testyourandroid.util.Utils.iapProductIdListAll
-import org.koin.android.ext.android.inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.android.ext.android.inject
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListener {
+class MainActivity : BaseActivity<ActivityContainerBinding>() {
 
     private val sharedPreferencesManager: SharedPreferencesManager by inject()
     private lateinit var billingClient: BillingClient
@@ -72,8 +68,6 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
             .commit()
 
         initInterstitialAd()
-
-        countRate()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -106,35 +100,6 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
         super.onResume()
 
         countInterstitialAd()
-    }
-
-    private fun openDialogRate() {
-        AppRatingDialog.Builder()
-            .setPositiveButtonText(R.string.rate_posbtn)
-            .setNegativeButtonText(R.string.rate_navbtn)
-            .setNeutralButtonText(R.string.rate_netbtn)
-            .setNumberOfStars(5)
-            .setDefaultRating(5)
-            .setTitle(R.string.rate_title)
-            .setDescription(R.string.rate_message)
-            .setCommentInputEnabled(false)
-            .setStarColor(R.color.lineColor2)
-            .setTitleTextColor(R.color.white)
-            .setDescriptionTextColor(R.color.ratingText)
-            .setWindowAnimation(R.style.RatingDialogFadeAnimation)
-            .setCancelable(false)
-            .setCanceledOnTouchOutside(false)
-            .create(this@MainActivity)
-            .show()
-    }
-
-    private fun countRate() {
-        var countRate = sharedPreferencesManager.countRate
-        if (countRate == 5) {
-            openDialogRate()
-        }
-        countRate++
-        sharedPreferencesManager.countRate = countRate
     }
 
     private fun initInterstitialAd() {
@@ -172,7 +137,7 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
             return
         }
 
-        if (++countInterstitialAd == 3 || countInterstitialAd == 7) {
+        if (++countInterstitialAd == 3) {
             mInterstitialAd?.show(this)
         }
     }
@@ -323,29 +288,6 @@ class MainActivity : BaseActivity<ActivityContainerBinding>(), RatingDialogListe
                     onPurchased()
                     return@forEach
                 }
-            }
-        }
-    }
-
-    // RatingDialogListener
-    override fun onNegativeButtonClicked() {
-        sharedPreferencesManager.countRate = 1000
-    }
-
-    override fun onNeutralButtonClicked() {
-        sharedPreferencesManager.countRate = 0
-    }
-
-    override fun onPositiveButtonClicked(rate: Int, comment: String) {
-        sharedPreferencesManager.countRate = 1000
-        if (rate >= 4) {
-            try {
-                val intent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid")
-                )
-                startActivity(intent)
-            } catch (e: ActivityNotFoundException) {
             }
         }
     }

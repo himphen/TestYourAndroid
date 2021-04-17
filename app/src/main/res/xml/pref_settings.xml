@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <CheckBoxPreference
+        android:icon="@drawable/baseline_metric_24"
+        android:key="pref_unit"
+        android:summaryOn="@string/settings_unit_metric"
+        android:summaryOff="@string/settings_unit_imperial"
+        android:title="@string/settings_unit" />
+
     <Preference
         android:icon="@drawable/baseline_invert_colors_24"
         android:key="pref_theme_mode"
         tools:summary="Dark Mode"
-        android:title="Theme" />
+        android:title="@string/settings_theme" />
 
     <PreferenceCategory android:title="@string/main_tab_title_2">
         <Preference

@@ -12,6 +12,7 @@ import android.view.View
 import com.blankj.utilcode.util.ConvertUtils
 
 class TestMultiTouchView(context: Context?) : View(context) {
+    private var circleSize: Float
     private lateinit var mActivePointers: SparseArray<PointF>
     private lateinit var mPaint: Paint
 
@@ -82,17 +83,14 @@ class TestMultiTouchView(context: Context?) : View(context) {
             val point = mActivePointers.valueAt(i)
             if (point != null) {
                 mPaint.color = colors[i % 9]
-                canvas.drawCircle(point.x, point.y, ConvertUtils.px2dp(SIZE).toFloat(), mPaint)
+                canvas.drawCircle(point.x, point.y, circleSize, mPaint)
             }
             i++
         }
     }
 
-    companion object {
-        private const val SIZE = 480f
-    }
-
     init {
         initView()
+        circleSize = ConvertUtils.px2dp(480f).toFloat()
     }
 }

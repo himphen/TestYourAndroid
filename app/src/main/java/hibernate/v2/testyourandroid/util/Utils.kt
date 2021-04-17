@@ -39,7 +39,6 @@ import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.core.SharedPreferencesManager
 import hibernate.v2.testyourandroid.util.ext.md5
-import org.koin.core.component.KoinApiExtension
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.io.BufferedReader
@@ -50,7 +49,6 @@ import java.text.DecimalFormat
 import java.util.ArrayList
 import java.util.Locale
 
-@OptIn(KoinApiExtension::class)
 object Utils : KoinComponent {
 
     private val sharedPreferencesManager: SharedPreferencesManager by inject()

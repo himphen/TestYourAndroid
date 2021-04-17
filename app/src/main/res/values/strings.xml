@@ -720,6 +720,8 @@
 
     <string name="dialog_drawing_cancel_message" translatable="false">Changes you made may not be saved. Are you sure to leave?</string>
 
+    <string name="settings_unit">Unit</string>
+    <string name="settings_theme">Theme</string>
     <string name="theme_light">Light Theme</string>
     <string name="theme_dark">Dark Theme</string>
     <string name="theme_auto">System Default</string>
@@ -727,6 +729,12 @@
         <item>@string/theme_light</item>
         <item>@string/theme_dark</item>
         <item>@string/theme_auto</item>
+    </string-array>
+    <string name="settings_unit_metric">Metric</string>
+    <string name="settings_unit_imperial">Imperial</string>
+    <string-array name="settings_unit_array" translatable="false">
+        <item>@string/settings_unit_metric</item>
+        <item>@string/settings_unit_imperial</item>
     </string-array>
 
     <string name="compass_north" translatable="false">N</string>

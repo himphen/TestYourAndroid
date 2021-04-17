@@ -1,7 +1,11 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: "kotlin-kapt"
-apply plugin: "kotlin-parcelize"
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id "kotlin-kapt"
+    id "kotlin-parcelize"
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
 
 android {
     compileSdkVersion 30
@@ -15,8 +19,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 1910412
-        versionName "Pineapple Buns 10.4.1"
+        versionCode 1910422
+        versionName "Pineapple Buns 10.4.2"
         multiDexEnabled true
         flavorDimensions "default"
         wearAppUnbundled true
@@ -38,7 +42,6 @@ android {
             resValue "string", "ADMOB_APP_ID", properties.getProperty("key.admob_app_id")
             buildConfigField "String[]", "APPBRAIN_DEVICE_ID", properties.getProperty("key.appbrain_device_id")
             resValue "string", "GOOGLE_API_KEY", properties.getProperty("key.google_api_key")
-            buildConfigField "String", "GOOGLE_IAP_KEY", properties.getProperty("key.google_iap_key")
             buildConfigField "String", "CONTACT_EMAIL", properties.getProperty("key.contact_email")
             buildConfigField "String", "CROWDIN_URL", properties.getProperty("key.crowdin_url")
         }
@@ -54,7 +57,6 @@ android {
             resValue "string", "ADMOB_APP_ID", properties.getProperty("key.admob_app_id")
             buildConfigField "String[]", "APPBRAIN_DEVICE_ID", properties.getProperty("key.appbrain_device_id")
             resValue "string", "GOOGLE_API_KEY", properties.getProperty("key.google_api_key")
-            buildConfigField "String", "GOOGLE_IAP_KEY", properties.getProperty("key.google_iap_key")
             buildConfigField "String", "CONTACT_EMAIL", properties.getProperty("key.contact_email")
             buildConfigField "String", "CROWDIN_URL", properties.getProperty("key.crowdin_url")
         }
@@ -84,13 +86,13 @@ dependencies {
 
     // Google Android Support
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.activity:activity-ktx:1.2.0'
-    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.activity:activity-ktx:1.2.2'
+    implementation 'androidx.annotation:annotation:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.biometric:biometric:1.1.0'
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
     implementation "androidx.core:core-ktx:1.3.2"
-    implementation 'androidx.fragment:fragment-ktx:1.3.0'
+    implementation 'androidx.fragment:fragment-ktx:1.3.2'
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
@@ -98,25 +100,23 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
     // Koin for Android
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-    implementation "org.koin:koin-androidx-ext:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-android-ext:$koin_version"
 
     // https://developer.android.com/google/play/billing/billing_library_overview
     implementation 'com.android.billingclient:billing-ktx:3.0.3'
 
     // Google Play Services
-    implementation 'com.google.android.gms:play-services-ads:19.7.0'
+    implementation 'com.google.android.gms:play-services-ads:20.0.0'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.material:material:1.3.0'
-    implementation 'com.google.firebase:firebase-core:18.0.2'
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:17.3.1'
-    implementation 'com.google.firebase:firebase-analytics-ktx:18.0.2'
+    implementation 'com.google.firebase:firebase-core:18.0.3'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:17.4.1'
+    implementation 'com.google.firebase:firebase-analytics-ktx:18.0.3'
 
     // https://github.com/afollestad/material-dialogs
-    implementation 'com.afollestad.material-dialogs:core:3.1.1'
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
 
     // https://github.com/bumptech/glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
@@ -130,13 +130,10 @@ dependencies {
     implementation 'com.appbrain:appbrain-sdk:+'
 
     // https://github.com/natario1/CameraView
-    implementation 'com.otaliastudios:cameraview:2.6.4'
+    implementation 'com.otaliastudios:cameraview:2.7.0'
 
     // https://github.com/Blankj/AndroidUtilCode
-    implementation 'com.blankj:utilcode:1.29.0'
-
-    // https://github.com/stepstone-tech/android-material-app-rating
-    implementation 'com.stepstone.apprating:app-rating:2.3.1'
+    implementation 'com.blankj:utilcode:1.30.0'
 
     // https://github.com/yuriy-budiyev/code-scanner
     implementation 'com.budiyev.android:code-scanner:2.1.0'
@@ -153,8 +150,5 @@ dependencies {
     implementation "com.github.nekocode:Badge:2.1"
 
     // https://github.com/skydoves/AndroidVeil
-    implementation "com.github.skydoves:androidveil:1.0.9"
+    implementation "com.github.skydoves:androidveil:1.1.1"
 }
-
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'

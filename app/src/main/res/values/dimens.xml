@@ -14,4 +14,13 @@
     <dimen name="session_margin">8dp</dimen>
     <dimen name="hint_margin">4dp</dimen>
 
+    <dimen name="text_size_big">18sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_xlarge">22sp</dimen>
+    <dimen name="text_size_xsmall">12sp</dimen>
+    <dimen name="text_size_xxlarge">32sp</dimen>
+    <dimen name="text_size_xxxlarge">36sp</dimen>
+
 </resources>

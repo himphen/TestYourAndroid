@@ -86,6 +86,14 @@
         <item name="colorControlHighlight">@color/secondaryText</item>
     </style>
 
+    <style name="BorderlessButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="colorAccent">@color/transparent</item>
+        <item name="colorButtonNormal">@color/transparent</item>
+        <item name="colorControlHighlight">@color/secondaryText</item>
+    </style>
+
     <!-- Dialog -->
     <style name="AppTheme.Dialog.License" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
@@ -130,5 +138,10 @@
     <style name="WindowAnimationTransition">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/md_grey_400</item>
+        <item name="colorControlActivated">@color/md_yellow_600</item>
     </style>
 </resources>

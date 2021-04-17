@@ -14,21 +14,36 @@ import com.appbrain.AppBrain
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.ItemMainSectionAdBinding
 import hibernate.v2.testyourandroid.databinding.ItemMainSectionIconBinding
+import hibernate.v2.testyourandroid.databinding.ItemMainSectionRatingBinding
 import hibernate.v2.testyourandroid.databinding.ItemMainSectionTitleBinding
 import hibernate.v2.testyourandroid.model.GridItem
 import hibernate.v2.testyourandroid.ui.main.item.MainTestAdItem
+import hibernate.v2.testyourandroid.ui.main.item.MainTestRatingItem
 import hibernate.v2.testyourandroid.ui.main.item.MainTestTitleItem
+import hibernate.v2.testyourandroid.util.ext.slideUp
 
-class MainTestAdapter(private val list: List<Any>) :
+
+class MainTestAdapter(
+    private val list: List<Any>,
+    private val itemClickListener: ItemClickListener
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    interface ItemClickListener {
+        fun onRatingSubmitClick()
+    }
 
     companion object {
         const val VIEW_TYPE_TITLE = 0
         const val VIEW_TYPE_AD_VIEW = 1
         const val VIEW_TYPE_ICON = 2
+        const val VIEW_TYPE_RATING = 3
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -42,6 +57,13 @@ class MainTestAdapter(private val list: List<Any>) :
             )
             VIEW_TYPE_AD_VIEW -> AdViewHolder(
                 ItemMainSectionAdBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+            VIEW_TYPE_RATING -> RatingViewHolder(
+                ItemMainSectionRatingBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -63,12 +85,31 @@ class MainTestAdapter(private val list: List<Any>) :
         return when (list[position]) {
             is GridItem -> VIEW_TYPE_ICON
             is MainTestTitleItem -> VIEW_TYPE_TITLE
+            is MainTestRatingItem -> VIEW_TYPE_RATING
             else -> VIEW_TYPE_AD_VIEW
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
+            is RatingViewHolder -> {
+                val itemBinding = holder.viewBinding
+                itemBinding.submitBtn.setOnClickListener {
+                    val rating = itemBinding.ratingBar.rating
+                    Firebase.analytics.logEvent("home_rating") {
+                        param("value", rating.toString())
+                    }
+
+                    if (rating >= 4) {
+                        itemClickListener.onRatingSubmitClick()
+                    }
+
+                    itemBinding.root.slideUp()
+                }
+                itemBinding.skipBtn.setOnClickListener {
+                    itemBinding.root.slideUp()
+                }
+            }
             is IconViewHolder -> {
                 val itemBinding = holder.viewBinding
 
@@ -175,5 +216,8 @@ class MainTestAdapter(private val list: List<Any>) :
         RecyclerView.ViewHolder(viewBinding.root)
 
     internal class AdViewHolder(val viewBinding: ItemMainSectionAdBinding) :
+        RecyclerView.ViewHolder(viewBinding.root)
+
+    internal class RatingViewHolder(val viewBinding: ItemMainSectionRatingBinding) :
         RecyclerView.ViewHolder(viewBinding.root)
 }
