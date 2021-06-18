@@ -20,6 +20,7 @@
             android:id="@+id/mainIv"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:scaleType="fitCenter"
             android:contentDescription="@string/app_name" />
 
         <androidx.appcompat.widget.AppCompatTextView

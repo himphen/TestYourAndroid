@@ -3,9 +3,7 @@ package hibernate.v2.testyourandroid.ui.base
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
+import coil.load
 import hibernate.v2.testyourandroid.databinding.GridItemTestBinding
 import hibernate.v2.testyourandroid.model.GridItem
 
@@ -34,15 +32,7 @@ class GridItemAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = list[position]
         val itemBinding = (holder as ItemViewHolder).viewBinding
-        Glide.with(itemBinding.mainIv.context)
-            .load(item.image)
-            .apply(
-                RequestOptions()
-                    .fitCenter()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-            )
-            .into(itemBinding.mainIv)
-
+        itemBinding.mainIv.load(item.image)
         itemBinding.mainTv.text = item.text
         itemBinding.rootView.tag = item
         itemBinding.rootView.setOnClickListener { v -> itemClickListener.onItemDetailClick(v.tag as GridItem) }

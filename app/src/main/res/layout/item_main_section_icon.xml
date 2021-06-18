@@ -30,6 +30,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:padding="5dp"
+                android:scaleType="fitCenter"
                 card_view:layout_constraintLeft_toLeftOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_icon_wifi" />

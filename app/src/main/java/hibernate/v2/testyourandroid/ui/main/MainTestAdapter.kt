@@ -10,10 +10,8 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import cn.nekocode.badge.BadgeDrawable
+import coil.load
 import com.appbrain.AppBrain
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
@@ -27,7 +25,6 @@ import hibernate.v2.testyourandroid.ui.main.item.MainTestAdItem
 import hibernate.v2.testyourandroid.ui.main.item.MainTestRatingItem
 import hibernate.v2.testyourandroid.ui.main.item.MainTestTitleItem
 import hibernate.v2.testyourandroid.util.ext.slideUp
-
 
 class MainTestAdapter(
     private val list: List<Any>,
@@ -114,14 +111,7 @@ class MainTestAdapter(
                 val itemBinding = holder.viewBinding
 
                 val item = list[position] as GridItem
-                Glide.with(itemBinding.mainIv.context)
-                    .load(item.image)
-                    .apply(
-                        RequestOptions()
-                            .fitCenter()
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    )
-                    .into(itemBinding.mainIv)
+                itemBinding.mainIv.load(item.image)
                 itemBinding.mainTv.text = item.text
 
                 when (item.badge) {

@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
+import coil.load
 import hibernate.v2.testyourandroid.databinding.ListItemInfoAppBinding
 import hibernate.v2.testyourandroid.model.AppItem
 
@@ -38,14 +36,7 @@ class AppItemAdapter(
 
         itemBinding.titleTv.text = item.appName
         itemBinding.contentTv.text = item.packageName
-        Glide.with(itemBinding.iconIv.context)
-            .load(item.icon)
-            .apply(
-                RequestOptions()
-                    .centerCrop()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-            )
-            .into(itemBinding.iconIv)
+        itemBinding.iconIv.load(item.icon)
         itemBinding.systemAppIndicator.visibility =
             if (item.isSystemApp) View.VISIBLE else View.GONE
         itemBinding.rootView.tag = item
