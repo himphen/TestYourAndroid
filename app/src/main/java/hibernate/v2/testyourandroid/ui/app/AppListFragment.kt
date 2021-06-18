@@ -1,5 +1,6 @@
 package hibernate.v2.testyourandroid.ui.app
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -72,6 +73,7 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
         viewBinding!!.rvlist.setVeilLayout(R.layout.list_item_info_app, 5)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun initAppList() {
         viewBinding!!.rvlist.veil()
         appList.clear()
@@ -106,8 +108,8 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
                     }
 
                     appList.sortWith { item1, item2 ->
-                        item1.appName.toLowerCase(Locale.getDefault())
-                            .compareTo(item2.appName.toLowerCase(Locale.getDefault()))
+                        item1.appName.lowercase(Locale.getDefault())
+                            .compareTo(item2.appName.lowercase(Locale.getDefault()))
                     }
                 }
             } catch (e: Exception) {

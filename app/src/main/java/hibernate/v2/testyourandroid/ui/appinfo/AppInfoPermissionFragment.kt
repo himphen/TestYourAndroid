@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.blankj.utilcode.util.StringUtils
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.AppItem
 import hibernate.v2.testyourandroid.model.AppPermissionItem
@@ -64,7 +63,7 @@ class AppInfoPermissionFragment : BaseFragment<FragmentInfoListviewBinding>() {
                             } catch (e: Exception) {
                                 permissionLabel = requestedPermission
                             }
-                            permissionLabel = StringUtils.upperFirstLetter(permissionLabel)
+                            permissionLabel = permissionLabel.replaceFirstChar { it.uppercase() }
                             val arrayList: ArrayList<AppPermissionItem> =
                                 map[permissionGroupLabel] ?: arrayListOf()
                             arrayList.add(AppPermissionItem(permissionLabel))

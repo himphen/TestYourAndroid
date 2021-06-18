@@ -1,6 +1,5 @@
 package hibernate.v2.testyourandroid.ui.info.wifi
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.net.DhcpInfo
@@ -17,7 +16,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.DefaultLabelFormatter
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
@@ -30,6 +28,7 @@ import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils.getMacAddress
 import hibernate.v2.testyourandroid.util.Utils.ipAddressIntToString
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.util.ext.convertDpToPx
 
 class WifiCurrentFragment : BaseFragment<FragmentToolWifiStrengthBinding>() {
 
@@ -108,12 +107,12 @@ class WifiCurrentFragment : BaseFragment<FragmentToolWifiStrengthBinding>() {
 
 
                 series.color = ContextCompat.getColor(context, R.color.lineColor3)
-                series.thickness = ConvertUtils.dp2px(4f)
+                series.thickness = context.convertDpToPx(4)
                 viewBinding.graphView.addSeries(series)
                 viewBinding.graphView.gridLabelRenderer.gridColor = Color.GRAY
                 viewBinding.graphView.gridLabelRenderer.isHighlightZeroLines = false
                 viewBinding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-                viewBinding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+                viewBinding.graphView.gridLabelRenderer.padding = context.convertDpToPx(10)
                 viewBinding.graphView.gridLabelRenderer.gridStyle =
                     GridLabelRenderer.GridStyle.HORIZONTAL
                 viewBinding.graphView.viewport.isXAxisBoundsManual = true

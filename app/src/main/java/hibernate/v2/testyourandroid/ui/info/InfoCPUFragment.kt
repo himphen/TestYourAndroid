@@ -3,7 +3,6 @@ package hibernate.v2.testyourandroid.ui.info
 import android.app.ActivityManager
 import android.app.usage.StorageStatsManager
 import android.content.Context
-import android.content.pm.ConfigurationInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment

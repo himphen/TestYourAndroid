@@ -14,7 +14,7 @@ class SharedPreferencesManager(val context: Context) {
         const val PREF_LANGUAGE_COUNTRY = "PREF_LANGUAGE_COUNTRY"
         const val PREF_COUNT_RATE = "PREF_COUNT_RATE"
         const val PREF_THEME = "PREF_THEME"
-        const val PREF_UNIT = "pref_unit"
+        const val PREF_METRIC_UNIT = "PREF_METRIC_UNIT"
     }
 
     private val preferences: SharedPreferences = PreferenceUtils.sharedPrefs(context)
@@ -64,11 +64,11 @@ class SharedPreferencesManager(val context: Context) {
             }
         }
 
-    var unit: Boolean
-        get() = preferences.getBoolean(PREF_UNIT, true)
+    var metricUnit: Boolean
+        get() = preferences.getBoolean(PREF_METRIC_UNIT, true)
         set(value) {
             preferences.edit {
-                putBoolean(PREF_UNIT, value)
+                putBoolean(PREF_METRIC_UNIT, value)
                 apply()
             }
         }

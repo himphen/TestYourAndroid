@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <CheckBoxPreference
-        android:icon="@drawable/baseline_metric_24"
-        android:key="pref_unit"
-        android:summaryOn="@string/settings_unit_metric"
-        android:summaryOff="@string/settings_unit_imperial"
-        android:title="@string/settings_unit" />
+<!--    <CheckBoxPreference-->
+<!--        android:icon="@drawable/baseline_metric_24"-->
+<!--        android:key="pref_metric_unit"-->
+<!--        android:summaryOn="@string/settings_unit_metric"-->
+<!--        android:summaryOff="@string/settings_unit_imperial"-->
+<!--        android:title="@string/settings_unit"-->
+<!--        android:defaultValue="true"/>-->
 
     <Preference
         android:icon="@drawable/baseline_invert_colors_24"

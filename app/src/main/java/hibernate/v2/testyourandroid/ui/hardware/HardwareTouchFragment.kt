@@ -27,7 +27,7 @@ class HardwareTouchFragment : BaseFragment<ViewBinding>() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return TestMultiTouchView(context)
+        return TestMultiTouchView(requireContext())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

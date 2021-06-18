@@ -5,14 +5,13 @@ import android.content.Context
 import android.os.Build
 import androidx.multidex.MultiDex
 import com.appbrain.AppBrain
-import com.blankj.utilcode.util.Utils
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
-import com.orhanobut.logger.AndroidLogAdapter
-import com.orhanobut.logger.Logger
+import com.himphen.logger.AndroidLogAdapter
+import com.himphen.logger.Logger
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.util.Utils.getAdMobDeviceID
 import hibernate.v2.testyourandroid.util.Utils.updateTheme
@@ -42,8 +41,6 @@ class App : Application() {
                 return BuildConfig.DEBUG
             }
         })
-
-        Utils.init(this)
 
         val sharedPreferencesManager = SharedPreferencesManager(this@App)
         updateTheme(sharedPreferencesManager.theme)

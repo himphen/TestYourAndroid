@@ -21,7 +21,7 @@ import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.material.tabs.TabLayoutMediator
-import com.orhanobut.logger.Logger
+import com.himphen.logger.Logger
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentViewPagerConatinerBinding
 import hibernate.v2.testyourandroid.ui.base.BaseActivity

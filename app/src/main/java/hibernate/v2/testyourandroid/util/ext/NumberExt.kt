@@ -28,7 +28,3 @@ fun Double.roundTo(n: Int): Double {
 }
 
 fun Double.format(digits: Int) = "%.${digits}f".format(this)
-
-fun Float.meterToFeet(isSet: Boolean): Float {
-    return if (!isSet) this else this * 3.2808399f
-}

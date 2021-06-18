@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
 import android.net.wifi.WifiInfo
@@ -28,16 +29,16 @@ import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
-import com.blankj.utilcode.util.SizeUtils
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.orhanobut.logger.Logger
+import com.himphen.logger.Logger
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.core.SharedPreferencesManager
+import hibernate.v2.testyourandroid.util.ext.convertDpToPx
 import hibernate.v2.testyourandroid.util.ext.md5
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -48,6 +49,7 @@ import java.net.NetworkInterface
 import java.text.DecimalFormat
 import java.util.ArrayList
 import java.util.Locale
+import java.util.regex.Pattern
 
 object Utils : KoinComponent {
 
@@ -77,7 +79,7 @@ object Utils : KoinComponent {
         try {
             if (!isAdHidden()) {
                 if (isPreserveSpace) {
-                    adLayout.layoutParams.height = SizeUtils.dp2px(50f)
+                    adLayout.layoutParams.height = context.convertDpToPx(50)
                 }
                 val adView = AdView(context)
                 adView.adUnitId = adUnitId
@@ -123,7 +125,7 @@ object Utils : KoinComponent {
             e.printStackTrace()
         } else {
             if (sendToFirebase)
-            FirebaseCrashlytics.getInstance().recordException(e)
+                FirebaseCrashlytics.getInstance().recordException(e)
         }
     }
 
@@ -339,7 +341,7 @@ object Utils : KoinComponent {
     fun getAdMobDeviceID(context: Context): String {
         val androidId =
             Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
-        return androidId.md5().toUpperCase(Locale.getDefault())
+        return androidId.md5().uppercase(Locale.getDefault())
     }
 
     fun ipAddressIntToString(i: Int): String {
@@ -404,6 +406,32 @@ object Utils : KoinComponent {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode =
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
+    }
+
+    fun isURL(input: CharSequence?): Boolean {
+        return isMatch("[a-zA-z]+://[^\\s]*", input)
+    }
+
+    private fun isMatch(regex: String, input: CharSequence?): Boolean {
+        return input != null && input.isNotEmpty() && Pattern.matches(regex, input)
+    }
+
+    fun isTablet(): Boolean {
+        return (Resources.getSystem().configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE
+    }
+
+    fun isLandscape(context: Context?): Boolean {
+        return context?.resources?.configuration?.orientation == Configuration.ORIENTATION_LANDSCAPE
+    }
+
+    fun getAppVersionName(context: Context?): String {
+        val packageName = context?.packageName
+        if (packageName.isNullOrEmpty()) return ""
+        return try {
+            context.packageManager.getPackageInfo(packageName, 0)?.versionName ?: ""
+        } catch (e: PackageManager.NameNotFoundException ) {
+            ""
         }
     }
 }

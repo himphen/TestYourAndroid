@@ -10,7 +10,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
-import com.blankj.utilcode.util.AppUtils
 import de.psdev.licensesdialog.LicensesDialog
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
@@ -110,7 +109,7 @@ class MainSettingsFragment : PreferenceFragmentCompat() {
             val intent = Intent(Intent.ACTION_SEND)
             var text = "Android Version: " + Build.VERSION.RELEASE + "\n"
             text += "SDK Level: " + Build.VERSION.SDK_INT + "\n"
-            text += "Version: " + AppUtils.getAppVersionName() + "\n"
+            text += "Version: " + Utils.getAppVersionName(context) + "\n"
             text += "Brand: " + Build.BRAND + "\n"
             text += "Model: " + Build.MODEL + "\n\n\n"
             intent.type = "text/plain"
@@ -131,7 +130,7 @@ class MainSettingsFragment : PreferenceFragmentCompat() {
             true
         }
         findPreference<Preference>("pref_version")?.apply {
-            summary = AppUtils.getAppVersionName()
+            summary = Utils.getAppVersionName(context)
         }
     }
 

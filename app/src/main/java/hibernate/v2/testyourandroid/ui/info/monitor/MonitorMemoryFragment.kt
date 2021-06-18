@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
@@ -18,6 +17,7 @@ import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentMonitorMemoryBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.formatBitSize
+import hibernate.v2.testyourandroid.util.ext.convertDpToPx
 
 class MonitorMemoryFragment : BaseFragment<FragmentMonitorMemoryBinding>() {
 
@@ -67,14 +67,14 @@ class MonitorMemoryFragment : BaseFragment<FragmentMonitorMemoryBinding>() {
 
                 viewBinding.avaText.text = formatBitSize(availableValue, true)
                 viewBinding.totalText.text = formatBitSize(totalValue, true)
-                series.thickness = ConvertUtils.dp2px(4f)
+                series.thickness = context.convertDpToPx(4)
                 series.color = ContextCompat.getColor(context, R.color.lineColor3)
                 series.isDrawBackground = true
                 series.backgroundColor = ContextCompat.getColor(context, R.color.lineColor3A)
                 viewBinding.graphView.gridLabelRenderer.gridColor = Color.GRAY
                 viewBinding.graphView.gridLabelRenderer.isHighlightZeroLines = false
                 viewBinding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-                viewBinding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+                viewBinding.graphView.gridLabelRenderer.padding = context.convertDpToPx(10)
                 viewBinding.graphView.gridLabelRenderer.gridStyle =
                     GridLabelRenderer.GridStyle.HORIZONTAL
                 viewBinding.graphView.addSeries(series)

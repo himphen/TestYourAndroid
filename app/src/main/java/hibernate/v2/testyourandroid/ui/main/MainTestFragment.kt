@@ -9,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
-import com.blankj.utilcode.util.DeviceUtils
-import com.blankj.utilcode.util.ScreenUtils
 import com.github.javiersantos.appupdater.AppUpdater
 import com.github.javiersantos.appupdater.enums.Display
 import com.google.android.gms.ads.AdListener
@@ -24,6 +22,7 @@ import hibernate.v2.testyourandroid.ui.main.item.MainTestAdItem
 import hibernate.v2.testyourandroid.ui.main.item.MainTestRatingItem
 import hibernate.v2.testyourandroid.ui.main.item.MainTestTitleItem
 import hibernate.v2.testyourandroid.ui.main.item.MainTestUtils
+import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.isAdHidden
 import org.koin.android.ext.android.inject
 
@@ -56,7 +55,7 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
         addTestSectionItem()
         if (!isAdHidden()) loadBannerAd(0)
 
-        val columnCount = if (DeviceUtils.isTablet() && ScreenUtils.isLandscape()) 4 else 3
+        val columnCount = if (Utils.isTablet() && Utils.isLandscape(context)) 4 else 3
         val gridLayoutManager = GridLayoutManager(activity, columnCount)
         gridLayoutManager.spanSizeLookup =
             object : SpanSizeLookup() {

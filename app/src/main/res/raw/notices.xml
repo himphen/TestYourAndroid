@@ -37,12 +37,6 @@
         <license>MIT License</license>
     </notice>
     <notice>
-        <name>AndroidUtilCode</name>
-        <url>https://github.com/Blankj/AndroidUtilCode/</url>
-        <copyright>Copyright Blankj</copyright>
-        <license>Apache Software License 2.0</license>
-    </notice>
-    <notice>
         <name>Android Material App Rating</name>
         <url>https://github.com/stepstone-tech/android-material-app-rating/</url>
         <copyright>Copyright StepStone Servicesn</copyright>
@@ -62,7 +56,7 @@
     </notice>
     <notice>
         <name>Logger</name>
-        <url>https://github.com/orhanobut/logger</url>
+        <url>https://github.com/himphen/logger</url>
         <copyright>Copyright Orhan Obut</copyright>
         <license>Apache Software License 2.0</license>
     </notice>

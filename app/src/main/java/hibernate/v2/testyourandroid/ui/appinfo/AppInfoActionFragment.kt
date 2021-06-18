@@ -10,8 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.blankj.utilcode.util.DeviceUtils
-import com.blankj.utilcode.util.ScreenUtils
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.AppItem
@@ -19,6 +17,7 @@ import hibernate.v2.testyourandroid.model.GridItem
 import hibernate.v2.testyourandroid.ui.appinfo.AppInfoFragment.Companion.ARG_APP
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.GridItemAdapter
+import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.notAppFound
 import java.util.ArrayList
 
@@ -67,7 +66,7 @@ class AppInfoActionFragment : BaseFragment<FragmentInfoListviewBinding>() {
                     return 1
                 }
             }
-            if (DeviceUtils.isTablet() && ScreenUtils.isLandscape()) {
+            if (Utils.isTablet() && Utils.isLandscape(context)) {
                 columnCount = 4
             }
             val mListener: GridItemAdapter.ItemClickListener =

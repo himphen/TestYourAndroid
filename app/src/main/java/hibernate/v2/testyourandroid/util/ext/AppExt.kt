@@ -8,8 +8,10 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Matrix
+import android.util.DisplayMetrics
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import kotlin.math.roundToInt
 
 fun Bitmap.rotate(degree: Int): Bitmap {
     val w = this.width
@@ -42,4 +44,12 @@ fun Context?.isDoomed(): Boolean = when (this) {
     is Application -> false
     is Activity -> (this.isDestroyed or this.isFinishing)
     else -> false
+}
+
+fun Context.convertDpToPx(dp: Int): Int {
+    return (dp * (resources.displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT)).roundToInt()
+}
+
+fun Context.convertPxToDp(px: Int): Int {
+    return (px / (resources.displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT)).roundToInt()
 }

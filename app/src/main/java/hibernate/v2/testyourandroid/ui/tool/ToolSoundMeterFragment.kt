@@ -1,6 +1,7 @@
 package hibernate.v2.testyourandroid.ui.tool
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.media.AudioFormat
 import android.media.AudioRecord
@@ -10,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
@@ -19,6 +19,7 @@ import hibernate.v2.testyourandroid.databinding.FragmentToolSoundMeterBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.util.Utils.logException
+import hibernate.v2.testyourandroid.util.ext.convertDpToPx
 import hibernate.v2.testyourandroid.util.ext.format
 import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 import java.util.ArrayList
@@ -65,6 +66,7 @@ class ToolSoundMeterFragment : BaseFragment<FragmentToolSoundMeterBinding>() {
         }
     }
 
+    @SuppressLint("MissingPermission")
     private fun startRecording() {
         context?.let { context ->
             BUFFER_SIZE = AudioRecord.getMinBufferSize(
@@ -77,7 +79,7 @@ class ToolSoundMeterFragment : BaseFragment<FragmentToolSoundMeterBinding>() {
             }
             val buffer = ShortArray(BUFFER_SIZE)
             try {
-                series.thickness = ConvertUtils.dp2px(3f)
+                series.thickness = context.convertDpToPx(3)
                 series.color = ContextCompat.getColor(context, R.color.lineColor4)
                 series.isDrawBackground = true
                 series.backgroundColor = ContextCompat.getColor(context, R.color.lineColor4A)
@@ -93,7 +95,7 @@ class ToolSoundMeterFragment : BaseFragment<FragmentToolSoundMeterBinding>() {
                 viewBinding?.graphView?.gridLabelRenderer?.gridColor = Color.GRAY
                 viewBinding?.graphView?.gridLabelRenderer?.isHighlightZeroLines = false
                 viewBinding?.graphView?.gridLabelRenderer?.isHorizontalLabelsVisible = false
-                viewBinding?.graphView?.gridLabelRenderer?.padding = ConvertUtils.dp2px(10f)
+                viewBinding?.graphView?.gridLabelRenderer?.padding = context.convertDpToPx(10)
                 viewBinding?.graphView?.gridLabelRenderer?.gridStyle =
                     GridLabelRenderer.GridStyle.HORIZONTAL
                 mAudioRecord = AudioRecord(

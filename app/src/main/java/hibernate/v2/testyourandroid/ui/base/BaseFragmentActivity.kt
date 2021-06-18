@@ -8,6 +8,8 @@ import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import hibernate.v2.testyourandroid.R
 
 /**
@@ -32,7 +34,7 @@ abstract class BaseFragmentActivity<T : ViewBinding> : BaseActivity<T>() {
                 "SHORTCUT_LAUNCH" -> {
                     supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     supportActionBar?.setHomeButtonEnabled(false)
-                    FirebaseAnalytics.getInstance(this).logEvent("shortcut_launch", bundle)
+                    Firebase.analytics.logEvent("shortcut_launch", bundle)
                 }
                 Intent.ACTION_MAIN -> {
                     intent?.categories?.forEach { category ->
@@ -40,7 +42,7 @@ abstract class BaseFragmentActivity<T : ViewBinding> : BaseActivity<T>() {
 
                             supportActionBar?.setDisplayHomeAsUpEnabled(false)
                             supportActionBar?.setHomeButtonEnabled(false)
-                            FirebaseAnalytics.getInstance(this).logEvent("launch", bundle)
+                            Firebase.analytics.logEvent("launch", bundle)
                             return@forEach
                         }
                     }

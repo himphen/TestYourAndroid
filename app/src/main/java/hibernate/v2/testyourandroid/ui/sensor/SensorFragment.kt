@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import androidx.core.content.ContextCompat
-import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
@@ -34,6 +33,7 @@ import hibernate.v2.testyourandroid.util.SensorUtils.getStepCounterSensorData
 import hibernate.v2.testyourandroid.util.SensorUtils.getTemperatureCounterSensorData
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.logException
+import hibernate.v2.testyourandroid.util.ext.convertDpToPx
 import java.util.ArrayList
 import kotlin.math.exp
 import kotlin.math.ln
@@ -191,22 +191,22 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
             }
         }
         series.color = ContextCompat.getColor(context, R.color.lineColor3)
-        series.thickness = ConvertUtils.dp2px(4f)
+        series.thickness = context.convertDpToPx(4)
         viewBinding.graphView.addSeries(series)
         if (isGraph2) {
             series2.color = ContextCompat.getColor(context, R.color.lineColor1)
-            series2.thickness = ConvertUtils.dp2px(4f)
+            series2.thickness = context.convertDpToPx(4)
             viewBinding.graphView.addSeries(series2)
         }
         if (isGraph3) {
             series3.color = ContextCompat.getColor(context, R.color.lineColor4)
-            series3.thickness = ConvertUtils.dp2px(4f)
+            series3.thickness = context.convertDpToPx(4)
             viewBinding.graphView.addSeries(series3)
         }
         viewBinding.graphView.gridLabelRenderer.gridColor = Color.GRAY
         viewBinding.graphView.gridLabelRenderer.isHighlightZeroLines = false
         viewBinding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-        viewBinding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+        viewBinding.graphView.gridLabelRenderer.padding = context.convertDpToPx(10)
         viewBinding.graphView.gridLabelRenderer.gridStyle =
             GridLabelRenderer.GridStyle.HORIZONTAL
         viewBinding.graphView.viewport.isXAxisBoundsManual = true

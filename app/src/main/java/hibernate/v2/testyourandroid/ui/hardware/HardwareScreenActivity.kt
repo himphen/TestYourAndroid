@@ -4,11 +4,9 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
-import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.ActivityColorBinding
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
 import hibernate.v2.testyourandroid.util.Utils
-
 
 class HardwareScreenActivity : BaseActivity<ActivityColorBinding>() {
 

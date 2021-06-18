@@ -45,7 +45,7 @@ abstract class HeaderRecyclerViewAdapter<VH : RecyclerView.ViewHolder, H, T, F> 
      *
      * @return footer data
      */
-    var footer: F? = null
+    private var footer: F? = null
     private var showFooter = false
 
     /**
@@ -233,14 +233,14 @@ abstract class HeaderRecyclerViewAdapter<VH : RecyclerView.ViewHolder, H, T, F> 
     /**
      * Returns true if the header configured is not null.
      */
-    protected fun hasHeader(): Boolean {
+    private fun hasHeader(): Boolean {
         return header != null
     }
 
     /**
      * Returns true if the footer configured is not null.
      */
-    protected fun hasFooter(): Boolean {
+    private fun hasFooter(): Boolean {
         return footer != null && showFooter
     }
 

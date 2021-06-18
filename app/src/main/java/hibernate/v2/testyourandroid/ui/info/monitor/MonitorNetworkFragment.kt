@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import com.blankj.utilcode.util.ConvertUtils
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
@@ -17,6 +16,7 @@ import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentMonitorNetworkBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.formatSpeedSize
+import hibernate.v2.testyourandroid.util.ext.convertDpToPx
 
 class MonitorNetworkFragment : BaseFragment<FragmentMonitorNetworkBinding>() {
 
@@ -71,11 +71,11 @@ class MonitorNetworkFragment : BaseFragment<FragmentMonitorNetworkBinding>() {
             } else {
                 context?.let { context ->
                     isSupported = true
-                    series.thickness = ConvertUtils.dp2px(4f)
+                    series.thickness = context.convertDpToPx(4)
                     series.color = ContextCompat.getColor(context, R.color.lineColor4)
                     series.isDrawBackground = true
                     series.color = ContextCompat.getColor(context, R.color.lineColor4A)
-                    series2.thickness = ConvertUtils.dp2px(4f)
+                    series2.thickness = context.convertDpToPx(4)
                     series2.color = ContextCompat.getColor(context, R.color.lineColor2)
                     series2.isDrawBackground = true
                     series2.color = ContextCompat.getColor(context, R.color.lineColor2A)
@@ -84,7 +84,7 @@ class MonitorNetworkFragment : BaseFragment<FragmentMonitorNetworkBinding>() {
                     viewBinding.graphView.gridLabelRenderer.gridColor = Color.GRAY
                     viewBinding.graphView.gridLabelRenderer.isHighlightZeroLines = false
                     viewBinding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-                    viewBinding.graphView.gridLabelRenderer.padding = ConvertUtils.dp2px(10f)
+                    viewBinding.graphView.gridLabelRenderer.padding = context.convertDpToPx(10)
                     viewBinding.graphView.gridLabelRenderer.gridStyle =
                         GridLabelRenderer.GridStyle.HORIZONTAL
                     viewBinding.graphView.viewport.isXAxisBoundsManual = true

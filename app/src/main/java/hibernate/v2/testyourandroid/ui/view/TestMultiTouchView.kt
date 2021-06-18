@@ -9,9 +9,9 @@ import android.graphics.PointF
 import android.util.SparseArray
 import android.view.MotionEvent
 import android.view.View
-import com.blankj.utilcode.util.ConvertUtils
+import hibernate.v2.testyourandroid.util.ext.convertDpToPx
 
-class TestMultiTouchView(context: Context?) : View(context) {
+class TestMultiTouchView(context: Context) : View(context) {
     private var circleSize: Float
     private lateinit var mActivePointers: SparseArray<PointF>
     private lateinit var mPaint: Paint
@@ -91,6 +91,6 @@ class TestMultiTouchView(context: Context?) : View(context) {
 
     init {
         initView()
-        circleSize = ConvertUtils.px2dp(480f).toFloat()
+        circleSize = context.convertDpToPx(480).toFloat()
     }
 }

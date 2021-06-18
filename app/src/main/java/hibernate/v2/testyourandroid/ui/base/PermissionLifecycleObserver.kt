@@ -7,7 +7,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import hibernate.v2.testyourandroid.util.Utils
-import java.util.Locale
 
 class PermissionLifecycleObserver(
     private val context: Context?,
@@ -33,7 +32,7 @@ class PermissionLifecycleObserver(
                         mutableList.add(
                             "- " + packageManager.getPermissionInfo(entry.key, 0)
                                 ?.loadLabel(packageManager).toString()
-                                .capitalize(Locale.getDefault())
+                                .replaceFirstChar { it.uppercase() }
                         )
                     }
                 }
