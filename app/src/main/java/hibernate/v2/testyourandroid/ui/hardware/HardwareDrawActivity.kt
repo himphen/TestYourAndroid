@@ -69,7 +69,7 @@ class HardwareDrawActivity : BaseFragmentActivity<ActivityDrawBinding>() {
         viewBinding.fabSendDrawing.setOnClickListener {
             val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                 addCategory(Intent.CATEGORY_OPENABLE)
-                type = "image/png"
+                type = "*/*"
                 putExtra(Intent.EXTRA_TITLE, "image.png")
             }
 

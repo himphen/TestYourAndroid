@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewShimmerBinding
@@ -43,8 +44,6 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
     private val appList = ArrayList<AppItem>()
     private var appType = ARG_APP_TYPE_USER
 
-    private val scope = CoroutineScope(Dispatchers.Default)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let { arguments ->
@@ -78,7 +77,7 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
         viewBinding!!.rvlist.veil()
         appList.clear()
 
-        scope.launch {
+        lifecycleScope.launch {
             try {
                 context?.packageManager?.let { packageManager ->
                     val packs =
@@ -121,11 +120,6 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
                 }
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        scope.coroutineContext.cancel()
     }
 
     companion object {
