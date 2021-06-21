@@ -55,7 +55,7 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
         addTestSectionItem()
         if (!isAdHidden()) loadBannerAd(0)
 
-        val columnCount = if (Utils.isTablet() && Utils.isLandscape(context)) 4 else 3
+        val columnCount = if (Utils.isTablet() && Utils.isLandscape(context)) 3 else 2
         val gridLayoutManager = GridLayoutManager(activity, columnCount)
         gridLayoutManager.spanSizeLookup =
             object : SpanSizeLookup() {
