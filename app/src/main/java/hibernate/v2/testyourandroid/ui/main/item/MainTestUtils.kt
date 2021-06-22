@@ -247,8 +247,7 @@ class MainTestUtils(private val context: Context) {
         val actionArray = arrayOf(
             GridItem.Action.HOME_RATE,
             GridItem.Action.HOME_LANGUAGE,
-            GridItem.Action.HOME_DONATE,
-            GridItem.Action.HOME_APP_BRAIN
+            GridItem.Action.HOME_DONATE
         )
 
         for (i in stringArray.indices) {

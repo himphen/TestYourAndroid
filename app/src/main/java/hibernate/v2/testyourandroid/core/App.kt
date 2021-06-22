@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.os.Build
 import androidx.multidex.MultiDex
-import com.appbrain.AppBrain
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
@@ -45,9 +44,6 @@ class App : Application() {
         val sharedPreferencesManager = SharedPreferencesManager(this@App)
         updateTheme(sharedPreferencesManager.theme)
 
-        // init AppBrain
-        initAppBrain()
-
         // init AdMob
         initAdMob()
 
@@ -56,14 +52,6 @@ class App : Application() {
 
         // init Crashlytics
         initCrashlytics()
-    }
-
-    private fun initAppBrain() {
-        if (BuildConfig.DEBUG) {
-            for (deviceId in BuildConfig.APPBRAIN_DEVICE_ID) {
-                AppBrain.addTestDevice(deviceId)
-            }
-        }
     }
 
     private fun initAdMob() {

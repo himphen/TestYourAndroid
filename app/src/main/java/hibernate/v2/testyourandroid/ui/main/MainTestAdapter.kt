@@ -1,8 +1,5 @@
 package hibernate.v2.testyourandroid.ui.main
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.net.Uri
 import android.text.SpannableString
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import cn.nekocode.badge.BadgeDrawable
 import coil.load
-import com.appbrain.AppBrain
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
@@ -33,6 +29,7 @@ class MainTestAdapter(
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     interface ItemClickListener {
+        fun onItemClick(gridItem: GridItem)
         fun onRatingSubmitClick()
     }
 
@@ -110,11 +107,11 @@ class MainTestAdapter(
             is IconViewHolder -> {
                 val itemBinding = holder.viewBinding
 
-                val item = list[position] as GridItem
-                itemBinding.mainIv.load(item.image)
-                itemBinding.mainTv.text = item.text
+                val gridItem = list[position] as GridItem
+                itemBinding.mainIv.load(gridItem.image)
+                itemBinding.mainTv.text = gridItem.text
 
-                when (item.badge) {
+                when (gridItem.badge) {
                     GridItem.Badge.NEW -> {
                         val drawable = BadgeDrawable.Builder()
                             .type(BadgeDrawable.TYPE_ONLY_ONE_TEXT)
@@ -150,36 +147,9 @@ class MainTestAdapter(
                     }
                 }
 
-                itemBinding.rootView.tag = item
+                itemBinding.rootView.tag = gridItem
                 itemBinding.rootView.setOnClickListener { v ->
-                    val gridItem = v.tag as GridItem
-                    gridItem.intentClass?.let {
-                        val intent = Intent().setClass(v.context, it)
-                        v.context.startActivity(intent)
-                    } ?: run {
-                        when (gridItem.action) {
-                            GridItem.Action.HOME_DONATE -> (v.context as MainActivity).openDialogIAP()
-                            GridItem.Action.HOME_LANGUAGE -> (v.context as MainActivity).openDialogLanguage()
-                            GridItem.Action.HOME_RATE -> {
-                                val intent = Intent(Intent.ACTION_VIEW)
-                                try {
-                                    intent.data =
-                                        Uri.parse("market://details?id=hibernate.v2.testyourandroid")
-                                    v.context.startActivity(intent)
-                                } catch (e: ActivityNotFoundException) {
-                                    intent.data =
-                                        Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid")
-                                    v.context.startActivity(intent)
-                                }
-                            }
-                            GridItem.Action.HOME_APP_BRAIN -> {
-                                val ads = AppBrain.getAds()
-                                ads.setOfferWallClickListener(v.context, v)
-                            }
-                            else -> {
-                            }
-                        }
-                    }
+                    itemClickListener.onItemClick(v.tag as GridItem)
                 }
             }
             is TitleViewHolder -> {

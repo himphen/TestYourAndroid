@@ -40,7 +40,6 @@ android {
             buildConfigField "String", "ADMOB_FULL_SCREEN_ID", properties.getProperty('key.admob_full_screen_id')
             buildConfigField "String", "ADMOB_APP_ID", properties.getProperty("key.admob_app_id")
             resValue "string", "ADMOB_APP_ID", properties.getProperty("key.admob_app_id")
-            buildConfigField "String[]", "APPBRAIN_DEVICE_ID", properties.getProperty("key.appbrain_device_id")
             resValue "string", "GOOGLE_API_KEY", properties.getProperty("key.google_api_key")
             buildConfigField "String", "CONTACT_EMAIL", properties.getProperty("key.contact_email")
             buildConfigField "String", "CROWDIN_URL", properties.getProperty("key.crowdin_url")
@@ -55,7 +54,6 @@ android {
             buildConfigField "String", "ADMOB_FULL_SCREEN_ID", properties.getProperty('key.admob_full_screen_id')
             buildConfigField "String", "ADMOB_APP_ID", properties.getProperty("key.admob_app_id")
             resValue "string", "ADMOB_APP_ID", properties.getProperty("key.admob_app_id")
-            buildConfigField "String[]", "APPBRAIN_DEVICE_ID", properties.getProperty("key.appbrain_device_id")
             resValue "string", "GOOGLE_API_KEY", properties.getProperty("key.google_api_key")
             buildConfigField "String", "CONTACT_EMAIL", properties.getProperty("key.contact_email")
             buildConfigField "String", "CROWDIN_URL", properties.getProperty("key.crowdin_url")
@@ -116,10 +114,6 @@ dependencies {
 
     // https://github.com/PSDev/LicensesDialog
     implementation 'de.psdev.licensesdialog:licensesdialog:2.2.0'
-
-    // AppBrain SDK
-    //noinspection GradleDynamicVersion
-    implementation 'com.appbrain:appbrain-sdk:+'
 
     // https://github.com/natario1/CameraView
     implementation 'com.otaliastudios:cameraview:2.7.0'

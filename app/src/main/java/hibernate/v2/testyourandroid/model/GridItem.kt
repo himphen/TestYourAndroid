@@ -20,7 +20,6 @@ class GridItem(
         HOME_RATE,
         HOME_LANGUAGE,
         HOME_DONATE,
-        HOME_APP_BRAIN,
         APP_INFO_OPEN,
         APP_INFO_UNINSTALL,
         APP_INFO_SETTINGS,

@@ -22,7 +22,6 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        maven { url 'https://swisscodemonkeys.github.io/appbrain-sdk/maven' }
         maven { url "https://plugins.gradle.org/m2/" }
     }
 }

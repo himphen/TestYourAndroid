@@ -17,6 +17,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import hibernate.v2.testyourandroid.core.SharedPreferencesManager
 import hibernate.v2.testyourandroid.databinding.FragmentMainGridviewBinding
+import hibernate.v2.testyourandroid.model.GridItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.main.item.MainTestAdItem
 import hibernate.v2.testyourandroid.ui.main.item.MainTestRatingItem
@@ -71,6 +72,32 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
         viewBinding!!.gridRv.setHasFixedSize(true)
         viewBinding!!.gridRv.layoutManager = gridLayoutManager
         adapter = MainTestAdapter(list, object : MainTestAdapter.ItemClickListener {
+            override fun onItemClick(gridItem: GridItem) {
+                gridItem.intentClass?.let {
+                    val intent = Intent(context, it)
+                    startActivity(intent)
+                } ?: run {
+                    when (gridItem.action) {
+                        GridItem.Action.HOME_DONATE -> (activity as? MainActivity)?.openDialogIAP()
+                        GridItem.Action.HOME_LANGUAGE -> (activity as? MainActivity)?.openDialogLanguage()
+                        GridItem.Action.HOME_RATE -> {
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            try {
+                                intent.data =
+                                    Uri.parse("market://details?id=hibernate.v2.testyourandroid")
+                                startActivity(intent)
+                            } catch (e: ActivityNotFoundException) {
+                                intent.data =
+                                    Uri.parse("https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid")
+                                startActivity(intent)
+                            }
+                        }
+                        else -> {
+                        }
+                    }
+                }
+            }
+
             override fun onRatingSubmitClick() {
                 sharedPreferencesManager.countRate = 1000
                 try {

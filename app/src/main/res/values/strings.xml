@@ -220,7 +220,6 @@
         <item>@string/title_activity_rate_us</item>
         <item>@string/title_activity_language</item>
         <item>@string/title_activity_test_ad_remover</item>
-        <item>@string/title_activity_app_brain</item>
     </string-array>
     <string-array name="app_choose_string_array" translatable="false">
         <item>@string/title_activity_app_user</item>

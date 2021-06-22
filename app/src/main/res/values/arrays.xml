@@ -50,20 +50,17 @@
         <item>@drawable/ic_icon_rating</item>
         <item>@drawable/ic_icon_language</item>
         <item>@drawable/ic_icon_donate_1</item>
-        <item>@drawable/ic_icon_app_brain</item>
     </integer-array>
 
     <integer-array name="main_other_image_2">
         <item>@drawable/ic_icon_rating</item>
         <item>@drawable/ic_icon_language</item>
         <item>@drawable/ic_icon_donate_2</item>
-        <item>@drawable/ic_icon_app_brain</item>
     </integer-array>
 
     <integer-array name="main_other_image_3">
         <item>@drawable/ic_icon_rating</item>
         <item>@drawable/ic_icon_language</item>
         <item>@drawable/ic_icon_donate_3</item>
-        <item>@drawable/ic_icon_app_brain</item>
     </integer-array>
 </resources>
