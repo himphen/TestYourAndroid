@@ -9,7 +9,7 @@ import android.graphics.PointF
 import android.util.SparseArray
 import android.view.MotionEvent
 import android.view.View
-import hibernate.v2.testyourandroid.util.ext.convertDpToPx
+import hibernate.v2.testyourandroid.util.ext.convertPxToDp
 
 class TestMultiTouchView(context: Context) : View(context) {
     private var circleSize: Float
@@ -91,6 +91,6 @@ class TestMultiTouchView(context: Context) : View(context) {
 
     init {
         initView()
-        circleSize = context.convertDpToPx(480).toFloat()
+        circleSize = context.convertPxToDp(360).toFloat()
     }
 }
