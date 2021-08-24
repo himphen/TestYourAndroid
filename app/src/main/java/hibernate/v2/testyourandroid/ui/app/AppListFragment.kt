@@ -20,9 +20,7 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
 import hibernate.v2.testyourandroid.util.Utils.snackbar
 import hibernate.v2.testyourandroid.util.ext.isSystemPackage
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.ArrayList

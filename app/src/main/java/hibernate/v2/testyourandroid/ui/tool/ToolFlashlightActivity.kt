@@ -11,6 +11,7 @@ import androidx.core.graphics.drawable.IconCompat
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.ActivityContainerAdviewBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragmentActivity
+import hibernate.v2.testyourandroid.util.Utils
 
 class ToolFlashlightActivity : BaseFragmentActivity<ActivityContainerAdviewBinding>() {
     override fun getActivityViewBinding() = ActivityContainerAdviewBinding.inflate(layoutInflater)
@@ -56,7 +57,7 @@ class ToolFlashlightActivity : BaseFragmentActivity<ActivityContainerAdviewBindi
                     ShortcutManagerCompat.createShortcutResultIntent(this, shortcut)
                 val successCallback = PendingIntent.getBroadcast(
                     this, 0,
-                    pinnedShortcutCallbackIntent, 0
+                    pinnedShortcutCallbackIntent, Utils.getPendingIntentFlag()
                 )
                 ShortcutManagerCompat.requestPinShortcut(
                     this, shortcut,

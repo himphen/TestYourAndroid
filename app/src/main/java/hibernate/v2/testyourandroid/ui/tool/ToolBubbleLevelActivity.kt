@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.ActivityContainerAdviewBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragmentActivity
+import hibernate.v2.testyourandroid.util.Utils
 
 class ToolBubbleLevelActivity : BaseFragmentActivity<ActivityContainerAdviewBinding>() {
     override fun getActivityViewBinding() = ActivityContainerAdviewBinding.inflate(layoutInflater)
@@ -40,7 +41,7 @@ class ToolBubbleLevelActivity : BaseFragmentActivity<ActivityContainerAdviewBind
                     ShortcutManagerCompat.createShortcutResultIntent(this, shortcut)
                 val successCallback = PendingIntent.getBroadcast(
                     this, 0,
-                    pinnedShortcutCallbackIntent, 0
+                    pinnedShortcutCallbackIntent, Utils.getPendingIntentFlag()
                 )
                 ShortcutManagerCompat.requestPinShortcut(
                     this, shortcut,

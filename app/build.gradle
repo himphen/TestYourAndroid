@@ -8,8 +8,8 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
 
     buildFeatures {
         viewBinding true
@@ -18,7 +18,7 @@ android {
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1911002
         versionName "Red Bean Ice 11.0.0"
         multiDexEnabled true
@@ -48,7 +48,7 @@ android {
             debuggable false
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             buildConfigField "String", "ADMOB_BANNER_ID", properties.getProperty('key.admob_banner_id')
             buildConfigField "String", "ADMOB_HOME_AD_ID", properties.getProperty('key.admob_home_ad_id')
             buildConfigField "String", "ADMOB_FULL_SCREEN_ID", properties.getProperty('key.admob_full_screen_id')
@@ -63,10 +63,6 @@ android {
     kotlinOptions {
         // Opt-in option for Koin annotation of KoinComponent.
         freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -102,9 +98,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'com.google.firebase:firebase-core:19.0.0'
+    implementation 'com.google.firebase:firebase-core:19.0.1'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.1'
-    implementation 'com.google.firebase:firebase-analytics-ktx:19.0.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:19.0.1'
 
     // https://github.com/afollestad/material-dialogs
     implementation 'com.afollestad.material-dialogs:core:3.3.0'

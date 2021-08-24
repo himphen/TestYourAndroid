@@ -2,6 +2,7 @@ package hibernate.v2.testyourandroid.util
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.PendingIntent
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
@@ -348,7 +349,7 @@ object Utils : KoinComponent {
         return (i and 0xFF).toString() + "." + (i shr 8 and 0xFF) + "." + (i shr 16 and 0xFF) + "." + (i shr 24 and 0xFF)
     }
 
-    @SuppressLint("HardwareIds")
+    @SuppressLint("HardwareIds", "MissingPermission")
     fun getMacAddress(wifiInfo: WifiInfo): String? {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return wifiInfo.macAddress
@@ -413,7 +414,7 @@ object Utils : KoinComponent {
         return isMatch("[a-zA-z]+://[^\\s]*", input)
     }
 
-    private fun isMatch(regex: String, input: CharSequence?): Boolean {
+    fun isMatch(regex: String, input: CharSequence?): Boolean {
         return input != null && input.isNotEmpty() && Pattern.matches(regex, input)
     }
 
@@ -430,8 +431,16 @@ object Utils : KoinComponent {
         if (packageName.isNullOrEmpty()) return ""
         return try {
             context.packageManager.getPackageInfo(packageName, 0)?.versionName ?: ""
-        } catch (e: PackageManager.NameNotFoundException ) {
+        } catch (e: PackageManager.NameNotFoundException) {
             ""
+        }
+    }
+
+    fun getPendingIntentFlag(): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        } else {
+            0
         }
     }
 }

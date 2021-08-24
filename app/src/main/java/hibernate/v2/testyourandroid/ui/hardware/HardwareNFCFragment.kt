@@ -15,6 +15,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentHardwareNfcBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
+import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
 
@@ -74,10 +75,13 @@ class HardwareNFCFragment : BaseFragment<FragmentHardwareNfcBinding>() {
             }
             // create an intent with tag data and deliver to this activity
             mPendingIntent = PendingIntent.getActivity(
-                context, 0, Intent(
+                context,
+                0,
+                Intent(
                     context,
                     javaClass
-                ).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0
+                ).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),
+                Utils.getPendingIntentFlag()
             )
             // set an intent filter for all MIME data
             val ndefIntent = IntentFilter(

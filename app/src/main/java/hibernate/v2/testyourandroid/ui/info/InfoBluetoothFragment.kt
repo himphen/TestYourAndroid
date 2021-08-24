@@ -3,10 +3,12 @@ package hibernate.v2.testyourandroid.ui.info
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -32,7 +34,17 @@ import java.util.ArrayList
  */
 class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
-    override val permissions = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
+    private lateinit var bluetoothManager: BluetoothManager
+
+    override val permissions =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            arrayOf(
+                Manifest.permission.BLUETOOTH_CONNECT,
+                Manifest.permission.BLUETOOTH_SCAN
+            )
+        } else {
+            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
+        }
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -76,6 +88,8 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bluetoothManager =
+            requireContext().getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
 
         if (!isPermissionsGranted(permissions)) {
             permissionLifecycleObserver?.requestPermissions(permissions)
@@ -114,7 +128,7 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
         list = ArrayList()
         scannedList.clear()
         val stringArray = resources.getStringArray(R.array.test_bluetooth_string_array)
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+        bluetoothAdapter = bluetoothManager.adapter
 
         // Register Broadcast Receiver
         bluetoothAdapter?.let { bluetoothAdapter ->

@@ -4,8 +4,8 @@ apply plugin: 'kotlin-android'
 apply plugin: "kotlin-parcelize"
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
 
     buildFeatures {
         viewBinding true
@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId "hibernate.v2.testyourwear"
         minSdkVersion 25
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 2510332
         versionName "Pineapple Buns 10.3.3"
         multiDexEnabled true
