@@ -3,7 +3,7 @@ package hibernate.v2.testyourandroid.ui.app
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import hibernate.v2.testyourandroid.databinding.ListItemInfoBinding
+import hibernate.v2.testyourandroid.databinding.ItemListInfoBinding
 import hibernate.v2.testyourandroid.model.AppChooseItem
 
 /**
@@ -20,7 +20,7 @@ class AppChooseAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ItemViewHolder(
-            ListItemInfoBinding.inflate(
+            ItemListInfoBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -40,6 +40,6 @@ class AppChooseAdapter(
 
     override fun getItemCount(): Int = list.size
 
-    internal class ItemViewHolder(val viewBinding: ListItemInfoBinding) :
+    internal class ItemViewHolder(val viewBinding: ItemListInfoBinding) :
         RecyclerView.ViewHolder(viewBinding.root)
 }

@@ -22,6 +22,6 @@
         android:layout_weight="3"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/list_item_info" />
+        tools:listitem="@layout/item_list_info" />
 
 </LinearLayout>

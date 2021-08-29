@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import hibernate.v2.testyourandroid.databinding.GridItemTestBinding
+import hibernate.v2.testyourandroid.databinding.ItemGridSimpleBinding
 import hibernate.v2.testyourandroid.model.GridItem
 
 /**
@@ -21,7 +21,7 @@ class GridItemAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ItemViewHolder(
-            GridItemTestBinding.inflate(
+            ItemGridSimpleBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -40,6 +40,6 @@ class GridItemAdapter(
 
     override fun getItemCount(): Int = list.size
 
-    internal class ItemViewHolder(val viewBinding: GridItemTestBinding) :
+    internal class ItemViewHolder(val viewBinding: ItemGridSimpleBinding) :
         RecyclerView.ViewHolder(viewBinding.root)
 }

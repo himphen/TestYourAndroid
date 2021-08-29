@@ -1,12 +1,15 @@
 package hibernate.v2.testyourandroid.ui.main
 
-import android.text.SpannableString
+import android.annotation.SuppressLint
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.PorterDuff
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import cn.nekocode.badge.BadgeDrawable
 import coil.load
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
@@ -84,6 +87,7 @@ class MainTestAdapter(
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is RatingViewHolder -> {
@@ -113,34 +117,48 @@ class MainTestAdapter(
 
                 when (gridItem.badge) {
                     GridItem.Badge.NEW -> {
-                        val drawable = BadgeDrawable.Builder()
-                            .type(BadgeDrawable.TYPE_ONLY_ONE_TEXT)
-                            .badgeColor(
-                                ContextCompat.getColor(
-                                    itemBinding.mainIv.context,
-                                    R.color.lineColor4
+                        itemBinding.badgeTv.apply {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                                background.colorFilter = BlendModeColorFilter(
+                                    ContextCompat.getColor(
+                                        itemBinding.mainIv.context,
+                                        R.color.lineColor4
+                                    ),
+                                    BlendMode.SRC_ATOP
                                 )
-                            )
-                            .text1("NEW")
-                            .build()
-
-                        itemBinding.badgeTv.text = SpannableString(drawable.toSpannable())
-                        itemBinding.badgeTv.visibility = View.VISIBLE
+                            } else {
+                                background.setColorFilter(
+                                    ContextCompat.getColor(
+                                        itemBinding.mainIv.context,
+                                        R.color.lineColor4
+                                    ), PorterDuff.Mode.SRC_ATOP
+                                )
+                            }
+                            text = "NEW"
+                            visibility = View.VISIBLE
+                        }
                     }
                     GridItem.Badge.BETA -> {
-                        val drawable = BadgeDrawable.Builder()
-                            .type(BadgeDrawable.TYPE_ONLY_ONE_TEXT)
-                            .badgeColor(
-                                ContextCompat.getColor(
-                                    itemBinding.mainIv.context,
-                                    R.color.lineColor2
+                        itemBinding.badgeTv.apply {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                                background.colorFilter = BlendModeColorFilter(
+                                    ContextCompat.getColor(
+                                        itemBinding.mainIv.context,
+                                        R.color.lineColor4
+                                    ),
+                                    BlendMode.SRC_ATOP
                                 )
-                            )
-                            .text1("BETA")
-                            .build()
-
-                        itemBinding.badgeTv.text = SpannableString(drawable.toSpannable())
-                        itemBinding.badgeTv.visibility = View.VISIBLE
+                            } else {
+                                background.setColorFilter(
+                                    ContextCompat.getColor(
+                                        itemBinding.mainIv.context,
+                                        R.color.lineColor4
+                                    ), PorterDuff.Mode.SRC_ATOP
+                                )
+                            }
+                            text = "BETA"
+                            visibility = View.VISIBLE
+                        }
                     }
                     GridItem.Badge.NONE -> {
                         itemBinding.badgeTv.visibility = View.GONE

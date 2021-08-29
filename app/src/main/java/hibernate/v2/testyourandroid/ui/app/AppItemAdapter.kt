@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import hibernate.v2.testyourandroid.databinding.ListItemInfoAppBinding
+import hibernate.v2.testyourandroid.databinding.ItemListInfoAppBinding
 import hibernate.v2.testyourandroid.model.AppItem
 
 /**
@@ -22,7 +22,7 @@ class AppItemAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ItemViewHolder(
-            ListItemInfoAppBinding.inflate(
+            ItemListInfoAppBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -45,6 +45,6 @@ class AppItemAdapter(
 
     override fun getItemCount(): Int = list.size
 
-    internal class ItemViewHolder(val viewBinding: ListItemInfoAppBinding) :
+    internal class ItemViewHolder(val viewBinding: ItemListInfoAppBinding) :
         RecyclerView.ViewHolder(viewBinding.root)
 }

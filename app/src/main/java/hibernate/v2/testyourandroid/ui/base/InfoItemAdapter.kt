@@ -3,9 +3,9 @@ package hibernate.v2.testyourandroid.ui.base
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import hibernate.v2.testyourandroid.databinding.ListItemInfoBinding
-import hibernate.v2.testyourandroid.databinding.ListItemInfoMinimizedBinding
-import hibernate.v2.testyourandroid.databinding.ListItemInfoSingleLineBinding
+import hibernate.v2.testyourandroid.databinding.ItemListInfoBinding
+import hibernate.v2.testyourandroid.databinding.ItemListInfoMinimizedBinding
+import hibernate.v2.testyourandroid.databinding.ItemListInfoSingleLineBinding
 import hibernate.v2.testyourandroid.model.InfoItem
 
 /**
@@ -31,21 +31,21 @@ class InfoItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (type) {
             TYPE_SIMPLE -> ItemViewHolder(
-                ListItemInfoBinding.inflate(
+                ItemListInfoBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
             )
             TYPE_SINGLE_LINE -> SingleLineItemViewHolder(
-                ListItemInfoSingleLineBinding.inflate(
+                ItemListInfoSingleLineBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
             )
             else -> MinimizedLineItemViewHolder(
-                ListItemInfoMinimizedBinding.inflate(
+                ItemListInfoMinimizedBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -81,12 +81,12 @@ class InfoItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
         notifyDataSetChanged()
     }
 
-    internal class ItemViewHolder(val viewBinding: ListItemInfoBinding) :
+    internal class ItemViewHolder(val viewBinding: ItemListInfoBinding) :
         RecyclerView.ViewHolder(viewBinding.root)
 
-    internal class SingleLineItemViewHolder(val viewBinding: ListItemInfoSingleLineBinding) :
+    internal class SingleLineItemViewHolder(val viewBinding: ItemListInfoSingleLineBinding) :
         RecyclerView.ViewHolder(viewBinding.root)
 
-    internal class MinimizedLineItemViewHolder(val viewBinding: ListItemInfoMinimizedBinding) :
+    internal class MinimizedLineItemViewHolder(val viewBinding: ItemListInfoMinimizedBinding) :
         RecyclerView.ViewHolder(viewBinding.root)
 }

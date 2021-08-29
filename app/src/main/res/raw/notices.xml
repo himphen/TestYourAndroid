@@ -2,9 +2,9 @@
 <notices>
     <notice>
         <name>Material Dialogs</name>
-        <url>http://acra.ch/</url>
-        <copyright>Copyright (c) 2014-2016 Aidan Michael Follestad</copyright>
-        <license>MIT License</license>
+        <url>https://github.com/afollestad/material-dialogs</url>
+        <copyright>Copyright 2018 Aidan Follestad</copyright>
+        <license>Apache Software License 2.0</license>
     </notice>
     <notice>
         <name>Coil</name>
@@ -61,9 +61,9 @@
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
-        <name>Badge</name>
-        <url>https://github.com/nekocode/Badge</url>
-        <copyright>Copyright nekocode</copyright>
+        <name>AndroidVeil</name>
+        <url>https://github.com/skydoves/AndroidVeil</url>
+        <copyright>Copyright skydoves</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
 </notices>

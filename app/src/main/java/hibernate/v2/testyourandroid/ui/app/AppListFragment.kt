@@ -67,7 +67,7 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
         })
         viewBinding!!.rvlist.setAdapter(adapter)
         viewBinding!!.rvlist.setLayoutManager(LinearLayoutManager(context))
-        viewBinding!!.rvlist.setVeilLayout(R.layout.list_item_info_app, 5)
+        viewBinding!!.rvlist.setVeilLayout(R.layout.item_list_info_app, 5)
     }
 
     @SuppressLint("NotifyDataSetChanged")
