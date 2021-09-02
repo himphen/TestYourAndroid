@@ -121,7 +121,7 @@ class MainSettingsFragment : PreferenceFragmentCompat() {
         findPreference<Preference>("pref_credit")?.setOnPreferenceClickListener {
             LicensesDialog.Builder(context)
                 .setNotices(R.raw.notices)
-//                .setThemeResourceId(R.style.AppTheme_Dialog_License)
+                .setThemeResourceId(R.style.AppTheme_Dialog_License)
                 .build()
                 .show()
 

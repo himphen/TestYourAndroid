@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <notices>
     <notice>
-        <name>Material Dialogs</name>
-        <url>https://github.com/afollestad/material-dialogs</url>
-        <copyright>Copyright 2018 Aidan Follestad</copyright>
-        <license>Apache Software License 2.0</license>
-    </notice>
-    <notice>
         <name>Coil</name>
         <url>https://github.com/coil-kt/coil</url>
         <copyright>https://github.com/coil-kt/coil</copyright>

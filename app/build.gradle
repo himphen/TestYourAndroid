@@ -19,8 +19,8 @@ android {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 1911002
-        versionName "Red Bean Ice 11.0.0"
+        versionCode 1911012
+        versionName "Red Bean Ice 11.0.1"
         multiDexEnabled true
         flavorDimensions "default"
         wearAppUnbundled true
