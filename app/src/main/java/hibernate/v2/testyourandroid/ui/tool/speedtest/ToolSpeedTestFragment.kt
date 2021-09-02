@@ -7,9 +7,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
@@ -46,7 +47,7 @@ class ToolSpeedTestFragment : BaseFragment<FragmentToolSpeedTestBinding>() {
     private var seriesDownload = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
     private var seriesUpload = LineGraphSeries(arrayOf(DataPoint(0.0, 0.0)))
 
-    private var loadingDialog: MaterialDialog? = null
+    private var loadingDialog: AlertDialog? = null
 
     private var lastXPositionDownload = 0.0
     private var lastXPositionUpload = 0.0
@@ -115,9 +116,10 @@ class ToolSpeedTestFragment : BaseFragment<FragmentToolSpeedTestBinding>() {
         viewBinding?.let { viewBinding ->
 
             context?.let {
-                loadingDialog = MaterialDialog(it)
-                    .message(text = "Selecting best server based on ping...")
-                    .cancelable(false)
+                loadingDialog = MaterialAlertDialogBuilder(it)
+                    .setMessage("Selecting best server based on ping...")
+                    .setCancelable(false)
+                    .create()
 
                 // Init Download graphic
                 viewBinding.graphViewDownload.gridLabelRenderer.isHorizontalLabelsVisible = false
@@ -294,11 +296,11 @@ class ToolSpeedTestFragment : BaseFragment<FragmentToolSpeedTestBinding>() {
 
     private fun showErrorDialog(content: String) {
         context?.let {
-            MaterialDialog(it)
-                .title(R.string.ui_error)
-                .message(text = content)
-                .positiveButton(R.string.ui_okay)
-                .cancelable(false)
+            MaterialAlertDialogBuilder(it)
+                .setTitle(R.string.ui_error)
+                .setMessage(content)
+                .setPositiveButton(R.string.ui_okay, null)
+                .setCancelable(false)
                 .show()
         }
     }

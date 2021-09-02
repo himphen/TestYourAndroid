@@ -16,7 +16,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.ExtendedBluetoothDevice
@@ -80,10 +80,6 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-
-        permissionLifecycleObserver = PermissionLifecycleObserver(
-            context, requireActivity().activityResultRegistry
-        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -170,14 +166,14 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
     }
 
     private fun openBluetoothDialog() {
-        context?.let {
-            MaterialDialog(it)
-                .title(R.string.ui_caution)
-                .message(R.string.bluetooth_enable_message)
-                .positiveButton(R.string.bluetooth_enable_posbtn) {
+        context?.let { context ->
+            MaterialAlertDialogBuilder(context)
+                .setTitle(R.string.ui_caution)
+                .setMessage(R.string.bluetooth_enable_message)
+                .setPositiveButton(R.string.bluetooth_enable_posbtn) { _, _ ->
                     startSettingsActivity(context, Settings.ACTION_BLUETOOTH_SETTINGS)
                 }
-                .negativeButton(R.string.ui_cancel) {
+                .setNegativeButton(R.string.ui_cancel) { _, _ ->
                     activity?.finish()
                 }
                 .show()

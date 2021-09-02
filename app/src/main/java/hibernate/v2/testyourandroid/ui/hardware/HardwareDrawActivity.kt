@@ -11,7 +11,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import hibernate.v2.draw.databinding.ColorPaletteViewBinding
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.ActivityDrawBinding
@@ -59,11 +59,11 @@ class HardwareDrawActivity : BaseFragmentActivity<ActivityDrawBinding>() {
         colorPaletteViewBinding = viewBinding.drawColorPalette
 
         viewBinding.imageCloseDrawing.setOnClickListener {
-            MaterialDialog(this)
-                .message(R.string.dialog_drawing_cancel_message)
-                .cancelable(false)
-                .positiveButton(R.string.ui_okay) { finish() }
-                .negativeButton(R.string.ui_cancel)
+            MaterialAlertDialogBuilder(this)
+                .setMessage(R.string.dialog_drawing_cancel_message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.ui_okay) { dialog, which -> finish() }
+                .setNegativeButton(R.string.ui_cancel, null)
                 .show()
         }
         viewBinding.fabSendDrawing.setOnClickListener {

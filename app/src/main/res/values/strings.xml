@@ -744,5 +744,6 @@
     <string name="compass_northwest" translatable="false">NW</string>
     <string name="compass_southeast" translatable="false">SE</string>
     <string name="compass_southwest" translatable="false">SW</string>
+    <string name="dialog_settings_choose_theme_title">Choose theme</string>
 
 </resources>

@@ -19,7 +19,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import com.himphen.logger.Logger
 import hibernate.v2.testyourandroid.R
@@ -182,13 +182,13 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
 
     fun openFunctionDialog() {
         context?.let {
-            MaterialDialog(it)
-                .title(R.string.ui_caution)
-                .message(R.string.wifi_enable_message)
-                .positiveButton(R.string.wifi_enable_posbtn) {
+            MaterialAlertDialogBuilder(it)
+                .setTitle(R.string.ui_caution)
+                .setMessage(R.string.wifi_enable_message)
+                .setPositiveButton(R.string.wifi_enable_posbtn) { dialog, which ->
                     Utils.startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
                 }
-                .negativeButton(R.string.ui_cancel) {
+                .setNegativeButton(R.string.ui_cancel) { dialog, which ->
                     activity?.finish()
                 }
                 .show()

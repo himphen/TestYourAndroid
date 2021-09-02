@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:textColor">@color/primaryText</item>
         <item name="buttonStyle">@style/MainButton</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="android:windowBackground">@color/background</item>
+        <item name="android:itemTextAppearance">@style/myCustomMenuTextAppearance</item>
+        <item name="materialAlertDialogTheme">@style/AlertDialogTheme</item>
+    </style>
 
-        <!-- Assign dialog style here. -->
-        <item name="alertDialogTheme">@style/RatingDialogStyle</item>
-        <item name="alertDialogStyle">@style/RatingDialogStyle</item>
+    <style name="myCustomMenuTextAppearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 
-        <item name="md_color_button_text">@color/primaryText</item>
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
     </style>
 
     <style name="AppTheme.FullScreen" parent="AppTheme">
@@ -31,12 +37,7 @@
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
-    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="spinBars">true</item>
-        <item name="color">@color/white</item>
-    </style>
-
-    <style name="Widget.MyApp.Toolbar.Solid" parent="Widget.AppCompat.ActionBar">
+    <style name="Widget.MyApp.Toolbar.Solid" parent="Widget.MaterialComponents.ActionBar.Solid">
         <item name="android:background">@color/actionbar_color</item>
         <item name="android:elevation" tools:ignore="NewApi">4dp</item>
     </style>
@@ -70,23 +71,25 @@
         <item name="android:layout_marginRight">24dp</item>
     </style>
 
-    <style name="MainButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:gravity">center</item>
+    <style name="MainButton" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">@color/white</item>
-        <item name="colorAccent">@color/mainButton</item>
-        <item name="colorButtonNormal">@color/mainButton</item>
-        <item name="colorControlHighlight">@color/secondaryText</item>
+        <item name="materialThemeOverlay">@style/MainButtonThemeOverlay</item>
     </style>
 
-    <style name="GreenButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="colorAccent">@color/greenButton</item>
-        <item name="colorButtonNormal">@color/greenButton</item>
-        <item name="colorControlHighlight">@color/secondaryText</item>
+    <style name="MainButtonThemeOverlay">
+        <item name="colorPrimary">@color/mainButton</item>
     </style>
 
-    <style name="BorderlessButton" parent="Widget.AppCompat.Button.Borderless">
+    <style name="GreenButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="materialThemeOverlay">@style/GreenButtonThemeOverlay</item>
+    </style>
+
+    <style name="GreenButtonThemeOverlay">
+        <item name="colorPrimary">@color/greenButton</item>
+    </style>
+
+    <style name="BorderlessButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/primaryText</item>
         <item name="colorAccent">@color/transparent</item>
@@ -96,31 +99,29 @@
 
     <!-- Dialog -->
     <style name="AppTheme.Dialog.License" parent="Theme.AppCompat.DayNight.Dialog.Alert">
-        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AppCompatPositiveButtonStyle</item>
     </style>
 
-    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+    <style name="AppCompatPositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="android:textColor">@color/primaryText</item>
     </style>
 
-    <style name="RatingDialogStyle" parent="Theme.AppCompat.DayNight.Dialog.Alert">
-        <item name="android:background">@color/primary_dark</item>
-        <item name="buttonBarPositiveButtonStyle">@style/PositiveRatingDialogButtonStyle</item>
-        <item name="buttonBarNegativeButtonStyle">@style/RatingDialogButtonStyle</item>
-        <item name="buttonBarNeutralButtonStyle">@style/RatingDialogButtonStyle</item>
+    <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/primaryText</item>
     </style>
 
-    <style name="PositiveRatingDialogButtonStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/md_yellow_500</item>
+    <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/primaryText</item>
     </style>
 
-    <style name="RatingDialogButtonStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/ratingText</item>
-    </style>
-
-    <style name="RatingDialogFadeAnimation">
+    <style name="WindowAnimationTransition">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="RatingBar" parent="AppTheme">
+        <item name="colorControlNormal">@color/md_grey_400</item>
+        <item name="colorControlActivated">@color/md_yellow_600</item>
     </style>
 
     <declare-styleable name="LevelView">
@@ -134,14 +135,4 @@
         <attr name="bubbleColor" format="color" />
         <attr name="horizontalColor" format="color" />
     </declare-styleable>
-
-    <style name="WindowAnimationTransition">
-        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
-    </style>
-
-    <style name="RatingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">@color/md_grey_400</item>
-        <item name="colorControlActivated">@color/md_yellow_600</item>
-    </style>
 </resources>

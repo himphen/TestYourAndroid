@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentHardwareNfcBinding
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
@@ -101,14 +101,14 @@ class HardwareNFCFragment : BaseFragment<FragmentHardwareNfcBinding>() {
 
     private fun openFunctionDialog() {
         context?.let {
-            MaterialDialog(it)
-                .title(R.string.ui_caution)
-                .message(R.string.nfc_enable_message)
-                .cancelable(false)
-                .positiveButton(R.string.nfc_enable_posbtn) {
+            MaterialAlertDialogBuilder(it)
+                .setTitle(R.string.ui_caution)
+                .setMessage(R.string.nfc_enable_message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.nfc_enable_posbtn) { dialog, which ->
                     startSettingsActivity(context, Settings.ACTION_NFC_SETTINGS)
                 }
-                .negativeButton(R.string.ui_cancel)
+                .setNegativeButton(R.string.ui_cancel, null)
                 .show()
         }
     }

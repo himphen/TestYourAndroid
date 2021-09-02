@@ -68,7 +68,7 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/shareButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -76,9 +76,9 @@
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
             android:text="@string/ui_share"
-            android:theme="@style/GreenButton" />
+            style="@style/GreenButton" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/urlButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
             android:text="Go To URL"
-            android:theme="@style/MainButton"
+            style="@style/MainButton"
             android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>

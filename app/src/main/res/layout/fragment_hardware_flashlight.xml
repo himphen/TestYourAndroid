@@ -12,5 +12,5 @@
         android:text="@string/flash_on"
         android:textOff="@string/flash_on"
         android:textOn="@string/flash_off"
-        android:theme="@style/MainButton" />
+        style="@style/MainButton" />
 </RelativeLayout>

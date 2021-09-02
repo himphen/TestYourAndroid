@@ -15,6 +15,7 @@ import android.net.Uri
 import android.net.wifi.WifiInfo
 import android.os.Build
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.WindowInsets
@@ -27,18 +28,17 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.customview.getCustomView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.himphen.logger.Logger
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.core.SharedPreferencesManager
+import hibernate.v2.testyourandroid.databinding.DialogPermissionBinding
 import hibernate.v2.testyourandroid.util.ext.convertDpToPx
 import hibernate.v2.testyourandroid.util.ext.md5
 import org.koin.core.component.KoinComponent
@@ -154,11 +154,13 @@ object Utils : KoinComponent {
     @SuppressLint("SetTextI18n")
     fun openErrorPermissionDialog(context: Context?, permissions: MutableList<String>) {
         context?.let {
-            val dialog = MaterialDialog(it)
-                .customView(R.layout.dialog_permission)
-                .cancelable(false)
-                .positiveButton(R.string.ui_okay) { dialog ->
-                    scanForActivity(dialog.context)?.let { activity ->
+            val viewBinding = DialogPermissionBinding.inflate(LayoutInflater.from(context))
+
+            val dialog = MaterialAlertDialogBuilder(context)
+                .setView(viewBinding.root)
+                .setCancelable(false)
+                .setPositiveButton(R.string.ui_okay) { dialog, which ->
+                    scanForActivity(context)?.let { activity ->
                         try {
                             val intent = Intent()
                             intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
@@ -180,13 +182,12 @@ object Utils : KoinComponent {
                         }
                     }
                 }
-                .negativeButton(R.string.ui_cancel) { dialog ->
-                    scanForActivity(dialog.context)?.finish()
+                .setNegativeButton(R.string.ui_cancel) { dialog, which ->
+                    scanForActivity(context)?.finish()
                 }
 
-            val customView = dialog.getCustomView()
-            customView.findViewById<TextView>(R.id.messageTv).text =
-                customView.findViewById<TextView>(R.id.messageTv).text.toString() +
+            viewBinding.messageTv.text =
+                viewBinding.messageTv.text.toString() +
                         "\n\n" + permissions.joinToString("\n")
 
             if (scanForActivity(dialog.context)?.isFinishing == false)
@@ -196,12 +197,12 @@ object Utils : KoinComponent {
 
     fun errorNoFeatureDialog(context: Context?, isFinish: Boolean = true) {
         context?.let {
-            val dialog = MaterialDialog(it)
-                .title(R.string.ui_error)
-                .message(R.string.dialog_feature_na_message)
-                .cancelable(false)
-                .positiveButton(R.string.ui_okay) { dialog ->
-                    if (isFinish) scanForActivity(dialog.context)?.finish()
+            val dialog = MaterialAlertDialogBuilder(context)
+                .setTitle(R.string.ui_error)
+                .setMessage(R.string.dialog_feature_na_message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.ui_okay) { _, _ ->
+                    if (isFinish) scanForActivity(context)?.finish()
                 }
 
             if (scanForActivity(dialog.context)?.isFinishing == false)

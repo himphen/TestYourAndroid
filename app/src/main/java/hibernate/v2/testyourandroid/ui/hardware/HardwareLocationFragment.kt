@@ -13,7 +13,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -27,6 +26,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentHardwareLocationBinding
 import hibernate.v2.testyourandroid.model.InfoItem
@@ -175,13 +175,13 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
 
     private fun openFunctionDialog() {
         context?.let {
-            MaterialDialog(it)
-                .title(R.string.ui_caution)
-                .message(R.string.gps_enable_message)
-                .positiveButton(R.string.gps_enable_posbtn) {
+            MaterialAlertDialogBuilder(it)
+                .setTitle(R.string.ui_caution)
+                .setMessage(R.string.gps_enable_message)
+                .setPositiveButton(R.string.gps_enable_posbtn) {dialog, which ->
                     startSettingsActivity(context, Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                 }
-                .negativeButton(R.string.ui_cancel)
+                .setNegativeButton(R.string.ui_cancel, null)
                 .show()
         }
     }

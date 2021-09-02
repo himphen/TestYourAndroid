@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
-import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.ActivityColorBinding
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
@@ -61,14 +61,14 @@ class DefectivePixelsActivity : BaseActivity<ActivityColorBinding>() {
     }
 
     private fun openDialogTestMode() {
-        MaterialDialog(this)
-            .title(R.string.ui_caution)
-            .message(R.string.color_test_message)
-            .cancelable(false)
-            .positiveButton(R.string.ui_okay) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.ui_caution)
+            .setMessage(R.string.color_test_message)
+            .setCancelable(false)
+            .setPositiveButton(R.string.ui_okay) { dialog, which ->
                 timer.start()
             }
-            .negativeButton(R.string.ui_cancel) {
+            .setNegativeButton(R.string.ui_cancel) { dialog, which ->
                 finish()
             }
             .show()

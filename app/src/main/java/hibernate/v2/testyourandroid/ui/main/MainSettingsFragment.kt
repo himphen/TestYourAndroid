@@ -8,8 +8,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.listItemsSingleChoice
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.psdev.licensesdialog.LicensesDialog
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
@@ -37,13 +36,12 @@ class MainSettingsFragment : PreferenceFragmentCompat() {
                     Utils.PrefTheme.THEME_DARK.value -> 1
                     else -> 2
                 }
-                MaterialDialog(preference.context)
-                    .title(text = "Choose theme")
-                    .listItemsSingleChoice(
+                MaterialAlertDialogBuilder(preference.context)
+                    .setTitle(getString(R.string.dialog_settings_choose_theme_title))
+                    .setSingleChoiceItems(
                         R.array.theme_array,
-                        initialSelection = initialSelection,
-                        waitForPositiveButton = false
-                    ) { dialog, index, _ ->
+                        initialSelection
+                    ) { dialog, index ->
                         val target = when (index) {
                             0 -> Utils.PrefTheme.THEME_LIGHT
                             1 -> Utils.PrefTheme.THEME_DARK
@@ -58,7 +56,7 @@ class MainSettingsFragment : PreferenceFragmentCompat() {
 
                         activity?.recreate()
                     }
-                    .negativeButton(R.string.ui_cancel)
+                    .setNegativeButton(R.string.ui_cancel, null)
                     .show()
                 false
             }
@@ -123,7 +121,7 @@ class MainSettingsFragment : PreferenceFragmentCompat() {
         findPreference<Preference>("pref_credit")?.setOnPreferenceClickListener {
             LicensesDialog.Builder(context)
                 .setNotices(R.raw.notices)
-                .setThemeResourceId(R.style.AppTheme_Dialog_License)
+//                .setThemeResourceId(R.style.AppTheme_Dialog_License)
                 .build()
                 .show()
 

@@ -7,9 +7,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.android.billingclient.api.AcknowledgePurchaseParams
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
@@ -24,6 +21,7 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.himphen.logger.Logger
 import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
@@ -143,12 +141,9 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
     }
 
     fun openDialogLanguage() {
-        MaterialDialog(this)
-            .title(R.string.title_activity_language)
-            .listItemsSingleChoice(
-                R.array.language_choose,
-                waitForPositiveButton = false
-            ) { dialog, index, _ ->
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.title_activity_language)
+            .setItems(R.array.language_choose) { dialog, index ->
                 dialog.dismiss()
                 val languageLocaleCodeArray = resources.getStringArray(R.array.language_locale_code)
                 val languageLocaleCountryCodeArray =
@@ -165,7 +160,7 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
                     startActivity(intent)
                 }
             }
-            .negativeButton(R.string.ui_cancel)
+            .setNegativeButton(R.string.ui_cancel, null)
             .show()
     }
 
@@ -184,12 +179,9 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
                 "${skuDetails.price} - $titleWithoutAppName"
             }
 
-            MaterialDialog(this)
-                .title(R.string.title_activity_test_ad_remover)
-                .listItemsSingleChoice(
-                    items = skuTitleList,
-                    waitForPositiveButton = false
-                ) { dialog, index, _ ->
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.title_activity_test_ad_remover)
+                .setItems(skuTitleList.toTypedArray()) { dialog, index ->
                     val billingFlowParams = BillingFlowParams
                         .newBuilder()
                         .setSkuDetails(skuDetailsList[index])
@@ -198,7 +190,7 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
 
                     dialog.dismiss()
                 }
-                .negativeButton(R.string.ui_cancel)
+                .setNegativeButton(R.string.ui_cancel, null)
                 .show()
         } ?: run {
             Toast.makeText(this@MainActivity, R.string.ui_error, Toast.LENGTH_LONG).show()
@@ -274,9 +266,9 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
         if (isFinishing) return
 
         withContext(Dispatchers.Main) {
-            MaterialDialog(this@MainActivity)
-                .customView(R.layout.dialog_donate)
-                .positiveButton(R.string.ui_okay)
+            MaterialAlertDialogBuilder(this@MainActivity)
+                .setView(R.layout.dialog_donate)
+                .setPositiveButton(R.string.ui_okay, null)
                 .show()
         }
     }

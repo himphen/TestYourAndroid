@@ -9,8 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.listItemsSingleChoice
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
@@ -68,19 +67,15 @@ class InfoCameraFragment : BaseFragment<FragmentInfoListviewBinding>() {
         if (numberOfCamera == 1) {
             initCamera(0)
         } else {
-            context?.let {
-                MaterialDialog(it)
-                    .title(R.string.dialog_camera_title)
-                    .listItemsSingleChoice(
-                        items = arrayListOf("Camera 1", "Camera 2"),
-                        waitForPositiveButton = false
-                    ) { dialog, index, _ ->
+            context?.let { context ->
+                MaterialAlertDialogBuilder(context)
+                    .setTitle(R.string.dialog_camera_title)
+                    .setItems(arrayOf("Camera 1", "Camera 2")) { dialog, index ->
                         initCamera(index)
-                        dialog.dismiss()
                     }
-                    .cancelable(false)
-                    .negativeButton(R.string.ui_cancel) { dialog ->
-                        Utils.scanForActivity(dialog.context)?.finish()
+                    .setCancelable(false)
+                    .setNegativeButton(R.string.ui_cancel) { _, _ ->
+                        Utils.scanForActivity(context)?.finish()
                     }
                     .show()
             }
