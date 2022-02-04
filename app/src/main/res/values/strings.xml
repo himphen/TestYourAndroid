@@ -384,7 +384,7 @@
     <string name="test_wifi_current_string_mac_address">Mac Address</string>
     <string name="test_wifi_current_string_speed">Speed</string>
     <string name="test_wifi_current_string_txspeed" translatable="false">Tx Speed</string>
-    <string name="test_wifi_current_string_rxspeed" translatable="false">Tx Speed</string>
+    <string name="test_wifi_current_string_rxspeed" translatable="false">Rx Speed</string>
     <string name="test_wifi_current_string_rssi">Strength</string>
     <string name="test_wifi_current_string_frequency" translatable="false">Frequency</string>
     <string name="test_wifi_current_string_ip_address">IP Address</string>
@@ -685,6 +685,7 @@
     <string name="pref_feedback">Give me Feedback</string>
     <string name="pref_restore_purchase" translatable="false">Restore purchase</string>
     <string name="pref_credit">Open source licenses</string>
+    <string name="pref_hide_fullscreen_ad">Hide Full Screen Ads</string>
     <string name="feedback_title">Test Your Android App: Report and Feedback</string>
     <string name="pref_more_app">Developer\'s app</string>
     <string name="rate_title">Did you like the app?</string>
@@ -745,5 +746,6 @@
     <string name="compass_southeast" translatable="false">SE</string>
     <string name="compass_southwest" translatable="false">SW</string>
     <string name="dialog_settings_choose_theme_title">Choose theme</string>
+    Hide Full Screen Ads
 
 </resources>

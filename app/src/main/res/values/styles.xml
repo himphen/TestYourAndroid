@@ -2,17 +2,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="android:itemTextAppearance">@style/myCustomMenuTextAppearance</item>
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:windowBackground">@color/background</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="android:textColor">@color/primaryText</item>
         <item name="buttonStyle">@style/MainButton</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="android:windowBackground">@color/background</item>
-        <item name="android:itemTextAppearance">@style/myCustomMenuTextAppearance</item>
         <item name="materialAlertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="myCustomMenuTextAppearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">

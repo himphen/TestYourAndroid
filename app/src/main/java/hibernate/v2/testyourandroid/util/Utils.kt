@@ -48,7 +48,6 @@ import java.io.IOException
 import java.io.InputStreamReader
 import java.net.NetworkInterface
 import java.text.DecimalFormat
-import java.util.ArrayList
 import java.util.Locale
 import java.util.regex.Pattern
 
@@ -188,7 +187,7 @@ object Utils : KoinComponent {
 
             viewBinding.messageTv.text =
                 viewBinding.messageTv.text.toString() +
-                        "\n\n" + permissions.joinToString("\n")
+                "\n\n" + permissions.joinToString("\n")
 
             if (scanForActivity(dialog.context)?.isFinishing == false)
                 dialog.show()
@@ -367,6 +366,7 @@ object Utils : KoinComponent {
                 ?.hardwareAddress
                 ?.joinToString(separator = ":") { byte -> "%02X".format(byte) }
         } catch (ex: Exception) {
+            Logger.e(ex, "")
             null
         }
     }
@@ -397,12 +397,14 @@ object Utils : KoinComponent {
             }
         } else {
             @Suppress("DEPRECATION")
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
+            window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_FULLSCREEN
                     or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                     or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
+                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                )
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {

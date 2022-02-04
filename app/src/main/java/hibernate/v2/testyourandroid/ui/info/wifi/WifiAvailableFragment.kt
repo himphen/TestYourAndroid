@@ -75,14 +75,18 @@ class WifiAvailableFragment : BaseFragment<FragmentInfoListviewBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = InfoItemAdapter(list)
+        adapter = InfoItemAdapter().apply {
+            submitList(list)
+        }
         viewBinding!!.rvlist.adapter = adapter
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_settings -> startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
+            R.id.action_settings -> {
+                startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -96,7 +100,8 @@ class WifiAvailableFragment : BaseFragment<FragmentInfoListviewBinding>() {
         if ((parentFragment as WifiFragment?)?.isScanning == true) {
             context?.let { context ->
                 context.registerReceiver(
-                    wifiScanReceiver, IntentFilter(
+                    wifiScanReceiver,
+                    IntentFilter(
                         WifiManager.SCAN_RESULTS_AVAILABLE_ACTION
                     )
                 )
@@ -104,7 +109,6 @@ class WifiAvailableFragment : BaseFragment<FragmentInfoListviewBinding>() {
                 handler.post(scanWifiRunnable)
 
                 Toast.makeText(context, R.string.ui_loading, Toast.LENGTH_SHORT).show()
-
             }
         }
     }
@@ -130,7 +134,7 @@ class WifiAvailableFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
             list.add(InfoItem(ssid, getScanResultText(result)))
         }
-        adapter.notifyDataSetChanged()
+        adapter.submitList(list)
     }
 
     private fun getScanResultText(result: ScanResult): String {

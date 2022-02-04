@@ -4,8 +4,8 @@ apply plugin: 'kotlin-android'
 apply plugin: "kotlin-parcelize"
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "31.0.0"
+    compileSdkVersion 32
+    buildToolsVersion "32.0.0"
 
     buildFeatures {
         viewBinding true
@@ -14,9 +14,9 @@ android {
     defaultConfig {
         applicationId "hibernate.v2.testyourwear"
         minSdkVersion 25
-        targetSdkVersion 31
-        versionCode 2510332
-        versionName "Pineapple Buns 10.3.3"
+        targetSdkVersion 32
+        versionCode 2511102
+        versionName "Pineapple Buns 11.1.0"
         multiDexEnabled true
     }
 
@@ -32,18 +32,18 @@ android {
 
 dependencies {
     // Google Android Support
-    implementation 'androidx.activity:activity-ktx:1.3.1'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.fragment:fragment-ktx:1.3.6'
+    implementation 'androidx.activity:activity-ktx:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.fragment:fragment-ktx:1.4.1'
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    implementation 'androidx.wear:wear:1.1.0'
+    implementation 'androidx.wear:wear:1.2.0'
     implementation 'com.google.android.gms:play-services-wearable:17.1.0'
     implementation 'com.google.android.support:wearable:2.8.1'
     compileOnly 'com.google.android.wearable:wearable:2.8.1'
 
     // https://github.com/coil-kt/coil
-    implementation 'io.coil-kt:coil:1.3.2'
+    implementation 'io.coil-kt:coil:1.4.0'
 }

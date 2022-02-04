@@ -57,7 +57,7 @@ class InfoGSMFragment : BaseFragment<FragmentInfoListviewBinding>() {
                 context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
             val stringArray = resources.getStringArray(R.array.info_gsm_string_array)
             val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
-            adapter.setData(list)
+            adapter.submitList(list)
         }
     }
 
@@ -126,7 +126,7 @@ class InfoGSMFragment : BaseFragment<FragmentInfoListviewBinding>() {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
                 if (telephonyManager.phoneCount > 1) {
                     "Sim Card 1: " + telephonyManager.getImei(0) +
-                            "\nSim Card 2: " + telephonyManager.getImei(1)
+                        "\nSim Card 2: " + telephonyManager.getImei(1)
                 } else {
                     telephonyManager.imei
                 }
@@ -134,7 +134,7 @@ class InfoGSMFragment : BaseFragment<FragmentInfoListviewBinding>() {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
                 if (telephonyManager.phoneCount > 1) {
                     "Sim Card 1: " + telephonyManager.getDeviceId(0) +
-                            "\nSim Card 2: " + telephonyManager.getDeviceId(1)
+                        "\nSim Card 2: " + telephonyManager.getDeviceId(1)
                 } else {
                     telephonyManager.getDeviceId(0)
                 }

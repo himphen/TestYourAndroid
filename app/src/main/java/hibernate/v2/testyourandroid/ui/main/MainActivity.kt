@@ -131,11 +131,12 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
     }
 
     private fun countInterstitialAd() {
-        if (Utils.isAdHidden()) {
+        if (Utils.isAdHidden() || sharedPreferencesManager.hideFullscreenAd) {
             return
         }
+        ++countInterstitialAd
 
-        if (++countInterstitialAd == 3) {
+        if (countInterstitialAd == 3 || (countInterstitialAd > 8 && countInterstitialAd % 3 == 0)) {
             mInterstitialAd?.show(this)
         }
     }
@@ -275,12 +276,12 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
 
     fun checkPurchaseHistory() {
         lifecycleScope.launch {
-            iapProductIdListAll().forEach {
-                if (queryPurchaseHistory(it)) {
-                    onPurchased()
-                    return@forEach
-                }
+            if (queryPurchaseHistory()) {
+                onPurchased()
+                return@launch
             }
+
+            Toast.makeText(this@MainActivity, "No purchase record found.", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -299,14 +300,20 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
         }
     }
 
-    private suspend fun queryPurchaseHistory(iapId: String): Boolean {
+    private suspend fun queryPurchaseHistory(): Boolean {
         return suspendCoroutine { continuation ->
-            billingClient.queryPurchaseHistoryAsync(iapId) { billingResult, _ ->
+            billingClient.queryPurchaseHistoryAsync(BillingClient.SkuType.INAPP) { billingResult, purchaseHistoryRecordList ->
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                    continuation.resume(true)
-                } else {
-                    continuation.resume(false)
+                    val allSku = iapProductIdListAll()
+                    purchaseHistoryRecordList?.forEach {
+                        if (allSku.intersect(it.skus).isNotEmpty()) {
+                            continuation.resume(true)
+                            return@queryPurchaseHistoryAsync
+                        }
+                    }
                 }
+
+                continuation.resume(false)
             }
         }
     }

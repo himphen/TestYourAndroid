@@ -28,7 +28,6 @@ class InfoBatteryFragment : BaseFragment<FragmentInfoListviewBinding>() {
     ): FragmentInfoListviewBinding =
         FragmentInfoListviewBinding.inflate(inflater, container, false)
 
-    private lateinit var list: List<InfoItem>
     private lateinit var adapter: InfoItemAdapter
     private var health = 0
     private var level = 0
@@ -51,22 +50,24 @@ class InfoBatteryFragment : BaseFragment<FragmentInfoListviewBinding>() {
             health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0)
             celsiusTemperature = temperature.toDouble() / 10
             fahrenheitTemperature = (32 + celsiusTemperature * 9 / 5).roundTo(2)
-            for (i in list.indices) {
-                list[i].contentText = getData(i)
-            }
-            adapter.notifyDataSetChanged()
+
+            val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
+            adapter.submitList(list)
         }
     }
+    private lateinit var stringArray: Array<String>
     private lateinit var chargeString: Array<String>
     private lateinit var healthString: Array<String>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val stringArray = resources.getStringArray(R.array.info_battery_string_array)
+        stringArray = resources.getStringArray(R.array.info_battery_string_array)
         chargeString = resources.getStringArray(R.array.info_battery_charge_string_array)
         healthString = resources.getStringArray(R.array.info_battery_health_string_array)
-        list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
-        adapter = InfoItemAdapter(list)
+        val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
+        adapter = InfoItemAdapter().apply {
+            submitList(list)
+        }
         viewBinding!!.rvlist.adapter = adapter
     }
 
@@ -81,7 +82,8 @@ class InfoBatteryFragment : BaseFragment<FragmentInfoListviewBinding>() {
     override fun onResume() {
         super.onResume()
         context?.registerReceiver(
-            batteryReceiver, IntentFilter(
+            batteryReceiver,
+            IntentFilter(
                 Intent.ACTION_BATTERY_CHANGED
             )
         )

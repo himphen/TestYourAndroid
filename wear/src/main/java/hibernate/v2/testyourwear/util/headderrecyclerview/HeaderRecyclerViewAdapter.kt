@@ -1,5 +1,6 @@
 package hibernate.v2.testyourwear.util.headderrecyclerview
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 
@@ -185,6 +186,7 @@ abstract class HeaderRecyclerViewAdapter<VH : RecyclerView.ViewHolder, H, T, F> 
     /**
      * Call this method to show hiding footer.
      */
+    @SuppressLint("NotifyDataSetChanged")
     fun showFooter() {
         showFooter = true
         notifyDataSetChanged()
@@ -193,6 +195,7 @@ abstract class HeaderRecyclerViewAdapter<VH : RecyclerView.ViewHolder, H, T, F> 
     /**
      * Call this method to hide footer.
      */
+    @SuppressLint("NotifyDataSetChanged")
     fun hideFooter() {
         showFooter = false
         notifyDataSetChanged()

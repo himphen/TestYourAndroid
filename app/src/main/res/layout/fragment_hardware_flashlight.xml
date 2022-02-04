@@ -11,6 +11,5 @@
         android:layout_centerVertical="true"
         android:text="@string/flash_on"
         android:textOff="@string/flash_on"
-        android:textOn="@string/flash_off"
-        style="@style/MainButton" />
+        android:textOn="@string/flash_off" />
 </RelativeLayout>

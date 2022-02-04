@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background"
-    android:orientation="vertical">
+    android:background="@color/background">
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graphView"
@@ -14,17 +14,22 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:layout_weight="2" />
+        app:layout_constraintBottom_toTopOf="@id/rvlist"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvlist"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
         android:clipToPadding="false"
         android:paddingTop="12dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:paddingBottom="12dp"
-        android:scrollbars="vertical" />
+        android:scrollbars="none"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/graphView"
+        app:layout_constraintVertical_weight="3"
+        tools:listitem="@layout/item_list_info_minimized" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

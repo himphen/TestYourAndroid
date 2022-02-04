@@ -1,6 +1,5 @@
 package hibernate.v2.testyourandroid.core
 
-
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
@@ -15,6 +14,7 @@ class SharedPreferencesManager(val context: Context) {
         const val PREF_COUNT_RATE = "PREF_COUNT_RATE"
         const val PREF_THEME = "PREF_THEME"
         const val PREF_METRIC_UNIT = "PREF_METRIC_UNIT"
+        const val PREF_HIDE_FULLSCREEN_AD = "PREF_HIDE_FULLSCREEN_AD"
     }
 
     private val preferences: SharedPreferences = PreferenceUtils.sharedPrefs(context)
@@ -60,6 +60,15 @@ class SharedPreferencesManager(val context: Context) {
         set(value) {
             preferences.edit {
                 putString(PREF_THEME, value)
+                apply()
+            }
+        }
+
+    var hideFullscreenAd: Boolean
+        get() = preferences.getBoolean(PREF_HIDE_FULLSCREEN_AD, false)
+        set(value) {
+            preferences.edit {
+                putBoolean(PREF_HIDE_FULLSCREEN_AD, value)
                 apply()
             }
         }

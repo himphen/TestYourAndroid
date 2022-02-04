@@ -3,7 +3,7 @@ package hibernate.v2.testyourandroid.model
 /**
  * Created by himphen on 24/5/16.
  */
-class GridItem(
+data class GridItem(
     var text: String,
     var image: Int,
     var badge: Badge = Badge.NONE,

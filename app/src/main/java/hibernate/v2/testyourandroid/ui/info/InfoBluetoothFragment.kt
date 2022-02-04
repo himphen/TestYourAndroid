@@ -23,11 +23,9 @@ import hibernate.v2.testyourandroid.model.ExtendedBluetoothDevice
 import hibernate.v2.testyourandroid.model.InfoItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
-import hibernate.v2.testyourandroid.ui.base.PermissionLifecycleObserver
 import hibernate.v2.testyourandroid.util.Utils.errorNoFeatureDialog
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
 import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
-import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
@@ -134,13 +132,16 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
             }
 
             context?.registerReceiver(
-                bluetoothChangedReceiver, IntentFilter(
+                bluetoothChangedReceiver,
+                IntentFilter(
                     BluetoothDevice.ACTION_FOUND
                 )
             )
             bluetoothAdapter.startDiscovery()
             list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
-            adapter = InfoItemAdapter(list)
+            adapter = InfoItemAdapter().apply {
+                submitList(list)
+            }
             viewBinding?.rvlist?.adapter = adapter
             if (isToast) {
                 Toast.makeText(context, R.string.wifi_reload_done, Toast.LENGTH_SHORT).show()
@@ -229,7 +230,7 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
             ) else text.toString()
         )
         list[0].contentText = text.toString()
-        adapter?.notifyDataSetChanged()
+        adapter?.submitList(list)
     }
 
     private fun getScanResultText(device: ExtendedBluetoothDevice): String {

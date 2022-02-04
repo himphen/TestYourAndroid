@@ -15,7 +15,7 @@ class MainFragmentPagerAdapter(
     /**
      * Returns the number of pages
      */
-    override fun getItemCount(): Int = 2
+    override fun getItemCount() = 2
 
     /**
      * This method will be invoked when a page is requested to create
@@ -32,5 +32,4 @@ class MainFragmentPagerAdapter(
         v.findViewById<TextView>(R.id.tabTitleTv).text = tabTitles[position]
         return v
     }
-
 }

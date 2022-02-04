@@ -50,7 +50,9 @@ class InfoCPUFragment : BaseFragment<FragmentInfoListviewBinding>() {
         val stringArray = resources.getStringArray(R.array.info_cpu_string_array)
         memoryArray = resources.getStringArray(R.array.memory_string_array)
         val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
-        viewBinding!!.rvlist.adapter = InfoItemAdapter(list)
+        viewBinding!!.rvlist.adapter = InfoItemAdapter().apply {
+            submitList(list)
+        }
     }
 
     private fun getData(j: Int): String {
@@ -61,15 +63,17 @@ class InfoCPUFragment : BaseFragment<FragmentInfoListviewBinding>() {
                 2 -> numCores.toString()
                 3 -> {
                     val romMemory = romMemory
-                    (memoryArray[0] + formatBitSize(romMemory[0]) + "\n"
-                            + memoryArray[1] + formatBitSize(romMemory[1]) + "\n"
-                            + memoryArray[2] + formatBitSize(romMemory[0] - romMemory[1]))
+                    (
+                        memoryArray[0] + formatBitSize(romMemory[0]) + "\n" +
+                            memoryArray[1] + formatBitSize(romMemory[1]) + "\n" +
+                            memoryArray[2] + formatBitSize(romMemory[0] - romMemory[1])
+                        )
                 }
                 4 -> {
                     val sDCardMemory = sDCardMemory
                     memoryArray[0] + formatBitSize(sDCardMemory[0]) + "\n" +
-                            memoryArray[1] + formatBitSize(sDCardMemory[1]) + "\n" +
-                            memoryArray[2] + formatBitSize(sDCardMemory[0] - sDCardMemory[1])
+                        memoryArray[1] + formatBitSize(sDCardMemory[1]) + "\n" +
+                        memoryArray[2] + formatBitSize(sDCardMemory[0] - sDCardMemory[1])
                 }
                 5 -> ramMemory
                 6 -> allMemory

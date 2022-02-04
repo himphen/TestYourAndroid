@@ -48,7 +48,9 @@ class InfoHardwareFragment : BaseFragment<FragmentInfoListviewBinding>() {
             list[2].contentText = "$level %"
             list[3].contentText = arrayHealth[health]
             list[4].contentText = arrayCharge[charge]
-            adapter.notifyDataSetChanged()
+            adapter.notifyItemChanged(2)
+            adapter.notifyItemChanged(3)
+            adapter.notifyItemChanged(4)
         }
     }
 

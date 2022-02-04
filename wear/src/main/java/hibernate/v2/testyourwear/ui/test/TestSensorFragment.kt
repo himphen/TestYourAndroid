@@ -140,7 +140,7 @@ class TestSensorFragment : BaseFragment<FragmentInfoListviewBinding>() {
                     + String.format("%1.4f", event.values[1]) + " m/s²\nZ: "
                     + String.format("%1.4f", event.values[2]) + " m/s²")
             list[0].contentText = reading
-            adapter.notifyDataSetChanged()
+            adapter.notifyItemChanged(0)
         }
     }
     private val lightListener: SensorEventListener = object : SensorEventListener {
@@ -148,7 +148,7 @@ class TestSensorFragment : BaseFragment<FragmentInfoListviewBinding>() {
         override fun onSensorChanged(event: SensorEvent) {
             reading = event.values[0].toString() + " lux"
             list[0].contentText = reading
-            adapter.notifyDataSetChanged()
+            adapter.notifyItemChanged(0)
         }
     }
     private val pressureListener: SensorEventListener = object : SensorEventListener {
@@ -156,7 +156,7 @@ class TestSensorFragment : BaseFragment<FragmentInfoListviewBinding>() {
         override fun onSensorChanged(event: SensorEvent) {
             reading = event.values[0].toString() + " hPa"
             list[0].contentText = reading
-            adapter.notifyDataSetChanged()
+            adapter.notifyItemChanged(0)
         }
     }
     private val proximityListener: SensorEventListener = object : SensorEventListener {
@@ -166,7 +166,7 @@ class TestSensorFragment : BaseFragment<FragmentInfoListviewBinding>() {
         override fun onSensorChanged(event: SensorEvent) {
             reading = String.format("%1.2f", event.values[0]) + " cm"
             list[0].contentText = reading
-            adapter.notifyDataSetChanged()
+            adapter.notifyItemChanged(0)
         }
     }
 

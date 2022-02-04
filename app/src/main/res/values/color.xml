@@ -11,6 +11,8 @@
     <color name="hintText">@color/md_grey_700</color>
     <color name="ratingText">#EEEEEE</color>
 
+    <color name="tab_layout_selected_color">@color/primary_dark</color>
+
     <color name="testCardText">@color/md_blue_grey_900</color>
 
     <color name="mainButton">@color/md_blue_600</color>

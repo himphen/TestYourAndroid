@@ -7,15 +7,15 @@ import android.net.wifi.WifiInfo
 import android.net.wifi.WifiInfo.LINK_SPEED_UNITS
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.jjoe64.graphview.DefaultLabelFormatter
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
@@ -29,6 +29,11 @@ import hibernate.v2.testyourandroid.util.Utils.getMacAddress
 import hibernate.v2.testyourandroid.util.Utils.ipAddressIntToString
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
 import hibernate.v2.testyourandroid.util.ext.convertDpToPx
+import hibernate.v2.testyourandroid.util.ext.disableChangeAnimation
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 class WifiCurrentFragment : BaseFragment<FragmentToolWifiStrengthBinding>() {
 
@@ -44,49 +49,11 @@ class WifiCurrentFragment : BaseFragment<FragmentToolWifiStrengthBinding>() {
         fun newInstance() = WifiCurrentFragment()
     }
 
+    private lateinit var stringArray: Array<String>
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var lastXValue = 0.0
 
     private lateinit var adapter: InfoItemAdapter
-    private val list: MutableList<InfoItem> = mutableListOf()
-
-    private val handler = Handler(Looper.getMainLooper())
-    private val getWifiStrengthRunnable = object : Runnable {
-        override fun run() {
-            if ((parentFragment as WifiFragment?)?.isScanning != true) return
-
-            var yValue = -127.0
-            if ((parentFragment as WifiFragment?)?.isNetworkAvailable == true) {
-                val wifiInfo = (parentFragment as WifiFragment?)?.wifiManager?.connectionInfo
-                val dhcpInfo = (parentFragment as WifiFragment?)?.wifiManager?.dhcpInfo
-
-                if (wifiInfo != null && dhcpInfo != null) {
-                    yValue = wifiInfo.rssi.toDouble()
-
-                    for (i in list.indices) {
-                        list[i].contentText = getData(i, wifiInfo, dhcpInfo)
-                    }
-
-                    adapter.notifyDataSetChanged()
-                }
-            }
-
-            series.appendData(DataPoint(lastXValue, yValue), true, 36)
-            context?.let { context ->
-                series.color = when {
-                    yValue > -60 -> ContextCompat.getColor(context, R.color.lineColor4)
-                    yValue > -80 -> ContextCompat.getColor(context, R.color.lineColor2)
-                    else -> ContextCompat.getColor(context, R.color.lineColor1)
-                }
-            }
-            viewBinding?.graphView?.viewport?.scrollToEnd()
-            lastXValue += 1.0
-
-            if ((parentFragment as WifiFragment?)?.isScanning == true) {
-                handler.postDelayed(this, UPDATE_CHART_INTERVAL)
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,78 +62,117 @@ class WifiCurrentFragment : BaseFragment<FragmentToolWifiStrengthBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding?.let { viewBinding ->
-            context?.let { context ->
-                val stringArray = resources.getStringArray(R.array.test_wifi_strength_string_array)
+        val viewBinding = viewBinding!!
 
-                list.addAll(stringArray.map { s -> InfoItem(s, "") })
+        stringArray = resources.getStringArray(R.array.test_wifi_strength_string_array)
 
-                adapter = InfoItemAdapter(list)
-                adapter.type = InfoItemAdapter.TYPE_MINIMIZED
-                viewBinding.rvlist.adapter = adapter
+        val list = mutableListOf<InfoItem>()
+        list.addAll(stringArray.mapIndexed { index, s -> InfoItem(s, "", index) })
 
+        adapter = InfoItemAdapter()
+        adapter.type = InfoItemAdapter.TYPE_MINIMIZED
+        viewBinding.rvlist.adapter = adapter
+        viewBinding.rvlist.disableChangeAnimation()
+        adapter.submitList(list)
 
-                series.color = ContextCompat.getColor(context, R.color.lineColor3)
-                series.thickness = context.convertDpToPx(4)
-                viewBinding.graphView.addSeries(series)
-                viewBinding.graphView.gridLabelRenderer.gridColor = Color.GRAY
-                viewBinding.graphView.gridLabelRenderer.isHighlightZeroLines = false
-                viewBinding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
-                viewBinding.graphView.gridLabelRenderer.padding = context.convertDpToPx(10)
-                viewBinding.graphView.gridLabelRenderer.gridStyle =
-                    GridLabelRenderer.GridStyle.HORIZONTAL
-                viewBinding.graphView.viewport.isXAxisBoundsManual = true
-                viewBinding.graphView.viewport.setMinX(0.0)
-                viewBinding.graphView.viewport.setMaxX(36.0)
-                viewBinding.graphView.viewport.isYAxisBoundsManual = true
-                viewBinding.graphView.viewport.setMinY(-100.0)
-                viewBinding.graphView.viewport.setMaxY(-40.0)
-                viewBinding.graphView.viewport.isScrollable = false
-                viewBinding.graphView.viewport.isScalable = false
-                viewBinding.graphView.gridLabelRenderer.labelFormatter =
-                    object : DefaultLabelFormatter() {
-                        override fun formatLabel(value: Double, isValueX: Boolean): String {
-                            return if (isValueX) {
-                                super.formatLabel(value, isValueX)
-                            } else {
-                                super.formatLabel(value, isValueX) + "dBm"
+        initGraphView()
+        initEvent()
+    }
+
+    override fun initEvent() {
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                try {
+                    while (isActive) {
+                        val wifiFragment =
+                            parentFragment as? WifiFragment ?: return@repeatOnLifecycle
+
+                        if (!wifiFragment.isScanning) return@repeatOnLifecycle
+
+                        var yValue = -127.0
+                        if (wifiFragment.isNetworkAvailable) {
+                            val wifiInfo = wifiFragment.wifiManager?.connectionInfo
+                            val dhcpInfo = wifiFragment.wifiManager?.dhcpInfo
+
+                            if (wifiInfo != null && dhcpInfo != null) {
+                                yValue = wifiInfo.rssi.toDouble()
+
+                                val list = mutableListOf<InfoItem>()
+                                list.addAll(
+                                    stringArray.mapIndexed { index, s ->
+                                        InfoItem(
+                                            s,
+                                            getData(index, wifiInfo, dhcpInfo),
+                                            index
+                                        )
+                                    }
+                                )
+
+                                adapter.submitList(list)
                             }
                         }
+
+                        series.appendData(DataPoint(lastXValue, yValue), true, 36)
+                        context?.let { context ->
+                            series.color = when {
+                                yValue > -60 -> ContextCompat.getColor(context, R.color.lineColor4)
+                                yValue > -80 -> ContextCompat.getColor(context, R.color.lineColor2)
+                                else -> ContextCompat.getColor(context, R.color.lineColor1)
+                            }
+                        }
+                        viewBinding?.graphView?.viewport?.scrollToEnd()
+                        lastXValue += 1.0
+
+                        delay(UPDATE_CHART_INTERVAL)
                     }
+                } catch (ex: CancellationException) {
+                    throw ex
+                }
             }
         }
     }
 
-    override fun onPause() {
-        onStopScanning()
-        super.onPause()
-    }
+    private fun initGraphView() {
+        val viewBinding = viewBinding!!
+        val context = requireContext()
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun onResume() {
-        super.onResume()
-        onStartScanning()
+        series.color = ContextCompat.getColor(context, R.color.lineColor3)
+        series.thickness = context.convertDpToPx(4)
+        viewBinding.graphView.addSeries(series)
+        viewBinding.graphView.gridLabelRenderer.gridColor = Color.GRAY
+        viewBinding.graphView.gridLabelRenderer.isHighlightZeroLines = false
+        viewBinding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
+        viewBinding.graphView.gridLabelRenderer.padding = context.convertDpToPx(10)
+        viewBinding.graphView.gridLabelRenderer.gridStyle =
+            GridLabelRenderer.GridStyle.HORIZONTAL
+        viewBinding.graphView.viewport.isXAxisBoundsManual = true
+        viewBinding.graphView.viewport.setMinX(0.0)
+        viewBinding.graphView.viewport.setMaxX(36.0)
+        viewBinding.graphView.viewport.isYAxisBoundsManual = true
+        viewBinding.graphView.viewport.setMinY(-100.0)
+        viewBinding.graphView.viewport.setMaxY(-40.0)
+        viewBinding.graphView.viewport.isScrollable = false
+        viewBinding.graphView.viewport.isScalable = false
+        viewBinding.graphView.gridLabelRenderer.labelFormatter =
+            object : DefaultLabelFormatter() {
+                override fun formatLabel(value: Double, isValueX: Boolean): String {
+                    return if (isValueX) {
+                        super.formatLabel(value, isValueX)
+                    } else {
+                        super.formatLabel(value, isValueX) + "dBm"
+                    }
+                }
+            }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_settings -> startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
+            R.id.action_settings -> {
+                startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    fun onStartScanning() {
-        if ((parentFragment as WifiFragment?)?.isScanning == true) {
-            handler.post(getWifiStrengthRunnable)
-        }
-    }
-
-    private fun onStopScanning() {
-        for (i in list.indices) {
-            list[i].contentText = ""
-        }
-        adapter.notifyDataSetChanged()
     }
 
     @SuppressLint("HardwareIds")
@@ -181,12 +187,12 @@ class WifiCurrentFragment : BaseFragment<FragmentToolWifiStrengthBinding>() {
                 5 -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     wifiInfo.txLinkSpeedMbps.toString() + LINK_SPEED_UNITS
                 } else {
-                    getString(R.string.ui_not_support_android_version, "10.0")
+                    getString(R.string.ui_not_support_android_version, "10")
                 }
                 6 -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     wifiInfo.rxLinkSpeedMbps.toString() + LINK_SPEED_UNITS
                 } else {
-                    getString(R.string.ui_not_support_android_version, "10.0")
+                    getString(R.string.ui_not_support_android_version, "10")
                 }
                 7 -> wifiInfo.rssi.toString() + "dBm"
                 8 -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

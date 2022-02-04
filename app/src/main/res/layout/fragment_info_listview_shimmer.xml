@@ -6,10 +6,6 @@
     <com.skydoves.androidveil.VeilRecyclerFrameView
         android:id="@+id/rvlist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:scrollbars="vertical" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

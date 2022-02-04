@@ -1,6 +1,5 @@
 package hibernate.v2.testyourandroid.ui.app
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -19,11 +18,11 @@ import hibernate.v2.testyourandroid.ui.appinfo.AppInfoFragment.Companion.ARG_APP
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
 import hibernate.v2.testyourandroid.util.Utils.snackbar
+import hibernate.v2.testyourandroid.util.ext.dp2px
 import hibernate.v2.testyourandroid.util.ext.isSystemPackage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.ArrayList
 import java.util.Locale
 
 /**
@@ -35,8 +34,7 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentInfoListviewShimmerBinding =
-        FragmentInfoListviewShimmerBinding.inflate(inflater, container, false)
+    ) = FragmentInfoListviewShimmerBinding.inflate(inflater, container, false)
 
     private lateinit var adapter: AppItemAdapter
     private val appList = ArrayList<AppItem>()
@@ -44,9 +42,7 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let { arguments ->
-            appType = arguments.getInt(ARG_APP_TYPE, ARG_APP_TYPE_USER)
-        }
+        appType = arguments?.getInt(ARG_APP_TYPE, ARG_APP_TYPE_USER) ?: ARG_APP_TYPE_USER
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,7 +52,8 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
     }
 
     private fun initRecyclerView() {
-        adapter = AppItemAdapter(appList, object : AppItemAdapter.ItemClickListener {
+        val viewBinding = viewBinding!!
+        adapter = AppItemAdapter(object : AppItemAdapter.ItemClickListener {
             override fun onItemDetailClick(appItem: AppItem) {
                 val intent = Intent(context, AppInfoActivity::class.java)
                 val bundle = Bundle()
@@ -65,17 +62,35 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
                 startActivity(intent)
             }
         })
-        viewBinding!!.rvlist.setAdapter(adapter)
-        viewBinding!!.rvlist.setLayoutManager(LinearLayoutManager(context))
-        viewBinding!!.rvlist.setVeilLayout(R.layout.item_list_info_app, 5)
+        val rvlist = viewBinding.rvlist
+        rvlist.setAdapter(adapter)
+        rvlist.setLayoutManager(LinearLayoutManager(context))
+        rvlist.setVeilLayout(R.layout.item_list_info_app, 5)
+        rvlist.getRecyclerView().apply {
+            clipToPadding = false
+            setPaddingRelative(
+                paddingStart,
+                12f.dp2px(),
+                paddingEnd,
+                12f.dp2px()
+            )
+        }
+        rvlist.getVeiledRecyclerView().apply {
+            clipToPadding = false
+            setPaddingRelative(
+                paddingStart,
+                12f.dp2px(),
+                paddingEnd,
+                12f.dp2px()
+            )
+        }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun initAppList() {
-        viewBinding!!.rvlist.veil()
-        appList.clear()
+        val viewBinding = viewBinding!!
+        viewBinding.rvlist.veil()
 
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             try {
                 context?.packageManager?.let { packageManager ->
                     val packs =
@@ -113,8 +128,8 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
                 snackbar(view, stringRid = R.string.ui_error)?.show()
             } finally {
                 withContext(Dispatchers.Main) {
-                    viewBinding?.rvlist?.unVeil()
-                    adapter.notifyDataSetChanged()
+                    viewBinding.rvlist.unVeil()
+                    adapter.submitList(appList)
                 }
             }
         }
@@ -126,12 +141,10 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
         const val ARG_APP_TYPE_SYSTEM = 1
         const val ARG_APP_TYPE_ALL = 2
 
-        fun newInstance(sensorType: Int): AppListFragment {
-            val fragment = AppListFragment()
-            val args = Bundle()
-            args.putInt(ARG_APP_TYPE, sensorType)
-            fragment.arguments = args
-            return fragment
+        fun newInstance(sensorType: Int) = AppListFragment().apply {
+            arguments = Bundle().apply {
+                putInt(ARG_APP_TYPE, sensorType)
+            }
         }
     }
 }

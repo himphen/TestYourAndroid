@@ -36,8 +36,7 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentMainGridviewBinding =
-        FragmentMainGridviewBinding.inflate(inflater, container, false)
+    ) = FragmentMainGridviewBinding.inflate(inflater, container, false)
 
     private lateinit var adapter: MainTestAdapter
     private var list = mutableListOf<Any>()
@@ -71,7 +70,7 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
             }
         viewBinding!!.gridRv.setHasFixedSize(true)
         viewBinding!!.gridRv.layoutManager = gridLayoutManager
-        adapter = MainTestAdapter(list, object : MainTestAdapter.ItemClickListener {
+        adapter = MainTestAdapter(object : MainTestAdapter.ItemClickListener {
             override fun onItemClick(gridItem: GridItem) {
                 gridItem.intentClass?.let {
                     val intent = Intent(context, it)
@@ -111,6 +110,7 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
             }
         })
         viewBinding!!.gridRv.adapter = adapter
+        adapter.submitList(list)
     }
 
     private fun addTestSectionItem() {

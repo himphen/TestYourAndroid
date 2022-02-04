@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-<!--    <CheckBoxPreference-->
-<!--        android:icon="@drawable/baseline_metric_24"-->
-<!--        android:key="pref_metric_unit"-->
-<!--        android:summaryOn="@string/settings_unit_metric"-->
-<!--        android:summaryOff="@string/settings_unit_imperial"-->
-<!--        android:title="@string/settings_unit"-->
-<!--        android:defaultValue="true"/>-->
+    <!--    <CheckBoxPreference-->
+    <!--        android:icon="@drawable/baseline_metric_24"-->
+    <!--        android:key="pref_metric_unit"-->
+    <!--        android:summaryOn="@string/settings_unit_metric"-->
+    <!--        android:summaryOff="@string/settings_unit_imperial"-->
+    <!--        android:title="@string/settings_unit"-->
+    <!--        android:defaultValue="true"/>-->
 
     <Preference
         android:icon="@drawable/baseline_invert_colors_24"
         android:key="pref_theme_mode"
-        tools:summary="Dark Mode"
-        android:title="@string/settings_theme" />
+        android:title="@string/settings_theme"
+        tools:summary="Dark Mode" />
 
     <PreferenceCategory android:title="@string/main_tab_title_2">
         <Preference
@@ -25,11 +25,6 @@
             android:icon="@drawable/baseline_share_24"
             android:key="pref_share"
             android:title="@string/ui_share" />
-
-        <Preference
-            android:icon="@drawable/baseline_settings_backup_restore_24"
-            android:key="pref_restore_purchase"
-            android:title="@string/pref_restore_purchase" />
 
         <Preference
             android:icon="@drawable/baseline_feedback_24"
@@ -45,6 +40,16 @@
             android:icon="@drawable/baseline_translate_24"
             android:key="pref_improve_translation"
             android:title="Help improve translation!" />
+
+        <CheckBoxPreference
+            android:icon="@drawable/outline_sentiment_very_satisfied_24"
+            android:key="pref_hide_fullscreen_ad"
+            android:title="@string/pref_hide_fullscreen_ad" />
+
+        <Preference
+            android:icon="@drawable/baseline_settings_backup_restore_24"
+            android:key="pref_restore_purchase"
+            android:title="@string/pref_restore_purchase" />
 
         <Preference
             android:icon="@drawable/baseline_info_24"

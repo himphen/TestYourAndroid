@@ -34,8 +34,8 @@ import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.ui.base.InfoItemAdapter
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.startSettingsActivity
+import hibernate.v2.testyourandroid.util.ext.disableChangeAnimation
 import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
-import java.util.ArrayList
 
 /**
  * Created by himphen on 21/5/16.
@@ -69,15 +69,18 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val stringArray = resources.getStringArray(R.array.test_gps_string_array)
-        for (string in stringArray) {
-            list.add(InfoItem(string, getString(R.string.gps_scanning)))
+        stringArray.forEachIndexed { index, string ->
+            list.add(InfoItem(string, getString(R.string.gps_scanning), index))
         }
-        adapter = InfoItemAdapter(list)
+        adapter = InfoItemAdapter().apply {
+            submitList(list)
+        }
         viewBinding?.rvlist?.adapter = adapter
         viewBinding?.rvlist?.layoutManager = LinearLayoutManager(context)
+        viewBinding?.rvlist?.disableChangeAnimation()
 
         locationManager = context?.applicationContext?.getSystemService(Context.LOCATION_SERVICE)
-                as LocationManager?
+            as LocationManager?
 
         if (!isPermissionsGranted(permissions)) {
             permissionLifecycleObserver?.requestPermissions(permissions)
@@ -178,7 +181,7 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
             MaterialAlertDialogBuilder(it)
                 .setTitle(R.string.ui_caution)
                 .setMessage(R.string.gps_enable_message)
-                .setPositiveButton(R.string.gps_enable_posbtn) {dialog, which ->
+                .setPositiveButton(R.string.gps_enable_posbtn) { dialog, which ->
                     startSettingsActivity(context, Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                 }
                 .setNegativeButton(R.string.ui_cancel, null)
@@ -192,7 +195,7 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
             if (!isPermissionsGranted(permissions)) return
 
             val locationList = locationResult.locations
-            if (locationList.size > 0) { //The last location in the list is the newest
+            if (locationList.size > 0) { // The last location in the list is the newest
                 val lastKnowLocation = locationList.last()
 
                 mGoogleMap?.let { mGoogleMap ->
@@ -200,13 +203,14 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
                     for (i in list.indices) {
                         list[i].contentText = getData(i, lastKnowLocation)
                     }
-                    adapter.notifyDataSetChanged()
+                    adapter.submitList(list)
                     mGoogleMap.animateCamera(
                         CameraUpdateFactory.newLatLngZoom(
                             LatLng(
                                 lastKnowLocation.latitude,
                                 lastKnowLocation.longitude
-                            ), 15f
+                            ),
+                            15f
                         )
                     )
                 }

@@ -49,7 +49,7 @@ class InfoHardwareFragment : BaseFragment<FragmentInfoListviewBinding>() {
     private fun init() {
         val stringArray = resources.getStringArray(R.array.info_hardware_string_array)
         val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
-        adapter.setData(list)
+        adapter.submitList(list)
     }
 
     @Suppress("DEPRECATION")

@@ -34,7 +34,6 @@ import hibernate.v2.testyourandroid.util.SensorUtils.getTemperatureCounterSensor
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.logException
 import hibernate.v2.testyourandroid.util.ext.convertDpToPx
-import java.util.ArrayList
 import kotlin.math.exp
 import kotlin.math.ln
 
@@ -269,16 +268,20 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
             }
             list.add(infoItem)
         }
-        adapter = InfoItemAdapter(list)
+        adapter = InfoItemAdapter().apply {
+            submitList(list)
+        }
         viewBinding.rvlist.adapter = adapter
     }
 
     private val accelerometerListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
         override fun onSensorChanged(event: SensorEvent) {
-            reading = ("X: " + String.format("%1.4f", event.values[0]) + " m/s²\nY: "
-                    + String.format("%1.4f", event.values[1]) + " m/s²\nZ: "
-                    + String.format("%1.4f", event.values[2]) + " m/s²")
+            reading = (
+                "X: " + String.format("%1.4f", event.values[0]) + " m/s²\nY: " +
+                    String.format("%1.4f", event.values[1]) + " m/s²\nZ: " +
+                    String.format("%1.4f", event.values[2]) + " m/s²"
+                )
             lastXValue += 1.0
             series.appendData(
                 DataPoint(lastXValue, event.values[0].toDouble()),
@@ -294,7 +297,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
             )
             viewBinding?.graphView?.viewport?.scrollToEnd()
             list[0].contentText = reading
-            adapter?.notifyDataSetChanged()
+            adapter?.submitList(list)
         }
     }
     private val lightListener: SensorEventListener = object : SensorEventListener {
@@ -305,7 +308,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
             viewBinding?.graphView?.viewport?.scrollToEnd()
             lastXValue += 1.0
             list[0].contentText = reading
-            adapter?.notifyDataSetChanged()
+            adapter?.submitList(list)
         }
     }
     private val pressureListener: SensorEventListener = object : SensorEventListener {
@@ -316,7 +319,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
             viewBinding?.graphView?.viewport?.scrollToEnd()
             lastXValue += 1.0
             list[0].contentText = reading
-            adapter?.notifyDataSetChanged()
+            adapter?.submitList(list)
         }
     }
     private val proximityListener: SensorEventListener = object : SensorEventListener {
@@ -327,7 +330,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
             list[0].contentText = reading
             series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
             viewBinding?.graphView?.viewport?.scrollToEnd()
-            adapter?.notifyDataSetChanged()
+            adapter?.submitList(list)
         }
     }
     private val stepListener: SensorEventListener = object : SensorEventListener {
@@ -342,7 +345,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
             list[0].contentText = reading
             series.appendData(DataPoint(lastXValue, value.toDouble()), true, 36)
             viewBinding?.graphView?.viewport?.scrollToEnd()
-            adapter?.notifyDataSetChanged()
+            adapter?.submitList(list)
         }
     }
     private val temperatureListener: SensorEventListener = object : SensorEventListener {
@@ -356,7 +359,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
             viewBinding?.graphView?.viewport?.scrollToEnd()
             lastXValue += 1.0
             list[0].contentText = reading
-            adapter?.notifyDataSetChanged()
+            adapter?.submitList(list)
         }
     }
     private val compassListener: SensorEventListener = object : SensorEventListener {
@@ -402,7 +405,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
 
                 viewBinding?.graphView?.viewport?.scrollToEnd()
                 list[0].contentText = formatter.format(azimuth)
-                adapter?.notifyDataSetChanged()
+                adapter?.submitList(list)
 
                 val an: Animation = RotateAnimation(
                     -currentAzimuth, -azimuth,
@@ -448,8 +451,12 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
     }
 
     fun calculateDewPoint(temperature: Float, relativeHumidity: Float): Float {
-        return (TN * ((ln(relativeHumidity / 100) + MASS * temperature / (TN + temperature))
-                / (MASS - (ln(relativeHumidity / 100) + MASS * temperature / (TN + temperature)))))
+        return (
+            TN * (
+                (ln(relativeHumidity / 100) + MASS * temperature / (TN + temperature)) /
+                    (MASS - (ln(relativeHumidity / 100) + MASS * temperature / (TN + temperature)))
+                )
+            )
     }
 
     companion object {

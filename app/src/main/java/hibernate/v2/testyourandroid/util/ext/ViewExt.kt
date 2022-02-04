@@ -4,7 +4,8 @@ import android.animation.ObjectAnimator
 import android.content.res.Resources
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
 
 fun View.slideDown() {
     visibility = View.VISIBLE
@@ -54,4 +55,9 @@ fun View.slideUp() {
         }
         valueAnimator.start()
     }
+}
+
+fun RecyclerView?.disableChangeAnimation() {
+    if (this == null) return
+    (itemAnimator as? SimpleItemAnimator)?.supportsChangeAnimations = false
 }

@@ -14,15 +14,18 @@ import hibernate.v2.testyourandroid.util.ext.isSystemPackage
 
 class AppChooseFragment : BaseFragment<FragmentMainInfoBinding>() {
 
+    private lateinit var adapter: AppChooseAdapter
+
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentMainInfoBinding =
-        FragmentMainInfoBinding.inflate(inflater, container, false)
+    ) = FragmentMainInfoBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val viewBinding = viewBinding!!
 
         // User, System, All
         val countArray = intArrayOf(0, 0, 0)
@@ -51,13 +54,15 @@ class AppChooseFragment : BaseFragment<FragmentMainInfoBinding>() {
             )
         }
 
-        viewBinding!!.rvlist.adapter =
-            AppChooseAdapter(list, object : AppChooseAdapter.ItemClickListener {
-                override fun onItemDetailClick(appChooseItem: AppChooseItem) {
-                    val intent = Intent(context, AppListActivity::class.java)
-                    intent.putExtra(AppListFragment.ARG_APP_TYPE, appChooseItem.appType)
-                    startActivity(intent)
-                }
-            })
+        adapter = AppChooseAdapter(object : AppChooseAdapter.ItemClickListener {
+            override fun onItemDetailClick(appChooseItem: AppChooseItem) {
+                val intent = Intent(context, AppListActivity::class.java)
+                intent.putExtra(AppListFragment.ARG_APP_TYPE, appChooseItem.appType)
+                startActivity(intent)
+            }
+        })
+
+        viewBinding.rvlist.adapter = adapter
+        adapter.submitList(list)
     }
 }

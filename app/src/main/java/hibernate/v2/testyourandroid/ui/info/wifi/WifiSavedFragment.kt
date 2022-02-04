@@ -29,9 +29,7 @@ class WifiSavedFragment : BaseFragment<FragmentInfoListviewBinding>() {
         FragmentInfoListviewBinding.inflate(inflater, container, false)
 
     companion object {
-        fun newInstance(): WifiSavedFragment {
-            return WifiSavedFragment()
-        }
+        fun newInstance() = WifiSavedFragment()
     }
 
     private lateinit var adapter: InfoItemAdapter
@@ -45,14 +43,19 @@ class WifiSavedFragment : BaseFragment<FragmentInfoListviewBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = InfoItemAdapter(list)
+        adapter = InfoItemAdapter().apply {
+            submitList(list)
+        }
         adapter.type = InfoItemAdapter.TYPE_SINGLE_LINE
         viewBinding!!.rvlist.adapter = adapter
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_settings -> startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
+            R.id.action_settings -> {
+                startSettingsActivity(context, Settings.ACTION_WIFI_SETTINGS)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -68,7 +71,7 @@ class WifiSavedFragment : BaseFragment<FragmentInfoListviewBinding>() {
         } else {
             list.clear()
             list.add(InfoItem(getString(R.string.ui_not_support), ""))
-            adapter.notifyDataSetChanged()
+            adapter.submitList(list)
         }
     }
 
@@ -88,13 +91,14 @@ class WifiSavedFragment : BaseFragment<FragmentInfoListviewBinding>() {
                 for (wifiConfiguration in wifiConfigurations) {
                     list.add(
                         InfoItem(
-                            wifiConfiguration.SSID.replace("\"".toRegex(), "")
+                            wifiConfiguration.SSID.replace("\"".toRegex(), ""),
+                            ""
                         )
                     )
                 }
             } catch (e: Exception) {
             }
         }
-        adapter.notifyDataSetChanged()
+        adapter.submitList(list)
     }
 }

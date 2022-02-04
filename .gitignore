@@ -147,3 +147,4 @@ fabric.properties
 secrets.properties
 crowdin.properties
 runConfigurations.xml
+.idea/codeStyles/*

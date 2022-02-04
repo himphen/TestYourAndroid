@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.google.firebase.analytics.ktx.analytics
@@ -26,10 +28,26 @@ import hibernate.v2.testyourandroid.ui.main.item.MainTestTitleItem
 import hibernate.v2.testyourandroid.util.ext.slideUp
 
 class MainTestAdapter(
-    private val list: List<Any>,
     private val itemClickListener: ItemClickListener
-) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : ListAdapter<Any, RecyclerView.ViewHolder>(DiffCallback()) {
+
+    class DiffCallback : DiffUtil.ItemCallback<Any>() {
+        override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Any, newItem: Any): Boolean {
+            return if (oldItem is GridItem && newItem is GridItem) {
+                oldItem.text == newItem.text
+            } else if (oldItem is MainTestTitleItem && newItem is MainTestTitleItem) {
+                true
+            } else if (oldItem is MainTestRatingItem && newItem is MainTestRatingItem) {
+                true
+            } else {
+                false
+            }
+        }
+    }
 
     interface ItemClickListener {
         fun onItemClick(gridItem: GridItem)
@@ -76,10 +94,8 @@ class MainTestAdapter(
         }
     }
 
-    override fun getItemCount(): Int = list.size
-
     override fun getItemViewType(position: Int): Int {
-        return when (list[position]) {
+        return when (getItem(position)) {
             is GridItem -> VIEW_TYPE_ICON
             is MainTestTitleItem -> VIEW_TYPE_TITLE
             is MainTestRatingItem -> VIEW_TYPE_RATING
@@ -111,7 +127,7 @@ class MainTestAdapter(
             is IconViewHolder -> {
                 val itemBinding = holder.viewBinding
 
-                val gridItem = list[position] as GridItem
+                val gridItem = getItem(position) as GridItem
                 itemBinding.mainIv.load(gridItem.image)
                 itemBinding.mainTv.text = gridItem.text
 
@@ -131,7 +147,8 @@ class MainTestAdapter(
                                     ContextCompat.getColor(
                                         itemBinding.mainIv.context,
                                         R.color.lineColor4
-                                    ), PorterDuff.Mode.SRC_ATOP
+                                    ),
+                                    PorterDuff.Mode.SRC_ATOP
                                 )
                             }
                             text = "NEW"
@@ -153,7 +170,8 @@ class MainTestAdapter(
                                     ContextCompat.getColor(
                                         itemBinding.mainIv.context,
                                         R.color.lineColor4
-                                    ), PorterDuff.Mode.SRC_ATOP
+                                    ),
+                                    PorterDuff.Mode.SRC_ATOP
                                 )
                             }
                             text = "BETA"
@@ -172,12 +190,12 @@ class MainTestAdapter(
             }
             is TitleViewHolder -> {
                 val itemBinding = holder.viewBinding
-                val item = list[position] as MainTestTitleItem
+                val item = getItem(position) as MainTestTitleItem
                 itemBinding.titleTv.text = item.title
             }
             is AdViewHolder -> {
                 val itemBinding = holder.viewBinding
-                val item = list[position] as MainTestAdItem
+                val item = getItem(position) as MainTestAdItem
                 if (itemBinding.rootView.childCount > 0) {
                     itemBinding.rootView.removeAllViews()
                 }

@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.preference.CheckBoxPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -126,6 +127,14 @@ class MainSettingsFragment : PreferenceFragmentCompat() {
                 .show()
 
             true
+        }
+        findPreference<CheckBoxPreference>("pref_hide_fullscreen_ad")?.let { it ->
+            it.isChecked = sharedPreferencesManager.hideFullscreenAd
+            it.setOnPreferenceChangeListener { preference, newValue ->
+                sharedPreferencesManager.hideFullscreenAd = newValue as Boolean
+
+                true
+            }
         }
         findPreference<Preference>("pref_version")?.apply {
             summary = Utils.getAppVersionName(context)

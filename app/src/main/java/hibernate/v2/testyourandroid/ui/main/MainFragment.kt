@@ -19,8 +19,7 @@ class MainFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentViewPagerConatinerBinding =
-        FragmentViewPagerConatinerBinding.inflate(inflater, container, false)
+    ) = FragmentViewPagerConatinerBinding.inflate(inflater, container, false)
 
     private var adView: AdView? = null
 

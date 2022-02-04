@@ -78,11 +78,13 @@ class AppInfoPermissionFragment : BaseFragment<FragmentInfoListviewBinding>() {
                         val permissionGroupLabel = key as String
                         val value = map[permissionGroupLabel]
                         value?.let {
-                            value.sortWith(Comparator { item1, item2 ->
-                                item1.permissionLabel.compareTo(
-                                    item2.permissionLabel
-                                )
-                            })
+                            value.sortWith(
+                                Comparator { item1, item2 ->
+                                    item1.permissionLabel.compareTo(
+                                        item2.permissionLabel
+                                    )
+                                }
+                            )
                             val permissionLabel = StringBuilder()
                             for (s in value) {
                                 permissionLabel.append(s.permissionLabel).append("\n")
@@ -90,14 +92,17 @@ class AppInfoPermissionFragment : BaseFragment<FragmentInfoListviewBinding>() {
                             list.add(
                                 InfoItem(
                                     permissionGroupLabel,
-                                    permissionLabel.toString().trim { it <= ' ' })
+                                    permissionLabel.toString().trim { it <= ' ' }
+                                )
                             )
                         }
                     }
                 } catch (e: Exception) {
                     list.add(InfoItem("Fail to fetch the permissions", "Error: -1034"))
                 }
-                viewBinding!!.rvlist.adapter = InfoItemAdapter(list)
+                viewBinding!!.rvlist.adapter = InfoItemAdapter().apply {
+                    submitList(list)
+                }
             }
         } ?: run {
             notAppFound(activity)

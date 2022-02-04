@@ -31,6 +31,7 @@ class InfoOpenGLFragment : BaseFragment<FragmentInfoOpenglListviewBinding>() {
         init()
     }
 
+    private lateinit var adapter: InfoItemAdapter
     private lateinit var list: List<InfoItem>
 
     private fun init() {
@@ -49,7 +50,7 @@ class InfoOpenGLFragment : BaseFragment<FragmentInfoOpenglListviewBinding>() {
                 list[12].contentText = gl.glGetString(GL10.GL_EXTENSIONS).replace(" ", "\n")
 
                 activity?.runOnUiThread {
-                    viewBinding?.rvlist?.adapter?.notifyDataSetChanged()
+                    adapter.submitList(list)
                     viewBinding?.root?.removeView(viewBinding?.mGLView)
                 }
             }
@@ -63,7 +64,9 @@ class InfoOpenGLFragment : BaseFragment<FragmentInfoOpenglListviewBinding>() {
 
         val stringArray = resources.getStringArray(R.array.info_open_gl_string_array)
         list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
-        viewBinding!!.rvlist.adapter = InfoItemAdapter(list)
+        adapter = InfoItemAdapter()
+        viewBinding!!.rvlist.adapter = adapter
+        adapter.submitList(list)
     }
 
     private fun getData(j: Int): String {

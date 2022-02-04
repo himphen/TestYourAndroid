@@ -12,7 +12,7 @@
     android:focusable="true"
     app:cardCornerRadius="4dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,12 +26,12 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/titleTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:textColor="@color/secondaryText"
             android:textSize="16sp"
             tools:text="Android" />
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

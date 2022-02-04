@@ -40,8 +40,7 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentViewPagerConatinerBinding =
-        FragmentViewPagerConatinerBinding.inflate(inflater, container, false)
+    ) = FragmentViewPagerConatinerBinding.inflate(inflater, container, false)
 
     companion object {
         fun newInstant() = WifiFragment()
@@ -72,10 +71,10 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
 
         activity?.let { activity ->
             wifiManager = activity.applicationContext.getSystemService(Context.WIFI_SERVICE)
-                    as WifiManager
+                as WifiManager
             connectivityManager =
                 activity.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE)
-                        as ConnectivityManager
+                as ConnectivityManager
 
             val tabTitles = resources.getStringArray(R.array.test_wifi_tab_title)
             // Note that we are passing childFragmentManager, not FragmentManager
@@ -84,11 +83,11 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
             viewBinding!!.viewPager.adapter = adapter
             viewBinding!!.viewPager.offscreenPageLimit = 2
             viewBinding!!.viewPager.registerOnPageChangeCallback(object :
-                ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    activity.supportActionBar?.title = (tabTitles[position])
-                }
-            })
+                    ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        activity.supportActionBar?.title = (tabTitles[position])
+                    }
+                })
 
             TabLayoutMediator(viewBinding!!.tabLayout, viewBinding!!.viewPager) { tab, position ->
                 tab.customView = adapter.getTabView(position)
@@ -119,7 +118,8 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
         isNetworkAvailable = checkNetworkAvailable()
 
         context?.registerReceiver(
-            wifiStateChangedReceiver, IntentFilter(
+            wifiStateChangedReceiver,
+            IntentFilter(
                 WifiManager.WIFI_STATE_CHANGED_ACTION
             )
         )

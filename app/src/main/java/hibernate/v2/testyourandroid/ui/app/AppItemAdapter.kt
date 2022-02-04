@@ -3,6 +3,8 @@ package hibernate.v2.testyourandroid.ui.app
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import hibernate.v2.testyourandroid.databinding.ItemListInfoAppBinding
@@ -12,9 +14,18 @@ import hibernate.v2.testyourandroid.model.AppItem
  * Created by himphen on 25/5/16.
  */
 class AppItemAdapter(
-    private val list: List<AppItem>,
     private val itemClickListener: ItemClickListener
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : ListAdapter<AppItem, RecyclerView.ViewHolder>(DiffCallback()) {
+
+    class DiffCallback : DiffUtil.ItemCallback<AppItem>() {
+        override fun areItemsTheSame(oldItem: AppItem, newItem: AppItem): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: AppItem, newItem: AppItem): Boolean {
+            return oldItem.packageName == newItem.packageName
+        }
+    }
 
     interface ItemClickListener {
         fun onItemDetailClick(appItem: AppItem)
@@ -31,7 +42,7 @@ class AppItemAdapter(
     }
 
     override fun onBindViewHolder(rawHolder: RecyclerView.ViewHolder, position: Int) {
-        val item = list[position]
+        val item = getItem(position)
         val itemBinding = (rawHolder as ItemViewHolder).viewBinding
 
         itemBinding.titleTv.text = item.appName
@@ -42,8 +53,6 @@ class AppItemAdapter(
         itemBinding.rootView.tag = item
         itemBinding.rootView.setOnClickListener { view -> itemClickListener.onItemDetailClick(view.tag as AppItem) }
     }
-
-    override fun getItemCount(): Int = list.size
 
     internal class ItemViewHolder(val viewBinding: ItemListInfoAppBinding) :
         RecyclerView.ViewHolder(viewBinding.root)
