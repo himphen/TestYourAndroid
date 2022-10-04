@@ -10,6 +10,7 @@ import hibernate.v2.testyourandroid.databinding.FragmentMainInfoBinding
 import hibernate.v2.testyourandroid.model.AppChooseItem
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils.getInstalledPackages
+import hibernate.v2.testyourandroid.util.ext.disableChangeAnimation
 import hibernate.v2.testyourandroid.util.ext.isSystemPackage
 
 class AppChooseFragment : BaseFragment<FragmentMainInfoBinding>() {
@@ -63,6 +64,7 @@ class AppChooseFragment : BaseFragment<FragmentMainInfoBinding>() {
         })
 
         viewBinding.rvlist.adapter = adapter
+        viewBinding.rvlist.disableChangeAnimation()
         adapter.submitList(list)
     }
 }

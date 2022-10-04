@@ -2,8 +2,6 @@ package hibernate.v2.testyourandroid.ui.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import hibernate.v2.testyourandroid.databinding.ItemListInfoBinding
 import hibernate.v2.testyourandroid.databinding.ItemListInfoMinimizedBinding
@@ -13,17 +11,7 @@ import hibernate.v2.testyourandroid.model.InfoItem
 /**
  * Created by himphen on 25/5/16.
  */
-class InfoItemAdapter : ListAdapter<InfoItem, RecyclerView.ViewHolder>(DiffCallback()) {
-
-    class DiffCallback : DiffUtil.ItemCallback<InfoItem>() {
-        override fun areItemsTheSame(oldItem: InfoItem, newItem: InfoItem): Boolean {
-            return oldItem.getId() == newItem.getId()
-        }
-
-        override fun areContentsTheSame(oldItem: InfoItem, newItem: InfoItem): Boolean {
-            return oldItem.contentText == newItem.contentText
-        }
-    }
+class InfoItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     companion object {
         const val TYPE_SIMPLE = 1
@@ -32,6 +20,13 @@ class InfoItemAdapter : ListAdapter<InfoItem, RecyclerView.ViewHolder>(DiffCallb
     }
 
     var type = TYPE_SIMPLE
+    private var list = listOf<InfoItem>()
+
+    constructor() : super()
+    constructor(list: List<InfoItem>) : super() {
+        this.list = list
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (type) {
@@ -60,7 +55,7 @@ class InfoItemAdapter : ListAdapter<InfoItem, RecyclerView.ViewHolder>(DiffCallb
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = getItem(position)
+        val item = list[position]
         when (holder) {
             is ItemViewHolder -> {
                 val itemBinding = holder.viewBinding
@@ -77,6 +72,13 @@ class InfoItemAdapter : ListAdapter<InfoItem, RecyclerView.ViewHolder>(DiffCallb
                 itemBinding.contentTv.text = item.contentText
             }
         }
+    }
+
+    override fun getItemCount(): Int = list.size
+
+    fun setData(list: List<InfoItem>) {
+        this.list = list
+        notifyDataSetChanged()
     }
 
     internal class ItemViewHolder(val viewBinding: ItemListInfoBinding) :

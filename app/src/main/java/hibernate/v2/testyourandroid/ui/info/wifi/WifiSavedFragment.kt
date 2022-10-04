@@ -1,6 +1,5 @@
 package hibernate.v2.testyourandroid.ui.info.wifi
 
-import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -44,7 +43,7 @@ class WifiSavedFragment : BaseFragment<FragmentInfoListviewBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = InfoItemAdapter().apply {
-            submitList(list)
+            setData(list)
         }
         adapter.type = InfoItemAdapter.TYPE_SINGLE_LINE
         viewBinding!!.rvlist.adapter = adapter
@@ -71,12 +70,10 @@ class WifiSavedFragment : BaseFragment<FragmentInfoListviewBinding>() {
         } else {
             list.clear()
             list.add(InfoItem(getString(R.string.ui_not_support), ""))
-            adapter.submitList(list)
+            adapter.setData(list)
         }
     }
 
-    @SuppressLint("MissingPermission")
-    @Suppress("DEPRECATION")
     private fun getSavedListBelowApiQ() {
         list.clear()
         (parentFragment as WifiFragment?)?.wifiManager?.let { wifiManager ->
@@ -99,6 +96,6 @@ class WifiSavedFragment : BaseFragment<FragmentInfoListviewBinding>() {
             } catch (e: Exception) {
             }
         }
-        adapter.submitList(list)
+        adapter.setData(list)
     }
 }

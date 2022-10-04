@@ -146,6 +146,7 @@
     <string name="title_activity_wifi">Wi-Fi</string>
     <string name="title_activity_wifi_strength" tools:ignore="MissingTranslation">Wi-Fi Strength</string>
     <string name="title_activity_bluetooth">Bluetooth</string>
+    <string name="title_activity_ble">Bluetooth Low Energy</string>
     <string name="title_activity_accelerometer">Accelerometer</string>
     <string name="title_activity_step">Pedometer</string>
     <string name="title_activity_temperature">Temperature Sensor</string>
@@ -179,7 +180,6 @@
         <item>@string/title_activity_flashlight</item>
         <item>@string/title_activity_bubble_level</item>
         <item>@string/title_activity_sound_meter</item>
-        <item>@string/title_activity_speed_test</item>
     </string-array>
     <string-array name="hardware_string_array" translatable="false">
         <item>@string/title_activity_screen</item>
@@ -398,7 +398,6 @@
         <item>@string/test_wifi_current_string_ssid</item>
         <item>@string/test_wifi_current_string_bssid</item>
         <item>@string/test_wifi_current_string_network_id</item>
-        <item>@string/test_wifi_current_string_mac_address</item>
         <item>@string/test_wifi_current_string_speed</item>
         <item>@string/test_wifi_current_string_txspeed</item>
         <item>@string/test_wifi_current_string_rxspeed</item>
@@ -624,14 +623,12 @@
         <item>@string/info_gsm_string_2</item>
         <item>@string/info_gsm_string_3</item>
         <item>@string/info_gsm_string_4</item>
-        <item>@string/info_gsm_string_5</item>
         <item>@string/info_gsm_string_6</item>
         <item>@string/info_gsm_string_7</item>
         <item>@string/info_gsm_string_8</item>
         <item>@string/info_gsm_string_9</item>
         <item>@string/info_gsm_string_10</item>
         <item>@string/info_gsm_string_11</item>
-        <item>@string/info_gsm_string_12</item>
         <item>@string/info_gsm_string_13</item>
     </string-array>
 

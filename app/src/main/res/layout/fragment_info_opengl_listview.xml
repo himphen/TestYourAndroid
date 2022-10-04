@@ -16,6 +16,7 @@
         android:id="@+id/rvlist"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:overScrollMode="never"
         android:clipToPadding="false"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"

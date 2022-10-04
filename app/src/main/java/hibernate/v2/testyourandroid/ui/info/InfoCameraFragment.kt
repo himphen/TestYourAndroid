@@ -96,7 +96,7 @@ class InfoCameraFragment : BaseFragment<FragmentInfoListviewBinding>() {
         val stringArray = resources.getStringArray(R.array.info_camera_string_array)
         val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
         viewBinding?.rvlist?.adapter = InfoItemAdapter().apply {
-            submitList(list)
+            setData(list)
         }
     }
 

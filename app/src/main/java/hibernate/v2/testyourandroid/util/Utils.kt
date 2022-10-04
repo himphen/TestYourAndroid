@@ -12,7 +12,7 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
-import android.net.wifi.WifiInfo
+import android.net.wifi.ScanResult
 import android.os.Build
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -41,15 +41,17 @@ import hibernate.v2.testyourandroid.core.SharedPreferencesManager
 import hibernate.v2.testyourandroid.databinding.DialogPermissionBinding
 import hibernate.v2.testyourandroid.util.ext.convertDpToPx
 import hibernate.v2.testyourandroid.util.ext.md5
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.net.NetworkInterface
 import java.text.DecimalFormat
 import java.util.Locale
 import java.util.regex.Pattern
+import kotlin.time.Duration
 
 object Utils : KoinComponent {
 
@@ -345,30 +347,10 @@ object Utils : KoinComponent {
         return androidId.md5().uppercase(Locale.getDefault())
     }
 
-    fun ipAddressIntToString(i: Int): String {
-        return (i and 0xFF).toString() + "." + (i shr 8 and 0xFF) + "." + (i shr 16 and 0xFF) + "." + (i shr 24 and 0xFF)
-    }
+    fun ipAddressIntToString(i: Int?): String {
+        if (i == null) return "-"
 
-    @SuppressLint("HardwareIds", "MissingPermission")
-    fun getMacAddress(wifiInfo: WifiInfo): String? {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return wifiInfo.macAddress
-        }
-        return try {
-            NetworkInterface.getNetworkInterfaces()
-                .toList()
-                .find { networkInterface ->
-                    networkInterface.name.equals(
-                        "wlan0",
-                        ignoreCase = true
-                    )
-                }
-                ?.hardwareAddress
-                ?.joinToString(separator = ":") { byte -> "%02X".format(byte) }
-        } catch (ex: Exception) {
-            Logger.e(ex, "")
-            null
-        }
+        return (i and 0xFF).toString() + "." + (i shr 8 and 0xFF) + "." + (i shr 16 and 0xFF) + "." + (i shr 24 and 0xFF)
     }
 
     fun updateTheme(value: String?) {
@@ -459,4 +441,20 @@ fun <T> retry(numOfRetries: Int, block: () -> T): T {
         }
     }
     throw throwable!!
+}
+
+fun tickerFlow(period: Duration, initialDelay: Duration = Duration.ZERO) = flow {
+    delay(initialDelay)
+    while (true) {
+        emit(Unit)
+        delay(period)
+    }
+}
+
+fun ScanResult.getCompatSSID(): String? {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        wifiSsid.toString()
+    } else {
+        SSID
+    }
 }

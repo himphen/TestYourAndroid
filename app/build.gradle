@@ -17,8 +17,8 @@ gradle.projectsEvaluated {
 }
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion "32.0.0"
+    compileSdkVersion 33
+    buildToolsVersion "33.0.0"
 
     buildFeatures {
         viewBinding true
@@ -27,9 +27,9 @@ android {
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
         minSdkVersion 19
-        targetSdkVersion 32
-        versionCode 1911202
-        versionName "Red Bean Ice 11.2.0"
+        targetSdkVersion 33
+        versionCode 1911432
+        versionName "Red Bean Ice 11.4.3"
         multiDexEnabled true
         flavorDimensions "default"
         wearAppUnbundled true
@@ -83,6 +83,8 @@ android {
 
 dependencies {
     implementation project(':draw-library')
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt'
 
     // Google Android Support
     implementation 'androidx.multidex:multidex:2.0.1'

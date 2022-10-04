@@ -39,7 +39,6 @@ import hibernate.v2.testyourandroid.ui.tool.ToolBubbleLevelActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolFlashlightActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolQRScannerActivity
 import hibernate.v2.testyourandroid.ui.tool.ToolSoundMeterActivity
-import hibernate.v2.testyourandroid.ui.tool.speedtest.ToolSpeedTestActivity
 import hibernate.v2.testyourandroid.util.Utils
 import java.util.Random
 
@@ -57,15 +56,13 @@ class MainTestUtils(private val context: Context) {
             ToolQRScannerActivity::class.java,
             ToolFlashlightActivity::class.java,
             ToolBubbleLevelActivity::class.java,
-            ToolSoundMeterActivity::class.java,
-            ToolSpeedTestActivity::class.java
+            ToolSoundMeterActivity::class.java
         )
         val badgeArray = arrayOf(
             GridItem.Badge.NONE,
             GridItem.Badge.NONE,
             GridItem.Badge.NONE,
-            GridItem.Badge.NONE,
-            GridItem.Badge.NEW
+            GridItem.Badge.NONE
         )
 
         for (i in stringArray.indices) {

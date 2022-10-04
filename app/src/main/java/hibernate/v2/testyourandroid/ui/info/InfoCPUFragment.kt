@@ -51,7 +51,7 @@ class InfoCPUFragment : BaseFragment<FragmentInfoListviewBinding>() {
         memoryArray = resources.getStringArray(R.array.memory_string_array)
         val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
         viewBinding!!.rvlist.adapter = InfoItemAdapter().apply {
-            submitList(list)
+            setData(list)
         }
     }
 

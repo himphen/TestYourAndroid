@@ -101,7 +101,7 @@ class AppInfoPermissionFragment : BaseFragment<FragmentInfoListviewBinding>() {
                     list.add(InfoItem("Fail to fetch the permissions", "Error: -1034"))
                 }
                 viewBinding!!.rvlist.adapter = InfoItemAdapter().apply {
-                    submitList(list)
+                    setData(list)
                 }
             }
         } ?: run {

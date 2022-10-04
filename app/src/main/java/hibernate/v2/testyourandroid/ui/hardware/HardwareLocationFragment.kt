@@ -70,10 +70,10 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
         super.onViewCreated(view, savedInstanceState)
         val stringArray = resources.getStringArray(R.array.test_gps_string_array)
         stringArray.forEachIndexed { index, string ->
-            list.add(InfoItem(string, getString(R.string.gps_scanning), index))
+            list.add(InfoItem(string, getString(R.string.gps_scanning)))
         }
         adapter = InfoItemAdapter().apply {
-            submitList(list)
+            setData(list)
         }
         viewBinding?.rvlist?.adapter = adapter
         viewBinding?.rvlist?.layoutManager = LinearLayoutManager(context)
@@ -203,7 +203,7 @@ class HardwareLocationFragment : BaseFragment<FragmentHardwareLocationBinding>()
                     for (i in list.indices) {
                         list[i].contentText = getData(i, lastKnowLocation)
                     }
-                    adapter.submitList(list)
+                    adapter.setData(list)
                     mGoogleMap.animateCamera(
                         CameraUpdateFactory.newLatLngZoom(
                             LatLng(

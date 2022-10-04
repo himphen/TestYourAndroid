@@ -80,9 +80,13 @@ class AppInfoActionFragment : BaseFragment<FragmentInfoListviewBinding>() {
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)
                         } catch (e: Exception) {
-                            intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
+                            try {
+                                intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
+                            } catch (e1: Exception) {
+                                startActivity(Intent(Settings.ACTION_SETTINGS))
+                            }
                         }
                         GridItem.Action.APP_INFO_SETTINGS -> try {
                             intent = Intent(

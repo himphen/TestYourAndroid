@@ -8,7 +8,7 @@ Feel free to contribute with pull requests to this project if you have any andro
 Google Play Store link: https://play.google.com/store/apps/details?id=hibernate.v2.testyourandroid
 
 ## License
-Copyright 2018 Himphen Hui. 
+Copyright 2022 Himphen Hui. 
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

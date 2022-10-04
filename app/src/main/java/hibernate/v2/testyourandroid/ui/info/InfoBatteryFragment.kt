@@ -52,7 +52,7 @@ class InfoBatteryFragment : BaseFragment<FragmentInfoListviewBinding>() {
             fahrenheitTemperature = (32 + celsiusTemperature * 9 / 5).roundTo(2)
 
             val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
-            adapter.submitList(list)
+            adapter.setData(list)
         }
     }
     private lateinit var stringArray: Array<String>
@@ -66,7 +66,7 @@ class InfoBatteryFragment : BaseFragment<FragmentInfoListviewBinding>() {
         healthString = resources.getStringArray(R.array.info_battery_health_string_array)
         val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
         adapter = InfoItemAdapter().apply {
-            submitList(list)
+            setData(list)
         }
         viewBinding!!.rvlist.adapter = adapter
     }

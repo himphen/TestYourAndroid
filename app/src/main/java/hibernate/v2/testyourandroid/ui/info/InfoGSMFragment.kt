@@ -1,7 +1,6 @@
 package hibernate.v2.testyourandroid.ui.info
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -57,12 +56,10 @@ class InfoGSMFragment : BaseFragment<FragmentInfoListviewBinding>() {
                 context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
             val stringArray = resources.getStringArray(R.array.info_gsm_string_array)
             val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
-            adapter.submitList(list)
+            adapter.setData(list)
         }
     }
 
-    @Suppress("DEPRECATION")
-    @SuppressLint("HardwareIds", "MissingPermission")
     private fun getData(j: Int): String {
         if (activity.isPermissionsGranted(permissions)) {
             telephonyManager?.let { telephonyManager ->
@@ -72,15 +69,13 @@ class InfoGSMFragment : BaseFragment<FragmentInfoListviewBinding>() {
                         1 -> telephonyManager.simOperator
                         2 -> telephonyManager.simOperatorName
                         3 -> simStateArray[telephonyManager.simState]
-                        4 -> getImei(telephonyManager)
-                        5 -> telephonyManager.deviceSoftwareVersion ?: "N/A"
-                        6 -> telephonyManager.line1Number
-                        7 -> telephonyManager.networkCountryIso
-                        8 -> telephonyManager.networkOperator
-                        9 -> telephonyManager.networkOperatorName
-                        10 -> telephonyManager.isNetworkRoaming.toString()
-                        11 -> getSimSerialNumber(telephonyManager)
-                        12 -> getSubscriberId(telephonyManager)
+                        4 -> telephonyManager.deviceSoftwareVersion ?: "N/A"
+                        5 -> telephonyManager.line1Number
+                        6 -> telephonyManager.networkCountryIso
+                        7 -> telephonyManager.networkOperator
+                        8 -> telephonyManager.networkOperatorName
+                        9 -> telephonyManager.isNetworkRoaming.toString()
+                        10 -> getSubscriberId(telephonyManager)
                         else -> "N/A"
                     }
                 } catch (e: Exception) {
@@ -92,55 +87,13 @@ class InfoGSMFragment : BaseFragment<FragmentInfoListviewBinding>() {
         return "N/A"
     }
 
-    @SuppressLint("MissingPermission", "HardwareIds")
-    fun getSubscriberId(telephonyManager: TelephonyManager): String {
+    private fun getSubscriberId(telephonyManager: TelephonyManager): String {
         return when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
                 getString(R.string.ui_not_support)
             }
             else -> {
                 telephonyManager.subscriberId
-            }
-        }
-    }
-
-    @SuppressLint("MissingPermission", "HardwareIds")
-    fun getSimSerialNumber(telephonyManager: TelephonyManager): String {
-        return when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
-                getString(R.string.ui_not_support)
-            }
-            else -> {
-                telephonyManager.simSerialNumber
-            }
-        }
-    }
-
-    @Suppress("DEPRECATION")
-    @SuppressLint("MissingPermission", "HardwareIds")
-    fun getImei(telephonyManager: TelephonyManager): String {
-        return when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
-                getString(R.string.ui_not_support)
-            }
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
-                if (telephonyManager.phoneCount > 1) {
-                    "Sim Card 1: " + telephonyManager.getImei(0) +
-                        "\nSim Card 2: " + telephonyManager.getImei(1)
-                } else {
-                    telephonyManager.imei
-                }
-            }
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
-                if (telephonyManager.phoneCount > 1) {
-                    "Sim Card 1: " + telephonyManager.getDeviceId(0) +
-                        "\nSim Card 2: " + telephonyManager.getDeviceId(1)
-                } else {
-                    telephonyManager.getDeviceId(0)
-                }
-            }
-            else -> {
-                telephonyManager.deviceId
             }
         }
     }

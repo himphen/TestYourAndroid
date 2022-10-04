@@ -17,6 +17,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -24,17 +27,28 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.himphen.logger.Logger
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentViewPagerConatinerBinding
+import hibernate.v2.testyourandroid.model.CurrentWifi
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
 import hibernate.v2.testyourandroid.ui.base.BaseFragment
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
+import hibernate.v2.testyourandroid.util.tickerFlow
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Created by himphen on 21/5/16.
  */
 class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
 
-    override val permissions = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
+    private val viewModel by sharedViewModel<WifiViewModel>()
+
+    override val permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+    } else {
+        arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
+    }
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -43,6 +57,8 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
     ) = FragmentViewPagerConatinerBinding.inflate(inflater, container, false)
 
     companion object {
+        const val SCAN_WIFI_INTERVAL = 60000L
+        const val UPDATE_CHART_INTERVAL = 1000L
         fun newInstant() = WifiFragment()
     }
 
@@ -51,7 +67,6 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
     var wifiManager: WifiManager? = null
     private var connectivityManager: ConnectivityManager? = null
 
-    var isScanning = false
     var isNetworkAvailable = false
 
     private val wifiStateChangedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
@@ -66,9 +81,17 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
         }
     }
 
+    private val wifiScanReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            wifiManager?.let { wifiManager ->
+                viewModel.scanResultLiveData.postValue(wifiManager.scanResults)
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val viewBinding = viewBinding!!
         activity?.let { activity ->
             wifiManager = activity.applicationContext.getSystemService(Context.WIFI_SERVICE)
                 as WifiManager
@@ -80,16 +103,16 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
             // Note that we are passing childFragmentManager, not FragmentManager
             adapter = WifiFragmentPagerAdapter(this)
             (activity as BaseActivity<out ViewBinding>).supportActionBar?.title = tabTitles[0]
-            viewBinding!!.viewPager.adapter = adapter
-            viewBinding!!.viewPager.offscreenPageLimit = 2
-            viewBinding!!.viewPager.registerOnPageChangeCallback(object :
+            viewBinding.viewPager.adapter = adapter
+            viewBinding.viewPager.offscreenPageLimit = 2
+            viewBinding.viewPager.registerOnPageChangeCallback(object :
                     ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
                         activity.supportActionBar?.title = (tabTitles[position])
                     }
                 })
 
-            TabLayoutMediator(viewBinding!!.tabLayout, viewBinding!!.viewPager) { tab, position ->
+            TabLayoutMediator(viewBinding.tabLayout, viewBinding.viewPager) { tab, position ->
                 tab.customView = adapter.getTabView(position)
             }.attach()
 
@@ -97,6 +120,48 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
                 permissionLifecycleObserver?.requestPermissions(permissions)
             }
         }
+
+        initEvent()
+    }
+
+    override fun initEvent() {
+        viewModel.isScanningLiveData.observe(viewLifecycleOwner) {
+            if (it) {
+                wifiManager?.startScan()
+                wifiGetCurrent()
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                tickerFlow(SCAN_WIFI_INTERVAL.milliseconds).collect {
+                    wifiScanResult()
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                tickerFlow(UPDATE_CHART_INTERVAL.milliseconds).collect {
+                    wifiGetCurrent()
+                }
+            }
+        }
+    }
+
+    private fun wifiScanResult() {
+        Logger.t("lifecycle").d("wifiScanResult")
+        viewModel.scanResultLiveData.postValue(wifiManager?.scanResults ?: listOf())
+    }
+
+    private fun wifiGetCurrent() {
+        Logger.t("lifecycle").d("wifiGetCurrent")
+        viewModel.currentWifiLiveData.postValue(
+            CurrentWifi(
+                wifiManager?.connectionInfo,
+                wifiManager?.dhcpInfo
+            )
+        )
     }
 
     override fun onPause() {
@@ -108,9 +173,7 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
         super.onResume()
 
         if (isPermissionsGranted(permissions)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                onStartScanning()
-            }
+            onStartScanning()
         }
     }
 
@@ -121,6 +184,13 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
             wifiStateChangedReceiver,
             IntentFilter(
                 WifiManager.WIFI_STATE_CHANGED_ACTION
+            )
+        )
+
+        context?.registerReceiver(
+            wifiScanReceiver,
+            IntentFilter(
+                WifiManager.SCAN_RESULTS_AVAILABLE_ACTION
             )
         )
 
@@ -142,7 +212,7 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
                 }
             )
 
-            isScanning = true
+            viewModel.isScanningLiveData.postValue(true)
         } else {
             Toast.makeText(
                 context,
@@ -172,10 +242,15 @@ class WifiFragment : BaseFragment<FragmentViewPagerConatinerBinding>() {
     }
 
     private fun onStopScanning() {
-        isScanning = false
+        viewModel.isScanningLiveData.postValue(false)
 
         try {
             context?.unregisterReceiver(wifiStateChangedReceiver)
+        } catch (ignored: IllegalArgumentException) {
+        }
+
+        try {
+            context?.unregisterReceiver(wifiScanReceiver)
         } catch (ignored: IllegalArgumentException) {
         }
     }

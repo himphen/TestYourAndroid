@@ -11,15 +11,17 @@ import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import com.himphen.logger.AndroidLogAdapter
 import com.himphen.logger.Logger
+import com.himphen.logger.PrettyFormatStrategy
 import hibernate.v2.testyourandroid.BuildConfig
+import hibernate.v2.testyourandroid.ui.info.wifi.WifiViewModel
 import hibernate.v2.testyourandroid.util.Utils.getAdMobDeviceID
 import hibernate.v2.testyourandroid.util.Utils.updateTheme
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.dsl.module
-import java.util.ArrayList
 
 /**
  * Created by himphen on 24/5/16.
@@ -35,7 +37,11 @@ class App : Application() {
         super.onCreate()
 
         // init logger
-        Logger.addLogAdapter(object : AndroidLogAdapter() {
+        val formatStrategy = PrettyFormatStrategy.newBuilder()
+            .showThreadInfo(false)
+            .methodCount(1)
+            .build()
+        Logger.addLogAdapter(object : AndroidLogAdapter(formatStrategy) {
             override fun isLoggable(priority: Int, tag: String?): Boolean {
                 return BuildConfig.DEBUG
             }
@@ -104,5 +110,7 @@ class App : Application() {
     private val appModule = module {
         // singleton service
         single { SharedPreferencesManager(this@App) }
+
+        viewModel { WifiViewModel() }
     }
 }

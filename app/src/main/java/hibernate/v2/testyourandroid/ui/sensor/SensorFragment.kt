@@ -34,6 +34,7 @@ import hibernate.v2.testyourandroid.util.SensorUtils.getTemperatureCounterSensor
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.logException
 import hibernate.v2.testyourandroid.util.ext.convertDpToPx
+import hibernate.v2.testyourandroid.util.ext.disableChangeAnimation
 import kotlin.math.exp
 import kotlin.math.ln
 
@@ -57,6 +58,8 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
     private var sensorType = 0
     private var reading = ""
     private var initReading = 0f
+    private var maxGraphY = 0.0
+    private var minGraphY = 0.0
     private var series = LineGraphSeries(arrayOf<DataPoint>())
     private var series2 = LineGraphSeries(arrayOf<DataPoint>())
     private var series3 = LineGraphSeries(arrayOf<DataPoint>())
@@ -87,12 +90,12 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
         if (mSensor != null && sensorEventListener != null) {
             mSensorManager.registerListener(
                 sensorEventListener, mSensor,
-                SensorManager.SENSOR_DELAY_FASTEST
+                SensorManager.SENSOR_DELAY_UI
             )
             if (secondSensor != null) {
                 mSensorManager.registerListener(
                     sensorEventListener, secondSensor,
-                    SensorManager.SENSOR_DELAY_FASTEST
+                    SensorManager.SENSOR_DELAY_UI
                 )
             }
         }
@@ -157,12 +160,14 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
         var isGraph3 = false
         when (sensorType) {
             Sensor.TYPE_ACCELEROMETER -> {
+                isGraph3 = true
+                isGraph2 = true
                 mSensor?.maximumRange?.toDouble()?.let {
-                    isGraph3 = true
-                    isGraph2 = true
                     viewBinding.graphView.viewport.isYAxisBoundsManual = true
                     viewBinding.graphView.viewport.setMinY(-it)
                     viewBinding.graphView.viewport.setMaxY(it)
+                    maxGraphY = it
+                    minGraphY = -it
                 }
             }
             Sensor.TYPE_GRAVITY -> {
@@ -172,6 +177,8 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
                     viewBinding.graphView.viewport.isYAxisBoundsManual = true
                     viewBinding.graphView.viewport.setMinY(-it)
                     viewBinding.graphView.viewport.setMaxY(it)
+                    maxGraphY = it
+                    minGraphY = -it
                 }
             }
             Sensor.TYPE_PRESSURE -> {
@@ -179,6 +186,8 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
                     viewBinding.graphView.viewport.isYAxisBoundsManual = true
                     viewBinding.graphView.viewport.setMinY(0.0)
                     viewBinding.graphView.viewport.setMaxY(it)
+                    maxGraphY = it
+                    minGraphY = 0.0
                 }
             }
             Sensor.TYPE_PROXIMITY -> {
@@ -186,6 +195,8 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
                     viewBinding.graphView.viewport.isYAxisBoundsManual = true
                     viewBinding.graphView.viewport.setMinY(0.0)
                     viewBinding.graphView.viewport.setMaxY(it)
+                    maxGraphY = it
+                    minGraphY = 0.0
                 }
             }
         }
@@ -206,6 +217,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
         viewBinding.graphView.gridLabelRenderer.isHighlightZeroLines = false
         viewBinding.graphView.gridLabelRenderer.isHorizontalLabelsVisible = false
         viewBinding.graphView.gridLabelRenderer.padding = context.convertDpToPx(10)
+        viewBinding.graphView.gridLabelRenderer.labelVerticalWidth = context.convertDpToPx(32)
         viewBinding.graphView.gridLabelRenderer.gridStyle =
             GridLabelRenderer.GridStyle.HORIZONTAL
         viewBinding.graphView.viewport.isXAxisBoundsManual = true
@@ -269,97 +281,114 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
             list.add(infoItem)
         }
         adapter = InfoItemAdapter().apply {
-            submitList(list)
+            setData(list)
         }
         viewBinding.rvlist.adapter = adapter
+        viewBinding.rvlist.disableChangeAnimation()
     }
 
     private val accelerometerListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
         override fun onSensorChanged(event: SensorEvent) {
+            val value0 = event.values[0]
+            val value1 = event.values[1]
+            val value2 = event.values[2]
+            updateGraphY(value0)
+            updateGraphY(value1)
+            updateGraphY(value2)
+
             reading = (
-                "X: " + String.format("%1.4f", event.values[0]) + " m/s²\nY: " +
-                    String.format("%1.4f", event.values[1]) + " m/s²\nZ: " +
-                    String.format("%1.4f", event.values[2]) + " m/s²"
+                "X: " + String.format("%1.4f", value0) + " m/s²\nY: " +
+                    String.format("%1.4f", value1) + " m/s²\nZ: " +
+                    String.format("%1.4f", value2) + " m/s²"
                 )
             lastXValue += 1.0
             series.appendData(
-                DataPoint(lastXValue, event.values[0].toDouble()),
+                DataPoint(lastXValue, value0.toDouble()),
                 true, 100
             )
             series2.appendData(
-                DataPoint(lastXValue, event.values[1].toDouble()),
+                DataPoint(lastXValue, value1.toDouble()),
                 true, 100
             )
             series3.appendData(
-                DataPoint(lastXValue, event.values[2].toDouble()),
+                DataPoint(lastXValue, value2.toDouble()),
                 true, 100
             )
             viewBinding?.graphView?.viewport?.scrollToEnd()
             list[0].contentText = reading
-            adapter?.submitList(list)
+            adapter?.notifyItemChanged(0)
         }
     }
     private val lightListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
         override fun onSensorChanged(event: SensorEvent) {
-            reading = event.values[0].toString() + " lux"
-            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
+            val value = event.values[0]
+            updateGraphY(value)
+            reading = "$value lux"
+            series.appendData(DataPoint(lastXValue, value.toDouble()), true, 36)
             viewBinding?.graphView?.viewport?.scrollToEnd()
             lastXValue += 1.0
             list[0].contentText = reading
-            adapter?.submitList(list)
+            adapter?.notifyItemChanged(0)
         }
     }
     private val pressureListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
         override fun onSensorChanged(event: SensorEvent) {
-            reading = event.values[0].toString() + " hPa"
-            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
+            val value = event.values[0]
+            updateGraphY(value)
+            reading = "$value hPa"
+            series.appendData(DataPoint(lastXValue, value.toDouble()), true, 36)
             viewBinding?.graphView?.viewport?.scrollToEnd()
             lastXValue += 1.0
             list[0].contentText = reading
-            adapter?.submitList(list)
+            adapter?.notifyItemChanged(0)
         }
     }
     private val proximityListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
         override fun onSensorChanged(event: SensorEvent) {
-            reading = String.format("%1.2f", event.values[0]) + " cm"
+            val value = event.values[0]
+            updateGraphY(value)
+            reading = String.format("%1.2f", value) + " cm"
             lastXValue += 1.0
             list[0].contentText = reading
-            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
+            series.appendData(DataPoint(lastXValue, value.toDouble()), true, 36)
             viewBinding?.graphView?.viewport?.scrollToEnd()
-            adapter?.submitList(list)
+            adapter?.notifyItemChanged(0)
         }
     }
     private val stepListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
         override fun onSensorChanged(event: SensorEvent) {
+            var value = event.values[0]
             if (initReading == 0f) {
-                initReading = event.values[0]
+                initReading = value
             }
-            val value = (event.values[0] - initReading).toInt()
+            updateGraphY(value + 100)
+            value -= initReading
             reading = "$value Steps"
             lastXValue += 1.0
             list[0].contentText = reading
             series.appendData(DataPoint(lastXValue, value.toDouble()), true, 36)
             viewBinding?.graphView?.viewport?.scrollToEnd()
-            adapter?.submitList(list)
+            adapter?.notifyItemChanged(0)
         }
     }
     private val temperatureListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
         override fun onSensorChanged(event: SensorEvent) {
-            val valueC = event.values[0].toDouble()
+            val valueC = event.values[0]
             val valueF = valueC * 1.8 + 32
             reading =
                 String.format("%1.2f", valueC) + " °C\n" + String.format("%1.2f", valueF) + " °F"
-            series.appendData(DataPoint(lastXValue, event.values[0].toDouble()), true, 36)
+            updateGraphY(valueC)
+            series.appendData(DataPoint(lastXValue, valueC.toDouble()), true, 36)
             viewBinding?.graphView?.viewport?.scrollToEnd()
             lastXValue += 1.0
             list[0].contentText = reading
-            adapter?.submitList(list)
+            adapter?.notifyItemChanged(0)
         }
     }
     private val compassListener: SensorEventListener = object : SensorEventListener {
@@ -405,7 +434,7 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
 
                 viewBinding?.graphView?.viewport?.scrollToEnd()
                 list[0].contentText = formatter.format(azimuth)
-                adapter?.submitList(list)
+                adapter?.notifyItemChanged(0)
 
                 val an: Animation = RotateAnimation(
                     -currentAzimuth, -azimuth,
@@ -429,11 +458,13 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
     private val humidityListener: SensorEventListener = object : SensorEventListener {
         override fun onAccuracyChanged(arg0: Sensor, arg1: Int) {}
         override fun onSensorChanged(event: SensorEvent) {
+            val value = event.values[0]
+            updateGraphY(value)
             if (event.sensor.type == Sensor.TYPE_RELATIVE_HUMIDITY) {
-                mLastKnownRelativeHumidity = event.values[0]
+                mLastKnownRelativeHumidity = value
             } else if (event.sensor.type == Sensor.TYPE_AMBIENT_TEMPERATURE) {
                 if (mLastKnownRelativeHumidity != 0f) {
-                    mLastKnownTemperature = event.values[0]
+                    mLastKnownTemperature = value
                     mLastKnownAbsoluteHumidity =
                         calculateAbsoluteHumidity(mLastKnownTemperature, mLastKnownRelativeHumidity)
                     mLastKnownDewPoint =
@@ -482,6 +513,19 @@ class SensorFragment : BaseFragment<FragmentSensorBinding>() {
             args.putInt(ARG_SENSOR_TYPE, sensorType)
             fragment.arguments = args
             return fragment
+        }
+    }
+
+    private fun updateGraphY(value: Float) {
+        viewBinding?.let { viewBinding ->
+            if (value > maxGraphY) {
+                maxGraphY = value.toDouble()
+                viewBinding.graphView.viewport.setMaxY(maxGraphY)
+            }
+            if (value < minGraphY) {
+                minGraphY = value.toDouble()
+                viewBinding.graphView.viewport.setMinY(minGraphY)
+            }
         }
     }
 }

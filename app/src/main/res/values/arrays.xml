@@ -5,7 +5,6 @@
         <item>@drawable/ic_icon_flashlight</item>
         <item>@drawable/ic_icon_bubble_level</item>
         <item>@drawable/ic_icon_sound_meter</item>
-        <item>@drawable/ic_icon_speed_test</item>
     </integer-array>
 
     <integer-array name="main_hardware_image">

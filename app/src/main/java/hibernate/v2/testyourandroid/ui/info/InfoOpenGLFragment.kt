@@ -50,7 +50,7 @@ class InfoOpenGLFragment : BaseFragment<FragmentInfoOpenglListviewBinding>() {
                 list[12].contentText = gl.glGetString(GL10.GL_EXTENSIONS).replace(" ", "\n")
 
                 activity?.runOnUiThread {
-                    adapter.submitList(list)
+                    adapter.setData(list)
                     viewBinding?.root?.removeView(viewBinding?.mGLView)
                 }
             }
@@ -66,7 +66,7 @@ class InfoOpenGLFragment : BaseFragment<FragmentInfoOpenglListviewBinding>() {
         list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
         adapter = InfoItemAdapter()
         viewBinding!!.rvlist.adapter = adapter
-        adapter.submitList(list)
+        adapter.setData(list)
     }
 
     private fun getData(j: Int): String {

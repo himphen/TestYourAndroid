@@ -1,15 +1,16 @@
 package hibernate.v2.testyourandroid.ui.info
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
-import android.content.BroadcastReceiver
-import android.content.Context
+import android.bluetooth.le.ScanCallback
+import android.bluetooth.le.ScanResult
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -20,6 +21,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.himphen.logger.Logger
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.ExtendedBluetoothDevice
@@ -33,7 +35,11 @@ import hibernate.v2.testyourandroid.util.ext.isPermissionsGranted
 /**
  * Created by himphen on 21/5/16.
  */
-class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
+class InfoBleFragment : BaseFragment<FragmentInfoListviewBinding>() {
+
+    companion object {
+        const val BLUETOOTH_SCANNING_TIMEOUT = 10000L
+    }
 
     private val bluetoothManager by lazy {
         requireContext().getSystemService(BluetoothManager::class.java)
@@ -69,22 +75,21 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
     private lateinit var list: List<InfoItem>
     private var adapter: InfoItemAdapter? = null
     private var isFirstLoading = true
-    private val bluetoothChangedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            val action = intent.action
-            if (BluetoothDevice.ACTION_FOUND == action) {
-                val device =
-                    intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
-                device?.let {
-                    val rssi =
-                        intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE).toInt()
-                    val extendedBluetoothDevice = ExtendedBluetoothDevice(
-                        name = if (device.name == null) device.address else device.name,
-                        rssi = rssi
-                    )
-                    updateScannedList(extendedBluetoothDevice)
-                }
-            }
+
+    private val bluetoothScanHandler = Handler(Looper.getMainLooper())
+    private val bluetoothStopScanCallback = Runnable { stopBluetoothScanning() }
+
+    private val mLeScanCallback = object : ScanCallback() {
+        override fun onScanResult(callbackType: Int, result: ScanResult) {
+            val device = result.device
+            val rssi = result.rssi
+
+            val extendedBluetoothDevice = ExtendedBluetoothDevice(
+                name = if (device.name == null) device.address else device.name,
+                rssi = rssi
+            )
+
+            updateScannedList(extendedBluetoothDevice)
         }
     }
 
@@ -103,7 +108,7 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
     override fun onPause() {
         super.onPause()
-        unregisterReceiver()
+        stopBluetoothScanning()
     }
 
     override fun onResume() {
@@ -149,13 +154,6 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
                 return
             }
 
-            context?.registerReceiver(
-                bluetoothChangedReceiver,
-                IntentFilter(
-                    BluetoothDevice.ACTION_FOUND
-                )
-            )
-            bluetoothAdapter.startDiscovery()
             list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
             adapter = InfoItemAdapter().apply {
                 setData(list)
@@ -164,6 +162,13 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
             if (isToast) {
                 Toast.makeText(context, R.string.wifi_reload_done, Toast.LENGTH_SHORT).show()
             }
+
+            bluetoothManager?.adapter?.bluetoothLeScanner?.startScan(mLeScanCallback)
+
+            bluetoothScanHandler.postDelayed(
+                bluetoothStopScanCallback,
+                BLUETOOTH_SCANNING_TIMEOUT
+            )
         } ?: run {
             errorNoFeatureDialog(context)
             return
@@ -171,17 +176,16 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
     }
 
     private fun reload(isToast: Boolean) {
-        unregisterReceiver()
+        stopBluetoothScanning()
         init(isToast)
     }
 
-    private fun unregisterReceiver() {
-        try {
-            bluetoothChangedReceiver.let { bluetoothChangedReceiver ->
-                context?.unregisterReceiver(bluetoothChangedReceiver)
-            }
-        } catch (ignored: IllegalArgumentException) {
-        }
+    @SuppressLint("MissingPermission")
+    fun stopBluetoothScanning() {
+        Logger.d("NetworkSchedulerService-lifecycle stopScanning.")
+        bluetoothScanHandler.removeCallbacks(bluetoothStopScanCallback)
+
+        bluetoothManager?.adapter?.bluetoothLeScanner?.stopScan(mLeScanCallback)
     }
 
     private fun openBluetoothDialog() {

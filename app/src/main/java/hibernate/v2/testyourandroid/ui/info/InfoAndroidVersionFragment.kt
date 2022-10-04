@@ -31,7 +31,7 @@ class InfoAndroidVersionFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
         val stringArray = resources.getStringArray(R.array.info_android_version_string_array)
         val list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
-        adapter.submitList(list)
+        adapter.setData(list)
     }
 
     private fun getData(j: Int): String? {
