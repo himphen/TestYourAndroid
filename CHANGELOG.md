@@ -1,5 +1,9 @@
 # Test Your Android
 
+## Red Bean Ice 11.4.4
+
+- Fix getting Wifi Standard issue
+
 ## Red Bean Ice 11.4.3
 
 - Fix getting Wifi issue

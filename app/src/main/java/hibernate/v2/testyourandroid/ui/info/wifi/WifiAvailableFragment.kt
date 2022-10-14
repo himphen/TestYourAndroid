@@ -107,7 +107,7 @@ class WifiAvailableFragment : BaseFragment<FragmentInfoListviewBinding>() {
         }
 
         var standard: String? = null
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             standard = when (result.wifiStandard) {
                 ScanResult.WIFI_STANDARD_11AC -> "802.11ac"
                 ScanResult.WIFI_STANDARD_11AD -> "802.11ad"
