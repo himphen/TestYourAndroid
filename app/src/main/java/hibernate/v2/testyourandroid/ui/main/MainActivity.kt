@@ -117,8 +117,8 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
                     mInterstitialAd = interstitialAd
                     mInterstitialAd?.fullScreenContentCallback =
                         object : FullScreenContentCallback() {
-                            override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
-                                Logger.d("Ad failed to show." + adError?.message)
+                            override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                                Logger.d("Ad failed to show." + adError.message)
                             }
 
                             override fun onAdShowedFullScreenContent() {
@@ -136,7 +136,7 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
         }
         ++countInterstitialAd
 
-        if (countInterstitialAd == 3 || (countInterstitialAd > 8 && countInterstitialAd % 3 == 0)) {
+        if (countInterstitialAd == 3) {
             mInterstitialAd?.show(this)
         }
     }
@@ -167,7 +167,7 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
 
     fun openDialogIAP() {
         skuDetailsList?.let { skuDetailsList ->
-            if (skuDetailsList.isNullOrEmpty()) {
+            if (skuDetailsList.isEmpty()) {
                 Toast.makeText(this, R.string.ui_error, Toast.LENGTH_LONG).show()
                 return
             }
@@ -306,7 +306,7 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     val allSku = iapProductIdListAll()
                     purchaseHistoryRecordList?.forEach {
-                        if (allSku.intersect(it.skus).isNotEmpty()) {
+                        if (allSku.intersect(it.skus.toSet()).isNotEmpty()) {
                             continuation.resume(true)
                             return@queryPurchaseHistoryAsync
                         }

@@ -85,7 +85,7 @@ object Utils : KoinComponent {
                 }
                 val adView = AdView(context)
                 adView.adUnitId = adUnitId
-                adView.adSize = adUnitSize
+                adView.setAdSize(adUnitSize)
                 adLayout.addView(adView)
                 adView.loadAd(AdRequest.Builder().build())
                 return adView
