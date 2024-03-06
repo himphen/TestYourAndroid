@@ -8,7 +8,7 @@ plugins {
     id 'org.jlleitschuh.gradle.ktlint'
 }
 
-task copyPreCommit(type: Copy) {
+tasks.register('copyPreCommit', Copy) {
     from file("../.githooks/pre-commit")
     into file("../.git/hooks")
 }
@@ -17,8 +17,7 @@ gradle.projectsEvaluated {
 }
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "33.0.0"
+    compileSdk 34
 
     buildFeatures {
         viewBinding true
@@ -26,12 +25,10 @@ android {
 
     defaultConfig {
         applicationId "hibernate.v2.testyourandroid"
-        minSdkVersion 21
-        targetSdkVersion 33
-        versionCode 1911502
-        versionName "Red Bean Ice 11.5.0"
-        multiDexEnabled true
-        flavorDimensions "default"
+        minSdkVersion 23
+        targetSdkVersion 34
+        versionCode 1911612
+        versionName "Red Bean Ice 11.6.1"
         wearAppUnbundled true
         vectorDrawables.useSupportLibrary = true
     }
@@ -70,21 +67,23 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = JavaVersion.VERSION_17.toString()
         // Opt-in option for Koin annotation of KoinComponent.
-        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
+
+    namespace 'hibernate.v2.testyourandroid'
 }
 
 dependencies {
     implementation project(':draw-library')
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
 
     // Google Android Support
     implementation 'androidx.multidex:multidex:2.0.1'
@@ -94,10 +93,10 @@ dependencies {
     implementation 'androidx.biometric:biometric:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.fragment:fragment-ktx:1.6.0'
+    implementation 'androidx.fragment:fragment-ktx:1.6.1'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-    implementation "androidx.preference:preference-ktx:1.2.0"
+    implementation "androidx.preference:preference-ktx:1.2.1"
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'androidx.work:work-runtime-ktx:2.8.1'
 
@@ -105,14 +104,14 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koin_version"
 
     // https://developer.android.com/google/play/billing/billing_library_overview
-    implementation 'com.android.billingclient:billing-ktx:4.0.0'
+    implementation 'com.android.billingclient:billing-ktx:6.0.1'
 
     // Google Play Services
-    implementation 'com.google.android.gms:play-services-ads:22.1.0'
+    implementation 'com.google.android.gms:play-services-ads:22.3.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.material:material:1.9.0'
-    implementation platform('com.google.firebase:firebase-bom:32.1.1')
+    implementation platform('com.google.firebase:firebase-bom:32.2.2')
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
@@ -127,9 +126,6 @@ dependencies {
 
     // https://github.com/yuriy-budiyev/code-scanner
     implementation 'com.github.yuriy-budiyev:code-scanner:2.1.0'
-
-    // https://github.com/javiersantos/AppUpdater
-    implementation 'com.github.javiersantos:AppUpdater:2.7'
 
     // https://github.com/himphen/logger
     implementation 'com.github.himphen:logger:3.0.1'

@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.FragmentInfoListviewBinding
 import hibernate.v2.testyourandroid.model.InfoItem
@@ -59,7 +61,11 @@ class InfoCameraFragment : BaseFragment<FragmentInfoListviewBinding>() {
 
     override fun onPause() {
         super.onPause()
-        mCamera?.release()
+        try {
+            mCamera?.release()
+        } catch (e: Exception) {
+            Firebase.crashlytics.recordException(e)
+        }
     }
 
     private fun openChooseCameraDialog() {
@@ -146,6 +152,7 @@ class InfoCameraFragment : BaseFragment<FragmentInfoListviewBinding>() {
                     val screenHeight = displayMetrics.heightPixels
                     if (j == 0) "$screenWidth px" else "$screenHeight px"
                 }
+
                 2 -> {
                     mParameters?.let {
                         sizeListToString(it.supportedPictureSizes)
@@ -153,27 +160,35 @@ class InfoCameraFragment : BaseFragment<FragmentInfoListviewBinding>() {
                         ""
                     }
                 }
+
                 3 -> {
                     listToString(mParameters?.supportedAntibanding)
                 }
+
                 4 -> {
                     listToString(mParameters?.supportedColorEffects)
                 }
+
                 5 -> {
                     listToString(mParameters?.supportedFlashModes)
                 }
+
                 6 -> {
                     listToString(mParameters?.supportedFocusModes)
                 }
+
                 7 -> {
                     listToString(mParameters?.supportedWhiteBalance)
                 }
+
                 8 -> {
                     listToString(mParameters?.supportedSceneModes)
                 }
+
                 9 -> {
                     integerListToString(mParameters?.supportedPictureFormats)
                 }
+
                 else -> "N/A"
             }
         } catch (e: Exception) {

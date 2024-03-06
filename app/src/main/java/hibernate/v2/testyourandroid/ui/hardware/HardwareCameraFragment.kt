@@ -38,7 +38,9 @@ class HardwareCameraFragment : BaseFragment<FragmentHardwareCameraBinding>() {
         CameraLogger.registerLogger { level, _, _, throwable ->
             if (level == CameraLogger.LEVEL_ERROR) {
                 if (throwable != null) {
-                    errorNoFeatureDialog(activity)
+                    activity?.runOnUiThread {
+                        errorNoFeatureDialog(activity)
+                    }
                 }
             }
         }

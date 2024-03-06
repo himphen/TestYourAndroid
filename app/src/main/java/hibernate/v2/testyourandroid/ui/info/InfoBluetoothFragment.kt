@@ -127,6 +127,7 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
                     permissionLifecycleObserver?.requestPermissions(permissions)
                 }
             }
+
             R.id.action_settings -> startSettingsActivity(
                 context,
                 Settings.ACTION_BLUETOOTH_SETTINGS
@@ -155,6 +156,7 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
                     BluetoothDevice.ACTION_FOUND
                 )
             )
+
             bluetoothAdapter.startDiscovery()
             list = stringArray.mapIndexed { index, s -> InfoItem(s, getData(index)) }
             adapter = InfoItemAdapter().apply {
@@ -222,6 +224,7 @@ class InfoBluetoothFragment : BaseFragment<FragmentInfoListviewBinding>() {
                     }
                     text.toString()
                 }
+
                 else -> "N/A"
             }
         } catch (e: Exception) {

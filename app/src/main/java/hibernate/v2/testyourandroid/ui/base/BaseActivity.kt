@@ -13,6 +13,7 @@ import androidx.viewbinding.ViewBinding
 import com.google.android.gms.ads.AdView
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.databinding.ActivityContainerAdviewBinding
+import hibernate.v2.testyourandroid.databinding.ActivityContainerBinding
 import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.updateLanguage
 
@@ -44,6 +45,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
                 finish()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -83,8 +85,13 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
     fun initFragment(fragment: Fragment?, titleString: String?, titleId: Int?) {
         fragment?.let {
             setContentView(viewBinding.root)
+
+            val toolbar: Toolbar? =
+                (viewBinding as? ActivityContainerAdviewBinding)?.toolbar?.root
+                    ?: (viewBinding as? ActivityContainerBinding)?.toolbar?.root
+
             initActionBar(
-                (viewBinding as? ActivityContainerAdviewBinding)?.toolbar?.root,
+                toolbar,
                 titleString = titleString, titleId = titleId
             )
 

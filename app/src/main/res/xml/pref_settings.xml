@@ -41,11 +41,6 @@
             android:key="pref_improve_translation"
             android:title="Help improve translation!" />
 
-        <CheckBoxPreference
-            android:icon="@drawable/outline_sentiment_very_satisfied_24"
-            android:key="pref_hide_fullscreen_ad"
-            android:title="@string/pref_hide_fullscreen_ad" />
-
         <Preference
             android:icon="@drawable/baseline_settings_backup_restore_24"
             android:key="pref_restore_purchase"
