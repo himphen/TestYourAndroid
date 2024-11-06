@@ -22,12 +22,13 @@ fun Bitmap.rotate(degree: Int): Bitmap {
 }
 
 fun PackageInfo.isSystemPackage(): Boolean {
-    return (this.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+    val applicationInfo = applicationInfo ?: return false
+    return (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
 }
 
 fun Activity?.isPermissionsGranted(permissions: Array<String>): Boolean {
     if (this == null) return false
-    
+
     return permissions.all {
         ActivityCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
     }

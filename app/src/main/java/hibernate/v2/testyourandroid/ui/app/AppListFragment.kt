@@ -106,15 +106,17 @@ class AppListFragment : BaseFragment<FragmentInfoListviewShimmerBinding>() {
                                 continue
                             }
                         }
+
+                        val applicationInfo = packageInfo.applicationInfo ?: continue
+
                         val appItem = AppItem(
-                            appName = packageInfo.applicationInfo.loadLabel(packageManager)
-                                .toString(),
+                            appName = applicationInfo.loadLabel(packageManager).toString(),
                             packageName = packageInfo.packageName,
-                            isSystemApp = (packageInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+                            isSystemApp = (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
                         )
                         try {
-                            appItem.icon = packageInfo.applicationInfo.loadIcon(packageManager)
-                        } catch (e: Resources.NotFoundException) {
+                            appItem.icon = applicationInfo.loadIcon(packageManager)
+                        } catch (_: Resources.NotFoundException) {
                         }
                         appList.add(appItem)
                     }
