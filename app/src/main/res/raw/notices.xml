@@ -43,12 +43,6 @@
         <license>MIT License</license>
     </notice>
     <notice>
-        <name>AppUpdater</name>
-        <url>https://github.com/javiersantos/AppUpdater</url>
-        <copyright>Copyright Javier Santos</copyright>
-        <license>Apache Software License 2.0</license>
-    </notice>
-    <notice>
         <name>Logger</name>
         <url>https://github.com/himphen/logger</url>
         <copyright>Copyright Orhan Obut</copyright>

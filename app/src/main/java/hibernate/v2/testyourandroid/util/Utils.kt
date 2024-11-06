@@ -85,7 +85,7 @@ object Utils : KoinComponent {
                 }
                 val adView = AdView(context)
                 adView.adUnitId = adUnitId
-                adView.adSize = adUnitSize
+                adView.setAdSize(adUnitSize)
                 adLayout.addView(adView)
                 adView.loadAd(AdRequest.Builder().build())
                 return adView
@@ -400,7 +400,7 @@ object Utils : KoinComponent {
     }
 
     fun isMatch(regex: String, input: CharSequence?): Boolean {
-        return input != null && input.isNotEmpty() && Pattern.matches(regex, input)
+        return !input.isNullOrEmpty() && Pattern.matches(regex, input)
     }
 
     fun isTablet(): Boolean {
@@ -455,6 +455,7 @@ fun ScanResult.getCompatSSID(): String? {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         wifiSsid.toString()
     } else {
+        @Suppress("DEPRECATION")
         SSID
     }
 }

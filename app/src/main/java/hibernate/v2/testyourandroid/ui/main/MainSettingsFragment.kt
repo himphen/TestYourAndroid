@@ -128,14 +128,6 @@ class MainSettingsFragment : PreferenceFragmentCompat() {
 
             true
         }
-        findPreference<CheckBoxPreference>("pref_hide_fullscreen_ad")?.let { it ->
-            it.isChecked = sharedPreferencesManager.hideFullscreenAd
-            it.setOnPreferenceChangeListener { preference, newValue ->
-                sharedPreferencesManager.hideFullscreenAd = newValue as Boolean
-
-                true
-            }
-        }
         findPreference<Preference>("pref_version")?.apply {
             summary = Utils.getAppVersionName(context)
         }

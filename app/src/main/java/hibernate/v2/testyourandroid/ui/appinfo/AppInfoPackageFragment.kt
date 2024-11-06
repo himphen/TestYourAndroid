@@ -59,23 +59,26 @@ class AppInfoPackageFragment : BaseFragment<FragmentInfoListviewBinding>() {
                 0 -> if (packageInfo.isSystemPackage()) "System Package" else "User-Installed Package"
                 1 -> packageInfo.packageName
                 2 -> PackageInfoCompat.getLongVersionCode(packageInfo).toString()
-                3 -> packageInfo.versionName
+                3 -> packageInfo.versionName ?: throw Exception()
                 4 -> {
                     date = Date(packageInfo.firstInstallTime)
-                    formatter.format(date)
+                    formatter.format(date) ?: throw Exception()
                 }
+
                 5 -> {
                     date = Date(packageInfo.lastUpdateTime)
-                    formatter.format(date)
+                    formatter.format(date) ?: throw Exception()
                 }
-                6 -> packageInfo.applicationInfo.dataDir
-                7 -> packageInfo.applicationInfo.publicSourceDir
+
+                6 -> packageInfo.applicationInfo?.dataDir ?: throw Exception()
+                7 -> packageInfo.applicationInfo?.publicSourceDir ?: throw Exception()
                 8 -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    packageInfo.applicationInfo.minSdkVersion.toString()
+                    packageInfo.applicationInfo?.minSdkVersion?.toString() ?: throw Exception()
                 } else {
                     getString(R.string.ui_not_support_android_version, "7.0")
                 }
-                9 -> packageInfo.applicationInfo.targetSdkVersion.toString()
+
+                9 -> packageInfo.applicationInfo?.targetSdkVersion?.toString() ?: throw Exception()
                 else -> "N/A"
             }
         } catch (e: Exception) {

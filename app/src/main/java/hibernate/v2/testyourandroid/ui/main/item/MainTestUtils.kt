@@ -266,7 +266,7 @@ class MainTestUtils(private val context: Context) {
         return if (!Utils.isAdHidden()) {
             val adView = AdView(context)
             adView.adUnitId = BuildConfig.ADMOB_HOME_AD_ID
-            adView.adSize = AdSize.MEDIUM_RECTANGLE
+            adView.setAdSize(AdSize.MEDIUM_RECTANGLE)
             MainTestAdItem(adView)
         } else {
             null

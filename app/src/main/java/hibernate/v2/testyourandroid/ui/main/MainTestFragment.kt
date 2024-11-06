@@ -9,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
-import com.github.javiersantos.appupdater.AppUpdater
-import com.github.javiersantos.appupdater.enums.Display
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -43,10 +41,6 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        AppUpdater(context)
-            .showEvery(4)
-            .setDisplay(Display.NOTIFICATION)
-            .start()
 
         if (countRate <= 50) {
             sharedPreferencesManager.countRate = ++countRate
@@ -64,6 +58,7 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
                         is MainTestAdItem,
                         is MainTestRatingItem,
                         is MainTestTitleItem -> columnCount
+
                         else -> 1
                     }
                 }
@@ -91,6 +86,7 @@ class MainTestFragment : BaseFragment<FragmentMainGridviewBinding>() {
                                 startActivity(intent)
                             }
                         }
+
                         else -> {
                         }
                     }

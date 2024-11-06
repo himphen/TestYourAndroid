@@ -15,20 +15,12 @@ import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.SkuDetails
 import com.android.billingclient.api.SkuDetailsParams
-import com.google.android.gms.ads.AdError
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.FullScreenContentCallback
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.himphen.logger.Logger
-import hibernate.v2.testyourandroid.BuildConfig
 import hibernate.v2.testyourandroid.R
 import hibernate.v2.testyourandroid.core.SharedPreferencesManager
 import hibernate.v2.testyourandroid.databinding.ActivityContainerBinding
 import hibernate.v2.testyourandroid.ui.base.BaseActivity
-import hibernate.v2.testyourandroid.util.Utils
 import hibernate.v2.testyourandroid.util.Utils.iapProductIdList
 import hibernate.v2.testyourandroid.util.Utils.iapProductIdListAll
 import kotlinx.coroutines.Dispatchers
@@ -46,9 +38,6 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
     private lateinit var billingClient: BillingClient
 
     private var skuDetailsList: List<SkuDetails>? = null
-    private var mInterstitialAd: InterstitialAd? = null
-
-    private var countInterstitialAd = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -64,8 +53,6 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
             .beginTransaction()
             .replace(R.id.container, MainFragment())
             .commit()
-
-        initInterstitialAd()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -94,53 +81,6 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        countInterstitialAd()
-    }
-
-    private fun initInterstitialAd() {
-        if (Utils.isAdHidden()) {
-            return
-        }
-        InterstitialAd.load(
-            this,
-            BuildConfig.ADMOB_FULL_SCREEN_ID,
-            AdRequest.Builder().build(),
-            object : InterstitialAdLoadCallback() {
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    mInterstitialAd = null
-                }
-
-                override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                    mInterstitialAd = interstitialAd
-                    mInterstitialAd?.fullScreenContentCallback =
-                        object : FullScreenContentCallback() {
-                            override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
-                                Logger.d("Ad failed to show." + adError?.message)
-                            }
-
-                            override fun onAdShowedFullScreenContent() {
-                                initInterstitialAd()
-                            }
-                        }
-                }
-            }
-        )
-    }
-
-    private fun countInterstitialAd() {
-        if (Utils.isAdHidden() || sharedPreferencesManager.hideFullscreenAd) {
-            return
-        }
-        ++countInterstitialAd
-
-        if (countInterstitialAd == 3 || (countInterstitialAd > 8 && countInterstitialAd % 3 == 0)) {
-            mInterstitialAd?.show(this)
-        }
-    }
-
     fun openDialogLanguage() {
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.title_activity_language)
@@ -167,7 +107,7 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
 
     fun openDialogIAP() {
         skuDetailsList?.let { skuDetailsList ->
-            if (skuDetailsList.isNullOrEmpty()) {
+            if (skuDetailsList.isEmpty()) {
                 Toast.makeText(this, R.string.ui_error, Toast.LENGTH_LONG).show()
                 return
             }
@@ -306,7 +246,7 @@ class MainActivity : BaseActivity<ActivityContainerBinding>() {
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     val allSku = iapProductIdListAll()
                     purchaseHistoryRecordList?.forEach {
-                        if (allSku.intersect(it.skus).isNotEmpty()) {
+                        if (allSku.intersect(it.skus.toSet()).isNotEmpty()) {
                             continuation.resume(true)
                             return@queryPurchaseHistoryAsync
                         }
