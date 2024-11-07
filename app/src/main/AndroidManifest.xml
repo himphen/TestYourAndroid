@@ -254,10 +254,6 @@
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_sound_meter" />
         <activity
-            android:name=".ui.tool.speedtest.ToolSpeedTestActivity"
-            android:configChanges="orientation|screenSize|locale|layoutDirection"
-            android:label="@string/title_activity_sound_meter" />
-        <activity
             android:name=".ui.hardware.HardwareBiometricActivity"
             android:configChanges="orientation|screenSize|locale|layoutDirection"
             android:label="@string/title_activity_biometric" />
