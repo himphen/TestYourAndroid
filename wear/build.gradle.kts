@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "hibernate.v2.testyourwear"
         minSdk = 25
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 2511102
         versionName = "Pineapple Buns 11.1.0"
         multiDexEnabled = true

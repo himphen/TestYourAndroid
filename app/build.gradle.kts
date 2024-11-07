@@ -32,6 +32,7 @@ android {
     defaultConfig {
         applicationId = "hibernate.v2.testyourandroid"
         minSdk = 23
+        targetSdk = 35
         versionCode = 2311712
         versionName = "Cream Soda with Milk 11.7.1"
         wearAppUnbundled = true
