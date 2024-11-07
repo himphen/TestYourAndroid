@@ -10,3 +10,7 @@
 -keep public class com.google.ads.** {
    public *;
 }
+
+-dontwarn hibernate.v2.draw.databinding.ColorPaletteViewBinding
+-dontwarn hibernate.v2.draw.widget.CircleView
+-dontwarn hibernate.v2.draw.widget.DrawView
