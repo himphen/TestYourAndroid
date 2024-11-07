@@ -1,5 +1,9 @@
 # Test Your Android
 
+## Cream Soda with Milk 11.7.1
+
+- Target SDK to Android 15
+
 ## Red Bean Ice 11.4.4
 
 - Fix getting Wifi Standard issue
